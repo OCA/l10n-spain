@@ -105,3 +105,27 @@ class TestL10nEsAeatSiiMatch(TestL10nEsAeatSiiBase):
         )
         with self.assertRaises(UserError):
             invoice.contrast_aeat()
+
+    def test_contrast_aeat_batch_continues_after_error(self):
+        """Contrasting several invoices at once must not crash nor stop the
+        batch just because one invoice raises (e.g. an AEAT communication
+        error): it must record the error on that invoice and keep
+        contrasting the rest.
+        """
+        self._activate_certificate()
+        invoice = self.invoice
+        invoice.write({"aeat_state": "sent", "sii_csv": "FAKECSV000"})
+        invoice2 = self._create_invoice("out_invoice")
+        invoice2.name = "INV002"
+        invoice2.action_post()
+        invoice2.write({"aeat_state": "sent", "sii_csv": "FAKECSV111"})
+        fake_serv = MagicMock()
+        fake_serv.ConsultaLRFacturasEmitidas.side_effect = [
+            Exception("AEAT communication error"),
+            {"RegistroRespuestaConsultaLRFacturasEmitidas": []},
+        ]
+        with patch.object(type(invoice), "_connect_aeat", return_value=fake_serv):
+            (invoice + invoice2).contrast_aeat()
+        self.assertFalse(invoice.sii_contrast_state)
+        self.assertIn("AEAT communication error", invoice.sii_match_return)
+        self.assertEqual(invoice2.sii_contrast_state, "no_exist")
