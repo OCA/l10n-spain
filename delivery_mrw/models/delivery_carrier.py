@@ -8,6 +8,7 @@ from lxml import etree
 
 from odoo import api, fields, models
 from odoo.exceptions import UserError
+from odoo.tools import html2plaintext
 
 from .mrw_request import MRWRequest
 
@@ -310,7 +311,7 @@ class DeliveryCarrier(models.Model):
                 "Nombre": receiving_partner.name,
                 "Telefono": receiving_partner.phone or "",
                 "ALaAtencionDe": "",
-                "Observaciones": picking.note or "",
+                "Observaciones": html2plaintext(picking.note) or "",
             },
             # nodo opcional
             "DatosServicio": {
