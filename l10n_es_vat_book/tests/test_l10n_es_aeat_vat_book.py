@@ -28,6 +28,7 @@ class TestL10nEsAeatVatBookBase(TestL10nEsAeatModBase):
         "P_REQ014": (280, 3.92),
         "P_REQ52": (290, 15.08),
         "P_IRPF19": (1024, 194.56),
+        "P_IVA21_IBC_GROUP": (1000, 210),
     }
 
 
@@ -79,38 +80,42 @@ class TestL10nEsAeatVatBook(TestL10nEsAeatVatBookBase):
             self.assertEqual(line.base_amount, 0.0)
             self.assertEqual(line.tax_amount, 0.0)
         # Check tax summary for received invoices
-        self.assertEqual(len(vat_book.received_tax_summary_ids), 7)
+        self.assertEqual(len(vat_book.received_tax_summary_ids), 8)
         rec_summaries = sorted(
             vat_book.received_tax_summary_ids,
             key=lambda line: line.tax_amount,
             reverse=True,
         )
-        # P_IVA21_SC - 21% IVA soportado (servicios corrientes)
+        # P_IVA21_IBC_GROUP - IVA 21% Importaciones DUA bienes corrientes
         line = rec_summaries[0]
+        self.assertAlmostEqual(line.base_amount, 1000)
+        self.assertAlmostEqual(line.tax_amount, 210)
+        # P_IVA21_SC - 21% IVA soportado (servicios corrientes)
+        line = rec_summaries[1]
         self.assertAlmostEqual(line.base_amount, 230)
         self.assertAlmostEqual(line.tax_amount, 48.3)
         # P_IVA21_IC_BC - IVA 21% Adquisición Intracomunitaria. Bienes corrientes
-        line = rec_summaries[1]
+        line = rec_summaries[2]
         self.assertAlmostEqual(line.base_amount, 200)
         self.assertAlmostEqual(line.tax_amount, 42)
         # P_IVA0_ND - 21% IVA Soportado no deducible
-        line = rec_summaries[2]
+        line = rec_summaries[3]
         self.assertAlmostEqual(line.base_amount, 100)
         self.assertAlmostEqual(line.tax_amount, 21)
         # P_REQ52 - 5.2% Recargo de equivalencia sobre operaciones sujetas a IVA
-        line = rec_summaries[3]
+        line = rec_summaries[4]
         self.assertAlmostEqual(line.base_amount, 290)
         self.assertAlmostEqual(line.tax_amount, 15.08)
         # P_REQ014 - 1.4% Recargo de equivalencia sobre operaciones sujetas a IVA
-        line = rec_summaries[4]
+        line = rec_summaries[5]
         self.assertAlmostEqual(line.base_amount, 280)
         self.assertAlmostEqual(line.tax_amount, 3.92)
         # P_REQ05 - 0.5% Recargo de equivalencia sobre operaciones sujetas a IVA
-        line = rec_summaries[5]
+        line = rec_summaries[6]
         self.assertAlmostEqual(line.base_amount, 270)
         self.assertAlmostEqual(line.tax_amount, 1.35)
         # P_IRPF19 - 19% Impuesto sobre la resta fisica
-        line = rec_summaries[6]
+        line = rec_summaries[7]
         self.assertAlmostEqual(line.base_amount, 1024)
         self.assertAlmostEqual(line.tax_amount, -194.56)
         # Let's dig into this tax detail for checking the deductible amount
