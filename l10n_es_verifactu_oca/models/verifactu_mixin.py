@@ -9,7 +9,6 @@ import json
 from hashlib import sha256
 from urllib.parse import urlencode
 
-import psycopg2
 import qrcode
 
 from odoo import _, api, fields, models
@@ -313,64 +312,71 @@ class VerifactuMixin(models.AbstractModel):
     def _get_verifactu_chaining(self):
         return NotImplementedError
 
+    def _lock_verifactu_chaining(self):
+        """Lock all involved chains before their documents are posted.
+
+        PostgreSQL concurrency errors must reach Odoo's transaction retry
+        mechanism unchanged.
+        """
+        chainings = self.env["verifactu.chaining"]
+        for document in self:
+            chainings |= document._get_verifactu_chaining()
+        if not chainings:
+            return
+        chainings.flush_recordset(["last_verifactu_invoice_entry_id"])
+        self.env.cr.execute(
+            f"SELECT id FROM {chainings._table} "
+            "WHERE id = ANY(%s) ORDER BY id FOR UPDATE NOWAIT",
+            [chainings.ids],
+        )
+
     def _generate_verifactu_chaining(self, entry_type=False):
         """Generate VERI*FACTU invoice entry for company-wide chaining."""
         self.ensure_one()
         chaining = self._get_verifactu_chaining()
         chaining.flush_recordset(["last_verifactu_invoice_entry_id"])
         cancel = entry_type and entry_type == "cancel"
-        try:
-            with self.env.cr.savepoint():
-                self.env.cr.execute(
-                    f"SELECT last_verifactu_invoice_entry_id FROM {chaining._table}"
-                    " WHERE id = %s FOR UPDATE NOWAIT",
-                    [chaining.id],
-                )
-                result = self.env.cr.fetchone()
-                previous_invoice_entry_id = result[0] if result and result[0] else False
-                invoice_vals = {
-                    "verifactu_chaining_id": chaining.id,
-                    "model": self._name,
-                    "document_id": self.id,
-                    "document_name": self.name,
-                    "previous_invoice_entry_id": previous_invoice_entry_id,
-                    "company_id": self.company_id.id,
-                    "document_hash": "",
-                }
-                if entry_type:
-                    invoice_vals["entry_type"] = entry_type
-                invoice_entry = self.env["verifactu.invoice.entry"].create(invoice_vals)
-                self.last_verifactu_invoice_entry_id = invoice_entry
-                verifactu_hash_values = self._get_verifactu_hash_string(cancel=cancel)
-                self.verifactu_hash_string = verifactu_hash_values
-                hash_string = sha256(verifactu_hash_values.encode("utf-8"))
-                self.verifactu_hash = hash_string.hexdigest().upper()
-                # Generate JSON data for AEAT
+        with self.env.cr.savepoint():
+            self.env.cr.execute(
+                f"SELECT last_verifactu_invoice_entry_id FROM {chaining._table}"
+                " WHERE id = %s FOR UPDATE NOWAIT",
+                [chaining.id],
+            )
+            result = self.env.cr.fetchone()
+            previous_invoice_entry_id = result[0] if result and result[0] else False
+            invoice_vals = {
+                "verifactu_chaining_id": chaining.id,
+                "model": self._name,
+                "document_id": self.id,
+                "document_name": self.name,
+                "previous_invoice_entry_id": previous_invoice_entry_id,
+                "company_id": self.company_id.id,
+                "document_hash": "",
+            }
+            if entry_type:
+                invoice_vals["entry_type"] = entry_type
+            invoice_entry = self.env["verifactu.invoice.entry"].create(invoice_vals)
+            self.last_verifactu_invoice_entry_id = invoice_entry
+            verifactu_hash_values = self._get_verifactu_hash_string(cancel=cancel)
+            self.verifactu_hash_string = verifactu_hash_values
+            hash_string = sha256(verifactu_hash_values.encode("utf-8"))
+            self.verifactu_hash = hash_string.hexdigest().upper()
+            # Generate JSON data for AEAT
+            aeat_json_data = ""
+            try:
+                inv_dict = self._get_verifactu_invoice_dict(cancel=cancel)
+                aeat_json_data = json.dumps(inv_dict, indent=4)
+            except Exception:
+                # If JSON generation fails, store empty string
                 aeat_json_data = ""
-                try:
-                    inv_dict = self._get_verifactu_invoice_dict(cancel=cancel)
-                    aeat_json_data = json.dumps(inv_dict, indent=4)
-                except Exception:
-                    # If JSON generation fails, store empty string
-                    aeat_json_data = ""
-                invoice_entry.document_hash = hash_string.hexdigest().upper()
-                invoice_entry.aeat_json_data = aeat_json_data
-                self.env.cr.execute(
-                    f"UPDATE {chaining._table} "
-                    "SET last_verifactu_invoice_entry_id = %s WHERE id = %s",
-                    [invoice_entry.id, chaining.id],
-                )
-                chaining.invalidate_recordset(["last_verifactu_invoice_entry_id"])
-        except psycopg2.OperationalError as err:
-            if err.pgcode == "55P03":  # could not obtain the lock
-                raise UserError(
-                    _(
-                        "Could not obtain last document sent to VERI*FACTU for "
-                        "chaining %s.",
-                        chaining.name,
-                    )
-                ) from err
-            raise
+            invoice_entry.document_hash = hash_string.hexdigest().upper()
+            invoice_entry.aeat_json_data = aeat_json_data
+            self.env.cr.execute(
+                f"UPDATE {chaining._table} "
+                "SET last_verifactu_invoice_entry_id = %s WHERE id = %s",
+                [invoice_entry.id, chaining.id],
+            )
+            chaining.invalidate_recordset(["last_verifactu_invoice_entry_id"])
 
     def _get_verifactu_document_type(self):
         raise NotImplementedError()

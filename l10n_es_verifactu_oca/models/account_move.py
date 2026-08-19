@@ -467,12 +467,30 @@ class AccountMove(models.Model):
         )
 
     def _post(self, soft=True):
-        res = super()._post(soft=soft)
-        for record in self.sorted(lambda inv: inv.name):
-            if record.verifactu_enabled and record.aeat_state == "not_sent":
+        verifactu_records = self.filtered(
+            lambda inv: inv.verifactu_enabled and inv.aeat_state == "not_sent"
+        )
+        if not verifactu_records:
+            return super()._post(soft=soft)
+        with self.env.cr.savepoint():
+            verifactu_records._lock_verifactu_chaining()
+            res = super()._post(soft=soft)
+            for record in (res & verifactu_records).sorted(lambda inv: inv.name):
                 record._check_verifactu_configuration()
                 record.verifactu_registration_date = datetime.now()
                 record._generate_verifactu_chaining()
+            missing_entries = verifactu_records.filtered(
+                lambda inv: inv.state == "posted"
+                and not inv.last_verifactu_invoice_entry_id
+            )
+            if missing_entries:
+                raise UserError(
+                    _(
+                        "The following invoices could not be posted because their "
+                        "VERI*FACTU entry was not generated: %s",
+                        ", ".join(missing_entries.mapped("display_name")),
+                    )
+                )
         return res
 
     def _check_verifactu_configuration(self, suffixes=None):
