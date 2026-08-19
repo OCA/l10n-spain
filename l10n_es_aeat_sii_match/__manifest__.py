@@ -4,7 +4,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     "name": "Sistema de comprobación y contraste de facturas enviadas al SII",
-    "version": "17.0.1.0.7",
+    "version": "17.0.1.0.8",
     "category": "Accounting & Finance",
     "website": "https://github.com/OCA/l10n-spain",
     "author": "Studio73, Odoo Community Association (OCA)",
