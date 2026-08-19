@@ -102,7 +102,9 @@ class ResPartner(models.Model):
             # Return mapped vats like Greece. Take into account mapped countries
             country_code = aeat_country_code
             vat_number = vat_number[2:]
-            identifier_type = "02"
+            identifier_type = (
+                "02" if self.simple_vat_check(country_code, vat_number) else "04"
+            )
         else:
             if self.country_id.code:
                 country_code = self.country_id.code
@@ -114,7 +116,13 @@ class ResPartner(models.Model):
                 self._map_aeat_country_code(country_code)
                 in self._get_aeat_europe_codes()
             ):
-                identifier_type = "02"
+                # An EU country alone doesn't mean `vat_number` is really a
+                # valid intra-community VAT (e.g. an Italian "codice
+                # fiscale" for an individual isn't a "partita IVA" and the
+                # SII rejects it under IDType 02 with error 1104).
+                identifier_type = (
+                    "02" if self.simple_vat_check(country_code, vat_number) else "04"
+                )
             else:
                 country_code = self._map_aeat_country_code(country_code, extended=True)
                 identifier_type = "04"

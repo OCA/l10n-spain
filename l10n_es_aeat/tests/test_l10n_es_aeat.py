@@ -70,6 +70,28 @@ class TestL10nEsAeat(BaseCommon):
         self.assertEqual(identifier_type, "02")
         self.assertEqual(vat_number, "61954506077")
 
+    def test_parse_vat_info_it_valid_vat(self):
+        self.partner.write(
+            {"vat": "12345670017", "country_id": self.env.ref("base.it").id}
+        )
+        country_code, identifier_type, vat_number = self.partner._parse_aeat_vat_info()
+        self.assertEqual(country_code, "IT")
+        self.assertEqual(identifier_type, "02")
+        self.assertEqual(vat_number, "12345670017")
+
+    def test_parse_vat_info_it_codice_fiscale(self):
+        """A personal "codice fiscale" is not a "partita IVA": sending it to
+        the SII as identifier type 02 (NIF-IVA) gets rejected with error
+        1104 "Valor del campo ID incorrecto".
+        """
+        self.partner.write(
+            {"vat": "MRTMTT91D08F205J", "country_id": self.env.ref("base.it").id}
+        )
+        country_code, identifier_type, vat_number = self.partner._parse_aeat_vat_info()
+        self.assertEqual(country_code, "IT")
+        self.assertEqual(identifier_type, "04")
+        self.assertEqual(vat_number, "MRTMTT91D08F205J")
+
     def test_parse_vat_info_gf_wo_prefix(self):
         self.partner.write(
             {"vat": "61954506077", "country_id": self.env.ref("base.gf").id}
