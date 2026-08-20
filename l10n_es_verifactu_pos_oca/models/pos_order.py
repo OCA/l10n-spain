@@ -1,10 +1,16 @@
 import logging
 from collections import OrderedDict
 
+import psycopg2
 import pytz
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
+from odoo.service.model import PG_CONCURRENCY_ERRORS_TO_RETRY
+
+from odoo.addons.l10n_es_verifactu_oca.models.verifactu_mixin import (
+    VerifactuChainingLocked,
+)
 
 _logger = logging.getLogger(__name__)
 
@@ -14,6 +20,18 @@ VERIFACTU_VALID_POS_STATES = ["paid", "done"]
 class PosOrder(models.Model):
     _name = "pos.order"
     _inherit = ["pos.order", "verifactu.mixin"]
+
+    verifactu_chaining_attempts = fields.Integer(
+        string="VERI*FACTU chaining attempts",
+        copy=False,
+        readonly=True,
+        # Needed: without it the column is NULL, and `<` does not match NULL,
+        # so the sweep would not see the orders it exists to recover.
+        default=0,
+        help="Number of times the chaining of this order has been attempted "
+        "and failed. Used by the recovery cron to stop retrying an order that "
+        "cannot be chained.",
+    )
 
     @api.depends(
         "company_id",
@@ -91,17 +109,65 @@ class PosOrder(models.Model):
 
         try:
             pos_order._generate_verifactu_chaining()
-        except UserError as e:
-            # Don't re-raise the error to avoid blocking POS operations
-            _logger.error(
+        except Exception as e:  # noqa: BLE001 -- see below
+            if (
+                isinstance(e, psycopg2.OperationalError)
+                and e.pgcode in PG_CONCURRENCY_ERRORS_TO_RETRY
+            ):
+                # Odoo retries the whole request on these, which is a better
+                # answer than marking the order: the sync has written nothing
+                # yet that the retry would duplicate. A lock collision on the
+                # chaining row does not reach here -- verifactu_mixin turns it
+                # into VerifactuChainingLocked.
+                raise
+            # Not re-raised: the sale is already paid and the cashier cannot
+            # fix a chaining problem. Marked instead, so it is not lost.
+            # Every exception counts, not only UserError: a database error
+            # escaping here aborts the whole sync, so the sale never reaches
+            # the backend and its simplified invoice number is burnt anyway.
+            # Writing the mark is safe because the chaining SQL runs inside a
+            # savepoint, so the cursor is usable again once it fails.
+            _logger.exception(
                 "[ID: %d, REF: %s, INV: %s] Failed to create verifactu chaining: %s",
                 pos_order.id,
                 pos_order.pos_reference,
                 pos_order.l10n_es_unique_id,
                 str(e),
             )
+            pos_order._mark_verifactu_chaining_failure(
+                e, spend_attempt=not isinstance(e, VerifactuChainingLocked)
+            )
 
         return pos_order_id
+
+    def _mark_verifactu_chaining_failure(self, error, spend_attempt=True):
+        """Leave a visible trace of a chaining failure on the order.
+
+        Reuses the aeat.mixin error fields, which the form view and the
+        "VERI*FACTU failed" search filter already show.
+        """
+        self.ensure_one()
+        vals = {"aeat_send_failed": True, "aeat_send_error": str(error)}
+        if spend_attempt:
+            # Only a failure that will not fix itself spends budget: counting
+            # the transient ones abandons chainable sales after a busy spell.
+            vals["verifactu_chaining_attempts"] = self.verifactu_chaining_attempts + 1
+        self.write(vals)
+
+    def _generate_pos_order_invoice(self):
+        res = super()._generate_pos_order_invoice()
+        # Once invoiced the sale is registered through the invoice, so the
+        # pending failure is moot and nothing else would ever clear it. The
+        # invoice must be registered for real, though: it goes through another
+        # journal, which may well have VERI*FACTU disabled.
+        stale = self.filtered(
+            lambda order: order.aeat_send_failed
+            and not order.last_verifactu_invoice_entry_id
+            and order.account_move.last_verifactu_invoice_entry_id
+        )
+        if stale:
+            stale.write({"aeat_send_failed": False, "aeat_send_error": False})
+        return res
 
     def _is_verifactu_order(self):
         """Whether this order must be registered in VERI*FACTU.
@@ -498,6 +564,159 @@ class PosOrder(models.Model):
         elif tax in taxes_N2:
             return "N2"
         return "S1"
+
+    @api.model
+    def _cron_generate_pending_verifactu_chaining(self, limit=50, commit=False):
+        """Chain the paid orders that were left out of the chain.
+
+        Unlike backend invoices, a POS order cannot have its chaining failure
+        surfaced to the user: the sale is already paid when it happens, so
+        AccountMove._post() cannot be imitated (it lets the UserError abort the
+        posting, which keeps the state consistent). This sweep is the recovery
+        path that replaces it.
+
+        No retry counter or backoff of its own is needed: the cron interval IS
+        the backoff, and an order that loses the chaining lock simply shows up
+        again on the next pass. The attempts counter only exists to stop
+        retrying an order that can never be chained.
+        """
+        max_attempts = int(
+            self.env["ir.config_parameter"]
+            .sudo()
+            .get_param("l10n_es_verifactu_pos_oca.max_chaining_attempts", 10)
+        )
+        # The domain replicates the computed field instead of searching by it:
+        # its search method is laxer, and the orders it would let through come
+        # back on every pass and, being the oldest, starve the rest.
+        companies = (
+            self.env["res.company"].sudo().search([("verifactu_enabled", "=", True)])
+        )
+        for company in companies:
+            domain = [
+                ("company_id", "=", company.id),
+                ("to_invoice", "=", False),
+                ("state", "in", VERIFACTU_VALID_POS_STATES),
+                ("last_verifactu_invoice_entry_id", "=", False),
+                ("verifactu_chaining_attempts", "<", max_attempts),
+                ("session_id.config_id.journal_id.verifactu_enabled", "=", True),
+                # Last leg of the computed field, easy to miss.
+                "|",
+                ("fiscal_position_id", "=", False),
+                ("fiscal_position_id.aeat_active", "=", True),
+            ]
+            if company.verifactu_start_date:
+                domain.append(
+                    (
+                        "date_order",
+                        ">=",
+                        fields.Date.to_string(company.verifactu_start_date),
+                    )
+                )
+            orders = self.search(
+                domain,
+                # Oldest first: the position in the chain is today's, but the
+                # pending orders enter it in the order they were charged.
+                order="date_order ASC",
+                limit=limit,
+            )
+            for order in orders:
+                try:
+                    with self.env.cr.savepoint():
+                        order._recover_verifactu_chaining()
+                except Exception as error:  # noqa: BLE001 -- see below
+                    # Isolated per order: unhandled, this would reach the
+                    # cron runner and roll back the whole pass. Only the id is
+                    # logged -- any other field goes back to a row that just
+                    # failed.
+                    _logger.exception(
+                        "[ID: %d] VERI*FACTU chaining recovery raised an "
+                        "unexpected error",
+                        order.id,
+                    )
+                    self._record_recovery_failure(order, error)
+                # The chaining lock is held until the transaction commits, so
+                # committing per order is what keeps the sweep from blocking
+                # the tills. Off by default: only the scheduled action opts in.
+                if commit:  # pragma: no cover
+                    self.env.cr.commit()  # pylint: disable=invalid-commit
+        return True
+
+    def _record_recovery_failure(self, order, error):
+        """Leave a trace of a failure the recovery could not handle itself.
+
+        Concurrency errors get none on purpose: they are transient, and the
+        write would land on the row that just failed and fail the same way.
+        """
+        if (
+            isinstance(error, psycopg2.OperationalError)
+            and error.pgcode in PG_CONCURRENCY_ERRORS_TO_RETRY
+        ):
+            return
+        try:
+            with self.env.cr.savepoint():
+                order._mark_verifactu_chaining_failure(error)
+        except Exception:  # noqa: BLE001
+            _logger.exception(
+                "[ID: %d] Could not record the VERI*FACTU chaining failure",
+                order.id,
+            )
+
+    def _recover_verifactu_chaining(self):
+        """Chain an order that has no entry yet. Idempotent by state."""
+        self.ensure_one()
+        # Idempotence lives here, not in an identity key: if the normal flow or
+        # a previous pass already chained this order, a second link would be a
+        # second registration of the same sale.
+        if self.last_verifactu_invoice_entry_id:
+            return False
+        # Re-validate: the order may have changed state between the failure and
+        # this retry.
+        if not self._is_verifactu_order():
+            return False
+        try:
+            # _check_verifactu_configuration() is deliberately not called:
+            # recovery reproduces the normal chaining path, which does not call
+            # it either. The override here demands a fiscal position, which a
+            # counter sale does not have.
+            self.verifactu_registration_date = fields.Datetime.now()
+            self._generate_verifactu_chaining()
+        except UserError as e:
+            _logger.error(
+                "[ID: %d, REF: %s] VERI*FACTU chaining recovery failed: %s",
+                self.id,
+                self.pos_reference,
+                str(e),
+            )
+            self._mark_verifactu_chaining_failure(
+                e, spend_attempt=not isinstance(e, VerifactuChainingLocked)
+            )
+            return False
+        self.write({"aeat_send_failed": False, "aeat_send_error": False})
+        return True
+
+    def action_recover_verifactu_chaining(self):
+        """Manual counterpart of the recovery cron, for a single order."""
+        self.ensure_one()
+        if self._recover_verifactu_chaining():
+            return {
+                "type": "ir.actions.client",
+                "tag": "display_notification",
+                "params": {
+                    "title": _("VERI*FACTU chaining generated"),
+                    "message": _("The order has been added to the chain."),
+                    "type": "success",
+                },
+            }
+        return {
+            "type": "ir.actions.client",
+            "tag": "display_notification",
+            "params": {
+                "title": _("VERI*FACTU chaining not generated"),
+                "message": self.aeat_send_error
+                or _("The order is not eligible for chaining."),
+                "type": "warning",
+            },
+        }
 
     def resend_verifactu(self):
         """Resend POS orders to verifactu after errors"""
