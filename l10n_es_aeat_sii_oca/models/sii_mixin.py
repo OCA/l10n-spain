@@ -497,22 +497,21 @@ class SiiMixin(models.AbstractModel):
         """Calculates if the block 'DesgloseTipoOperacion' is required for
         the invoice communication."""
         self.ensure_one()
-        country_code = self._get_aeat_country_code()
         sii_gen_type = self._get_sii_gen_type()
         if sii_gen_type in (2, 3):
             # DesgloseTipoOperacion required for Intracommunity and
             # Export operations
             return True
-        elif sii_gen_type == 1 and country_code != "ES":
-            # DesgloseTipoOperacion required for national operations
-            # with 'IDOtro' in the SII identifier block
-            return True
-        elif sii_gen_type == 1 and (self._aeat_get_partner().vat or "").startswith(
-            "ESN"
-        ):
-            # DesgloseTipoOperacion required if customer's country is Spain and
-            # has a NIF which starts with 'N'
-            return True
+        elif sii_gen_type == 1:
+            identifier = self._get_sii_identifier()
+            if "IDOtro" in identifier:
+                # DesgloseTipoOperacion required for national operations
+                # with 'IDOtro' in the SII identifier block
+                return True
+            elif identifier.get("NIF", "").startswith("N"):
+                # DesgloseTipoOperacion required if customer's country is Spain and
+                # has a NIF which starts with 'N'
+                return True
         return False
 
     def _get_sii_out_taxes(self):  # noqa: C901
