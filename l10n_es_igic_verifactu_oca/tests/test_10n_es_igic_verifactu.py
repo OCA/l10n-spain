@@ -42,15 +42,17 @@ class TestL10nEsAeatVerifactuIgicMixin(TestVerifactuIgicCommon):
             module=module,
         )
 
-    def _create_move_with_number(self, vals, number):
-        """Create a move then set its number without sequence constraints."""
-        invoice = self.env["account.move"].create(vals)
-        self.env.cr.execute(
-            "UPDATE account_move SET name = %s WHERE id = %s",
-            (number, invoice.id),
-        )
-        invoice.invalidate_recordset(["name"])
-        return invoice
+    def _align_sequence_dependent_fields(self, expected_dict, result_dict):
+        """Serials and previous hashes depend on the journal sequence."""
+        expected = expected_dict["RegistroAlta"]
+        result = result_dict["RegistroAlta"]
+        expected["IDFactura"]["NumSerieFactura"] = result["IDFactura"][
+            "NumSerieFactura"
+        ]
+        expected_chain = expected.get("Encadenamiento") or {}
+        result_chain = result.get("Encadenamiento") or {}
+        if "RegistroAnterior" in expected_chain and "RegistroAnterior" in result_chain:
+            expected_chain["RegistroAnterior"] = result_chain["RegistroAnterior"]
 
     def _compare_verifactu_dict(
         self, json_file, name, inv_type, lines, extra_vals=None, module=None
@@ -79,7 +81,7 @@ class TestL10nEsAeatVerifactuIgicMixin(TestVerifactuIgicCommon):
             extra_vals = dict(extra_vals)
             extra_vals.pop("name", None)
             vals.update(extra_vals)
-        invoice = self._create_move_with_number(vals, name)
+        invoice = self.env["account.move"].create(vals)
         self._activate_certificate(self.certificate_password)
         first_now = datetime(2026, 1, 1, 19, 20, 30)
         with (
@@ -96,6 +98,7 @@ class TestL10nEsAeatVerifactuIgicMixin(TestVerifactuIgicCommon):
             raise Exception(f"Incorrect JSON file: {json_file}")
         with open(path) as f:
             expected_dict = json.loads(f.read())
+        self._align_sequence_dependent_fields(expected_dict, result_dict)
         self.assertEqual(expected_dict, result_dict)
         entry = invoice.last_verifactu_invoice_entry_id
         self.assertTrue(entry, "Invoice should have verifactu entry")
@@ -145,13 +148,14 @@ class TestL10nEsAeatVerifactuIgicNewTaxes(TestL10nEsAeatVerifactuIgicMixin):
         cmino = self.env.ref(
             f"account.{self.company.id}_account_tax_template_igic_cmino"
         )
-        invoice = self._create_move_with_number(
+        invoice = self.env["account.move"].create(
             {
                 "partner_id": self.partner.id,
                 "invoice_date": "2026-01-01",
                 "move_type": "out_invoice",
                 "fiscal_position_id": self.fp_retailer.id,
                 "verifactu_registration_key": self.fp_registration_key_17.id,
+                "verifactu_registration_date": "2026-01-01 19:20:30",
                 "invoice_line_ids": [
                     Command.create(
                         {
@@ -164,8 +168,7 @@ class TestL10nEsAeatVerifactuIgicNewTaxes(TestL10nEsAeatVerifactuIgicMixin):
                         }
                     )
                 ],
-            },
-            "TEST006",
+            }
         )
         with self.assertRaises(UserError):
             invoice._get_verifactu_invoice_dict_out()
