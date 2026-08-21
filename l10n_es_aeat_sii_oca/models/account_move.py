@@ -86,6 +86,7 @@ class AccountMove(models.Model):
         "The invoice number should start with LC, QZC, QRC, A01 or A02.",
         copy=False,
     )
+    sii_is_accounting_receipt = fields.Boolean(string="Is accounting receipt?")
     sii_dua_invoice = fields.Boolean(compute="_compute_dua_invoice")
 
     @api.depends("move_type")
@@ -296,11 +297,17 @@ class AccountMove(models.Model):
         return res
 
     def _get_sii_invoice_type(self):
+        self.ensure_one()
         invoice_type = ""
         if self.sii_lc_operation:
             return "LC"
         if self.move_type in ["in_invoice", "in_refund"]:
-            invoice_type = "R4" if self.move_type == "in_refund" else "F1"
+            if self.move_type == "in_refund":
+                invoice_type = "R4"
+            elif self.sii_is_accounting_receipt:
+                invoice_type = "F6"
+            else:
+                invoice_type = "F1"
         elif self.move_type in ["out_invoice", "out_refund"]:
             is_simplified = self._is_aeat_simplified_invoice()
             invoice_type = "F2" if is_simplified else "F1"
