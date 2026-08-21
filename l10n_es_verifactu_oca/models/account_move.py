@@ -9,7 +9,7 @@ from datetime import datetime
 import pytz
 
 from odoo import _, api, fields, models
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
 
 VERIFACTU_VALID_INVOICE_STATES = ["posted"]
 VERIFACTU_OPERATION_MAPPING = {
@@ -40,6 +40,57 @@ class AccountMove(models.Model):
         " of article 80 of LIVA for notifying to VERI*FACTU with the proper"
         " invoice type.",
     )
+    verifactu_substituted_invoice_ids = fields.Many2many(
+        string="VERI*FACTU substituted simplified invoices",
+        comodel_name="account.move",
+        relation="account_move_verifactu_substituted_rel",
+        column1="move_id",
+        column2="substituted_move_id",
+        copy=False,
+        domain="[('move_type', '=', 'out_invoice'), ('state', '=', 'posted')]",
+        help="Simplified invoices that this invoice substitutes. Filling it "
+        "makes the invoice be registered at VERI*FACTU as F3, quoting them in "
+        "the FacturasSustituidas block. The substituted invoices are left as "
+        "they are: a substitution is not a rectification, so they must be "
+        "neither cancelled nor rectified, and their amounts are not declared "
+        "again.",
+    )
+
+    @api.constrains("verifactu_substituted_invoice_ids")
+    def _check_verifactu_substituted_invoice_ids(self):
+        """A simplified invoice can only be exchanged for one ordinary invoice.
+
+        Substituting it twice would declare the same operation as two different
+        F3, which is precisely what the substitution mechanism avoids.
+        """
+        for move in self.filtered("verifactu_substituted_invoice_ids"):
+            substituted = move.verifactu_substituted_invoice_ids
+            if move in substituted:
+                raise ValidationError(
+                    _("An invoice cannot substitute itself: %s", move.display_name)
+                )
+            duplicated = self.search(
+                [
+                    ("id", "!=", move.id),
+                    ("state", "!=", "cancel"),
+                    ("verifactu_substituted_invoice_ids", "in", substituted.ids),
+                ],
+                limit=1,
+            )
+            if duplicated:
+                raise ValidationError(
+                    _(
+                        "Some of the simplified invoices substituted by %(move)s "
+                        "are already substituted by %(duplicated)s. A simplified "
+                        "invoice can only be exchanged for one ordinary invoice.",
+                        move=move.display_name,
+                        duplicated=duplicated.display_name,
+                    )
+                )
+
+    def _get_verifactu_substituted_documents(self):
+        documents = super()._get_verifactu_substituted_documents()
+        return documents + list(self.verifactu_substituted_invoice_ids)
 
     @api.depends("move_type")
     def _compute_verifactu_refund_type(self):
@@ -116,6 +167,11 @@ class AccountMove(models.Model):
                     invoice_type = self.verifactu_refund_specific_type
                 else:
                     invoice_type = "R5" if is_simplified else "R1"
+            elif self._get_verifactu_substituted_documents():
+                # Ordinary invoice issued in substitution of simplified
+                # invoices already registered and declared. It is not a
+                # rectification: the substituted ones stay as they are.
+                invoice_type = "F3"
         return invoice_type
 
     def _get_verifactu_description(self):
@@ -261,6 +317,13 @@ class AccountMove(models.Model):
                 #         origin.amount_total_signed - origin.amount_untaxed_signed
                 #     ),
                 # }
+        if verifactu_doc_type == "F3":
+            inv_dict["FacturasSustituidas"] = {
+                "IDFacturaSustituida": [
+                    substituted["IDFacturaSustituida"]
+                    for substituted in self._get_verifactu_substituted_invoices_dict()
+                ]
+            }
         inv_dict["DescripcionOperacion"] = self._get_verifactu_description()
         if verifactu_doc_type not in ("F2", "R5"):
             inv_dict["Destinatarios"] = self._get_verifactu_receiver_dict()
@@ -491,7 +554,45 @@ class AccountMove(models.Model):
             suffixes.append(_("- There are some inconsistent taxes on lines."))
         if not self._check_all_taxes_mapped():
             suffixes.append(_("- It does not have all taxes mapped."))
+        suffixes += self._check_verifactu_substituted_documents()
         return super()._check_verifactu_configuration(suffixes=suffixes)
+
+    def _check_verifactu_substituted_documents(self):
+        """Checks that only apply to an invoice substituting simplified ones (F3)."""
+        suffixes = []
+        if self._get_verifactu_document_type() != "F3":
+            return suffixes
+        # An F3 always carries the destinatario, and a counter customer is
+        # often created without a VAT number or without a country.
+        partner = self._aeat_get_partner()
+        if not partner or not partner._is_valid_verifactu_receiver():
+            suffixes.append(
+                _(
+                    "- It substitutes simplified invoices, so it is registered "
+                    "as F3, which must always identify the customer. Set the "
+                    "customer's VAT number, and also their country when that "
+                    "number is not Spanish."
+                )
+            )
+        for document in self._get_verifactu_substituted_documents():
+            if not document.last_verifactu_invoice_entry_id:
+                suffixes.append(
+                    _(
+                        "- It substitutes %s, which was never registered at "
+                        "VERI*FACTU. Only an already registered and declared "
+                        "simplified invoice can be substituted.",
+                        document.display_name,
+                    )
+                )
+            elif document._get_verifactu_document_type() not in ("F2", "R5"):
+                suffixes.append(
+                    _(
+                        "- It substitutes %s, which is not a simplified "
+                        "invoice. Only simplified invoices can be substituted.",
+                        document.display_name,
+                    )
+                )
+        return suffixes
 
     def _check_inconsistent_taxes(self):
         document_date = self._get_document_date()
@@ -557,6 +658,8 @@ class AccountMove(models.Model):
                     self._raise_exception_verifactu(_("third-party number"))
                 elif "name" in vals:
                     self._raise_exception_verifactu(_("invoice number"))
+                elif "verifactu_substituted_invoice_ids" in vals:
+                    self._raise_exception_verifactu(_("substituted simplified invoices"))
         return super().write(vals)
 
     def button_cancel(self):
