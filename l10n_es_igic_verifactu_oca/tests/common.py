@@ -9,6 +9,9 @@ class TestVerifactuIgicCommon(TestVerifactuCommon):
 
     @classmethod
     def _chart_of_accounts_create(cls):
+        project = cls.env["project.project"]
+        if "billing_type" in project._fields:
+            cls.env["ir.default"].set("project.project", "billing_type", "not_billable")
         cls.company = cls.env["res.company"].create(
             {
                 "name": "Spanish test company",
