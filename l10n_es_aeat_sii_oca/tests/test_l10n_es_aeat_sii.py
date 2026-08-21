@@ -266,6 +266,63 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
             },
         )
 
+    def test_intracomunitary_customer_valid_vat(self):
+        """Caso normal: un cliente UE con un NIF-IVA real bajo Régimen
+        Intracomunitario debe seguir identificándose con IDType 02.
+        """
+        self._activate_certificate(self.certificate_password)
+        eu_customer = self.env["res.partner"].create(
+            {
+                "name": "French Customer",
+                "country_id": self.ref("base.fr"),
+                "vat": "FR23334175221",
+            }
+        )
+        invoice = self.invoice.copy(
+            {"partner_id": eu_customer.id, "fiscal_position_id": self.fp_intra.id}
+        )
+        invoice.action_post()
+        sii_info = invoice._get_aeat_invoice_dict()
+        self.assertEqual(
+            sii_info["FacturaExpedida"]["Contraparte"],
+            {
+                "NombreRazon": "French Customer",
+                "IDOtro": {"IDType": "02", "ID": "FR23334175221"},
+            },
+        )
+
+    def test_intracomunitary_customer_without_valid_vat(self):
+        """Un cliente bajo Régimen Intracomunitario cuya identificación (por
+        override manual de aeat_identification_type/aeat_identification) no
+        es un NIF-IVA real no debe forzarse a IDType 02, o el SII rechaza la
+        factura con el error 1104 "Valor del campo ID incorrecto".
+        """
+        self._activate_certificate(self.certificate_password)
+        eu_customer = self.env["res.partner"].create(
+            {
+                "name": "Italian Individual Customer",
+                "country_id": self.ref("base.it"),
+                "aeat_identification_type": "06",
+                "aeat_identification": "FAKECODICEFISCALE",
+            }
+        )
+        invoice = self.invoice.copy(
+            {"partner_id": eu_customer.id, "fiscal_position_id": self.fp_intra.id}
+        )
+        invoice.action_post()
+        sii_info = invoice._get_aeat_invoice_dict()
+        self.assertEqual(
+            sii_info["FacturaExpedida"]["Contraparte"],
+            {
+                "NombreRazon": "Italian Individual Customer",
+                "IDOtro": {
+                    "CodigoPais": "IT",
+                    "IDType": "06",
+                    "ID": "FAKECODICEFISCALE",
+                },
+            },
+        )
+
     def test_partner_sii_enabled(self):
         company_02 = self.env["res.company"].create({"name": "Company 02"})
         self.env.user.company_ids += company_02
