@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- Operación Sujeta y No exenta - Sin inversión del sujeto pasivo -->
+    <record id="l10n_es_verifactu_oca.verifactu_map_line_S1" model="verifactu.map.line">
+        <field
+            name="tax_xmlid_ids"
+            eval="[
+                (4, ref('igic_r_0')),
+                (4, ref('igic_r_3')),
+                (4, ref('igic_r_5')),
+                (4, ref('igic_r_7')),
+                (4, ref('igic_r_9_5')),
+                (4, ref('igic_r_15')),
+                (4, ref('igic_r_20')),
+                (4, ref('igic_cmino')),
+                (4, ref('igic_ex_0')),
+                (4, ref('igic_re_ex')),
+            ]"
+        />
+    </record>
+    <!-- Operación Sujeta y No exenta - Con inversión del sujeto pasivo -->
+    <record id="l10n_es_verifactu_oca.verifactu_map_line_S2" model="verifactu.map.line">
+        <field name="tax_xmlid_ids" eval="[(4, ref('igic_s_ISP0'))]" />
+    </record>
+    <!-- No sujeta por reglas de localización -->
+    <record id="l10n_es_verifactu_oca.verifactu_map_line_N2" model="verifactu.map.line">
+        <field name="tax_xmlid_ids" eval="[(4, ref('s_igic_ns'))]" />
+    </record>
+    <!-- Recargo de equivalencia (importación Canarias) -->
+    <record id="l10n_es_verifactu_oca.verifactu_map_line_RE" model="verifactu.map.line">
+        <field
+            name="tax_xmlid_ids"
+            eval="[
+                (4, ref('igic_p_re0')),
+                (4, ref('igic_p_re03')),
+                (4, ref('igic_p_re07')),
+                (4, ref('igic_p_re095')),
+                (4, ref('igic_p_re15')),
+                (4, ref('igic_p_re20')),
+            ]"
+        />
+    </record>
+</odoo>
