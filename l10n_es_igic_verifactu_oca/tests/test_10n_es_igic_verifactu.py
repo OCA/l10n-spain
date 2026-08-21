@@ -144,7 +144,9 @@ class TestL10nEsAeatVerifactuIgicNewTaxes(TestL10nEsAeatVerifactuIgicMixin):
         )
 
     def test_get_verifactu_igic_minorista_missing_theoretical_rate(self):
-        product = self.env["product.product"].create({"name": "No IGIC tax"})
+        product = self.env["product.product"].create(
+            {"name": "No IGIC tax", "taxes_id": [Command.clear()]}
+        )
         cmino = self.env.ref(
             f"account.{self.company.id}_account_tax_template_igic_cmino"
         )
