@@ -699,7 +699,17 @@ class SiiMixin(models.AbstractModel):
                     },
                 }
         elif gen_type == 2:
-            return {"IDOtro": {"IDType": "02", "ID": full_eu_vat}}
+            if identifier_type == "02":
+                return {"IDOtro": {"IDType": "02", "ID": full_eu_vat}}
+            if identifier_type:
+                return {
+                    "IDOtro": {
+                        "CodigoPais": country_code,
+                        "IDType": identifier_type,
+                        "ID": identifier,
+                    },
+                }
+            return {"NIF": identifier}
         elif gen_type == 3 and identifier_type:
             # Si usamos identificador tipo 02 en exportaciones, el envío falla con:
             #   {'CodigoErrorRegistro': 1104,
