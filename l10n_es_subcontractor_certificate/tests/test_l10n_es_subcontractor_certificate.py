@@ -7,12 +7,22 @@ from odoo.tests import tagged
 
 from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 
-from ..models.subcontractor_certificate import (
-    EXPIRED_WARNING_AEAT,
-    EXPIRED_WARNING_SS,
-    REQUIRED_WARNING_AEAT,
-    REQUIRED_WARNING_SS,
-)
+REQUIRED_WARNING_AEAT = {
+    "title": "Warning!",
+    "message": "The AEAT certificate is required and expiration date is not set",
+}
+EXPIRED_WARNING_AEAT = {
+    "title": "Warning!",
+    "message": "The AEAT certificate for this supplier has expired",
+}
+REQUIRED_WARNING_SS = {
+    "title": "Warning!",
+    "message": "The SS certificate is required and expiration date is not set",
+}
+EXPIRED_WARNING_SS = {
+    "title": "Warning!",
+    "message": "The SS certificate for this supplier has expired",
+}
 
 
 @tagged("post_install", "-at_install")
@@ -24,7 +34,7 @@ class TestL10nEsSubcontractorCertificate(AccountTestInvoicingCommon):
                 "name": "Receivable A1",
                 "code": "REC.A",
                 "account_type": "asset_receivable",
-                "company_id": self.company_data["company"].id,
+                "company_ids": [(6, 0, [self.company_data["company"].id])],
             }
         )
         self.ctx_no_mail = {

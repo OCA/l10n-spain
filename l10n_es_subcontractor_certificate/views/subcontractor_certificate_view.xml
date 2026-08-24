@@ -9,11 +9,11 @@
                 <field name="certificate_required" />
                 <field
                     name="certificate_expiration_aeat"
-                    attrs="{'invisible': [('certificate_required','=', False)]}"
+                    invisible="not certificate_required"
                 />
                 <field
                     name="certificate_expiration_ss"
-                    attrs="{'invisible': [('certificate_required','=', False)]}"
+                    invisible="not certificate_required"
                 />
             </xpath>
         </field>
