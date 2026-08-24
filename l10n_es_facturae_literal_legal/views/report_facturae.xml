@@ -7,10 +7,6 @@
         id="template_facturae_inherit_special_payment"
         inherit_id="l10n_es_facturae.template_facturae"
     >
-        <xpath expr="//LegalLiterals" position="attributes">
-            <attribute name="t-if">move.literal_legal_ids</attribute>
-        </xpath>
-
         <xpath expr="//LegalLiterals" position="inside">
             <t t-foreach="move.literal_legal_ids" t-as="legal_literal">
                 <LegalReference t-out="legal_literal.description" />

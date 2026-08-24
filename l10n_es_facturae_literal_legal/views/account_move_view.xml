@@ -11,10 +11,10 @@
             <xpath expr="//page[@name='facturae']/group" position="inside">
                 <separator string="Literal Legals" />
                 <field name="literal_legal_ids">
-                    <tree>
+                    <list>
                         <field name="sequence" widget="handle" />
                         <field name="description" />
-                    </tree>
+                    </list>
 
                     <form string="Legal Literal">
                         <group>

@@ -18,6 +18,7 @@ class AccountMove(models.Model):
 class LiteralLegal(models.Model):
     _name = "l10n.es.facturae.literal.legal"
     _description = "Facturae Literal Legal"
+    _order = "sequence, id"
 
     description = fields.Text(required=True)
     description_length = fields.Integer(
@@ -37,7 +38,6 @@ class LiteralLegal(models.Model):
         new_records = self.env[self._name]
         for vals in vals_list:
             description = vals.get("description", "")
-            move_id = vals.get("move_id")
             # Divide the description into chunks of 250 characters
             # if it exceeds that length
             if description and len(description) > 250:
@@ -45,12 +45,7 @@ class LiteralLegal(models.Model):
                     description[i : i + 250] for i in range(0, len(description), 250)
                 ]
                 for chunk in chunks:
-                    new_records |= super().create(
-                        {
-                            "description": chunk,
-                            "move_id": move_id,
-                        }
-                    )
+                    new_records |= super().create({**vals, "description": chunk})
             else:
                 new_records |= super().create(vals)
 
