@@ -11,8 +11,8 @@ class TestL10nEsIgicReav(TransactionCase):
         )
         self.assertEqual(company.chart_template, coa, "Created with wrong COA")
 
-    def test_01_es_pymes_canary(self):
-        self._check_coa_loading("es_pymes_canary")
+    def test_01_es_canary_pymes(self):
+        self._check_coa_loading("es_canary_pymes")
 
-    def test_02_es_full_canary(self):
-        self._check_coa_loading("es_full_canary")
+    def test_02_es_canary_full(self):
+        self._check_coa_loading("es_canary_full")
