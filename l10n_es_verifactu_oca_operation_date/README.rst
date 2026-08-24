@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ===========================
 VERI*FACTU - Operation Date
 ===========================
@@ -17,50 +13,54 @@ VERI*FACTU - Operation Date
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github
-    :target: https://github.com/OCA/l10n-spain/tree/16.0/l10n_es_verifactu_oca_operation_date
+    :target: https://github.com/OCA/l10n-spain/tree/18.0/l10n_es_verifactu_oca_operation_date
     :alt: OCA/l10n-spain
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/l10n-spain-16-0/l10n-spain-16-0-l10n_es_verifactu_oca_operation_date
+    :target: https://translation.odoo-community.org/projects/l10n-spain-18-0/l10n-spain-18-0-l10n_es_verifactu_oca_operation_date
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&target_branch=18.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-Este módulo extiende la funcionalidad de VERI*FACTU para manejar correctamente las fechas de operación (FechaOperacion) en facturas de cliente y rectificativas.
+Este módulo extiende la funcionalidad de VERI*FACTU para manejar
+correctamente las fechas de operación (FechaOperacion) en facturas de
+cliente y rectificativas.
 
 **Características**
 
-* Incluye la fecha de operación (FechaOperacion) en el XML de VERI*FACTU cuando la
-  fecha contable difiere de la fecha de factura.
-* Valida que la fecha de operación no pueda ser posterior a la fecha de factura.
+-  Incluye la fecha de operación (FechaOperacion) en el XML de
+   VERI*FACTU cuando la fecha contable difiere de la fecha de factura.
+-  Valida que la fecha de operación no pueda ser posterior a la fecha de
+   factura.
 
 **Detalles Técnicos**
 
-El módulo extiende el modelo `account.move` para:
+El módulo extiende el modelo account.move para:
 
-1. Sobrescribir `_get_verifactu_invoice_dict_out()` para incluir el campo FechaOperacion
-   cuando la fecha contable (`date`) difiere de la fecha de factura (`invoice_date`).
+1. Sobrescribir \_get_verifactu_invoice_dict_out() para incluir el campo
+   FechaOperacion cuando la fecha contable (date) difiere de la fecha de
+   factura (invoice_date).
+2. Sobrescribir \_check_verifactu_configuration() para añadir validación
+   que impide que la fecha de operación sea posterior a la fecha de
+   factura.
 
-2. Sobrescribir `_check_verifactu_configuration()` para añadir validación que impide que
-   la fecha de operación sea posterior a la fecha de factura.
-
-El campo de fecha de operación solo se incluye cuando:
-- Tanto `date` como `invoice_date` están informados
-- Son fechas diferentes
-- La factura es de cliente o rectificativa (out_invoice, out_refund)
+El campo de fecha de operación solo se incluye cuando: - Tanto date como
+invoice_date están informados - Son fechas diferentes - La factura es de
+cliente o rectificativa (out_invoice, out_refund)
 
 **Caso de Uso**
 
-En algunos escenarios empresariales, la fecha en que ocurrió la operación puede diferir de
-la fecha de factura. Por ejemplo, servicios prestados en un periodo pero facturados en
-otro. Este módulo asegura que estos casos se reporten correctamente a la agencia tributaria
-a través de VERI*FACTU.
+En algunos escenarios empresariales, la fecha en que ocurrió la
+operación puede diferir de la fecha de factura. Por ejemplo, servicios
+prestados en un periodo pero facturados en otro. Este módulo asegura que
+estos casos se reporten correctamente a la agencia tributaria a través
+de VERI*FACTU.
 
 **Table of contents**
 
@@ -74,23 +74,24 @@ Este módulo no requiere ninguna configuración específica.
 
 El manejo de la fecha de operación es automático:
 
-* Al crear o editar una factura de cliente o rectificativa, si establece el campo
-  **Fecha Contable** con una fecha diferente a la **Fecha de Factura**,
-  el módulo incluirá automáticamente esta fecha como FechaOperacion en VERI*FACTU.
-
-* El sistema impedirá que establezca una fecha de operación posterior
-  a la fecha de factura.
+-  Al crear o editar una factura de cliente o rectificativa, si
+   establece el campo **Fecha Contable** con una fecha diferente a la
+   **Fecha de Factura**, el módulo incluirá automáticamente esta fecha
+   como FechaOperacion en VERI*FACTU.
+-  El sistema impedirá que establezca una fecha de operación posterior a
+   la fecha de factura.
 
 Usage
 =====
 
 Para usar este módulo:
 
-#. Cree una factura de cliente o rectificativa.
-#. Si la operación ocurrió en una fecha diferente a la fecha de factura,
+1. Cree una factura de cliente o rectificativa.
+2. Si la operación ocurrió en una fecha diferente a la fecha de factura,
    cambie la **Fecha Contable** a la fecha real de la operación.
-#. Asegúrese de que la fecha contable no sea posterior a la fecha de factura.
-#. Cuando la factura se envíe a VERI*FACTU, la fecha de operación se
+3. Asegúrese de que la fecha contable no sea posterior a la fecha de
+   factura.
+4. Cuando la factura se envíe a VERI*FACTU, la fecha de operación se
    incluirá automáticamente en el campo FechaOperacion.
 
 Bug Tracker
@@ -99,7 +100,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/l10n-spain/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_verifactu_oca_operation_date%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_verifactu_oca_operation_date%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -107,19 +108,19 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Ozono Multimedia
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* `Ozono Multimedia <https://www.ozonomultimedia.com>`_:
+-  `Ozono Multimedia <https://www.ozonomultimedia.com>`__:
 
-  * Iván Antón
+   -  Iván Antón
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -131,6 +132,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/16.0/l10n_es_verifactu_oca_operation_date>`_ project on GitHub.
+This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/18.0/l10n_es_verifactu_oca_operation_date>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
