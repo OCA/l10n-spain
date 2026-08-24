@@ -1,22 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-<!--# Copyright 2025 (APSL - Nagarro) Bernat Obrador
+    <!--# Copyright 2025 (APSL - Nagarro) Bernat Obrador
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).-->
 
-  <template
+    <template
         id="template_facturae_inherit_special_payment"
         inherit_id="l10n_es_facturae.template_facturae"
     >
+        <xpath expr="//LegalLiterals" position="attributes">
+            <attribute name="t-if">move.literal_legal_ids</attribute>
+        </xpath>
 
-    <xpath expr="//LegalLiterals" position="attributes">
-      <attribute name="t-if">move.literal_legal_ids</attribute>
-    </xpath>
-
-    <xpath expr="//LegalLiterals" position="inside">
-      <t t-foreach="move.literal_legal_ids" t-as="legal_literal">
-        <LegalReference t-out="legal_literal.description" />
-      </t>
-    </xpath>
-
-  </template>
+        <xpath expr="//LegalLiterals" position="inside">
+            <t t-foreach="move.literal_legal_ids" t-as="legal_literal">
+                <LegalReference t-out="legal_literal.description" />
+            </t>
+        </xpath>
+    </template>
 </odoo>

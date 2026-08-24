@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-<!--# Copyright 2025 (APSL - Nagarro) Bernat Obrador
+    <!--# Copyright 2025 (APSL - Nagarro) Bernat Obrador
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).-->
     <record id="view_move_form_inherit_facturae_special_payment" model="ir.ui.view">
         <field name="name">account.move.form</field>
@@ -8,7 +8,6 @@
         <field name="inherit_id" ref="l10n_es_facturae.view_move_form" />
         <field name="type">form</field>
         <field name="arch" type="xml">
-
             <xpath expr="//page[@name='facturae']/group" position="inside">
                 <separator string="Literal Legals" />
                 <field name="literal_legal_ids">
@@ -36,9 +35,9 @@
                         <separator string="Notes" />
                         <p class="oe_edit_only" style="color: #888;">
                             ⚠ The description cannot be longer than <b
-                            >250 characters</b> per legal reference.
+                        >250 characters</b> per legal reference.
                             If you enter a longer text, it will be <b
-                            >automatically split</b> into multiple legal references of 250 characters each.
+                        >automatically split</b> into multiple legal references of 250 characters each.
                         </p>
                     </form>
                 </field>
