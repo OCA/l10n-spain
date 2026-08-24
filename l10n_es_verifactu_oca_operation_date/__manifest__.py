@@ -3,7 +3,7 @@
 
 {
     "name": "VERI*FACTU - Operation Date",
-    "version": "16.0.1.0.0",
+    "version": "18.0.1.0.0",
     "category": "Accounting/Localizations/EDI",
     "website": "https://github.com/OCA/l10n-spain",
     "author": "Ozono Multimedia, Odoo Community Association (OCA)",

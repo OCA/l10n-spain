@@ -20,7 +20,8 @@ class TestVerifactuOperationDate(TestVerifactuCommon):
 
         with self.assertRaisesRegex(
             UserError,
-            r"(operation date cannot be greater|fecha de operación no puede ser posterior)",
+            r"(operation date cannot be greater|"
+            r"fecha de operación no puede ser posterior)",
         ):
             invoice.action_post()
 

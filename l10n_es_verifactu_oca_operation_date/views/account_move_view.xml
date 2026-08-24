@@ -11,7 +11,7 @@
                 <field
                     name="date"
                     string="Operation date"
-                    attrs="{'invisible': ['|', ('verifactu_enabled', '=', False), ('move_type', 'not in', ('out_invoice', 'out_refund'))]}"
+                    invisible="not verifactu_enabled or move_type not in ('out_invoice', 'out_refund')"
                     help="Fill this field if the operation date is earlier than the invoice date."
                 />
             </xpath>

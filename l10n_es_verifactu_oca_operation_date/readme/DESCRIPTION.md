@@ -20,9 +20,11 @@ El módulo extiende el modelo account.move para:
     validación que impide que la fecha de operación sea posterior a la
     fecha de factura.
 
-El campo de fecha de operación solo se incluye cuando: - Tanto date como
-invoice_date están informados - Son fechas diferentes - La factura es de
-cliente o rectificativa (out_invoice, out_refund)
+El campo de fecha de operación solo se incluye cuando:
+
+- Tanto date como invoice_date están informados
+- Son fechas diferentes
+- La factura es de cliente o rectificativa (out_invoice, out_refund)
 
 **Caso de Uso**
 

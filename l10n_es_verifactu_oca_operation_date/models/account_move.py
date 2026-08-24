@@ -1,7 +1,7 @@
 # Copyright 2026 Ozono Multimedia - Iván Antón
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import _, models
+from odoo import models
 
 
 class AccountMove(models.Model):
@@ -26,7 +26,9 @@ class AccountMove(models.Model):
         # Validate operation date constraint
         if self.date and self.date > self.invoice_date:
             suffixes.append(
-                _("- The operation date cannot be greater than the invoice date.")
+                self.env._(
+                    "- The operation date cannot be greater than the invoice date."
+                )
             )
 
         return super()._check_verifactu_configuration(suffixes=suffixes)
