@@ -18,7 +18,7 @@ from ..models.subcontractor_certificate import (
 @tagged("post_install", "-at_install")
 class TestL10nEsSubcontractorCertificate(AccountTestInvoicingCommon):
     def setUp(self):
-        super(TestL10nEsSubcontractorCertificate, self).setUp()
+        super().setUp()
         self.account_receivable_a1 = self.env["account.account"].create(
             {
                 "name": "Receivable A1",

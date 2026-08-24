@@ -55,7 +55,7 @@ class PurchaseOrder(models.Model):
 
     @api.onchange("partner_id", "company_id")
     def onchange_partner_id(self):
-        res = super(PurchaseOrder, self).onchange_partner_id() or {}
+        res = super().onchange_partner_id() or {}
         partner = self.partner_id
         if partner:
             if partner.certificate_required:
@@ -75,7 +75,7 @@ class AccountMove(models.Model):
 
     @api.onchange("partner_id", "company_id")
     def _onchange_partner_id(self):
-        res = super(AccountMove, self)._onchange_partner_id() or {}
+        res = super()._onchange_partner_id() or {}
         if self.move_type == "in_invoice" and self.partner_id:
             partner = self.partner_id
             if partner.certificate_required:
