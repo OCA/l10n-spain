@@ -1,0 +1,1 @@
+Genera el informe de presentación oficial para la SGAE sobre el canon digital como impuesto.
