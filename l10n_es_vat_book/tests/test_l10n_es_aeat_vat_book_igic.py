@@ -6,15 +6,15 @@ import logging
 from odoo import fields
 from odoo.tests import tagged
 
-from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
-    TestL10nEsAeatModBase,
+from odoo.addons.l10n_es_vat_book.tests.test_l10n_es_aeat_vat_book import (
+    TestL10nEsAeatVatBook,
 )
 
 _logger = logging.getLogger("aeat.vat.book.igic")
 
 
 @tagged("post_install", "-at_install")
-class TestL10nEsVatBookIgic(TestL10nEsAeatModBase):
+class TestL10nEsVatBookIgic(TestL10nEsAeatVatBook):
     debug = False
     taxes_sale = {
         # tax code: (base, tax_amount)
