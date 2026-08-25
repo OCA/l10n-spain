@@ -1,9 +1,9 @@
-# Copyright 2025 FactorLibre - Almudena de La Puente <almudena.delapuente@factorlibre.com>
+# Copyright 2025 FactorLibre - Almudena de La Puente <almudena.delapuente@factorlibre.com>  # noqa: E501
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
     "name": "Comunicación VERI*FACTU: OSS",
-    "version": "16.0.1.0.1",
+    "version": "18.0.1.0.0",
     "category": "Accounting & Finance",
     "website": "https://github.com/OCA/l10n-spain",
     "author": "Factor Libre, Odoo Community Association (OCA)",

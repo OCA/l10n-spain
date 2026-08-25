@@ -1,4 +1,4 @@
-# Copyright 2025 FactorLibre - Almudena de La Puente <almudena.delapuente@factorlibre.com>
+# Copyright 2025 FactorLibre - Almudena de La Puente <almudena.delapuente@factorlibre.com>  # noqa: E501
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from odoo import Command
 
@@ -19,6 +19,7 @@ class TestL10nEsAeatVerifactuOSS(TestL10nEsAeatVerifactu):
                 "amount_type": "percent",
                 "amount": 20,
                 "oss_country_id": cls.env.ref("base.fr").id,
+                "l10n_es_type": "no_sujeto_loc",
             }
         )
         cls.fpos_fr_id = account_fiscal_position_env.create(
