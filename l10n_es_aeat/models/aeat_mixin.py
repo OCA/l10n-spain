@@ -103,10 +103,15 @@ class AeatMixin(models.AbstractModel):
     def _get_document_period(self):
         return "%02d" % fields.Date.to_date(self._get_document_fiscal_date()).month
 
+    # TODO: Remove in 20.0 migration and use _is_aeat_unidentified_document
     def _is_aeat_simplified_invoice(self):
         """Inheritable method to allow control when an
         invoice are simplified or normal"""
         return self._aeat_get_partner().aeat_simplified_invoice
+
+    def _is_aeat_unidentified_document(self):
+        """Inheritable method to allow control when an document is identified"""
+        return self._is_aeat_simplified_invoice()
 
     def _get_document_amount_total(self):
         raise NotImplementedError()
@@ -157,8 +162,8 @@ class AeatMixin(models.AbstractModel):
         self.ensure_one()
         partner = self._aeat_get_partner()
         country_code = self._get_aeat_country_code()
-        is_simplified_invoice = self._is_aeat_simplified_invoice()
-        if country_code == "ES" and not partner.vat and not is_simplified_invoice:
+        is_unidentified_document = self._is_aeat_unidentified_document()
+        if country_code == "ES" and not partner.vat and not is_unidentified_document:
             raise UserError(_("The partner has not a VAT configured."))
         if not self.company_id.chart_template:
             raise UserError(

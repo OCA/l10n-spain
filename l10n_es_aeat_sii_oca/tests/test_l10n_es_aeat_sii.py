@@ -457,6 +457,11 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
         self.partner.aeat_simplified_invoice = True
         self.assertTrue(self.invoice._is_aeat_simplified_invoice())
 
+    def test_is_aeat_unidentified_document(self):
+        self.assertFalse(self.invoice._is_aeat_unidentified_document())
+        self.partner.aeat_simplified_invoice = True
+        self.assertTrue(self.invoice._is_aeat_unidentified_document())
+
     def test_aeat_check_exceptions_case_supplier_simplified(self):
         self.partner.aeat_simplified_invoice = True
         invoice = self.env["account.move"].create(

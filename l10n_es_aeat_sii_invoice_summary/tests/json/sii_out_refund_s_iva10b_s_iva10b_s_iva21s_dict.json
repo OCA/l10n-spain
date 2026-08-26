@@ -3,16 +3,15 @@
     "IDEmisorFactura": {
       "NIF": "U2687761C"
     },
-    "NumSerieFacturaEmisor": "1",
-    "FechaExpedicionFacturaEmisor": "01-01-2020",
-    "NumSerieFacturaEmisorResumenFin": "10"
+    "NumSerieFacturaEmisor": "TEST001",
+    "FechaExpedicionFacturaEmisor": "01-01-2020"
   },
   "PeriodoLiquidacion": {
     "Ejercicio": 2020,
     "Periodo": "01"
   },
   "FacturaExpedida": {
-    "TipoFactura": "F4",
+    "TipoFactura": "R5",
     "ClaveRegimenEspecialOTrascendencia": "01",
     "DescripcionOperacion": "/",
     "TipoDesglose": {
@@ -38,6 +37,7 @@
         }
       }
     },
+    "TipoRectificativa": "I",
     "ImporteTotal": -462.0
   }
 }
