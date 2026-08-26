@@ -17,19 +17,22 @@ Force SII communication type on invoices
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github
-    :target: https://github.com/OCA/l10n-spain/tree/16.0/l10n_es_aeat_sii_force_type
+    :target: https://github.com/OCA/l10n-spain/tree/18.0/l10n_es_aeat_sii_force_type
     :alt: OCA/l10n-spain
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/l10n-spain-16-0/l10n-spain-16-0-l10n_es_aeat_sii_force_type
+    :target: https://translation.odoo-community.org/projects/l10n-spain-18-0/l10n-spain-18-0-l10n_es_aeat_sii_force_type
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&target_branch=18.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-El objetivo del módulo es poder remitir correctamente al SII las devoluciones de IVA en Régimen Especial de Viajeros.
-En el caso de facturas con el tipo de comunicación A4, A5 y A6, los importes se enviarán en negativo para los apartados ImporteTotal, CuotaRepercutida y BaseImponible.
+El objetivo del módulo es poder remitir correctamente al SII las
+devoluciones de IVA en Régimen Especial de Viajeros. En el caso de
+facturas con el tipo de comunicación A4, A5 y A6, los importes se
+enviarán en negativo para los apartados ImporteTotal, CuotaRepercutida y
+BaseImponible.
 
 **Table of contents**
 
@@ -39,30 +42,33 @@ En el caso de facturas con el tipo de comunicación A4, A5 y A6, los importes se
 Configuration
 =============
 
-Habilitar dentro de las posiciones fiscales la opción de forzar el "Tipo de Comunicación" para el SII.
+Habilitar dentro de las posiciones fiscales la opción de forzar el "Tipo
+de Comunicación" para el SII.
 
 Usage
 =====
 
-Desde la pestaña *SII* de la configuración de una posición fiscal, se puede
-configurar si *Forzar tipo de comunicación*, en cuyo cayo se podrá especificar
-también un *Tipo de comunicación por defecto*. Cuando se realice una factura
-correspondiente a una posición fiscal configurada de esta manera, se podrá
-forzar un determinado tipo de configuración, que por defecto será el
-configurado para la posición fiscal. Si dicho campo se deja en blanco,
-prevalecerá el determinado por el módulo *l10n_es_aeat_sii*.
+Desde la pestaña *SII* de la configuración de una posición fiscal, se
+puede configurar si *Forzar tipo de comunicación*, en cuyo cayo se podrá
+especificar también un *Tipo de comunicación por defecto*. Cuando se
+realice una factura correspondiente a una posición fiscal configurada de
+esta manera, se podrá forzar un determinado tipo de configuración, que
+por defecto será el configurado para la posición fiscal. Si dicho campo
+se deja en blanco, prevalecerá el determinado por el módulo
+*l10n_es_aeat_sii*.
 
-En el caso de facturas con el tipo de comunicación A6 (*Modificación de las
-devoluciones del IVA de viajeros*), los importes se enviarán en negativo para
-los apartados *ImporteTotal*, *CuotaRepercutida* y *BaseImponible*.
+En el caso de facturas con el tipo de comunicación A6 (*Modificación de
+las devoluciones del IVA de viajeros*), los importes se enviarán en
+negativo para los apartados *ImporteTotal*, *CuotaRepercutida* y
+*BaseImponible*.
 
 Changelog
 =========
 
 16.0.1.0.0 (2023-07-05)
-~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------
 
-* Start of the history
+-  Start of the history
 
 Bug Tracker
 ===========
@@ -70,7 +76,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/l10n-spain/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_aeat_sii_force_type%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_aeat_sii_force_type%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -78,19 +84,19 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * FactorLibre
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Daniel Duque <daniel.duque@factorlibre.com>
-* Alejandro Ji Cheung <alejandro.jicheung@factorlibre.com>
-* Aritz Olea <aritz.olea@factorlibre.com>
+-  Daniel Duque <daniel.duque@factorlibre.com>
+-  Alejandro Ji Cheung <alejandro.jicheung@factorlibre.com>
+-  Aritz Olea <aritz.olea@factorlibre.com>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -102,6 +108,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/16.0/l10n_es_aeat_sii_force_type>`_ project on GitHub.
+This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/18.0/l10n_es_aeat_sii_force_type>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
