@@ -282,13 +282,18 @@ class L10nEsVatBook(models.Model):
         for i, tax in enumerate(move_line.tax_ids):
             res = {}
             move_line._process_aeat_tax_base_info(res, tax, sign)
+            tax_base = (
+                res[tax]["base"]
+                if tax.amount_type != "group"
+                else list(res.values())[0]["base"]
+            )
             if i == 0:
-                vat_book_line["base_amount"] += res[tax]["base"]
+                vat_book_line["base_amount"] += tax_base
             if tax not in implied_taxes:
                 continue
             key = self.get_book_line_tax_key(move_line, tax)
             value = tax_lines.setdefault(key, default_dict | {"tax_id": tax.id})
-            value["base_amount"] += res[tax]["base"]
+            value["base_amount"] += tax_base
             value["base_move_line_ids"].append((4, move_line.id))
             # For later matching special taxes
             value["other_tax_ids"] = (move_line.tax_ids - tax).ids
@@ -391,6 +396,24 @@ class L10nEsVatBook(models.Model):
             if line_key not in moves_dic:
                 moves_dic[line_key] = self._prepare_book_line_vals(move_line, line_type)
             self.upsert_book_line_tax(move_line, moves_dic[line_key], taxes)
+
+        for move_id in list(moves_dic):
+            for tax_key in list(moves_dic[move_id]["tax_lines"]):
+                tax_line = moves_dic[move_id]["tax_lines"][tax_key]
+                tax = self.env["account.tax"].browse(tax_line["tax_id"])
+                if tax.amount_type == "group":
+                    sign = -1
+                    if line_type in ["received", "rectification_received"]:
+                        sign = 1
+                    res = {}
+                    move_line._process_aeat_tax_fee_info(res, tax, sign)
+                    for sub_tax in res.keys():
+                        if sub_tax.l10n_es_type != "ignore":
+                            moves_dic[move_id]["tax_lines"][(move_id, sub_tax.id)][
+                                "base_amount"
+                            ] += tax_line["base_amount"]
+                    moves_dic[move_id]["tax_lines"].pop(tax_key)
+
         lines_values = []
         for line_vals in moves_dic.values():
             tax_lines = line_vals.pop("tax_lines")
