@@ -5,6 +5,7 @@
 # Copyright 2011,2024 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 import json
+import logging
 
 from unidecode import unidecode
 
@@ -14,6 +15,8 @@ from odoo.modules.registry import Registry
 from odoo.tools.float_utils import float_compare
 
 from odoo.addons.l10n_es_aeat.models.aeat_mixin import round_by_keys
+
+_logger = logging.getLogger(__name__)
 
 SII_STATES = [
     ("sent_modified", "Registered in SII but last modifications not sent"),
@@ -813,23 +816,34 @@ class SiiMixin(models.AbstractModel):
         return self.sii_account_registration_date or fields.Date.today()
 
     def _send_document_to_sii(self):
-        for document in self.filtered(
-            lambda i: i.state in self._get_valid_document_states()
-        ):
-            # Filter the SII description for avoiding manual invalid inputs
-            text = unidecode(document.sii_description)
-            if text != document.sii_description:
-                document.sii_description = text
-            if document.aeat_state == "not_sent":
-                tipo_comunicacion = "A0"
-            else:
-                tipo_comunicacion = "A1"
-            header = document._get_aeat_header(tipo_comunicacion)
-            doc_vals = {
-                "aeat_header_sent": json.dumps(header, indent=4),
-            }
+        document_ids = self.filtered(
+            lambda i: i.state in i._get_valid_document_states()
+        ).ids
+        for document_id in document_ids:
+            self._send_one_document_to_sii_isolated(document_id)
+
+    def _send_one_document_to_sii_isolated(self, document_id):
+        registry = Registry(self.env.cr.dbname)
+        with registry.cursor() as new_cr:
+            new_env = api.Environment(new_cr, self.env.uid, self.env.context)
+            document = new_env[self._name].browse(document_id).exists()
+            if not document:
+                return
+            doc_vals = {}
             inv_dict = False
             try:
+                # Filter the SII description for avoiding manual invalid inputs
+                text = unidecode(document.sii_description)
+                if text != document.sii_description:
+                    document.sii_description = text
+                if document.aeat_state == "not_sent":
+                    tipo_comunicacion = "A0"
+                else:
+                    tipo_comunicacion = "A1"
+                header = document._get_aeat_header(tipo_comunicacion)
+                doc_vals = {
+                    "aeat_header_sent": json.dumps(header, indent=4),
+                }
                 inv_dict = document._get_aeat_invoice_dict()
                 mapping_key = document._get_mapping_key()
                 serv = document._connect_aeat(mapping_key)
@@ -838,6 +852,8 @@ class SiiMixin(models.AbstractModel):
                     res = serv.SuministroLRFacturasEmitidas(header, inv_dict)
                 elif mapping_key in ["in_invoice", "in_refund"]:
                     res = serv.SuministroLRFacturasRecibidas(header, inv_dict)
+                else:
+                    raise ValueError("Unsupported SII mapping key: %s" % mapping_key)
                 # TODO Facturas intracomunitarias 66 RIVA
                 # elif invoice.fiscal_position_id.id == self.env.ref(
                 #     'account.fp_intra').id:
@@ -883,23 +899,32 @@ class SiiMixin(models.AbstractModel):
                     )
                 doc_vals["aeat_send_error"] = send_error
                 document.write(doc_vals)
+                new_cr.commit()
             except Exception as fault:
-                new_cr = Registry(self.env.cr.dbname).cursor()
-                env = api.Environment(new_cr, self.env.uid, self.env.context)
-                document = env[document._name].browse(document.id)
-                doc_vals.update(
-                    {
+                _logger.exception(
+                    "Error sending document %s to SII", document.display_name
+                )
+                new_cr.rollback()
+                # Re-open a clean transaction to persist the error status
+                with registry.cursor() as error_cr:
+                    error_env = api.Environment(
+                        error_cr, self.env.uid, self.env.context
+                    )
+                    error_document = error_env[document._name].browse(document.id)
+                    if not error_document:
+                        return
+                    error_vals = {
                         "aeat_send_failed": True,
                         "aeat_send_error": repr(fault)[:60],
                         "sii_return": repr(fault),
                         "sii_send_date": False,
                     }
-                )
-                if inv_dict:
-                    doc_vals["aeat_content_sent"] = json.dumps(inv_dict, indent=4)
-                document.write(doc_vals)
-                new_cr.commit()
-                new_cr.close()
+                    if doc_vals.get("aeat_header_sent"):
+                        error_vals["aeat_header_sent"] = doc_vals["aeat_header_sent"]
+                    if inv_dict:
+                        error_vals["aeat_content_sent"] = json.dumps(inv_dict, indent=4)
+                    error_document.write(error_vals)
+                    error_cr.commit()
 
     def confirm_one_document(self):
         self.sudo()._send_document_to_sii()
