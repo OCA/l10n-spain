@@ -1,0 +1,127 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* website_sale_insurance_caser
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: website_sale_insurance_caser
+#: model_terms:ir.ui.view,arch_db:website_sale_insurance_caser.caser_insurance_checkout_modal
+msgid "Add Selected Insurance"
+msgstr "Añadir seguro seleccionado"
+
+#. module: website_sale_insurance_caser
+#: model_terms:ir.ui.view,arch_db:website_sale_insurance_caser.product_caser_insurance_checkbox
+msgid "Annual insurance for"
+msgstr "Seguro anual por"
+
+#. module: website_sale_insurance_caser
+#: model_terms:ir.ui.view,arch_db:website_sale_insurance_caser.product_caser_insurance_checkbox
+msgid "Caser"
+msgstr "Caser"
+
+#. module: website_sale_insurance_caser
+#: model:ir.model.fields,field_description:website_sale_insurance_caser.field_res_config_settings__website_sale_caser_insurance_enabled
+#: model:ir.model.fields,field_description:website_sale_insurance_caser.field_website__caser_insurance_enabled
+#: model_terms:ir.ui.view,arch_db:website_sale_insurance_caser.cart_lines_caser_insurance
+#: model_terms:ir.ui.view,arch_db:website_sale_insurance_caser.checkout_caser_insurance
+#: model_terms:ir.ui.view,arch_db:website_sale_insurance_caser.res_config_settings_view_form
+msgid "Caser Insurance"
+msgstr "Seguro Caser"
+
+#. module: website_sale_insurance_caser
+#: model:ir.model,name:website_sale_insurance_caser.model_caser_price_range
+msgid "Caser Insurance Price Range"
+msgstr "Rango de precios de seguro Caser"
+
+#. module: website_sale_insurance_caser
+#: model:ir.model.fields,field_description:website_sale_insurance_caser.field_product_product__caser_insurance_ecommerce
+#: model:ir.model.fields,field_description:website_sale_insurance_caser.field_product_template__caser_insurance_ecommerce
+msgid "Caser Insurance in eCommerce"
+msgstr "Seguro Caser en comercio electrónico"
+
+#. module: website_sale_insurance_caser
+#: model:ir.model,name:website_sale_insurance_caser.model_res_config_settings
+msgid "Config Settings"
+msgstr "Ajustes de configuración"
+
+#. module: website_sale_insurance_caser
+#: model:ir.model.fields,help:website_sale_insurance_caser.field_res_config_settings__website_sale_caser_insurance_enabled
+#: model:ir.model.fields,help:website_sale_insurance_caser.field_website__caser_insurance_enabled
+msgid ""
+"Enable Caser insurance on this website's eCommerce. When disabled, the "
+"insurance checkbox on the product page and the checkout insurance modal will "
+"not be shown."
+msgstr "Habilita el seguro Caser en el eCommerce de este sitio web. Si se desactiva, no se mostrará la casilla de seguro en la ficha de producto ni el modal de seguro en el checkout."
+
+#. module: website_sale_insurance_caser
+#: model:ir.model.fields,help:website_sale_insurance_caser.field_product_product__caser_insurance_ecommerce
+#: model:ir.model.fields,help:website_sale_insurance_caser.field_product_template__caser_insurance_ecommerce
+msgid ""
+"If enabled, this product can be insured with Caser during the checkout "
+"process in the online shop."
+msgstr "Si está activado, este producto se puede asegurar con Caser durante el proceso de compra en la tienda online."
+
+#. module: website_sale_insurance_caser
+#: model_terms:ir.ui.view,arch_db:website_sale_insurance_caser.caser_insurance_checkout_modal
+msgid "No, thanks"
+msgstr "No, gracias"
+
+#. module: website_sale_insurance_caser
+#: model:ir.model,name:website_sale_insurance_caser.model_product_template
+msgid "Product"
+msgstr "Producto"
+
+#. module: website_sale_insurance_caser
+#: model_terms:ir.ui.view,arch_db:website_sale_insurance_caser.caser_insurance_checkout_modal
+msgid "Protect Your Products"
+msgstr "Protege tus productos"
+
+#. module: website_sale_insurance_caser
+#: model_terms:ir.ui.view,arch_db:website_sale_insurance_caser.cart_lines_caser_insurance
+#: model_terms:ir.ui.view,arch_db:website_sale_insurance_caser.checkout_caser_insurance
+msgid "Protected device:"
+msgstr "Dispositivo protegido:"
+
+#. module: website_sale_insurance_caser
+#: model:ir.model,name:website_sale_insurance_caser.model_sale_order
+msgid "Sales Order"
+msgstr "Pedido de venta"
+
+#. module: website_sale_insurance_caser
+#: model_terms:ir.ui.view,arch_db:website_sale_insurance_caser.caser_insurance_checkout_modal
+msgid "Select / Deselect all"
+msgstr "Marcar / Desmarcar todos"
+
+#. module: website_sale_insurance_caser
+#: model_terms:ir.ui.view,arch_db:website_sale_insurance_caser.res_config_settings_view_form
+msgid "Show Caser insurance options on product pages and at checkout."
+msgstr "Muestra las opciones de seguro Caser en las fichas de producto y en el checkout."
+
+#. module: website_sale_insurance_caser
+#: model_terms:ir.ui.view,arch_db:website_sale_insurance_caser.caser_insurance_checkout_modal
+msgid ""
+"The following products can be protected with Caser insurance. Would you like "
+"to add coverage?"
+msgstr ""
+"Los siguientes productos se pueden proteger con el seguro Caser. ¿Desea "
+"añadir cobertura?"
+
+#. module: website_sale_insurance_caser
+#: model:ir.model,name:website_sale_insurance_caser.model_website
+msgid "Website"
+msgstr "Sitio web"
+
+#. module: website_sale_insurance_caser
+#: model_terms:ir.ui.view,arch_db:website_sale_insurance_caser.product_caser_insurance_checkbox
+msgid "Your device protected, no matter what"
+msgstr "Tu dispositivo protegido, pase lo que pase"
