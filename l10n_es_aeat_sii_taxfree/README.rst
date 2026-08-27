@@ -52,7 +52,7 @@ Installation
 
 Este módulo depende de los módulos:
 
-   -  `l10n_es_aeat_sii_oca <https://github.com/OCA/l10n-spain/tree/16.0/l10n_es_aeat_sii_oca>`__
+   -  `l10n_es_aeat_sii_oca <https://github.com/OCA/l10n-spain/tree/18.0/l10n_es_aeat_sii_oca>`__
       repositorio OCA/l10n-spain/
 
 Configuration
@@ -105,6 +105,11 @@ Known issues / Roadmap
 
 Changelog
 =========
+
+18.0.1.0.0 (2026-08-27)
+-----------------------
+
+-  Migration to 18.0
 
 16.0.1.0.0 (27-12-2023)
 -----------------------
