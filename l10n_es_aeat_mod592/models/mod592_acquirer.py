@@ -2,7 +2,7 @@
 # Copyright 2023 Javier Colmenero - (https://javier@comunitea.com)
 # Copyright 2024 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 
 from .misc import FISCAL_ACQUIRERS
 
@@ -14,15 +14,13 @@ class L10nEsAeatmod592LineAcquirer(models.Model):
 
     concept = fields.Selection(
         selection=[
-            ("1", _("(1) Intra-community acquisition")),
-            ("2", _("(2) Shipping outside Spanish territory")),
-            ("3", _("(3) Inadequacy or destruction")),
+            ("1", "(1) Intra-community acquisition"),
+            ("2", "(2) Shipping outside Spanish territory"),
+            ("3", "(3) Inadequacy or destruction"),
             (
                 "4",
-                _(
-                    """(4) Return for destruction or reincorporation into the
-                manufacturing process"""
-                ),
+                """(4) Return for destruction or reincorporation into the
+                manufacturing process""",
             ),
         ],
         compute="_compute_concept",
@@ -47,7 +45,7 @@ class L10nEsAeatmod592LineAcquirer(models.Model):
             doc_type = item.partner_id.plastic_document_type
             orig_loc_usage = item.stock_move_id.location_id.usage
             dest_loc_usage = item.stock_move_id.location_dest_id.usage
-            dest_loc_scrap = item.stock_move_id.location_dest_id.scrap_location
+            is_scrap = bool(item.stock_move_id.scrap_id)
             # Intracomunitary Acquisitions
             if orig_loc_usage == "supplier" and doc_type == "2":
                 concept = "1"
@@ -55,7 +53,7 @@ class L10nEsAeatmod592LineAcquirer(models.Model):
             elif dest_loc_usage == "customer" and doc_type != "1":
                 concept = "2"
             # Deduction by: Scrap
-            elif dest_loc_scrap:
+            elif is_scrap:
                 concept = "3"
             # Deduction by: Adquisition returns
             elif (
@@ -80,11 +78,11 @@ class L10nEsAeatmod592LineAcquirer(models.Model):
         for record in self:
             errors = []
             if record.concept != "3" and not record.supplier_social_reason:
-                errors.append(_("Without supplier name"))
+                errors.append(self.env._("Without supplier name"))
             if not record.fiscal_acquirer:
-                errors.append(_("Without regime"))
+                errors.append(self.env._("Without regime"))
             if record.concept != "3" and not record.supplier_document_number:
-                errors.append(_("Without VAT"))
+                errors.append(self.env._("Without VAT"))
             record.error_text += ", ".join(errors)
         return res
 

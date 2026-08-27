@@ -4,7 +4,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 
 from .misc import FISCAL_MANUFACTURERS
 
@@ -16,22 +16,18 @@ class L10nEsAeatmod592LineManufacturer(models.Model):
 
     concept = fields.Selection(
         selection=[
-            ("1", _("(1) Initial existence")),
-            ("2", _("(2) Manufacturing")),
+            ("1", "(1) Initial existence"),
+            ("2", "(2) Manufacturing"),
             (
                 "3",
-                _(
-                    "(3) Return of products for destruction or reincorporation into "
-                    "the manufacturing process"
-                ),
+                "(3) Return of products for destruction or reincorporation into "
+                "the manufacturing process",
             ),
-            ("4", _("(4) Delivery or making available of the products accounted for")),
+            ("4", "(4) Delivery or making available of the products accounted for"),
             (
                 "5",
-                _(
-                    "(5) Other cancellations of the products accounted for other than "
-                    "their delivery or availability"
-                ),
+                "(5) Other cancellations of the products accounted for other than "
+                "their delivery or availability",
             ),
         ],
         compute="_compute_concept",
@@ -55,7 +51,7 @@ class L10nEsAeatmod592LineManufacturer(models.Model):
             concept = ""
             doc_type = item.partner_id.plastic_document_type
             dest_loc_usage = item.stock_move_id.location_dest_id.usage
-            dest_loc_scrap = item.stock_move_id.location_dest_id.scrap_location
+            is_scrap = bool(item.stock_move_id.scrap_id)
             # Initial Existence
             if dest_loc_usage == "internal":
                 concept = "1"
@@ -63,13 +59,13 @@ class L10nEsAeatmod592LineManufacturer(models.Model):
             elif dest_loc_usage == "production":
                 concept = "2"
             # Initial Existence
-            elif dest_loc_usage == "production" and dest_loc_scrap:
+            elif dest_loc_usage == "production" and is_scrap:
                 concept = "3"
             # Sales to spanish customers
             elif dest_loc_usage == "customer" and doc_type == "1":
                 concept = "4"
             # Scrap
-            elif dest_loc_scrap:
+            elif is_scrap:
                 concept = "5"
             item.concept = concept
 
@@ -90,13 +86,13 @@ class L10nEsAeatmod592LineManufacturer(models.Model):
         for record in self:
             errors = []
             if not record.supplier_social_reason:
-                errors.append(_("Without supplier name"))
+                errors.append(self.env._("Without supplier name"))
             if not record.fiscal_manufacturer:
-                errors.append(_("Without regime"))
+                errors.append(self.env._("Without regime"))
             if not record.supplier_document_type:
-                errors.append(_("Without supplier document"))
+                errors.append(self.env._("Without supplier document"))
             if not record.supplier_document_number:
-                errors.append(_("Without document number"))
+                errors.append(self.env._("Without document number"))
             record.error_text += ", ".join(errors)
         return res
 

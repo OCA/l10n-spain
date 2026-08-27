@@ -1,6 +1,6 @@
 # Copyright 2024 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.tools import float_is_zero
 
 from .misc import DOCUMENT_TYPES, PRODUCT_KEYS
@@ -163,13 +163,13 @@ class L10nEsAeatmod592LineMixin(models.AbstractModel):
         for record in self:
             errors = []
             if not record.entry_number:
-                errors.append(_("Without entrie number"))
+                errors.append(self.env._("Without entrie number"))
             if not record.product_key:
-                errors.append(_("Without product key"))
+                errors.append(self.env._("Without product key"))
             if float_is_zero(record.kgs, precision_digits=precision):
-                errors.append(_("Without Weiht"))
+                errors.append(self.env._("Without Weiht"))
             if float_is_zero(record.no_recycling_kgs, precision_digits=precision):
-                errors.append(_("Without Weiht non recyclable"))
+                errors.append(self.env._("Without Weiht non recyclable"))
             record.error_text = ", ".join(errors)
 
     def _get_csv_report_info(self):

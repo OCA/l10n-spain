@@ -1,12 +1,11 @@
 # Copyright 2024-2025 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-
 import csv
+import io
 import logging
 from io import StringIO
 
 from freezegun import freeze_time
-from xlrd import open_workbook
 
 from odoo import fields
 from odoo.exceptions import UserError
@@ -15,6 +14,13 @@ from odoo.tests import Form
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
     TestL10nEsAeatModBase,
 )
+
+_logger = logging.getLogger(__name__)
+
+try:
+    from openpyxl import load_workbook
+except ImportError:
+    _logger.debug("Can not import openpyxl`.")
 
 _logger = logging.getLogger("aeat.592")
 
@@ -64,17 +70,17 @@ class TestL10nEsAeatMod592(TestL10nEsAeatModBase):
             }
         )
         products = cls.product_a + cls.product_b + cls.product_c
-        picking_type_out = cls.env["stock.picking.type"].search(
-            [("code", "=", "outgoing"), ("company_id", "=", cls.company.id)], limit=1
+        warehouse = cls.env["stock.warehouse"].search(
+            [("company_id", "=", cls.company.id)], limit=1
         )
         picking_form = Form(
             cls.env["stock.picking"].with_context(
-                default_picking_type_id=picking_type_out.id,
+                default_picking_type_id=warehouse.out_type_id.id,
             )
         )
         picking_form.partner_id = cls.customer
         for product in products:
-            with picking_form.move_ids_without_package.new() as line:
+            with picking_form.move_ids.new() as line:
                 line.product_id = product
                 line.product_uom_qty = 3.0
         cls.picking = picking_form.save()
@@ -121,15 +127,9 @@ class TestL10nEsAeatMod592(TestL10nEsAeatModBase):
             self.model592.total_weight_acquirer_non_reclyclable, 27
         )  # 27 = 18 + 9
         self.assertEqual(self.model592.total_amount_acquirer, 27)
-        sm_a = self.picking.move_ids_without_package.filtered(
-            lambda x: x.product_id == self.product_a
-        )
-        sm_b = self.picking.move_ids_without_package.filtered(
-            lambda x: x.product_id == self.product_b
-        )
-        sm_c = self.picking.move_ids_without_package.filtered(
-            lambda x: x.product_id == self.product_c
-        )
+        sm_a = self.picking.move_ids.filtered(lambda x: x.product_id == self.product_a)
+        sm_b = self.picking.move_ids.filtered(lambda x: x.product_id == self.product_b)
+        sm_c = self.picking.move_ids.filtered(lambda x: x.product_id == self.product_c)
         self.assertIn(sm_a, acquirer_lines.stock_move_id)
         self.assertIn(sm_b, acquirer_lines.stock_move_id)
         self.assertNotIn(sm_c, acquirer_lines.stock_move_id)
@@ -233,16 +233,18 @@ class TestL10nEsAeatMod592(TestL10nEsAeatModBase):
         # export_xlsx_acquirer
         xlsx_res = self.model592.export_xlsx_acquirer()
         res = self.report_obj._render(xlsx_res["report_name"], self.model592.ids, {})
-        wb = open_workbook(file_contents=res[0])
-        sheet = wb.sheet_by_index(0)
-        self.assertEqual(sheet.cell(1, 0).value, "A001")
-        self.assertEqual(sheet.cell(2, 0).value, "A002")
-        # export_xlsx_manufacturer
+        file = io.BytesIO(res[0])
+        wb = load_workbook(file)
+        sheet = wb.active
+        self.assertEqual(sheet.cell(2, 1).value, "A001")
+        self.assertEqual(sheet.cell(3, 1).value, "A002")
+        # # export_xlsx_manufacturer
         xlsx_res = self.model592.export_xlsx_manufacturer()
         res = self.report_obj._render(xlsx_res["report_name"], self.model592.ids, {})
-        wb = open_workbook(file_contents=res[0])
-        sheet = wb.sheet_by_index(0)
-        self.assertEqual(sheet.cell(1, 0).value, "M001")
+        file = io.BytesIO(res[0])
+        wb = load_workbook(file)
+        sheet = wb.active
+        self.assertEqual(sheet.cell(2, 1).value, "M001")
         # report_l10n_es_mod592_pdf
         res = self.env["ir.actions.report"]._render_qweb_text(
             "l10n_es_aeat_mod592.report_l10n_es_mod592_pdf", self.model592.ids

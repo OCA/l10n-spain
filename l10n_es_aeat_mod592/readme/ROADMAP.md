@@ -1,4 +1,4 @@
-- Los movimientos que involucran adquisicion de plastico no reciclable
+- Los movimientos que involucran adquisicion de plástico no reciclable
   no se buscan por su fecha de factura, o día 15 del mes siguiente como
   muy tarde. Solo se buscan en la fecha en que el movimiento quedó
   realizado.

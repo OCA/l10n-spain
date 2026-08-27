@@ -6,9 +6,9 @@
 
 import re
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
-from odoo.osv import expression
+from odoo.fields import Domain
 
 
 class L10nEsAeatmod592Report(models.Model):
@@ -48,22 +48,18 @@ class L10nEsAeatmod592Report(models.Model):
     total_acquirer_entries = fields.Integer(
         compute="_compute_total_acquirer_entries",
         string="Total acquirer entries",
-        store=False,
     )
     total_weight_acquirer = fields.Float(
         compute="_compute_total_weight_acquirer",
         string="Total weight acquirer",
-        store=False,
     )
     total_weight_acquirer_non_reclyclable = fields.Float(
         compute="_compute_total_weight_acquirer_non_reclyclable",
         string="Total weight acquirer non reclyclable",
-        store=False,
     )
     total_amount_acquirer = fields.Float(
         compute="_compute_total_amount_acquirer",
         string="Total amount acquirer",
-        store=False,
         digits="Product Price",
     )
     # MANUFACTURER TOTALS
@@ -219,17 +215,17 @@ class L10nEsAeatmod592Report(models.Model):
         # Deduction by: Scrap
         # TODO: No scrap if quant is not intracomunitaty acquisition
         domain_concept_3 = [
-            ("location_dest_id.scrap_location", "=", True),
+            ("scrap_id", "!=", False),
         ]
         # Deduction by adquisition returns
         domain_concept_4 = [
             ("location_dest_id.usage", "=", "supplier"),
             ("origin_returned_move_id", "!=", False),
         ]
-        domain = expression.AND(
+        domain = Domain.AND(
             [
                 domain_base,
-                expression.OR(
+                Domain.OR(
                     [
                         domain_concept_1,
                         domain_concept_2,
@@ -271,7 +267,7 @@ class L10nEsAeatmod592Report(models.Model):
         # # ]
         # # Return products for destruction, or re-manufacturation
         # domain_concept_3 = [
-        #     ("location_dest_id.scrap_location", "=", True),
+        #     ("scrap_id", "!=", False),
         # ]
         # # Sales to non spanish customers
         # domain_concept_4 = [
@@ -280,14 +276,14 @@ class L10nEsAeatmod592Report(models.Model):
         # ]
         # # ? Another destructions
         # # domain_concept_5 = [
-        # #     ("location_dest_id.scrap_location", "=", True),
+        # #     ("scrap_id", "!=", False),
         # # ]
-        # # domain = expression.AND([
-        # #     domain_base, expression.OR([
+        # # domain = Domain.AND([
+        # #     domain_base, Domain.OR([
         # #         domain_concept_1, domain_concept_2,
         # #         domain_concept_3, domain_concept_4])])
-        # domain = expression.AND([
-        #     domain_base, expression.OR([
+        # domain = Domain.AND([
+        #     domain_base, Domain.OR([
         #         domain_concept_3, domain_concept_4])])
         # # return domain
         return false_domain
@@ -347,7 +343,7 @@ class L10nEsAeatmod592Report(models.Model):
         """
         if any(x.show_error_acquirer or x.show_error_manufacturer for x in self):
             raise UserError(
-                _(
+                self.env._(
                     "All entries records fields (Entrie number, VAT number "
                     "Concept, Key product, Fiscal regime, etc must be filled."
                 )

@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
+    <record id="res_groups_privilege_mod592" model="res.groups.privilege">
+        <field name="name">Mod 592</field>
+        <field name="category_id" ref="base.module_category_hidden" />
+    </record>
     <record id="group_mod592_acquirer" model="res.groups">
         <field name="name">Mod 592 (Acquirer)</field>
-        <field name="category_id" ref="base.module_category_hidden" />
+        <field name="privilege_id" ref="res_groups_privilege_mod592" />
         <field
-            name="users"
-            eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
+            name="user_ids"
+            eval="[Command.link(ref('base.user_root')), Command.link(ref('base.user_admin'))]"
         />
     </record>
     <record id="group_mod592_manufacturer" model="res.groups">
         <field name="name">Mod 592 (Manufacturer)</field>
-        <field name="category_id" ref="base.module_category_hidden" />
+        <field name="privilege_id" ref="res_groups_privilege_mod592" />
         <field
-            name="users"
-            eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
+            name="user_ids"
+            eval="[Command.link(ref('base.user_root')), Command.link(ref('base.user_admin'))]"
         />
     </record>
     <record id="l10n_es_aeat_mod592_report_rule" model="ir.rule">

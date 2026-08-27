@@ -3,7 +3,7 @@
 # Copyright 2024 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools import float_is_zero
 
@@ -16,9 +16,9 @@ class ProductProduct(models.Model):
     is_plastic_tax = fields.Boolean(string="Is plastic tax?", tracking=True)
     tax_plastic_type = fields.Selection(
         selection=[
-            ("manufacturer", _("Manufacturer")),
-            ("acquirer", _("Acquirer")),
-            ("both", _("Both")),
+            ("manufacturer", "Manufacturer"),
+            ("acquirer", "Acquirer"),
+            ("both", "Both"),
         ],
         default="both",
     )
@@ -56,5 +56,7 @@ class ProductProduct(models.Model):
                 and weight1 > weight2
             ):
                 raise UserError(
-                    _("The non-recyclable weight must be equal to or less than")
+                    self.env._(
+                        "The non-recyclable weight must be equal to or less than"
+                    )
                 )

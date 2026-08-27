@@ -1,6 +1,6 @@
 # Copyright 2024 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
-from odoo import _, models
+from odoo import models
 
 
 class Mod592XlsxManufacturer(models.AbstractModel):
@@ -10,7 +10,7 @@ class Mod592XlsxManufacturer(models.AbstractModel):
 
     def generate_xlsx_report(self, workbook, data, objects):
         mod592 = objects[0]
-        sheet = workbook.add_worksheet(_("Manufacturer Items"))
+        sheet = workbook.add_worksheet(self.env._("Manufacturer Items"))
         # header
         model = self.env["l10n.es.aeat.mod592.report.line.manufacturer"]
         next_col = 0
@@ -34,7 +34,7 @@ class Mod592XlsxAcquirer(models.AbstractModel):
 
     def generate_xlsx_report(self, workbook, data, objects):
         mod592 = objects[0]
-        sheet = workbook.add_worksheet(_("Acquirer Items"))
+        sheet = workbook.add_worksheet(self.env._("Acquirer Items"))
         # header
         model = self.env["l10n.es.aeat.mod592.report.line.acquirer"]
         next_col = 0
