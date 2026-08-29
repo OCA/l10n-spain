@@ -222,9 +222,10 @@ class L10nEsAeatMod130Report(models.Model):
         self.ensure_one()
         aml_obj = self.env["account.move.line"]
         date_start = "%s-01-01" % self.year
+                # Get company_ids from context for multi-company support
+                company_ids = self.env.context.get('allowed_company_ids', [self.company_id.id])
         extra_domain = [
-            ("company_id", "=", self.company_id.id),
-            ("date", ">=", date_start),
+            ("company_id", "in", company_ids),            ("date", ">=", date_start),
             ("date", "<=", self.date_end),
         ]
         groups = aml_obj.read_group(
