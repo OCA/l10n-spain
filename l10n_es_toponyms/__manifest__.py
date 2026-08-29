@@ -18,7 +18,6 @@
     "depends": ["base_location_geonames_import"],
     "license": "AGPL-3",
     "data": ["security/ir.model.access.csv", "wizard/l10n_es_toponyms_wizard.xml"],
-    "images": ["images/l10n_es_toponyms_config.png"],
     "maintainers": ["pedrobaeza"],
     "installable": True,
 }
