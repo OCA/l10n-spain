@@ -2,25 +2,23 @@
   estado en la empresa
 * Se debe configurar el servidor de envío
 * Por defecto se añado el servicio web de test:
-  https://se-face-webservice.redsara.es/facturasspp2
+  https://se-api-face.redsara.es
 * Si queremos añadir el de producción, debemos cambiar el parámetro por
-  https://webservice.face.gob.es/facturasspp2 y modificar el certificado en
-  parámetros de sistema
+  https://api.face.gob.es
 
 Para poder enviar correctamente, debemos subir el certificado al entorno correspondiente,
-para ello, accederemos a https://face.gob.es (Producción) o https://se-face.redsara.es
+para ello, accederemos a https://face.gob.es (Producción) o https://se-integradores-face.redsara.es/
 (Desarrollo).
-Allí, accederemos a `Integradores/Gestión de certificados` y nos loguearemos con
-Certificado Electrónico.
-Una vez dentro, debemos darnos de alta como integrador creando una incidencia en la URL que nos aparecerá.
-El siguiente `documento <https://administracionelectronica.gob.es/PAe/FACE/altaintegrador>`_ tiene toda la información detallada.
+En la web deberemos loguearno con el certificado digital de la empresa.
+La primera vez nos pedirán firmar mediante efirma nuestra autorización.
 
-Cuando nos confirmen el alta, será necesario subir la parte pública de nuestro certificado, un comando para exportarlo es:
+Una vez dentro, accederemos a "Certificados" y añadiremos nuestro certificado PEM.
 
-.. code-block:: bash
+Luego, en "Plataforma", crearemos una nueva plataforma de "Envío de facturas" y le asignaremos el certificado creado previamente.
 
-    openssl pkcs12 -in MI_CERTIFICADO.pfx -out MI_CERTIFICADO.crt -nokeys -clcerts
-    cat MI_CERTIFICADO.crt
+Renovación de Certificados
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Deberemos añadir toda la parte entre `-----BEGIN CERTIFICATE-----` y
-`-----END CERTIFICATE-----` incluidos ambos.
+Cuando renovemos el certificado digital, debemos actualizar el certificado en FACE.
+Para ello, accederemos a la web de FACE con el nuevo certificado y en "Certificados" y añadiremos el nuevo.
+Luego, en "Plataforma", editaremos la plataforma de "Envío de facturas" y le asignaremos el nuevo certificado creado previamente.

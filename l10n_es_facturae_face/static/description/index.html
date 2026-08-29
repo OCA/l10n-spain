@@ -381,18 +381,21 @@ La gestión del envío se realiza mediante los certificados con los que se firma
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#configuration" id="toc-entry-1">Configuration</a></li>
-<li><a class="reference internal" href="#usage" id="toc-entry-2">Usage</a><ul>
-<li><a class="reference internal" href="#configurar-clientes" id="toc-entry-3">Configurar clientes</a></li>
-<li><a class="reference internal" href="#envio-de-facturas" id="toc-entry-4">Envío de facturas</a></li>
-<li><a class="reference internal" href="#envio-manual-de-facturas" id="toc-entry-5">Envío manual de facturas</a></li>
+<li><a class="reference internal" href="#configuration" id="toc-entry-1">Configuration</a><ul>
+<li><a class="reference internal" href="#renovacion-de-certificados" id="toc-entry-2">Renovación de Certificados</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#bug-tracker" id="toc-entry-6">Bug Tracker</a></li>
-<li><a class="reference internal" href="#credits" id="toc-entry-7">Credits</a><ul>
-<li><a class="reference internal" href="#authors" id="toc-entry-8">Authors</a></li>
-<li><a class="reference internal" href="#contributors" id="toc-entry-9">Contributors</a></li>
-<li><a class="reference internal" href="#maintainers" id="toc-entry-10">Maintainers</a></li>
+<li><a class="reference internal" href="#usage" id="toc-entry-3">Usage</a><ul>
+<li><a class="reference internal" href="#configurar-clientes" id="toc-entry-4">Configurar clientes</a></li>
+<li><a class="reference internal" href="#envio-de-facturas" id="toc-entry-5">Envío de facturas</a></li>
+<li><a class="reference internal" href="#envio-manual-de-facturas" id="toc-entry-6">Envío manual de facturas</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#bug-tracker" id="toc-entry-7">Bug Tracker</a></li>
+<li><a class="reference internal" href="#credits" id="toc-entry-8">Credits</a><ul>
+<li><a class="reference internal" href="#authors" id="toc-entry-9">Authors</a></li>
+<li><a class="reference internal" href="#contributors" id="toc-entry-10">Contributors</a></li>
+<li><a class="reference internal" href="#maintainers" id="toc-entry-11">Maintainers</a></li>
 </ul>
 </li>
 </ul>
@@ -404,30 +407,28 @@ La gestión del envío se realiza mediante los certificados con los que se firma
 estado en la empresa</li>
 <li>Se debe configurar el servidor de envío</li>
 <li>Por defecto se añado el servicio web de test:
-<a class="reference external" href="https://se-face-webservice.redsara.es/facturasspp2">https://se-face-webservice.redsara.es/facturasspp2</a></li>
+<a class="reference external" href="https://se-api-face.redsara.es">https://se-api-face.redsara.es</a></li>
 <li>Si queremos añadir el de producción, debemos cambiar el parámetro por
-<a class="reference external" href="https://webservice.face.gob.es/facturasspp2">https://webservice.face.gob.es/facturasspp2</a> y modificar el certificado en
-parámetros de sistema</li>
+<a class="reference external" href="https://api.face.gob.es">https://api.face.gob.es</a></li>
 </ul>
 <p>Para poder enviar correctamente, debemos subir el certificado al entorno correspondiente,
-para ello, accederemos a <a class="reference external" href="https://face.gob.es">https://face.gob.es</a> (Producción) o <a class="reference external" href="https://se-face.redsara.es">https://se-face.redsara.es</a>
+para ello, accederemos a <a class="reference external" href="https://face.gob.es">https://face.gob.es</a> (Producción) o <a class="reference external" href="https://se-integradores-face.redsara.es/">https://se-integradores-face.redsara.es/</a>
 (Desarrollo).
-Allí, accederemos a <cite>Integradores/Gestión de certificados</cite> y nos loguearemos con
-Certificado Electrónico.
-Una vez dentro, debemos darnos de alta como integrador creando una incidencia en la URL que nos aparecerá.
-El siguiente <a class="reference external" href="https://administracionelectronica.gob.es/PAe/FACE/altaintegrador">documento</a> tiene toda la información detallada.</p>
-<p>Cuando nos confirmen el alta, será necesario subir la parte pública de nuestro certificado, un comando para exportarlo es:</p>
-<pre class="code bash literal-block">
-openssl<span class="w"> </span>pkcs12<span class="w"> </span>-in<span class="w"> </span>MI_CERTIFICADO.pfx<span class="w"> </span>-out<span class="w"> </span>MI_CERTIFICADO.crt<span class="w"> </span>-nokeys<span class="w"> </span>-clcerts<span class="w">
-</span>cat<span class="w"> </span>MI_CERTIFICADO.crt
-</pre>
-<p>Deberemos añadir toda la parte entre <cite>—–BEGIN CERTIFICATE—–</cite> y
-<cite>—–END CERTIFICATE—–</cite> incluidos ambos.</p>
+En la web deberemos loguearno con el certificado digital de la empresa.
+La primera vez nos pedirán firmar mediante efirma nuestra autorización.</p>
+<p>Una vez dentro, accederemos a “Certificados” y añadiremos nuestro certificado PEM.</p>
+<p>Luego, en “Plataforma”, crearemos una nueva plataforma de “Envío de facturas” y le asignaremos el certificado creado previamente.</p>
+<div class="section" id="renovacion-de-certificados">
+<h3><a class="toc-backref" href="#toc-entry-2">Renovación de Certificados</a></h3>
+<p>Cuando renovemos el certificado digital, debemos actualizar el certificado en FACE.
+Para ello, accederemos a la web de FACE con el nuevo certificado y en “Certificados” y añadiremos el nuevo.
+Luego, en “Plataforma”, editaremos la plataforma de “Envío de facturas” y le asignaremos el nuevo certificado creado previamente.</p>
+</div>
 </div>
 <div class="section" id="usage">
-<h2><a class="toc-backref" href="#toc-entry-2">Usage</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-3">Usage</a></h2>
 <div class="section" id="configurar-clientes">
-<h3><a class="toc-backref" href="#toc-entry-3">Configurar clientes</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-4">Configurar clientes</a></h3>
 <ul class="simple">
 <li>Accedemos a un cliente<ul>
 <li>Le configuramos la opción de factura electrónica y rellenamos los datos obligatorios</li>
@@ -439,7 +440,7 @@ que marquemos la opción de <cite>Deshabilitar envío EDI</cite></li>
 </ul>
 </div>
 <div class="section" id="envio-de-facturas">
-<h3><a class="toc-backref" href="#toc-entry-4">Envío de facturas</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-5">Envío de facturas</a></h3>
 <ul class="simple">
 <li>Cuando validemos una factura de un cliente configurado a enviar por FACe se creará un registro de Envío EDI</li>
 <li>Mediante un job,  se generarán los datos necesarios y, posteriormente, se enviará como un registro EDI estándar</li>
@@ -458,7 +459,7 @@ correctamente no pagados y no anulados</li>
 </ul>
 </div>
 <div class="section" id="envio-manual-de-facturas">
-<h3><a class="toc-backref" href="#toc-entry-5">Envío manual de facturas</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-6">Envío manual de facturas</a></h3>
 <ul class="simple">
 <li>Esto podría pasarnos con facturas antiguas en las que configuramos el cliente tras emitir
 la factura o en las que hemos deshabilitado el envío automático</li>
@@ -469,7 +470,7 @@ la factura o en las que hemos deshabilitado el envío automático</li>
 </div>
 </div>
 <div class="section" id="bug-tracker">
-<h2><a class="toc-backref" href="#toc-entry-6">Bug Tracker</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-7">Bug Tracker</a></h2>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/l10n-spain/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
@@ -477,22 +478,22 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
-<h2><a class="toc-backref" href="#toc-entry-7">Credits</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-8">Credits</a></h2>
 <div class="section" id="authors">
-<h3><a class="toc-backref" href="#toc-entry-8">Authors</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-9">Authors</a></h3>
 <ul class="simple">
 <li>Creu Blanca</li>
 </ul>
 </div>
 <div class="section" id="contributors">
-<h3><a class="toc-backref" href="#toc-entry-9">Contributors</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-10">Contributors</a></h3>
 <ul class="simple">
 <li>Enric Tobella &lt;<a class="reference external" href="mailto:etobella&#64;creublanca.es">etobella&#64;creublanca.es</a>&gt;</li>
 <li>Eric Antones &lt;<a class="reference external" href="mailto:eantones&#64;nuobit.com">eantones&#64;nuobit.com</a>&gt;</li>
 </ul>
 </div>
 <div class="section" id="maintainers">
-<h3><a class="toc-backref" href="#toc-entry-10">Maintainers</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-11">Maintainers</a></h3>
 <p>This module is maintained by the OCA.</p>
 <a class="reference external image-reference" href="https://odoo-community.org">
 <img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" />
