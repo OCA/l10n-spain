@@ -3,8 +3,10 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 import datetime
 import json
+import logging
 
 from requests import Session
+from requests.exceptions import RequestException
 from zeep import Client, Settings
 from zeep.cache import SqliteCache
 from zeep.plugins import HistoryPlugin
@@ -13,6 +15,8 @@ from zeep.transports import Transport
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools import split_every
+
+_logger = logging.getLogger(__name__)
 
 VERIFACTU_SEND_STATES = [
     ("not_sent", "Not sent"),
@@ -290,13 +294,50 @@ class VerifactuInvoiceEntry(models.Model):
             response_line.document.write(doc_vals)
         return doc_vals
 
+    def _get_reusable_connection_error_response(self, connection_error):
+        last_lines = self.mapped("last_response_line_id")
+        if len(last_lines) != len(self):
+            return self.env["verifactu.invoice.entry.response"]
+        responses = last_lines.mapped("entry_response_id")
+        if (
+            len(responses) == 1
+            and responses.connection_error == connection_error
+            and set(last_lines.mapped("entry_id").ids) == set(self.ids)
+        ):
+            return responses
+        return self.env["verifactu.invoice.entry.response"]
+
+    def _create_connection_error_response_lines(self, response, connection_error):
+        for rec in self:
+            if not rec.document:
+                continue
+            vals = {
+                "entry_id": rec.id,
+                "model": rec.model,
+                "document_id": rec.document_id,
+                "response": connection_error,
+                "entry_response_id": response.id,
+                "send_state": "not_sent",
+                "error_code": "CONNECTION_ERROR",
+            }
+            response_line = (
+                self.env["verifactu.invoice.entry.response.line"].sudo().create(vals)
+            )
+            rec.document.last_verifactu_response_line_id = response_line
+            rec.last_response_line_id = response_line
+            rec.document.write(
+                {
+                    "aeat_send_failed": True,
+                    "aeat_send_error": connection_error,
+                }
+            )
+
     def _send_documents_to_verifactu(self):
         if not self:
             return False
         rec = self[0]
         header = rec._get_verifactu_aeat_header()
         registro_factura_list = []
-        create_exception = False
         for rec in self:
             rec.send_attempt += 1
             if rec.document:
@@ -304,40 +345,53 @@ class VerifactuInvoiceEntry(models.Model):
                     cancel=rec.entry_type == "cancel"
                 )
                 registro_factura_list.append(inv_dict)
+        connection_error = False
         try:
             serv = rec._connect_verifactu()
             res = serv.RegFactuSistemaFacturacion(header, registro_factura_list)
-        except Exception:
-            res = {}
-            create_exception = True
-        response_name = ""
-        response = (
-            self.env["verifactu.invoice.entry.response"]
-            .sudo()
-            .create(
-                {
-                    "header": json.dumps(header),
-                    "name": response_name,
-                    "invoice_data": json.dumps(registro_factura_list),
-                    "response": res,
-                    "verifactu_csv": "CSV" in res and res["CSV"] or _("-"),
-                }
+        except (RequestException, ConnectionError) as error:
+            connection_error = repr(error)
+            _logger.exception(
+                "VERI*FACTU call failed for documents %s",
+                self.mapped("document_name"),
             )
-        )
-        response.complete_open_activity_on_exception()
-        if create_exception:
-            if not response.date_response:
-                response.date_response = fields.Datetime.now()
+            res = {}
+        response_model = self.env["verifactu.invoice.entry.response"].sudo()
+        response_vals = {
+            "header": json.dumps(header),
+            "name": _("Connection error with VERI*FACTU") if connection_error else "",
+            "invoice_data": json.dumps(registro_factura_list),
+            "response": res,
+            "verifactu_csv": "CSV" in res and res["CSV"] or _("-"),
+            "connection_error": connection_error,
+        }
+        if connection_error:
+            response = self._get_reusable_connection_error_response(connection_error)
+            if response:
+                response.write(
+                    {
+                        "header": response_vals["header"],
+                        "invoice_data": response_vals["invoice_data"],
+                        "date_response": fields.Datetime.now(),
+                    }
+                )
+                return True
+            response_vals["date_response"] = fields.Datetime.now()
+            response = response_model.create(response_vals)
+            response.complete_open_activity_on_exception()
+            self._create_connection_error_response_lines(response, connection_error)
             response.create_activity_on_exception()
+            return True
+        response = response_model.create(response_vals)
+        response.complete_open_activity_on_exception()
         create_response_activity = self._create_response_lines(
             response=response, header=header, verifactu_response=res
         )
-        updated_response_name = _("VERI*FACTU sending")
-        if create_exception:
-            updated_response_name = _("Connection error with VERI*FACTU")
-        elif create_response_activity:
-            updated_response_name = _("Incorrect invoices sent to VERI*FACTU")
-        response.name = updated_response_name
+        response.name = (
+            _("Incorrect invoices sent to VERI*FACTU")
+            if create_response_activity
+            else _("VERI*FACTU sending")
+        )
         if create_response_activity:
             response.create_send_response_activity()
         return True
