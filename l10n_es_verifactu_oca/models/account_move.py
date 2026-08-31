@@ -543,7 +543,7 @@ class AccountMove(models.Model):
             lambda move: (
                 move.company_id.verifactu_enabled
                 and move.journal_id.type == "sale"
-                and move.move_type in ("out_invoice", "out_refund")
+                and move.is_sale_document()
                 and not move.journal_id.verifactu_enabled
                 and not move.journal_id._is_verifactu_exempt()
             )
