@@ -3,6 +3,8 @@
 # (c) 2019 Acysos S.L.
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
+import os
+
 from odoo import _, exceptions, fields, models
 
 
@@ -70,6 +72,15 @@ class L10nEsAeatCertificate(models.Model):
         if aeat_certificate:
             public_crt = aeat_certificate.public_key
             private_key = aeat_certificate.private_key
+            # Verify that certificate files from database actually exist
+            if not os.path.isfile(public_crt):
+                raise exceptions.UserError(
+                    _("Error! Public certificate file not found: %s") % public_crt
+                )
+            if not os.path.isfile(private_key):
+                raise exceptions.UserError(
+                    _("Error! Private key file not found: %s") % private_key
+                )
         else:
             public_crt = self.env["ir.config_parameter"].get_param(
                 "l10n_es_aeat_certificate.publicCrt", False
@@ -77,6 +88,28 @@ class L10nEsAeatCertificate(models.Model):
             private_key = self.env["ir.config_parameter"].get_param(
                 "l10n_es_aeat_certificate.privateKey", False
             )
-        if not public_crt or not private_key:
-            raise exceptions.UserError(_("Error! There aren't certificates."))
+            if not public_crt or not private_key:
+                raise exceptions.UserError(_("Error! There aren't certificates."))
+            # Verify config parameter paths exist (only if not default placeholders)
+            # Default paths (/opt/certificates/*) may not exist on fresh installs
+            is_default_public = public_crt == "/opt/certificates/publicCert.crt"
+            is_default_private = private_key == "/opt/certificates/privateKey.pem"
+            if not is_default_public and not os.path.isfile(public_crt):
+                raise exceptions.UserError(
+                    _(
+                        "Error! Public certificate file not found: %s. "
+                        "Please configure a valid certificate through "
+                        "Settings > AEAT > Certificates"
+                    )
+                    % public_crt
+                )
+            if not is_default_private and not os.path.isfile(private_key):
+                raise exceptions.UserError(
+                    _(
+                        "Error! Private key file not found: %s. "
+                        "Please configure a valid certificate through "
+                        "Settings > AEAT > Certificates"
+                    )
+                    % private_key
+                )
         return public_crt, private_key
