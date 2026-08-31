@@ -7,7 +7,7 @@
 
 {
     "name": "Topónimos españoles",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "development_status": "Mature",
     "author": "Spanish Localization Team, "
     "ZikZakMedia, "
