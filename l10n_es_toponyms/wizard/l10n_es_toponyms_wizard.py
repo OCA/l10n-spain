@@ -13,7 +13,10 @@ class ConfigEsToponyms(models.TransientModel):
     name = fields.Char(size=64)
 
     def action_import_geonames(self):
+        self.ensure_one()
         wizard_obj = self.env["city.zip.geonames.import"]
-        country_es = self.env["res.country"].search([("code", "=", "ES")])
+        country_es = self.env.ref("base.es", raise_if_not_found=False) or self.env[
+            "res.country"
+        ].search([("code", "=", "ES")], limit=1)
         wizard = wizard_obj.create({"country_ids": [(4, country_es.id)]})
-        wizard.run_import()
+        return wizard.run_import()
