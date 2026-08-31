@@ -382,13 +382,16 @@ ul.auto-toc {
 <ul class="simple">
 <li><a class="reference internal" href="#installation" id="toc-entry-1">Installation</a></li>
 <li><a class="reference internal" href="#configuration" id="toc-entry-2">Configuration</a></li>
-<li><a class="reference internal" href="#usage" id="toc-entry-3">Usage</a></li>
-<li><a class="reference internal" href="#known-issues-roadmap" id="toc-entry-4">Known issues / Roadmap</a></li>
-<li><a class="reference internal" href="#bug-tracker" id="toc-entry-5">Bug Tracker</a></li>
-<li><a class="reference internal" href="#credits" id="toc-entry-6">Credits</a><ul>
-<li><a class="reference internal" href="#authors" id="toc-entry-7">Authors</a></li>
-<li><a class="reference internal" href="#contributors" id="toc-entry-8">Contributors</a></li>
-<li><a class="reference internal" href="#maintainers" id="toc-entry-9">Maintainers</a></li>
+<li><a class="reference internal" href="#usage" id="toc-entry-3">Usage</a><ul>
+<li><a class="reference internal" href="#envio-con-retraso" id="toc-entry-4">Envío con retraso</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#known-issues-roadmap" id="toc-entry-5">Known issues / Roadmap</a></li>
+<li><a class="reference internal" href="#bug-tracker" id="toc-entry-6">Bug Tracker</a></li>
+<li><a class="reference internal" href="#credits" id="toc-entry-7">Credits</a><ul>
+<li><a class="reference internal" href="#authors" id="toc-entry-8">Authors</a></li>
+<li><a class="reference internal" href="#contributors" id="toc-entry-9">Contributors</a></li>
+<li><a class="reference internal" href="#maintainers" id="toc-entry-10">Maintainers</a></li>
 </ul>
 </li>
 </ul>
@@ -430,9 +433,30 @@ privateKey.pem -nodes”</li>
 <h2><a class="toc-backref" href="#toc-entry-3">Usage</a></h2>
 <p>Cuando se valida una factura automáticamente envia la comunicación al
 servidor de AEAT.</p>
+<div class="section" id="envio-con-retraso">
+<h3><a class="toc-backref" href="#toc-entry-4">Envío con retraso</a></h3>
+<p>Permite agregar el identificador ‘RegPrevioGGEEREDEMEoCompetencia’ en el
+json que se envía a SII, y asi informarle a la AEAT que el retraso no es
+una omisión deliberada, sino fruto de la complejidad del alta inicial y
+la configuración del entorno productivo.</p>
+<ol class="arabic simple">
+<li>Ir a Facturación/Contabilidad &gt; Clientes &gt; Facturas de clientes</li>
+<li>Cree o seleccione una factura.</li>
+<li>Vaya a la pestaña SII y marque la opción de ‘Envío con retraso’.</li>
+</ol>
+<p><img alt="envio_retraso_sii" src="https://raw.githubusercontent.com/OCA/l10n-spain/17.0/l10n_es_aeat_sii_oca/static/img/readme/envio_retraso_sii.png" /></p>
+<ol class="arabic simple" start="4">
+<li>Confirme la factura.</li>
+<li>Cuando se envíe la factura al SII se añadirá el identificador
+‘RegPrevioGGEEREDEMEoCompetencia’.</li>
+</ol>
+<p><img alt="identificador_envio_retraso" src="https://raw.githubusercontent.com/OCA/l10n-spain/17.0/l10n_es_aeat_sii_oca/static/img/readme/identificador_envio_retraso.png" /></p>
+<p>Para las facturas de proveedores y rectificativas, se realiza el mismo
+procedimiento.</p>
+</div>
 </div>
 <div class="section" id="known-issues-roadmap">
-<h2><a class="toc-backref" href="#toc-entry-4">Known issues / Roadmap</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-5">Known issues / Roadmap</a></h2>
 <ul class="simple">
 <li>Este módulo asigna las claves de registro más comunes a las posiciones
 fiscales. Si se utilizan claves distintas a las predeterminadas, se
@@ -454,7 +478,7 @@ información.</li>
 </ul>
 </div>
 <div class="section" id="bug-tracker">
-<h2><a class="toc-backref" href="#toc-entry-5">Bug Tracker</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-6">Bug Tracker</a></h2>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/l10n-spain/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
@@ -462,9 +486,9 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
-<h2><a class="toc-backref" href="#toc-entry-6">Credits</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-7">Credits</a></h2>
 <div class="section" id="authors">
-<h3><a class="toc-backref" href="#toc-entry-7">Authors</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-8">Authors</a></h3>
 <ul class="simple">
 <li>Acysos S.L.</li>
 <li>Diagram</li>
@@ -479,7 +503,7 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 </ul>
 </div>
 <div class="section" id="contributors">
-<h3><a class="toc-backref" href="#toc-entry-8">Contributors</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-9">Contributors</a></h3>
 <ul class="simple">
 <li>Ignacio Ibeas &lt;<a class="reference external" href="mailto:ignacio&#64;acysos.com">ignacio&#64;acysos.com</a>&gt;</li>
 <li>Rubén Cerdà &lt;<a class="reference external" href="mailto:ruben.cerda.roig&#64;diagram.es">ruben.cerda.roig&#64;diagram.es</a>&gt;</li>
@@ -512,10 +536,14 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <li>Luis J. Salvatierra &lt;<a class="reference external" href="mailto:luis.salvatierra&#64;factorlibre.com">luis.salvatierra&#64;factorlibre.com</a>&gt;</li>
 </ul>
 </li>
+<li><a class="reference external" href="https://www.binhex.cloud">Binhex</a>:<ul>
+<li>Edilio Escalona Almira</li>
+</ul>
+</li>
 </ul>
 </div>
 <div class="section" id="maintainers">
-<h3><a class="toc-backref" href="#toc-entry-9">Maintainers</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-10">Maintainers</a></h3>
 <p>This module is maintained by the OCA.</p>
 <a class="reference external image-reference" href="https://odoo-community.org">
 <img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" />
