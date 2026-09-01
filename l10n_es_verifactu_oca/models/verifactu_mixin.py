@@ -401,11 +401,12 @@ class VerifactuMixin(models.AbstractModel):
             suffixes.append(
                 _("- Your company does not have a VERI*FACTU chaining configured.")
             )
-        if not self.company_id.tax_agency_id:
+        agency = self.company_id.tax_agency_id
+        if not agency:
             suffixes.append(_("- Your company does not have a tax agency configured."))
-        if (
-            self.company_id.tax_agency_id.get_external_id
-            in self._get_verifactu_accepted_tax_agencies()
+        elif (
+            agency.get_external_id()[agency.id]
+            not in self._get_verifactu_accepted_tax_agencies()
         ):
             suffixes.append(_("- Your company's tax agency is not supported."))
         if not self.company_id.verifactu_developer_id:

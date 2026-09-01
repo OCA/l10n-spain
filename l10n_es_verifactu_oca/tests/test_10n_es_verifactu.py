@@ -166,6 +166,33 @@ class TestL10nEsAeatVerifactu(TestVerifactuCommon):
         self.company.verifactu_start_date = False
         self.assertTrue(invoice2.verifactu_enabled)
 
+    def test_supported_tax_agency(self):
+        """The state tax agency is supported, so the check passes."""
+        self.assertEqual(
+            self.company.tax_agency_id,
+            self.env.ref("l10n_es_aeat.aeat_tax_agency_spain"),
+        )
+        self.invoice._check_verifactu_configuration()
+
+    def test_unsupported_tax_agency(self):
+        """A company filing to a foral agency can't use VERI*FACTU.
+
+        Those agencies have no VERI*FACTU web service address configured, so the
+        invoice has to be stopped here with a meaningful message instead of
+        failing later on, when the connection is attempted.
+        """
+        self.company.tax_agency_id = self.env.ref(
+            "l10n_es_aeat.aeat_tax_agency_bizkaia"
+        )
+        with self.assertRaisesRegex(UserError, "tax agency is not supported"):
+            self.invoice._check_verifactu_configuration()
+
+    def test_missing_tax_agency(self):
+        """A company without tax agency is reported as such."""
+        self.company.tax_agency_id = False
+        with self.assertRaisesRegex(UserError, "does not have a tax agency"):
+            self.invoice._check_verifactu_configuration()
+
     def test_verifactu_export_invoice_data(self):
         mapping = [
             (
