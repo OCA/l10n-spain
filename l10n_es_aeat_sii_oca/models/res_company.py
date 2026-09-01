@@ -6,8 +6,6 @@
 
 from datetime import datetime, timedelta
 
-import pytz
-
 from odoo import fields, models
 
 
@@ -81,7 +79,7 @@ class ResCompany(models.Model):
     def _get_sii_sending_time(self):
         if self.send_mode == "fixed":
             tz = self.env.tz
-            offset = datetime.now(pytz.timezone(tz)).strftime("%z") if tz else "+00"
+            offset = datetime.now(tz).strftime("%z")
             hour_diff = int(offset[:3])
             hour, minute = divmod(self.sent_time * 60, 60)
             hour = int(hour - hour_diff)
