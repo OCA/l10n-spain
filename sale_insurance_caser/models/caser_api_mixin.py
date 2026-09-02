@@ -61,7 +61,7 @@ class CaserApiMixin(models.AbstractModel):
         expiration_date = effective_date + timedelta(days=365)
         return effective_date, expiration_date
 
-    def _send_caser_soap_request(self, endpoint, soap_envelope, timeout=30):
+    def _send_caser_soap_request(self, endpoint, soap_envelope, timeout=60):
         headers = {"Content-Type": "application/xml; charset=utf-8"}
         return requests.post(
             endpoint,

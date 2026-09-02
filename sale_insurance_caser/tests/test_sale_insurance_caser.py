@@ -335,6 +335,16 @@ class TestSaleInsuranceCaser(BaseCommon):
         self.assertTrue(insurance_line.caser_request_xml)
         self.assertTrue(insurance_line.caser_response_xml)
         self.assertFalse(insurance_line.caser_error_message)
+        # Once issued, the line must not be selected nor sent again (e.g. a
+        # backorder validation or a requeued job would duplicate the policy).
+        self.assertFalse(picking._get_insurance_lines_with_lots())
+        with patch(
+            "odoo.addons.sale_insurance_caser.models.caser_api_mixin.CaserApiMixin._send_caser_soap_request",
+            return_value=mock_response,
+        ) as mock_resend:
+            picking._send_caser_insurance_request(insurance_line)
+        self.assertEqual(mock_resend.call_count, 0)
+        self.assertEqual(insurance_line.caser_policy_number, "POL987654321")
 
     def test_05_order_insurance_state(self):
         order = self._create_sale_order_with_insurance(

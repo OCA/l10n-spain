@@ -29,7 +29,9 @@ class StockPicking(models.Model):
         if not self.sale_id:
             return self.env["sale.order.line"]
         return self.sale_id.order_line.filtered(
-            lambda line: line.is_caser_insurance and line.caser_lot_id
+            lambda line: line.is_caser_insurance
+            and line.caser_lot_id
+            and not line.caser_policy_number
         )
 
     def _assign_caser_insured_lots(self):
@@ -85,6 +87,10 @@ class StockPicking(models.Model):
 
     def _send_caser_insurance_request(self, insurance_line):
         self.ensure_one()
+        # Never issue twice: a stale queued job or a second picking of the
+        # same order must not resend a line whose policy already exists.
+        if insurance_line.caser_policy_number:
+            return
         try:
             if not self._validate_insurance_request(insurance_line):
                 return
