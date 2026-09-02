@@ -138,6 +138,10 @@ class TestL10nEsAeatVerifactu(TestVerifactuCommon):
                     "fiscal_position_id": self.fp_nacional.id,
                     "verifactu_registration_key": self.fp_registration_key_01.id,
                     "verifactu_registration_date": "2026-01-01 19:20:30",
+                    # There is no linked original invoice, so the rectified
+                    # document is identified through these fields.
+                    "verifactu_original_document_number": "ORIGIN001",
+                    "verifactu_original_document_date": "2025-12-31",
                 },
             ),
             (
@@ -223,6 +227,85 @@ class TestL10nEsAeatVerifactu(TestVerifactuCommon):
                 name, inv_type, lines, extra_vals
             )
         return
+
+
+class TestVerifactuRectifiedDocument(TestVerifactuCommon):
+    """Identification of the rectified document on rectifications.
+
+    Kept in its own class on purpose: ``TestL10nEsAeatVerifactu`` is
+    subclassed by other modules, whose set-up applies different fiscal
+    positions and taxes, and these cases need a controlled environment.
+    """
+
+    def test_check_rectified_document(self):
+        """A rectification by differences must identify the rectified document,
+        either through the linked original invoice or through the manual fields.
+        """
+        # A regular invoice is not a rectification, so it is always valid
+        self.assertTrue(self.invoice._check_rectified_document())
+        refund = self._create_test_invoice(move_type="out_refund")
+        self.assertEqual(refund.verifactu_refund_type, "I")
+        # Neither the link nor the manual fields
+        self.assertFalse(refund._check_rectified_document())
+        # Only the number is not enough, the date is also mandatory
+        refund.verifactu_original_document_number = "ORIGIN001"
+        self.assertFalse(refund._check_rectified_document())
+        refund.verifactu_original_document_date = "2025-12-31"
+        self.assertTrue(refund._check_rectified_document())
+        # The linked original invoice is enough by itself
+        linked_refund = self._create_test_invoice(move_type="out_refund")
+        linked_refund.reversed_entry_id = self.invoice
+        self.assertTrue(linked_refund._check_rectified_document())
+
+    def _create_postable_refund(self, **extra_vals):
+        """Build a refund with the same shape as ``self.invoice``.
+
+        The generic ``_create_test_invoice`` helper is not usable here because
+        it creates the document with ``aeat_state="sent"``, and the
+        configuration check only runs on documents still pending to be sent.
+        """
+        vals = {
+            "company_id": self.company.id,
+            "partner_id": self.partner.id,
+            "invoice_date": "2026-01-01",
+            "move_type": "out_refund",
+            "invoice_line_ids": [
+                Command.create(
+                    {
+                        "product_id": self.product.id,
+                        "account_id": self.account_expense.id,
+                        "name": "Test line",
+                        "price_unit": 100,
+                        "quantity": 1,
+                    },
+                )
+            ],
+        }
+        vals.update(extra_vals)
+        return self.env["account.move"].create(vals)
+
+    def test_rectified_document_required_on_post(self):
+        """A rectification by differences cannot be posted without identifying
+        the rectified document.
+
+        Both refunds are built the same way and only differ on that
+        identification, so the failure can only come from the new check and not
+        from any other configuration requirement.
+        """
+        self._activate_certificate(self.certificate_password)
+        identified = self._create_postable_refund(
+            verifactu_original_document_number="ORIGIN001",
+            verifactu_original_document_date="2025-12-31",
+        )
+        # Guard the precondition: without these the check is skipped and the
+        # test would pass vacuously.
+        self.assertTrue(identified.verifactu_enabled)
+        self.assertEqual(identified.aeat_state, "not_sent")
+        identified.action_post()
+        self.assertEqual(identified.state, "posted")
+        not_identified = self._create_postable_refund()
+        with self.assertRaises(UserError):
+            not_identified.action_post()
 
 
 class TestL10nEsAeatVerifactuQR(TestVerifactuCommon):
