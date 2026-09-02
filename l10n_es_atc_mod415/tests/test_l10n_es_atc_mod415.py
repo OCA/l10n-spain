@@ -8,6 +8,7 @@
 ##############################################################################
 
 import logging
+from unittest import mock
 
 from odoo.tests import Form, tagged
 
@@ -30,9 +31,28 @@ class TestL10nEsAtcMod415(TestL10nEsAeatModBase):
         cls.env.user.write(
             {"company_ids": [(4, cls.company.id)], "company_id": cls.company.id}
         )
-        cls.env["account.chart.template"].try_loading(
-            "es_canary_pymes", company=cls.company, install_demo=False
-        )
+        # Core's es_canary_* templates seed account.asset rows whenever a
+        # model called account.asset exists in the registry. That guard was
+        # written for core's own account_asset module, but OCA's
+        # account_asset_management (installed by the CI batch through
+        # l10n_es_account_asset) satisfies it too -- with an incompatible
+        # schema (required profile_id), so the chart load explodes. The
+        # seeded assets are irrelevant to these tests.
+        # Patching the template hook itself would not help: the chart
+        # template register keeps direct references to the functions and
+        # calls them without attribute lookup, so the seeded asset data is
+        # dropped at the single funnel every record goes through instead.
+        ChartTemplate = type(cls.env["account.chart.template"])
+        original_load_data = ChartTemplate._load_data
+
+        def _load_data_without_assets(self, data):
+            data.pop("account.asset", None)
+            return original_load_data(self, data)
+
+        with mock.patch.object(ChartTemplate, "_load_data", _load_data_without_assets):
+            cls.env["account.chart.template"].try_loading(
+                "es_canary_pymes", company=cls.company, install_demo=False
+            )
         cls.with_context(company_id=cls.company.id)
         return True
 
