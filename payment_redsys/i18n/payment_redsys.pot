@@ -4,8 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 17.0\n"
+"Project-Id-Version: Odoo Server 17.0+e\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-05-26 09:52+0000\n"
+"PO-Revision-Date: 2025-05-26 09:52+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -19,7 +21,13 @@ msgid "Alemán"
 msgstr ""
 
 #. module: payment_redsys
+#: model_terms:ir.ui.view,arch_db:payment_redsys.view_account_payment_form_inherit_redsys
+msgid "Authorize Amount"
+msgstr ""
+
+#. module: payment_redsys
 #. odoo-python
+#: code:addons/payment_redsys/models/payment_transaction.py:0
 #: code:addons/payment_redsys/models/payment_transaction.py:0
 #, python-format
 msgid "Bank Error: %(status_code)s (%(error_code)s)"
@@ -52,6 +60,16 @@ msgstr ""
 
 #. module: payment_redsys
 #. odoo-python
+#: code:addons/payment_redsys/models/account_payment.py:0
+#: code:addons/payment_redsys/models/account_payment.py:0
+#: code:addons/payment_redsys/models/account_payment.py:0
+#, python-format
+msgid "Error Redsys Auth: %s"
+msgstr ""
+
+#. module: payment_redsys
+#. odoo-python
+#: code:addons/payment_redsys/models/payment_transaction.py:0
 #: code:addons/payment_redsys/models/payment_transaction.py:0
 #, python-format
 msgid "Error: %(status_code)s (%(error_code)s)"
@@ -115,6 +133,7 @@ msgstr ""
 #. module: payment_redsys
 #. odoo-python
 #: code:addons/payment_redsys/models/payment_transaction.py:0
+#: code:addons/payment_redsys/models/payment_transaction.py:0
 #, python-format
 msgid "Ok: %s"
 msgstr ""
@@ -150,6 +169,11 @@ msgid "Payment Transaction"
 msgstr ""
 
 #. module: payment_redsys
+#: model:ir.model,name:payment_redsys.model_account_payment
+msgid "Payments"
+msgstr ""
+
+#. module: payment_redsys
 #: model:ir.model.fields.selection,name:payment_redsys.selection__payment_provider__redsys_merchant_lang__011
 msgid "Polaco"
 msgstr ""
@@ -172,6 +196,30 @@ msgid "Redsys"
 msgstr ""
 
 #. module: payment_redsys
+#: model:ir.model.fields,field_description:payment_redsys.field_account_payment__redsys_auth_amount
+msgid "Redsys Auth Amount"
+msgstr ""
+
+#. module: payment_redsys
+#: model:ir.model.fields,field_description:payment_redsys.field_account_payment__redsys_auth_done
+msgid "Redsys Auth Done"
+msgstr ""
+
+#. module: payment_redsys
+#: model:ir.model.fields,field_description:payment_redsys.field_account_payment__redsys_auth_txnid
+msgid "Redsys Auth Transaction ID"
+msgstr ""
+
+#. module: payment_redsys
+#. odoo-python
+#: code:addons/payment_redsys/models/account_payment.py:0
+#, python-format
+msgid "Redsys Auth done: %s"
+msgstr ""
+
+#. module: payment_redsys
+#: model_terms:ir.ui.view,arch_db:payment_redsys.view_account_payment_form_inherit_redsys
+msgid "Redsys Information"
 #: model:ir.model.fields,field_description:payment_redsys.field_payment_provider__redsys_currency
 msgid "Redsys Currency"
 msgstr ""
@@ -183,6 +231,30 @@ msgstr ""
 
 #. module: payment_redsys
 #. odoo-python
+#: code:addons/payment_redsys/models/account_payment.py:0
+#, python-format
+msgid "Redsys: Authorization already done for this transaction."
+msgstr ""
+
+#. module: payment_redsys
+#. odoo-python
+#: code:addons/payment_redsys/models/account_payment.py:0
+#, python-format
+msgid "Redsys: Authorization amount must be set before authorizing."
+msgstr ""
+
+#. module: payment_redsys
+#. odoo-python
+#: code:addons/payment_redsys/models/account_payment.py:0
+#, python-format
+msgid ""
+"Redsys: Transaction type must be '1' for preauthorization, current value is "
+"'%s'."
+msgstr ""
+
+#. module: payment_redsys
+#. odoo-python
+#: code:addons/payment_redsys/models/payment_transaction.py:0
 #: code:addons/payment_redsys/models/payment_transaction.py:0
 #, python-format
 msgid "Redsys: feedback error: %(status_code)s (%(error_code)s)"
@@ -191,6 +263,27 @@ msgstr ""
 #. module: payment_redsys
 #: model:ir.model.fields,field_description:payment_redsys.field_payment_provider__redsys_secret_key
 msgid "Secret Key"
+msgstr ""
+
+#. module: payment_redsys
+#: model_terms:payment.provider,auth_msg:payment_redsys.payment_provider_redsys
+msgid "Your payment has been authorized."
+msgstr ""
+
+#. module: payment_redsys
+#: model_terms:payment.provider,cancel_msg:payment_redsys.payment_provider_redsys
+msgid "Your payment has been cancelled."
+msgstr ""
+
+#. module: payment_redsys
+#: model_terms:payment.provider,pending_msg:payment_redsys.payment_provider_redsys
+msgid ""
+"Your payment has been successfully processed but is waiting for approval."
+msgstr ""
+
+#. module: payment_redsys
+#: model_terms:payment.provider,done_msg:payment_redsys.payment_provider_redsys
+msgid "Your payment has been successfully processed."
 msgstr ""
 
 #. module: payment_redsys
@@ -219,6 +312,11 @@ msgid "Transtaction Type"
 msgstr ""
 
 #. module: payment_redsys
+#: model:ir.model.fields,help:payment_redsys.field_payment_provider__redsys_transaction_type
+msgid "Use '0' for normal transaction or Use '1' for a preauthorization"
+msgstr ""
+
+#. module: payment_redsys
 #: model:ir.model.fields.selection,name:payment_redsys.selection__payment_provider__redsys_merchant_lang__010
 msgid "Valenciano"
 msgstr ""
@@ -228,25 +326,4 @@ msgstr ""
 msgid ""
 "You will be redirected to the Redsys payment gateway after clicking on the "
 "payment button."
-msgstr ""
-
-#. module: payment_redsys
-#: model_terms:payment.provider,auth_msg:payment_redsys.payment_provider_redsys
-msgid "Your payment has been authorized."
-msgstr ""
-
-#. module: payment_redsys
-#: model_terms:payment.provider,cancel_msg:payment_redsys.payment_provider_redsys
-msgid "Your payment has been cancelled."
-msgstr ""
-
-#. module: payment_redsys
-#: model_terms:payment.provider,pending_msg:payment_redsys.payment_provider_redsys
-msgid ""
-"Your payment has been successfully processed but is waiting for approval."
-msgstr ""
-
-#. module: payment_redsys
-#: model_terms:payment.provider,done_msg:payment_redsys.payment_provider_redsys
-msgid "Your payment has been successfully processed."
 msgstr ""
