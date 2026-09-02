@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 import datetime
 import json
+import logging
 
 from requests import Session
 from zeep import Client, Settings
@@ -13,6 +14,8 @@ from zeep.transports import Transport
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools import split_every
+
+_logger = logging.getLogger(__name__)
 
 VERIFACTU_SEND_STATES = [
     ("not_sent", "Not sent"),
@@ -148,10 +151,18 @@ class VerifactuInvoiceEntry(models.Model):
                     lambda r: r.document.verifactu_registration_date < threshold_time
                 )
                 current_records = records_to_send - outdated_records
-                outdated_records.with_context(
-                    verifactu_incident=True
-                )._send_documents_to_verifactu()
-                current_records._send_documents_to_verifactu()
+                # One warning per pass, not one per call: a record that was
+                # never sent belongs neither to the incident group nor to the
+                # current one.
+                failures = {}
+                failures.update(
+                    outdated_records.with_context(
+                        verifactu_incident=True
+                    )._send_documents_to_verifactu()
+                )
+                failures.update(current_records._send_documents_to_verifactu())
+                if failures:
+                    records_to_send._register_verifactu_send_failures(failures)
         return True
 
     def _get_verifactu_aeat_header(self):
@@ -288,22 +299,161 @@ class VerifactuInvoiceEntry(models.Model):
             response_line.document.write(doc_vals)
         return doc_vals
 
-    def _send_documents_to_verifactu(self):
-        if not self:
-            return False
-        rec = self[0]
-        header = rec._get_verifactu_aeat_header()
+    def _format_verifactu_fault(self, fault):
+        """Readable text for a failure while building a record."""
+        message = str(fault)
+        path = getattr(fault, "path", None)
+        if path:
+            message += " | Path: %s" % ".".join(str(part) for part in path)
+        return message
+
+    def _build_verifactu_registro_list(self):
+        """Build the payload record by record, leaving the invalid ones out.
+
+        Reporting a later record first does not break the chain: chaining is
+        required over the sequence in which records are created (RD 1007/2023,
+        art. 8.2.b), not over the order in which they are reported.
+        """
         registro_factura_list = []
-        create_exception = False
-        for rec in self:
-            rec.send_attempt += 1
-            if rec.document:
-                inv_dict = rec.document._get_verifactu_invoice_dict(
-                    cancel=rec.entry_type == "cancel"
+        valid_entries = self.browse()
+        failures = {}
+        for entry in self:
+            entry.send_attempt += 1
+            if not entry.document:
+                continue
+            try:
+                inv_dict = entry.document._get_verifactu_invoice_dict(
+                    cancel=entry.entry_type == "cancel"
                 )
-                registro_factura_list.append(inv_dict)
+            except Exception as fault:
+                failures[entry.id] = self._format_verifactu_fault(fault)
+                continue
+            try:
+                error = entry.document._validate_verifactu_registro(inv_dict)
+            except Exception:
+                # Fail open, as when posting: a failure of the check itself
+                # must not stop the whole batch from being sent.
+                _logger.exception(
+                    "VERI*FACTU: the schema of %s could not be checked",
+                    entry.document_name or entry.id,
+                )
+                error = None
+            if error:
+                failures[entry.id] = error
+                continue
+            registro_factura_list.append(inv_dict)
+            valid_entries |= entry
+        return registro_factura_list, valid_entries, failures
+
+    def _register_verifactu_send_failure(self, message, response=False):
+        """Attribute a failure to this entry's document only.
+
+        The whole message is kept: `aeat_send_error` is a Text field, and
+        truncating a schema error drops the name of the offending element,
+        which is its only actionable part.
+        """
+        self.ensure_one()
+        line = (
+            self.env["verifactu.invoice.entry.response.line"]
+            .sudo()
+            .create(
+                {
+                    "entry_id": self.id,
+                    "model": self.model,
+                    "document_id": self.document_id,
+                    "entry_response_id": response and response.id,
+                    "response": message,
+                    "send_state": "not_sent",
+                    "error_code": "SCHEMA_ERROR",
+                }
+            )
+        )
+        self.last_response_line_id = line
+        document = self.document
+        if document:
+            document.last_verifactu_response_line_id = line
+            document.write({"aeat_send_failed": True, "aeat_send_error": message})
+        return line
+
+    def _is_verifactu_failure_already_registered(self, message):
+        """Whether this very exclusion is already on the entry."""
+        self.ensure_one()
+        line = self.last_response_line_id
+        return (
+            bool(line)
+            and line.error_code == "SCHEMA_ERROR"
+            and (line.response == message)
+        )
+
+    def _register_verifactu_send_failures(self, failures):
+        """Register every exclusion, and warn whoever has to act on it.
+
+        An excluded record stays `not_sent` on purpose, so that it goes out as
+        soon as the data is corrected, which means every pass of the cron
+        finds it again. Each of those passes leaves its own response: without
+        one there is no way to tell the record is still being retried, and a
+        queue that looks abandoned is worse than a noisy one.
+
+        The warning is raised only when the exclusion is new, though. It is an
+        activity, so it stays open until somebody attends it -- repeating it
+        every minute would bury the one that matters instead of insisting. A
+        different error, or the same record failing after having been sent,
+        warns again.
+        """
+        # Read before the lines of this pass are written, or they would make
+        # every exclusion look like one already warned about.
+        is_new = any(
+            not self.browse(entry_id)._is_verifactu_failure_already_registered(message)
+            for entry_id, message in failures.items()
+        )
+        response = (
+            self.env["verifactu.invoice.entry.response"]
+            .sudo()
+            .create(
+                {
+                    "name": _("Invoices not matching the VERI*FACTU schema"),
+                    "response": "\n\n".join(failures.values()),
+                    "date_response": fields.Datetime.now(),
+                }
+            )
+        )
+        for entry in self.browse(list(failures)):
+            if is_new:
+                _logger.warning(
+                    "VERI*FACTU: %s left out of the batch, not registered: %s",
+                    entry.document_name or entry.id,
+                    failures[entry.id],
+                )
+            entry._register_verifactu_send_failure(
+                failures[entry.id], response=response
+            )
+        if is_new:
+            response.create_send_response_activity()
+        return response
+
+    def _send_documents_to_verifactu(self):
+        """Send what can be sent and return what was left out, by entry id.
+
+        The exclusions are returned instead of registered here because the
+        cron splits every batch in two calls -- the records it reports as an
+        incident and the rest -- and a record that was never sent belongs to
+        neither: reporting per call would raise two identical warnings for one
+        pass.
+        """
+        if not self:
+            return {}
+        header = self[0]._get_verifactu_aeat_header()
+        (
+            registro_factura_list,
+            valid_entries,
+            failures,
+        ) = self._build_verifactu_registro_list()
+        if not valid_entries:
+            # Nothing left to ask the Agency about.
+            return failures
+        create_exception = False
         try:
-            serv = rec._connect_verifactu()
+            serv = valid_entries[0]._connect_verifactu()
             res = serv.RegFactuSistemaFacturacion(header, registro_factura_list)
         except Exception as AEATError:
             res = {AEATError}
@@ -327,7 +477,7 @@ class VerifactuInvoiceEntry(models.Model):
             if not response.date_response:
                 response.date_response = fields.Datetime.now()
             response.create_activity_on_exception()
-        create_response_activity = self._create_response_lines(
+        create_response_activity = valid_entries._create_response_lines(
             response=response, header=header, verifactu_response=res
         )
         updated_response_name = _("VERI*FACTU sending")
@@ -338,7 +488,7 @@ class VerifactuInvoiceEntry(models.Model):
         response.name = updated_response_name
         if create_response_activity:
             response.create_send_response_activity()
-        return True
+        return failures
 
     def _create_response_lines(
         self, response=False, header=False, verifactu_response=False
