@@ -1,0 +1,668 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_insurance_caser
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_insurance_caser
+#: model:ir.model.fields,help:sale_insurance_caser.field_res_config_settings__caser_agency_code
+msgid "Agency code provided by Caser"
+msgstr "Código de agencia proporcionado por Caser"
+
+#. module: sale_insurance_caser
+#: model:ir.model.fields,help:sale_insurance_caser.field_res_config_settings__caser_agent_code
+msgid "Agent code provided by Caser"
+msgstr "Código de agente proporcionado por Caser"
+
+#. module: sale_insurance_caser
+#: model:ir.model.fields,field_description:sale_insurance_caser.field_caser_price_range__caser_asset_type
+msgid "Asset Type"
+msgstr "Tipo de activo"
+
+#. module: sale_insurance_caser
+#: model:ir.model.fields,help:sale_insurance_caser.field_product_category__caser_asset_type
+msgid "Asset type code for Caser insurance (200021=Phone, 262=Tablet)"
+msgstr ""
+"Código de tipo de activo para seguros Caser (200021=Teléfono, 262=Tablet)"
+
+#. module: sale_insurance_caser
+#. odoo-python
+#: code:addons/sale_insurance_caser/models/stock_picking.py:0
+msgid ""
+"Brand '%(brand)s' has no Caser code configured for asset type %(asset_type)s"
+msgstr ""
+"La marca '%(brand)s' no tiene código Caser configurado para el tipo de "
+"activo %(asset_type)s"
+
+#. module: sale_insurance_caser
+#. odoo-python
+#: code:addons/sale_insurance_caser/models/stock_picking.py:0
+msgid ""
+"Brand '%(brand)s' has no Caser code configured for asset type "
+"%(asset_type)s. Please set it in the brand's form."
+msgstr ""
+"La marca '%(brand)s' no tiene código Caser configurado para el tipo de "
+"activo %(asset_type)s. Configúrelo en la ficha de la marca."
+
+#. module: sale_insurance_caser
+#: model:ir.model.fields,help:sale_insurance_caser.field_product_brand__caser_mobile_code
+msgid ""
+"Brand code sent to Caser API for mobile phone policies (asset type 200021)"
+msgstr ""
+"Código de marca enviado a la API de Caser para pólizas de móvil (tipo de "
+"activo 200021)"
+
+#. module: sale_insurance_caser
+#: model:ir.model.fields,help:sale_insurance_caser.field_product_brand__caser_tablet_code
+msgid "Brand code sent to Caser API for tablet policies (asset type 262)"
+msgstr ""
+"Código de marca enviado a la API de Caser para pólizas de tablet (tipo de "
+"activo 262)"
+
+#. module: sale_insurance_caser
+#. odoo-python
+#: code:addons/sale_insurance_caser/models/stock_picking.py:0
+msgid "Caser API Error: %s"
+msgstr "Error de API Caser: %s"
+
+#. module: sale_insurance_caser
+#: model:ir.model,name:sale_insurance_caser.model_caser_api_mixin
+msgid "Caser API Integration Mixin"
+msgstr "Mixin de integración API Caser"
+
+#. module: sale_insurance_caser
+#. odoo-python
+#: code:addons/sale_insurance_caser/models/caser_price_range.py:0
+msgid "Caser API error (HTTP %s): %s"
+msgstr "Error de API Caser (HTTP %s): %s"
+
+#. module: sale_insurance_caser
+#: model:ir.model.fields,field_description:sale_insurance_caser.field_res_config_settings__caser_agency_code
+#: model_terms:ir.ui.view,arch_db:sale_insurance_caser.view_sale_config_settings_form
+msgid "Caser Agency Code"
+msgstr "Código de agencia Caser"
+
+#. module: sale_insurance_caser
+#: model:ir.model.fields,field_description:sale_insurance_caser.field_res_config_settings__caser_agent_code
+#: model_terms:ir.ui.view,arch_db:sale_insurance_caser.view_sale_config_settings_form
+msgid "Caser Agent Code"
+msgstr "Código de agente Caser"
+
+#. module: sale_insurance_caser
+#: model:ir.model.fields,field_description:sale_insurance_caser.field_product_category__caser_asset_type
+msgid "Caser Asset Type"
+msgstr "Tipo de activo Caser"
+
+#. module: sale_insurance_caser
+#: model:ir.model.fields,field_description:sale_insurance_caser.field_product_brand__caser_mobile_code
+msgid "Caser Code (Mobile)"
+msgstr "Código Caser (Móvil)"
+
+#. module: sale_insurance_caser
+#: model:ir.model.fields,field_description:sale_insurance_caser.field_product_brand__caser_tablet_code
+msgid "Caser Code (Tablet)"
+msgstr "Código Caser (Tablet)"
+
+#. module: sale_insurance_caser
+#: model_terms:ir.ui.view,arch_db:sale_insurance_caser.view_product_brand_form_caser
+msgid "Caser Codes"
+msgstr "Códigos Caser"
+
+#. module: sale_insurance_caser
+#: model:ir.model.fields,field_description:sale_insurance_caser.field_sale_order_line__caser_error_message
+msgid "Caser Error Message"
+msgstr "Mensaje de error Caser"
+
+#. module: sale_insurance_caser
+#. odoo-python
+#: code:addons/sale_insurance_caser/models/caser_price_range.py:0
+#: model_terms:ir.ui.view,arch_db:sale_insurance_caser.view_order_form_caser
+#: model_terms:ir.ui.view,arch_db:sale_insurance_caser.view_product_category_form_caser
+#: model_terms:ir.ui.view,arch_db:sale_insurance_caser.view_sale_config_settings_form
+msgid "Caser Insurance"
+msgstr "Seguro Caser"
+
+#. module: sale_insurance_caser
+#: model:ir.model.fields,field_description:sale_insurance_caser.field_sale_order__caser_has_error
+#: model_terms:ir.ui.view,arch_db:sale_insurance_caser.view_sales_order_filter_caser
+msgid "Caser Insurance Error"
+msgstr "Error de seguro Caser"
+
+#. module: sale_insurance_caser
+#: model:ir.model.fields,field_description:sale_insurance_caser.field_sale_order__caser_error
+msgid "Caser Insurance Errors"
+msgstr "Errores de seguro Caser"
+
+#. module: sale_insurance_caser
+#: model:ir.model.fields,field_description:sale_insurance_caser.field_sale_order__caser_insurance_line_ids
+msgid "Caser Insurance Lines"
+msgstr "Líneas de seguro Caser"
+
+#. module: sale_insurance_caser
+#: model_terms:ir.ui.view,arch_db:sale_insurance_caser.view_sales_order_filter_caser
+msgid "Caser Insurance Pending"
+msgstr "Seguro Caser pendiente"
+
+#. module: sale_insurance_caser
+#: model:ir.model,name:sale_insurance_caser.model_caser_price_range
+msgid "Caser Insurance Price Range"
+msgstr "Rango de precios de seguro Caser"
+
+#. module: sale_insurance_caser
+#: model:ir.model.fields,field_description:sale_insurance_caser.field_sale_order__caser_insurance_state
+#: model_terms:ir.ui.view,arch_db:sale_insurance_caser.view_sales_order_filter_caser
+msgid "Caser Insurance State"
+msgstr "Estado del seguro Caser"
+
+#. module: sale_insurance_caser
+#: model_terms:ir.ui.view,arch_db:sale_insurance_caser.view_order_form_caser
+msgid "Caser Policy"
+msgstr "Póliza Caser"
+
+#. module: sale_insurance_caser
+#: model:ir.model.fields,field_description:sale_insurance_caser.field_sale_order_line__caser_policy_number
+msgid "Caser Policy Number"
+msgstr "Número de póliza Caser"
+
+#. module: sale_insurance_caser
+#: model_terms:ir.ui.view,arch_db:sale_insurance_caser.view_sale_config_settings_form
+msgid "Caser Price Ranges"
+msgstr "Rangos de precios Caser"
+
+#. module: sale_insurance_caser
+#: model:ir.model.fields,field_description:sale_insurance_caser.field_res_config_settings__caser_is_production
+msgid "Caser Production Environment"
+msgstr "Entorno de producción Caser"
+
+#. module: sale_insurance_caser
+#: model:ir.model.fields,field_description:sale_insurance_caser.field_product_category__caser_protocol
+msgid "Caser Protocol"
+msgstr "Protocolo Caser"
+
+#. module: sale_insurance_caser
+#: model:ir.model.fields,field_description:sale_insurance_caser.field_sale_order_line__caser_request_xml
+msgid "Caser Request Xml"
+msgstr "XML de petición Caser"
+
+#. module: sale_insurance_caser
+#: model:ir.model.fields,field_description:sale_insurance_caser.field_sale_order_line__caser_response_xml
+msgid "Caser Response Xml"
+msgstr "XML de respuesta Caser"
+
+#. module: sale_insurance_caser
+#: model:ir.model.fields,field_description:sale_insurance_caser.field_res_config_settings__caser_sica_code
+#: model_terms:ir.ui.view,arch_db:sale_insurance_caser.view_sale_config_settings_form
+msgid "Caser SICA Code"
+msgstr "Código SICA Caser"
+
+#. module: sale_insurance_caser
+#: model:ir.model.fields,field_description:sale_insurance_caser.field_res_config_settings__caser_username
+#: model_terms:ir.ui.view,arch_db:sale_insurance_caser.view_sale_config_settings_form
+msgid "Caser Web Username"
+msgstr "Usuario web Caser"
+
+#. module: sale_insurance_caser
+#. odoo-python
+#: code:addons/sale_insurance_caser/models/stock_picking.py:0
+msgid "Caser insurance %s"
+msgstr "Seguro Caser %s"
+
+#. module: sale_insurance_caser
+#. odoo-python
+#: code:addons/sale_insurance_caser/models/stock_picking.py:0
+msgid "Caser insurance could not be issued for %(product)s: %(error)s"
+msgstr "No se ha podido emitir el seguro Caser para %(product)s: %(error)s"
+
+#. module: sale_insurance_caser
+#. odoo-python
+#: code:addons/sale_insurance_caser/models/sale_order_line.py:0
+msgid "Caser policy already registered: %s"
+msgstr "Póliza Caser ya registrada: %s"
+
+#. module: sale_insurance_caser
+#. odoo-python
+#: code:addons/sale_insurance_caser/models/caser_price_range.py:0
+msgid "Caser tarification error: %s"
+msgstr "Error de tarificación Caser: %s"
+
+#. module: sale_insurance_caser
+#: model:ir.model.fields,field_description:sale_insurance_caser.field_caser_price_range__code
+msgid "Code"
+msgstr "Código"
+
+#. module: sale_insurance_caser
+#: model:ir.model.fields,help:sale_insurance_caser.field_caser_price_range__code
+msgid "Code sent to Caser API for this price range"
+msgstr "Código enviado a la API de Caser para este rango de precios"
+
+#. module: sale_insurance_caser
+#. odoo-python
+#: code:addons/sale_insurance_caser/models/stock_picking.py:0
+msgid "Company city is required"
+msgstr "La ciudad de la empresa es obligatoria"
+
+#. module: sale_insurance_caser
+#. odoo-python
+#: code:addons/sale_insurance_caser/models/stock_picking.py:0
+msgid "Company state/province is required"
+msgstr "El estado/provincia de la empresa es obligatorio"
+
+#. module: sale_insurance_caser
+#. odoo-python
+#: code:addons/sale_insurance_caser/models/stock_picking.py:0
+msgid "Company street address is required"
+msgstr "La dirección de la empresa es obligatoria"
+
+#. module: sale_insurance_caser
+#. odoo-python
+#: code:addons/sale_insurance_caser/models/stock_picking.py:0
+msgid "Company zip code is required"
+msgstr "El código postal de la empresa es obligatorio"
+
+#. module: sale_insurance_caser
+#: model:ir.model,name:sale_insurance_caser.model_res_config_settings
+msgid "Config Settings"
+msgstr "Ajustes de configuración"
+
+#. module: sale_insurance_caser
+#: model_terms:ir.ui.view,arch_db:sale_insurance_caser.view_sale_config_settings_form
+msgid "Configure Caser insurance settings"
+msgstr "Configurar ajustes de seguro Caser"
+
+#. module: sale_insurance_caser
+#: model_terms:ir.ui.view,arch_db:sale_insurance_caser.view_sale_config_settings_form
+msgid "Configure Price Ranges"
+msgstr "Configurar rangos de precios"
+
+#. module: sale_insurance_caser
+#: model_terms:ir.ui.view,arch_db:sale_insurance_caser.view_sale_config_settings_form
+msgid "Configure price ranges for insurance policies."
+msgstr "Configurar rangos de precios para pólizas de seguros."
+
+#. module: sale_insurance_caser
+#: model:ir.model.fields,field_description:sale_insurance_caser.field_caser_price_range__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: sale_insurance_caser
+#: model:ir.model.fields,field_description:sale_insurance_caser.field_caser_price_range__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: sale_insurance_caser
+#. odoo-python
+#: code:addons/sale_insurance_caser/models/stock_picking.py:0
+msgid "Customer VAT/NIF is required and must be at least 9 characters"
+msgstr ""
+"El VAT/NIF del cliente es obligatorio y debe tener al menos 9 caracteres"
+
+#. module: sale_insurance_caser
+#. odoo-python
+#: code:addons/sale_insurance_caser/models/stock_picking.py:0
+msgid "Customer city is required"
+msgstr "La ciudad del cliente es obligatoria"
+
+#. module: sale_insurance_caser
+#. odoo-python
+#: code:addons/sale_insurance_caser/models/stock_picking.py:0
+msgid "Customer state/province is required"
+msgstr "El estado/provincia del cliente es obligatorio"
+
+#. module: sale_insurance_caser
+#. odoo-python
+#: code:addons/sale_insurance_caser/models/stock_picking.py:0
+msgid "Customer street address is required"
+msgstr "La dirección del cliente es obligatoria"
+
+#. module: sale_insurance_caser
+#. odoo-python
+#: code:addons/sale_insurance_caser/models/stock_picking.py:0
+msgid "Customer zip code is required"
+msgstr "El código postal del cliente es obligatorio"
+
+#. module: sale_insurance_caser
+#: model:ir.model.fields,field_description:sale_insurance_caser.field_caser_price_range__display_name
+msgid "Display Name"
+msgstr "Nombre para mostrar"
+
+#. module: sale_insurance_caser
+#: model:ir.model.fields.selection,name:sale_insurance_caser.selection__sale_order__caser_insurance_state__error
+msgid "Error"
+msgstr "Error"
+
+#. module: sale_insurance_caser
+#. odoo-python
+#: code:addons/sale_insurance_caser/models/caser_price_range.py:0
+msgid "Error fetching tarification for range %s: %s"
+msgstr "Error al obtener tarificación para el rango %s: %s"
+
+#. module: sale_insurance_caser
+#: model_terms:ir.ui.view,arch_db:sale_insurance_caser.view_caser_price_range_tree
+msgid "Fetch insurance prices from Caser API and create/update products"
+msgstr ""
+"Obtener precios de seguros de la API de Caser y crear/actualizar productos"
+
+#. module: sale_insurance_caser
+#: model_terms:ir.ui.view,arch_db:sale_insurance_caser.view_caser_price_range_tree
+msgid "Get Prices from Caser"
+msgstr "Obtener precios de Caser"
+
+#. module: sale_insurance_caser
+#. odoo-python
+#: code:addons/sale_insurance_caser/models/stock_picking.py:0
+msgid "HTTP Error %s: %s"
+msgstr "Error HTTP %s: %s"
+
+#. module: sale_insurance_caser
+#: model:ir.model.fields,field_description:sale_insurance_caser.field_caser_price_range__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_insurance_caser
+#: model:ir.model.fields,field_description:sale_insurance_caser.field_caser_price_range__insurance_price
+#: model:ir.model.fields,field_description:sale_insurance_caser.field_sale_order_line__caser_insurance_price
+msgid "Insurance Price"
+msgstr "Precio del seguro"
+
+#. module: sale_insurance_caser
+#: model:ir.model.fields,field_description:sale_insurance_caser.field_caser_price_range__insurance_price_notax
+msgid "Insurance Price (No Tax)"
+msgstr "Precio del seguro (sin impuestos)"
+
+#. module: sale_insurance_caser
+#: model:ir.model.fields,field_description:sale_insurance_caser.field_caser_price_range__product_id
+msgid "Insurance Product"
+msgstr "Producto de seguro"
+
+#. module: sale_insurance_caser
+#. odoo-python
+#: code:addons/sale_insurance_caser/models/stock_picking.py:0
+msgid "Insurance line must have an assigned lot"
+msgstr "La línea de seguro debe tener un lote asignado"
+
+#. module: sale_insurance_caser
+#: model:ir.model.fields,help:sale_insurance_caser.field_caser_price_range__insurance_price_notax
+msgid "Insurance price from Caser tarification (PRIMA_ipriom - without taxes)"
+msgstr ""
+"Precio del seguro de la tarificación de Caser (PRIMA_ipriom - sin impuestos)"
+
+#. module: sale_insurance_caser
+#: model:ir.model.fields,help:sale_insurance_caser.field_caser_price_range__insurance_price
+msgid "Insurance price from Caser tarification (PRIMA_itotre - with taxes)"
+msgstr ""
+"Precio del seguro de la tarificación de Caser (PRIMA_itotre - con impuestos)"
+
+#. module: sale_insurance_caser
+#. odoo-python
+#: code:addons/sale_insurance_caser/models/caser_price_range.py:0
+msgid "Insurance prices updated from Caser and products created/updated"
+msgstr ""
+"Precios de seguros actualizados desde Caser y productos creados/actualizados"
+
+#. module: sale_insurance_caser
+#: model:ir.model.fields.selection,name:sale_insurance_caser.selection__sale_order__caser_insurance_state__done
+msgid "Insured"
+msgstr "Asegurado"
+
+#. module: sale_insurance_caser
+#: model:ir.model.fields,field_description:sale_insurance_caser.field_sale_order_line__caser_lot_id
+msgid "Insured Lot"
+msgstr "Lote asegurado"
+
+#. module: sale_insurance_caser
+#: model:ir.model.fields,field_description:sale_insurance_caser.field_sale_order_line__caser_insured_line_id
+msgid "Insured Product Line"
+msgstr "Línea de producto asegurada"
+
+#. module: sale_insurance_caser
+#. odoo-python
+#: code:addons/sale_insurance_caser/models/sale_order_line.py:0
+msgid "Insured qty (%(insured)s) cannot exceed product qty (%(product)s)"
+msgstr ""
+"La cantidad asegurada (%(insured)s) no puede superar la cantidad del "
+"producto (%(product)s)"
+
+#. module: sale_insurance_caser
+#. odoo-python
+#: code:addons/sale_insurance_caser/models/stock_picking.py:0
+msgid "Invalid insurance line or no lot assigned"
+msgstr "Línea de seguro inválida o sin lote asignado"
+
+#. module: sale_insurance_caser
+#: model:ir.model.fields,field_description:sale_insurance_caser.field_sale_order_line__is_caser_insurance
+msgid "Is Caser Insurance"
+msgstr "Es seguro Caser"
+
+#. module: sale_insurance_caser
+#: model:ir.model.fields,field_description:sale_insurance_caser.field_caser_price_range__last_tarification_date
+msgid "Last Tarification"
+msgstr "Última tarificación"
+
+#. module: sale_insurance_caser
+#: model:ir.model.fields,field_description:sale_insurance_caser.field_caser_price_range__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: sale_insurance_caser
+#: model:ir.model.fields,field_description:sale_insurance_caser.field_caser_price_range__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: sale_insurance_caser
+#: model:ir.model.fields,help:sale_insurance_caser.field_caser_price_range__last_tarification_date
+msgid "Last time tarification was requested from Caser"
+msgstr "Última vez que se solicitó tarificación a Caser"
+
+#. module: sale_insurance_caser
+#: model:ir.model.fields,field_description:sale_insurance_caser.field_caser_price_range__max_price
+msgid "Maximum Price"
+msgstr "Precio máximo"
+
+#. module: sale_insurance_caser
+#: model:ir.model.fields,field_description:sale_insurance_caser.field_caser_price_range__min_price
+msgid "Minimum Price"
+msgstr "Precio mínimo"
+
+#. module: sale_insurance_caser
+#. odoo-python
+#: code:addons/sale_insurance_caser/models/caser_price_range.py:0
+msgid "Minimum price must be less than maximum price"
+msgstr "El precio mínimo debe ser menor que el precio máximo"
+
+#. module: sale_insurance_caser
+#. odoo-python
+#: code:addons/sale_insurance_caser/models/stock_picking.py:0
+msgid ""
+"Missing required Caser configuration parameters:\n"
+"- %s\n"
+"\n"
+"Please configure them in Sales > Configuration > Settings"
+msgstr ""
+"Faltan parámetros de configuración requeridos de Caser:\n"
+"- %s\n"
+"\n"
+"Por favor, configúrelos en Ventas > Configuración > Ajustes"
+
+#. module: sale_insurance_caser
+#. odoo-python
+#: code:addons/sale_insurance_caser/models/stock_picking.py:0
+msgid ""
+"Missing required fields to send to CASER:\n"
+"\n"
+msgstr ""
+"Faltan campos obligatorios para enviar a CASER:\n"
+"\n"
+
+#. module: sale_insurance_caser
+#: model:ir.model.fields.selection,name:sale_insurance_caser.selection__caser_price_range__caser_asset_type__200021
+#: model:ir.model.fields.selection,name:sale_insurance_caser.selection__product_category__caser_asset_type__200021
+msgid "Mobile Phone"
+msgstr "Teléfono Móvil"
+
+#. module: sale_insurance_caser
+#: model:ir.model.fields.selection,name:sale_insurance_caser.selection__sale_order__caser_insurance_state__no
+msgid "No insurance"
+msgstr "Sin seguro"
+
+#. module: sale_insurance_caser
+#. odoo-python
+#: code:addons/sale_insurance_caser/models/caser_price_range.py:0
+msgid "No price range configured for amount"
+msgstr "No hay rango de precios configurado para el importe"
+
+#. module: sale_insurance_caser
+#: model:ir.model.fields.selection,name:sale_insurance_caser.selection__sale_order__caser_insurance_state__to_send
+msgid "Pending"
+msgstr "Pendiente"
+
+#. module: sale_insurance_caser
+#. odoo-python
+#: code:addons/sale_insurance_caser/models/stock_picking.py:0
+msgid "Price mismatch: line price %(line)s but Caser returned %(caser)s"
+msgstr ""
+"Diferencia de precio: precio de línea %(line)s pero Caser devolvió %(caser)s"
+
+#. module: sale_insurance_caser
+#: model_terms:ir.ui.view,arch_db:sale_insurance_caser.view_order_form_caser
+msgid "Product"
+msgstr "Producto"
+
+#. module: sale_insurance_caser
+#. odoo-python
+#: code:addons/sale_insurance_caser/models/stock_picking.py:0
+msgid "Product '%s' must have a brand assigned"
+msgstr "El producto '%s' debe tener una marca asignada"
+
+#. module: sale_insurance_caser
+#: model:ir.model,name:sale_insurance_caser.model_product_brand
+msgid "Product Brand"
+msgstr "Marca de producto"
+
+#. module: sale_insurance_caser
+#: model:ir.model,name:sale_insurance_caser.model_product_category
+msgid "Product Category"
+msgstr "Categoría de producto"
+
+#. module: sale_insurance_caser
+#: model:ir.model.fields,help:sale_insurance_caser.field_caser_price_range__product_id
+msgid "Product automatically created/updated with tarification price"
+msgstr ""
+"Producto creado/actualizado automáticamente con el precio de tarificación"
+
+#. module: sale_insurance_caser
+#. odoo-python
+#: code:addons/sale_insurance_caser/models/stock_picking.py:0
+msgid "Product category '%s' must have a Caser Asset Type configured"
+msgstr ""
+"La categoría de producto '%s' debe tener un tipo de activo Caser configurado"
+
+#. module: sale_insurance_caser
+#. odoo-python
+#: code:addons/sale_insurance_caser/models/stock_picking.py:0
+msgid "Product category '%s' must have a Caser Protocol configured"
+msgstr ""
+"La categoría de producto '%s' debe tener un protocolo Caser configurado"
+
+#. module: sale_insurance_caser
+#. odoo-python
+#: code:addons/sale_insurance_caser/models/stock_picking.py:0
+msgid "Product price must be greater than 0"
+msgstr "El precio del producto debe ser mayor que 0"
+
+#. module: sale_insurance_caser
+#: model:ir.model.fields,help:sale_insurance_caser.field_product_category__caser_protocol
+msgid "Protocol code determined by asset type (61680=Phone, 61681=Tablet)"
+msgstr ""
+"Código de protocolo determinado por el tipo de activo (61680=Teléfono, "
+"61681=Tablet)"
+
+#. module: sale_insurance_caser
+#: model:ir.model.fields,field_description:sale_insurance_caser.field_sale_order_line__caser_insure_quantity
+msgid "Quantity to Insure"
+msgstr "Cantidad a asegurar"
+
+#. module: sale_insurance_caser
+#: model_terms:ir.ui.view,arch_db:sale_insurance_caser.view_order_form_caser
+msgid "Raw exchange"
+msgstr "Intercambio en crudo"
+
+#. module: sale_insurance_caser
+#. odoo-python
+#: code:addons/sale_insurance_caser/models/stock_picking.py:0
+msgid "Request error: %s"
+msgstr "Error de petición: %s"
+
+#. module: sale_insurance_caser
+#: model_terms:ir.ui.view,arch_db:sale_insurance_caser.view_order_form_caser
+msgid "Retry"
+msgstr "Reintentar"
+
+#. module: sale_insurance_caser
+#: model_terms:ir.ui.view,arch_db:sale_insurance_caser.view_order_form_caser
+msgid "Retry Caser request"
+msgstr "Reintentar envío a Caser"
+
+#. module: sale_insurance_caser
+#: model:ir.model.fields,help:sale_insurance_caser.field_res_config_settings__caser_sica_code
+msgid "SICA code provided by Caser"
+msgstr "Código SICA proporcionado por Caser"
+
+#. module: sale_insurance_caser
+#: model:ir.model,name:sale_insurance_caser.model_sale_order
+msgid "Sales Order"
+msgstr "Pedido de venta"
+
+#. module: sale_insurance_caser
+#: model:ir.model,name:sale_insurance_caser.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea de pedido de venta"
+
+#. module: sale_insurance_caser
+#: model:ir.model.fields.selection,name:sale_insurance_caser.selection__caser_price_range__caser_asset_type__262
+#: model:ir.model.fields.selection,name:sale_insurance_caser.selection__product_category__caser_asset_type__262
+msgid "Tablet"
+msgstr "Tablet"
+
+#. module: sale_insurance_caser
+#. odoo-python
+#: code:addons/sale_insurance_caser/models/caser_price_range.py:0
+msgid "Tarification Complete"
+msgstr "Tarificación completada"
+
+#. module: sale_insurance_caser
+#. odoo-python
+#: code:addons/sale_insurance_caser/models/sale_order_line.py:0
+msgid "The quantity of a Caser insurance line cannot be modified manually."
+msgstr ""
+"La cantidad de una línea de seguro Caser no se puede modificar manualmente."
+
+#. module: sale_insurance_caser
+#: model:ir.model,name:sale_insurance_caser.model_stock_picking
+msgid "Transfer"
+msgstr "Traslado"
+
+#. module: sale_insurance_caser
+#: model:ir.actions.server,name:sale_insurance_caser.action_server_update_all_caser_prices
+msgid "Update All Caser Insurance Prices"
+msgstr "Actualizar todos los precios de seguros Caser"
+
+#. module: sale_insurance_caser
+#: model:ir.model.fields,help:sale_insurance_caser.field_res_config_settings__caser_is_production
+msgid "Use production Caser endpoint. If unchecked uses testing."
+msgstr ""
+"Usar endpoint de producción de Caser. Si no está marcado, usa el de pruebas."
+
+#. module: sale_insurance_caser
+#: model:ir.model.fields,help:sale_insurance_caser.field_res_config_settings__caser_username
+msgid "Username for Caser SOAP service authentication"
+msgstr "Nombre de usuario para la autenticación del servicio SOAP de Caser"
