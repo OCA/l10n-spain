@@ -1,9 +1,11 @@
 # Copyright 2024 Aures TIC - Almudena de La Puente <almudena@aurestic.es>
+# Copyright 2026 Odoo Community Association (OCA)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
 
 from datetime import date, timedelta
 
 from odoo import Command
+from odoo.exceptions import UserError
 
 from .common import TestVerifactuCommon
 
@@ -357,6 +359,17 @@ class TestVerifactuInvoice(TestVerifactuCommon):
             .create({})
         )
         wizard.validate_move()
+
+    def test_legacy_journal_cannot_post_customer_invoice(self):
+        journal = self.invoice.journal_id
+        self.env.cr.execute(
+            "UPDATE account_journal SET verifactu_enabled = FALSE WHERE id = %s",
+            [journal.id],
+        )
+        journal.invalidate_recordset(["verifactu_enabled"])
+        with self.assertRaises(UserError):
+            self.invoice.action_post()
+        self.assertEqual(self.invoice.state, "draft")
 
     def test_invoice_entry_creation(self):
         """Test the VERI*FACTU invoice entry creation."""
