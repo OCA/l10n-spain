@@ -1,7 +1,7 @@
 # Copyright 2025 ForgeFlow S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import fields, models
+from odoo import api, fields, models
 
 from ..models.verifactu_invoice_entry import VERIFACTU_SEND_STATES
 
@@ -42,6 +42,7 @@ class VerifactuInvoiceEntryResponseLine(models.Model):
     def document(self):
         return self.env[self.model].browse(self.document_id).exists()
 
+    @api.depends("entry_id.entry_type")
     def _compute_is_cancellation(self):
         for rec in self:
             rec.is_cancellation = rec.entry_id.entry_type == "cancel"
