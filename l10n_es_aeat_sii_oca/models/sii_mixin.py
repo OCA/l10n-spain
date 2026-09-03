@@ -339,9 +339,28 @@ class SiiMixin(models.AbstractModel):
             partner = self._aeat_get_partner()
             country_code = self._get_aeat_country_code()
             is_simplified_invoice = self._is_aeat_simplified_invoice()
+            # A foreign (non-ES) partner identified by an AEAT document
+            # (passport / residence certificate / other) has a valid fiscal
+            # identifier: it is communicated as IDOtro, equivalent to a VAT.
+            # Domestic (ES) partners without VAT stay out, as AEAT rejects an
+            # IDOtro with CodigoPais="ES". Intracommunity operations stay out
+            # too: the gen_type == 2 branch of _get_sii_identifier() hardcodes
+            # IDType "02" (intracommunity VAT), so a passport there would
+            # fabricate a VAT number that does not exist. A partner with no
+            # country would build an IDOtro with an empty CodigoPais, also
+            # rejected. Both value and type are required, otherwise
+            # _parse_aeat_vat_info() drops the value and sends "NO_DISPONIBLE".
+            has_foreign_aeat_id = (
+                country_code
+                and country_code != "ES"
+                and gen_type != 2
+                and partner.aeat_identification
+                and partner.aeat_identification_type
+            )
             if (
                 (gen_type != 3 or country_code == "ES")
                 and not partner.vat
+                and not has_foreign_aeat_id
                 and not is_simplified_invoice
             ):
                 raise UserError(_("The partner has not a VAT configured."))
@@ -632,8 +651,12 @@ class SiiMixin(models.AbstractModel):
                     "IDOtro": {
                         "CodigoPais": country_code,
                         "IDType": identifier_type,
+                        # The country prefix reconstructs a VAT number
+                        # (IDType 02). Gluing it to an AEAT document such as a
+                        # passport would send a made-up identifier to AEAT.
                         "ID": vat_country_code + identifier
-                        if self._aeat_get_partner()._map_aeat_country_code(
+                        if identifier_type == "02"
+                        and self._aeat_get_partner()._map_aeat_country_code(
                             vat_country_code
                         )
                         in self._aeat_get_partner()._get_aeat_europe_codes()
