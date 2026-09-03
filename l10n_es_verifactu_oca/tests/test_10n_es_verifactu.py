@@ -561,3 +561,47 @@ class TestVerifactuSendResponse(TestVerifactuCommon):
             activity,
             "A warning activity should be created for 'AceptadoConErrores' response",
         )
+
+
+class TestVerifactuSealOnActivation(TestVerifactuCommon):
+    def _create_invoice(self, name, date):
+        return self.env["account.move"].create(
+            {
+                "company_id": self.company.id,
+                "partner_id": self.partner.id,
+                "move_type": "out_invoice",
+                "invoice_date": date,
+                "date": date,
+                "name": name,
+                "aeat_state": "sent",
+                "invoice_line_ids": [
+                    Command.create(
+                        {
+                            "product_id": self.product.id,
+                            "account_id": self.account_expense.id,
+                            "name": "Test line",
+                            "price_unit": 100,
+                            "quantity": 1,
+                        }
+                    )
+                ],
+            }
+        )
+
+    def test_history_with_gap_is_sealed_on_activation(self):
+        journal = self.env["account.journal"].search(
+            [("company_id", "=", self.company.id), ("type", "=", "sale")], limit=1
+        )
+        self.company.verifactu_enabled = False
+        journal.restrict_mode_hash_table = False
+        first = self._create_invoice("SEAL/2026/00001", "2026-01-10")
+        first.action_post()
+        third = self._create_invoice("SEAL/2026/00003", "2026-01-20")
+        third.action_post()
+        self.assertFalse(first.inalterable_hash)
+        self.company.verifactu_enabled = True
+        self.assertTrue(first.inalterable_hash)
+        self.assertTrue(third.inalterable_hash)
+        fourth = self._create_invoice("SEAL/2026/00004", "2026-02-01")
+        fourth.action_post()
+        self.assertTrue(fourth.inalterable_hash)
