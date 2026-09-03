@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="view_company_form">
+        <field name="name">res.company.form</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="l10n_es_facturae.view_company_form" />
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <field name="facturae_version" position="after">
+                <field name="face_email" />
+            </field>
+        </field>
+    </record>
+</odoo>
