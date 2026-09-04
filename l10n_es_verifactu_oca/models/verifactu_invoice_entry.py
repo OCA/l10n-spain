@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 import datetime
 import json
+import logging
 
 from requests import Session
 from zeep import Client, Settings
@@ -13,6 +14,8 @@ from zeep.transports import Transport
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools import split_every
+
+_logger = logging.getLogger(__name__)
 
 VERIFACTU_SEND_STATES = [
     ("not_sent", "Not sent"),
@@ -102,6 +105,13 @@ class VerifactuInvoiceEntry(models.Model):
         string="Last Response Line",
         readonly=True,
     )
+    payload_error = fields.Text(
+        readonly=True,
+        copy=False,
+        help="Error raised while building the data of this entry for the AEAT. "
+        "While it is set the entry could not even be sent, so it is still "
+        "pending: it is retried on every run until the cause is fixed.",
+    )
 
     @api.depends("response_line_ids", "response_line_ids.send_state")
     def _compute_send_state(self):
@@ -145,8 +155,7 @@ class VerifactuInvoiceEntry(models.Model):
                 threshold_time = send_date - datetime.timedelta(seconds=240)
                 # Look for documents where we have to send as an incident
                 outdated_records = records_to_send.filtered(
-                    lambda r, t=threshold_time: r.document.verifactu_registration_date
-                    < t
+                    lambda r, t=threshold_time: r._is_verifactu_incident(t)
                 )
                 current_records = records_to_send - outdated_records
                 outdated_records.with_context(
@@ -154,6 +163,17 @@ class VerifactuInvoiceEntry(models.Model):
                 )._send_documents_to_verifactu()
                 current_records._send_documents_to_verifactu()
         return True
+
+    def _is_verifactu_incident(self, threshold_time):
+        """Whether this entry has to be sent flagging it as an incident.
+
+        A missing document or registration date is not an incident: such an entry
+        goes through the regular flow, which reports the problem on the entry
+        itself instead of breaking the whole batch here.
+        """
+        self.ensure_one()
+        registration_date = self.document.verifactu_registration_date
+        return bool(registration_date) and registration_date < threshold_time
 
     def _get_verifactu_aeat_header(self):
         """Builds VERI*FACTU send header
@@ -290,26 +310,70 @@ class VerifactuInvoiceEntry(models.Model):
             response_line.document.write(doc_vals)
         return doc_vals
 
+    def _get_verifactu_document_dict(self):
+        """Build the data of this entry for the AEAT.
+
+        Raising here means this entry cannot be sent. The caller isolates it, so
+        raising is also how the real cause gets reported on the entry.
+        """
+        self.ensure_one()
+        document = self.document
+        if not document:
+            raise UserError(
+                _(
+                    "The document %(document)s of this entry does not exist anymore.",
+                    document=self.document_name or self.document_id,
+                )
+            )
+        return document._get_verifactu_invoice_dict(cancel=self.entry_type == "cancel")
+
+    def _register_verifactu_payload_error(self, error):
+        """Report on the entry and its document why it could not be sent."""
+        self.ensure_one()
+        _logger.exception(
+            "VERI*FACTU: the data of the entry %(entry)s (%(document)s) could not "
+            "be built, so it has not been sent",
+            {"entry": self.id, "document": self.document_name},
+        )
+        message = f"{type(error).__name__}: {error}"
+        self.payload_error = message
+        document = self.document
+        if document:
+            document.write({"aeat_send_failed": True, "aeat_send_error": message})
+        return message
+
     def _send_documents_to_verifactu(self):
         if not self:
             return False
-        rec = self[0]
-        header = rec._get_verifactu_aeat_header()
+        header = self[0]._get_verifactu_aeat_header()
         registro_factura_list = []
+        entries_to_send = self.browse()
+        payload_errors = False
         create_exception = False
         for rec in self:
             rec.send_attempt += 1
-            if rec.document:
-                inv_dict = rec.document._get_verifactu_invoice_dict(
-                    cancel=rec.entry_type == "cancel"
-                )
-                registro_factura_list.append(inv_dict)
-        try:
-            serv = rec._connect_verifactu()
-            res = serv.RegFactuSistemaFacturacion(header, registro_factura_list)
-        except Exception:
-            res = {}
-            create_exception = True
+            try:
+                # The savepoint is needed because a failed build may leave the
+                # transaction in an aborted state, which would take down every
+                # remaining record of the batch with it.
+                with self.env.cr.savepoint():
+                    inv_dict = rec._get_verifactu_document_dict()
+            except Exception as error:  # noqa: BLE001 - isolate the faulty entry
+                rec._register_verifactu_payload_error(error)
+                payload_errors = True
+                continue
+            if rec.payload_error:
+                rec.payload_error = False
+            registro_factura_list.append(inv_dict)
+            entries_to_send |= rec
+        res = {}
+        if registro_factura_list:
+            try:
+                serv = self[0]._connect_verifactu()
+                res = serv.RegFactuSistemaFacturacion(header, registro_factura_list)
+            except Exception:
+                _logger.exception("VERI*FACTU: the documents could not be sent")
+                create_exception = True
         response_name = ""
         response = (
             self.env["verifactu.invoice.entry.response"]
@@ -329,7 +393,7 @@ class VerifactuInvoiceEntry(models.Model):
             if not response.date_response:
                 response.date_response = fields.Datetime.now()
             response.create_activity_on_exception()
-        create_response_activity = self._create_response_lines(
+        create_response_activity = entries_to_send._create_response_lines(
             response=response, header=header, verifactu_response=res
         )
         updated_response_name = _("VERI*FACTU sending")
@@ -337,9 +401,13 @@ class VerifactuInvoiceEntry(models.Model):
             updated_response_name = _("Connection error with VERI*FACTU")
         elif create_response_activity:
             updated_response_name = _("Incorrect invoices sent to VERI*FACTU")
+        elif payload_errors:
+            updated_response_name = _("Documents not sent to VERI*FACTU")
         response.name = updated_response_name
         if create_response_activity:
             response.create_send_response_activity()
+        if payload_errors:
+            response.create_payload_error_activity()
         return True
 
     def _create_response_lines(

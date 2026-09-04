@@ -99,6 +99,52 @@ class VerifactuInvoiceEntryResponse(models.Model):
             )
         return self.env["mail.activity"].create(activity_vals)
 
+    def create_payload_error_activity(self):
+        """Warn that some documents could not even be built to be sent.
+
+        Only one activity is kept open at a time: those entries stay pending and
+        are retried on every run, so recreating it on each one would flood the
+        responsible user. The cause of each entry is reported on the entry
+        itself, and on its document, so the activity only has to point there.
+        """
+        activity_type = self.env.ref("mail.mail_activity_data_warning")
+        model_id = self.env["ir.model"]._get_id("verifactu.invoice.entry.response")
+        summary = _("Check documents that could not be sent to VERI*FACTU")
+        existing = self.env["mail.activity"].search_count(
+            [
+                ("activity_type_id", "=", activity_type.id),
+                ("res_model", "=", "verifactu.invoice.entry.response"),
+                ("summary", "=", summary),
+            ],
+            limit=1,
+        )
+        if existing:
+            return False
+        responsible_group = self.env.ref(
+            "l10n_es_verifactu_oca.group_verifactu_responsible"
+        )
+        users = responsible_group.users
+        activity_vals = []
+        for record in self:
+            user = users[:1] or self.env.user
+            activity_vals.append(
+                {
+                    "activity_type_id": activity_type.id,
+                    "user_id": user.id,
+                    "res_id": record.id,
+                    "res_model": "verifactu.invoice.entry.response",
+                    "res_model_id": model_id,
+                    "summary": summary,
+                    "note": _(
+                        "One or more documents could not be built to be sent to "
+                        "VERI*FACTU, so they are still pending. They are retried "
+                        "on every run, but the cause has to be fixed first: check "
+                        "the VERI*FACTU entries having a payload error."
+                    ),
+                }
+            )
+        return self.env["mail.activity"].create(activity_vals)
+
     def complete_open_activity_on_exception(self):
         exception_activity_type = self.env.ref(
             "l10n_es_verifactu_oca.mail_activity_data_exception"
