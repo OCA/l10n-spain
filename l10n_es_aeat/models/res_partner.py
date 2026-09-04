@@ -89,7 +89,15 @@ class ResPartner(models.Model):
             )
         return europe.country_ids.mapped("code") + ["XI"]
 
-    @ormcache("self.vat, self.country_id")
+    # The returned tuple depends on the AEAT identification fields too, so
+    # they belong in the cache key: without them, two partners sharing
+    # (vat, country_id) -- e.g. any two foreign customers with no VAT --
+    # collide and the second one is reported with the first one's
+    # identification.
+    @ormcache(
+        "self.vat, self.country_id, self.aeat_identification, "
+        "self.aeat_identification_type"
+    )
     def _parse_aeat_vat_info(self):
         """Return tuple with split info (country_code, identifier_type and
         vat_number) from vat and country partner

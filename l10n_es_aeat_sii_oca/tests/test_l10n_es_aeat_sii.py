@@ -457,6 +457,143 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
         with self.assertRaises(exceptions.UserError):
             invoice._aeat_check_exceptions()
 
+    # -- Foreign partners identified by an AEAT document (passport, residence
+    # -- certificate, other) instead of a VAT number.
+
+    def _create_foreign_partner(self, country_xml_id, identification, **extra):
+        vals = {
+            "name": "Foreign partner %s" % (identification or "no-id"),
+            "vat": False,
+            "country_id": self.env.ref(country_xml_id).id,
+        }
+        if identification:
+            vals["aeat_identification_type"] = "03"
+            vals["aeat_identification"] = identification
+        vals.update(extra)
+        return self.env["res.partner"].create(vals)
+
+    def _invoice_for(self, partner, fiscal_position=None):
+        """Invoice with an EXPLICIT fiscal position.
+
+        Assigning a foreign partner makes Odoo compute an extracommunity
+        fiscal position, which yields gen_type 3 -- a branch the guard already
+        let through before this fix. The reported case is the opposite: the POS
+        only offers a national position, so gen_type falls back to 1 and the
+        guard fires. Pinning it keeps each test on the branch it means to test.
+        """
+        invoice = self._create_invoice_for_sii("out_invoice")
+        invoice.partner_id = partner
+        invoice.fiscal_position_id = fiscal_position or False
+        return invoice
+
+    def _intracom_fiscal_position(self):
+        return self.env["account.fiscal.position"].create(
+            {"name": "Régimen Intracomunitario", "company_id": self.company.id}
+        )
+
+    def test_aeat_check_exceptions_foreign_aeat_id(self):
+        """Non-ES partner with a passport invoices fine on a national position."""
+        partner = self._create_foreign_partner("base.mx", "A547113457")
+        invoice = self._invoice_for(partner)
+        self.assertEqual(invoice._get_sii_gen_type(), 1)
+        invoice._aeat_check_exceptions()
+
+    def test_sii_identifier_foreign_aeat_id(self):
+        """The SII identifier is an IDOtro carrying the passport as-is."""
+        partner = self._create_foreign_partner("base.mx", "A547113457")
+        invoice = self._invoice_for(partner)
+        self.assertEqual(invoice._get_sii_gen_type(), 1)
+        self.assertEqual(
+            invoice._get_sii_identifier(),
+            {"IDOtro": {"CodigoPais": "MX", "IDType": "03", "ID": "A547113457"}},
+        )
+
+    def test_sii_identifier_eu_passport_not_prefixed(self):
+        """An EU passport must not get the country code glued to it.
+
+        The prefix only reconstructs a VAT number (IDType 02); gluing it to a
+        passport (IDType 03) sends a made-up identifier to AEAT.
+        """
+        partner = self._create_foreign_partner("base.fr", "12AB345")
+        invoice = self._invoice_for(partner)
+        self.assertEqual(invoice._get_sii_gen_type(), 1)
+        self.assertEqual(invoice._get_sii_identifier()["IDOtro"]["ID"], "12AB345")
+
+    def test_sii_identifier_two_foreign_partners_not_swapped(self):
+        """Each invoice carries its own identification, not a cached neighbour's.
+
+        _parse_aeat_vat_info() is ormcached; if the cache key does not cover the
+        AEAT identification fields, two partners sharing (vat, country_id) get
+        the same tuple and the second invoice reports the first one's passport.
+        """
+        first = self._create_foreign_partner("base.mx", "AAA111111")
+        second = self._create_foreign_partner("base.mx", "BBB222222")
+        first_id = self._invoice_for(first)._get_sii_identifier()
+        second_id = self._invoice_for(second)._get_sii_identifier()
+        self.assertEqual(first_id["IDOtro"]["ID"], "AAA111111")
+        self.assertEqual(second_id["IDOtro"]["ID"], "BBB222222")
+
+    def test_aeat_check_exceptions_intracom_no_vat_still_raises(self):
+        """Intracommunity operations still require a real VAT number.
+
+        The gen_type == 2 branch of _get_sii_identifier() hardcodes IDType "02"
+        (intracommunity VAT), so letting a passport through would fabricate a
+        VAT number that does not exist.
+        """
+        partner = self._create_foreign_partner("base.fr", "12AB345")
+        invoice = self._invoice_for(partner, self._intracom_fiscal_position())
+        self.assertEqual(invoice._get_sii_gen_type(), 2)
+        with self.assertRaises(exceptions.UserError):
+            invoice._aeat_check_exceptions()
+
+    def test_aeat_check_exceptions_no_country_still_raises(self):
+        """Without a country the IDOtro would carry an empty CodigoPais."""
+        partner = self._create_foreign_partner("base.mx", "A547113457")
+        partner.country_id = False
+        invoice = self._invoice_for(partner)
+        with self.assertRaises(exceptions.UserError):
+            invoice._aeat_check_exceptions()
+
+    def test_aeat_check_exceptions_missing_type_still_raises(self):
+        """Without the type, _parse_aeat_vat_info() drops the identification."""
+        partner = self._create_foreign_partner("base.mx", None)
+        partner.aeat_identification = "A547113457"
+        invoice = self._invoice_for(partner)
+        with self.assertRaises(exceptions.UserError):
+            invoice._aeat_check_exceptions()
+
+    def test_aeat_check_exceptions_domestic_no_vat_still_raises(self):
+        """An ES partner without VAT is not rescued by an AEAT identification.
+
+        AEAT rejects an IDOtro with CodigoPais="ES": it must be a NIF or a
+        simplified invoice.
+        """
+        partner = self._create_foreign_partner("base.es", "A547113457")
+        invoice = self._invoice_for(partner)
+        with self.assertRaises(exceptions.UserError):
+            invoice._aeat_check_exceptions()
+
+    def test_aeat_check_exceptions_no_regression_vat(self):
+        """Partners with a VAT number keep behaving exactly as before."""
+        national = self.env["res.partner"].create(
+            {
+                "name": "National with VAT",
+                "vat": "ESF35999705",
+                "country_id": self.env.ref("base.es").id,
+            }
+        )
+        self._invoice_for(national)._aeat_check_exceptions()
+        intracom = self.env["res.partner"].create(
+            {
+                "name": "Intracom with VAT",
+                "vat": "FR23334175221",
+                "country_id": self.env.ref("base.fr").id,
+            }
+        )
+        invoice = self._invoice_for(intracom, self._intracom_fiscal_position())
+        self.assertEqual(invoice._get_sii_gen_type(), 2)
+        invoice._aeat_check_exceptions()
+
     def test_aeat_check_exceptions_case_supplier_on_post(self):
         """Check sii exceptions when posting supplier bills"""
         supplier = self.supplier.copy()
