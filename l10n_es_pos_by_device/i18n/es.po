@@ -1,0 +1,234 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_es_pos_by_device
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-02-24 11:31+0000\n"
+"PO-Revision-Date: 2024-03-25 20:38+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: l10n_es_pos_by_device
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos_by_device.view_res_config_settings_pos_seq_device
+msgid ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
+"specific.\" aria-label=\"Values set here are company-specific.\" groups="
+"\"base.group_multi_company\" role=\"img\"/>"
+msgstr ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
+"specific.\" aria-label=\"Values set here are company-specific.\" groups="
+"\"base.group_multi_company\" role=\"img\"/>"
+
+#. module: l10n_es_pos_by_device
+#: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_config__pos_device_ids
+#: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_res_config_settings__pos_device_ids
+msgid "Available POS devices"
+msgstr "Dispositivos TPV disponibles"
+
+#. module: l10n_es_pos_by_device
+#. odoo-javascript
+#: code:addons/l10n_es_pos_by_device/static/src/js/PaymentScreen.esm.js:0
+#: code:addons/l10n_es_pos_by_device/static/src/js/Screens/Chrome/Chrome.esm.js:0
+#, python-format
+msgid "Cannot establish device. Clossing POS."
+msgstr "No es posible establecer dispositivo. Cerrando TPV."
+
+#. module: l10n_es_pos_by_device
+#: model:ir.model,name:l10n_es_pos_by_device.model_res_company
+msgid "Companies"
+msgstr "Compañías"
+
+#. module: l10n_es_pos_by_device
+#: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_device__company_id
+msgid "Company"
+msgstr "Compañía"
+
+#. module: l10n_es_pos_by_device
+#: model:ir.model,name:l10n_es_pos_by_device.model_res_config_settings
+msgid "Config Settings"
+msgstr "Opciones de configuración"
+
+#. module: l10n_es_pos_by_device
+#: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_device__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: l10n_es_pos_by_device
+#: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_device__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: l10n_es_pos_by_device
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos_by_device.pos_device_view_tree
+msgid "Device locked"
+msgstr "Dispositivo bloqueado"
+
+#. module: l10n_es_pos_by_device
+#: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_device__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: l10n_es_pos_by_device
+#: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_device__id
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_es_pos_by_device
+#: model:ir.model.fields,help:l10n_es_pos_by_device.field_pos_config__pos_device_ids
+#: model:ir.model.fields,help:l10n_es_pos_by_device.field_res_config_settings__pos_device_ids
+msgid "If left empty, all devices will be selectable"
+msgstr "Si se deja vacío, se pueden seleccionar todos los dispositivos"
+
+#. module: l10n_es_pos_by_device
+#: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_device____last_update
+msgid "Last Modified on"
+msgstr "Última modificación el"
+
+#. module: l10n_es_pos_by_device
+#: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_device__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: l10n_es_pos_by_device
+#: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_device__write_date
+msgid "Last Updated on"
+msgstr "Última Actualización el"
+
+#. module: l10n_es_pos_by_device
+#: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_device__locked
+msgid "Locked"
+msgstr "Bloqueado"
+
+#. module: l10n_es_pos_by_device
+#: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_device__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: l10n_es_pos_by_device
+#. odoo-javascript
+#: code:addons/l10n_es_pos_by_device/static/src/js/Screens/Chrome/DeviceName.esm.js:0
+#, python-format
+msgid "No device"
+msgstr "Sin dispositivo"
+
+#. module: l10n_es_pos_by_device
+#: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_order__pos_device_id
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos_by_device.view_pos_order_filter_simplified_invoice_by_device
+msgid "POS Physical Device"
+msgstr "Dispositivo físico TPV"
+
+#. module: l10n_es_pos_by_device
+#: model:ir.actions.act_window,name:l10n_es_pos_by_device.pos_devices_act_window
+#: model:ir.ui.menu,name:l10n_es_pos_by_device.pos_device_menu
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos_by_device.view_res_config_settings_pos_seq_device
+msgid "POS Physical devices"
+msgstr "Dispositivos físicos TPV"
+
+#. module: l10n_es_pos_by_device
+#: model:ir.model,name:l10n_es_pos_by_device.model_pos_device
+msgid "PoS Device"
+msgstr ""
+
+#. module: l10n_es_pos_by_device
+#: model:ir.model,name:l10n_es_pos_by_device.model_pos_config
+msgid "Point of Sale Configuration"
+msgstr "Configuración del TPV"
+
+#. module: l10n_es_pos_by_device
+#: model:ir.model,name:l10n_es_pos_by_device.model_pos_order
+msgid "Point of Sale Orders"
+msgstr "Pedidos del TPV"
+
+#. module: l10n_es_pos_by_device
+#: model:ir.model,name:l10n_es_pos_by_device.model_pos_session
+msgid "Point of Sale Session"
+msgstr "Sesión TPV"
+
+#. module: l10n_es_pos_by_device
+#: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_config__pos_sequence_by_device
+#: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_order__pos_sequence_by_device
+#: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_res_company__pos_sequence_by_device
+#: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_res_config_settings__pos_sequence_by_device
+msgid "Pos Sequence By Device"
+msgstr "Secuencia TPV por dispositivo"
+
+#. module: l10n_es_pos_by_device
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos_by_device.view_res_config_settings_pos_seq_device
+msgid "Secuencing by physical device"
+msgstr "Secuencia TPV por dispositivo"
+
+#. module: l10n_es_pos_by_device
+#. odoo-javascript
+#: code:addons/l10n_es_pos_by_device/static/src/js/Screens/Chrome/Chrome.esm.js:0
+#, python-format
+msgid "Select Physical Device"
+msgstr "Selecciona dispositivo físico"
+
+#. module: l10n_es_pos_by_device
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos_by_device.view_res_config_settings_pos_seq_device
+msgid "Select available physical devices for this POS configuration"
+msgstr ""
+"Selecciona los dispositivos físicos disponibles para esta configuración TPV"
+
+#. module: l10n_es_pos_by_device
+#: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_device__sequence
+msgid "Sequence"
+msgstr "Secuencia"
+
+#. module: l10n_es_pos_by_device
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos_by_device.view_res_config_settings_pos_seq_device
+msgid "Sequencing"
+msgstr "Secuenciación"
+
+#. module: l10n_es_pos_by_device
+#: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_device__device_simplified_invoice_number
+msgid "Sim.Inv number"
+msgstr "Número de factura simplificada"
+
+#. module: l10n_es_pos_by_device
+#: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_device__device_simplified_invoice_padding
+msgid "Simplified Invoice padding"
+msgstr "Relleno de Factura Simplificada"
+
+#. module: l10n_es_pos_by_device
+#: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_device__device_simplified_invoice_prefix
+msgid "Simplified Invoice prefix"
+msgstr "Prefijo de Factura Simplificada"
+
+#. module: l10n_es_pos_by_device
+#. odoo-python
+#: code:addons/l10n_es_pos_by_device/models/pos_config.py:0
+#, python-format
+msgid "There are no physical devices available. Cannot start session."
+msgstr "No hay dispositivos físicos disponibles. No es posible iniciar sesión."
+
+#. module: l10n_es_pos_by_device
+#. odoo-javascript
+#: code:addons/l10n_es_pos_by_device/static/src/js/PaymentScreen.esm.js:0
+#: code:addons/l10n_es_pos_by_device/static/src/js/Screens/Chrome/Chrome.esm.js:0
+#, python-format
+msgid "There was a connection error when trying to establish the device."
+msgstr "Ha habido un error de conexión al intentar establecer el dispositivo."
+
+#. module: l10n_es_pos_by_device
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos_by_device.pos_device_view_tree
+msgid "Unlock device"
+msgstr "Desbloquear el dispositivo"
+
+#. module: l10n_es_pos_by_device
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos_by_device.view_res_config_settings_pos_seq_device
+msgid "Use a different subsequence for each physical device on POS."
+msgstr ""
+"Utilice una subsecuencia diferente para cada dispositivo físico en el TPV."
+
+#~ msgid "pos.device"
+#~ msgstr "pos.dispositivo"
