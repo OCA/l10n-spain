@@ -9,6 +9,8 @@ import pprint
 from odoo import http
 from odoo.http import request
 
+from odoo.addons.payment.controllers.post_processing import PaymentPostProcessing
+
 _logger = logging.getLogger(__name__)
 
 
@@ -29,16 +31,37 @@ class RedsysController(http.Controller):
         auth="public",
         csrf=False,
     )
-    def redsys_return(self, **post):
+    def redsys_return(self, tx_ref=None, **post):
         """Redsys."""
         _logger.info(
-            "Redsys: entering form_feedback with post data %s", pprint.pformat(post)
+            "Redsys: entering form_feedback with post data %s tx_ref=%s",
+            pprint.pformat(post),
+            tx_ref,
         )
         if post:
             request.env["payment.transaction"].sudo()._handle_notification_data(
                 "redsys", post
             )
-            return request.redirect("/payment/status")
+        # Re-attach the transaction to the user's session in case the
+        # cross-site round-trip through Redsys dropped the session cookie
+        # (browser SameSite policies behave differently on the POST/GET
+        # combinations Redsys uses to redirect back to UrlOk).
+        if tx_ref:
+            tx = (
+                request.env["payment.transaction"]
+                .sudo()
+                .search(
+                    [("provider_code", "=", "redsys"), ("reference", "=", tx_ref)],
+                    limit=1,
+                )
+            )
+            if tx:
+                PaymentPostProcessing.monitor_transactions(tx)
+        # Always redirect to /payment/status so the user never gets a
+        # blank page when Redsys delivers an empty GET to UrlOk (some
+        # 3DS challenge flows do that when MerchantUrl == UrlOk and the
+        # server-to-server notification has already been processed).
+        return request.redirect("/payment/status")
 
     @http.route(
         ["/payment/redsys/result/<page>"],
