@@ -44,6 +44,10 @@
                             string="Description"
                             required="sii_enabled"
                         />
+                        <field
+                            name="sii_is_accounting_receipt"
+                            invisible="move_type != 'in_invoice'"
+                        />
                         <field name="thirdparty_invoice" />
                         <field
                             name="thirdparty_number"
