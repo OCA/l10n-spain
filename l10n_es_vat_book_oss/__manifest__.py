@@ -5,7 +5,7 @@
     "name": "Libro de IVA OSS",
     "version": "18.0.1.0.2",
     "development_status": "Beta",
-    "author": "Sygel, " "Odoo Community Association (OCA)",
+    "author": "Sygel, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "license": "AGPL-3",
     "category": "Accounting",
