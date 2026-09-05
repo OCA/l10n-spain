@@ -1,0 +1,37 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_es_verifactu_oca_operation_date
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_es_verifactu_oca_operation_date
+#. odoo-python
+#: code:addons/l10n_es_verifactu_oca_operation_date/models/account_move.py:0
+#, python-format
+msgid "- The operation date cannot be greater than the invoice date."
+msgstr ""
+
+#. module: l10n_es_verifactu_oca_operation_date
+#: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca_operation_date.invoice_verifactu_operation_date_form
+msgid ""
+"Fill this field if the operation date is earlier than the invoice date."
+msgstr ""
+
+#. module: l10n_es_verifactu_oca_operation_date
+#: model:ir.model,name:l10n_es_verifactu_oca_operation_date.model_account_move
+msgid "Journal Entry"
+msgstr ""
+
+#. module: l10n_es_verifactu_oca_operation_date
+#: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca_operation_date.invoice_verifactu_operation_date_form
+msgid "Operation date"
+msgstr ""
