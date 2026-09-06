@@ -176,7 +176,10 @@ class DeliveryCarrier(models.Model):
     @api.constrains("mrw_en_franquicia")
     def check_mrw_en_franquicia(self):
         for record in self:
-            if record.mrw_en_franquicia in ("R", "A"):
+            if record.delivery_type == "mrw" and record.mrw_en_franquicia in (
+                "R",
+                "A",
+            ):
                 raise UserError(
                     self.env._(
                         "For the moment MRW only supports:\n"

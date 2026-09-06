@@ -441,3 +441,21 @@ class TestDeliveryMRW(BaseCommon):
             ]
         )
         self.assertEqual(label.raw.content, b"%PDF-1.4 MRW label")
+
+    def test_26_check_mrw_en_franquicia(self):
+        carrier_vals = {
+            "name": "MRW Invalid",
+            "delivery_type": "mrw",
+            "product_id": self.shipping_product.id,
+            "mrw_en_franquicia": "R",
+        }
+        with self.assertRaises(UserError):
+            self.env["delivery.carrier"].create(carrier_vals)
+        # Created in batch with another carrier type, only MRW is checked
+        carriers = self.env["delivery.carrier"].create(
+            [
+                dict(carrier_vals, name="MRW", mrw_en_franquicia="E"),
+                dict(carrier_vals, name="Fixed", delivery_type="fixed"),
+            ]
+        )
+        self.assertEqual(len(carriers), 2)
