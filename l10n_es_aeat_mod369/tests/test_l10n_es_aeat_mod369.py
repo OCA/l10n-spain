@@ -279,3 +279,24 @@ class TestL10nEsAeatMod369Base(TestL10nEsAeatModBase):
         self.model369.total_amount = 0
         with self.assertRaises(UserError):
             self.create_account_move()
+
+    def test_model_369_export_boe(self):
+        """Test real BOE export flow and ensure decimal formatting satisfies
+        fixed-width padding requirements without distortion (see #4970)."""
+        self.model369.button_calculate()
+        export_to_boe = self.env["l10n.es.aeat.report.export_to_boe"].create(
+            {"name": "test_export_to_boe.txt"}
+        )
+        export_config = self.env.ref(
+            "l10n_es_aeat_mod369.aeat_mod369_2022_main_export_config"
+        )
+        boe_content = export_to_boe._export_config(self.model369, export_config)
+        self.assertTrue(boe_content)
+        for line in self.model369.spain_goods_line_ids:
+            self.assertEqual(len(line.vat_type_str), 5)
+            self.assertEqual(len(line.base_str), 17)
+            self.assertEqual(len(line.amount_str), 17)
+            self.assertEqual(len(line.tax_correction_str), 17)
+            self.assertTrue(line.vat_type_str.isdigit())
+            self.assertTrue(line.base_str.isdigit())
+            self.assertTrue(line.amount_str.isdigit())
