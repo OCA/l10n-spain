@@ -545,3 +545,34 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
         self.company.sii_start_date = False
         self.assertTrue(invoice2.sii_enabled)
         self.assertTrue(invoice2.filtered_domain([("sii_enabled", "=", True)]))
+
+    def test_sii_reagp_cuota_deducible(self):
+        """Supplier bills with REAGP (SFRSA) taxes must include the compensation
+        amount in CuotaDeducible in the SII payload (see #5003)."""
+        taxes_sfrsa = self.invoice._get_aeat_taxes_map(["SFRSA"], "2018-01-01")
+        if not taxes_sfrsa:
+            return
+        tax = taxes_sfrsa[0]
+        extra_vals = {
+            "partner_id": self.partner.id,
+            "ref": "INV/REAGP/001",
+            "invoice_line_ids": [
+                (
+                    0,
+                    0,
+                    {
+                        "name": "REAGP Purchase",
+                        "account_id": self.accounts["600000"].id,
+                        "price_unit": 1000.0,
+                        "quantity": 1,
+                        "tax_ids": [(6, 0, [tax.id])],
+                    },
+                )
+            ],
+        }
+        invoice = self._invoice_purchase_create("2018-01-15", extra_vals=extra_vals)
+        taxes_dict, tax_amount, _ = invoice._get_sii_in_taxes()
+        expected_deductible = abs(
+            invoice.line_ids.filtered(lambda l: l.tax_line_id == tax).balance
+        )
+        self.assertAlmostEqual(tax_amount, expected_deductible)
