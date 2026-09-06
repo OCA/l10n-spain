@@ -279,3 +279,25 @@ class TestL10nEsAeatMod369Base(TestL10nEsAeatModBase):
         self.model369.total_amount = 0
         with self.assertRaises(UserError):
             self.create_account_move()
+
+    def test_model_369_line_grouped_decimal_str(self):
+        """Single decimal digit values must be padded on the right (ljust)
+        instead of on the left (zfill) so 18.8 becomes 1880 and not 1808 (see #4970).
+        """
+        tax = self.env["account.tax"].new({"amount": 5.5})
+        line = self.env["l10n.es.aeat.mod369.line.grouped"].new(
+            {
+                "tax_id": tax,
+                "base": 18.8,
+                "amount": 18.8,
+                "tax_correction": 18.8,
+            }
+        )
+        line._compute_vat_type_str()
+        line._compute_base_str()
+        line._compute_amount_str()
+        line._compute_tax_correction_str()
+        self.assertTrue(line.vat_type_str.endswith("0550"))
+        self.assertTrue(line.base_str.endswith("1880"))
+        self.assertTrue(line.amount_str.endswith("1880"))
+        self.assertTrue(line.tax_correction_str.endswith("1880"))
