@@ -4,11 +4,6 @@
 
 import json
 
-from zeep import helpers
-
-from odoo import _
-from odoo.exceptions import UserError
-
 from odoo.addons.component.core import Component
 
 
@@ -29,12 +24,4 @@ class EdiWebServiceReceiveFaceL10nEsFacturaeFaceUpdate(Component):
             private_key,
             self.exchange_record.parent_id.external_identifier,
         )
-        if response.resultado.codigo != "0":
-            raise UserError(
-                _("Connection with FACe returned error %(code)s - %(description)s")
-                % {
-                    "code": response.resultado.codigo,
-                    "description": response.resultado.descripcion,
-                }
-            )
-        return json.dumps(helpers.serialize_object(response.factura))
+        return json.dumps(response)

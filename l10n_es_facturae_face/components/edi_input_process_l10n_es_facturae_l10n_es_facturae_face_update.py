@@ -18,8 +18,8 @@ class EdiInputProcessL10nEsFacturaeFaceUpdate(Component):
     def process(self):
         data = json.loads(self.exchange_record._get_file_content())
         parent = self.exchange_record.parent_id
-        process_code = "face-" + data["tramitacion"]["codigo"]
-        revocation_code = "face-" + data["anulacion"]["codigo"]
+        process_code = "face-" + data["statusHistory"][-1]["code"]
+        revocation_code = "face-" + data["cancellationRequestStatusCode"]
         if (
             process_code == parent.l10n_es_facturae_status
             and revocation_code == parent.l10n_es_facturae_cancellation_status
@@ -28,9 +28,11 @@ class EdiInputProcessL10nEsFacturaeFaceUpdate(Component):
         parent.write(
             {
                 "l10n_es_facturae_status": process_code,
-                "l10n_es_facturae_motive": data["tramitacion"]["motivo"],
+                "l10n_es_facturae_motive": data["statusComment"],
                 "l10n_es_facturae_cancellation_status": revocation_code,
-                "l10n_es_facturae_cancellation_motive": data["anulacion"]["motivo"],
+                "l10n_es_facturae_cancellation_motive": data[
+                    "cancellationRequestComment"
+                ],
             }
         )
         self.exchange_record.record.write(

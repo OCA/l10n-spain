@@ -3,25 +3,18 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import base64
-import logging
+import hashlib
+from datetime import datetime, timedelta
 
-import zeep
+import jwt
+import requests
 from cryptography import x509
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import serialization
 
-from odoo.exceptions import UserError, ValidationError
-from odoo.models import _
+from odoo.exceptions import UserError
 
 from odoo.addons.component.core import Component
-
-from ..models.wsse_signature import MemorySignature
-
-_logger = logging.getLogger(__name__)
-try:
-    from zeep import Client
-except (ImportError, IOError) as err:
-    _logger.info(err)
 
 
 class WebServiceFace(Component):
@@ -29,84 +22,109 @@ class WebServiceFace(Component):
     _usage = "face.protocol"
     _backend_type = "l10n_es_facturae"
     _inherit = "edi.component.mixin"
+    _request_timeout = 30
 
-    def _get_client(self, public_crt, private_key):
-        with open(public_crt, "rb") as f:
-            cert = x509.load_pem_x509_certificate(f.read(), backend=default_backend())
-        with open(private_key, "rb") as f:
-            key = serialization.load_pem_private_key(
-                f.read(), None, backend=default_backend()
+    def generate_jwt(self, public_cert, private_key):
+        with open(public_cert, "rb") as f:
+            certificate = x509.load_pem_x509_certificate(
+                f.read(), backend=default_backend()
             )
-        return Client(
-            wsdl=self.env["ir.config_parameter"].sudo().get_param("facturae.face.ws"),
-            wsse=MemorySignature(
-                cert,
-                key,
-                x509.load_pem_x509_certificate(
-                    base64.b64decode(
-                        self.env.ref("l10n_es_facturae_face.face_certificate").datas
-                    ),
-                    backend=default_backend(),
-                ),
-            ),
+        with open(private_key, "rb") as f:
+            key = f.read()
+        username = base64.b64encode(
+            certificate.public_bytes(serialization.Encoding.DER)
+        ).decode("utf-8")
+        headers = {
+            "alg": "RS256",
+            "typ": "JWT",
+            "x5c": [username],
+        }
+        return jwt.encode(
+            {
+                "iat": int(datetime.now().timestamp()),
+                "exp": int((datetime.now() + timedelta(minutes=5)).timestamp()),
+                "username": hashlib.sha1(username.encode("utf-8")).hexdigest(),
+            },
+            key,
+            algorithm="RS256",
+            headers=headers,
         )
 
     def send_webservice(
         self, public_crt, private_key, file_data, file_name, email, anexos_list=False
     ):
-        client = self._get_client(public_crt, private_key)
-        invoice_file = client.get_type("ns0:FacturaFile")(
-            base64.b64encode(file_data.encode("UTF-8")),
-            file_name,
-            "application/xml",
+        jwt_token = self.generate_jwt(public_crt, private_key)
+        server = (
+            self.env["ir.config_parameter"].sudo().get_param("facturae.face.ws_rest")
         )
-        anexos = client.get_type("ns0:ArrayOfAnexoFile")(anexos_list or [])
-        invoice_call = client.get_type("ns0:EnviarFacturaRequest")(
-            email, invoice_file, anexos
+        response = requests.post(
+            f"{server}/providers/v1/invoices",
+            headers={
+                "Authorization": f"Bearer {jwt_token}",
+                "Content-Type": "application/json",
+                "User-Agent": "",
+            },
+            json={
+                "filename": file_name,
+                "content": base64.b64encode(file_data.encode("utf-8")).decode("utf-8"),
+                "email": email,
+                "attachments": [
+                    {
+                        "filename": anexo.file_name,
+                        "content": anexo.file_data,
+                    }
+                    for anexo in anexos_list
+                ]
+                if anexos_list
+                else [],
+            },
+            timeout=self._request_timeout,
         )
         try:
-            response = client.service.enviarFactura(invoice_call)
-        except zeep.exceptions.Fault as err:
-            raise ValidationError(
-                _("Connection with FACe returned error: %(error)s", error=err)
-            ) from err
-        if response.resultado.codigo != "0":
-            raise ValidationError(response.resultado.descripcion)
-        return response
+            response.raise_for_status()
+        except requests.exceptions.HTTPError as e:
+            raise UserError(f"Error Sending invoice: {e}") from e
+        return response.json()
 
     def consult_invoice(self, public_crt, private_key, invoice_number):
-        client = self._get_client(public_crt, private_key)
+        jwt_token = self.generate_jwt(public_crt, private_key)
+        server = (
+            self.env["ir.config_parameter"].sudo().get_param("facturae.face.ws_rest")
+        )
+        response = requests.get(
+            f"{server}/providers/v1/invoices/{invoice_number}",
+            headers={
+                "Authorization": f"Bearer {jwt_token}",
+                "Content-Type": "application/json",
+                "User-Agent": "",
+            },
+            timeout=self._request_timeout,
+        )
         try:
-            return client.service.consultarFactura(invoice_number)
-        except zeep.exceptions.Fault as err:
-            raise ValidationError(
-                _("Connection with FACe returned error: %(error)s", error=err)
-            ) from err
-
-    def consult_invoices(self, public_crt, private_key, invoices):
-        client = self._get_client(public_crt, private_key)
-        request = client.get_type("ns0:ConsultarListadoFacturaRequest")(invoices)
-        try:
-            return client.service.consultarListadoFacturas(request)
-        except zeep.exceptions.Fault as err:
-            raise ValidationError(
-                _("Connection with FACe returned error: %(error)s", error=err)
-            ) from err
+            response.raise_for_status()
+        except requests.exceptions.HTTPError as e:
+            raise UserError(f"Error consulting invoice: {e}") from e
+        return response.json()
 
     def cancel(self, public_crt, private_key, identifier, motive):
-        client = self._get_client(public_crt, private_key)
+        jwt_token = self.generate_jwt(public_crt, private_key)
+        server = (
+            self.env["ir.config_parameter"].sudo().get_param("facturae.face.ws_rest")
+        )
+        response = requests.post(
+            f"{server}/providers/v1/invoices/{identifier}/cancellation-requests",
+            headers={
+                "Authorization": f"Bearer {jwt_token}",
+                "Content-Type": "application/json",
+                "User-Agent": "",
+            },
+            json={
+                "comment": motive,
+            },
+            timeout=self._request_timeout,
+        )
         try:
-            response = client.service.anularFactura(identifier, motive)
-        except zeep.exceptions.Fault as err:
-            raise ValidationError(
-                _("Connection with FACe returned error: %(error)s", error=err)
-            ) from err
-        if response.resultado.codigo != "0":
-            raise UserError(
-                _("Connection with FACe returned error %(code)s - %(description)s")
-                % {
-                    "code": response.resultado.codigo,
-                    "description": response.resultado.descripcion,
-                }
-            )
-        return response
+            response.raise_for_status()
+        except requests.exceptions.HTTPError as e:
+            raise UserError(f"Error canceling invoice: {e}") from e
+        return response.json()
