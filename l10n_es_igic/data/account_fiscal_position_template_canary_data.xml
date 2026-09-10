@@ -42,7 +42,9 @@
     <record id="fp_retailer_canary" model="account.fiscal.position.template">
         <field name="name">Régimen Minoristas Islas Canarias</field>
         <field name="chart_template_id" ref="account_chart_template_common_canary" />
-        <field name="note">Comerciante Minorista</field>
+        <field
+            name="note"
+        >Régimen minorista: ventas (repercutido → exento minorista) y compras locales a proveedor minorista (art. 29.3, carga implícita 4727). Sin importaciones.</field>
     </record>
 
     <record id="fp_lease_canary" model="account.fiscal.position.template">
@@ -1350,46 +1352,6 @@
         <field name="tax_src_id" ref="account_tax_template_igic_r_20" />
         <field name="tax_dest_id" ref="account_tax_template_igic_cmino" />
     </record>
-    <record id="fptt_cmino_p_igic0" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="fp_retailer_canary" />
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_0" />
-        <field name="tax_dest_id" ref="account_tax_template_igic_sop_cmino" />
-    </record>
-    <record id="fptt_cmino_p_igic1" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="fp_retailer_canary" />
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_1" />
-        <field name="tax_dest_id" ref="account_tax_template_igic_sop_1_cmino" />
-    </record>
-    <record id="fptt_cmino_p_igic3" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="fp_retailer_canary" />
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_3" />
-        <field name="tax_dest_id" ref="account_tax_template_igic_sop_3_cmino" />
-    </record>
-    <record id="fptt_cmino_p_igic5" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="fp_retailer_canary" />
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_5" />
-        <field name="tax_dest_id" ref="account_tax_template_igic_sop_5_cmino" />
-    </record>
-    <record id="fptt_cmino_p_igic7" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="fp_retailer_canary" />
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7" />
-        <field name="tax_dest_id" ref="account_tax_template_igic_sop_7_cmino" />
-    </record>
-    <record id="fptt_cmino_p_igic95" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="fp_retailer_canary" />
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_9_5" />
-        <field name="tax_dest_id" ref="account_tax_template_igic_sop_9_5_cmino" />
-    </record>
-    <record id="fptt_cmino_p_igic15" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="fp_retailer_canary" />
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_15" />
-        <field name="tax_dest_id" ref="account_tax_template_igic_sop_15_cmino" />
-    </record>
-    <record id="fptt_cmino_p_igic20" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="fp_retailer_canary" />
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_20" />
-        <field name="tax_dest_id" ref="account_tax_template_igic_sop_20_cmino" />
-    </record>
     <!-- Exención arrendamientos Islas Canarias -->
          <record
         id="fpl_extra_ventas_canary_0"
@@ -1439,5 +1401,388 @@
         <field name="position_id" ref="fp_lease_canary" />
         <field name="tax_src_id" ref="account_tax_template_igic_r_20" />
         <field name="tax_dest_id" ref="account_tax_template_igic_re_ex" />
+    </record>
+    <record
+        id="fp_purchase_local_retailer_canary"
+        model="account.fiscal.position.template"
+    >
+        <field name="name">Compras locales minorista Islas Canarias</field>
+        <field name="chart_template_id" ref="account_chart_template_common_canary" />
+        <field
+            name="note"
+        >Escenario B: empresa minorista - compras locales (IGIC en coste, sin 4727)</field>
+    </record>
+    <record
+        id="fp_purchase_import_retailer_canary"
+        model="account.fiscal.position.template"
+    >
+        <field name="name">Importación minorista Islas Canarias</field>
+        <field name="chart_template_id" ref="account_chart_template_common_canary" />
+        <field
+            name="note"
+        >Escenario B: empresa minorista - importaciones (IGIC en coste)</field>
+    </record>
+    <record
+        id="fptt_vendor_retailer_p_igic0"
+        model="account.fiscal.position.tax.template"
+    >
+        <field name="position_id" ref="fp_retailer_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_sop_0" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_sop_cmino" />
+    </record>
+    <record
+        id="fptt_vendor_retailer_p_igic1"
+        model="account.fiscal.position.tax.template"
+    >
+        <field name="position_id" ref="fp_retailer_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_sop_1" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_sop_1_cmino" />
+    </record>
+    <record
+        id="fptt_vendor_retailer_p_igic1_inv"
+        model="account.fiscal.position.tax.template"
+    >
+        <field name="position_id" ref="fp_retailer_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_sop_1_inv" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_sop_1_cmino_inv" />
+    </record>
+    <record
+        id="fptt_vendor_retailer_p_igic3"
+        model="account.fiscal.position.tax.template"
+    >
+        <field name="position_id" ref="fp_retailer_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_sop_3" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_sop_3_cmino" />
+    </record>
+    <record
+        id="fptt_vendor_retailer_p_igic3_inv"
+        model="account.fiscal.position.tax.template"
+    >
+        <field name="position_id" ref="fp_retailer_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_sop_3_inv" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_sop_3_cmino_inv" />
+    </record>
+    <record
+        id="fptt_vendor_retailer_p_igic5"
+        model="account.fiscal.position.tax.template"
+    >
+        <field name="position_id" ref="fp_retailer_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_sop_5" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_sop_5_cmino" />
+    </record>
+    <record
+        id="fptt_vendor_retailer_p_igic5_inv"
+        model="account.fiscal.position.tax.template"
+    >
+        <field name="position_id" ref="fp_retailer_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_sop_5_inv" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_sop_5_cmino_inv" />
+    </record>
+    <record
+        id="fptt_vendor_retailer_p_igic7"
+        model="account.fiscal.position.tax.template"
+    >
+        <field name="position_id" ref="fp_retailer_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_sop_7" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_sop_7_cmino" />
+    </record>
+    <record
+        id="fptt_vendor_retailer_p_igic7_inv"
+        model="account.fiscal.position.tax.template"
+    >
+        <field name="position_id" ref="fp_retailer_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_sop_7_inv" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_sop_7_cmino_inv" />
+    </record>
+    <record
+        id="fptt_vendor_retailer_p_igic9_5"
+        model="account.fiscal.position.tax.template"
+    >
+        <field name="position_id" ref="fp_retailer_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_sop_9_5" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_sop_9_5_cmino" />
+    </record>
+    <record
+        id="fptt_vendor_retailer_p_igic9_5_inv"
+        model="account.fiscal.position.tax.template"
+    >
+        <field name="position_id" ref="fp_retailer_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_sop_9_5_inv" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_sop_9_5_cmino_inv" />
+    </record>
+    <record
+        id="fptt_vendor_retailer_p_igic15"
+        model="account.fiscal.position.tax.template"
+    >
+        <field name="position_id" ref="fp_retailer_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_sop_15" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_sop_15_cmino" />
+    </record>
+    <record
+        id="fptt_vendor_retailer_p_igic15_inv"
+        model="account.fiscal.position.tax.template"
+    >
+        <field name="position_id" ref="fp_retailer_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_sop_15_inv" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_sop_15_cmino_inv" />
+    </record>
+    <record
+        id="fptt_vendor_retailer_p_igic20"
+        model="account.fiscal.position.tax.template"
+    >
+        <field name="position_id" ref="fp_retailer_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_sop_20" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_sop_20_cmino" />
+    </record>
+    <record
+        id="fptt_vendor_retailer_p_igic20_inv"
+        model="account.fiscal.position.tax.template"
+    >
+        <field name="position_id" ref="fp_retailer_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_sop_20_inv" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_sop_20_cmino_inv" />
+    </record>
+    <record
+        id="fptt_purchase_local_p_igic0"
+        model="account.fiscal.position.tax.template"
+    >
+        <field name="position_id" ref="fp_purchase_local_retailer_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_sop_0" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_sop_0_retail" />
+    </record>
+    <record
+        id="fptt_purchase_local_p_igic1"
+        model="account.fiscal.position.tax.template"
+    >
+        <field name="position_id" ref="fp_purchase_local_retailer_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_sop_1" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_sop_1_retail" />
+    </record>
+    <record
+        id="fptt_purchase_local_p_igic1_inv"
+        model="account.fiscal.position.tax.template"
+    >
+        <field name="position_id" ref="fp_purchase_local_retailer_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_sop_1_inv" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_sop_1_retail_inv" />
+    </record>
+    <record
+        id="fptt_purchase_local_p_igic3"
+        model="account.fiscal.position.tax.template"
+    >
+        <field name="position_id" ref="fp_purchase_local_retailer_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_sop_3" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_sop_3_retail" />
+    </record>
+    <record
+        id="fptt_purchase_local_p_igic3_inv"
+        model="account.fiscal.position.tax.template"
+    >
+        <field name="position_id" ref="fp_purchase_local_retailer_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_sop_3_inv" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_sop_3_retail_inv" />
+    </record>
+    <record
+        id="fptt_purchase_local_p_igic5"
+        model="account.fiscal.position.tax.template"
+    >
+        <field name="position_id" ref="fp_purchase_local_retailer_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_sop_5" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_sop_5_retail" />
+    </record>
+    <record
+        id="fptt_purchase_local_p_igic5_inv"
+        model="account.fiscal.position.tax.template"
+    >
+        <field name="position_id" ref="fp_purchase_local_retailer_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_sop_5_inv" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_sop_5_retail_inv" />
+    </record>
+    <record
+        id="fptt_purchase_local_p_igic7"
+        model="account.fiscal.position.tax.template"
+    >
+        <field name="position_id" ref="fp_purchase_local_retailer_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_sop_7" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_sop_7_retail" />
+    </record>
+    <record
+        id="fptt_purchase_local_p_igic7_inv"
+        model="account.fiscal.position.tax.template"
+    >
+        <field name="position_id" ref="fp_purchase_local_retailer_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_sop_7_inv" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_sop_7_retail_inv" />
+    </record>
+    <record
+        id="fptt_purchase_local_p_igic9_5"
+        model="account.fiscal.position.tax.template"
+    >
+        <field name="position_id" ref="fp_purchase_local_retailer_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_sop_9_5" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_sop_9_5_retail" />
+    </record>
+    <record
+        id="fptt_purchase_local_p_igic9_5_inv"
+        model="account.fiscal.position.tax.template"
+    >
+        <field name="position_id" ref="fp_purchase_local_retailer_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_sop_9_5_inv" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_sop_9_5_retail_inv" />
+    </record>
+    <record
+        id="fptt_purchase_local_p_igic15"
+        model="account.fiscal.position.tax.template"
+    >
+        <field name="position_id" ref="fp_purchase_local_retailer_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_sop_15" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_sop_15_retail" />
+    </record>
+    <record
+        id="fptt_purchase_local_p_igic15_inv"
+        model="account.fiscal.position.tax.template"
+    >
+        <field name="position_id" ref="fp_purchase_local_retailer_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_sop_15_inv" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_sop_15_retail_inv" />
+    </record>
+    <record
+        id="fptt_purchase_local_p_igic20"
+        model="account.fiscal.position.tax.template"
+    >
+        <field name="position_id" ref="fp_purchase_local_retailer_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_sop_20" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_sop_20_retail" />
+    </record>
+    <record
+        id="fptt_purchase_local_p_igic20_inv"
+        model="account.fiscal.position.tax.template"
+    >
+        <field name="position_id" ref="fp_purchase_local_retailer_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_sop_20_inv" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_sop_20_retail_inv" />
+    </record>
+    <record
+        id="fptt_purchase_import_p_igic0"
+        model="account.fiscal.position.tax.template"
+    >
+        <field name="position_id" ref="fp_purchase_import_retailer_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_sop_0" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_sop_i_0_retail" />
+    </record>
+    <record
+        id="fptt_purchase_import_p_igic1"
+        model="account.fiscal.position.tax.template"
+    >
+        <field name="position_id" ref="fp_purchase_import_retailer_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_sop_1" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_sop_i_1_retail" />
+    </record>
+    <record
+        id="fptt_purchase_import_p_igic1_inv"
+        model="account.fiscal.position.tax.template"
+    >
+        <field name="position_id" ref="fp_purchase_import_retailer_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_sop_1_inv" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_sop_i_1_retail_inv" />
+    </record>
+    <record
+        id="fptt_purchase_import_p_igic3"
+        model="account.fiscal.position.tax.template"
+    >
+        <field name="position_id" ref="fp_purchase_import_retailer_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_sop_3" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_sop_i_3_retail" />
+    </record>
+    <record
+        id="fptt_purchase_import_p_igic3_inv"
+        model="account.fiscal.position.tax.template"
+    >
+        <field name="position_id" ref="fp_purchase_import_retailer_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_sop_3_inv" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_sop_i_3_retail_inv" />
+    </record>
+    <record
+        id="fptt_purchase_import_p_igic5"
+        model="account.fiscal.position.tax.template"
+    >
+        <field name="position_id" ref="fp_purchase_import_retailer_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_sop_5" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_sop_i_5_retail" />
+    </record>
+    <record
+        id="fptt_purchase_import_p_igic5_inv"
+        model="account.fiscal.position.tax.template"
+    >
+        <field name="position_id" ref="fp_purchase_import_retailer_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_sop_5_inv" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_sop_i_5_retail_inv" />
+    </record>
+    <record
+        id="fptt_purchase_import_p_igic7"
+        model="account.fiscal.position.tax.template"
+    >
+        <field name="position_id" ref="fp_purchase_import_retailer_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_sop_7" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_sop_i_7_retail" />
+    </record>
+    <record
+        id="fptt_purchase_import_p_igic7_inv"
+        model="account.fiscal.position.tax.template"
+    >
+        <field name="position_id" ref="fp_purchase_import_retailer_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_sop_7_inv" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_sop_i_7_retail_inv" />
+    </record>
+    <record
+        id="fptt_purchase_import_p_igic9_5"
+        model="account.fiscal.position.tax.template"
+    >
+        <field name="position_id" ref="fp_purchase_import_retailer_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_sop_9_5" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_sop_i_9_5_retail" />
+    </record>
+    <record
+        id="fptt_purchase_import_p_igic9_5_inv"
+        model="account.fiscal.position.tax.template"
+    >
+        <field name="position_id" ref="fp_purchase_import_retailer_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_sop_9_5_inv" />
+        <field
+            name="tax_dest_id"
+            ref="account_tax_template_igic_sop_i_9_5_retail_inv"
+        />
+    </record>
+    <record
+        id="fptt_purchase_import_p_igic15"
+        model="account.fiscal.position.tax.template"
+    >
+        <field name="position_id" ref="fp_purchase_import_retailer_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_sop_15" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_sop_i_15_retail" />
+    </record>
+    <record
+        id="fptt_purchase_import_p_igic15_inv"
+        model="account.fiscal.position.tax.template"
+    >
+        <field name="position_id" ref="fp_purchase_import_retailer_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_sop_15_inv" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_sop_i_15_retail_inv" />
+    </record>
+    <record
+        id="fptt_purchase_import_p_igic20"
+        model="account.fiscal.position.tax.template"
+    >
+        <field name="position_id" ref="fp_purchase_import_retailer_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_sop_20" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_sop_i_20_retail" />
+    </record>
+    <record
+        id="fptt_purchase_import_p_igic20_inv"
+        model="account.fiscal.position.tax.template"
+    >
+        <field name="position_id" ref="fp_purchase_import_retailer_canary" />
+        <field name="tax_src_id" ref="account_tax_template_igic_sop_20_inv" />
+        <field name="tax_dest_id" ref="account_tax_template_igic_sop_i_20_retail_inv" />
     </record>
 </odoo>
