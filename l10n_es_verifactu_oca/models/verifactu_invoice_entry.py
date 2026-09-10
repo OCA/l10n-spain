@@ -3,7 +3,9 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 import datetime
 import json
+import logging
 
+import psycopg2
 from requests import Session
 from zeep import Client, Settings
 from zeep.cache import SqliteCache
@@ -13,6 +15,8 @@ from zeep.transports import Transport
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools import split_every
+
+_logger = logging.getLogger(__name__)
 
 VERIFACTU_SEND_STATES = [
     ("not_sent", "Not sent"),
@@ -128,17 +132,35 @@ class VerifactuInvoiceEntry(models.Model):
     def _cron_send_documents_to_verifactu(self):
         batch_limit = self.env["verifactu.mixin"]._get_verifactu_batch()
         for chaining in self.env["verifactu.chaining"].search([]):
-            self.env.cr.execute(
-                """
-                SELECT id FROM verifactu_invoice_entry AS vsq
-                WHERE vsq.send_state = 'not_sent'
-                AND vsq.verifactu_chaining_id = %s
-                ORDER BY id
-                FOR UPDATE NOWAIT
-                """,
-                [chaining.id],
-            )
-            entries_to_send_ids = [entry[0] for entry in self.env.cr.fetchall()]
+            try:
+                with self.env.cr.savepoint():
+                    self.env.cr.execute(
+                        """
+                        SELECT id FROM verifactu_invoice_entry AS vsq
+                        WHERE vsq.send_state = 'not_sent'
+                        AND vsq.verifactu_chaining_id = %s
+                        ORDER BY id
+                        FOR UPDATE NOWAIT
+                        """,
+                        [chaining.id],
+                    )
+                    entries_to_send_ids = [entry[0] for entry in self.env.cr.fetchall()]
+            except psycopg2.OperationalError as err:
+                # 55P03: entries locked by another process (FOR UPDATE NOWAIT).
+                # 40001: serialization failure (a concurrent transaction
+                # committed a change to these entries under REPEATABLE READ).
+                # 40P01: deadlock. In every case another process is holding or
+                # has concurrently modified the entries, so skip this chaining
+                # and retry it on the next cron run instead of aborting.
+                if err.pgcode in ("55P03", "40001", "40P01"):
+                    _logger.info(
+                        "Skipping VERI*FACTU chaining %s due to concurrent "
+                        "access (SQLSTATE %s); will retry on the next cron run.",
+                        chaining.id,
+                        err.pgcode,
+                    )
+                    continue
+                raise
             for entries_batch_ids in split_every(batch_limit, entries_to_send_ids):
                 records_to_send = self.browse(entries_batch_ids)
                 send_date = fields.Datetime.now()
