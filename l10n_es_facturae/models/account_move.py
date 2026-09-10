@@ -261,6 +261,14 @@ class AccountMove(models.Model):
                 else:
                     withheld_taxes[tax]["base"] += base
                     withheld_taxes[tax]["amount"] += tax_amount
+        # Facturae only accepts amounts with up to 2 decimals (FACe RCF06004).
+        # With ``round_globally`` the aggregated tax amount is left unrounded
+        # (e.g. 12195.48 * 21% = 2561.0508), so round the invoice-level base and
+        # amount to the invoice currency here.
+        for taxes in (output_taxes, withheld_taxes):
+            for values in taxes.values():
+                values["base"] = self.currency_id.round(values["base"])
+                values["amount"] = self.currency_id.round(values["amount"])
         return output_taxes, withheld_taxes
 
     def get_facturae_hide_discount(self):

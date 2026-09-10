@@ -523,6 +523,7 @@
                         </t>
                     </InvoiceTotals>
                     <Items>
+                        <t t-set="round_curr" t-value="move.currency_id.round" />
                         <InvoiceLine
                             t-foreach="move.line_ids.filtered(lambda r: r.display_type == 'product')"
                             t-as="line"
@@ -614,53 +615,65 @@
                             <GrossAmount
                                 t-esc="('%.6f' if version == '3_2' else '%.8f') % (sign * line.price_subtotal)"
                             />
+                            <t
+                                t-set="line_taxes"
+                                t-value="line.tax_ids.compute_all(line.price_subtotal, move.currency_id, 1, product=line.product_id, partner=move.partner_id)"
+                            />
                             <TaxesWithheld t-if="withheld">
-                                <t t-foreach="line.tax_ids" t-as="line_tax">
-                                    <Tax t-if="line_tax.amount &lt; 0">
-                                        <TaxTypeCode t-esc="line_tax.facturae_code" />
+                                <t t-foreach="line_taxes['taxes']" t-as="line_tax">
+                                    <Tax t-if="line_tax['amount'] &lt; 0">
+                                        <t
+                                            t-set="tax"
+                                            t-value="move.env['account.tax'].browse(line_tax['id'])"
+                                        />
+                                        <TaxTypeCode t-esc="tax.facturae_code" />
                                         <TaxRate
-                                            t-esc="('%.2f' if version == '3_2' else '%.8f') % (-line_tax.amount)"
+                                            t-esc="('%.2f' if version == '3_2' else '%.8f') % (-tax.amount)"
                                         />
                                         <TaxableBase>
                                             <TotalAmount
-                                                t-esc="('%.2f' if version == '3_2' else '%.8f') % (sign * line.price_subtotal)"
+                                                t-esc="('%.2f' if version == '3_2' else '%.8f') % round_curr(sign * line_tax['base'])"
                                             />
                                             <EquivalentInEuros
-                                                t-esc="'%.2f' % (sign * (line.price_subtotal * euro_rate / currency_rate))"
+                                                t-esc="'%.2f' % (sign * line_tax['base'] * euro_rate / currency_rate)"
                                             />
                                         </TaxableBase>
                                         <TaxAmount>
                                             <TotalAmount
-                                                t-esc="('%.2f' if version == '3_2' else '%.8f') % (sign * (line.price_subtotal * (-line_tax.amount) / 100))"
+                                                t-esc="('%.2f' if version == '3_2' else '%.8f') % round_curr(sign * -line_tax['amount'])"
                                             />
                                             <EquivalentInEuros
-                                                t-esc="'%.2f' % (sign * (line.price_subtotal * (-line_tax.amount) / 100 * euro_rate / currency_rate))"
+                                                t-esc="'%.2f' % (sign * -line_tax['amount'] * euro_rate / currency_rate)"
                                             />
                                         </TaxAmount>
                                     </Tax>
                                 </t>
                             </TaxesWithheld>
                             <TaxesOutputs>
-                                <t t-foreach="line.tax_ids" t-as="line_tax">
-                                    <Tax t-if="line_tax.amount &gt;= 0">
-                                        <TaxTypeCode t-esc="line_tax.facturae_code" />
+                                <t t-foreach="line_taxes['taxes']" t-as="line_tax">
+                                    <Tax t-if="line_tax['amount'] &gt;= 0">
+                                        <t
+                                            t-set="tax"
+                                            t-value="move.env['account.tax'].browse(line_tax['id'])"
+                                        />
+                                        <TaxTypeCode t-esc="tax.facturae_code" />
                                         <TaxRate
-                                            t-esc="('%.2f' if version == '3_2' else '%.8f') % (line_tax.amount)"
+                                            t-esc="('%.2f' if version == '3_2' else '%.8f') % (tax.amount)"
                                         />
                                         <TaxableBase>
                                             <TotalAmount
-                                                t-esc="('%.2f' if version == '3_2' else '%.8f') % (sign * line.price_subtotal)"
+                                                t-esc="('%.2f' if version == '3_2' else '%.8f') % round_curr(sign * line_tax['base'])"
                                             />
                                             <EquivalentInEuros
-                                                t-esc="'%.2f' % (sign * (line.price_subtotal * euro_rate / currency_rate))"
+                                                t-esc="'%.2f' % (sign * line_tax['base'] * euro_rate / currency_rate)"
                                             />
                                         </TaxableBase>
                                         <TaxAmount>
                                             <TotalAmount
-                                                t-esc="('%.2f' if version == '3_2' else '%.8f') % (sign * (line.price_subtotal * (line_tax.amount) / 100))"
+                                                t-esc="('%.2f' if version == '3_2' else '%.8f') % round_curr(sign * line_tax['amount'])"
                                             />
                                             <EquivalentInEuros
-                                                t-esc="'%.2f' % (sign * (line.price_subtotal * (line_tax.amount) / 100 * euro_rate / currency_rate))"
+                                                t-esc="'%.2f' % (sign * line_tax['amount'] * euro_rate / currency_rate)"
                                             />
                                         </TaxAmount>
                                     </Tax>
