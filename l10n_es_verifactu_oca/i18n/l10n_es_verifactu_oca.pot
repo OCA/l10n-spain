@@ -45,6 +45,15 @@ msgstr ""
 #. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/account_move.py:0
 #, python-format
+msgid ""
+"- Link the original invoice or fill in the VERI*FACTU original document "
+"number and date."
+msgstr ""
+
+#. module: l10n_es_verifactu_oca
+#. odoo-python
+#: code:addons/l10n_es_verifactu_oca/models/account_move.py:0
+#, python-format
 msgid "- There are some inconsistent taxes on lines."
 msgstr ""
 
@@ -749,6 +758,17 @@ msgid "Is cancellation"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
+#: model:ir.model.fields,help:l10n_es_verifactu_oca.field_account_bank_statement_line__verifactu_original_document_date
+#: model:ir.model.fields,help:l10n_es_verifactu_oca.field_account_move__verifactu_original_document_date
+#: model:ir.model.fields,help:l10n_es_verifactu_oca.field_account_payment__verifactu_original_document_date
+#: model:ir.model.fields,help:l10n_es_verifactu_oca.field_verifactu_mixin__verifactu_original_document_date
+msgid ""
+"Issue date of the rectified document, to be filled in when it is not "
+"registered in the system. It is only taken into account if there is no "
+"linked original document."
+msgstr ""
+
+#. module: l10n_es_verifactu_oca
 #: model:ir.model,name:l10n_es_verifactu_oca.model_account_journal
 msgid "Journal"
 msgstr ""
@@ -956,6 +976,16 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.invoice_verifactu_form
+msgid "Original document date"
+msgstr ""
+
+#. module: l10n_es_verifactu_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.invoice_verifactu_form
+msgid "Original document number"
+msgstr ""
+
+#. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_map_line__verifactu_map_id
 msgid "Parent mapping"
 msgstr ""
@@ -1146,6 +1176,17 @@ msgstr ""
 #. module: l10n_es_verifactu_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.invoice_verifactu_form
 msgid "Sent header"
+msgstr ""
+
+#. module: l10n_es_verifactu_oca
+#: model:ir.model.fields,help:l10n_es_verifactu_oca.field_account_bank_statement_line__verifactu_original_document_number
+#: model:ir.model.fields,help:l10n_es_verifactu_oca.field_account_move__verifactu_original_document_number
+#: model:ir.model.fields,help:l10n_es_verifactu_oca.field_account_payment__verifactu_original_document_number
+#: model:ir.model.fields,help:l10n_es_verifactu_oca.field_verifactu_mixin__verifactu_original_document_number
+msgid ""
+"Serial number of the rectified document, to be filled in when it is not "
+"registered in the system. It is only taken into account if there is no "
+"linked original document."
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
@@ -1515,6 +1556,22 @@ msgstr ""
 #. module: l10n_es_verifactu_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.invoice_verifactu_search
 msgid "VERI*FACTU not sent"
+msgstr ""
+
+#. module: l10n_es_verifactu_oca
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_bank_statement_line__verifactu_original_document_date
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_move__verifactu_original_document_date
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_payment__verifactu_original_document_date
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_mixin__verifactu_original_document_date
+msgid "VERI*FACTU original document date"
+msgstr ""
+
+#. module: l10n_es_verifactu_oca
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_bank_statement_line__verifactu_original_document_number
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_move__verifactu_original_document_number
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_payment__verifactu_original_document_number
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_mixin__verifactu_original_document_number
+msgid "VERI*FACTU original document number"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca

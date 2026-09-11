@@ -49,6 +49,17 @@ msgstr "- No tiene todos los impuestos mapeados."
 #. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/account_move.py:0
 #, python-format
+msgid ""
+"- Link the original invoice or fill in the VERI*FACTU original document "
+"number and date."
+msgstr ""
+"- Enlazar la factura original o rellenar el número y la fecha del "
+"documento original VERI*FACTU."
+
+#. module: l10n_es_verifactu_oca
+#. odoo-python
+#: code:addons/l10n_es_verifactu_oca/models/account_move.py:0
+#, python-format
 msgid "- There are some inconsistent taxes on lines."
 msgstr "- Hay algunos impuestos inconsistentes en las líneas."
 
@@ -778,6 +789,20 @@ msgid "Is cancellation"
 msgstr "Es una cancelación"
 
 #. module: l10n_es_verifactu_oca
+#: model:ir.model.fields,help:l10n_es_verifactu_oca.field_account_bank_statement_line__verifactu_original_document_date
+#: model:ir.model.fields,help:l10n_es_verifactu_oca.field_account_move__verifactu_original_document_date
+#: model:ir.model.fields,help:l10n_es_verifactu_oca.field_account_payment__verifactu_original_document_date
+#: model:ir.model.fields,help:l10n_es_verifactu_oca.field_verifactu_mixin__verifactu_original_document_date
+msgid ""
+"Issue date of the rectified document, to be filled in when it is not "
+"registered in the system. It is only taken into account if there is no "
+"linked original document."
+msgstr ""
+"Fecha de expedición del documento rectificado, a rellenar cuando no está "
+"registrado en el sistema. Solo se tiene en cuenta si no hay un documento "
+"original enlazado."
+
+#. module: l10n_es_verifactu_oca
 #: model:ir.model,name:l10n_es_verifactu_oca.model_account_journal
 msgid "Journal"
 msgstr "Diario"
@@ -987,6 +1012,16 @@ msgstr ""
 "envía a VERI*FACTU"
 
 #. module: l10n_es_verifactu_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.invoice_verifactu_form
+msgid "Original document date"
+msgstr "Fecha de documento original"
+
+#. module: l10n_es_verifactu_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.invoice_verifactu_form
+msgid "Original document number"
+msgstr "Número de documento original"
+
+#. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_map_line__verifactu_map_id
 msgid "Parent mapping"
 msgstr "Mapeo padre"
@@ -1180,6 +1215,20 @@ msgstr "Contenido enviado"
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.invoice_verifactu_form
 msgid "Sent header"
 msgstr "Cabecera enviada"
+
+#. module: l10n_es_verifactu_oca
+#: model:ir.model.fields,help:l10n_es_verifactu_oca.field_account_bank_statement_line__verifactu_original_document_number
+#: model:ir.model.fields,help:l10n_es_verifactu_oca.field_account_move__verifactu_original_document_number
+#: model:ir.model.fields,help:l10n_es_verifactu_oca.field_account_payment__verifactu_original_document_number
+#: model:ir.model.fields,help:l10n_es_verifactu_oca.field_verifactu_mixin__verifactu_original_document_number
+msgid ""
+"Serial number of the rectified document, to be filled in when it is not "
+"registered in the system. It is only taken into account if there is no "
+"linked original document."
+msgstr ""
+"Número de serie del documento rectificado, a rellenar cuando no está "
+"registrado en el sistema. Solo se tiene en cuenta si no hay un documento "
+"original enlazado."
 
 #. module: l10n_es_verifactu_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.view_company_verifactu_form
@@ -1555,6 +1604,22 @@ msgstr "VERI*FACTU mixin"
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.invoice_verifactu_search
 msgid "VERI*FACTU not sent"
 msgstr "VERI*FACTU no enviado"
+
+#. module: l10n_es_verifactu_oca
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_bank_statement_line__verifactu_original_document_date
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_move__verifactu_original_document_date
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_payment__verifactu_original_document_date
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_mixin__verifactu_original_document_date
+msgid "VERI*FACTU original document date"
+msgstr "Fecha de documento original VERI*FACTU"
+
+#. module: l10n_es_verifactu_oca
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_bank_statement_line__verifactu_original_document_number
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_move__verifactu_original_document_number
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_payment__verifactu_original_document_number
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_mixin__verifactu_original_document_number
+msgid "VERI*FACTU original document number"
+msgstr "Número de documento original VERI*FACTU"
 
 #. module: l10n_es_verifactu_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.invoice_verifactu_search
