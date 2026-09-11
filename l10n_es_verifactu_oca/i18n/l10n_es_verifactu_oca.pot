@@ -737,6 +737,13 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
+#. odoo-python
+#: code:addons/l10n_es_verifactu_oca/models/verifactu_invoice_entry.py:0
+#, python-format
+msgid "Invoices not matching the VERI*FACTU schema"
+msgstr ""
+
+#. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_chaining__message_is_follower
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_developer__message_is_follower
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_invoice_entry_response__message_is_follower
@@ -1150,6 +1157,11 @@ msgstr ""
 
 #. module: l10n_es_verifactu_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.view_company_verifactu_form
+msgid "Skip the schema check when posting?"
+msgstr ""
+
+#. module: l10n_es_verifactu_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.view_company_verifactu_form
 msgid "Start date"
 msgstr ""
 
@@ -1163,6 +1175,13 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
+#: model:ir.model.fields,help:l10n_es_verifactu_oca.field_res_company__verifactu_skip_schema_check
+msgid ""
+"Stop refusing to post invoices whose VERI*FACTU record does not match the official schema. It is an escape hatch to keep invoicing while a wrong rejection is looked into, not a permanent setting.\n"
+"It does not make those records reach the Agency: a record that does not match the schema is still left out when the batch is sent."
+msgstr ""
+
+#. module: l10n_es_verifactu_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.verifactu_tax_agency_form_view
 msgid "Suministro Facturas Emitidas"
 msgstr ""
@@ -1170,6 +1189,13 @@ msgstr ""
 #. module: l10n_es_verifactu_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.verifactu_registration_keys_view_search
 msgid "Tax Type"
+msgstr ""
+
+#. module: l10n_es_verifactu_oca
+#. odoo-python
+#: code:addons/l10n_es_verifactu_oca/tests/test_10n_es_verifactu.py:0
+#, python-format
+msgid "Tax is not mapped to VERI*FACTU."
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
@@ -1211,6 +1237,16 @@ msgstr ""
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_res_company__verifactu_description
 msgid "The description for VERI*FACTU invoices if not set"
+msgstr ""
+
+#. module: l10n_es_verifactu_oca
+#. odoo-python
+#: code:addons/l10n_es_verifactu_oca/models/account_move.py:0
+#, python-format
+msgid ""
+"The following invoices cannot be posted because their VERI*FACTU record does not match the official schema:\n"
+"\n"
+"%(details)s"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
@@ -1620,6 +1656,11 @@ msgstr ""
 #. module: l10n_es_verifactu_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.invoice_verifactu_search
 msgid "VERI*FACTU sent"
+msgstr ""
+
+#. module: l10n_es_verifactu_oca
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_res_company__verifactu_skip_schema_check
+msgid "VERI*FACTU skip the schema check when posting"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
