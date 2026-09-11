@@ -15,24 +15,37 @@ odoo.define("l10n_es_verifactu_pos_oca.models", function (require) {
                 return result;
             }
 
+            _get_verifactu_document_date() {
+                // The registration dates the document by the UTC date of
+                // `date_order`, which is the date sent from here as
+                // `creation_date`, so the QR code follows it to keep both on
+                // the same day for orders around midnight. That day is the UTC
+                // one and not the legal one -- see the ROADMAP.
+                return moment.utc(this.validation_date || this.creation_date);
+            }
+
             _build_verifactu_qr_url() {
                 const baseUrl = this.pos.config.verifactu_base_url;
                 const vatNumber = (this.pos.company.vat || "").replace(/^ES/i, "");
-                const date = this.validation_date || this.creation_date;
-                const formattedDate = moment(date).format("DD-MM-YYYY");
                 const params = new URLSearchParams({
                     nif: vatNumber,
-                    numserie: this.l10n_es_unique_id,
-                    fecha: formattedDate,
-                    importe: this.get_total_with_tax(),
+                    numserie: (this.l10n_es_unique_id || "").substring(0, 60),
+                    fecha: this._get_verifactu_document_date().format("DD-MM-YYYY"),
+                    importe: this.get_total_with_tax().toFixed(2),
                 });
                 return `${baseUrl}?${params.toString()}`;
             }
 
             _get_verifactu_qr_code_data() {
+                const startDate = this.pos.company.verifactu_start_date;
                 const isEnabled =
                     this.pos.company.verifactu_enabled &&
+                    this.pos.config.verifactu_journal_enabled &&
                     this.is_simplified_invoice &&
+                    !this.is_to_invoice() &&
+                    (!startDate ||
+                        this._get_verifactu_document_date().format("YYYY-MM-DD") >=
+                            startDate) &&
                     (!this.fiscal_position ||
                         (this.fiscal_position && this.fiscal_position.aeat_active));
 
