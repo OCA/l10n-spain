@@ -2,6 +2,7 @@
 # Copyright 2023 Planesnet - Luis Planes, Laia Espinosa, Raul Solana
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+import base64
 import json
 import logging
 
@@ -163,3 +164,17 @@ class RedsysTest(RedsysCommon):
         post_data = self._prepare_post_data(values)
         tx._handle_notification_data("redsys", post_data)
         self.assertEqual(tx.state, "error", "Redsys: response error")
+
+    def test_url_ok_contains_tx_ref(self):
+        """UrlOk must carry tx_ref so the return controller can re-attach
+        the transaction to the user's session when the cross-site
+        round-trip drops the original session cookie."""
+        tx = self._create_transaction(flow="redirect", reference="tx-20260526161009")
+        rendering_values = tx._get_specific_rendering_values(
+            {"reference": tx.reference, "amount": self.amount}
+        )
+        merchant_parameters = json.loads(
+            base64.b64decode(rendering_values["Ds_MerchantParameters"]).decode()
+        )
+        self.assertIn("tx_ref=", merchant_parameters["Ds_Merchant_UrlOk"])
+        self.assertIn("tx-20260526161009", merchant_parameters["Ds_Merchant_UrlOk"])
