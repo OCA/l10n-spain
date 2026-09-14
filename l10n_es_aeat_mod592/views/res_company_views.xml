@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_company_aeat_form_inherit_l10n_es_aeat_mod592" model="ir.ui.view">
+        <field name="name">res.company.report.view.form.inherit</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="l10n_es_aeat.view_company_aeat_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='aeat_config']" position="inside">
+                <field
+                    name="company_plastic_acquirer"
+                    groups="l10n_es_aeat_mod592.group_mod592_acquirer"
+                />
+                <field
+                    name="company_plastic_manufacturer"
+                    groups="l10n_es_aeat_mod592.group_mod592_manufacturer"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
