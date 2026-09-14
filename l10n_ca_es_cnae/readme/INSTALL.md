@@ -1,5 +1,5 @@
 Necesita tener disponible el módulo `l10n_eu_nace
-<https://github.com/OCA/community-data-files/tree/17.0/l10n_eu_nace>`_ para que
+<https://github.com/OCA/community-data-files/tree/16.0/l10n_eu_nace>`_ para que
 este funcione.
 
 Para añadir las categorías CNAE 2009 (españolas) al listado de industrias, se tiene
