@@ -22,6 +22,7 @@
                     decoration-warning="send_state in ('sent_w_errors', 'incorrect', 'cancel_incorrect', 'cancel_w_errors')"
                     decoration-muted="send_state == 'cancel'"
                 />
+                <field name="payload_error" optional="show" decoration-danger="1" />
             </list>
         </field>
     </record>
@@ -49,6 +50,11 @@
                             <field name="entry_type" />
                             <field name="send_state" />
                         </group>
+                    </group>
+                    <group invisible="not payload_error">
+                        <div class="alert alert-warning" role="alert" colspan="2">
+                            <field name="payload_error" nolabel="1" />
+                        </div>
                     </group>
                     <notebook>
                         <page string="AEAT DATA">
@@ -88,6 +94,17 @@
                 <field name="document_id" />
                 <field name="company_id" />
                 <field name="document_hash" />
+                <filter
+                    string="Not sent"
+                    name="filter_not_sent"
+                    domain="[('send_state', '=', 'not_sent')]"
+                />
+                <filter
+                    string="Payload error"
+                    name="filter_payload_error"
+                    domain="[('payload_error', '!=', False)]"
+                />
+                <separator />
                 <filter
                     string="Company"
                     name="group_by_company"

@@ -14,6 +14,7 @@ from freezegun import freeze_time
 
 from odoo import Command
 from odoo.exceptions import UserError
+from odoo.tools import mute_logger
 from odoo.tools.misc import file_path
 
 from .common import TestVerifactuCommon
@@ -458,6 +459,7 @@ class TestL10nEsAeatVerifactuQR(TestVerifactuCommon):
 
 
 class TestVerifactuSendResponse(TestVerifactuCommon):
+    @mute_logger("odoo.addons.l10n_es_verifactu_oca.models.verifactu_invoice_entry")
     def test_create_activity_on_exception(self):
         """
         Creates an activity whenever the connection with VERI*FACTU
