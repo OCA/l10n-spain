@@ -80,6 +80,9 @@ class PosOrder(models.Model):
     def _is_aeat_simplified_invoice(self):
         return True
 
+    def _is_aeat_unidentified_document(self):
+        return True
+
     def _get_mapping_key(self):
         return "out_invoice"
 
