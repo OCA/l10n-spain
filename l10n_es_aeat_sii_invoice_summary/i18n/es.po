@@ -18,19 +18,9 @@ msgstr ""
 "X-Generator: Poedit 3.0.1\n"
 
 #. module: l10n_es_aeat_sii_invoice_summary
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_invoice_summary.field_account_move__display_name
-msgid "Display Name"
-msgstr "Nombre mostrado"
-
-#. module: l10n_es_aeat_sii_invoice_summary
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_invoice_summary.invoice_sii_move_summary_form_view
 msgid "First Invoice"
 msgstr "Primera factura"
-
-#. module: l10n_es_aeat_sii_invoice_summary
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_invoice_summary.field_account_move__id
-msgid "ID"
-msgstr "ID"
 
 #. module: l10n_es_aeat_sii_invoice_summary
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_invoice_summary.field_account_bank_statement_line__is_invoice_summary
@@ -50,11 +40,7 @@ msgid "Last Invoice"
 msgstr "Última factura"
 
 #. module: l10n_es_aeat_sii_invoice_summary
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_invoice_summary.field_account_move____last_update
-msgid "Last Modified on"
-msgstr "Modificado por última vez el"
-
-#. module: l10n_es_aeat_sii_invoice_summary
+#. odoo-python
 #: code:addons/l10n_es_aeat_sii_invoice_summary/models/account_move.py:0
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_invoice_summary.field_account_bank_statement_line__sii_invoice_summary_start
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_invoice_summary.field_account_move__sii_invoice_summary_start
@@ -64,6 +50,7 @@ msgid "SII Invoice Summary: First Invoice"
 msgstr "Resumen facturas simplificadas SII: Primera factura"
 
 #. module: l10n_es_aeat_sii_invoice_summary
+#. odoo-python
 #: code:addons/l10n_es_aeat_sii_invoice_summary/models/account_move.py:0
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_invoice_summary.field_account_bank_statement_line__sii_invoice_summary_end
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_invoice_summary.field_account_move__sii_invoice_summary_end
@@ -72,14 +59,19 @@ msgstr "Resumen facturas simplificadas SII: Primera factura"
 msgid "SII Invoice Summary: Last Invoice"
 msgstr "Resumen facturas simplificadas SII: Última factura"
 
-#. module: l10n_es_aeat_sii_invoice_summary
-#: code:addons/l10n_es_aeat_sii_invoice_summary/models/account_move.py:0
-#, python-format
-msgid "The partner has not a VAT configured."
-msgstr "El cliente no tiene un CIF/NIF configurado."
+#~ msgid "Display Name"
+#~ msgstr "Nombre mostrado"
 
-#. module: l10n_es_aeat_sii_invoice_summary
-#: code:addons/l10n_es_aeat_sii_invoice_summary/models/account_move.py:0
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Modificado por última vez el"
+
 #, python-format
-msgid "You can't make a supplier summary invoice."
-msgstr "No puede realizar una factura resumen a un proveedor."
+#~ msgid "The partner has not a VAT configured."
+#~ msgstr "El cliente no tiene un CIF/NIF configurado."
+
+#, python-format
+#~ msgid "You can't make a supplier summary invoice."
+#~ msgstr "No puede realizar una factura resumen a un proveedor."
