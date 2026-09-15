@@ -1,5 +1,5 @@
 # Copyright 2016-2017 Tecnativa - Sergio Teruel
-# Copyright 2019 Ignacio Ibeas <ignacio@acysos.com>
+# Copyright 2019 Acysos S.L. - Ignacio Ibeas <ignacio@acysos.com>
 # Copyright 2020 Tecnativa - João Marques
 # Copyright 2023 Planesnet - Luis Planes, Laia Espinosa, Raul Solana
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
@@ -43,7 +43,10 @@ class PaymentProvider(models.Model):
     )
     redsys_currency = fields.Char(default="978", required_if_provider="redsys")
     redsys_transaction_type = fields.Char(
-        "Transtaction Type", default="0", required_if_provider="redsys"
+        "Transaction Type",
+        default="0",
+        required_if_provider="redsys",
+        help="Use '0' for normal transaction or Use '1' for a preauthorization",
     )
     redsys_merchant_data = fields.Char("Merchant Data")
     redsys_merchant_lang = fields.Selection(
