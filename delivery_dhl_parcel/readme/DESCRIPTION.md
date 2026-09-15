@@ -10,4 +10,8 @@ siguiente:
 
 Usuario: 11000000EMPRESA Pass: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 
-Puede que acepte algún otro, pero no puedo verificarlo.
+Puede que se acepte algún otro formato, pero no ha sido posible verificarlo.
+
+DISCLAIMER: This app is independently developed and is not affiliated with, endorsed by,
+verified by, certified by, or approved by DHL. DHL is a trademark of DHL International
+GmbH and is referenced only to describe compatibility with DHL services.
