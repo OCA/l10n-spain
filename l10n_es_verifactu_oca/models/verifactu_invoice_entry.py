@@ -349,7 +349,7 @@ class VerifactuInvoiceEntry(models.Model):
         try:
             serv = rec._connect_verifactu()
             res = serv.RegFactuSistemaFacturacion(header, registro_factura_list)
-        except (RequestException, ConnectionError) as error:
+        except (RequestException, ConnectionError, UserError) as error:
             connection_error = repr(error)
             _logger.exception(
                 "VERI*FACTU call failed for documents %s",
