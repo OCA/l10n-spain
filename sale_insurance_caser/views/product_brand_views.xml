@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_product_brand_form_caser" model="ir.ui.view">
+        <field name="name">product.brand.form.caser</field>
+        <field name="model">product.brand</field>
+        <field name="inherit_id" ref="product_brand.view_product_brand_form" />
+        <field name="arch" type="xml">
+            <page name="description" position="after">
+                <page name="caser_codes" string="Caser Codes">
+                    <group>
+                        <field name="caser_mobile_code" />
+                        <field name="caser_tablet_code" />
+                    </group>
+                </page>
+            </page>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="channel_caser" model="queue.job.channel">
+        <field name="name">caser</field>
+        <field name="parent_id" ref="queue_job.channel_root" />
+    </record>
+</odoo>
