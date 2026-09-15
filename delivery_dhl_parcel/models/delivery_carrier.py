@@ -234,7 +234,7 @@ class DeliveryCarrier(models.Model):
             tracking.get("Code"), tracking.get("Status")
         )
         picking.delivery_state = DHL_PARCEL_DELIVERY_STATES_STATIC.get(
-            tracking.get("Code"), "incidence"
+            tracking.get("Code"), "incident"
         )
 
     def dhl_parcel_cancel_shipment(self, pickings):
