@@ -28,10 +28,8 @@ class StockPicking(models.Model):
     def _get_insurance_lines_with_lots(self):
         if not self.sale_id:
             return self.env["sale.order.line"]
-        return self.sale_id.order_line.filtered(
-            lambda line: line.is_caser_insurance
-            and line.caser_lot_id
-            and not line.caser_policy_number
+        return self.sale_id.order_line._caser_active_insurance_lines().filtered(
+            lambda line: line.caser_lot_id and not line.caser_policy_number
         )
 
     def _assign_caser_insured_lots(self):
@@ -59,12 +57,8 @@ class StockPicking(models.Model):
                     available_lines = available_lines[1:]
 
     def _get_available_insurance_lines_for_product(self, insurance_product):
-        return self.sale_id.order_line.filtered(
-            lambda line: (
-                line.is_caser_insurance
-                and not line.caser_lot_id
-                and line.product_id == insurance_product
-            )
+        return self.sale_id.order_line._caser_active_insurance_lines().filtered(
+            lambda line: not line.caser_lot_id and line.product_id == insurance_product
         )
 
     def _get_product_lines_to_insure(self):

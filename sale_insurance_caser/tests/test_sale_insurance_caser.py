@@ -383,6 +383,74 @@ class TestSaleInsuranceCaser(BaseCommon):
         self.assertEqual(order2.caser_insurance_state, "no")
         self.assertFalse(order2.caser_has_error)
 
+    def test_06_insurance_lines_zeroed_on_confirmed_order(self):
+        self._create_stock_with_lot(self.phone_product, "SN_ZERO_001")
+        order = self._create_sale_order_with_insurance(
+            [
+                Command.create(
+                    {
+                        "product_id": self.phone_product.id,
+                        "product_uom_qty": 1,
+                        "price_unit": 500.0,
+                        "caser_insure_quantity": 1,
+                    }
+                ),
+            ]
+        )
+        order.action_confirm()
+        product_line = order.order_line.filtered(
+            lambda line: not line.is_caser_insurance
+        )
+        product_line.caser_insure_quantity = 0
+        insurance_line = order.order_line.filtered("is_caser_insurance")
+        self.assertEqual(len(insurance_line), 1)
+        self.assertEqual(insurance_line.product_uom_qty, 0)
+
+    def test_07_insurance_lines_deleted_on_draft_order(self):
+        order = self._create_sale_order_with_insurance(
+            [
+                Command.create(
+                    {
+                        "product_id": self.phone_product.id,
+                        "product_uom_qty": 1,
+                        "price_unit": 500.0,
+                        "caser_insure_quantity": 1,
+                    }
+                ),
+            ]
+        )
+        self.assertTrue(order.order_line.filtered("is_caser_insurance"))
+        order.order_line.filtered(
+            lambda line: not line.is_caser_insurance
+        ).caser_insure_quantity = 0
+        self.assertFalse(order.order_line.filtered("is_caser_insurance"))
+
+    def test_08_dropped_insurance_line_is_out_of_the_caser_pipeline(self):
+        order = self._create_sale_order_with_insurance(
+            [
+                Command.create(
+                    {
+                        "product_id": self.phone_product.id,
+                        "product_uom_qty": 1,
+                        "price_unit": 500.0,
+                        "caser_insure_quantity": 1,
+                    }
+                ),
+            ]
+        )
+        order.action_confirm()
+        dropped = order.order_line.filtered("is_caser_insurance")
+        order.order_line.filtered(
+            lambda line: not line.is_caser_insurance
+        ).caser_insure_quantity = 0
+        self.assertEqual(dropped.product_uom_qty, 0)
+        self.assertEqual(order.caser_insurance_state, "no")
+        picking = order.picking_ids
+        self.assertFalse(picking._get_insurance_lines_with_lots())
+        self.assertFalse(
+            picking._get_available_insurance_lines_for_product(dropped.product_id)
+        )
+
     def test_04_error_handling(self):
         # Test error handling for API errors and price mismatche
         self._create_stock_with_lot(self.phone_product, "SN_ERROR_001")

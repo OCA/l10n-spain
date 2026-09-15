@@ -84,6 +84,11 @@ class SaleOrderLine(models.Model):
         self._sync_caser_insurance_lines()
         return res
 
+    def _caser_active_insurance_lines(self):
+        return self.filtered(
+            lambda line: line.is_caser_insurance and line.product_uom_qty
+        )
+
     def _sync_caser_insurance_lines(self):
         # Ensure each product line that requests insurance has exactly
         # caser_insure_quantity insurance lines linked to it, one per unit.
@@ -97,9 +102,8 @@ class SaleOrderLine(models.Model):
                 insurance_product = sale_line._get_caser_insurance_product()
                 if not insurance_product:
                     continue
-                existing = order.order_line.filtered(
-                    lambda line, sl=sale_line: line.is_caser_insurance
-                    and line.caser_insured_line_id == sl
+                existing = order.order_line._caser_active_insurance_lines().filtered(
+                    lambda line, sl=sale_line: line.caser_insured_line_id == sl
                 )
                 self._adjust_insurance_lines(
                     order,
@@ -110,11 +114,9 @@ class SaleOrderLine(models.Model):
                 )
             # Remove orphaned insurance lines (their product line was removed
             # or no longer needs insurance).
-            for ins_line in order.order_line.filtered(
-                lambda line: line.is_caser_insurance
-            ):
+            for ins_line in order.order_line._caser_active_insurance_lines():
                 if ins_line.caser_insured_line_id not in product_lines:
-                    ins_line.unlink()
+                    ins_line._remove_caser_insurance_lines()
 
     def action_retry_caser_insurance(self):
         self.ensure_one()
@@ -140,7 +142,7 @@ class SaleOrderLine(models.Model):
         # Bring the number of insurance lines for a given product line in line
         # with the requested quantity: remove excess or create missing ones.
         if quantity == 0:
-            existing.unlink()
+            existing._remove_caser_insurance_lines()
             return
         current = len(existing)
         if current > quantity:
@@ -158,7 +160,15 @@ class SaleOrderLine(models.Model):
         if len(without_lots) < count:
             with_lots = lines[: count - len(without_lots)]
             without_lots |= with_lots
-        without_lots.unlink()
+        without_lots._remove_caser_insurance_lines()
+
+    def _remove_caser_insurance_lines(self):
+        # Odoo forbids deleting lines of a confirmed order; zero them out instead.
+        protected = self._check_line_unlink()
+        (self - protected).unlink()
+        if not protected:
+            return True
+        return super(SaleOrderLine, protected).write({"product_uom_qty": 0})
 
     def _create_missing_lines(self, order, insurance_product, count, insured_line=None):
         for _ in range(count):

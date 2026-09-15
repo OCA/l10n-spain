@@ -36,12 +36,13 @@ class SaleOrder(models.Model):
 
     @api.depends(
         "order_line.is_caser_insurance",
+        "order_line.product_uom_qty",
         "order_line.caser_policy_number",
         "order_line.caser_error_message",
     )
     def _compute_caser_insurance_state(self):
         for order in self:
-            lines = order.order_line.filtered("is_caser_insurance")
+            lines = order.order_line._caser_active_insurance_lines()
             errors = lines.filtered("caser_error_message")
             if not lines:
                 state = "no"
