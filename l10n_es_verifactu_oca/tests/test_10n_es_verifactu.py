@@ -575,3 +575,17 @@ class TestVerifactuSendResponse(TestVerifactuCommon):
         )
         with self.assertRaises(UserError):
             self.invoice._check_verifactu_configuration()
+
+
+class TestVerifactuJournalRestrictMode(TestVerifactuCommon):
+    def test_restrict_mode_kept_when_disabling_verifactu(self):
+        journal = self.env["account.journal"].search(
+            [("company_id", "=", self.company.id), ("type", "=", "sale")], limit=1
+        )
+        self.assertTrue(journal.restrict_mode_hash_table)
+        invoice = self._create_test_invoice()
+        invoice.action_post()
+        self.assertTrue(invoice.inalterable_hash)
+        self.company.verifactu_enabled = False
+        self.assertFalse(journal.restrict_mode_hash_table_readonly)
+        self.assertTrue(journal.restrict_mode_hash_table)
