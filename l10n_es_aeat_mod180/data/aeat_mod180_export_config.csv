@@ -1,0 +1,20 @@
+id,export_config_id:id,sequence,name,fixed_value,expression,export_type,size,alignment,decimal_size,bool_yes,bool_no,apply_sign,subconfig_id:id,repeat_expression
+aeat_mod_180_main_export_line_01,aeat_mod_180_main_export_config,1,Constante: tipo de registro,1,,string,1,left,,,,,
+aeat_mod_180_main_export_line_02,aeat_mod_180_main_export_config,2,Identificacion: modelo,180,,string,3,left,,,,,
+aeat_mod_180_main_export_line_03,aeat_mod_180_main_export_config,3,Identificacion: ejercicio,,${object.year},string,4,left,,,,,
+aeat_mod_180_main_export_line_04,aeat_mod_180_main_export_config,4,Identificacion: nif declarante,,${object.company_vat},string,9,left,,,,,
+aeat_mod_180_main_export_line_05,aeat_mod_180_main_export_config,5,Identificacion: Apellidos o razon social,,${object.company_id.name},string,40,left,,,,,
+aeat_mod_180_main_export_line_06,aeat_mod_180_main_export_config,6,Identificacion: Tipo de soporte,,${object.support_type},string,1,left,,,,,
+aeat_mod_180_main_export_line_07,aeat_mod_180_main_export_config,7,Persona con quien relacionarse: teléfono,,${object.contact_phone},string,9,left,,,,,
+aeat_mod_180_main_export_line_08,aeat_mod_180_main_export_config,8,Persona con quien relacionarse: apellidos y nombre,,${object.contact_name},string,40,left,,,,,
+aeat_mod_180_main_export_line_09,aeat_mod_180_main_export_config,9,Numero identificativo de la declaración,,${object.name},string,13,left,,,,,
+aeat_mod180_main_export_line_10,aeat_mod_180_main_export_config,10,Complementaria - Declaracion complementaria,,${object.statement_type == 'C'},boolean,1,left,,X, ,,
+aeat_mod180_main_export_line_11,aeat_mod_180_main_export_config,11,Complementaria - Declaración sustitutiva,,${object.statement_type == 'S'},boolean,1,left,,X, ,,
+aeat_mod180_main_export_line_12,aeat_mod_180_main_export_config,12,Complementaria - Número justificante declaración anterior,,${object.previous_number if object.statement_type in ('S', 'C') else '0000000000000'},string,13,left,,,,,
+aeat_mod180_main_export_line_13,aeat_mod_180_main_export_config,13,Número total de perceptores,,${object.casilla_01},integer,9,right,,,,,False
+aeat_mod180_main_export_line_14,aeat_mod_180_main_export_config,14,Base retenciones e ingresos a cuenta: Signo,,${object.sign},string,1,right,,,,,
+aeat_mod180_main_export_line_15,aeat_mod_180_main_export_config,15,Base retenciones e ingresos a cuenta: Importe,,${object.casilla_02},float,15,right,2,,,,False
+aeat_mod180_main_export_line_16,aeat_mod_180_main_export_config,16,Retenciones e ingresos a cuenta[03],,${object.casilla_03},float,15,right,2,,,,False
+aeat_mod180_main_export_line_17,aeat_mod_180_main_export_config,17,Espacios en blanco,,,string,62,left,,,,,
+aeat_mod180_main_export_line_18,aeat_mod_180_main_export_config,18,Reservado para la administración: Sello electrónico,,,string,263,left,,,,,
+aeat_mod180_main_export_line_19,aeat_mod_180_main_export_config,19,Exportación modelo 180 - Tipo de Registro 1 – Registro de perceptor,,,subconfig,,,,,,,,aeat_mod180_sub01_export_config,object.recipient_record_ids
