@@ -1,0 +1,176 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_es_pos
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_es_pos
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos.res_config_settings_view_form
+msgid "Above this limit the simplified invoice won't be made"
+msgstr ""
+
+#. module: l10n_es_pos
+#: model:ir.model.fields,help:l10n_es_pos.field_pos_config__l10n_es_simplified_invoice_sequence_id
+#: model:ir.model.fields,help:l10n_es_pos.field_res_config_settings__pos_l10n_es_simplified_invoice_sequence_id
+msgid "Autogenerate for each POS created"
+msgstr ""
+
+#. module: l10n_es_pos
+#: model:ir.model,name:l10n_es_pos.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: l10n_es_pos
+#. odoo-javascript
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:0
+#, python-format
+msgid "Customer:"
+msgstr ""
+
+#. module: l10n_es_pos
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos.view_pos_order_filter_simplified_invoice
+msgid "Invoices"
+msgstr ""
+
+#. module: l10n_es_pos
+#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config__is_simplified_config
+msgid "Is Simplified Config"
+msgstr ""
+
+#. module: l10n_es_pos
+#: model:ir.model.fields,help:l10n_es_pos.field_pos_config__l10n_es_simplified_invoice_limit
+#: model:ir.model.fields,help:l10n_es_pos.field_res_config_settings__pos_l10n_es_simplified_invoice_limit
+msgid "Over this amount is not legally posible to create a simplified invoice"
+msgstr ""
+
+#. module: l10n_es_pos
+#: model:ir.model,name:l10n_es_pos.model_pos_config
+msgid "Point of Sale Configuration"
+msgstr ""
+
+#. module: l10n_es_pos
+#: model:ir.model,name:l10n_es_pos.model_pos_order
+msgid "Point of Sale Orders"
+msgstr ""
+
+#. module: l10n_es_pos
+#: model:ir.model,name:l10n_es_pos.model_pos_session
+msgid "Point of Sale Session"
+msgstr ""
+
+#. module: l10n_es_pos
+#: model:ir.model,name:l10n_es_pos.model_ir_sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: l10n_es_pos
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos.res_config_settings_view_form
+msgid "Set simplified invoice sequence for this POS"
+msgstr ""
+
+#. module: l10n_es_pos
+#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config__l10n_es_simplified_invoice_limit
+#: model:ir.model.fields,field_description:l10n_es_pos.field_res_config_settings__pos_l10n_es_simplified_invoice_limit
+msgid "Sim.Inv limit amount"
+msgstr ""
+
+#. module: l10n_es_pos
+#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config__l10n_es_simplified_invoice_number
+#: model:ir.model.fields,field_description:l10n_es_pos.field_res_config_settings__pos_l10n_es_simplified_invoice_number
+msgid "Sim.Inv number"
+msgstr ""
+
+#. module: l10n_es_pos
+#. odoo-javascript
+#: code:addons/l10n_es_pos/static/src/js/Screens/TicketScreen/TicketScreen.js:0
+#: code:addons/l10n_es_pos/static/src/xml/Screens/OrderManagementScreen/TicketScreen.xml:0
+#: code:addons/l10n_es_pos/static/src/xml/Screens/OrderManagementScreen/TicketScreen.xml:0
+#, python-format
+msgid "Simplified Invoice"
+msgstr ""
+
+#. module: l10n_es_pos
+#. odoo-python
+#: code:addons/l10n_es_pos/models/pos_config.py:0
+#: code:addons/l10n_es_pos/models/pos_config.py:0
+#, python-format
+msgid "Simplified Invoice %s"
+msgstr ""
+
+#. module: l10n_es_pos
+#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config__l10n_es_simplified_invoice_sequence_id
+#: model:ir.model.fields,field_description:l10n_es_pos.field_res_config_settings__pos_l10n_es_simplified_invoice_sequence_id
+msgid "Simplified Invoice IDs Sequence"
+msgstr ""
+
+#. module: l10n_es_pos
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos.res_config_settings_view_form
+msgid "Simplified Invoice Limit"
+msgstr ""
+
+#. module: l10n_es_pos
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos.res_config_settings_view_form
+msgid "Simplified Invoice Sequence"
+msgstr ""
+
+#. module: l10n_es_pos
+#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config__l10n_es_simplified_invoice_padding
+#: model:ir.model.fields,field_description:l10n_es_pos.field_res_config_settings__pos_l10n_es_simplified_invoice_padding
+msgid "Simplified Invoice padding"
+msgstr ""
+
+#. module: l10n_es_pos
+#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config__l10n_es_simplified_invoice_prefix
+#: model:ir.model.fields,field_description:l10n_es_pos.field_res_config_settings__pos_l10n_es_simplified_invoice_prefix
+msgid "Simplified Invoice prefix"
+msgstr ""
+
+#. module: l10n_es_pos
+#. odoo-javascript
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:0
+#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_order__is_l10n_es_simplified_invoice
+#, python-format
+msgid "Simplified invoice"
+msgstr ""
+
+#. module: l10n_es_pos
+#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_order__l10n_es_unique_id
+msgid "Simplified invoice number"
+msgstr ""
+
+#. module: l10n_es_pos
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos.view_pos_order_filter_simplified_invoice
+msgid "Simplified invoices"
+msgstr ""
+
+#. module: l10n_es_pos
+#. odoo-python
+#: code:addons/l10n_es_pos/models/ir_sequence.py:0
+#, python-format
+msgid ""
+"There is already a simplified invoice sequence with that prefix and it "
+"should be unique."
+msgstr ""
+
+#. module: l10n_es_pos
+#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config__iface_l10n_es_simplified_invoice
+#: model:ir.model.fields,field_description:l10n_es_pos.field_res_config_settings__pos_iface_l10n_es_simplified_invoice
+msgid "Use simplified invoices for this POS"
+msgstr ""
+
+#. module: l10n_es_pos
+#. odoo-javascript
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:0
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:0
+#, python-format
+msgid "on"
+msgstr ""
