@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ================
 Delivery GLS-ASM
 ================
@@ -17,7 +13,7 @@ Delivery GLS-ASM
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github
@@ -156,6 +152,36 @@ Depuración de errores
       posibles errores de comunicación.
    3. También puede activar Odoo con --log-level=debug para registrar
       las peticiones y las respuestas en el log.
+
+Reintentos automáticos para referencias duplicadas
+--------------------------------------------------
+
+   Cuando GLS devuelve un error de referencia duplicada ("The order
+   number already exists to this date and customer code.") el módulo
+   ahora intenta automáticamente reenviar el envío con un sufijo
+   incremental. Se añade un mensaje en el chatter cuando se requieren
+   reintentos y se modifica la referencia
+
+..
+
+   **Ejemplo de secuencia de reintentos:**
+
+   1. Intento inicial: ``WH/OUT/0123``
+   2. Si falla: ``WH/OUT/0123-1``
+   3. Si falla: ``WH/OUT/0123-2``
+   4. Continúa hasta máximo de reintentos configurado
+
+   **Configuración:**
+
+   - El sistema funciona automáticamente con **5 reintentos por
+     defecto**
+   - Opcionalmente, se puede configurar el número máximo de reintentos
+     mediante el parámetro del sistema
+     ``delivery_gls_asm.max_reference_retries`` (si no existe, usa 5 por
+     defecto)
+   - Si la referencia original + sufijo excede los 15 caracteres
+     permitidos por GLS, la referencia original se trunca
+     automáticamente para hacer espacio al sufijo
 
 Known issues / Roadmap
 ======================
