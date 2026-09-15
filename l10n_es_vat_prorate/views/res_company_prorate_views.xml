@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2022 Creu Blanca
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="res_company_vat_prorate_form_view">
+        <field name="name">res.company.vat.prorate.form (in l10n_es_vat_prorate)</field>
+        <field name="model">res.company.vat.prorate</field>
+        <field name="arch" type="xml">
+            <form>
+                <header />
+                <sheet>
+                    <group>
+                        <field name="date" />
+                        <field name="vat_prorate" />
+                        <field name="type" />
+                        <field
+                            name="special_vat_prorate_default"
+                            invisible="type == 'general'"
+                        />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="res_company_vat_prorate_list_view">
+        <field name="name">res.company.vat.prorate.list (in l10n_es_vat_prorate)</field>
+        <field name="model">res.company.vat.prorate</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="date" />
+                <field name="type" />
+                <field name="vat_prorate" />
+                <field
+                    name="special_vat_prorate_default"
+                    invisible="type == 'general'"
+                />
+            </list>
+        </field>
+    </record>
+</odoo>
