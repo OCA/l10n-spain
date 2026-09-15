@@ -248,6 +248,33 @@ class TestL10nIntraStatReport(AccountTestInvoicingCommon):
             self.assertTrue(items[0] in ("PT", "FR"))
             self.assertEqual(items[6], self.hs_code.local_code)
 
+    def test_dispatches_transaction_code_from_fiscal_position(self):
+        """Check the transaction code used in the declaration.
+
+        It is taken from the Intrastat type of the fiscal position of the
+        invoice (b2b => code 11, b2c => code 12), so no configuration at
+        company level is needed for it.
+        """
+        country2code = {
+            self.partner_1.country_id.code: "11",  # b2b fiscal position
+            self.partner_2.country_id.code: "12",  # b2c fiscal position
+        }
+        report_dispatches = self._create_declaration("dispatches")
+        report_dispatches.action_gather()
+        self.assertTrue(report_dispatches.computation_line_ids)
+        for line in report_dispatches.computation_line_ids:
+            self.assertEqual(
+                line.transaction_id.code, country2code[line.src_dest_country_code]
+            )
+        report_dispatches.draft2confirmed()
+        report_dispatches.confirmed2done()
+        csv_result = report_dispatches._generate_csv()
+        csv_lines = csv_result.decode("utf-8").rstrip().splitlines()
+        self.assertEqual(len(csv_lines), 2)
+        for csv_line in csv_lines:
+            items = csv_line.split(";")
+            self.assertEqual(items[3], country2code[items[0]])
+
     # TODO: Remove if a test is added in intrastat_product to test it
     @mute_logger("odoo.models.unlink")
     def test_report_creation_dispatches_notes_and_lines(self):
