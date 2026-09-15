@@ -493,12 +493,20 @@ class TestL10nEsAeatVerifactuQR(TestVerifactuCommon):
 
 
 class TestVerifactuSendResponse(TestVerifactuCommon):
+    @patch(
+        "odoo.addons.l10n_es_verifactu_oca.models.verifactu_invoice_entry."
+        "VerifactuInvoiceEntry._connect_verifactu"
+    )
     @mute_logger("odoo.addons.l10n_es_verifactu_oca.models.verifactu_invoice_entry")
-    def test_create_activity_on_exception(self):
+    def test_create_activity_on_exception(self, mock_connect):
         """
         Creates an activity whenever the connection with VERI*FACTU
         is not possible.
         """
+        mock_service = MagicMock()
+        mock_service.RegFactuSistemaFacturacion.return_value = {}
+        certificate_error = UserError("VERI*FACTU certificate is not configured")
+        mock_connect.side_effect = [certificate_error, certificate_error, mock_service]
         MailActivity = self.env["mail.activity"]
         ActivityType = self.env.ref(
             "l10n_es_verifactu_oca.mail_activity_data_exception"
