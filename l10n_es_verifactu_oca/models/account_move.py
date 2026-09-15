@@ -276,6 +276,8 @@ class AccountMove(models.Model):
                 "Huella": self.verifactu_hash,
             }
         )
+        if self.verifactu_macrodata:
+            inv_dict["Macrodato"] = "S"
         if self.aeat_state in ("sent_w_errors", "incorrect"):
             # en caso de subsanación, debe generar un nuevo hash en la factura
             inv_dict["Subsanacion"] = "S"

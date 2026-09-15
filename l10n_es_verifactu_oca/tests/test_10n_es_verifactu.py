@@ -458,6 +458,23 @@ class TestL10nEsAeatVerifactuQR(TestVerifactuCommon):
                 "Invoice should be marked as cancelled after VERI*FACTU processing.",
             )
 
+    def test_verifactu_macrodata(self):
+        """Macrodato must be reported as "S" in the RegistroAlta when the total
+        is over the limit; otherwise AEAT rejects the record (error 1139).
+
+        The omission case (normal amount -> no Macrodato) is already covered by
+        the reference-JSON tests, whose fixtures contain no Macrodato key.
+        """
+        self.assertFalse(self.invoice.verifactu_macrodata)
+        self.invoice.invoice_line_ids.price_unit = 130000000
+        self.assertTrue(self.invoice.verifactu_macrodata)
+        self._activate_certificate(self.certificate_password)
+        self.invoice.action_post()
+        self.assertEqual(
+            self.invoice._get_verifactu_invoice_dict()["RegistroAlta"].get("Macrodato"),
+            "S",
+        )
+
 
 class TestVerifactuSendResponse(TestVerifactuCommon):
     def test_create_activity_on_exception(self):
