@@ -332,14 +332,6 @@ class L10nEsVatBook(models.Model):
             self._account_move_line_domain(taxes=taxes, account=account)
         )
 
-    def get_pos_partner_ids(self):
-        return (
-            self.env["res.partner"]
-            .with_context(active_test=False)
-            .search([("aeat_anonymous_cash_customer", "=", True)])
-            .ids
-        )
-
     @ormcache("self.id")
     def get_special_taxes_dic(self):
         domain = [("special_tax_group", "!=", False)]
@@ -378,7 +370,7 @@ class L10nEsVatBook(models.Model):
             partner = rp_model.browse(line_vals["partner_id"])
             if (
                 not partner._has_valid_aeat_identification()
-                and line_vals["partner_id"] not in self.get_pos_partner_ids()
+                and not partner.aeat_anonymous_cash_customer
             ):
                 line_vals["exception_text"] = self.env._("Without VAT")
 
