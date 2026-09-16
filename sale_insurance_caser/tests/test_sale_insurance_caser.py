@@ -451,6 +451,53 @@ class TestSaleInsuranceCaser(BaseCommon):
             picking._get_available_insurance_lines_for_product(dropped.product_id)
         )
 
+    def test_09_premium_is_never_repriced_by_the_pricelist(self):
+        insurance_product = self.env.ref(
+            "sale_insurance_caser.caser_price_range_mobile_5"
+        ).product_id
+        pricelist = self.env["product.pricelist"].create(
+            {
+                "name": "Insurance mispriced",
+                "item_ids": [
+                    Command.create(
+                        {
+                            "applied_on": "1_product",
+                            "product_tmpl_id": insurance_product.product_tmpl_id.id,
+                            "compute_price": "fixed",
+                            "fixed_price": 2.0,
+                        }
+                    )
+                ],
+            }
+        )
+        order = self.env["sale.order"].create(
+            {
+                "partner_id": self.partner.id,
+                "pricelist_id": pricelist.id,
+                "order_line": [
+                    Command.create(
+                        {
+                            "product_id": self.phone_product.id,
+                            "product_uom_qty": 1,
+                            "price_unit": 500.0,
+                            "caser_insure_quantity": 1,
+                        }
+                    ),
+                ],
+            }
+        )
+        insurance_line = order.order_line.filtered("is_caser_insurance")
+        premium = insurance_product.list_price
+        self.assertEqual(insurance_line.price_unit, premium)
+        order._recompute_prices()
+        self.assertEqual(insurance_line.price_unit, premium)
+        order.action_confirm()
+        order.order_line.filtered(
+            lambda line: not line.is_caser_insurance
+        ).caser_insure_quantity = 0
+        self.assertEqual(insurance_line.product_uom_qty, 0)
+        self.assertEqual(insurance_line.price_unit, premium)
+
     def test_04_error_handling(self):
         # Test error handling for API errors and price mismatche
         self._create_stock_with_lot(self.phone_product, "SN_ERROR_001")

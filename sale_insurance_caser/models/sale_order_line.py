@@ -41,6 +41,15 @@ class SaleOrderLine(models.Model):
                 }
             )
 
+    @api.depends("product_id", "product_uom", "product_uom_qty")
+    def _compute_price_unit(self):
+        # The insurance price comes from Caser's tarification, it is never a
+        # pricelist price: keep it whenever the core recomputes prices.
+        priced_insurance = self.filtered(
+            lambda line: line.is_caser_insurance and line.price_unit
+        )
+        return super(SaleOrderLine, self - priced_insurance)._compute_price_unit()
+
     def unlink(self):
         orders = self.filtered(lambda line: not line.is_caser_insurance).mapped(
             "order_id"
