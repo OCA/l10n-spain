@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 17.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -15,45 +15,103 @@ msgstr ""
 
 #. module: l10n_es_atc_mod425
 #: model:ir.model.fields,field_description:l10n_es_atc_mod425.field_l10n_es_atc_mod425_report__main_activity_def_prorrata
-#: model:ir.model.fields,field_description:l10n_es_atc_mod425.field_l10n_es_atc_mod425_report__other_fifth_activity_def_prorrata
-#: model:ir.model.fields,field_description:l10n_es_atc_mod425.field_l10n_es_atc_mod425_report__other_first_activity_def_prorrata
-#: model:ir.model.fields,field_description:l10n_es_atc_mod425.field_l10n_es_atc_mod425_report__other_fourth_activity_def_prorrata
-#: model:ir.model.fields,field_description:l10n_es_atc_mod425.field_l10n_es_atc_mod425_report__other_second_activity_def_prorrata
-#: model:ir.model.fields,field_description:l10n_es_atc_mod425.field_l10n_es_atc_mod425_report__other_third_activity_def_prorrata
 msgid "% Definitivo de la prorrata genera"
 msgstr ""
 
 #. module: l10n_es_atc_mod425
+#: model:ir.model.fields,field_description:l10n_es_atc_mod425.field_l10n_es_atc_mod425_report__other_first_activity_def_prorrata
+msgid "% Definitivo de la prorrata genera (1)"
+msgstr ""
+
+#. module: l10n_es_atc_mod425
+#: model:ir.model.fields,field_description:l10n_es_atc_mod425.field_l10n_es_atc_mod425_report__other_second_activity_def_prorrata
+msgid "% Definitivo de la prorrata genera (2)"
+msgstr ""
+
+#. module: l10n_es_atc_mod425
+#: model:ir.model.fields,field_description:l10n_es_atc_mod425.field_l10n_es_atc_mod425_report__other_third_activity_def_prorrata
+msgid "% Definitivo de la prorrata genera (3)"
+msgstr ""
+
+#. module: l10n_es_atc_mod425
+#: model:ir.model.fields,field_description:l10n_es_atc_mod425.field_l10n_es_atc_mod425_report__other_fourth_activity_def_prorrata
+msgid "% Definitivo de la prorrata genera (4)"
+msgstr ""
+
+#. module: l10n_es_atc_mod425
+#: model:ir.model.fields,field_description:l10n_es_atc_mod425.field_l10n_es_atc_mod425_report__other_fifth_activity_def_prorrata
+msgid "% Definitivo de la prorrata genera (5)"
+msgstr ""
+
+#. module: l10n_es_atc_mod425
 #: model:ir.model.fields,field_description:l10n_es_atc_mod425.field_l10n_es_atc_mod425_report__main_activity_esp_prorrata
-#: model:ir.model.fields,field_description:l10n_es_atc_mod425.field_l10n_es_atc_mod425_report__other_fifth_activity_esp_prorrata
-#: model:ir.model.fields,field_description:l10n_es_atc_mod425.field_l10n_es_atc_mod425_report__other_first_activity_esp_prorrata
-#: model:ir.model.fields,field_description:l10n_es_atc_mod425.field_l10n_es_atc_mod425_report__other_fourth_activity_esp_prorrata
-#: model:ir.model.fields,field_description:l10n_es_atc_mod425.field_l10n_es_atc_mod425_report__other_second_activity_esp_prorrata
-#: model:ir.model.fields,field_description:l10n_es_atc_mod425.field_l10n_es_atc_mod425_report__other_third_activity_esp_prorrata
 msgid "% Especial de la prorrata genera"
 msgstr ""
 
 #. module: l10n_es_atc_mod425
+#: model:ir.model.fields,field_description:l10n_es_atc_mod425.field_l10n_es_atc_mod425_report__other_first_activity_esp_prorrata
+msgid "% Especial de la prorrata genera (1)"
+msgstr ""
+
+#. module: l10n_es_atc_mod425
+#: model:ir.model.fields,field_description:l10n_es_atc_mod425.field_l10n_es_atc_mod425_report__other_second_activity_esp_prorrata
+msgid "% Especial de la prorrata genera (2)"
+msgstr ""
+
+#. module: l10n_es_atc_mod425
+#: model:ir.model.fields,field_description:l10n_es_atc_mod425.field_l10n_es_atc_mod425_report__other_third_activity_esp_prorrata
+msgid "% Especial de la prorrata genera (3)"
+msgstr ""
+
+#. module: l10n_es_atc_mod425
+#: model:ir.model.fields,field_description:l10n_es_atc_mod425.field_l10n_es_atc_mod425_report__other_fourth_activity_esp_prorrata
+msgid "% Especial de la prorrata genera (4)"
+msgstr ""
+
+#. module: l10n_es_atc_mod425
+#: model:ir.model.fields,field_description:l10n_es_atc_mod425.field_l10n_es_atc_mod425_report__other_fifth_activity_esp_prorrata
+msgid "% Especial de la prorrata genera (5)"
+msgstr ""
+
+#. module: l10n_es_atc_mod425
 #: model:ir.model.fields,field_description:l10n_es_atc_mod425.field_l10n_es_atc_mod425_report__main_activity_pro_prorrata
-#: model:ir.model.fields,field_description:l10n_es_atc_mod425.field_l10n_es_atc_mod425_report__other_fifth_activity_pro_prorrata
-#: model:ir.model.fields,field_description:l10n_es_atc_mod425.field_l10n_es_atc_mod425_report__other_first_activity_pro_prorrata
-#: model:ir.model.fields,field_description:l10n_es_atc_mod425.field_l10n_es_atc_mod425_report__other_fourth_activity_pro_prorrata
-#: model:ir.model.fields,field_description:l10n_es_atc_mod425.field_l10n_es_atc_mod425_report__other_second_activity_pro_prorrata
-#: model:ir.model.fields,field_description:l10n_es_atc_mod425.field_l10n_es_atc_mod425_report__other_third_activity_pro_prorrata
 msgid "% Provisional de la prorrata genera"
+msgstr ""
+
+#. module: l10n_es_atc_mod425
+#: model:ir.model.fields,field_description:l10n_es_atc_mod425.field_l10n_es_atc_mod425_report__other_first_activity_pro_prorrata
+msgid "% Provisional de la prorrata genera (1)"
+msgstr ""
+
+#. module: l10n_es_atc_mod425
+#: model:ir.model.fields,field_description:l10n_es_atc_mod425.field_l10n_es_atc_mod425_report__other_second_activity_pro_prorrata
+msgid "% Provisional de la prorrata genera (2)"
+msgstr ""
+
+#. module: l10n_es_atc_mod425
+#: model:ir.model.fields,field_description:l10n_es_atc_mod425.field_l10n_es_atc_mod425_report__other_third_activity_pro_prorrata
+msgid "% Provisional de la prorrata genera (3)"
+msgstr ""
+
+#. module: l10n_es_atc_mod425
+#: model:ir.model.fields,field_description:l10n_es_atc_mod425.field_l10n_es_atc_mod425_report__other_fourth_activity_pro_prorrata
+msgid "% Provisional de la prorrata genera (4)"
+msgstr ""
+
+#. module: l10n_es_atc_mod425
+#: model:ir.model.fields,field_description:l10n_es_atc_mod425.field_l10n_es_atc_mod425_report__other_fifth_activity_pro_prorrata
+msgid "% Provisional de la prorrata genera (5)"
 msgstr ""
 
 #. module: l10n_es_atc_mod425
 #. odoo-python
 #: code:addons/l10n_es_atc_mod425/models/mod425.py:0
-#, python-format
 msgid "- Please set the Public Way in the company"
 msgstr ""
 
 #. module: l10n_es_atc_mod425
 #. odoo-python
 #: code:addons/l10n_es_atc_mod425/models/mod425.py:0
-#, python-format
 msgid "- Please set the code in the city: %s"
 msgstr ""
 
@@ -421,15 +479,12 @@ msgid "Código 5ª régimen"
 msgstr ""
 
 #. module: l10n_es_atc_mod425
-#. odoo-python
-#: code:addons/l10n_es_atc_mod425/models/mod425.py:0
 #: model:ir.model.fields,help:l10n_es_atc_mod425.field_l10n_es_atc_mod425_report__first_representative_notary
 #: model:ir.model.fields,help:l10n_es_atc_mod425.field_l10n_es_atc_mod425_report__second_representative_notary
 #: model:ir.model.fields,help:l10n_es_atc_mod425.field_l10n_es_atc_mod425_report__third_representative_notary
-#, python-format
 msgid ""
-"Código de la notaría en la que se concedió el poder de representación para "
-"esta persona."
+"Código de la notaría en la que se concedió el\n"
+"poder de representación para esta persona."
 msgstr ""
 
 #. module: l10n_es_atc_mod425
@@ -681,12 +736,9 @@ msgid "Nombre del tercer representante"
 msgstr ""
 
 #. module: l10n_es_atc_mod425
-#. odoo-python
-#: code:addons/l10n_es_atc_mod425/models/mod425.py:0
 #: model:ir.model.fields,help:l10n_es_atc_mod425.field_l10n_es_atc_mod425_report__first_representative_name
 #: model:ir.model.fields,help:l10n_es_atc_mod425.field_l10n_es_atc_mod425_report__second_representative_name
 #: model:ir.model.fields,help:l10n_es_atc_mod425.field_l10n_es_atc_mod425_report__third_representative_name
-#, python-format
 msgid "Nombre y apellidos del representante"
 msgstr ""
 
@@ -773,6 +825,11 @@ msgstr ""
 #. module: l10n_es_atc_mod425
 #: model_terms:ir.ui.view,arch_db:l10n_es_atc_mod425.view_l10n_es_atc_mod425_report_form
 msgid "Primer representante"
+msgstr ""
+
+#. module: l10n_es_atc_mod425
+#: model:ir.model.fields,field_description:l10n_es_atc_mod425.field_l10n_es_atc_mod425_report__rating_ids
+msgid "Ratings"
 msgstr ""
 
 #. module: l10n_es_atc_mod425
@@ -886,7 +943,6 @@ msgstr ""
 #. module: l10n_es_atc_mod425
 #. odoo-python
 #: code:addons/l10n_es_atc_mod425/models/mod425.py:0
-#, python-format
 msgid "You cannot make complementary reports for this model."
 msgstr ""
 
