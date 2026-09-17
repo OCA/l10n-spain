@@ -159,6 +159,7 @@ msgstr ""
 #: model:ir.model.constraint,message:l10n_es_aeat.constraint_l10n_es_atc_mod415_report_name_uniq
 #: model:ir.model.constraint,message:l10n_es_aeat.constraint_l10n_es_atc_mod417_report_name_uniq
 #: model:ir.model.constraint,message:l10n_es_aeat.constraint_l10n_es_atc_mod420_report_name_uniq
+#: model:ir.model.constraint,message:l10n_es_aeat.constraint_l10n_es_atc_mod425_report_name_uniq
 #: model:ir.model.constraint,message:l10n_es_aeat.constraint_l10n_es_atc_report_name_uniq
 #: model:ir.model.constraint,message:l10n_es_aeat.constraint_l10n_es_vat_book_name_uniq
 msgid "AEAT report identifier must be unique"
@@ -803,6 +804,7 @@ msgstr "Odustani"
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_atc_mod415_report__state__cancelled
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_atc_mod417_report__state__cancelled
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_atc_mod420_report__state__cancelled
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_atc_mod425_report__state__cancelled
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_atc_report__state__cancelled
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_vat_book__state__cancelled
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_search
@@ -1076,6 +1078,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_atc_mod415_report__statement_type__c
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_atc_mod417_report__statement_type__c
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_atc_mod420_report__statement_type__c
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_atc_mod425_report__statement_type__c
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_atc_report__statement_type__c
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_vat_book__statement_type__c
 msgid "Complementary"
@@ -1315,6 +1318,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_atc_mod415_report__support_type__c
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_atc_mod417_report__support_type__c
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_atc_mod420_report__support_type__c
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_atc_mod425_report__support_type__c
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_atc_report__support_type__c
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_vat_book__support_type__c
 msgid "DVD"
@@ -1402,6 +1406,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_atc_mod415_report__state__done
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_atc_mod417_report__state__done
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_atc_mod420_report__state__done
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_atc_mod425_report__state__done
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_atc_report__state__done
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_vat_book__state__done
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_search
@@ -1438,6 +1443,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_atc_mod415_report__state__draft
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_atc_mod417_report__state__draft
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_atc_mod420_report__state__draft
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_atc_mod425_report__state__draft
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_atc_report__state__draft
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_vat_book__state__draft
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_form
@@ -2455,6 +2461,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_atc_mod415_report__statement_type__n
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_atc_mod417_report__statement_type__n
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_atc_mod420_report__statement_type__n
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_atc_mod425_report__statement_type__n
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_atc_report__statement_type__n
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_vat_book__statement_type__n
 msgid "Normal"
@@ -2890,6 +2897,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_atc_mod415_report__state__posted
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_atc_mod417_report__state__posted
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_atc_mod420_report__state__posted
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_atc_mod425_report__state__posted
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_atc_report__state__posted
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_vat_book__state__posted
 msgid "Posted"
@@ -2944,6 +2952,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_atc_mod415_report__state__calculated
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_atc_mod417_report__state__calculated
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_atc_mod420_report__state__calculated
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_atc_mod425_report__state__calculated
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_atc_report__state__calculated
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_vat_book__state__calculated
 msgid "Processed"
@@ -3383,6 +3392,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_atc_mod415_report__statement_type__s
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_atc_mod417_report__statement_type__s
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_atc_mod420_report__statement_type__s
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_atc_mod425_report__statement_type__s
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_atc_report__statement_type__s
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_vat_book__statement_type__s
 msgid "Substitutive"
@@ -3471,6 +3481,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_atc_mod415_report__support_type__t
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_atc_mod417_report__support_type__t
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_atc_mod420_report__support_type__t
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_atc_mod425_report__support_type__t
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_atc_report__support_type__t
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_vat_book__support_type__t
 msgid "Telematics"
