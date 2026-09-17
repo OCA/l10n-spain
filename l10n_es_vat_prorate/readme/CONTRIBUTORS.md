@@ -1,0 +1,15 @@
+- Enric Tobella
+- [Tecnativa](https://www.tecnativa.com/):
+  - Pedro M. Baeza
+  - Carolina Fernandez
+  - Christian Ramos
+- [Sygel](https://www.sygel.es/):
+  - Harald Panten
+  - Manuel Regidor
+  - Alberto Martínez
+  - Anxo82
+  - ValentinVinagre
+- [Moduon](https://www.moduon.team/):
+  - Rafael Blasco
+  - Andrii Kompaniiets
+  - Emilio Pascual
