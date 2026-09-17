@@ -29,8 +29,9 @@
                 <button
                     name="button_compute"
                     type="object"
-                    string="Calcular prorrata definitiva"
-                    class="btn-secondary"
+                    string="Calculate final pro-rata amount"
+                    colspan="2"
+                    class="btn btn-secondary m-1 "
                     invisible="not with_vat_prorate or period_type not in ['4T','12']"
                 />
                 <field
