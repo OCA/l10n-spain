@@ -7,7 +7,8 @@ import datetime
 import math
 import re
 
-from odoo import _, api, exceptions, fields, models
+from odoo import Command, api, exceptions, fields, models
+from odoo.fields import Domain
 from odoo.tools import float_is_zero
 
 
@@ -67,7 +68,7 @@ class L10nEsAeatMod303Report(models.Model):
     def check_vat_prorate_percent(self):
         if not (0 <= self.vat_prorate_percent <= 100):
             raise exceptions.ValidationError(
-                _("VAT prorate percent must be between 0.00 and 100")
+                self.env._("VAT prorate percent must be between 0.00 and 100")
             )
 
     def _general_prorate_method(self):
@@ -97,13 +98,23 @@ class L10nEsAeatMod303Report(models.Model):
 
     def _special_prorate_method(self):
         self.ensure_one()
-        domain = [
-            ("company_id", "child_of", self.company_id.id),
-            ("date", ">=", datetime.date(year=self.date_start.year, month=1, day=1)),
-            ("date", "<=", datetime.date(year=self.date_end.year, month=12, day=31)),
-            ("parent_state", "=", "posted"),
-            ("vat_prorate", "=", True),
-        ]
+        domain = Domain(
+            [
+                ("company_id", "child_of", self.company_id.id),
+                (
+                    "date",
+                    ">=",
+                    datetime.date(year=self.date_start.year, month=1, day=1),
+                ),
+                (
+                    "date",
+                    "<=",
+                    datetime.date(year=self.date_end.year, month=12, day=31),
+                ),
+                ("parent_state", "=", "posted"),
+                ("vat_prorate", "=", True),
+            ]
+        )
         company_prorate = self.prorate_id.vat_prorate
         theoretical_prorate = 100 - company_prorate
         diff_perc = self.vat_prorate_percent - company_prorate
@@ -156,7 +167,7 @@ class L10nEsAeatMod303Report(models.Model):
         lines = super()._prepare_regularization_extra_move_lines()
         if self.casilla_44 and self.with_vat_prorate:
             line_vals = {
-                "name": _("VAT prorate regularization"),
+                "name": self.env._("VAT prorate regularization"),
                 "account_id": self.prorate_account_id.id,
                 "debit": -self.casilla_44 if self.casilla_44 < 0 else 0.0,
                 "credit": self.casilla_44 if self.casilla_44 > 0 else 0.0,
@@ -190,14 +201,14 @@ class L10nEsAeatMod303Report(models.Model):
             "field_type": "base",
             "sum_type": "both",
             "exigible_type": "yes",
-            "tax_xmlid_ids": [(4, self.env.ref(x).id) for x in affected_taxes],
+            "tax_xmlid_ids": [Command.link(self.env.ref(x).id) for x in affected_taxes],
         }
         map_line = MapLine.new(mapline_vals)
         move_lines = self._get_tax_lines(date_from, date_to, map_line)
         taxed = -sum(move_lines.mapped("balance"))
         # Get base amount of exempt operations
         mapline_vals["tax_xmlid_ids"] = [
-            (4, self.env.ref(f"l10n_es_aeat_mod303.{x}").id)
+            Command.link(self.env.ref(f"l10n_es_aeat_mod303.{x}").id)
             for x in [
                 "s_iva0",
                 "s_iva0_art22",
