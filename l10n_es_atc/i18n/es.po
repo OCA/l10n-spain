@@ -31,6 +31,7 @@ msgstr "- La empresa %s no tiene código postal"
 #. module: l10n_es_atc
 #: model:ir.model.fields.selection,name:l10n_es_atc.selection__l10n_es_atc_mod417_report__payment_type__1
 #: model:ir.model.fields.selection,name:l10n_es_atc.selection__l10n_es_atc_mod420_report__payment_type__1
+#: model:ir.model.fields.selection,name:l10n_es_atc.selection__l10n_es_atc_mod425_report__payment_type__1
 #: model:ir.model.fields.selection,name:l10n_es_atc.selection__l10n_es_atc_report__payment_type__1
 msgid "1 - Efectivo"
 msgstr "1 - Efectivo"
@@ -38,6 +39,7 @@ msgstr "1 - Efectivo"
 #. module: l10n_es_atc
 #: model:ir.model.fields.selection,name:l10n_es_atc.selection__l10n_es_atc_mod417_report__payment_type__2
 #: model:ir.model.fields.selection,name:l10n_es_atc.selection__l10n_es_atc_mod420_report__payment_type__2
+#: model:ir.model.fields.selection,name:l10n_es_atc.selection__l10n_es_atc_mod425_report__payment_type__2
 #: model:ir.model.fields.selection,name:l10n_es_atc.selection__l10n_es_atc_report__payment_type__2
 msgid "2 - Adeudo en cuenta"
 msgstr "2 - Adeudo en cuenta"
@@ -45,6 +47,7 @@ msgstr "2 - Adeudo en cuenta"
 #. module: l10n_es_atc
 #: model:ir.model.fields.selection,name:l10n_es_atc.selection__l10n_es_atc_mod417_report__payment_type__3
 #: model:ir.model.fields.selection,name:l10n_es_atc.selection__l10n_es_atc_mod420_report__payment_type__3
+#: model:ir.model.fields.selection,name:l10n_es_atc.selection__l10n_es_atc_mod425_report__payment_type__3
 #: model:ir.model.fields.selection,name:l10n_es_atc.selection__l10n_es_atc_report__payment_type__3
 msgid "3 - Pago fraccionado"
 msgstr "3 - Pago fraccionado"
@@ -52,6 +55,7 @@ msgstr "3 - Pago fraccionado"
 #. module: l10n_es_atc
 #: model:ir.model.fields.selection,name:l10n_es_atc.selection__l10n_es_atc_mod417_report__payment_type__4
 #: model:ir.model.fields.selection,name:l10n_es_atc.selection__l10n_es_atc_mod420_report__payment_type__4
+#: model:ir.model.fields.selection,name:l10n_es_atc.selection__l10n_es_atc_mod425_report__payment_type__4
 #: model:ir.model.fields.selection,name:l10n_es_atc.selection__l10n_es_atc_report__payment_type__4
 msgid "4 - Domiciliación bancaria"
 msgstr "4 - Domiciliación bancaria"
@@ -59,6 +63,7 @@ msgstr "4 - Domiciliación bancaria"
 #. module: l10n_es_atc
 #: model:ir.model.fields.selection,name:l10n_es_atc.selection__l10n_es_atc_mod417_report__payment_type__5
 #: model:ir.model.fields.selection,name:l10n_es_atc.selection__l10n_es_atc_mod420_report__payment_type__5
+#: model:ir.model.fields.selection,name:l10n_es_atc.selection__l10n_es_atc_mod425_report__payment_type__5
 #: model:ir.model.fields.selection,name:l10n_es_atc.selection__l10n_es_atc_report__payment_type__5
 msgid "5 - Pago telemático"
 msgstr "5 - Pago telemático"
@@ -66,6 +71,7 @@ msgstr "5 - Pago telemático"
 #. module: l10n_es_atc
 #: model:ir.model.fields.selection,name:l10n_es_atc.selection__l10n_es_atc_mod417_report__payment_type__6
 #: model:ir.model.fields.selection,name:l10n_es_atc.selection__l10n_es_atc_mod420_report__payment_type__6
+#: model:ir.model.fields.selection,name:l10n_es_atc.selection__l10n_es_atc_mod425_report__payment_type__6
 #: model:ir.model.fields.selection,name:l10n_es_atc.selection__l10n_es_atc_report__payment_type__6
 msgid "6 - Aplazamiento 6 meses medidas Covid"
 msgstr "6 - Aplazamiento 6 meses medidas Covid"
@@ -240,6 +246,7 @@ msgstr "Si está marcado, algunos mensajes presentan un error de entrega."
 #. module: l10n_es_atc
 #: model:ir.model.fields.selection,name:l10n_es_atc.selection__l10n_es_atc_mod417_report__output_type__b
 #: model:ir.model.fields.selection,name:l10n_es_atc.selection__l10n_es_atc_mod420_report__output_type__b
+#: model:ir.model.fields.selection,name:l10n_es_atc.selection__l10n_es_atc_mod425_report__output_type__b
 #: model:ir.model.fields.selection,name:l10n_es_atc.selection__l10n_es_atc_report__output_type__b
 #, fuzzy
 msgid "Imprimir Borrador"
@@ -248,6 +255,7 @@ msgstr "Imprimir Borrador"
 #. module: l10n_es_atc
 #: model:ir.model.fields.selection,name:l10n_es_atc.selection__l10n_es_atc_mod417_report__output_type__i
 #: model:ir.model.fields.selection,name:l10n_es_atc.selection__l10n_es_atc_mod420_report__output_type__i
+#: model:ir.model.fields.selection,name:l10n_es_atc.selection__l10n_es_atc_mod425_report__output_type__i
 #: model:ir.model.fields.selection,name:l10n_es_atc.selection__l10n_es_atc_report__output_type__i
 #, fuzzy
 msgid "Imprimir autoliquidación final"
@@ -366,6 +374,7 @@ msgstr ""
 #. module: l10n_es_atc
 #: model:ir.model.fields.selection,name:l10n_es_atc.selection__l10n_es_atc_mod417_report__output_type__t
 #: model:ir.model.fields.selection,name:l10n_es_atc.selection__l10n_es_atc_mod420_report__output_type__t
+#: model:ir.model.fields.selection,name:l10n_es_atc.selection__l10n_es_atc_mod425_report__output_type__t
 #: model:ir.model.fields.selection,name:l10n_es_atc.selection__l10n_es_atc_report__output_type__t
 #, fuzzy
 msgid "Presentación telemática"
