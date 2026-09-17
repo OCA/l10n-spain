@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -14,11 +14,9 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_es_pos_by_device
-#: model_terms:ir.ui.view,arch_db:l10n_es_pos_by_device.view_res_config_settings_pos_seq_device
-msgid ""
-"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
-"specific.\" aria-label=\"Values set here are company-specific.\" "
-"groups=\"base.group_multi_company\" role=\"img\"/>"
+#. odoo-javascript
+#: code:addons/l10n_es_pos_by_device/static/src/app/components/chrome/chrome.esm.js:0
+msgid "A physical device must be selected to use the POS."
 msgstr ""
 
 #. module: l10n_es_pos_by_device
@@ -29,10 +27,9 @@ msgstr ""
 
 #. module: l10n_es_pos_by_device
 #. odoo-javascript
-#: code:addons/l10n_es_pos_by_device/static/src/js/PaymentScreen.esm.js:0
-#: code:addons/l10n_es_pos_by_device/static/src/js/Screens/Chrome/Chrome.esm.js:0
-#, python-format
-msgid "Cannot establish device. Clossing POS."
+#: code:addons/l10n_es_pos_by_device/static/src/app/components/chrome/chrome.esm.js:0
+#: code:addons/l10n_es_pos_by_device/static/src/app/screens/payment_screen/payment_screen.esm.js:0
+msgid "Cannot establish device. Closing POS."
 msgstr ""
 
 #. module: l10n_es_pos_by_device
@@ -61,7 +58,7 @@ msgid "Created on"
 msgstr ""
 
 #. module: l10n_es_pos_by_device
-#: model_terms:ir.ui.view,arch_db:l10n_es_pos_by_device.pos_device_view_tree
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos_by_device.pos_device_view_list
 msgid "Device locked"
 msgstr ""
 
@@ -79,11 +76,6 @@ msgstr ""
 #: model:ir.model.fields,help:l10n_es_pos_by_device.field_pos_config__pos_device_ids
 #: model:ir.model.fields,help:l10n_es_pos_by_device.field_res_config_settings__pos_device_ids
 msgid "If left empty, all devices will be selectable"
-msgstr ""
-
-#. module: l10n_es_pos_by_device
-#: model:ir.model.fields,field_description:l10n_es_pos_by_device.field_pos_device____last_update
-msgid "Last Modified on"
 msgstr ""
 
 #. module: l10n_es_pos_by_device
@@ -108,9 +100,14 @@ msgstr ""
 
 #. module: l10n_es_pos_by_device
 #. odoo-javascript
-#: code:addons/l10n_es_pos_by_device/static/src/js/Screens/Chrome/DeviceName.esm.js:0
-#, python-format
+#: code:addons/l10n_es_pos_by_device/static/src/app/components/device_name/device_name.esm.js:0
 msgid "No device"
+msgstr ""
+
+#. module: l10n_es_pos_by_device
+#. odoo-javascript
+#: code:addons/l10n_es_pos_by_device/static/src/app/components/chrome/chrome.esm.js:0
+msgid "No device selected"
 msgstr ""
 
 #. module: l10n_es_pos_by_device
@@ -155,14 +152,8 @@ msgid "Pos Sequence By Device"
 msgstr ""
 
 #. module: l10n_es_pos_by_device
-#: model_terms:ir.ui.view,arch_db:l10n_es_pos_by_device.view_res_config_settings_pos_seq_device
-msgid "Secuencing by physical device"
-msgstr ""
-
-#. module: l10n_es_pos_by_device
 #. odoo-javascript
-#: code:addons/l10n_es_pos_by_device/static/src/js/Screens/Chrome/Chrome.esm.js:0
-#, python-format
+#: code:addons/l10n_es_pos_by_device/static/src/app/components/chrome/chrome.esm.js:0
 msgid "Select Physical Device"
 msgstr ""
 
@@ -179,6 +170,11 @@ msgstr ""
 #. module: l10n_es_pos_by_device
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_by_device.view_res_config_settings_pos_seq_device
 msgid "Sequencing"
+msgstr ""
+
+#. module: l10n_es_pos_by_device
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos_by_device.view_res_config_settings_pos_seq_device
+msgid "Sequencing by physical device"
 msgstr ""
 
 #. module: l10n_es_pos_by_device
@@ -199,24 +195,27 @@ msgstr ""
 #. module: l10n_es_pos_by_device
 #. odoo-python
 #: code:addons/l10n_es_pos_by_device/models/pos_config.py:0
-#, python-format
 msgid "There are no physical devices available. Cannot start session."
 msgstr ""
 
 #. module: l10n_es_pos_by_device
 #. odoo-javascript
-#: code:addons/l10n_es_pos_by_device/static/src/js/PaymentScreen.esm.js:0
-#: code:addons/l10n_es_pos_by_device/static/src/js/Screens/Chrome/Chrome.esm.js:0
-#, python-format
+#: code:addons/l10n_es_pos_by_device/static/src/app/components/chrome/chrome.esm.js:0
+#: code:addons/l10n_es_pos_by_device/static/src/app/screens/payment_screen/payment_screen.esm.js:0
 msgid "There was a connection error when trying to establish the device."
 msgstr ""
 
 #. module: l10n_es_pos_by_device
-#: model_terms:ir.ui.view,arch_db:l10n_es_pos_by_device.pos_device_view_tree
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos_by_device.pos_device_view_list
 msgid "Unlock device"
 msgstr ""
 
 #. module: l10n_es_pos_by_device
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos_by_device.view_res_config_settings_pos_seq_device
 msgid "Use a different subsequence for each physical device on POS."
+msgstr ""
+
+#. module: l10n_es_pos_by_device
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos_by_device.view_res_config_settings_pos_seq_device
+msgid "Values set here are company-specific."
 msgstr ""
