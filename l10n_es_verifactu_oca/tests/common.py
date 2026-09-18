@@ -17,7 +17,9 @@ class TestVerifactuCommon(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase):
     def setUpClass(cls):
         super().setUpClass()
         cls.maxDiff = None
-        cls.fp_nacional = cls.env.ref(f"account.{cls.company.id}_fp_nacional")
+        cls.fp_nacional = cls.env.ref(
+            f"account.{cls.company.id}_l10n_es_domestic_fiscal_position"
+        )
         cls.fp_registration_key_01 = cls.env.ref(
             "l10n_es_verifactu_oca.verifactu_registration_keys_01"
         )

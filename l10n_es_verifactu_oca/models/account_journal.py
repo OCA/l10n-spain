@@ -3,7 +3,7 @@
 # Copyright 2025 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -44,7 +44,7 @@ class AccountJournal(models.Model):
         journal_type = vals.get("type", self.type)
         if verifactu_enabled and journal_type == "sale" and company.verifactu_enabled:
             raise ValidationError(
-                _(
+                self.env._(
                     "You can't have a sale journal with VERI*FACTU enabled "
                     "and not restricted hash modification."
                 )

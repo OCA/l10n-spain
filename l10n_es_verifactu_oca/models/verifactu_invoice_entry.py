@@ -10,7 +10,7 @@ from zeep.cache import SqliteCache
 from zeep.plugins import HistoryPlugin
 from zeep.transports import Transport
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools import split_every
 
@@ -127,6 +127,9 @@ class VerifactuInvoiceEntry(models.Model):
     @api.model
     def _cron_send_documents_to_verifactu(self):
         batch_limit = self.env["verifactu.mixin"]._get_verifactu_batch()
+        # pylint: disable=no-search-all
+        # There are only a handful of chainings per company, one search([])
+        # loop over all of them at cron time is not a performance concern.
         for chaining in self.env["verifactu.chaining"].search([]):
             self.env.cr.execute(
                 """
@@ -166,7 +169,9 @@ class VerifactuInvoiceEntry(models.Model):
         self.ensure_one()
         if not self.company_id.vat:
             raise UserError(
-                _("No VAT configured for the company '{}'").format(self.company_id.name)
+                self.env._(
+                    "No VAT configured for the company '%s'", self.company_id.name
+                )
             )
         header = {
             "ObligadoEmision": {
@@ -204,7 +209,9 @@ class VerifactuInvoiceEntry(models.Model):
         )
         if not public_crt or not private_key:
             raise UserError(
-                _("Please, configure the VERI*FACTU certificates for your company")
+                self.env._(
+                    "Please, configure the VERI*FACTU certificates for your company"
+                )
             )
         params = self._connect_verifactu_params_aeat()
         session = Session()
@@ -320,7 +327,7 @@ class VerifactuInvoiceEntry(models.Model):
                     "name": response_name,
                     "invoice_data": json.dumps(registro_factura_list),
                     "response": res,
-                    "verifactu_csv": "CSV" in res and res["CSV"] or _("-"),
+                    "verifactu_csv": "CSV" in res and res["CSV"] or self.env._("-"),
                 }
             )
         )
@@ -332,11 +339,11 @@ class VerifactuInvoiceEntry(models.Model):
         create_response_activity = self._create_response_lines(
             response=response, header=header, verifactu_response=res
         )
-        updated_response_name = _("VERI*FACTU sending")
+        updated_response_name = self.env._("VERI*FACTU sending")
         if create_exception:
-            updated_response_name = _("Connection error with VERI*FACTU")
+            updated_response_name = self.env._("Connection error with VERI*FACTU")
         elif create_response_activity:
-            updated_response_name = _("Incorrect invoices sent to VERI*FACTU")
+            updated_response_name = self.env._("Incorrect invoices sent to VERI*FACTU")
         response.name = updated_response_name
         if create_response_activity:
             response.create_send_response_activity()
