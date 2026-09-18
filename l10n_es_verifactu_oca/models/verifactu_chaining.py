@@ -28,10 +28,7 @@ class VerifactuChaining(models.Model):
     )
     installation_number = fields.Integer(default=1, required=True, tracking=True)
 
-    _sql_constraints = [
-        (
-            "verifactu_chaining_name_uniq",
-            "unique(name)",
-            "A chaining with the same name already exists!",
-        )
-    ]
+    _verifactu_chaining_name_uniq = models.Constraint(
+        "unique(name)",
+        "A chaining with the same name already exists!",
+    )

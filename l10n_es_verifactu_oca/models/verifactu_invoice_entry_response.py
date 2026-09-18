@@ -1,6 +1,6 @@
 # Copyright 2025 ForgeFlow S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-from odoo import _, fields, models
+from odoo import fields, models
 
 
 class VerifactuInvoiceEntryResponse(models.Model):
@@ -47,7 +47,7 @@ class VerifactuInvoiceEntryResponse(models.Model):
         responsible_group = self.env.ref(
             "l10n_es_verifactu_oca.group_verifactu_responsible"
         )
-        users = responsible_group.users
+        users = responsible_group.user_ids
         for record in self:
             existing = self.env["mail.activity"].search_count(
                 [
@@ -65,8 +65,8 @@ class VerifactuInvoiceEntryResponse(models.Model):
                         "res_id": record.id,
                         "activity_type_id": exception_activity_type.id,
                         "user_id": user.id,
-                        "summary": _("Check connection error with VERI*FACTU"),
-                        "note": _(
+                        "summary": self.env._("Check connection error with VERI*FACTU"),
+                        "note": self.env._(
                             "There has been an error when trying to connect to "
                             "VERI*FACTU"
                         ),
@@ -83,7 +83,7 @@ class VerifactuInvoiceEntryResponse(models.Model):
         responsible_group = self.env.ref(
             "l10n_es_verifactu_oca.group_verifactu_responsible"
         )
-        users = responsible_group.users
+        users = responsible_group.user_ids
         for record in self:
             user = users[:1] or self.env.user
             activity_vals.append(
@@ -93,8 +93,8 @@ class VerifactuInvoiceEntryResponse(models.Model):
                     "res_id": record.id,
                     "res_model": "verifactu.invoice.entry.response",
                     "res_model_id": model_id,
-                    "summary": _("Check incorrect invoices from VERI*FACTU"),
-                    "note": _("There is an error with one or more invoices"),
+                    "summary": self.env._("Check incorrect invoices from VERI*FACTU"),
+                    "note": self.env._("There is an error with one or more invoices"),
                 }
             )
         return self.env["mail.activity"].create(activity_vals)
