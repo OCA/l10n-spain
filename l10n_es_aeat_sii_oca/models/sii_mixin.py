@@ -495,7 +495,7 @@ class SiiMixin(models.AbstractModel):
             # DesgloseTipoOperacion required for Intracommunity and
             # Export operations
             return True
-        elif sii_gen_type == 1:
+        elif sii_gen_type == 1 and not self._is_aeat_simplified_invoice():
             identifier = self._get_sii_identifier()
             if "IDOtro" in identifier:
                 # DesgloseTipoOperacion required for national operations
