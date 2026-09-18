@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_order_form_caser" model="ir.ui.view">
+        <field name="name">sale.order.form.caser</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='order_line']/list//field[@name='price_subtotal']"
+                position="after"
+            >
+                <field name="is_caser_insurance" optional="hide" />
+                <field name="caser_insure_quantity" optional="hide" />
+                <field name="caser_lot_id" optional="hide" />
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page
+                    name="caser_insurance"
+                    string="Caser Insurance"
+                    invisible="caser_insurance_state == 'no'"
+                >
+                    <group>
+                        <field
+                            name="caser_insurance_state"
+                            widget="badge"
+                            decoration-danger="caser_insurance_state == 'error'"
+                            decoration-success="caser_insurance_state == 'done'"
+                            decoration-warning="caser_insurance_state == 'to_send'"
+                        />
+                        <field
+                            name="caser_error"
+                            invisible="not caser_has_error"
+                            readonly="1"
+                        />
+                    </group>
+                    <field name="caser_insurance_line_ids" readonly="1">
+                        <list
+                            decoration-danger="caser_error_message"
+                            decoration-success="caser_policy_number and not caser_error_message"
+                        >
+                            <field name="caser_insured_line_id" string="Product" />
+                            <field name="caser_lot_id" />
+                            <field name="caser_policy_number" />
+                            <field name="caser_insurance_price" />
+                            <field name="caser_error_message" />
+                            <button
+                                name="action_retry_caser_insurance"
+                                type="object"
+                                string="Retry"
+                                icon="fa-refresh"
+                                invisible="not caser_lot_id or caser_policy_number"
+                            />
+                        </list>
+                        <form string="Caser Policy">
+                            <group>
+                                <group>
+                                    <field name="caser_insured_line_id" />
+                                    <field name="caser_lot_id" />
+                                    <field name="caser_policy_number" />
+                                    <field name="caser_insurance_price" />
+                                </group>
+                                <group>
+                                    <field name="caser_error_message" widget="text" />
+                                </group>
+                            </group>
+                            <div class="text-end mb-2">
+                                <button
+                                    name="action_retry_caser_insurance"
+                                    type="object"
+                                    string="Retry Caser request"
+                                    class="btn btn-primary"
+                                    invisible="not caser_lot_id or caser_policy_number"
+                                />
+                            </div>
+                            <group string="Raw exchange">
+                                <field
+                                    name="caser_request_xml"
+                                    widget="ace"
+                                    options="{'mode': 'xml'}"
+                                />
+                                <field
+                                    name="caser_response_xml"
+                                    widget="ace"
+                                    options="{'mode': 'xml'}"
+                                />
+                            </group>
+                        </form>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_sales_order_filter_caser" model="ir.ui.view">
+        <field name="name">sale.order.search.caser</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter" />
+        <field name="arch" type="xml">
+            <search position="inside">
+                <separator />
+                <filter
+                    name="caser_has_error"
+                    string="Caser Insurance Error"
+                    domain="[('caser_has_error', '=', True)]"
+                />
+                <filter
+                    name="caser_to_send"
+                    string="Caser Insurance Pending"
+                    domain="[('caser_insurance_state', '=', 'to_send')]"
+                />
+                <filter
+                    name="group_caser_state"
+                    string="Caser Insurance State"
+                    context="{'group_by': 'caser_insurance_state'}"
+                />
+            </search>
+        </field>
+    </record>
+</odoo>

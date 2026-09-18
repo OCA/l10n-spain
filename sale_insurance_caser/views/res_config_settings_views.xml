@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_sale_config_settings_form" model="ir.ui.view">
+        <field name="name">res.config.settings.form.sale.insurance</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//app[@name='sale_management']" position="inside">
+                <block
+                    title="Caser Insurance"
+                    help="Configure Caser insurance settings"
+                >
+                    <setting>
+                        <field name="caser_is_production" />
+                    </setting>
+                    <setting string="Caser Web Username">
+                        <field name="caser_username" />
+                    </setting>
+                    <setting string="Caser Agency Code">
+                        <field name="caser_agency_code" />
+                    </setting>
+                    <setting string="Caser Agent Code">
+                        <field name="caser_agent_code" />
+                    </setting>
+                    <setting string="Caser SICA Code">
+                        <field name="caser_sica_code" />
+                    </setting>
+                    <setting
+                        string="Caser Price Ranges"
+                        help="Configure price ranges for insurance policies."
+                    >
+                        <button
+                            name="action_open_caser_price_ranges"
+                            type="object"
+                            string="Configure Price Ranges"
+                            class="btn-link"
+                            icon="oi-arrow-right"
+                        />
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>
