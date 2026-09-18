@@ -177,7 +177,6 @@ msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__account_move__sii_refund_type__i
-#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__pos_order__sii_refund_type__i
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__sii_mixin__sii_refund_type__i
 msgid "By differences"
 msgstr "Per diferències"
@@ -194,14 +193,12 @@ msgstr "Cancel·lar"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__account_move__aeat_state__cancelled
-#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__pos_order__aeat_state__cancelled
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__sii_mixin__aeat_state__cancelled
 msgid "Cancelled"
 msgstr "Cancel·lada"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__account_move__aeat_state__cancelled_modified
-#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__pos_order__aeat_state__cancelled_modified
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__sii_mixin__aeat_state__cancelled_modified
 msgid "Cancelled in SII but last modifications not sent"
 msgstr "Cancel·lat a SII però no s’han enviat les darreres modificacions"
@@ -334,9 +331,19 @@ msgid "Description config"
 msgstr "Descripció config"
 
 #. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_chart_template__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_fiscal_position__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_journal__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move_reversal__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_map__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_map_lines__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_mapping_registration_keys__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_tax_agency__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_product_template__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_company__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_partner__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_sii_mixin__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_wizard_send_sii__display_name
 msgid "Display Name"
 msgstr "Nom a mostrar"
@@ -394,19 +401,24 @@ msgid "General"
 msgstr "General"
 
 #. module: l10n_es_aeat_sii_oca
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.aeat_sii_mapping_registration_keys_view_search
-msgid "Group By..."
-msgstr "Agrupar per..."
-
-#. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.invoice_sii_form
 msgid "Header sent"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_chart_template__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_fiscal_position__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_journal__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move_reversal__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_map__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_map_lines__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_mapping_registration_keys__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_tax_agency__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_product_template__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_company__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_partner__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_sii_mixin__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_wizard_send_sii__id
 msgid "ID"
 msgstr "ID"
@@ -479,6 +491,12 @@ msgstr "Es requereix un tipus de reembossament SII?"
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move_reversal__supplier_invoice_number_refund_required
 msgid "Is Supplier Invoice Number Required?"
 msgstr "Es requereix un tipus de reembossament SII?"
+
+#. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_bank_statement_line__sii_is_accounting_receipt
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_is_accounting_receipt
+msgid "Is accounting receipt?"
+msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_company__sii_test
@@ -606,8 +624,8 @@ msgstr "Mai enviat a SII"
 #. module: l10n_es_aeat_sii_oca
 #. odoo-python
 #: code:addons/l10n_es_aeat_sii_oca/models/sii_mixin.py:0
-msgid "No VAT configured for the company '{}'"
-msgstr "No hi ha cap IVA configurat per a l'empresa \"{}\""
+msgid "No VAT configured for the company '%s'"
+msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__account_fiscal_position__sii_no_taxable_cause__importeporarticulos7_14_otros
@@ -673,7 +691,6 @@ msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__account_move__aeat_state__sent_modified
-#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__pos_order__aeat_state__sent_modified
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__sii_mixin__aeat_state__sent_modified
 msgid "Registered in SII but last modifications not sent"
 msgstr "Registrat a SII però no s’han enviat les darreres modificacions"
@@ -813,11 +830,6 @@ msgstr "Error SII"
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.view_account_invoice_sii_filter
 msgid "SII failed"
 msgstr "El SII ha fallat"
-
-#. module: l10n_es_aeat_sii_oca
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.view_account_invoice_sii_filter
-msgid "SII filters"
-msgstr "Filtres SII"
 
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.view_account_invoice_sii_filter
@@ -1343,6 +1355,15 @@ msgstr ""
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 msgid "third-party number"
 msgstr ""
+
+#~ msgid "Group By..."
+#~ msgstr "Agrupar per..."
+
+#~ msgid "No VAT configured for the company '{}'"
+#~ msgstr "No hi ha cap IVA configurat per a l'empresa \"{}\""
+
+#~ msgid "SII filters"
+#~ msgstr "Filtres SII"
 
 #~ msgid "SII Information"
 #~ msgstr "Informació SII"
