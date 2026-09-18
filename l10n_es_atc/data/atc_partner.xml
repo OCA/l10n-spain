@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo noupdate="1">
+    <record id="res_partner_atc" model="res.partner">
+        <field name="name">Agencia Tributaria Canaria (ATC)</field>
+        <field name="company_id" />
+        <field name="is_company">1</field>
+        <field name="city">Las Palmas</field>
+        <field name="zip">35071</field>
+        <field name="country_id" ref="base.es" />
+        <field name="vat">ESQ3500461C</field>
+        <field name="street">Calle Prof. Agustín Millares Carló 22</field>
+        <field name="phone">928 30 69 16</field>
+        <field name="website">https://sede.gobiernodecanarias.org/</field>
+        <field
+            name="image_1920"
+            type="base64"
+            file="l10n_es_atc/static/description/icon.png"
+        />
+    </record>
+</odoo>
