@@ -163,46 +163,44 @@
         <field name="inherit_id" ref="account.view_account_invoice_filter" />
         <field name="arch" type="xml">
             <filter name="late" position="after">
-                <group string="VERI*FACTU filters">
-                    <separator />
-                    <filter
-                        name="verifactu_not_sent"
-                        string="VERI*FACTU not sent"
-                        domain="[('aeat_state', '=', 'not_sent'), ('verifactu_enabled', '=', True)]"
-                        help="Never sent to VERI*FACTU"
-                    />
-                    <filter
-                        name="verifactu_pending"
-                        string="VERI*FACTU pending corrections"
-                        domain="[('aeat_state', 'in', ['sent_w_errors','cancel_w_errors'])]"
-                        help="Already sent but with corrections not sent yet"
-                    />
-                    <filter
-                        name="verifactu_sent"
-                        string="VERI*FACTU sent"
-                        domain="[('aeat_state', 'in', ('sent', 'cancel'))]"
-                        help="Already sent to VERI*FACTU. It includes cancelled invoices"
-                    />
-                    <filter
-                        name="aeat_send_failed"
-                        string="VERI*FACTU failed"
-                        domain="[('aeat_send_failed', '=', True)]"
-                        help="The last attemp to sent to VERI*FACTU has failed"
-                    />
-                    <filter
-                        name="verifactu_cancelled"
-                        string="VERI*FACTU cancelled"
-                        domain="[('aeat_state', '=', 'cancel')]"
-                        help="Cancelled invoices at VERI*FACTU"
-                    />
-                    <filter
-                        name="verifactu_incorrect"
-                        string="Incorrect send to VERI*FACTU"
-                        domain="[('aeat_state', 'in', ['incorrect','cancel_incorrect'])]"
-                        help="Incorrect send to VERI*FACTU"
-                    />
-                    <separator />
-                </group>
+                <separator />
+                <filter
+                    name="verifactu_not_sent"
+                    string="VERI*FACTU not sent"
+                    domain="[('aeat_state', '=', 'not_sent'), ('verifactu_enabled', '=', True)]"
+                    help="Never sent to VERI*FACTU"
+                />
+                <filter
+                    name="verifactu_pending"
+                    string="VERI*FACTU pending corrections"
+                    domain="[('aeat_state', 'in', ['sent_w_errors','cancel_w_errors'])]"
+                    help="Already sent but with corrections not sent yet"
+                />
+                <filter
+                    name="verifactu_sent"
+                    string="VERI*FACTU sent"
+                    domain="[('aeat_state', 'in', ('sent', 'cancel'))]"
+                    help="Already sent to VERI*FACTU. It includes cancelled invoices"
+                />
+                <filter
+                    name="aeat_send_failed"
+                    string="VERI*FACTU failed"
+                    domain="[('aeat_send_failed', '=', True)]"
+                    help="The last attemp to sent to VERI*FACTU has failed"
+                />
+                <filter
+                    name="verifactu_cancelled"
+                    string="VERI*FACTU cancelled"
+                    domain="[('aeat_state', '=', 'cancel')]"
+                    help="Cancelled invoices at VERI*FACTU"
+                />
+                <filter
+                    name="verifactu_incorrect"
+                    string="Incorrect send to VERI*FACTU"
+                    domain="[('aeat_state', 'in', ['incorrect','cancel_incorrect'])]"
+                    help="Incorrect send to VERI*FACTU"
+                />
+                <separator />
             </filter>
             <xpath expr="//group" position="inside">
                 <separator />

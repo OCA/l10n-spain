@@ -19,7 +19,7 @@
                 <field name="name" />
                 <field name="code" />
                 <field name="verifactu_tax_key" />
-                <group expand="0" string="Group By">
+                <group>
                     <filter
                         string="Tax Type"
                         name="tax_type"
