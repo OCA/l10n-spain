@@ -323,6 +323,17 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
             },
         )
 
+    def test_simplified_no_breakdown(self):
+        partner = self.env["res.partner"].create(
+            {
+                "name": "Spanish partner",
+                "country_id": self.env.ref("base.es").id,
+                "aeat_simplified_invoice": True,
+            }
+        )
+        invoice = self.invoice.copy({"partner_id": partner.id})
+        self.assertFalse(invoice._is_sii_type_breakdown_required())
+
     def test_partner_sii_enabled(self):
         company_02 = self.env["res.company"].create({"name": "Company 02"})
         self.env.user.company_ids += company_02
