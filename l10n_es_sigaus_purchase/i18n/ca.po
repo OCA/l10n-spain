@@ -1,0 +1,84 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_es_sigaus_purchase
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-07-09 15:58+0000\n"
+"Last-Translator: Jaime Ruiz Maccione <jaime.ruiz@sygel.es>\n"
+"Language-Team: none\n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.6.2\n"
+
+#. module: l10n_es_sigaus_purchase
+#: model_terms:ir.ui.view,arch_db:l10n_es_sigaus_purchase.report_purchaseorder_document
+#: model_terms:ir.ui.view,arch_db:l10n_es_sigaus_purchase.report_purchasequotation_document
+msgid "Aportación SIGAUS (RD 679/2006):"
+msgstr "Aportació SIGAUS (RD 679/2006):"
+
+#. module: l10n_es_sigaus_purchase
+#: model:ir.model.fields,field_description:l10n_es_sigaus_purchase.field_purchase_order_line__is_sigaus
+msgid "Is Sigaus"
+msgstr "És SIGAUS"
+
+#. module: l10n_es_sigaus_purchase
+#: model:ir.model,name:l10n_es_sigaus_purchase.model_account_move
+msgid "Journal Entry"
+msgstr "Asiento comptable"
+
+#. module: l10n_es_sigaus_purchase
+#: model:ir.model,name:l10n_es_sigaus_purchase.model_purchase_order
+msgid "Purchase Order"
+msgstr "Ordre de compra"
+
+#. module: l10n_es_sigaus_purchase
+#: model:ir.model,name:l10n_es_sigaus_purchase.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Línia de l'ordre de compra"
+
+#. module: l10n_es_sigaus_purchase
+#: model:ir.model.fields,field_description:l10n_es_sigaus_purchase.field_purchase_order_line__sigaus_amount
+msgid "Sigaus Amount"
+msgstr "Import SIGAUS"
+
+#. module: l10n_es_sigaus_purchase
+#: model:ir.model.fields,field_description:l10n_es_sigaus_purchase.field_purchase_order__sigaus_automated_exception_id
+msgid "Sigaus Automated Exception"
+msgstr "Excepció automatitzada de SIGAUS"
+
+#. module: l10n_es_sigaus_purchase
+#: model:ir.model.fields,field_description:l10n_es_sigaus_purchase.field_purchase_order__sigaus_company
+msgid "Sigaus Company"
+msgstr "Empresa SIGAUS"
+
+#. module: l10n_es_sigaus_purchase
+#: model:ir.model.fields,field_description:l10n_es_sigaus_purchase.field_purchase_order__sigaus_has_line
+msgid "Sigaus Has Line"
+msgstr "El SIGAUS té línia"
+
+#. module: l10n_es_sigaus_purchase
+#: model:ir.model.fields,field_description:l10n_es_sigaus_purchase.field_purchase_order__sigaus_is_date
+msgid "Sigaus Is Date"
+msgstr "És data de SIGAUS"
+
+#. module: l10n_es_sigaus_purchase
+#: model:ir.model.fields,field_description:l10n_es_sigaus_purchase.field_purchase_order__is_sigaus
+msgid "Subject to SIGAUS"
+msgstr "Sotmès a SIGAUS"
+
+#. module: l10n_es_sigaus_purchase
+#: model:ir.model.fields,help:l10n_es_sigaus_purchase.field_purchase_order__sigaus_is_date
+msgid ""
+"Technical field to determine whether the date of a document subject to "
+"SIGAUS is equal or after the date selected in the company from which SIGAUS "
+"has to be applied."
+msgstr ""
+"Camp tècnic per determinar si la data d'un document sotmès a SIGAUS és igual "
+"o posterior a la data seleccionada a l'empresa des de la qual s'ha d'aplicar "
+"el SIGAUS."
