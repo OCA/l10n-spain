@@ -664,6 +664,11 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
             }
         )
         self.assertFalse(invoice.sii_enabled)
+        self.assertFalse(
+            self.env["account.move"].search(
+                [("id", "=", invoice.id), ("sii_enabled", "=", True)]
+            )
+        )
 
     def test_send_sii_wizard(self):
         invoice = self._create_invoice("out_invoice")
