@@ -44,7 +44,7 @@ class AccountTax(models.Model):
                 if xml_id in PRORATE_TAXES:
                     with_vat_prorate = True
                     if PRORATE_TAXES.get(xml_id).get("prorate_account_template_ids"):
-                        prorate_taxes = self.company_id._get_prorate_accounts()
+                        prorate_taxes = tax.company_id._get_prorate_accounts()
                         prorate_account_ids = [(5, 0, 0)]
                         for account_from_tmpl_id in prorate_taxes.get(xml_id).get(
                             "prorate_account_ids"
