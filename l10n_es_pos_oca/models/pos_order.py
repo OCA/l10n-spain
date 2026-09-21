@@ -66,3 +66,18 @@ class PosOrder(models.Model):
             if not pos.prevent_offline_validation:
                 self._update_sequence_number(pos)
         return super()._process_order(pos_order, existing_order)
+
+    def _prepare_refund_values(self, current_session):
+        res = super()._prepare_refund_values(current_session)
+        if self.is_l10n_es_simplified_invoice:
+            # If the original order is a simplified invoice, we need to generate
+            # a new unique ID for the refund order.
+            l10n_es_sequence = self.config_id.l10n_es_simplified_invoice_sequence_id
+            res.update(
+                {
+                    "l10n_es_simplified_number": l10n_es_sequence.number_next_actual,
+                    "l10n_es_unique_id": l10n_es_sequence.next_by_id(),
+                    "is_l10n_es_simplified_invoice": True,
+                }
+            )
+        return res
