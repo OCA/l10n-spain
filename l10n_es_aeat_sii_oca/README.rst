@@ -58,7 +58,11 @@ Configuration
 Para configurar este módulo es necesario:
 
 #. En la compañia se almacenan las URLs del servicio SOAP de hacienda.
-   Estas URLs pueden cambiar según comunidades
+   Estas URLs pueden cambiar según comunidades.
+   Hacienda Foral de Navarra no publica WSDL propio: seleccione esa agencia
+   en la compañía y, en la ficha de la agencia (pestaña SII), indique a mano
+   las URLs SOAP de facturas emitidas y recibidas. El envío usa el WSDL de la
+   AEAT y como dirección SOAP esas URLs.
 #. Los certificados deben alojarse en una carpeta accesible por la instalación
    de Odoo.
 #. Preparar el certificado. El certificado enviado por la FMNT es en formato
@@ -169,6 +173,9 @@ Contributors
 * `Factor Libre <https://factorlibre.com>`__:
 
   * Luis J. Salvatierra <luis.salvatierra@factorlibre.com>
+* `Binovo IT Human Project SL <https://www.binovo.es>`__:
+
+  * Jesús Sánchez <jsanchez@binovo.es>
 
 Maintainers
 ~~~~~~~~~~~
