@@ -491,8 +491,8 @@ msgstr "Manifiesto de Envíos MRW"
 #. module: delivery_mrw
 #: code:addons/delivery_mrw/models/delivery_carrier.py:0
 #, python-format
-msgid "MRW Error: %s)Mensaje"
-msgstr "MRW Error: %s)Mensaje"
+msgid "MRW Error: %s"
+msgstr "Error MRW: %s"
 
 #. module: delivery_mrw
 #: model_terms:ir.ui.view,arch_db:delivery_mrw.view_picking_withcarrier_out_form
@@ -545,12 +545,6 @@ msgstr "Marítimo Canarias"
 #: model:ir.model.fields.selection,name:delivery_mrw.selection__delivery_carrier__mrw_national_service__0390
 msgid "Marítimo Interinsular"
 msgstr "Marítimo Interinsular"
-
-#. module: delivery_mrw
-#: code:addons/delivery_mrw/models/delivery_carrier.py:0
-#, python-format
-msgid "MensajeSeguimiento"
-msgstr "MensajeSeguimiento"
 
 #. module: delivery_mrw
 #: model:ir.model.fields,field_description:delivery_mrw.field_delivery_carrier__mrw_en_franquicia

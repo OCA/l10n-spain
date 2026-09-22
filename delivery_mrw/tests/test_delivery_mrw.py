@@ -1,7 +1,9 @@
 import datetime
 from unittest import mock
 
+from odoo.exceptions import UserError
 from odoo.tests import Form
+from odoo.tools import mute_logger
 
 from odoo.addons.base.tests.common import BaseCommon
 
@@ -26,7 +28,7 @@ class TestDeliveryMRW(BaseCommon):
             }
         )
         cls.product = cls.env["product.product"].create(
-            {"type": "product", "name": "Test product"}
+            {"type": "consu", "is_storable": True, "name": "Test product"}
         )
         stock_location = cls.env.ref("stock.stock_location_stock")
         inventory = cls.env["stock.quant"].create(
@@ -103,3 +105,157 @@ class TestDeliveryMRW(BaseCommon):
         self.assertEqual(
             manifest_data[-1]["carrier_tracking_ref"], self.picking.carrier_tracking_ref
         )
+
+    def test_03_mrw_address_national(self):
+        """Street type, number and floor/door are split for national shipments"""
+        address = self.carrier_mrw.mrw_address(self.partner, international=False)
+        self.assertEqual(address["Via"].strip(), "Calle de La Rua")
+        self.assertEqual(address["Numero"], "3")
+        self.assertEqual(address["Resto"], "4-1")
+        self.assertEqual(address["CodigoPostal"], "28001")
+        self.assertEqual(address["Poblacion"], "Madrid")
+        self.partner.write({"street": "C/ Mayor 12, 3º 2ª", "street2": False})
+        address = self.carrier_mrw.mrw_address(self.partner, international=False)
+        self.assertEqual(address["CodigoTipoVia"], "C/")
+        self.assertEqual(address["Via"].strip(), "Mayor")
+        self.assertEqual(address["Numero"], "12")
+        self.assertEqual(address["Resto"].strip(), "3º 2ª")
+
+    def test_04_mrw_address_without_number(self):
+        """Streets without number (s/n) are sent with number 0"""
+        self.partner.write({"street": "Camino Viejo s/n", "street2": False})
+        address = self.carrier_mrw.mrw_address(self.partner, international=False)
+        self.assertEqual(address["Via"].strip(), "Camino Viejo")
+        self.assertEqual(address["Numero"], "0")
+
+    def test_05_mrw_address_errors(self):
+        """Number ranges and missing streets are rejected"""
+        self.partner.write({"street": "Avenida Diagonal 12-14"})
+        with self.assertRaises(UserError):
+            self.carrier_mrw.mrw_address(self.partner, international=False)
+        self.partner.write({"street": False})
+        with self.assertRaises(UserError):
+            self.carrier_mrw.mrw_address(self.partner, international=False)
+
+    def test_06_mrw_address_international(self):
+        """International shipments send the whole street and the country code"""
+        address = self.carrier_mrw.mrw_address(self.partner, international=True)
+        self.assertEqual(address["CodigoPais"], "ES")
+        self.assertEqual(address["CodigoPostal"], "28001")
+        self.assertNotIn("Numero", address)
+
+    def test_07_mrw_check_response(self):
+        """Error responses raise and successful ones return their message"""
+        with self.assertRaisesRegex(UserError, "MRW Error: Boom"):
+            self.carrier_mrw._mrw_check_response({"Estado": "0", "Mensaje": "Boom"})
+        self.assertEqual(
+            self.carrier_mrw._mrw_check_response({"Estado": "1", "Mensaje": "OK"}),
+            "OK",
+        )
+
+    def test_08_mrw_get_tracking_link(self):
+        """The tracking link depends on the national/international setting"""
+        self.picking.carrier_tracking_ref = "123456"
+        self.assertIn(
+            "modo=nacional&envio=123456",
+            self.carrier_mrw.mrw_get_tracking_link(self.picking),
+        )
+        self.carrier_mrw.international_shipping = True
+        self.assertIn(
+            "modo=internacional&envio=123456",
+            self.carrier_mrw.mrw_get_tracking_link(self.picking),
+        )
+
+    def _mrw_tracking_response(self, trackings):
+        return {
+            "MensajeSeguimiento": "Busqueda correcta por Número de Albarán.",
+            "Seguimiento": {
+                "Abonado": [{"SeguimientoAbonado": {"Seguimiento": trackings}}]
+            },
+        }
+
+    @mock.patch("odoo.addons.delivery_mrw.models.mrw_request.Client")
+    def test_09_mrw_tracking_state_update(self, client_mock):
+        """Tracking states from MRW are parsed and written to the picking"""
+        get_envios = client_mock.return_value.service.GetEnvios
+        get_envios.return_value = self._mrw_tracking_response(
+            [
+                {"Estado": "05", "EstadoDescripcion": "Recogido"},
+                {
+                    "Estado": "02",
+                    "EstadoDescripcion": "En tránsito",
+                    "FechaEntrega": "31022026",
+                },
+                {
+                    "Estado": "01",
+                    "EstadoDescripcion": "En reparto",
+                    "FechaEntrega": "22092026",
+                },
+                {
+                    "Estado": "00",
+                    "EstadoDescripcion": "Entregado",
+                    "FechaEntrega": "22092026",
+                    "HoraEntrega": "1145",
+                },
+            ]
+        )
+        self.picking.carrier_tracking_ref = "123456"
+        with mute_logger("odoo.addons.delivery_mrw.models.mrw_request"):
+            self.picking.tracking_state_update()
+        request = get_envios.call_args.kwargs
+        self.assertEqual(request["login"], self.carrier_mrw.mrw_username)
+        self.assertEqual(request["valorFiltroDesde"], "123456")
+        history = self.picking.tracking_state_history.splitlines()
+        self.assertEqual(len(history), 4)
+        self.assertEqual(history[2], "22/09/2026 00:00 - [01] En reparto")
+        self.assertEqual(history[3], "22/09/2026 11:45 - [00] Entregado")
+        self.assertEqual(self.picking.tracking_state, "[00] Entregado")
+        self.assertEqual(
+            self.picking.date_delivered, datetime.datetime(2026, 9, 22, 11, 45)
+        )
+
+    @mock.patch("odoo.addons.delivery_mrw.models.mrw_request.Client")
+    def test_10_mrw_tracking_state_update_errors(self, client_mock):
+        """Pickings without reference or states are left untouched, errors raise"""
+        self.picking.tracking_state_update()
+        client_mock.assert_not_called()
+        self.picking.carrier_tracking_ref = "123456"
+        get_envios = client_mock.return_value.service.GetEnvios
+        get_envios.return_value = {"MensajeSeguimiento": "No se han encontrado envíos"}
+        with self.assertRaisesRegex(UserError, "No se han encontrado envíos"):
+            self.picking.tracking_state_update()
+        get_envios.return_value = {
+            "MensajeSeguimiento": "Busqueda correcta por Número de Albarán.",
+            "Seguimiento": {"Abonado": []},
+        }
+        self.picking.tracking_state_update()
+        self.assertFalse(self.picking.tracking_state)
+        get_envios.return_value = self._mrw_tracking_response([])
+        self.picking.tracking_state_update()
+        self.assertFalse(self.picking.tracking_state)
+
+    @mock.patch("odoo.addons.delivery_mrw.models.mrw_request.Client")
+    def test_11_mrw_picking_get_label(self, client_mock):
+        """The label button fetches the label from MRW and posts it in the chatter"""
+        label = {
+            "Estado": "1",
+            "Mensaje": "",
+            "EtiquetaFile": b"%PDF-1.4 fake PDF content",
+        }
+        service = client_mock.return_value.service
+        service.__getitem__.return_value.return_value = label
+        self.assertIsNone(self.picking.mrw_get_label())
+        client_mock.assert_not_called()
+        self.picking.carrier_tracking_ref = "123456"
+        self.assertEqual(self.picking.mrw_get_label(), label)
+        service.__getitem__.assert_called_once_with("EtiquetaEnvio")
+        request = service.__getitem__.return_value.call_args.kwargs["request"]
+        self.assertEqual(request["NumeroEnvio"], "123456")
+        self.assertEqual(
+            request["ReportTopMargin"], self.carrier_mrw.mrw_label_top_margin
+        )
+        message = self.picking.message_ids.filtered("attachment_ids")
+        self.assertEqual(len(message), 1)
+        self.assertIn("MRW Shipping Label:", message.body)
+        self.assertEqual(message.attachment_ids.name, "mrw_label_123456.pdf")
+        self.assertEqual(message.attachment_ids.raw, b"%PDF-1.4 fake PDF content")

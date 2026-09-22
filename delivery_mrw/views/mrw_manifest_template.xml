@@ -35,7 +35,7 @@
                                                     <strong>Company:</strong>
                                                 </td>
                                                 <td>
-                                                    <span t-esc="company_name" />
+                                                    <span t-out="company_name" />
                                                 </td>
                                             </tr>
                                             <tr>
@@ -47,7 +47,7 @@
                                                 </td>
                                                 <td>
                                                     <span
-                                                        t-esc="date_from"
+                                                        t-out="date_from"
                                                         t-options="{'widget': 'date'}"
                                                     />
                                                 </td>
@@ -61,7 +61,7 @@
                                                 </td>
                                                 <td>
                                                     <span
-                                                        t-esc="datetime.datetime.now().strftime('%d/%m/%Y %H:%M')"
+                                                        t-out="datetime.datetime.now().strftime('%d/%m/%Y %H:%M')"
                                                     />
                                                 </td>
                                             </tr>
@@ -73,7 +73,7 @@
                                                     <strong>Printed by</strong>
                                                 </td>
                                                 <td>
-                                                    <span t-esc="user.name" />
+                                                    <span t-field="user.name" />
                                                 </td>
                                             </tr>
                                         </table>
@@ -113,44 +113,44 @@
                             <tr>
                                 <td class="text-left">
                                     <span
-                                        t-esc="delivery.get('carrier_tracking_ref')"
+                                        t-out="delivery.get('carrier_tracking_ref')"
                                     />
                                 </td>
                                 <td class="text-left">
-                                    <span t-esc="delivery.get('reference')" />
+                                    <span t-out="delivery.get('reference')" />
                                 </td>
                                 <td class="text-left">
-                                    <span t-esc="delivery.get('note')" />
+                                    <span t-out="delivery.get('note')" />
                                 </td>
                                 <td class="text-left">
-                                    <span t-esc="delivery.get('date')" />
+                                    <span t-out="delivery.get('date')" />
                                 </td>
                                 <td class="text-left">
-                                    <span t-esc="delivery.get('partner')" />
+                                    <span t-out="delivery.get('partner')" />
                                 </td>
                                 <td class="text-left">
-                                    <span t-esc="delivery.get('zip')" />
+                                    <span t-out="delivery.get('zip')" />
                                 </td>
                                 <td class="text-left">
-                                    <span t-esc="delivery.get('address')" />
+                                    <span t-out="delivery.get('address')" />
                                 </td>
                                 <td class="text-left">
-                                    <span t-esc="delivery.get('city')" />
+                                    <span t-out="delivery.get('city')" />
                                 </td>
                                 <td class="text-left">
-                                    <span t-esc="delivery.get('state')" />
+                                    <span t-out="delivery.get('state')" />
                                 </td>
                                 <td class="text-left">
-                                    <span t-esc="delivery.get('service')" />
+                                    <span t-out="delivery.get('service')" />
                                 </td>
                                 <td class="text-center">
-                                    <span t-esc="delivery.get('number_of_packages')" />
+                                    <span t-out="delivery.get('number_of_packages')" />
                                 </td>
                                 <td class="text-center">
-                                    <span t-esc="delivery.get('weight')" />
+                                    <span t-out="delivery.get('weight')" />
                                 </td>
                                 <td class="text-center">
-                                    <span t-esc="delivery.get('refund')" />
+                                    <span t-out="delivery.get('refund')" />
                                 </td>
                             </tr>
                         </t>
@@ -162,7 +162,7 @@
                             <td style="font-size:16px;text-align:center;">
                                 <strong>
                                     <span
-                                    t-esc="sum([int(x['number_of_packages']) for x in deliveries])"
+                                    t-out="sum([int(x['number_of_packages']) for x in deliveries])"
                                 />
                                     <br />(Packages)
                                 </strong>
@@ -170,7 +170,7 @@
                             <td style="font-size: 16px; text-align: center;">
                                 <strong>
                                     <span
-                                    t-esc="round(sum([float(x['weight']) for x in deliveries]), 2)"
+                                    t-out="round(sum([float(x['weight']) for x in deliveries]), 2)"
                                 />
                                     <br />(Kg.)
                                 </strong>
@@ -181,7 +181,7 @@
                             <td colspan="14" style="font-size:18px;text-align:center;">
                                 <strong>
                                     <span>TOTAL EXPEDITIONS: </span>
-                                    <span t-esc="len(deliveries)" />
+                                    <span t-out="len(deliveries)" />
                                 </strong>
                                 <br />
                             </td>

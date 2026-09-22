@@ -1,6 +1,6 @@
 # Copyright 2022 ForgeFlow S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo import _, models
+from odoo import models
 
 
 class StockPicking(models.Model):
@@ -13,7 +13,7 @@ class StockPicking(models.Model):
             return
         label = self.carrier_id.mrw_get_label(tracking_ref, self)
         label_name = f"mrw_label_{tracking_ref}.pdf"
-        body = _("MRW Shipping Label:")
+        body = self.env._("MRW Shipping Label:")
         attachment = []
         if label["EtiquetaFile"]:
             attachment = [

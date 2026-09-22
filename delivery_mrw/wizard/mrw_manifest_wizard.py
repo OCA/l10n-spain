@@ -1,7 +1,6 @@
-import datetime
-
-from odoo import _, fields, models
+from odoo import fields, models
 from odoo.exceptions import UserError
+from odoo.tools import date_utils
 
 
 class DeliveryMRWManifiestoWizard(models.TransientModel):
@@ -32,8 +31,8 @@ class DeliveryMRWManifiestoWizard(models.TransientModel):
     def get_manifest(self):
         """List of shippings for the given dates"""
         manifest_data = []
-        date_inf = datetime.datetime.combine(self.date_from, datetime.time(0, 0, 0))
-        date_sup = datetime.datetime.combine(self.date_from, datetime.time(23, 59, 59))
+        date_inf = fields.Datetime.to_datetime(self.date_from)
+        date_sup = date_utils.end_of(date_inf, "day")
         pickings = self.env["stock.picking"].search(
             [
                 ("scheduled_date", ">=", date_inf),
@@ -87,7 +86,7 @@ class DeliveryMRWManifiestoWizard(models.TransientModel):
             )
         if not manifest_data:
             raise UserError(
-                _(
+                self.env._(
                     "It wasn't possible to get the manifest. Maybe there aren't"
                     "deliveries for the selected date."
                 )

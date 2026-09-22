@@ -6,7 +6,7 @@ from datetime import datetime
 
 from lxml import etree
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 from .mrw_request import MRWRequest
@@ -81,13 +81,13 @@ class DeliveryCarrier(models.Model):
 
     mrw_international_service = fields.Selection(
         selection=MRW_INTERNATIONAL_SERVICES,
-        string="MRW Service",
+        string="MRW International Service",
         help="Set the MRW Service",
         default="PAC",
     )
     mrw_national_service = fields.Selection(
         selection=MRW_NATIONAL_SERVICES,
-        string="MRW Service",
+        string="MRW National Service",
         help="Set the MRW Service",
         default="0300",
     )
@@ -173,7 +173,7 @@ class DeliveryCarrier(models.Model):
     def check_mrw_en_franquicia(self):
         if self.mrw_en_franquicia in ("R", "A"):
             raise UserError(
-                _(
+                self.env._(
                     "For the moment MRW only supports:\n"
                     "- Sin recogida ni entrega en franquicia.\n"
                     "- Con entrega en franquicia. "
@@ -205,11 +205,12 @@ class DeliveryCarrier(models.Model):
 
     def _mrw_check_response(self, response):
         if not int(response["Estado"]):
-            raise UserError(_("MRW Error: %s)" % response["Mensaje"]))
+            raise UserError(self.env._("MRW Error: %s", response["Mensaje"]))
         elif response["Estado"] and response["Mensaje"]:
             return response["Mensaje"]
         return ""
 
+    @api.model
     def remove_found_regex_from_string(self, regex, string):
         limit_inf = regex.span()[0]
         limit_sup = regex.span()[1]
@@ -217,6 +218,7 @@ class DeliveryCarrier(models.Model):
         regex = "0" if regex[0] in ("S/N", "s/n") else regex[0]
         return regex, string
 
+    @api.model
     def mrw_address(self, partner, international):
         # Method to get parameters CodigoTipoVia. Via, Numero, Resto from odoo address.
         # If street and number are in the first address line, and floor and door in the
@@ -225,7 +227,9 @@ class DeliveryCarrier(models.Model):
         street = partner.street.replace(",", "") if partner.street else ""
         street2 = partner.street2.replace(",", "") if partner.street2 else ""
         if not street:
-            raise UserError(_("Couldn't find partner %s street") % partner.name)
+            raise UserError(
+                self.env._("Couldn't find partner %s street") % partner.name
+            )
         if international:
             return {
                 "Via": street + street2,
@@ -240,7 +244,7 @@ class DeliveryCarrier(models.Model):
         if not number:
             if re.search(r"\d+-\d+", street):
                 raise UserError(
-                    _(
+                    self.env._(
                         "Solamente se permiten caracteres numéricos en el campo número"
                         " de la dirección. Número: %s"
                     )
@@ -275,6 +279,7 @@ class DeliveryCarrier(models.Model):
         }
 
     def get_notifications(self, partner):
+        self.ensure_one()
         notifications = {}
         channel = self.mrw_notification_channel
         if channel:
@@ -395,7 +400,10 @@ class DeliveryCarrier(models.Model):
         label = self.mrw_get_label(mrw_tracking_ref, picking)
         # We post an extra message in the chatter with the barcode and the
         # label because there's clean way to override the one sent by core.
-        body = _(response_message + "<br> MRW Shipping Label:")
+        body = "{}<br>{}".format(
+            response_message or "",
+            self.env._("MRW Shipping Label:"),
+        )
         attachment = []
         if label["EtiquetaFile"]:
             attachment = [
@@ -409,10 +417,11 @@ class DeliveryCarrier(models.Model):
 
     def mrw_rate_shipment(self, order):
         """There's no public API so another price method should be used."""
+        self.ensure_one()
         return {
             "success": True,
             "price": self.product_id.lst_price,
-            "error_message": _(
+            "error_message": self.env._(
                 "MRW API doesn't provide methods to compute delivery rates so you"
                 " should rely on another price method instead or override this one in"
                 " your custom code.\n"
@@ -420,7 +429,7 @@ class DeliveryCarrier(models.Model):
                 " customer: check the field 'Free if order amount is above' and put"
                 " Import=0."
             ),
-            "warning_message": _(
+            "warning_message": self.env._(
                 "MRW API doesn't provide methods to compute delivery rates so you"
                 " should rely on another price method instead or override this one in"
                 " your custom code.\n"
@@ -444,6 +453,7 @@ class DeliveryCarrier(models.Model):
         return True
 
     def _prepare_label(self, mrw_tracking_ref):
+        self.ensure_one()
         return {
             "NumeroEnvio": mrw_tracking_ref,
             "ReportTopMargin": self.mrw_label_top_margin,
@@ -466,6 +476,7 @@ class DeliveryCarrier(models.Model):
 
     def mrw_get_tracking_link(self, picking):
         """Provide tracking link for the customer"""
+        self.ensure_one()
         tracking_url = (
             "https://www.mrw.es/seguimiento_envios/MRW_resultados_consultas.asp?"
             "modo={}&envio={}"
@@ -479,7 +490,7 @@ class DeliveryCarrier(models.Model):
         wizard = self.env["mrw.manifest.wizard"].create({"carrier_id": self.id})
         view_id = self.env.ref("delivery_mrw.delivery_mrw_manifest_wizard_form").id
         return {
-            "name": _("MRW Manifest"),
+            "name": self.env._("MRW Manifest"),
             "type": "ir.actions.act_window",
             "view_mode": "form",
             "res_model": "mrw.manifest.wizard",
@@ -515,7 +526,7 @@ class DeliveryCarrier(models.Model):
         vals = self._prepare_mrw_tracking(picking)
         response = mrw_request._get_tracking_states(vals)
         if response["MensajeSeguimiento"] != "Busqueda correcta por Número de Albarán.":
-            raise UserError(_(response["MensajeSeguimiento"]))
+            raise UserError(response["MensajeSeguimiento"])
         tracking_states = mrw_request._process_mrw_tracking_response(response)
         if not tracking_states:
             return
@@ -532,4 +543,4 @@ class DeliveryCarrier(models.Model):
             tracking.get("state_code"), tracking.get("description")
         )
         if tracking.get("state_code") == "00":
-            picking.write({"date_delivered": tracking.get("delivery_date")})
+            picking.date_delivered = tracking.get("delivery_date")
