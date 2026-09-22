@@ -123,7 +123,7 @@ class L10nEsAeatCertificate(models.Model):
 
     def get_certificates(self, company=False):
         if not company:
-            company = self.env.user.company_id
+            company = self.env.company
         today = fields.Date.today()
         aeat_certificate = self.search(
             [
