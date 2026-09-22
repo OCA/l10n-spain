@@ -7,7 +7,7 @@ from datetime import date
 
 from psycopg2 import IntegrityError, errors
 
-from odoo import exceptions
+from odoo import Command, exceptions
 from odoo.tests.common import tagged
 from odoo.tools import mute_logger
 
@@ -285,3 +285,21 @@ class TestVatProrate(AccountTestInvoicingCommon):
         wizard.execute()
         self.assertFalse(self.env.company.with_vat_prorate)
         self.assertEqual(len(self.env.company.vat_prorate_ids), 1)
+
+    def test_prorate_with_account(self):
+        test_account = self.env["account.account"].create(
+            {
+                "code": "9999999",
+                "name": "Test Account",
+                "account_type": "asset_current",
+                "company_ids": [Command.link(self.env.company.id)],
+            }
+        )
+        self.env.company.vat_prorate_ids[0].write({"account_id": test_account.id})
+        invoice = self.init_invoice(
+            "in_invoice", products=[self.product_a, self.product_b]
+        )
+        self.assertEqual(
+            set(invoice.line_ids.filtered("vat_prorate").mapped("account_id").ids),
+            {test_account.id},
+        )

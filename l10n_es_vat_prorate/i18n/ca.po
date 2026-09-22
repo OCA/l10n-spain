@@ -296,3 +296,15 @@ msgstr "Heu d'omplir la informació del prorrateig de l'IVA"
 #, python-format
 #~ msgid "You can't have a special VAT prorrate of 100%"
 #~ msgstr "No podeu tenir un prorrateig especial d'IVA del 100%"
+
+#. module: l10n_es_vat_prorate
+#: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_res_company_vat_prorate__account_id
+msgid "Account"
+msgstr ""
+
+#. module: l10n_es_vat_prorate
+#: model:ir.model.fields,help:l10n_es_vat_prorate.field_res_company_vat_prorate__account_id
+msgid ""
+"Specify which account will be used to post the prorate entries. "
+"If no account is assigned, the process will follow the standard flow."
+msgstr ""
