@@ -6,15 +6,22 @@ from odoo import fields, models
 
 class L10nEsAeatMod322Group(models.Model):
     _name = "l10n.es.aeat.mod322.group"
+    _inherit = ["mail.thread", "mail.activity.mixin"]
     _description = "Grupo de IVA para el modelo 322"
 
-    name = fields.Char(required=True, help="Number assigned by AEAT to the group")
-    main_company_id = fields.Many2one(
-        "res.company", required=True, default=lambda r: r.env.company.id
+    name = fields.Char(
+        required=True, tracking=True, help="Number assigned by AEAT to the group"
     )
-    company_ids = fields.Many2many("res.company", default=lambda r: r.env.companies.ids)
+    main_company_id = fields.Many2one(
+        "res.company", required=True, tracking=True, default=lambda r: r.env.company.id
+    )
+    company_ids = fields.Many2many(
+        "res.company", tracking=True, default=lambda r: r.env.companies.ids
+    )
     vinculated_partner_ids = fields.Many2many(
-        "res.partner", help="""Use this field if you have other vinculated partners"""
+        "res.partner",
+        tracking=True,
+        help="""Use this field if you have other vinculated partners""",
     )
 
     _sql_constraints = [
