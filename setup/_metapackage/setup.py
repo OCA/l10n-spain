@@ -8,6 +8,7 @@ setuptools.setup(
     description="Meta package for oca-l10n-spain Odoo addons",
     version=version,
     install_requires=[
+        'odoo-addon-account_promissory_note_caixabank>=16.0dev,<16.1dev',
         'odoo-addon-delivery_gls_asm>=16.0dev,<16.1dev',
         'odoo-addon-delivery_mrw>=16.0dev,<16.1dev',
         'odoo-addon-delivery_seur_atlas>=16.0dev,<16.1dev',
