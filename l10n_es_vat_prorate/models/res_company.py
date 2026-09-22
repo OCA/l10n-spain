@@ -84,6 +84,14 @@ class ResCompanyVatProrate(models.Model):
         "other hand, all the invoice lines will be not prorated by default.",
     )
     vat_prorate = fields.Float()
+    account_id = fields.Many2one(
+        comodel_name="account.account",
+        check_company=True,
+        domain="[('active', '=', True), "
+        "('account_type', 'not in', ['asset_receivable', 'liability_payable'])]",
+        help="Specify which account will be used to post the prorate entries. "
+        "If no account is assigned, the process will follow the standard flow.",
+    )
 
     _vat_prorate_percent_amount = models.Constraint(
         "CHECK (vat_prorate > 0 and vat_prorate < 100)",

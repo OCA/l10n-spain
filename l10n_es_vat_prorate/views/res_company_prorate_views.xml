@@ -30,6 +30,7 @@
                 <field name="date" />
                 <field name="type" />
                 <field name="vat_prorate" />
+                <field name="account_id" />
                 <field
                     name="special_vat_prorate_default"
                     invisible="type == 'general'"
