@@ -174,6 +174,8 @@ class TestL10nEsPosOca(TestPointOfSale):
 
     def test_pos_order_simplified_invoice(self):
         """Create a simplified-invoice order within the limit."""
+        # Reset sequence in case other tests have incremented it
+        self.sequence.number_next = 1
         order = self.env["pos.order"].create(
             {
                 "session_id": self.pos_session.id,
@@ -185,11 +187,16 @@ class TestL10nEsPosOca(TestPointOfSale):
                 "to_invoice": False,
                 "l10n_es_simplified_number": 1,
                 "is_l10n_es_simplified_invoice": True,
-                "l10n_es_unique_id": "S0001",
+                "l10n_es_unique_id": self.sequence.next_by_id(),
             }
         )
         self.assertTrue(order.is_l10n_es_simplified_invoice)
-        self.assertEqual(order.l10n_es_unique_id, "S0001")
+        self.assertEqual(order.l10n_es_unique_id, "Test POS company 10001")
+        refunds = order._refund()
+        self.assertEqual(len(refunds), 1)
+        self.assertTrue(refunds.is_l10n_es_simplified_invoice)
+        self.assertEqual(refunds.l10n_es_simplified_number, 2)
+        self.assertEqual(refunds.l10n_es_unique_id, "Test POS company 10002")
 
     # ---------------------------------------------------------------------
     # Additional tests for better coverage
