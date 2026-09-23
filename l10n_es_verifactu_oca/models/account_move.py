@@ -509,6 +509,10 @@ class AccountMove(models.Model):
             identifier = "NO_DISPONIBLE"
             identifier_type = "06"
         if identifier_type == "":
+            # For Spanish NIF, ensure "ES" prefix is removed if present
+            # This can happen when VAT is stored with country prefix (e.g., "ESB12345678")
+            if identifier.startswith("ES") and len(identifier) > 2:
+                identifier = identifier[2:]
             return {"IDDestinatario": {"NombreRazon": receiver.name, "NIF": identifier}}
         if (
             receiver._map_aeat_country_code(country_code)
