@@ -102,13 +102,10 @@ class TestL10nEsAeatSiiMatch(TestL10nEsAeatSiiBase):
             return res
 
         service.ConsultaLRFacturasEmitidas = consulta
-        invoice.send_sii_now()
         with patch.object(
             type(invoice), "_connect_aeat", lambda move, mapping_key: service
         ):
-            self.env.ref(
-                "l10n_es_aeat_sii_oca.invoice_send_to_sii"
-            ).method_direct_trigger()
+            invoice.send_sii_now()
         self.assertEqual(invoice.aeat_state, "sent")
         self.assertEqual(invoice.sii_csv, "FAKECSV123")
         self.assertEqual(invoice.sii_contrast_state, "correct")
