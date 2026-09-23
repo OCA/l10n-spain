@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Dixmit
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="hr_siltra_form_view">
+        <field name="model">hr.siltra</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button
+                        name="process"
+                        type="object"
+                        string="Process File"
+                        class="btn-primary"
+                        invisible="state != 'draft'"
+                    />
+                    <field name="state" widget="statusbar" />
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box" />
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="state != 'draft'" />
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="filename" invisible="1" />
+                        <field
+                            name="file"
+                            filename="filename"
+                            widget="binary"
+                            readonly="state != 'draft'"
+                        />
+                        <field name="file_date" invisible="state == 'draft'" />
+                    </group>
+                    <notebook>
+                        <page
+                            string="Lines"
+                            name="final"
+                            invisible="state != 'validated'"
+                        >
+                            <field name="item_ids" />
+                        </page>
+                        <page
+                            string="To Review"
+                            name="to_review"
+                            invisible="state != 'processed'"
+                        >
+                            <field name="to_review_item_ids" />
+                        </page>
+                        <page
+                            string="Reviewed"
+                            name="reviewed"
+                            invisible="state != 'processed'"
+                        >
+                            <field name="reviewed_item_ids" />
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter />
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="hr_siltra_search_view">
+        <field name="model">hr.siltra</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="file_date" />
+                <separator />
+                <filter name="Draft" domain="[('state', '=', 'draft')]" />
+                <filter name="Processed" domain="[('state', '=', 'processed')]" />
+                <filter name="Validated" domain="[('state', '=', 'validated')]" />
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="hr_siltra_tree_view">
+        <field name="model">hr.siltra</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name" />
+                <field name="file_date" />
+                <field name="dit_items" />
+                <field name="nac_items" />
+                <field name="dip_items" />
+                <field name="jub_items" />
+                <field name="state" />
+            </list>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="hr_siltra_act_window">
+        <field name="name">Siltra Files</field>
+        <field name="res_model">hr.siltra</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+
+    <record model="ir.ui.menu" id="hr_siltra_menu">
+        <field name="name">Siltra Files</field>
+        <field name="parent_id" ref="hr_holidays.menu_hr_holidays_root" />
+        <field name="action" ref="hr_siltra_act_window" />
+        <field name="sequence" eval="16" />
+    </record>
+</odoo>
