@@ -16,8 +16,11 @@
                         <field name="main_company_id" />
                     </group>
                     <notebook>
-                        <page name="company" string="Companies">
-                            <field name="company_ids" />
+                        <page name="company" string="Dependent Companies">
+                            <field
+                                name="company_ids"
+                                domain="[('id', '!=', main_company_id)]"
+                            />
                         </page>
                         <page name="partner" string="Other partners">
                             <field name="vinculated_partner_ids" />
