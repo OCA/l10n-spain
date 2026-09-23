@@ -6,14 +6,17 @@
 import base64
 import io
 import json
+import re
 from hashlib import sha256
 from urllib.parse import urlencode
 
 import psycopg2
 import qrcode
+from lxml import etree
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
+from odoo.modules.module import get_resource_path
 from odoo.tools.float_utils import float_compare
 
 from odoo.addons.l10n_es_aeat.models.aeat_mixin import round_by_keys
@@ -21,6 +24,35 @@ from odoo.addons.l10n_es_aeat.models.aeat_mixin import round_by_keys
 VERIFACTU_VERSION = 1.0
 VERIFACTU_DATE_FORMAT = "%d-%m-%Y"
 VERIFACTU_MACRODATA_LIMIT = 100000000.0
+
+VERIFACTU_SCHEMA_NS = (
+    "https://www2.agenciatributaria.gob.es/static_files/common/internet/dep"
+    "/aplicaciones/es/aeat/tike/cont/ws/SuministroInformacion.xsd"
+)
+VERIFACTU_SCHEMA_FILE = "SuministroInformacion.xsd"
+VERIFACTU_DSIG_FILE = "xmldsig-core-schema.xsd"
+# Elements that wrap their items instead of repeating once per item, unlike
+# `DetalleDesglose`.
+VERIFACTU_LIST_WRAPPERS = frozenset(
+    {"Destinatarios", "FacturasRectificadas", "FacturasSustituidas"}
+)
+
+
+class VerifactuSchemaResolver(etree.Resolver):
+    """Resolve the xmldsig import to the copy in `data/`, so nothing is fetched.
+
+    Validation runs while an invoice is being posted and must not touch the
+    network.
+    """
+
+    def resolve(self, system_url, public_id, context):
+        if system_url and system_url.endswith(VERIFACTU_DSIG_FILE):
+            return self.resolve_filename(
+                get_resource_path("l10n_es_verifactu_oca", "data", VERIFACTU_DSIG_FILE),
+                context,
+            )
+        return None
+
 
 VERIFACTU_EXTRA_AEAT_STATES = [
     ("incorrect", "Incorrect"),
@@ -257,6 +289,118 @@ class VerifactuMixin(models.AbstractModel):
         )
         return inv_dict
 
+    @api.model
+    def _get_verifactu_schema_tree(self):
+        """The official schema, read from `data/`.
+
+        Not kept between calls, as `odoo.tools.xml_utils._check_with_xsd` and
+        `l10n_es_facturae` do not keep it either: an `lxml` validator holds the
+        error log it fills while validating, so sharing one between threads
+        can lose the element name that makes the error actionable.
+        """
+        parser = etree.XMLParser(no_network=True)
+        parser.resolvers.add(VerifactuSchemaResolver())
+        return etree.parse(
+            get_resource_path("l10n_es_verifactu_oca", "data", VERIFACTU_SCHEMA_FILE),
+            parser,
+        )
+
+    @api.model
+    def _get_verifactu_schema_order(self, tree, root_tag):
+        """Order the schema expects for the children of `root_tag`.
+
+        Not the order of the dict: the builders append keys where they read
+        best (`Subsanacion` last, the schema wants it fifth) and `zeep` maps
+        names onto the positions of the type. Reordering here is what keeps a
+        valid record from being reported as invalid.
+        """
+        xs = "{http://www.w3.org/2001/XMLSchema}"
+        root = tree.getroot()
+        type_name = ""
+        for element in root.findall("%selement" % xs):
+            if element.get("name") == root_tag:
+                type_name = (element.get("type") or "").split(":")[-1]
+                break
+        order = []
+        for complex_type in root.iter("%scomplexType" % xs):
+            if complex_type.get("name") != type_name:
+                continue
+            for child in complex_type.iter("%selement" % xs):
+                name = child.get("name")
+                # Direct children only: nested elements have their own
+                # sequence.
+                if name and child.getparent().getparent() is complex_type:
+                    order.append(name)
+            break
+        return order
+
+    @api.model
+    def _verifactu_render_element(self, parent, tag, value):
+        if value is None or value is False:
+            return
+        qualified_tag = "{%s}%s" % (VERIFACTU_SCHEMA_NS, tag)
+        if isinstance(value, list):
+            if tag in VERIFACTU_LIST_WRAPPERS:
+                # An empty list is rendered as an empty element, which is what
+                # `zeep` puts on the wire and what the schema then rejects.
+                # Skipping it here would validate a document that is not the
+                # one being sent.
+                wrapper = etree.SubElement(parent, qualified_tag)
+                for item in value:
+                    for key, sub_value in item.items():
+                        self._verifactu_render_element(wrapper, key, sub_value)
+                return
+            for item in value:
+                self._verifactu_render_element(parent, tag, item)
+            return
+        element = etree.SubElement(parent, qualified_tag)
+        if isinstance(value, dict):
+            for key, sub_value in value.items():
+                self._verifactu_render_element(element, key, sub_value)
+        else:
+            element.text = str(value)
+
+    @api.model
+    def _format_verifactu_schema_error(self, invalid):
+        """Every reason the record is invalid, with the namespaces stripped.
+
+        The whole log, not just the first failure as
+        `odoo.tools.xml_utils._check_with_xsd` does, so a record with two
+        problems does not need two attempts to be fixed.
+        """
+        errors = [entry.message for entry in invalid.error_log] or [str(invalid)]
+        return re.sub(r"\{[^}]+\}", "", "\n".join(errors))
+
+    def _validate_verifactu_registro(self, inv_dict):
+        """Return an error message if the record breaks the official schema.
+
+        Cannot be delegated to `zeep`: it only checks cardinality, not facets
+        such as maxLength, length, pattern or enumeration, so a facet violation
+        would leave the machine and be rejected by the Agency instead.
+        """
+        self.ensure_one()
+        if not inv_dict:
+            return None
+        root_tag = next(iter(inv_dict))
+        document = etree.Element("{%s}%s" % (VERIFACTU_SCHEMA_NS, root_tag))
+        values = inv_dict[root_tag] or {}
+        # Read once and used for both: the expected order comes from the same
+        # tree the validator is built from.
+        tree = self._get_verifactu_schema_tree()
+        schema_order = self._get_verifactu_schema_order(tree, root_tag)
+        # Unknown keys last, so they are reported as unexpected instead of
+        # shifting the position of the valid ones.
+        ordered_keys = [key for key in schema_order if key in values] + [
+            key for key in values if key not in schema_order
+        ]
+        for key in ordered_keys:
+            self._verifactu_render_element(document, key, values[key])
+        try:
+            etree.XMLSchema(tree).assertValid(document)
+        except etree.DocumentInvalid as invalid:
+            return self._format_verifactu_schema_error(invalid)
+        return None
+
     def _get_verifactu_developer_dict(self):
         """Datos del desarrollador del sistema informático."""
         if not self.company_id.verifactu_developer_id:
@@ -280,10 +424,9 @@ class VerifactuMixin(models.AbstractModel):
             "TipoUsoPosibleSoloVerifactu": "S",
             "TipoUsoPosibleMultiOT": "S",
             "IndicadorMultiplesOT": "S" if verifactu_companies > 1 else "N",
-            "IDOtro": {
-                "IDType": "",
-                "ID": "",
-            },
+            # No `IDOtro`: it is a choice with `NIF` in SistemaInformaticoType,
+            # so carrying both is invalid. `zeep` already dropped it, so the
+            # sent envelope is unchanged.
         }
 
     def _get_verifactu_chaining_invoice_dict(self):
