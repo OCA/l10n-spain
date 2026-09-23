@@ -5,8 +5,8 @@
 # Copyright 2017-2023 Tecnativa - Pedro M. Baeza
 # Copyright 2023 Moduon Team - Eduardo de Miguel
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
-
 import json
+from unittest.mock import MagicMock, patch
 
 from odoo import exceptions
 from odoo.tools.misc import file_path
@@ -693,6 +693,30 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
         self.assertTrue(invoice.sii_send_date)
         self.assertTrue(invoice_sii_failed.sii_send_date)
         self.assertTrue(invoice_sii_modified.sii_send_date)
+
+    def test_send_sii_now(self):
+        self.company.sii_method = "manual"
+        self.invoice.sii_send_date = False
+        invoice = self._create_invoice("out_invoice")
+        invoice.invoice_date = "2019-01-01"
+        invoice._post()
+        self.assertTrue(invoice.sii_enabled)
+        self.assertFalse(invoice.sii_send_date)
+        fake_serv = MagicMock()
+        fake_serv.SuministroLRFacturasEmitidas.return_value = {
+            "EstadoEnvio": "Correcto",
+            "CSV": "TEST-CSV",
+            "RespuestaLinea": [
+                {
+                    "CodigoErrorRegistro": "",
+                    "DescripcionErrorRegistro": "",
+                }
+            ],
+        }
+        with patch.object(type(invoice), "_connect_aeat", return_value=fake_serv):
+            invoice.send_sii_now()
+        self.assertFalse(invoice.sii_send_date)
+        self.assertEqual(invoice.aeat_state, "sent")
 
     def test_start_date(self):
         self.company.sii_start_date = "2018-01-01"
