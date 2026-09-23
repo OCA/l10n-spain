@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2025 Carlos Sainz-Pardo <carlos.sainz@netkia.es>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="l10n_es_aeat_real_estate_action" model="ir.actions.act_window">
+        <field name="name">AEAT Real Estates</field>
+        <field name="res_model">l10n.es.aeat.real_estate</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="l10n_es_aeat_real_estate_form" model="ir.ui.view">
+        <field name="name">l10n.es.aeat.real.estate.form</field>
+        <field name="model">l10n.es.aeat.real_estate</field>
+        <field name="arch" type="xml">
+            <form>
+                <header />
+                <div
+                    class="alert alert-danger"
+                    role="alert"
+                    invisible="not id or check_ok"
+                >
+                    <b>Errors</b>: <em>
+                    <field name="error_text" readonly="1" />
+                </em>
+                </div>
+                <sheet>
+                    <widget
+                        name="web_ribbon"
+                        title="Archived"
+                        bg_color="bg-danger"
+                        invisible="active"
+                    />
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only" />
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Legal Representative">
+                            <field name="partner_id" />
+                            <field name="representative_vat" />
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                            />
+                        </group>
+                        <group string="Catastral Reference">
+                            <field
+                                name="reference"
+                                placeholder="1234567AB1234A0001OJ"
+                            />
+                        </group>
+                        <separator />
+                        <group string="Address" col="3">
+                            <field name="address_type" nolabel="1" />
+                            <field
+                                name="address"
+                                nolabel="1"
+                                colspan="2"
+                                placeholder="Name of the street"
+                            />
+                            <field name="number_type" nolabel="1" />
+                            <div class="o_row" colspan="2">
+                                <field
+                                    name="number"
+                                    invisible="number_type not in ['NUM', 'KM.']"
+                                />
+                                <field
+                                    name="number_calification"
+                                    invisible="number_type != 'NUM'"
+                                />
+                            </div>
+                            <div class="o_row" colspan="2" col="3">
+                                <field name="block" placeholder="Block" />
+                                <field name="floor" placeholder="Floor" />
+                                <field name="stairway" placeholder="Stairway" />
+                            </div>
+                            <div class="o_row" colspan="2" col="3">
+                                <field name="portal" placeholder="Portal" />
+                                <field name="door" placeholder="Door" />
+                                <field name="complement" placeholder="Complement" />
+                            </div>
+                        </group>
+                        <group string="City">
+                            <field name="state_id" />
+                            <field name="city" />
+                            <field name="zip" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="l10n_es_aeat_real_estate_tree" model="ir.ui.view">
+        <field name="name">l10n.es.aeat.real.estate.tree</field>
+        <field name="model">l10n.es.aeat.real_estate</field>
+        <field name="arch" type="xml">
+            <list decoration-danger="not check_ok">
+                <field name="partner_id" />
+                <field name="name" />
+                <field name="representative_vat" optional="hide" />
+                <field name="reference" />
+                <field name="state_id" optional="hide" />
+                <field name="company_id" groups="base.group_multi_company" />
+            </list>
+        </field>
+    </record>
+
+    <record id="l10n_es_aeat_real_estate_search" model="ir.ui.view">
+        <field name="name">l10n.es.aeat.real.estate.search</field>
+        <field name="model">l10n.es.aeat.real_estate</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="reference" />
+                <field name="partner_id" />
+                <field name="representative_vat" />
+                <field name="state_id" />
+                <group>
+                    <filter
+                        name="flt_partners"
+                        string="Partners"
+                        context="{'group_by': 'partner_id'}"
+                    />
+                    <filter
+                        name="flt_postal_codes"
+                        string="Postal Codes"
+                        context="{'group_by': 'zip'}"
+                    />
+                    <filter
+                        name="flt_state_id"
+                        string="State"
+                        context="{'group_by': 'state_id'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <menuitem
+        id="l10n_es_aeat_real_estate_menu"
+        parent="l10n_es_aeat.menu_l10n_es_aeat_config"
+        sequence="36"
+        action="l10n_es_aeat_real_estate_action"
+        name="Real Estates"
+        groups="l10n_es_aeat.group_use_aeat_real_estates"
+    />
+</odoo>

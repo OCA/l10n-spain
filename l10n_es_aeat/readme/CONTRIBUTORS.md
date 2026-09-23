@@ -17,3 +17,4 @@
 - Jairo Llopis (<https://www.moduon.team>)
 - `Studio73 <https://www.studio73.es>`__:
   - Pablo Cortés
+- Carlos Sainz-Pardo (https://www.netkia.es)
