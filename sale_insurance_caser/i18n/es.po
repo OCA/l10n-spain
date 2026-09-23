@@ -464,6 +464,11 @@ msgid "Last time tarification was requested from Caser"
 msgstr "Última vez que se solicitó tarificación a Caser"
 
 #. module: sale_insurance_caser
+#: model_terms:ir.ui.view,arch_db:sale_insurance_caser.view_order_form_caser
+msgid "Mark as reviewed"
+msgstr "Marcar como revisado"
+
+#. module: sale_insurance_caser
 #: model:ir.model.fields,field_description:sale_insurance_caser.field_caser_price_range__max_price
 msgid "Maximum Price"
 msgstr "Precio máximo"

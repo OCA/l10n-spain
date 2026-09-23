@@ -533,6 +533,22 @@ class TestSaleInsuranceCaser(BaseCommon):
                 with self.assertRaises(UserError) as cm:
                     trap.perform_enqueued_jobs()
         self.assertIn("Invalid customer data", str(cm.exception))
+        # A successful retry must take the order out of the error queue (the
+        # failed job commits its error in production, not under tests)
+        order1.caser_insurance_line_ids.caser_error_message = "Request error"
+        self.assertEqual(order1.caser_insurance_state, "error")
+        mock_ok = MagicMock()
+        mock_ok.status_code = 200
+        mock_ok.text = """<SERVICIO><P_NPOLPRO>POL111</P_NPOLPRO><P_TEXTO>OK</P_TEXTO>
+<PRIMA_itotre>76.27</PRIMA_itotre></SERVICIO>"""
+        with patch(
+            "odoo.addons.sale_insurance_caser.models.caser_api_mixin.CaserApiMixin._send_caser_soap_request",
+            return_value=mock_ok,
+        ):
+            order1.caser_insurance_line_ids.action_retry_caser_insurance()
+        self.assertEqual(order1.caser_insurance_line_ids.caser_policy_number, "POL111")
+        self.assertFalse(order1.caser_insurance_line_ids.caser_error_message)
+        self.assertEqual(order1.caser_insurance_state, "done")
         # Test price mismatch
         self._create_stock_with_lot(self.phone_product, "SN_PRICE_002")
         order2 = self._create_sale_order_with_insurance(
@@ -578,3 +594,9 @@ class TestSaleInsuranceCaser(BaseCommon):
         self.assertTrue(
             order2.message_ids.filtered(lambda m: "Price mismatch" in (m.body or ""))
         )
+        # The policy exists, so the warning can only be acknowledged
+        self.assertEqual(order2.caser_insurance_state, "error")
+        insurance_line.action_caser_mark_reviewed()
+        self.assertFalse(insurance_line.caser_error_message)
+        self.assertEqual(insurance_line.caser_policy_number, "POL999")
+        self.assertEqual(order2.caser_insurance_state, "done")

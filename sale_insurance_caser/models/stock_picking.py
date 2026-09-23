@@ -247,6 +247,7 @@ class StockPicking(models.Model):
             {
                 "caser_policy_number": result["policy_number"],
                 "caser_insurance_price": result["insurance_price"],
+                "caser_error_message": False,
             }
         )
         self._validate_caser_price(insurance_line, result["insurance_price"])

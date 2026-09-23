@@ -50,6 +50,13 @@
                                 icon="fa-refresh"
                                 invisible="not caser_lot_id or caser_policy_number"
                             />
+                            <button
+                                name="action_caser_mark_reviewed"
+                                type="object"
+                                string="Mark as reviewed"
+                                icon="fa-check"
+                                invisible="not caser_policy_number or not caser_error_message"
+                            />
                         </list>
                         <form string="Caser Policy">
                             <group>
@@ -70,6 +77,13 @@
                                     string="Retry Caser request"
                                     class="btn btn-primary"
                                     invisible="not caser_lot_id or caser_policy_number"
+                                />
+                                <button
+                                    name="action_caser_mark_reviewed"
+                                    type="object"
+                                    string="Mark as reviewed"
+                                    class="btn btn-primary"
+                                    invisible="not caser_policy_number or not caser_error_message"
                                 />
                             </div>
                             <group string="Raw exchange">

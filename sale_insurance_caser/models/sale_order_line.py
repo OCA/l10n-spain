@@ -137,6 +137,11 @@ class SaleOrderLine(models.Model):
         picking = self.order_id.picking_ids.filtered(lambda p: p.state == "done")
         picking[0]._send_caser_insurance_request(self)
 
+    def action_caser_mark_reviewed(self):
+        # Warnings on an issued policy (e.g. price mismatch) cannot be fixed by
+        # retrying: let the user acknowledge them so the order leaves the queue.
+        self.filtered("caser_policy_number").caser_error_message = False
+
     def _get_caser_insurance_product(self):
         """Insurance product matching this line's price and asset type."""
         self.ensure_one()
