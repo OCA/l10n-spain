@@ -201,6 +201,33 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
         items = self.env["account.move"].search(domain_ko_2)
         self.assertIn(self.invoice, items)
 
+    def test_readonly_accounting_user_can_read_registration_keys(self):
+        """Accounting / Read-only must open invoices that point to an SII key.
+
+        The registration key is a many2one on the invoice. Invoicing can read
+        it, but Read-only could not, so the form raised AccessError.
+        """
+        user = self.env["res.users"].create(
+            {
+                "name": "Readonly accounting",
+                "login": "readonly_accounting",
+                "groups_id": [
+                    (6, 0, [self.env.ref("account.group_account_readonly").id])
+                ],
+                "email": "readonly@example.com",
+            }
+        )
+        self.assertTrue(user.has_group("account.group_account_readonly"))
+        self.assertFalse(user.has_group("account.group_account_invoice"))
+        self.assertFalse(user.has_group("l10n_es_aeat.group_account_aeat"))
+        keys = self.env["aeat.sii.mapping.registration.keys"].with_user(user)
+        keys.check_access("read")
+        key = keys.search([], limit=1)
+        self.assertTrue(key)
+        key.read(["code", "name"])
+        with self.assertRaises(exceptions.AccessError):
+            keys.check_access("write")
+
     def test_intracomunitary_customer_extracomunitary_delivery(self):
         """Comprobar venta a un cliente intracomunitario enviada al extranjero.
 
