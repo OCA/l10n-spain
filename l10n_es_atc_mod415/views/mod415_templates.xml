@@ -11,13 +11,7 @@
                                     style="font-size: 22px; letter-spacing: 2px; font-weight: bolder;"
                                 >Modelo 415</h1>
                                 <div id="ok">
-                                    <img
-                                        src="/l10n_es_atc_mod415/static/src/img/415_ok.svg"
-                                        width="200"
-                                        height="233"
-                                        class="mb32"
-                                    />
-                                    <h4>
+                                    <h4 class="mt32">
                                         La comunicación se ha registrado correctamente.
                                     </h4>
                                     <p>Ya puede cerrar esta página si así lo desea.</p>
@@ -41,13 +35,7 @@
                                     style="font-size: 22px; letter-spacing: 2px; font-weight: bolder;"
                                 >Modelo 415</h1>
                                 <div id="bad">
-                                    <img
-                                        src="/l10n_es_atc_mod415/static/src/img/415_bad.svg"
-                                        width="200"
-                                        height="233"
-                                        class="mb32"
-                                    />
-                                    <h4>
+                                    <h4 class="mt32">
                                         Ha habido un error registrando la comunicación.
                                     </h4>
                                     <p
