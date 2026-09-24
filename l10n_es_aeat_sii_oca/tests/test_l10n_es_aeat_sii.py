@@ -749,8 +749,21 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
             .create({})
         )
         self.assertEqual(wizard.moves_to_send, 1)
-        invoice.send_sii_now()
-        self.assertLess(invoice.sii_send_date, future_send_date)
+        fake_serv = MagicMock()
+        fake_serv.SuministroLRFacturasEmitidas.return_value = {
+            "EstadoEnvio": "Correcto",
+            "CSV": "TEST-CSV",
+            "RespuestaLinea": [
+                {
+                    "CodigoErrorRegistro": "",
+                    "DescripcionErrorRegistro": "",
+                }
+            ],
+        }
+        with patch.object(type(invoice), "_connect_aeat", return_value=fake_serv):
+            invoice.send_sii_now()
+        self.assertFalse(invoice.sii_send_date)
+        self.assertEqual(invoice.aeat_state, "sent_modified")
 
     def test_send_sii_now(self):
         self.company.sii_method = "manual"
