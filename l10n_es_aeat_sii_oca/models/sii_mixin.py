@@ -300,6 +300,9 @@ class SiiMixin(models.AbstractModel):
                     record.sii_send_date = fields.Datetime.now()
                 else:
                     record.sii_send_date = record.company_id._get_sii_sending_time()
+        self._process_sii_send_cron(send_date)
+
+    def _process_sii_send_cron(self, send_date=None):
         # Create trigger if any company needs to send doc to SII now
         # so the sending to SII cron is executed as soon as possible
         if (
