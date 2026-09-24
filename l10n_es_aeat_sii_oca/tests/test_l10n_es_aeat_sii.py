@@ -324,6 +324,37 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
             },
         )
 
+    def test_eu_customer_manual_identification_with_country_prefix(self):
+        """A manual AEAT identification that already includes the EU country
+        prefix must not get it prepended again (e.g. LTLT123456789).
+        """
+        self._activate_certificate(self.certificate_password)
+        eu_customer = self.env["res.partner"].create(
+            {
+                "name": "Lithuanian Customer",
+                "country_id": self.ref("base.lt"),
+                "aeat_identification_type": "06",
+                "aeat_identification": "LT123456789",
+            }
+        )
+        invoice = self.invoice.copy(
+            {"partner_id": eu_customer.id, "fiscal_position_id": False}
+        )
+        invoice.action_post()
+        self.assertEqual(invoice._get_sii_gen_type(), 1)
+        sii_info = invoice._get_aeat_invoice_dict()
+        self.assertEqual(
+            sii_info["FacturaExpedida"]["Contraparte"],
+            {
+                "NombreRazon": "Lithuanian Customer",
+                "IDOtro": {
+                    "CodigoPais": "LT",
+                    "IDType": "06",
+                    "ID": "LT123456789",
+                },
+            },
+        )
+
     def test_partner_sii_enabled(self):
         company_02 = self.env["res.company"].create({"name": "Company 02"})
         self.env.user.company_ids += company_02
