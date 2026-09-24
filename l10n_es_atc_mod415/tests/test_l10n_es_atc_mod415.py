@@ -12,6 +12,7 @@ from unittest import mock
 
 from odoo.tests import Form, tagged
 
+from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
     TestL10nEsAeatModBase,
 )
@@ -59,6 +60,11 @@ class TestL10nEsAtcMod415(TestL10nEsAeatModBase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        # Mail tracking is irrelevant to these declarations and costs a
+        # message plus tracking values on every record created below. The
+        # 19.0 migration guide recommends disabling it for the whole test
+        # environment, so reuse core's constant instead of listing the keys.
+        cls.env = cls.env["base"].with_context(**DISABLED_MAIL_CONTEXT).env
         # Create model
         cls.model415 = cls.env["l10n.es.atc.mod415.report"].create(
             {
