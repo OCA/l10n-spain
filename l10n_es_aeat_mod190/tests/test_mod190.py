@@ -7,6 +7,7 @@ from typing import ClassVar
 
 from odoo import SUPERUSER_ID
 from odoo.exceptions import UserError
+from odoo.fields import Command
 from odoo.tests import Form, new_test_user
 
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
@@ -459,3 +460,32 @@ class TestL10nEsAeatMod190Base(TestL10nEsAeatModBase):
         self.assertEqual(perceptor[107:134], b" 00000001000000000000015000")
         self.assertEqual(perceptor[254:281], b" 00000000500000000000007500")
         self.assertEqual(perceptor[281:295], b" " + b"0" * 13)
+
+    def test_mod190_readonly_user_opens_invoice(self):
+        """An Accounting / Read-only user who manages the AEAT declarations
+        opens a vendor bill that carries a perception key, and its journal
+        item."""
+        self.supplier.with_company(
+            self.company
+        ).property_account_position_id = self.fiscal_position
+        invoice = self._create_purchase_move(
+            self.supplier, "2025-01-10", [("P_IRPF15", 100)]
+        )
+        self.assertTrue(invoice.aeat_perception_key_id)
+        readonly_user = new_test_user(
+            self.env(user=SUPERUSER_ID),
+            "readonly_190_user",
+            "account.group_account_readonly,l10n_es_aeat.group_account_aeat",
+            company_id=self.company.id,
+            company_ids=[Command.set(self.company.ids)],
+        )
+        invoice_form = Form(invoice.with_user(readonly_user))
+        self.assertEqual(
+            invoice_form.aeat_perception_key_id, invoice.aeat_perception_key_id
+        )
+        self.assertTrue(invoice_form.is_aeat_perception_subkey_visible)
+        line = invoice.invoice_line_ids
+        line_form = Form(
+            line.with_user(readonly_user), view="account.view_move_line_form"
+        )
+        self.assertEqual(line_form.aeat_perception_key_id, line.aeat_perception_key_id)
