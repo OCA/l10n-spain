@@ -380,3 +380,45 @@ class TestVerifactuInvoice(TestVerifactuCommon):
             self.company,
             "Should be able to create chain entry with company context",
         )
+
+    def test_hash_fields_are_tracked_on_the_invoice(self):
+        """A change of the chain fingerprint is recorded in the invoice chatter."""
+        invoice = self._create_and_prepare_invoice()
+        # A record created in the same transaction has its tracking discarded
+        # until the pending callbacks run, so they are run before writing.
+        invoice.flush_recordset()
+        self.env.cr.precommit.run()
+        invoice.write(
+            {
+                "verifactu_hash": "0" * 64,
+                "verifactu_hash_string": "IDEmisorFactura=A12345674&NumSerie=TEST",
+            }
+        )
+        # Tracking values are written by a precommit callback too.
+        invoice.flush_recordset()
+        self.env.cr.precommit.run()
+        tracked = invoice.message_ids.tracking_value_ids.mapped("field.name")
+        self.assertIn(
+            "verifactu_hash",
+            tracked,
+            "Changing the hash should leave a tracking value on the invoice",
+        )
+        self.assertIn(
+            "verifactu_hash_string",
+            tracked,
+            "Changing the hash string should leave a tracking value on the invoice",
+        )
+
+    def test_hash_fields_are_not_tracked_on_the_mixin(self):
+        """The mixin leaves tracking to the consumers that have a chatter.
+
+        Declaring it on the mixin reaches consumers that do not inherit
+        `mail.thread`, where the parameter does nothing and only logs a warning
+        on every registry load.
+        """
+        mixin_fields = self.env["verifactu.mixin"]._fields
+        for field_name in ("verifactu_hash", "verifactu_hash_string"):
+            self.assertFalse(
+                getattr(mixin_fields[field_name], "tracking", False),
+                f"{field_name} must not declare tracking on the mixin",
+            )
