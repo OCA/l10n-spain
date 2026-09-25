@@ -1,3 +1,7 @@
+.. image:: https://odoo-community.org/readme-banner-image
+   :target: https://odoo-community.org/get-involved?utm_source=readme
+   :alt: Odoo Community Association
+
 =============================================
 Suministro Inmediato de Información en el IVA
 =============================================
@@ -13,7 +17,7 @@ Suministro Inmediato de Información en el IVA
 .. |badge1| image:: https://img.shields.io/badge/maturity-Mature-brightgreen.png
     :target: https://odoo-community.org/page/development-status
     :alt: Mature
-.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github
@@ -61,7 +65,11 @@ Para configurar este módulo es necesario:
 
 El parámetro del sistema l10n_es_aeat_sii_oca.sii_batch almacena el
 número de facturas máximo que se enviarán al SII cada vez que se realice
-un envío. El valor por defecto es 50.
+un envío. El valor por defecto es 500. Las facturas se envían agrupadas
+en una sola petición por compañía, agencia tributaria, libro (emitidas o
+recibidas) y tipo de comunicación (alta o modificación), con un máximo
+de 10.000 registros por petición, que es el límite de la AEAT. Las
+anulaciones se agrupan del mismo modo.
 
 En Linux se pueden usar los siguientes comandos:
 
@@ -150,6 +158,8 @@ Contributors
   - Pedro M. Baeza
   - João Marques
   - Sergio Teruel
+  - Andrii Kompaniiets
+  - Carlos Dauden
 
 - Lois Rilo Antelo <lois.rilo@forgeflow.com>
 - Eduardo de Miguel (edu@moduon.team)
