@@ -14,6 +14,7 @@ from freezegun import freeze_time
 
 from odoo import Command
 from odoo.exceptions import UserError
+from odoo.tools import mute_logger
 from odoo.tools.misc import file_path
 
 from .common import TestVerifactuCommon
@@ -373,6 +374,38 @@ class TestL10nEsAeatVerifactuQR(TestVerifactuCommon):
                 "Invoice send be marked as failed after VERI*FACTU processing.",
             )
 
+    @mute_logger("odoo.addons.l10n_es_verifactu_oca.models.verifactu_invoice_entry")
+    def test_connection_error_is_visible_and_not_duplicated(self):
+        self._activate_certificate(self.certificate_password)
+        self.invoice.action_post()
+        entry = self.invoice.last_verifactu_invoice_entry_id
+        response_model = self.env["verifactu.invoice.entry.response"]
+        initial_response_count = response_model.search_count([])
+        with patch(
+            "odoo.addons.l10n_es_verifactu_oca.models."
+            "verifactu_invoice_entry.VerifactuInvoiceEntry._connect_verifactu",
+            side_effect=ConnectionError("Test connection failure"),
+        ):
+            entry._send_documents_to_verifactu()
+            first_response = entry.last_response_line_id.entry_response_id
+            entry._send_documents_to_verifactu()
+        self.assertEqual(response_model.search_count([]), initial_response_count + 1)
+        self.assertEqual(entry.send_attempt, 2)
+        self.assertEqual(len(first_response.response_line_ids), 1)
+        self.assertEqual(
+            first_response.connection_error,
+            "ConnectionError('Test connection failure')",
+        )
+        self.assertEqual(
+            entry.last_response_line_id.entry_response_id,
+            first_response,
+        )
+        self.assertTrue(self.invoice.aeat_send_failed)
+        self.assertEqual(
+            self.invoice.aeat_send_error,
+            "ConnectionError('Test connection failure')",
+        )
+
     def test_send_invoices_to_verifactu_duplicated(self):
         self._activate_certificate(self.certificate_password)
         self.invoice.action_post()
@@ -477,11 +510,20 @@ class TestL10nEsAeatVerifactuQR(TestVerifactuCommon):
 
 
 class TestVerifactuSendResponse(TestVerifactuCommon):
-    def test_create_activity_on_exception(self):
+    @patch(
+        "odoo.addons.l10n_es_verifactu_oca.models.verifactu_invoice_entry."
+        "VerifactuInvoiceEntry._connect_verifactu"
+    )
+    @mute_logger("odoo.addons.l10n_es_verifactu_oca.models.verifactu_invoice_entry")
+    def test_create_activity_on_exception(self, mock_connect):
         """
         Creates an activity whenever the connection with VERI*FACTU
         is not possible.
         """
+        mock_service = MagicMock()
+        mock_service.RegFactuSistemaFacturacion.return_value = {}
+        certificate_error = UserError("VERI*FACTU certificate is not configured")
+        mock_connect.side_effect = [certificate_error, certificate_error, mock_service]
         MailActivity = self.env["mail.activity"]
         ActivityType = self.env.ref(
             "l10n_es_verifactu_oca.mail_activity_data_exception"

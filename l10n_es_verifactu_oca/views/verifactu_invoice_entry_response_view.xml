@@ -46,6 +46,11 @@
                         <page string="Details">
                             <group>
                                 <group name="verifactu1">
+                                    <field
+                                        name="connection_error"
+                                        readonly="1"
+                                        invisible="not connection_error"
+                                    />
                                     <field name="response" readonly="1" />
                                     <field name="header" readonly="1" />
                                     <field name="invoice_data" readonly="1" />
@@ -57,7 +62,7 @@
                                 </group>
                             </group>
                         </page>
-                        <page string="Details">
+                        <page string="Response lines">
                             <field name="response_line_ids" readonly="1">
                                     <tree>
                                         <field name="entry_id" column_invisible="1" />
