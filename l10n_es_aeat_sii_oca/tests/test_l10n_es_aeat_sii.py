@@ -236,6 +236,125 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
             },
         )
 
+    def test_intracomunitary_customer_vat_country_prefix_precedence(self):
+        """Check that the VAT's own country prefix wins over the partner's
+        address country when building the SII identifier.
+
+        Reproduces a real case: a third-party billing partner (e.g. Amazon)
+        registered with country Luxembourg but invoicing with an Italian VAT
+        number, since Amazon holds local VAT registrations per country. The
+        SII identifier must use the Italian prefix from the VAT, not the
+        Luxembourg one derived from the partner's address.
+        """
+        self._activate_certificate(self.certificate_password)
+        partner = self.env["res.partner"].create(
+            {
+                "name": "Amazon EU SARL",
+                "country_id": self.ref("base.lu"),
+                "vat": "IT12345670017",
+            }
+        )
+        invoice = self.invoice.copy(
+            {"partner_id": partner.id, "fiscal_position_id": self.fp_intra.id}
+        )
+        invoice.action_post()
+        sii_info = invoice._get_aeat_invoice_dict()
+        self.assertEqual(
+            sii_info["FacturaExpedida"]["Contraparte"],
+            {
+                "NombreRazon": "Amazon EU SARL",
+                "IDOtro": {"IDType": "02", "ID": "IT12345670017"},
+            },
+        )
+
+    def test_intracomunitary_customer_valid_vat(self):
+        """Caso normal: un cliente UE con un NIF-IVA real bajo Régimen
+        Intracomunitario debe seguir identificándose con IDType 02.
+        """
+        self._activate_certificate(self.certificate_password)
+        eu_customer = self.env["res.partner"].create(
+            {
+                "name": "French Customer",
+                "country_id": self.ref("base.fr"),
+                "vat": "FR23334175221",
+            }
+        )
+        invoice = self.invoice.copy(
+            {"partner_id": eu_customer.id, "fiscal_position_id": self.fp_intra.id}
+        )
+        invoice.action_post()
+        sii_info = invoice._get_aeat_invoice_dict()
+        self.assertEqual(
+            sii_info["FacturaExpedida"]["Contraparte"],
+            {
+                "NombreRazon": "French Customer",
+                "IDOtro": {"IDType": "02", "ID": "FR23334175221"},
+            },
+        )
+
+    def test_intracomunitary_customer_without_valid_vat(self):
+        """Un cliente bajo Régimen Intracomunitario cuya identificación (por
+        override manual de aeat_identification_type/aeat_identification) no
+        es un NIF-IVA real no debe forzarse a IDType 02, o el SII rechaza la
+        factura con el error 1104 "Valor del campo ID incorrecto".
+        """
+        self._activate_certificate(self.certificate_password)
+        eu_customer = self.env["res.partner"].create(
+            {
+                "name": "Italian Individual Customer",
+                "country_id": self.ref("base.it"),
+                "aeat_identification_type": "06",
+                "aeat_identification": "FAKECODICEFISCALE",
+            }
+        )
+        invoice = self.invoice.copy(
+            {"partner_id": eu_customer.id, "fiscal_position_id": self.fp_intra.id}
+        )
+        invoice.action_post()
+        sii_info = invoice._get_aeat_invoice_dict()
+        self.assertEqual(
+            sii_info["FacturaExpedida"]["Contraparte"],
+            {
+                "NombreRazon": "Italian Individual Customer",
+                "IDOtro": {
+                    "CodigoPais": "IT",
+                    "IDType": "06",
+                    "ID": "FAKECODICEFISCALE",
+                },
+            },
+        )
+
+    def test_eu_customer_manual_identification_with_country_prefix(self):
+        """A manual AEAT identification that already includes the EU country
+        prefix must not get it prepended again (e.g. LTLT123456789).
+        """
+        self._activate_certificate(self.certificate_password)
+        eu_customer = self.env["res.partner"].create(
+            {
+                "name": "Lithuanian Customer",
+                "country_id": self.ref("base.lt"),
+                "aeat_identification_type": "06",
+                "aeat_identification": "LT123456789",
+            }
+        )
+        invoice = self.invoice.copy(
+            {"partner_id": eu_customer.id, "fiscal_position_id": False}
+        )
+        invoice.action_post()
+        self.assertEqual(invoice._get_sii_gen_type(), 1)
+        sii_info = invoice._get_aeat_invoice_dict()
+        self.assertEqual(
+            sii_info["FacturaExpedida"]["Contraparte"],
+            {
+                "NombreRazon": "Lithuanian Customer",
+                "IDOtro": {
+                    "CodigoPais": "LT",
+                    "IDType": "06",
+                    "ID": "LT123456789",
+                },
+            },
+        )
+
     def test_partner_sii_enabled(self):
         company_02 = self.env["res.company"].create({"name": "Company 02"})
         self.env.user.company_ids += company_02
