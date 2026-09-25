@@ -176,11 +176,14 @@ class SiiMixin(models.AbstractModel):
         """
         self.ensure_one()
         invoice_date = self._change_date_format(self._get_document_date())
-        partner = self._aeat_get_partner()
         company = self.company_id
         ejercicio = self._get_document_fiscal_year()
         periodo = self._get_document_period()
         number = self._get_document_serial_number()
+        # IDFactura already identifies the invoice, so the counterpart isn't
+        # used as a filter: if the partner identification changed after the
+        # invoice was sent, AEAT would reject the query (e.g. error 1149) or
+        # not find the invoice. Counterpart differences are reported as diffs.
         inv_dict = {
             "FiltroConsulta": {},
             "PeriodoLiquidacion": {"Ejercicio": ejercicio, "Periodo": periodo},
@@ -192,11 +195,6 @@ class SiiMixin(models.AbstractModel):
                 "FechaExpedicionFacturaEmisor": invoice_date,
             },
         }
-        if not self._is_aeat_simplified_invoice():
-            # Simplified invoices don't have counterpart
-            inv_dict["Contraparte"] = {"NombreRazon": partner.name[0:120]}
-            # Uso condicional de IDOtro/NIF
-            inv_dict["Contraparte"].update(self._get_sii_identifier())
         return inv_dict
 
     def _get_contrast_invoice_dict_in(self):
