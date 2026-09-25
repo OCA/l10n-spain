@@ -375,6 +375,46 @@ class VerifactuMixin(models.AbstractModel):
     def _get_verifactu_document_type(self):
         raise NotImplementedError()
 
+    def _get_verifactu_substituted_documents(self):
+        """Documents that this one substitutes ("canje" of art. 15.6 §2 ROF).
+
+        A document substituting others is registered as F3: an ordinary invoice
+        issued in substitution of simplified invoices that were already
+        registered and declared. The substituted documents are neither
+        cancelled nor rectified, and their amounts are not taken into account
+        again, per the AEAT "Aclaraciones a dudas de los desarrolladores" v1.3,
+        section 27.
+
+        :return: list of documents implementing this mixin. They may belong to
+            different models (a POS ticket and an invoice are both possible
+            simplified invoices), so this is a list and not a single recordset.
+        """
+        return []
+
+    def _get_verifactu_substituted_invoices_dict(self):
+        """Build the ``FacturasSustituidas`` block of the alta record."""
+        return [
+            {
+                "IDFacturaSustituida": {
+                    "IDEmisorFactura": document._get_verifactu_issuer(),
+                    "NumSerieFactura": document._get_document_serial_number(),
+                    "FechaExpedicionFactura": document._get_verifactu_date(
+                        document._get_document_date()
+                    ),
+                }
+            }
+            for document in self._get_verifactu_substituted_documents()
+        ]
+
+    def get_verifactu_document(self, invoice_num, ids):
+        """
+        Models that inherit this mixin must implement this method to return
+        the document based on the invoice number
+        Used in verifactu.invoice.entry model to find the document
+        for the response lines.
+        """
+        raise NotImplementedError()
+
     def _get_verifactu_description(self):
         raise NotImplementedError()
 
