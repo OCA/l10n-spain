@@ -65,7 +65,11 @@ Para configurar este módulo es necesario:
 
 El parámetro del sistema l10n_es_aeat_sii_oca.sii_batch almacena el
 número de facturas máximo que se enviarán al SII cada vez que se realice
-un envío. El valor por defecto es 50.
+un envío. El valor por defecto es 500. Las facturas se envían agrupadas
+en una sola petición por compañía, agencia tributaria, libro (emitidas o
+recibidas) y tipo de comunicación (alta o modificación), con un máximo
+de 10.000 registros por petición, que es el límite de la AEAT. Las
+anulaciones se agrupan del mismo modo.
 
 En Linux se pueden usar los siguientes comandos:
 
@@ -155,6 +159,7 @@ Contributors
   - João Marques
   - Sergio Teruel
   - Andrii Kompaniiets
+  - Carlos Dauden
 
 - Lois Rilo Antelo <lois.rilo@forgeflow.com>
 - Eduardo de Miguel (edu@moduon.team)

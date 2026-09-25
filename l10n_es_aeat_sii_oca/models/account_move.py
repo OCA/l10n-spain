@@ -19,9 +19,7 @@ import logging
 from unidecode import unidecode
 
 from odoo import _, api, exceptions, fields, models
-from odoo.modules.registry import Registry
 from odoo.osv.expression import AND, OR
-from odoo.tools import groupby
 
 SII_VALID_INVOICE_STATES = ["posted"]
 _logger = logging.getLogger(__name__)
@@ -525,60 +523,8 @@ class AccountMove(models.Model):
     def _get_valid_document_states(self):
         return SII_VALID_INVOICE_STATES
 
-    def _cancel_invoice_to_sii(self):
-        for invoice in self.filtered(lambda i: i.state in ["cancel"]):
-            # TODO: Move communication code to sii.mixin
-            serv = invoice._connect_aeat(invoice.move_type)
-            header = invoice._get_aeat_header(cancellation=True)
-            inv_vals = {
-                "aeat_send_failed": True,
-                "aeat_send_error": False,
-                "sii_send_date": False,
-            }
-            try:
-                inv_dict = invoice._get_cancel_sii_invoice_dict()
-                if invoice.move_type in ["out_invoice", "out_refund"]:
-                    res = serv.AnulacionLRFacturasEmitidas(header, inv_dict)
-                else:
-                    res = serv.AnulacionLRFacturasRecibidas(header, inv_dict)
-                # TODO Facturas intracomunitarias 66 RIVA
-                # elif invoice.fiscal_position_id.id == self.env.ref(
-                #     'account.fp_intra').id:
-                #     res = serv.AnulacionLRDetOperacionIntracomunitaria(
-                #         header, invoices)
-                inv_vals["sii_return"] = res
-                if res["EstadoEnvio"] == "Correcto":
-                    inv_vals.update(
-                        {
-                            "aeat_state": "cancelled",
-                            "sii_csv": res["CSV"],
-                            "aeat_send_failed": False,
-                            "sii_needs_cancel": False,
-                        }
-                    )
-                res_line = res["RespuestaLinea"][0]
-                if res_line["CodigoErrorRegistro"]:
-                    inv_vals["aeat_send_error"] = "{} | {}".format(
-                        str(res_line["CodigoErrorRegistro"]),
-                        str(res_line["DescripcionErrorRegistro"])[:60],
-                    )
-                invoice.write(inv_vals)
-            except Exception as fault:
-                new_cr = Registry(self.env.cr.dbname).cursor()
-                env = api.Environment(new_cr, self.env.uid, self.env.context)
-                invoice = env["account.move"].browse(invoice.id)
-                inv_vals.update(
-                    {
-                        "aeat_send_failed": True,
-                        "aeat_send_error": repr(fault)[:60],
-                        "sii_send_date": False,
-                        "sii_return": repr(fault),
-                    }
-                )
-                invoice.write(inv_vals)
-                new_cr.commit()
-                new_cr.close()
-                raise
+    def _cancel_invoice_to_sii(self, with_commit=False):
+        self._cancel_document_to_sii(with_commit=with_commit)
 
     def cancel_sii(self):
         invoices = self.filtered(
@@ -787,25 +733,21 @@ class AccountMove(models.Model):
         )
         return res
 
-    def cancel_one_invoice(self):
-        self.sudo()._cancel_invoice_to_sii()
+    def cancel_one_invoice(self, with_commit=False):
+        self.sudo()._cancel_invoice_to_sii(with_commit=with_commit)
 
     @api.model
-    def _get_sii_batch(self):
-        try:
-            return int(
-                self.env["ir.config_parameter"]
-                .sudo()
-                .get_param("l10n_es_aeat_sii_oca.sii_batch", "50")
-            )
-        except ValueError as e:
-            raise exceptions.UserError(
-                _(
-                    "The value in l10n_es_aeat_sii_oca.sii_batch system"
-                    " parameter must be an integer. Please, check the "
-                    "value of the parameter."
-                )
-            ) from e
+    def _write_sii_results(self, docs_vals):
+        """Only SII fields are written, so skip the lines synchronization and the
+        balance check done on each move write."""
+        return super()._write_sii_results(
+            {
+                document.with_context(
+                    check_move_validity=False, skip_invoice_sync=True
+                ): doc_vals
+                for document, doc_vals in docs_vals.items()
+            }
+        )
 
     @api.model
     def _send_to_sii_valid(self):
@@ -826,9 +768,7 @@ class AccountMove(models.Model):
         batch = self._get_sii_batch()
         documents = all_documents[:batch]
         remaining_documents = all_documents - documents
-        for _c, doc_list in groupby(documents, key=lambda r: r.company_id):
-            docs = self.env["account.move"].browse([doc.id for doc in doc_list])
-            docs.confirm_one_document()
+        documents.confirm_one_document(with_commit=True)
         return remaining_documents
 
     @api.model
@@ -850,7 +790,7 @@ class AccountMove(models.Model):
             batch = self._get_sii_batch()
             cancel_documents = all_cancel_documents[:batch]
             remaining_cancel_documents = all_cancel_documents - cancel_documents
-            cancel_documents.cancel_one_invoice()
+            cancel_documents.cancel_one_invoice(with_commit=True)
         return remaining_cancel_documents
 
     @api.model
