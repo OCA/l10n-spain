@@ -13,3 +13,18 @@ class ResCompany(models.Model):
     company_plastic_manufacturer = fields.Boolean(
         string="Plastic Manufacturer", default=False
     )
+    mod592_payable_account_id = fields.Many2one(
+        comodel_name="account.account",
+        string="Mod 592 payable account",
+        domain="[('company_id', '=', id)]",
+    )
+    mod592_receivable_account_id = fields.Many2one(
+        comodel_name="account.account",
+        string="Mod 592 receivable account",
+        domain="[('company_id', '=', id)]",
+    )
+    mod592_counterpart_account_id = fields.Many2one(
+        comodel_name="account.account",
+        string="Mod 592 counterpart account",
+        domain="[('company_id', '=', id)]",
+    )
