@@ -92,6 +92,15 @@ msgid "A chaining with the same name already exists!"
 msgstr ""
 
 #. module: l10n_es_verifactu_oca
+#. odoo-python
+#: code:addons/l10n_es_verifactu_oca/models/account_journal.py:0
+#, python-format
+msgid ""
+"A sales journal must have VERI*FACTU enabled when its company has VERI*FACTU"
+" enabled."
+msgstr ""
+
+#. module: l10n_es_verifactu_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.view_verifactu_invoice_entry_form
 msgid "AEAT DATA"
 msgstr ""
@@ -642,7 +651,6 @@ msgstr ""
 
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__account_move__aeat_state__incorrect
-#: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__pos_order__aeat_state__incorrect
 #: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__verifactu_mixin__aeat_state__incorrect
 msgid "Incorrect"
 msgstr ""
@@ -1096,6 +1104,15 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_move__aeat_send_failed
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_mixin__aeat_send_failed
 msgid "SII send failed"
+msgstr ""
+
+#. module: l10n_es_verifactu_oca
+#. odoo-python
+#: code:addons/l10n_es_verifactu_oca/models/account_move.py:0
+#, python-format
+msgid ""
+"Sales invoices cannot be validated in a journal without VERI*FACTU when the "
+"company has VERI*FACTU activated."
 msgstr ""
 
 #. module: l10n_es_verifactu_oca

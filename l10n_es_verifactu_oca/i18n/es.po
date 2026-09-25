@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-28 10:22+0000\n"
-"PO-Revision-Date: 2025-11-28 10:22+0000\n"
+"POT-Creation-Date: 2026-08-12 03:00+0000\n"
+"PO-Revision-Date: 2026-08-12 05:05+0200\n"
 "Last-Translator: Mario Montes <admin@syci.es>\n"
 "Language-Team: \n"
 "Language: \n"
@@ -97,6 +97,17 @@ msgstr "<span>Otros detalles</span>"
 #: model:ir.model.constraint,message:l10n_es_verifactu_oca.constraint_verifactu_chaining_verifactu_chaining_name_uniq
 msgid "A chaining with the same name already exists!"
 msgstr "¡Ya existe un encadenamiento con el mismo nombre!"
+
+#. module: l10n_es_verifactu_oca
+#. odoo-python
+#: code:addons/l10n_es_verifactu_oca/models/account_journal.py:0
+#, python-format
+msgid ""
+"A sales journal must have VERI*FACTU enabled when its company has VERI*FACTU "
+"enabled."
+msgstr ""
+"Un diario de venta debe tener VERI*FACTU activado cuando la compañía tiene "
+"VERI*FACTU activado."
 
 #. module: l10n_es_verifactu_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.view_verifactu_invoice_entry_form
@@ -1130,6 +1141,17 @@ msgstr "Nombre del SIF"
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_mixin__aeat_send_failed
 msgid "SII send failed"
 msgstr "Envío SII fallido"
+
+#. module: l10n_es_verifactu_oca
+#. odoo-python
+#: code:addons/l10n_es_verifactu_oca/models/account_move.py:0
+#, python-format
+msgid ""
+"Sales invoices cannot be validated in a journal without VERI*FACTU when the "
+"company has VERI*FACTU activated."
+msgstr ""
+"Las facturas de venta no pueden ser validadas en un diario sin VERI*FACTU "
+"cuando la compañía tiene VERI*FACTU activado."
 
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_invoice_entry__send_attempt
