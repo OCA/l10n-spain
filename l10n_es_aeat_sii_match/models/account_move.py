@@ -143,13 +143,16 @@ class AccountMove(models.Model):
         """
         self.ensure_one()
         invoice_date = self._change_date_format(self.invoice_date)
-        partner = self.partner_id.commercial_partner_id
         company = self.company_id
         ejercicio = self.date.year
         periodo = "%02d" % self.date.month
         number = self.name
         if self.thirdparty_invoice:
             number = self.thirdparty_number
+        # IDFactura already identifies the invoice, so the counterpart isn't
+        # used as a filter: if the partner identification changed after the
+        # invoice was sent, AEAT would reject the query (e.g. error 1149) or
+        # not find the invoice. Counterpart differences are reported as diffs.
         inv_dict = {
             "FiltroConsulta": {},
             "PeriodoLiquidacion": {"Ejercicio": ejercicio, "Periodo": periodo},
@@ -159,11 +162,6 @@ class AccountMove(models.Model):
                 "FechaExpedicionFacturaEmisor": invoice_date,
             },
         }
-        if not partner.aeat_simplified_invoice:
-            # Simplified invoices don't have counterpart
-            inv_dict["Contraparte"] = {"NombreRazon": partner.name[0:120]}
-            # Uso condicional de IDOtro/NIF
-            inv_dict["Contraparte"].update(self._get_sii_identifier())
         return inv_dict
 
     def _get_contrast_invoice_dict_in(self):
