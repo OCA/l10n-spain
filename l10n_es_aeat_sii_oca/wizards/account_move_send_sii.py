@@ -13,6 +13,7 @@ class SendSIIWizard(models.TransientModel):
     with_errors_number = fields.Integer()
     modified_number = fields.Integer()
     account_move_ids = fields.Many2many("account.move", string="Invoices")
+    send_now = fields.Boolean()
 
     def default_get(self, fields):
         res = super().default_get(fields)
@@ -43,4 +44,13 @@ class SendSIIWizard(models.TransientModel):
         return res
 
     def action_confirm(self):
-        self.account_move_ids.send_sii()
+        if self.send_now:
+            # Call the method to instantly (right now) send all the records
+            self.account_move_ids.send_sii_now()
+        else:
+            # Set the date `sii_send_date` to today for records that do not have a date
+            date_now = fields.Datetime.now()
+            for move in self.account_move_ids.filtered(lambda x: not x.sii_send_date):
+                move.sii_send_date = date_now
+            # Manually call the method that creates the trigger to run the cron job
+            self.account_move_ids._process_sii_send_cron(date_now)
