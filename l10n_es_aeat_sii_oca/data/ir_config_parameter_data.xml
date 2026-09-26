@@ -4,6 +4,6 @@
 <odoo noupdate="1">
     <record id="sii_batch" model="ir.config_parameter">
         <field name="key">l10n_es_aeat_sii_oca.sii_batch</field>
-        <field name="value">50</field>
+        <field name="value">500</field>
     </record>
 </odoo>
