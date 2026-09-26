@@ -5,6 +5,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import json
+import logging
 
 from deepdiff import DeepDiff
 from zeep.helpers import serialize_object
@@ -12,6 +13,8 @@ from zeep.helpers import serialize_object
 from odoo import Command, api, fields, models
 from odoo.modules.registry import Registry
 from odoo.tools import float_compare
+
+_logger = logging.getLogger(__name__)
 
 
 class SiiMixin(models.AbstractModel):
@@ -288,11 +291,22 @@ class SiiMixin(models.AbstractModel):
                 new_cr.close()
                 raise
 
-    def _send_document_to_sii(self):
-        res = super()._send_document_to_sii()
-        # Try match invoice data with SII info in this case
+    def _send_sii_locked_documents(self, book, communication_type):
+        res = super()._send_sii_locked_documents(book, communication_type)
+        if not communication_type:  # cancellation
+            return res
+        # Try match invoice data with SII info in this case. It runs within the
+        # transaction of the request, so the results just stored are visible.
         # TODO: Use other data like as a standard code instead of this string
-        self.filtered(
+        duplicated = self.filtered(
             lambda am: am.aeat_send_error == "3000 | Factura duplicada"
-        )._contrast_invoice_to_aeat()
+        )
+        if duplicated:
+            # The AEAT already registered the request: a failed contrast must
+            # not roll back the storage of its results
+            try:
+                with self.env.cr.savepoint():
+                    duplicated._contrast_invoice_to_aeat()
+            except Exception:
+                _logger.exception("Error contrasting duplicated invoices with AEAT")
         return res
