@@ -96,6 +96,7 @@ Contributors
   - Pedro M. Baeza
   - Carolina Fernandez
   - Christian Ramos
+  - Adasat Torres
 
 - `Sygel <https://www.sygel.es/>`__:
 

@@ -3,6 +3,7 @@
   - Pedro M. Baeza
   - Carolina Fernandez
   - Christian Ramos
+  - Adasat Torres
 - [Sygel](https://www.sygel.es/):
   - Harald Panten
   - Manuel Regidor

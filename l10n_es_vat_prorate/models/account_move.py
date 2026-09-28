@@ -54,8 +54,9 @@ class AccountMove(models.Model):
         prorate_vals = {}
         for invoice_line in invoice_lines:
             prorate = invoice_line.move_id.prorate_id.vat_prorate / 100.0
+            prorate_account_id = invoice_line.move_id.prorate_id.account_id.id
             prec = invoice_line.move_id.currency_id.rounding
-            account_id = invoice_line.account_id.id
+            account_id = prorate_account_id or invoice_line.account_id.id
             analytic_distribution = invoice_line.analytic_distribution
             # It's need to group by tax_id, analytic_distribution and account_id
             uniq_line_key = f"{analytic_distribution}|{account_id}"
