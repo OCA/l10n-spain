@@ -491,7 +491,7 @@ class L10nEsAeatReport(models.AbstractModel):
         seq_obj = self.env["ir.sequence"]
         sequence = self._get_sequence_code()
         if not companies:
-            companies = self.env.user.company_ids
+            companies = self.env.companies
         for company in companies:
             seq = seq_obj.search(
                 Domain.AND(
