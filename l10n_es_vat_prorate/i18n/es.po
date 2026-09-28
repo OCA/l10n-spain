@@ -18,6 +18,12 @@ msgstr ""
 "X-Generator: Weblate 5.15.2\n"
 
 #. module: l10n_es_vat_prorate
+#: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_res_company_vat_prorate__account_id
+#: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_res_company_vat_prorate_wizard__account_id
+msgid "Account"
+msgstr "Cuenta contable"
+
+#. module: l10n_es_vat_prorate
 #: model:ir.model,name:l10n_es_vat_prorate.model_account_update_vat_prorate
 msgid "Account Update Vat Prorate"
 msgstr "Actualizar prorrata de IVA en cuenta"
@@ -70,7 +76,11 @@ msgid "Date"
 msgstr "Fecha"
 
 #. module: l10n_es_vat_prorate
+#: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_account_move__display_name
+#: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_account_move_line__display_name
+#: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_account_tax__display_name
 #: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_account_update_vat_prorate__display_name
+#: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_res_company__display_name
 #: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_res_company_vat_prorate__display_name
 #: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_res_company_vat_prorate_wizard__display_name
 msgid "Display Name"
@@ -83,7 +93,11 @@ msgid "General"
 msgstr "General"
 
 #. module: l10n_es_vat_prorate
+#: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_account_move__id
+#: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_account_move_line__id
+#: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_account_tax__id
 #: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_account_update_vat_prorate__id
+#: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_res_company__id
 #: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_res_company_vat_prorate__id
 #: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_res_company_vat_prorate_wizard__id
 msgid "ID"
@@ -188,6 +202,17 @@ msgstr "Especial"
 #: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_res_company_vat_prorate_wizard__special_vat_prorate_default
 msgid "Special VAT Prorate Default"
 msgstr "Prorrata especial de IVA por defecto"
+
+#. module: l10n_es_vat_prorate
+#: model:ir.model.fields,help:l10n_es_vat_prorate.field_res_company_vat_prorate__account_id
+#: model:ir.model.fields,help:l10n_es_vat_prorate.field_res_company_vat_prorate_wizard__account_id
+msgid ""
+"Specify which account will be used to post the prorate entries. If no "
+"account is assigned, the process will follow the standard flow."
+msgstr ""
+"Especifica qué cuenta se utilizará para contabilizar los asientos del "
+"prorrateo. Si no se asigna ninguna cuenta, el proceso seguirá el flujo "
+"estándar."
 
 #. module: l10n_es_vat_prorate
 #: model:ir.model,name:l10n_es_vat_prorate.model_account_tax
@@ -302,17 +327,3 @@ msgstr "Debe cumplimentar la información sobre el prorrateo del IVA"
 #, python-format
 #~ msgid "You can't have a special VAT prorrate of 100%"
 #~ msgstr "No puede tener una prorrata especial de IVA del 100%"
-
-#. module: l10n_es_vat_prorate
-#: model:ir.model.fields,field_description:l10n_es_vat_prorate.field_res_company_vat_prorate__account_id
-msgid "Account"
-msgstr "Cuenta contable"
-
-#. module: l10n_es_vat_prorate
-#: model:ir.model.fields,help:l10n_es_vat_prorate.field_res_company_vat_prorate__account_id
-msgid ""
-"Specify which account will be used to post the prorate entries. "
-"If no account is assigned, the process will follow the standard flow."
-msgstr ""
-"Especifica qué cuenta se utilizará para contabilizar los asientos del prorrateo. "
-"Si no se asigna ninguna cuenta, el proceso seguirá el flujo estándar."
