@@ -595,10 +595,7 @@ class AccountMove(models.Model):
                 lambda company: company.send_mode == "auto"
                 or (company.send_mode == "delayed" and company.delay_time == 0.0)
             ):
-                sii_send_cron = self.env.ref("l10n_es_aeat_sii_oca.invoice_send_to_sii")
-                self.env["ir.cron.trigger"].sudo().create(
-                    {"cron_id": sii_send_cron.id, "call_at": fields.Datetime.now()}
-                )
+                self.env.ref("l10n_es_aeat_sii_oca.invoice_send_to_sii")._trigger()
 
     def button_cancel(self):
         if not self._cancel_send_to_sii():
@@ -848,10 +845,7 @@ class AccountMove(models.Model):
         remaining_cancel_documents = self._send_to_sii_cancel()
         # Manage remaining invoices
         if remaining_documents or remaining_cancel_documents:
-            sii_send_cron = self.env.ref("l10n_es_aeat_sii_oca.invoice_send_to_sii")
-            self.env["ir.cron.trigger"].sudo().create(
-                {"cron_id": sii_send_cron.id, "call_at": fields.Datetime.now()}
-            )
+            self.env.ref("l10n_es_aeat_sii_oca.invoice_send_to_sii")._trigger()
 
     def _get_sii_tax_agency(self):
         if not self.journal_id.tax_agency_id:
