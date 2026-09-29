@@ -443,7 +443,7 @@ class VatNumberXlsx(models.AbstractModel):
         # Issued
         issued_sheet = self.create_issued_sheet(workbook, book, draft_export)
         lines = book.issued_line_ids + book.rectification_issued_line_ids
-        lines = lines.sorted(key=lambda x: (x.invoice_date, x.ref))
+        lines = lines.sorted(key=lambda x: (x.invoice_date, x.ref or ""))
         row = 8
         for line in lines:
             with_total = True
@@ -459,7 +459,7 @@ class VatNumberXlsx(models.AbstractModel):
         # Received
         received_sheet = self.create_received_sheet(workbook, book, draft_export)
         lines = book.received_line_ids + book.rectification_received_line_ids
-        lines = lines.sorted(key=lambda x: (x.invoice_date, x.ref))
+        lines = lines.sorted(key=lambda x: (x.invoice_date, x.ref or ""))
         row = 8
         for line in lines:
             with_total = True
