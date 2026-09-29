@@ -216,6 +216,7 @@ class L10nEsAeatMod130Report(models.Model):
         date_start = f"{self.year}-01-01"
         extra_domain = [
             ("company_id", "=", self.company_id.id),
+            ("parent_state", "=", "posted"),
             ("date", ">=", date_start),
             ("date", "<=", self.date_end),
         ]
