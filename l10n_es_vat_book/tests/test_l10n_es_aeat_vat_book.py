@@ -46,6 +46,7 @@ class TestL10nEsAeatVatBook(TestL10nEsAeatVatBookBase):
         self._invoice_purchase_create("2017-01-01")
         # Sale invoices
         sale = self._invoice_sale_create("2017-01-13")
+        sale.ref = False
         self._invoice_refund(sale, "2017-01-14")
         # Deactivate a tax for checking that everything continues working
         tax = self.company._get_taxes_from_xmlids(["account_tax_template_p_iva21_sc"])
