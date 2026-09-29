@@ -158,3 +158,72 @@ class TestL10nEsAeatVatBook(TestL10nEsAeatVatBookBase):
         self.assertEqual(len(vat_book.issued_line_ids), 0)
         self.assertEqual(len(vat_book.rectification_issued_line_ids), 0)
         self.assertEqual(len(vat_book.issued_tax_summary_ids), 0)
+
+    def test_vat_book_xlsx_empty_invoice_date_or_ref(self):
+        """Exporting to XLSX must not fail if some lines have empty invoice_date or ref
+        (see #5243).
+        """
+        vat_book = self.env["l10n.es.vat.book"].create(
+            {
+                "name": "Test VAT Book Empty Date/Ref",
+                "company_id": self.company.id,
+                "company_vat": "1234567890",
+                "contact_name": "Test owner",
+                "statement_type": "N",
+                "support_type": "T",
+                "contact_phone": "911234455",
+                "year": 2017,
+                "period_type": "1T",
+                "date_start": "2017-01-01",
+                "date_end": "2017-03-31",
+            }
+        )
+        self.env["l10n.es.vat.book.line"].create(
+            {
+                "vat_book_id": vat_book.id,
+                "partner_id": self.customer.id,
+                "line_type": "issued",
+                "invoice_date": False,
+                "ref": "REF001",
+                "base_amount": 100.0,
+                "total_amount": 121.0,
+            }
+        )
+        self.env["l10n.es.vat.book.line"].create(
+            {
+                "vat_book_id": vat_book.id,
+                "partner_id": self.customer.id,
+                "line_type": "issued",
+                "invoice_date": "2017-01-15",
+                "ref": False,
+                "base_amount": 100.0,
+                "total_amount": 121.0,
+            }
+        )
+        self.env["l10n.es.vat.book.line"].create(
+            {
+                "vat_book_id": vat_book.id,
+                "partner_id": self.partner.id,
+                "line_type": "received",
+                "invoice_date": False,
+                "ref": False,
+                "base_amount": 100.0,
+                "total_amount": 121.0,
+            }
+        )
+        self.env["l10n.es.vat.book.line"].create(
+            {
+                "vat_book_id": vat_book.id,
+                "partner_id": self.partner.id,
+                "line_type": "received",
+                "invoice_date": "2017-01-20",
+                "ref": "SUP/001",
+                "base_amount": 100.0,
+                "total_amount": 121.0,
+            }
+        )
+        report_xlsx = self.env["ir.actions.report"]._render(
+            "l10n_es_vat_book.l10n_es_vat_book_xlsx", vat_book.ids
+        )
+        self.assertGreaterEqual(len(report_xlsx[0]), 1)
+        self.assertEqual(report_xlsx[1], "xlsx")
