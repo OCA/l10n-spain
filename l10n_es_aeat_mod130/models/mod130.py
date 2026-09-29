@@ -218,6 +218,7 @@ class L10nEsAeatMod130Report(models.Model):
         extra_domain = Domain(
             [
                 ("company_id", "=", self.company_id.id),
+                ("parent_state", "=", "posted"),
                 ("date", ">=", date_start),
                 ("date", "<=", self.date_end),
             ]
