@@ -260,6 +260,32 @@ class TestL10nEsAeatVerifactuQR(TestVerifactuCommon):
                 "QR code should be regenerated after invoice update.",
             )
 
+    def test_verifactu_macrodata(self):
+        """Test verifactu_macrodata computation."""
+        self.assertFalse(self.invoice.verifactu_macrodata)
+        self.invoice.invoice_line_ids.with_context(
+            check_move_validity=False
+        ).price_unit = 130000000
+        self.invoice.with_context(check_move_validity=False)._recompute_dynamic_lines(
+            recompute_all_taxes=True
+        )
+        self.assertTrue(self.invoice.verifactu_macrodata)
+
+    def test_verifactu_macrodata_reported(self):
+        """Macrodato must be reported as "S" in the RegistroAlta."""
+        self._activate_certificate(self.certificate_password)
+        self.invoice.invoice_line_ids.with_context(
+            check_move_validity=False
+        ).price_unit = 130000000
+        self.invoice.with_context(check_move_validity=False)._recompute_dynamic_lines(
+            recompute_all_taxes=True
+        )
+        self.invoice.action_post()
+        self.assertEqual(
+            self.invoice._get_verifactu_invoice_dict()["RegistroAlta"].get("Macrodato"),
+            "S",
+        )
+
     def test_send_invoices_to_verifactu(self):
         self._activate_certificate(self.certificate_password)
         self.invoice.action_post()
