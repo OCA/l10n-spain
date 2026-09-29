@@ -1,3 +1,7 @@
+.. image:: https://odoo-community.org/readme-banner-image
+   :target: https://odoo-community.org/get-involved?utm_source=readme
+   :alt: Odoo Community Association
+
 ============================
 Comunicación Veri*FACTU IGIC
 ============================
@@ -13,7 +17,7 @@ Comunicación Veri*FACTU IGIC
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github
@@ -46,6 +50,20 @@ las facturas como en las posiciones fiscales. Se recomienda hacer uso
 del modulo ``account_chart_update``, esto permitira una actualizacion
 correcta a la localización.
 
+Régimen minorista (clave VERI*FACTU 17): use la posición fiscal de
+minoristas y el IGIC teórico del producto (``igic_r_*``). El módulo
+calcula la carga impositiva implícita según el art. 29.3 de la Ley
+20/1991 (IGIC): ``Carga = Base × (0,7 × T) / 100``, informando en el XML
+el ``TipoImpositivo`` teórico (T) y
+``CargaImpositivaImplicitadeMinoristas``.
+
+Al instalar o actualizar el módulo, las facturas en borrador de cliente
+(``out_invoice`` / ``out_refund``) de empresas canarias reciben las
+claves VERI\ *FACTU IGIC y las posiciones fiscales canarias sin clave
+quedan con el tipo ``03``. Las facturas ya emitidas (contabilizadas) no
+se modifican: el histórico anterior a la adopción de VERI*\ FACTU queda
+fuera de este flujo.
+
 Bug Tracker
 ===========
 
@@ -67,9 +85,9 @@ Authors
 Contributors
 ------------
 
-- Mario Montes <m.montes@binhex.cloud>
-- Christian Ramos <c.ramos@binhex.cloud>
-- Abraham J. Febres <a.febres@binhex.cloud>
+-  Mario Montes <m.montes@binhex.cloud>
+-  Christian Ramos <c.ramos@binhex.cloud>
+-  Abraham J. Febres <a.febres@binhex.cloud>
 
 Maintainers
 -----------
