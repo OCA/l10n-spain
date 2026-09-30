@@ -330,6 +330,15 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
                 [(100, ["p_iva21_sp_in"])],
                 {"ref": "sup0008", "sii_account_registration_date": "2020-10-01"},
             ),
+            # In invoice with REAGP (SFRSA) compensation
+            (
+                "in_invoice",
+                [(100, ["p_iva12_agr"])],
+                {
+                    "ref": "sup0009",
+                    "sii_account_registration_date": "2020-10-01",
+                },
+            ),
         ]
         for inv_type, lines, extra_vals in mapping:
             self._create_and_test_invoice_sii_dict(inv_type, lines, extra_vals)
