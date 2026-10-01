@@ -244,6 +244,22 @@ class AccountMove(models.Model):
                         }
                     }
                     inv_dict["FacturasRectificadas"].append(origin_data)
+                elif (
+                    self.verifactu_original_document_number
+                    and self.verifactu_original_document_date
+                ):
+                    # The rectified document is not registered in the system, so
+                    # its identification is taken from the manually filled fields.
+                    origin_data = {
+                        "IDFacturaRectificada": {
+                            "IDEmisorFactura": company_vat,
+                            "NumSerieFactura": self.verifactu_original_document_number,
+                            "FechaExpedicionFactura": self._get_verifactu_date(
+                                self.verifactu_original_document_date
+                            ),
+                        }
+                    }
+                    inv_dict["FacturasRectificadas"].append(origin_data)
                 # inv_dict["ImporteRectificacion"] = {
                 #     "BaseRectificada": abs(origin.amount_untaxed_signed),
                 #     "CuotaRectificada": abs(
@@ -563,7 +579,31 @@ class AccountMove(models.Model):
             suffixes.append(_("- There are some inconsistent taxes on lines."))
         if not self._check_all_taxes_mapped():
             suffixes.append(_("- It does not have all taxes mapped."))
+        if not self._check_rectified_document():
+            suffixes.append(
+                _(
+                    "- Link the original invoice or fill in the VERI*FACTU "
+                    "original document number and date."
+                )
+            )
         return super()._check_verifactu_configuration(suffixes=suffixes)
+
+    def _check_rectified_document(self):
+        """A rectification by differences must identify the rectified document,
+        either through the linked original invoice or through the manually
+        filled fields. Otherwise AEAT rejects the whole batch for not matching
+        the schema, as `IDFacturaRectificada` is mandatory.
+        """
+        self.ensure_one()
+        if self.move_type != "out_refund" or self.verifactu_refund_type != "I":
+            return True
+        return bool(
+            self.reversed_entry_id
+            or (
+                self.verifactu_original_document_number
+                and self.verifactu_original_document_date
+            )
+        )
 
     def _check_inconsistent_taxes(self):
         document_date = self._get_document_date()

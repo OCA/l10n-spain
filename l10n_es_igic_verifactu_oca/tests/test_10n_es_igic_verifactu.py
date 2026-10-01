@@ -60,6 +60,10 @@ class TestL10nEsAeatVerifactuIgic(TestVerifactuIgicCommon):
                     "fiscal_position_id": self.fp_nacional.id,
                     "verifactu_registration_key": self.fp_registration_key_01.id,
                     "verifactu_registration_date": "2026-01-01 19:20:30",
+                    # There is no linked original invoice, so the rectified
+                    # document is identified through these fields.
+                    "verifactu_original_document_number": "ORIGIN001",
+                    "verifactu_original_document_date": "2025-12-31",
                 },
             ),
         ]
