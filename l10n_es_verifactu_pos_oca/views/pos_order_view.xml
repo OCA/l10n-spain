@@ -14,8 +14,19 @@
                     attrs="{'invisible': ['|','|',('verifactu_enabled', '=', False), ('state', 'not in', ['paid', 'done']), ('aeat_state','not in', ('sent_w_errors', 'incorrect'))]}"
                 />
             </button>
+            <button name="resend_verifactu" position="after">
+                <button
+                    type="object"
+                    string="Generate VERI*FACTU chaining"
+                    name="action_recover_verifactu_chaining"
+                    groups="l10n_es_aeat.group_account_aeat"
+                    attrs="{'invisible': ['|','|','|',('verifactu_enabled', '=', False), ('state', 'not in', ['paid', 'done']), ('to_invoice', '=', True), ('last_verifactu_invoice_entry_id', '!=', False)]}"
+                />
+            </button>
              <notebook position="inside">
                 <field name="verifactu_enabled" invisible="1" />
+                <field name="last_verifactu_invoice_entry_id" invisible="1" />
+                <field name="to_invoice" invisible="1" />
                 <page
                     string="VERI*FACTU"
                     name="page_aeat"
@@ -56,6 +67,12 @@
                                 name="verifactu_registration_date"
                                 string="Registration date"
                                 readonly="1"
+                            />
+                            <field
+                                name="verifactu_chaining_attempts"
+                                string="Chaining attempts"
+                                readonly="1"
+                                attrs="{'invisible': [('verifactu_chaining_attempts', '=', 0)]}"
                             />
                         </group>
                     </group>
