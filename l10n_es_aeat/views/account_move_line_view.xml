@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<!-- License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<!-- Copyright 2025 Netkia - Carlos Sainz-Pardo
+    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
     <record id="view_move_line_tree" model="ir.ui.view">
         <field name="model">account.move.line</field>
@@ -16,6 +17,14 @@
                     name="tax_line_id"
                     sum="Total taxes (fee)"
                     string="Taxes (fee)"
+                />
+            </field>
+            <field name="partner_id" position="after">
+                <field
+                    name="l10n_es_aeat_real_estate_id"
+                    string="Inmueble"
+                    optional="hide"
+                    groups="l10n_es_aeat.group_use_aeat_real_estates"
                 />
             </field>
         </field>

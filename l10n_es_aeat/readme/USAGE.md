@@ -16,3 +16,9 @@ Para importar el certificado, hay que:
 2.  Crear uno nuevo. Rellenas los datos del formulurio y subir el
     archivo p12
 3.  Pulsar obtener claves e introducir la contraseña del certificado
+
+Para gestionar inmuebles, hay que:
+
+1.  Entrar en *Facturación \> Configuración \> AEAT \> Inmuebles*
+2.  Crear uno nuevo, rellenando los datos del formulario.
+3.  Ya se podrá añadir un inmueble en el campo Inmueble de las lineas de factura.
