@@ -1,1 +1,5 @@
 from . import test_10n_es_igic_verifactu
+from . import test_post_init_hook
+from . import test_verifactu_tax_key
+from . import test_verifactu_repep
+from . import test_verifactu_coverage
