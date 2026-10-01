@@ -1,24 +1,45 @@
-# Copyright 2025 Binhex - Christian Ramos
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# Copyright 2026 - OCA
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+
 from odoo import SUPERUSER_ID, api
+
+ATC_VERIFACTU_TAX_KEY = "03"
 
 
 def post_init_hook(cr, registry):
-    """Perform the reinitialization of this column based on the company's tax agency
-    WARNING: Only 03 case is covered here, so existing export/intra-community/other
-    invoices should be changed later.
+    """Initialize VERI*FACTU IGIC keys for pending drafts and fiscal positions.
+
+    Only draft customer documents and fiscal positions are updated. Posted or
+    historical invoices are left unchanged (outside VERI*FACTU scope).
     """
     env = api.Environment(cr, SUPERUSER_ID, {})
-    key = env.ref("l10n_es_verifactu_oca.verifactu_registration_keys_igic_01")
-    atc_agency = env.ref("l10n_es_aeat.aeat_tax_agency_canarias")
-    cr.execute(
-        "UPDATE account_move SET verifactu_registration_key = %s "
-        "WHERE move_type = 'out_refund' AND company_id in "
-        "(SELECT id FROM res_company where tax_agency_id = %s)",
-        (key.id, atc_agency.id),
+    atc_agency = env.ref(
+        "l10n_es_aeat.aeat_tax_agency_canarias", raise_if_not_found=False
     )
-    cr.execute(
-        "UPDATE account_fiscal_position SET verifactu_tax_key = '03' "
-        "WHERE company_id in (SELECT id FROM res_company where tax_agency_id = %s)",
-        (atc_agency.id,),
+    if not atc_agency:
+        return
+    companies = env["res.company"].search([("tax_agency_id", "=", atc_agency.id)])
+    if not companies:
+        return
+
+    fiscal_positions = env["account.fiscal.position"].search(
+        [
+            ("company_id", "in", companies.ids),
+            "|",
+            ("verifactu_tax_key", "=", False),
+            ("verifactu_tax_key", "=", "01"),
+        ]
     )
+    if fiscal_positions:
+        fiscal_positions.verifactu_tax_key = ATC_VERIFACTU_TAX_KEY
+
+    draft_moves = env["account.move"].search(
+        [
+            ("company_id", "in", companies.ids),
+            ("state", "=", "draft"),
+            ("move_type", "in", ("out_invoice", "out_refund")),
+        ]
+    )
+    if draft_moves:
+        draft_moves._compute_verifactu_tax_key()
+        draft_moves._compute_verifactu_registration_key()
