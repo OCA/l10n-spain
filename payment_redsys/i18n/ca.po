@@ -28,6 +28,11 @@ msgid "Alemán"
 msgstr "Alemany"
 
 #. module: payment_redsys
+#: model_terms:ir.ui.view,arch_db:payment_redsys.view_account_payment_form_inherit_redsys
+msgid "Authorize Amount"
+msgstr ""
+
+#. module: payment_redsys
 #. odoo-python
 #: code:addons/payment_redsys/models/payment_transaction.py:0
 #, python-format
@@ -55,9 +60,21 @@ msgid "Code"
 msgstr ""
 
 #. module: payment_redsys
+#: model:ir.model.fields,field_description:payment_redsys.field_payment_provider__redsys_currency
+msgid "Currency"
+msgstr "Moneda"
+
+#. module: payment_redsys
 #: model:ir.model.fields.selection,name:payment_redsys.selection__payment_provider__redsys_pay_method__d
 msgid "Domiciliacion"
 msgstr "Domiciliació"
+
+#. module: payment_redsys
+#. odoo-python
+#: code:addons/payment_redsys/models/account_payment.py:0
+#, python-format
+msgid "Error Redsys Auth: %s"
+msgstr ""
 
 #. module: payment_redsys
 #. odoo-python
@@ -92,9 +109,19 @@ msgid "Holandés"
 msgstr "Holandès"
 
 #. module: payment_redsys
+#: model:ir.model.fields,help:payment_redsys.field_account_payment__is_redsys_auth
+msgid "Indicates if this payment is a Redsys authorization."
+msgstr ""
+
+#. module: payment_redsys
 #: model:ir.model.fields.selection,name:payment_redsys.selection__payment_provider__redsys_merchant_lang__002
 msgid "Inglés"
 msgstr "Anglès"
+
+#. module: payment_redsys
+#: model:ir.model.fields,field_description:payment_redsys.field_account_payment__is_redsys_auth
+msgid "Is Redsys Authorized"
+msgstr ""
 
 #. module: payment_redsys
 #: model:ir.model.fields.selection,name:payment_redsys.selection__payment_provider__redsys_merchant_lang__007
@@ -159,6 +186,11 @@ msgid "Payment Transaction"
 msgstr "Transacció de pagament"
 
 #. module: payment_redsys
+#: model:ir.model,name:payment_redsys.model_account_payment
+msgid "Payments"
+msgstr ""
+
+#. module: payment_redsys
 #: model:ir.model.fields.selection,name:payment_redsys.selection__payment_provider__redsys_merchant_lang__011
 msgid "Polaco"
 msgstr "Polac"
@@ -181,14 +213,59 @@ msgid "Redsys"
 msgstr "Redsys"
 
 #. module: payment_redsys
-#: model:ir.model.fields,field_description:payment_redsys.field_payment_provider__redsys_currency
-msgid "Redsys Currency"
+#: model:ir.model.fields,field_description:payment_redsys.field_account_payment__redsys_auth_txnid
+msgid "Redsys Auth Transaction ID"
+msgstr ""
+
+#. module: payment_redsys
+#. odoo-python
+#: code:addons/payment_redsys/models/account_payment.py:0
+#, python-format
+msgid "Redsys Auth done: %s"
+msgstr ""
+
+#. module: payment_redsys
+#: model:ir.model.fields,field_description:payment_redsys.field_account_payment__redsys_auth_amount
+msgid "Redsys Authorized Amount"
+msgstr ""
+
+#. module: payment_redsys
+#: model:ir.model.fields,field_description:payment_redsys.field_account_payment__redsys_auth_done
+msgid "Redsys Authorized Done"
+msgstr ""
+
+#. module: payment_redsys
+#: model_terms:ir.ui.view,arch_db:payment_redsys.view_account_payment_form_inherit_redsys
+msgid "Redsys Information"
 msgstr ""
 
 #. module: payment_redsys
 #: model:ir.model.fields,field_description:payment_redsys.field_payment_provider__redsys_signature_version
 msgid "Redsys Signature Version"
 msgstr "Versió de signatura Redsys"
+
+#. module: payment_redsys
+#. odoo-python
+#: code:addons/payment_redsys/models/account_payment.py:0
+#, python-format
+msgid "Redsys: Authorization already done for this transaction."
+msgstr ""
+
+#. module: payment_redsys
+#. odoo-python
+#: code:addons/payment_redsys/models/account_payment.py:0
+#, python-format
+msgid "Redsys: Authorization amount must be set before authorizing."
+msgstr ""
+
+#. module: payment_redsys
+#. odoo-python
+#: code:addons/payment_redsys/models/account_payment.py:0
+#, python-format
+msgid ""
+"Redsys: Transaction type must be '1' for preauthorization, current value is "
+"'%s'."
+msgstr ""
 
 #. module: payment_redsys
 #. odoo-python
@@ -224,8 +301,13 @@ msgstr "ID de transacció"
 
 #. module: payment_redsys
 #: model:ir.model.fields,field_description:payment_redsys.field_payment_provider__redsys_transaction_type
-msgid "Transtaction Type"
-msgstr "Tipus de transacció"
+msgid "Transaction Type"
+msgstr ""
+
+#. module: payment_redsys
+#: model:ir.model.fields,help:payment_redsys.field_payment_provider__redsys_transaction_type
+msgid "Use '0' for normal transaction or Use '1' for a preauthorization"
+msgstr ""
 
 #. module: payment_redsys
 #: model:ir.model.fields.selection,name:payment_redsys.selection__payment_provider__redsys_merchant_lang__010
@@ -263,8 +345,8 @@ msgstr ""
 msgid "Your payment has been successfully processed."
 msgstr ""
 
-#~ msgid "Currency"
-#~ msgstr "Moneda"
+#~ msgid "Transtaction Type"
+#~ msgstr "Tipus de transacció"
 
 #~ msgid "Your payment has been successfully processed. Thank you!"
 #~ msgstr "El vostre pagament s'ha processat correctament. Gràcies!"
