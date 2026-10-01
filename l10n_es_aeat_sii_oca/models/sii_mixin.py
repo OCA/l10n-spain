@@ -299,10 +299,7 @@ class SiiMixin(models.AbstractModel):
             )
             or send_date
         ):
-            sii_send_cron = self.env.ref("l10n_es_aeat_sii_oca.invoice_send_to_sii")
-            self.env["ir.cron.trigger"].sudo().create(
-                {"cron_id": sii_send_cron.id, "call_at": fields.Datetime.now()}
-            )
+            self.env.ref("l10n_es_aeat_sii_oca.invoice_send_to_sii")._trigger()
 
     def _bind_service(self, client, port_name, address=None):
         self.ensure_one()
