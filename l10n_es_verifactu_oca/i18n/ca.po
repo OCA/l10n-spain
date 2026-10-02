@@ -500,6 +500,11 @@ msgid "Failed?"
 msgstr "Ha fallat?"
 
 #. module: l10n_es_verifactu_oca
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_developer__file_name
+msgid "File Name"
+msgstr ""
+
+#. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_account_bank_statement_line__verifactu_refund_specific_type
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_account_move__verifactu_refund_specific_type
 msgid ""
