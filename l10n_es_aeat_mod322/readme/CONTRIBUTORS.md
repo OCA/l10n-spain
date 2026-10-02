@@ -1,0 +1,5 @@
+- Enric Tobella
+- [NuoBiT](https://www.nuobit.com):
+  - Deniz Gallo <dgallo@nuobit.com>
+  - Frank Cespedes <fcespedes@nuobit.com>
+  - Eric Antones <eantones@nuobit.com>
