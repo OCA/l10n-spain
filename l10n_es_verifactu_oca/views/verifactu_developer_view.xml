@@ -13,7 +13,8 @@
                         <field name="vat" />
                         <field name="sif_name" />
                         <field name="version" />
-                        <field name="responsibility_declaration" />
+                        <field name="file_name" invisible="1" />
+                        <field name="responsibility_declaration" filename="file_name" />
                     </group>
                 </sheet>
                 <chatter />
@@ -29,6 +30,7 @@
                 <field name="vat" />
                 <field name="sif_name" />
                 <field name="version" />
+                <field name="file_name" />
             </list>
         </field>
     </record>

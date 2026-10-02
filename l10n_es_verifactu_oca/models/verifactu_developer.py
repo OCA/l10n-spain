@@ -13,4 +13,5 @@ class VerifactuDeveloper(models.Model):
     vat = fields.Char(string="Developer VAT", required=True, tracking=True)
     sif_name = fields.Char("SIF Name", required=True, tracking=True)
     version = fields.Char(default="1.0", required=True, tracking=True)
+    file_name = fields.Char(store=True)
     responsibility_declaration = fields.Binary(attachment=True, copy=False)
