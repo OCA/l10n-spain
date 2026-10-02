@@ -45,4 +45,14 @@ class ResCompany(models.Model):
             self.env["account.journal"].search(
                 [("company_id", "in", self.ids), ("type", "=", "sale")]
             ).verifactu_enabled = True
+            self.env["account.move"].search(
+                [
+                    ("company_id", "in", self.ids),
+                    ("journal_id.type", "=", "sale"),
+                    ("state", "=", "posted"),
+                    ("inalterable_hash", "=", False),
+                ]
+            )._hash_moves(
+                force_hash=True, raise_if_gap=False, raise_if_no_document=False
+            )
         return res
