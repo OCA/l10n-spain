@@ -294,6 +294,11 @@ class DeliveryCarrier(models.Model):
         to this design, we have to inject vals in the context to be able to
         add them to the message.
         """
+        max_retries = int(
+            self.env["ir.config_parameter"]
+            .sudo()
+            .get_param("delivery_gls_asm.max_reference_retries", "5")
+        )
         gls_request = GlsAsmRequest(self._gls_asm_uid())
         result = []
         for picking in pickings:
@@ -322,7 +327,63 @@ class DeliveryCarrier(models.Model):
                     )
                 )
             vals.update({"tracking_number": False, "exact_price": 0})
-            response = gls_request._send_shipping(vals)
+            # GLS-ASM API doesn't allow duplicated references,
+            # so we implement a retry mechanism
+            # that adds a suffix to the reference in case of collision
+            original_reference = vals["referencia_c"]
+            response = None
+            retry_count = 0
+            while retry_count <= max_retries:
+                try:
+                    response = gls_request._send_shipping(vals)
+                    # If we reach here, the shipment was successful.
+                    break
+                except UserError as e:
+                    # Check if it's a duplicate reference error
+                    error_message = str(e).lower()
+                    if "order number already exists" not in error_message:
+                        # It's another type of error, re-raise it
+                        raise
+                    retry_count += 1
+                    if retry_count > max_retries:
+                        # Maximum retries reached
+                        raise UserError(
+                            self.env._(
+                                "Failed to send GLS shipment after %d attempts. "
+                                "All reference variations are already in use: %s",
+                                max_retries,
+                                original_reference,
+                            )
+                        ) from e
+                    # Generate new reference with suffix and
+                    # Check that it doesn't exceed 15 characters
+                    new_reference = f"{original_reference}-{retry_count}"
+                    if len(new_reference) > 15:
+                        max_original_length = 15 - len(f"-{retry_count}")
+                        truncated_original = original_reference[:max_original_length]
+                        new_reference = f"{truncated_original}-{retry_count}"
+
+                    vals["referencia_c"] = new_reference
+                    _logger.info(
+                        "GLS reference collision detected for %s. "
+                        "Retrying with reference: %s (attempt %d/%d)",
+                        original_reference,
+                        new_reference,
+                        retry_count,
+                        max_retries,
+                    )
+            # post a message in the chatter
+            # if we had to retry with a different reference due to a collision
+            if retry_count > 0:
+                picking.message_post(
+                    body=self.env._(
+                        "GLS shipping sent with modified reference. "
+                        "Final reference used: %s (Original: %s)",
+                        vals["referencia_c"],
+                        original_reference,
+                    )
+                )
+
             self.log_xml(
                 response and response.get("gls_sent_xml", ""),
                 "GLS ASM Shipping Request",
