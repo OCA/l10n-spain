@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2026 Acysos S.L.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <template id="report_deca_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <t t-set="o" t-value="o.with_context(lang=o.partner_id.lang)" />
+                    <div class="page">
+                        <div class="text-center">
+                            <h2
+                            >Document for electronic Control of Administration (DeCA)</h2>
+                            <p
+                            >This carriage is governed by Law 15/2009 of 11 November, on the contract for the land carriage of goods, and by any other applicable Spanish legislation.</p>
+                        </div>
+
+                        <div class="mb-4">
+                            <strong>Place and date of issue:</strong>
+                            <span t-out="o.company_id.city" />, <span
+                            t-out="o.create_date"
+                            t-options='{"widget": "datetime", "format": "dd/MM/yyyy"}'
+                        />
+                        </div>
+
+                        <div class="row mt-4">
+                            <!-- Sender info -->
+                            <div class="col-6">
+                                <strong>Sender / Place of loading:</strong>
+                                <div t-if="o.picking_type_id.warehouse_id.partner_id">
+                                    <span
+                                    t-field="o.picking_type_id.warehouse_id.partner_id.name"
+                                /><br />
+                                    <span>NIF: </span><span
+                                    t-field="o.picking_type_id.warehouse_id.partner_id.vat"
+                                /><br />
+                                    <span
+                                    t-field="o.picking_type_id.warehouse_id.partner_id.street"
+                                /><br />
+                                    <span
+                                    t-field="o.picking_type_id.warehouse_id.partner_id.zip"
+                                /> <span
+                                    t-field="o.picking_type_id.warehouse_id.partner_id.city"
+                                />, <span
+                                    t-field="o.picking_type_id.warehouse_id.partner_id.state_id.name"
+                                />
+                                </div>
+                                <div t-else="">
+                                    <span t-field="o.company_id.name" /><br />
+                                    <span>NIF: </span><span
+                                    t-field="o.company_id.vat"
+                                /><br />
+                                    <span t-field="o.company_id.street" /><br />
+                                    <span t-field="o.company_id.zip" /> <span
+                                    t-field="o.company_id.city"
+                                />, <span t-field="o.company_id.state_id.name" />
+                                </div>
+                            </div>
+
+                            <!-- Delivery Info -->
+                            <div class="col-6">
+                                <strong>Consignee / Place of delivery:</strong>
+                                <div>
+                                    <span t-field="o.partner_id.name" /><br />
+                                    <span>NIF: </span><span
+                                    t-field="o.partner_id.vat"
+                                /><br />
+                                    <span t-field="o.partner_id.street" /><br />
+                                    <span t-field="o.partner_id.zip" /> <span
+                                    t-field="o.partner_id.city"
+                                />, <span t-field="o.partner_id.state_id.name" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mt-4">
+                            <!-- Carrier Info -->
+                            <div class="col-6">
+                                <strong>Carrier:</strong>
+                                <t
+                                    t-set="carrier_contact"
+                                    t-value="o.carrier_contact_id or o.carrier_id.company_id or o.carrier_id"
+                                />
+                                <div t-if="carrier_contact">
+                                    <span t-out="carrier_contact.name" /><br />
+                                    <span>NIF: </span><span
+                                    t-out="carrier_contact.vat"
+                                /><br />
+                                    <span t-out="carrier_contact.street" /><br />
+                                    <span t-out="carrier_contact.zip" /> <span
+                                    t-out="carrier_contact.city"
+                                />, <span
+                                    t-out="carrier_contact.state_id.name"
+                                />, <span t-out="carrier_contact.country_id.name" />
+                                </div>
+                            </div>
+
+                            <!-- DeCA Info -->
+                            <div class="col-6">
+                                <strong>Date of loading:</strong>
+                                <span
+                                    t-out="o.date_done or o.scheduled_date"
+                                    t-options='{"widget": "datetime", "format": "dd/MM/yyyy"}'
+                                />
+                                <br />
+
+                                <strong
+                                    class="mt-2 d-block"
+                                    t-if="o.tractor_license_plate or o.tractor_license_plate_history"
+                                >Tractor licence plate:</strong>
+                                <div>
+                                    <t t-if="o.tractor_license_plate_history">
+                                        <t
+                                            t-foreach="o.tractor_license_plate_history.splitlines()"
+                                            t-as="old_plate"
+                                        >
+                                            <div>
+                                                <s>
+                                                    <t t-out="old_plate" />
+                                                </s>
+                                            </div>
+                                        </t>
+                                    </t>
+                                    <div t-if="o.tractor_license_plate">
+                                        <t t-out="o.tractor_license_plate" />
+                                    </div>
+                                </div>
+
+                                <strong
+                                    class="mt-2 d-block"
+                                    t-if="o.trailer_license_plate or o.trailer_license_plate_history"
+                                >Trailer licence plate:</strong>
+                                <div>
+                                    <t t-if="o.trailer_license_plate_history">
+                                        <t
+                                            t-foreach="o.trailer_license_plate_history.splitlines()"
+                                            t-as="old_plate"
+                                        >
+                                            <div>
+                                                <s>
+                                                    <t t-out="old_plate" />
+                                                </s>
+                                            </div>
+                                        </t>
+                                    </t>
+                                    <div t-if="o.trailer_license_plate">
+                                        <t t-out="o.trailer_license_plate" />
+                                    </div>
+                                </div>
+
+                                <strong
+                                    class="mt-2 d-block"
+                                    t-if="o.special_authorization or o.special_authorization_history"
+                                >Special Authorizations:</strong>
+                                <div>
+                                    <t t-if="o.special_authorization_history">
+                                        <t
+                                            t-foreach="o.special_authorization_history.splitlines()"
+                                            t-as="old_auth"
+                                        >
+                                            <div>
+                                                <s>
+                                                    <t t-out="old_auth" />
+                                                </s>
+                                            </div>
+                                        </t>
+                                    </t>
+                                    <div t-if="o.special_authorization">
+                                        <t t-out="o.special_authorization" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Products Table -->
+                        <table class="table table-sm mt-4">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th class="text-end">Quantity</th>
+                                    <th>Unit</th>
+                                    <th class="text-end">Weight</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="o.move_ids" t-as="move">
+                                    <tr>
+                                        <td>
+                                            <span
+                                                t-field="move.product_id.display_name"
+                                            />
+                                        </td>
+                                        <td class="text-end">
+                                            <span t-field="move.quantity" />
+                                        </td>
+                                        <td>
+                                            <span t-field="move.product_uom.name" />
+                                        </td>
+                                        <td class="text-end"><span
+                                            t-field="move.weight"
+                                        /> kg</td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+
+                        <!-- QR Code -->
+                        <div class="text-center mt-4">
+                            <div
+                                t-out="o._get_share_url()"
+                                t-options="{'widget': 'barcode', 'symbology': 'QR', 'width': 150, 'height': 150}"
+                            />
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <template id="report_deca">
+        <t t-call="l10n_es_deca_oca.report_deca_document">
+            <t t-set="docs" t-value="docs" />
+        </t>
+    </template>
+</odoo>

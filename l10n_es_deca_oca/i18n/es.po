@@ -1,0 +1,154 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_es_deca_oca
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-09-30 16:00+0000\n"
+"PO-Revision-Date: 2026-09-30 16:00+0000\n"
+"Language-Team: Spanish (Spain) (https://www.transifex.com/odoo/teams/41243/es_ES/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: es_ES\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_stock_picking__carrier_contact_id
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_delivery_carrier__carrier_contact_id
+msgid "Carrier contact"
+msgstr "Contacto del transportista"
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,help:l10n_es_deca_oca.field_stock_picking__carrier_contact_id
+msgid "Carrier contact whose details are printed on the DeCA"
+msgstr "Contacto del transportista cuyos detalles se imprimen en el DeCA"
+
+#. module: l10n_es_deca_oca
+#: model:ir.actions.report,name:l10n_es_deca_oca.action_report_deca
+#: model:ir.actions.report,name:l10n_es_deca_oca.action_report_deca_batch
+msgid "DeCA"
+msgstr "DeCA"
+
+#. module: l10n_es_deca_oca
+#: model:ir.actions.report,print_report_name:l10n_es_deca_oca.action_report_deca
+#: model:ir.actions.report,print_report_name:l10n_es_deca_oca.action_report_deca_batch
+msgid "'DeCA - %s' % (object.name)"
+msgstr "'DeCA - %s' % (object.name)"
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
+msgid "Document for electronic Control of Administration (DeCA)"
+msgstr "Documento de control administrativo electrónico (DeCA)"
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
+msgid "This carriage is governed by Law 15/2009 of 11 November, on the contract for the land carriage of goods, and by any other applicable Spanish legislation."
+msgstr "Este transporte se rige por la Ley 15/2009, de 11 de noviembre, del contrato de transporte terrestre de mercancías, y por el resto de legislación española aplicable."
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_stock_picking__tractor_license_plate
+msgid "Main vehicle or tractor licence plate"
+msgstr "Matrícula del vehículo principal o tractora"
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_stock_picking__deca_access_token
+msgid "Security access token to share url"
+msgstr "Token de acceso de seguridad para compartir url"
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_stock_picking__special_authorization_log
+msgid "Special authorisation history"
+msgstr "Historial de autorizaciones especiales"
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_stock_picking__special_authorization
+msgid "Special traffic authorisations"
+msgstr "Autorizaciones especiales de tráfico"
+
+#. module: l10n_es_deca_oca
+#: model:ir.actions.server,name:l10n_es_deca_oca.model_stock_picking_get_share_url_action_server
+msgid "Stock picking get share url"
+msgstr "Obtener url para compartir del albarán"
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_stock_picking__tractor_license_plate_log
+msgid "Tractor licence plate history"
+msgstr "Historial de matrícula de la tractora"
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_stock_picking__trailer_license_plate_log
+msgid "Trailer licence plate history"
+msgstr "Historial de matrícula del remolque"
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_stock_picking__trailer_license_plate
+msgid "Trailer or semi-trailer licence plate"
+msgstr "Matrícula del remolque o semirremolque"
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
+msgid "Sender / Place of loading:"
+msgstr "Cargador (Expedidor) / Lugar de carga:"
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
+msgid "Consignee / Place of delivery:"
+msgstr "Destinatario / Lugar de descarga:"
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
+msgid "Carrier:"
+msgstr "Transportista:"
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
+msgid "Date of loading:"
+msgstr "Fecha de carga:"
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
+msgid "Tractor licence plate:"
+msgstr "Matrícula de la tractora:"
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
+msgid "Trailer licence plate:"
+msgstr "Matrícula del remolque:"
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
+msgid "Special Authorizations:"
+msgstr "Autorizaciones Especiales:"
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
+msgid "Product"
+msgstr "Producto"
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
+msgid "Quantity"
+msgstr "Cantidad"
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
+msgid "Unit"
+msgstr "Unidad"
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
+msgid "NIF:"
+msgstr "NIF:"
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
+msgid "Place and date of issue:"
+msgstr "Lugar y fecha de emisión:"
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
+msgid "Weight"
+msgstr "Masa bruta"

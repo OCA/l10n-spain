@@ -1,0 +1,144 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_es_deca_oca
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-09-30 16:00+0000\n"
+"PO-Revision-Date: 2026-09-30 16:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_stock_picking__carrier_contact_id
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_delivery_carrier__carrier_contact_id
+msgid "Carrier contact"
+msgstr ""
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,help:l10n_es_deca_oca.field_stock_picking__carrier_contact_id
+msgid "Carrier contact whose details are printed on the DeCA"
+msgstr ""
+
+#. module: l10n_es_deca_oca
+#: model:ir.actions.report,name:l10n_es_deca_oca.action_report_deca
+#: model:ir.actions.report,name:l10n_es_deca_oca.action_report_deca_batch
+msgid "DeCA"
+msgstr ""
+
+#. module: l10n_es_deca_oca
+#: model:ir.actions.report,print_report_name:l10n_es_deca_oca.action_report_deca
+#: model:ir.actions.report,print_report_name:l10n_es_deca_oca.action_report_deca_batch
+msgid "'DeCA - %s' % (object.name)"
+msgstr ""
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
+msgid "Document for electronic Control of Administration (DeCA)"
+msgstr ""
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
+msgid "This carriage is governed by Law 15/2009 of 11 November, on the contract for the land carriage of goods, and by any other applicable Spanish legislation."
+msgstr ""
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_stock_picking__tractor_license_plate
+msgid "Main vehicle or tractor licence plate"
+msgstr ""
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_stock_picking__deca_access_token
+msgid "Security access token to share url"
+msgstr ""
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_stock_picking__special_authorization_log
+msgid "Special authorisation history"
+msgstr ""
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_stock_picking__special_authorization
+msgid "Special traffic authorisations"
+msgstr ""
+
+#. module: l10n_es_deca_oca
+#: model:ir.actions.server,name:l10n_es_deca_oca.model_stock_picking_get_share_url_action_server
+msgid "Stock picking get share url"
+msgstr ""
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_stock_picking__tractor_license_plate_log
+msgid "Tractor licence plate history"
+msgstr ""
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_stock_picking__trailer_license_plate_log
+msgid "Trailer licence plate history"
+msgstr ""
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_stock_picking__trailer_license_plate
+msgid "Trailer or semi-trailer licence plate"
+msgstr ""
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
+msgid "Sender:"
+msgstr ""
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
+msgid "Delivery to:"
+msgstr ""
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
+msgid "Carrier:"
+msgstr ""
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
+msgid "Date of loading:"
+msgstr ""
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
+msgid "Tractor licence plate:"
+msgstr ""
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
+msgid "Trailer licence plate:"
+msgstr ""
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
+msgid "Special Authorizations:"
+msgstr ""
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
+msgid "Product"
+msgstr ""
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
+msgid "Quantity"
+msgstr ""
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
+msgid "Unit"
+msgstr ""
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
+msgid "NIF:"
+msgstr ""
