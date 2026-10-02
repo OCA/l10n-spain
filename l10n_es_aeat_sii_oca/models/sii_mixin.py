@@ -8,10 +8,12 @@
 import json
 
 from unidecode import unidecode
+from zeep.exceptions import Fault, ValidationError
+from zeep.helpers import serialize_object
 
-from odoo import _, api, exceptions, fields, models
+from odoo import _, api, exceptions, fields, models, modules
 from odoo.exceptions import UserError
-from odoo.modules.registry import Registry
+from odoo.tools import SQL, split_every
 from odoo.tools.float_utils import float_compare
 
 from odoo.addons.l10n_es_aeat.models.aeat_mixin import round_by_keys
@@ -24,6 +26,10 @@ SII_STATES = [
 SII_VERSION = "1.1"
 SII_MACRODATA_LIMIT = 100000000.0
 SII_DATE_FORMAT = "%d-%m-%Y"
+# Maximum number of RegistroLRFacturas* elements per request (SuministroLR.xsd)
+SII_MAX_RECORDS_PER_REQUEST = 10000
+# Cursor cache key for memoizing the taxes map while sending documents
+SII_TAXES_MAP_CACHE = "l10n_es_aeat_sii_oca.taxes_map"
 
 
 class SiiMixin(models.AbstractModel):
@@ -189,8 +195,13 @@ class SiiMixin(models.AbstractModel):
         :param date: Date to map
         :return: Recordset with the corresponding codes
         """
-        map_obj = self.env["aeat.sii.map"].sudo().with_context(active_test=False)
         tax_agency = self._get_sii_tax_agency()
+        # While sending documents, the same lookups repeat for each document
+        cache = self.env.cr.cache.get(SII_TAXES_MAP_CACHE)
+        cache_key = (tax_agency.id, self.company_id.id, date, tuple(codes))
+        if cache is not None and cache_key in cache:
+            return self.env["account.tax"].browse(cache[cache_key])
+        map_obj = self.env["aeat.sii.map"].sudo().with_context(active_test=False)
         sii_map = map_obj.search(
             [
                 "&",
@@ -207,7 +218,10 @@ class SiiMixin(models.AbstractModel):
         tax_templates = sii_map.map_lines.filtered(
             lambda x: x.code in codes
         ).tax_xmlid_ids
-        return self.company_id._get_taxes_from_xmlids(tax_templates.mapped("name"))
+        taxes = self.company_id._get_taxes_from_xmlids(tax_templates.mapped("name"))
+        if cache is not None:
+            cache[cache_key] = taxes.ids
+        return taxes
 
     def _get_dua_sii_exempt_taxes(self):
         self.ensure_one()
@@ -826,94 +840,334 @@ class SiiMixin(models.AbstractModel):
         self.ensure_one()
         return self.sii_account_registration_date or fields.Date.today()
 
-    def _send_document_to_sii(self):
-        for document in self.filtered(
-            lambda i: i.state in self._get_valid_document_states()
-        ):
-            # Filter the SII description for avoiding manual invalid inputs
-            text = unidecode(document.sii_description)
-            if text != document.sii_description:
-                document.sii_description = text
-            if document.aeat_state == "not_sent":
-                tipo_comunicacion = "A0"
-            else:
-                tipo_comunicacion = "A1"
-            header = document._get_aeat_header(tipo_comunicacion)
-            doc_vals = {
-                "aeat_header_sent": json.dumps(header, indent=4),
-            }
-            inv_dict = False
-            try:
-                inv_dict = document._get_aeat_invoice_dict()
-                mapping_key = document._get_mapping_key()
-                serv = document._connect_aeat(mapping_key)
-                doc_vals["aeat_content_sent"] = json.dumps(inv_dict, indent=4)
-                if mapping_key in ["out_invoice", "out_refund"]:
-                    res = serv.SuministroLRFacturasEmitidas(header, inv_dict)
-                elif mapping_key in ["in_invoice", "in_refund"]:
-                    res = serv.SuministroLRFacturasRecibidas(header, inv_dict)
-                # TODO Facturas intracomunitarias 66 RIVA
-                # elif invoice.fiscal_position_id.id == self.env.ref(
-                #     'account.fp_intra').id:
-                #     res = serv.SuministroLRDetOperacionIntracomunitaria(
-                #         header, invoices)
-                res_line = res["RespuestaLinea"][0]
-                if res["EstadoEnvio"] == "Correcto":
-                    doc_vals.update(
-                        {
-                            "aeat_state": "sent",
-                            "sii_csv": res["CSV"],
-                            "aeat_send_failed": False,
-                        }
-                    )
-                elif (
-                    res["EstadoEnvio"] == "ParcialmenteCorrecto"
-                    and res_line["EstadoRegistro"] == "AceptadoConErrores"
-                ):
-                    doc_vals.update(
-                        {
-                            "aeat_state": "sent_w_errors",
-                            "sii_csv": res["CSV"],
-                            "aeat_send_failed": True,
-                        }
-                    )
-                else:
-                    doc_vals["aeat_send_failed"] = True
-                if (
-                    "aeat_state" in doc_vals
-                    and not document.sii_account_registration_date
-                    and mapping_key[:2] == "in"
-                ):
-                    doc_vals[
-                        "sii_account_registration_date"
-                    ] = document._get_account_registration_date()
-                doc_vals["sii_return"] = res
-                doc_vals["sii_send_date"] = False
-                send_error = False
-                if res_line["CodigoErrorRegistro"]:
-                    send_error = "{} | {}".format(
-                        str(res_line["CodigoErrorRegistro"]),
-                        str(res_line["DescripcionErrorRegistro"])[:60],
-                    )
-                doc_vals["aeat_send_error"] = send_error
-                document.write(doc_vals)
-            except Exception as fault:
-                new_cr = Registry(self.env.cr.dbname).cursor()
-                env = api.Environment(new_cr, self.env.uid, self.env.context)
-                document = env[document._name].browse(document.id)
-                doc_vals.update(
-                    {
-                        "aeat_send_failed": True,
-                        "aeat_send_error": repr(fault)[:60],
-                        "sii_return": repr(fault),
-                        "sii_send_date": False,
-                    }
+    @api.model
+    def _get_sii_batch(self):
+        try:
+            return int(
+                self.env["ir.config_parameter"]
+                .sudo()
+                .get_param("l10n_es_aeat_sii_oca.sii_batch", "500")
+            )
+        except ValueError as e:
+            raise exceptions.UserError(
+                _(
+                    "The value in l10n_es_aeat_sii_oca.sii_batch system"
+                    " parameter must be an integer. Please, check the "
+                    "value of the parameter."
                 )
-                if inv_dict:
-                    doc_vals["aeat_content_sent"] = json.dumps(inv_dict, indent=4)
-                document.write(doc_vals)
-                new_cr.commit()
-                new_cr.close()
+            ) from e
 
-    def confirm_one_document(self):
-        self.sudo()._send_document_to_sii()
+    def _get_sii_send_group_key(self, cancel=False):
+        """Documents sharing this key can travel in the same request: they share
+        the header (company and communication type, False for cancellations) and
+        the endpoint (tax agency and issued/received book)."""
+        self.ensure_one()
+        if cancel:
+            communication_type = False
+        else:
+            communication_type = "A0" if self.aeat_state == "not_sent" else "A1"
+        return (
+            self.company_id,
+            self._get_sii_tax_agency(),
+            "in" if self._get_mapping_key()[:2] == "in" else "out",
+            communication_type,
+        )
+
+    @api.model
+    def _get_sii_invoice_key(self, id_factura):
+        """Identify an invoice both in the sent content and in the response line.
+        The number alone is not enough, as received invoices from different
+        issuers can share it."""
+        issuer = id_factura["IDEmisorFactura"]
+        return (
+            issuer.get("NIF") or (issuer.get("IDOtro") or {}).get("ID"),
+            id_factura["NumSerieFacturaEmisor"],
+            id_factura["FechaExpedicionFacturaEmisor"],
+        )
+
+    @api.model
+    def _get_sii_fault_vals(self, fault):
+        return {
+            "aeat_send_failed": True,
+            "aeat_send_error": repr(fault)[:60],
+            "sii_return": repr(fault),
+            "sii_send_date": False,
+        }
+
+    def _lock_sii_documents(self, cancel=False):
+        """Lock the documents to send. A concurrent update can't then roll back
+        the storage of a result already registered in the AEAT. Documents locked
+        by another transaction are left for the next run."""
+        self.env.cr.execute(
+            SQL(
+                "SELECT id FROM %s WHERE id IN %s FOR UPDATE SKIP LOCKED",
+                SQL.identifier(self._table),
+                tuple(self.ids),
+            )
+        )
+        documents = self.browse([row[0] for row in self.env.cr.fetchall()])
+        if cancel:
+            return documents.filtered(lambda d: d.state == "cancel")
+        return documents.filtered(lambda d: d.state in d._get_valid_document_states())
+
+    def _send_document_to_sii(self, with_commit=False):
+        documents = self.filtered(
+            lambda i: i.state in self._get_valid_document_states()
+        )
+        documents._send_sii_in_batches(with_commit=with_commit)
+
+    def _cancel_document_to_sii(self, with_commit=False):
+        documents = self.filtered(lambda i: i.state == "cancel")
+        documents._send_sii_in_batches(with_commit=with_commit, cancel=True)
+
+    def _send_sii_in_batches(self, with_commit=False, cancel=False):
+        """Send the documents grouped in requests of up to the configured batch
+        size. With ``with_commit``, each request runs in its own transaction, so
+        its result is kept whatever happens with the rest."""
+        size = min(self._get_sii_batch(), SII_MAX_RECORDS_PER_REQUEST)
+        for key, group in self.grouped(
+            lambda d: d._get_sii_send_group_key(cancel=cancel)
+        ).items():
+            for chunk in split_every(size, group.ids, group.browse):
+                if with_commit and not modules.module.current_test:
+                    with self.env.registry.cursor() as cr:
+                        chunk.with_env(chunk.env(cr=cr))._send_sii_request(*key[2:])
+                    chunk.invalidate_recordset()
+                else:
+                    chunk._send_sii_request(*key[2:])
+
+    def _send_sii_request(self, book, communication_type):
+        """Send the documents in a single request and store each one's result.
+        A False ``communication_type`` means a cancellation."""
+        documents = self._lock_sii_documents(cancel=not communication_type)
+        if not documents:
+            return
+        self.env.cr.cache[SII_TAXES_MAP_CACHE] = {}
+        try:
+            documents._send_sii_locked_documents(book, communication_type)
+        finally:
+            self.env.cr.cache.pop(SII_TAXES_MAP_CACHE, None)
+
+    def _send_sii_locked_documents(self, book, communication_type):
+        cancel = not communication_type
+        docs_vals = {document: {} for document in self}
+        try:
+            header = self[:1]._get_aeat_header(communication_type, cancellation=cancel)
+        except Exception as fault:
+            fault_vals = self._get_sii_fault_vals(fault)
+            for doc_vals in docs_vals.values():
+                doc_vals.update(fault_vals)
+            self._write_sii_results(docs_vals)
+            return
+        header_sent = json.dumps(header, indent=4)
+        items = []
+        keys = set()
+        for document in self:
+            doc_vals = docs_vals[document]
+            if not cancel:
+                # Filter the SII description for avoiding manual invalid inputs
+                text = unidecode(document.sii_description)
+                if text != document.sii_description:
+                    document.sii_description = text
+                doc_vals["aeat_header_sent"] = header_sent
+            try:
+                with self.env.cr.savepoint():
+                    if cancel:
+                        inv_dict = document._get_cancel_sii_invoice_dict()
+                    else:
+                        inv_dict = document._get_aeat_invoice_dict()
+            except Exception as fault:
+                doc_vals.update(self._get_sii_fault_vals(fault))
+                continue
+            key = self._get_sii_invoice_key(inv_dict["IDFactura"])
+            if key in keys:
+                # Same issuer, number and date: it goes in a later request, so
+                # the AEAT answers about it on its own
+                del docs_vals[document]
+                continue
+            keys.add(key)
+            if not cancel:
+                doc_vals["aeat_content_sent"] = json.dumps(inv_dict, indent=4)
+            items.append((key, document, inv_dict))
+        if items:
+            service = False
+            try:
+                service = self[:1]._connect_aeat(self[:1]._get_mapping_key())
+            except Exception as fault:
+                fault_vals = self._get_sii_fault_vals(fault)
+                for _key, document, _inv_dict in items:
+                    docs_vals[document].update(fault_vals)
+            if service:
+                operation = getattr(
+                    service,
+                    "{}LRFacturas{}".format(
+                        "Anulacion" if cancel else "Suministro",
+                        "Emitidas" if book == "out" else "Recibidas",
+                    ),
+                )
+                for document, vals in self._call_sii_operation(
+                    operation, header, items, cancel=cancel
+                ).items():
+                    docs_vals[document].update(vals)
+        self._write_sii_results(docs_vals)
+
+    def _call_sii_operation(self, operation, header, items, cancel=False):
+        """Call the operation and return the values to store for each document."""
+        result, fault = self._try_sii_operation(operation, header, items, cancel)
+        if fault:
+            result = self._isolate_sii_fault(operation, header, items, fault, cancel)
+        return result
+
+    def _isolate_sii_fault(self, operation, header, items, fault, cancel=False):
+        """The whole request was rejected: send its halves separately, so only
+        the faulty documents fail. A local validation error is isolated down to
+        the document, as it costs no request. A fault returned by the AEAT
+        rejecting both halves is taken as common to all the documents."""
+        if len(items) > 1:
+            half = len(items) // 2
+            parts = [items[:half], items[half:]]
+            attempts = [
+                self._try_sii_operation(operation, header, part, cancel)
+                for part in parts
+            ]
+            if isinstance(fault, ValidationError) or not all(
+                part_fault for _result, part_fault in attempts
+            ):
+                result = {}
+                for part, (part_result, part_fault) in zip(
+                    parts, attempts, strict=True
+                ):
+                    if part_fault:
+                        part_result = self._isolate_sii_fault(
+                            operation, header, part, part_fault, cancel
+                        )
+                    result.update(part_result)
+                return result
+        fault_vals = self._get_sii_fault_vals(fault)
+        return {document: fault_vals for _key, document, _inv_dict in items}
+
+    def _try_sii_operation(self, operation, header, items, cancel=False):
+        """Return the values to store for each document, and the fault when the
+        whole request is rejected."""
+        try:
+            res = operation(header, [inv_dict for _key, _doc, inv_dict in items])
+        except (Fault, ValidationError) as fault:
+            return {}, fault
+        except Exception as fault:
+            fault_vals = self._get_sii_fault_vals(fault)
+            return {document: fault_vals for _key, document, _dict in items}, False
+        docs_by_key = {key: document for key, document, _inv_dict in items}
+        return self._get_sii_response_vals(
+            serialize_object(res, dict), docs_by_key, cancel
+        ), False
+
+    @api.model
+    def _get_sii_response_vals(self, res, docs_by_key, cancel=False):
+        """Match each response line with its document, returning the values to
+        store for each one."""
+        common = {
+            "CSV": res.get("CSV"),
+            "DatosPresentacion": res.get("DatosPresentacion"),
+            "Cabecera": res.get("Cabecera"),
+            "EstadoEnvio": res.get("EstadoEnvio"),
+        }
+        result = {}
+        for line in res.get("RespuestaLinea") or []:
+            document = docs_by_key.pop(
+                self._get_sii_invoice_key(line["IDFactura"]), False
+            )
+            if not document:
+                continue
+            if cancel:
+                doc_vals = document._get_sii_cancel_response_line_vals(
+                    line, res.get("CSV")
+                )
+            else:
+                doc_vals = document._get_sii_response_line_vals(line, res.get("CSV"))
+            doc_vals["sii_return"] = json.dumps(
+                dict(common, RespuestaLinea=[line]), indent=4, default=str
+            )
+            result[document] = doc_vals
+        for document in docs_by_key.values():
+            result[document] = {
+                "aeat_send_failed": True,
+                "aeat_send_error": _("Not found in the SII response"),
+                "sii_return": json.dumps(common, indent=4, default=str),
+                "sii_send_date": False,
+            }
+        return result
+
+    def _get_sii_response_line_vals(self, line, csv):
+        self.ensure_one()
+        duplicated_state = (line.get("RegistroDuplicado") or {}).get("EstadoRegistro")
+        doc_vals = {"sii_send_date": False, "aeat_send_error": False}
+        if line["EstadoRegistro"] == "Correcto" or duplicated_state == "Correcta":
+            doc_vals.update({"aeat_state": "sent", "aeat_send_failed": False})
+        elif (
+            line["EstadoRegistro"] == "AceptadoConErrores"
+            or duplicated_state == "AceptadaConErrores"
+        ):
+            doc_vals.update({"aeat_state": "sent_w_errors", "aeat_send_failed": True})
+        else:
+            doc_vals["aeat_send_failed"] = True
+        # The CSV of a duplicated record is the one of its first registration,
+        # not the one of this request
+        if "aeat_state" in doc_vals and not duplicated_state:
+            doc_vals["sii_csv"] = line.get("CSV") or csv
+        if (
+            "aeat_state" in doc_vals
+            and not self.sii_account_registration_date
+            and self._get_mapping_key()[:2] == "in"
+        ):
+            doc_vals[
+                "sii_account_registration_date"
+            ] = self._get_account_registration_date()
+        if line.get("CodigoErrorRegistro"):
+            doc_vals["aeat_send_error"] = "{} | {}".format(
+                str(line["CodigoErrorRegistro"]),
+                str(line["DescripcionErrorRegistro"])[:60],
+            )
+        return doc_vals
+
+    def _get_sii_cancel_response_line_vals(self, line, csv):
+        self.ensure_one()
+        doc_vals = {
+            "aeat_send_failed": True,
+            "aeat_send_error": False,
+            "sii_send_date": False,
+        }
+        # 3001: the record doesn't exist, as it was already cancelled when the
+        # previous response was lost
+        if (
+            line["EstadoRegistro"]
+            in (
+                "Correcto",
+                "AceptadoConErrores",
+            )
+            or line.get("CodigoErrorRegistro") == 3001
+        ):
+            doc_vals.update(
+                {
+                    "aeat_state": "cancelled",
+                    "sii_csv": line.get("CSV") or csv or self.sii_csv,
+                    "aeat_send_failed": line["EstadoRegistro"] == "AceptadoConErrores",
+                    "sii_needs_cancel": False,
+                }
+            )
+        if line.get("CodigoErrorRegistro"):
+            doc_vals["aeat_send_error"] = "{} | {}".format(
+                str(line["CodigoErrorRegistro"]),
+                str(line["DescripcionErrorRegistro"])[:60],
+            )
+        return doc_vals
+
+    def _get_cancel_sii_invoice_dict(self):
+        raise NotImplementedError()
+
+    @api.model
+    def _write_sii_results(self, docs_vals):
+        for document, doc_vals in docs_vals.items():
+            document.write(doc_vals)
+
+    def confirm_one_document(self, with_commit=False):
+        self.sudo()._send_document_to_sii(with_commit=with_commit)

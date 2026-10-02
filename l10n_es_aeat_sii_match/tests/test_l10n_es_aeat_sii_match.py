@@ -1,12 +1,16 @@
 # Copyright 2023 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+import json
 from unittest.mock import MagicMock, patch
 
 from odoo.exceptions import UserError
 
 from odoo.addons.l10n_es_aeat_sii_oca.tests.test_l10n_es_aeat_sii import (
     TestL10nEsAeatSiiBase,
+)
+from odoo.addons.l10n_es_aeat_sii_oca.tests.test_sii_send_batch import (
+    FakeSiiService,
 )
 
 
@@ -70,6 +74,43 @@ class TestL10nEsAeatSiiMatch(TestL10nEsAeatSiiBase):
         self.assertEqual(invoice.sii_csv, "FAKECSV123")
         self.assertFalse(invoice.aeat_send_error)
         self.assertFalse(invoice.aeat_send_failed)
+        self.assertEqual(invoice.sii_contrast_state, "correct")
+
+    def test_send_duplicated_contrasts_with_aeat(self):
+        """A record already registered in the AEAT when sending it is contrasted,
+        recovering the CSV of its first registration."""
+        self._activate_certificate()
+        invoice = self.invoice
+        company_nif = self.company.partner_id._parse_aeat_vat_info()[2]
+        service = FakeSiiService(
+            results={
+                (company_nif, invoice.name): {
+                    "EstadoRegistro": "Incorrecto",
+                    "CodigoErrorRegistro": 3000,
+                    "DescripcionErrorRegistro": "Factura duplicada",
+                    "RegistroDuplicado": {"EstadoRegistro": "Correcta"},
+                },
+            }
+        )
+
+        def consulta(header, inv_dict):
+            # The AEAT returns the data of the registered invoice
+            res = self._aeat_consulta_response("FAKECSV123")
+            res["RegistroRespuestaConsultaLRFacturasEmitidas"][0][
+                "DatosFacturaEmitida"
+            ] = json.loads(invoice.aeat_content_sent)["FacturaExpedida"]
+            return res
+
+        service.ConsultaLRFacturasEmitidas = consulta
+        invoice.send_sii_now()
+        with patch.object(
+            type(invoice), "_connect_aeat", lambda move, mapping_key: service
+        ):
+            self.env.ref(
+                "l10n_es_aeat_sii_oca.invoice_send_to_sii"
+            ).method_direct_trigger()
+        self.assertEqual(invoice.aeat_state, "sent")
+        self.assertEqual(invoice.sii_csv, "FAKECSV123")
         self.assertEqual(invoice.sii_contrast_state, "correct")
 
     def test_contrast_aeat_not_found_in_aeat(self):
