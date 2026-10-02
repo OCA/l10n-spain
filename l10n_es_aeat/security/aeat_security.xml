@@ -9,9 +9,23 @@
             eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
         />
     </record>
+    <record model="res.groups" id="group_use_aeat_real_estates">
+        <field name="name">Use AEAT Real Estates</field>
+        <field name="category_id" ref="base.module_category_hidden" />
+        <field
+            name="users"
+            eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
+        />
+    </record>
     <record id="l10n_es_aeat_certificate_rule" model="ir.rule">
         <field name="name">AEAT Certificate multi-company</field>
         <field ref="model_l10n_es_aeat_certificate" name="model_id" />
+        <field eval="True" name="global" />
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+    <record id="rule_l10n_es_aeat_real_estate" model="ir.rule">
+        <field name="name">AEAT Real Estates multi-company</field>
+        <field ref="model_l10n_es_aeat_real_estate" name="model_id" />
         <field eval="True" name="global" />
         <field name="domain_force">[('company_id', 'in', company_ids)]</field>
     </record>
