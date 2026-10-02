@@ -59,6 +59,13 @@
                                 required="verifactu_enabled"
                                 readonly="aeat_state in ('sent', 'cancel')"
                             />
+                            <field
+                                name="verifactu_substituted_invoice_ids"
+                                string="Substituted simplified invoices"
+                                widget="many2many_tags"
+                                invisible="not verifactu_enabled or move_type != 'out_invoice'"
+                                readonly="aeat_state != 'not_sent'"
+                            />
                             <field name="verifactu_description" string="Description" />
                             <field
                                 name="verifactu_cancel_reason"
