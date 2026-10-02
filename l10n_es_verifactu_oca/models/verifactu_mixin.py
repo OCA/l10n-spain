@@ -6,6 +6,7 @@
 import base64
 import io
 import json
+import logging
 from hashlib import sha256
 from urllib.parse import urlencode
 
@@ -17,6 +18,8 @@ from odoo.exceptions import UserError
 from odoo.tools.float_utils import float_compare
 
 from odoo.addons.l10n_es_aeat.models.aeat_mixin import round_by_keys
+
+_logger = logging.getLogger(__name__)
 
 VERIFACTU_VERSION = 1.0
 VERIFACTU_DATE_FORMAT = "%d-%m-%Y"
@@ -347,14 +350,23 @@ class VerifactuMixin(models.AbstractModel):
                 self.verifactu_hash = hash_string.hexdigest().upper()
                 # Generate JSON data for AEAT
                 aeat_json_data = ""
+                payload_error = False
                 try:
                     inv_dict = self._get_verifactu_invoice_dict(cancel=cancel)
                     aeat_json_data = json.dumps(inv_dict, indent=4)
-                except Exception:
-                    # If JSON generation fails, store empty string
-                    aeat_json_data = ""
+                except Exception as error:  # noqa: BLE001
+                    # The document is registered and chained anyway: the entry
+                    # exists, so it keeps its link, and the sending is retried
+                    # until this is fixed. Report the cause instead of hiding it.
+                    _logger.exception(
+                        "VERI*FACTU: the data of the document %s could not be "
+                        "built when registering it",
+                        self.name,
+                    )
+                    payload_error = f"{type(error).__name__}: {error}"
                 invoice_entry.document_hash = hash_string.hexdigest().upper()
                 invoice_entry.aeat_json_data = aeat_json_data
+                invoice_entry.payload_error = payload_error
                 self.env.cr.execute(
                     f"UPDATE {chaining._table} "
                     "SET last_verifactu_invoice_entry_id = %s WHERE id = %s",
