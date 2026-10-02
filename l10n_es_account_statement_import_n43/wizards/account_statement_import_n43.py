@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import logging
+import re
 from datetime import datetime
 
 from odoo import _, api, exceptions, fields, models
@@ -310,14 +311,99 @@ class AccountStatementImport(models.TransientModel):
                     partner = partner_obj.search([("name", "ilike", name)], limit=1)
         return partner
 
+    _LEGAL_SUFFIX_RE = re.compile(
+        r"[,.\s]*(S\.?L\.?U?\.?|S\.?A\.?U?\.?|S\.?C\.?|S\.?C\.?P\.?)\s*$",
+        re.IGNORECASE,
+    )
+
+    def _clean_partner_name_suffix(self, name):
+        """Remove common Spanish legal form suffixes for fuzzy matching.
+
+        Examples: "VILA FOPE,S.L." -> "VILA FOPE"
+                  "EMPRESA S.A."  -> "EMPRESA"
+        """
+        return self._LEGAL_SUFFIX_RE.sub("", name).strip()
+
     def _get_n43_partner_from_sabadell(self, conceptos):
         partner_obj = self.env["res.partner"]
         partner = partner_obj.browse()
-        # Try to match from partner name
-        if conceptos.get("01"):
-            name = conceptos["01"][1]
-            if name and len(name) > 7:
-                partner = partner_obj.search([("name", "ilike", name)], limit=1)
+        if not conceptos.get("01"):
+            return partner
+        # 1) Existing logic: try matching from second part of concept 01
+        name = conceptos["01"][1]
+        if name and len(name) > 7:
+            partner = partner_obj.search([("name", "ilike", name)], limit=1)
+        if partner:
+            return partner
+        # 2) Transfer / direct debit detection: concept 01 starts with a
+        #    known prefix followed by the partner name.
+        #    Sabadell uses these formats for transfers and SEPA direct debits.
+        full_name = (conceptos["01"][0] + conceptos["01"][1]).strip()
+        prefixes = (
+            "NOMBRE DEL ORDENANTE",
+            "ORDENANTE DE LA TRANSFERENCIA",
+            "BENEFICIARIO DE LA TRANSFERENCIA",
+            "TRANSFERENC. DE",
+            "BENEFICIARIO",
+            "CORE",
+        )
+        extracted = ""
+        for prefix in prefixes:
+            if full_name.upper().startswith(prefix):
+                extracted = full_name[len(prefix) :].strip()
+                # Strip leading colon/spaces (ORDENANTE format uses ": name")
+                extracted = extracted.lstrip(": ").strip()
+                break
+        if extracted:
+            # Always strip legal suffixes before searching, as the partner
+            # name in Odoo may use a different notation (e.g., "SL" vs
+            # "S.L."). Searching by the core name avoids mismatches.
+            clean = self._clean_partner_name_suffix(extracted)
+            name_to_search = clean if clean and len(clean) > 3 else extracted
+            if len(name_to_search) > 3:
+                partner = partner_obj.search(
+                    [("name", "ilike", name_to_search)], limit=1
+                )
+            # Last resort: search by individual words using word boundary
+            # matching to avoid substring false positives (e.g. CARMEN
+            # matching CARMENET). Only accept if exactly one partner matches.
+            if not partner:
+                _stop = {
+                    "de",
+                    "del",
+                    "la",
+                    "las",
+                    "el",
+                    "los",
+                    "i",
+                    "y",
+                    "en",
+                    "por",
+                    "con",
+                    "para",
+                    "the",
+                    "and",
+                }
+                words = [
+                    w
+                    for w in name_to_search.split()
+                    if len(w) > 3 and w.lower() not in _stop
+                ]
+                for word in words:
+                    # Use raw SQL with PostgreSQL word boundary regex
+                    # (\m = start, \M = end of word) to avoid substring
+                    # false positives (e.g. CARMEN != CARMENET).
+                    # Odoo domains don't support the ~* operator.
+                    self.env.cr.execute(
+                        "SELECT id FROM res_partner"
+                        " WHERE name ~* %s AND active = true"
+                        " LIMIT 2",
+                        [r"\m" + word + r"\M"],
+                    )
+                    rows = self.env.cr.fetchall()
+                    if len(rows) == 1:
+                        partner = partner_obj.browse(rows[0][0])
+                        break
         return partner
 
     def _get_n43_partner(self, line, journal):
@@ -369,9 +455,13 @@ class AccountStatementImport(models.TransientModel):
             for line in group["lines"]:
                 conceptos = []
                 for concept_line in line["conceptos"]:
-                    conceptos.extend(
-                        x.strip() for x in line["conceptos"][concept_line] if x.strip()
-                    )
+                    # Concatenate both halves of the same concept record
+                    # without adding a space — they are continuous text
+                    # split at the fixed-width boundary (position 39).
+                    parts = line["conceptos"][concept_line]
+                    joined = (parts[0] + parts[1]).strip()
+                    if joined:
+                        conceptos.append(joined)
                 vals_line = {
                     "payment_ref": " ".join(conceptos)
                     or self._get_n43_ref(line)
