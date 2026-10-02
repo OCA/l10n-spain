@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 =============================================
 Suministro Inmediato de Información en el IVA
 =============================================
@@ -17,7 +13,7 @@ Suministro Inmediato de Información en el IVA
 .. |badge1| image:: https://img.shields.io/badge/maturity-Mature-brightgreen.png
     :target: https://odoo-community.org/page/development-status
     :alt: Mature
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github
@@ -143,7 +139,12 @@ Contributors
 - Javi Melendez <javimelex@gmail.com>
 - Santi Argüeso - Comunitea S.L. <santi@comunitea.com>
 - Angel Moya - PESOL <angel.moya@pesol.es>
-- Eric Antonés - NuoBiT Solutions, S.L. <eantones@nuobit.com>
+- NuoBiT Solutions S.L.
+  <`http://www.nuobit.com\\> <http://www.nuobit.com\>>`__:
+
+  - Eric Antones eantones@nuobit.com
+  - Deniz Gallo eantones@nuobit.com
+
 - `Sygel <https://www.sygel.es>`__:
 
   - Valentin Vinagre
