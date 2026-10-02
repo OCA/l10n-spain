@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2026 Acysos S.L.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <template id="report_deca_batch">
+        <t t-call="l10n_es_deca_oca.report_deca_document">
+            <t t-set="docs" t-value="docs.mapped('picking_ids')" />
+        </t>
+    </template>
+</odoo>
