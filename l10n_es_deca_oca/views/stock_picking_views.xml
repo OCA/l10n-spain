@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Acysos S.L.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_picking_form_inherit_l10n_es_deca_oca" model="ir.ui.view">
+        <field name="name">stock.picking.view.form.inherit.l10n_es_deca_oca</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button
+                    name="%(l10n_es_deca_oca.action_report_deca)d"
+                    string="Imprimir DeCA"
+                    type="action"
+                    invisible="picking_type_code != 'outgoing'"
+                />
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page
+                    string="DeCA"
+                    name="deca_info"
+                    invisible="picking_type_code != 'outgoing'"
+                >
+                    <group>
+                        <group>
+                            <field name="tractor_license_plate" />
+                            <field name="trailer_license_plate" />
+                        </group>
+                        <group>
+                            <field name="special_authorization" widget="text" />
+                            <field
+                                name="carrier_contact_id"
+                                readonly="state in ('done', 'cancel')"
+                            />
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

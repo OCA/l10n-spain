@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_delivery_carrier_form_inherit_l10n_es_deca_oca" model="ir.ui.view">
+        <field name="name">delivery.carrier.view.form.inherit.l10n_es_deca_oca</field>
+        <field name="model">delivery.carrier</field>
+        <field name="inherit_id" ref="delivery.view_delivery_carrier_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='destination']" position="inside">
+                <group string="DeCA" name="deca">
+                    <field name="carrier_contact_id" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
