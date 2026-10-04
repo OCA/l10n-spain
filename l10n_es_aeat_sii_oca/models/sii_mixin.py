@@ -657,11 +657,16 @@ class SiiMixin(models.AbstractModel):
         # Preserve the VAT country prefix when it is explicitly set, even if it
         # differs from the partner's address country.
         if partner.vat and len(partner.vat) > 1 and partner.vat[1].isalpha():
-            vat_country_code = partner.vat[:2]
-        else:
-            vat_country_code = (
-                partner._map_aeat_country_iso_code(partner.country_id) or country_code
+            vat_prefix = partner.vat[:2].upper()
+            country = self.env["res.country"].search(
+                [("code", "=", vat_prefix)], limit=1
             )
+        else:
+            vat_prefix = country_code
+            country = partner.country_id
+        # Map it, as the AEAT expects some prefixes different from the ISO
+        # code (e.g. EL for Greece instead of GR)
+        vat_country_code = partner._map_aeat_country_iso_code(country) or vat_prefix
         # Limpiar alfanum
         if identifier:
             identifier = "".join(e for e in identifier if e.isalnum()).upper()
