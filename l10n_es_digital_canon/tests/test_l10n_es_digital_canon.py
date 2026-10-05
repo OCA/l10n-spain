@@ -76,6 +76,9 @@ class TestL10nEsTaxDigitalCanon(BaseCommon):
             f"account.{self.company.id}_tax_template_canon_sale_3_75"
         )
         self.assertIn(canon_sale_tax, sale_order.order_line.tax_id)
+        # Canon is removed when the delivery address is changed out of Spain
+        sale_order.partner_shipping_id = self.partner_fr
+        self.assertNotIn(canon_sale_tax, sale_order.order_line.tax_id)
 
     def test_purchase_order_canon_applies(self):
         purchase_form = Form(self.env["purchase.order"])
