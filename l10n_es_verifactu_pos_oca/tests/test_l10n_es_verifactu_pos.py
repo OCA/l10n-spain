@@ -622,6 +622,47 @@ class TestL10nEsVerifactuPOS(TestVerifactuCommon):
             "Order should not be verifactu enabled when journal is disabled",
         )
 
+    def test_pos_verifactu_qr_data_reaches_the_pos_ui(self):
+        """The PoS UI decides by itself whether a ticket carries the QR code.
+
+        The order's `verifactu_enabled` is computed by the server, so it is
+        missing until the order syncs: deciding on it left the QR code out of
+        any ticket printed offline. The PoS needs what that compute reads.
+        """
+        data = self.pos_session.load_data(
+            ["pos.config", "res.company", "account.fiscal.position"]
+        )
+        company = data["res.company"]["data"][0]
+        self.assertTrue(company["verifactu_enabled"])
+        self.assertIn("verifactu_start_date", company)
+        self.assertTrue(data["pos.config"]["data"][0]["verifactu_journal_enabled"])
+        self.assertIn("aeat_active", data["account.fiscal.position"]["fields"])
+
+    def test_pos_verifactu_journal_flag_reaches_the_pos_ui(self):
+        """The PoS UI needs the journal flag to hide the QR when it is off."""
+        self.assertTrue(self.pos_config.verifactu_journal_enabled)
+        self.pos_config.journal_id.verifactu_enabled = False
+        self.assertFalse(self.pos_config.verifactu_journal_enabled)
+
+    def test_pos_verifactu_invoiced_order_is_not_registered(self):
+        """An order to be invoiced is registered as an invoice, not as a ticket.
+
+        The ticket must not show a QR code either, so the PoS UI applies the
+        same condition. This test pins the backend side of that contract.
+        """
+        orders_data = [self._create_ui_order_data(simplified=False)]
+        result = self.env["pos.order"].sync_from_ui(orders_data)
+        order = self.env["pos.order"].browse(result["pos.order"][0]["id"])
+
+        self.assertTrue(order.to_invoice)
+        self.assertFalse(
+            order._is_verifactu_order(),
+            "An order to be invoiced must not take a link in the chain",
+        )
+        self.assertFalse(order.last_verifactu_invoice_entry_id)
+        # The sale is registered, but through its invoice.
+        self.assertTrue(order.account_move.last_verifactu_invoice_entry_id)
+
     def test_pos_verifactu_one2many_fields(self):
         """Test that One2many fields work correctly with verifactu entries"""
         orders_data = [self._create_ui_order_data()]

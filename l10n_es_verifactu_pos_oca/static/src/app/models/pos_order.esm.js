@@ -19,22 +19,53 @@ patch(PosOrder.prototype, {
     },
 
     /**
+     * The registration dates the document by the UTC date of `date_order`,
+     * so the QR code follows it to keep both on the same day for orders
+     * around midnight. That day is the UTC one and not the legal one -- see
+     * the ROADMAP.
+     * @returns {luxon.DateTime}
+     */
+    _get_verifactu_document_date() {
+        return luxon.DateTime.fromSQL(this.date_order || this.create_date, {
+            zone: "utc",
+        });
+    },
+
+    /**
      * Build the Verifactu QR URL with required parameters
      * @returns {String} The complete URL for the QR code
      */
     _build_verifactu_qr_url() {
         const baseUrl = this.config.verifactu_base_url;
         const vatNumber = (this.company.vat || "").replace(/^ES/i, "");
-        const date = this.date_order || this.create_date;
-        const isoDate = date.replace(" ", "T");
-        const formattedDate = luxon.DateTime.fromISO(isoDate).toFormat("dd-MM-yyyy");
         const params = new URLSearchParams({
             nif: vatNumber,
-            numserie: this.l10n_es_unique_id,
-            fecha: formattedDate,
-            importe: this.get_total_with_tax(),
+            numserie: (this.l10n_es_unique_id || "").substring(0, 60),
+            fecha: this._get_verifactu_document_date().toFormat("dd-MM-yyyy"),
+            importe: this.get_total_with_tax().toFixed(2),
         });
         return `${baseUrl}?${params.toString()}`;
+    },
+
+    /**
+     * Whether the backend registers this ticket, decided from what the PoS
+     * has loaded rather than from the order's `verifactu_enabled`, which is
+     * only computed by the server and so is missing until the order syncs --
+     * that would leave the QR code out of any ticket printed offline.
+     * @returns {Boolean}
+     */
+    _is_verifactu_ticket() {
+        const startDate = this.company.verifactu_start_date;
+        const fiscalPosition = this.fiscal_position_id;
+        return Boolean(
+            this.company.verifactu_enabled &&
+                this.config.verifactu_journal_enabled &&
+                this.is_l10n_es_simplified_invoice &&
+                !this.is_to_invoice() &&
+                (!startDate ||
+                    this._get_verifactu_document_date().toISODate() >= startDate) &&
+                (!fiscalPosition || fiscalPosition.aeat_active)
+        );
     },
 
     /**
@@ -42,11 +73,7 @@ patch(PosOrder.prototype, {
      * @returns {string|boolean} Base64 encoded SVG QR code or false if disabled
      */
     _get_verifactu_qr_code_data() {
-        const isEnabled =
-            this.verifactu_enabled &&
-            this.is_l10n_es_simplified_invoice &&
-            (!this.fiscal_position ||
-                (this.fiscal_position && this.fiscal_position.aeat_active));
+        const isEnabled = this._is_verifactu_ticket();
 
         if (isEnabled) {
             const codeWriter = new window.ZXing.BrowserQRCodeSvgWriter();
