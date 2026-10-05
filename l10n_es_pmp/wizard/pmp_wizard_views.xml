@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Acysos S.L.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html). -->
+<odoo>
+    <record id="view_l10n_es_pmp_wizard_form" model="ir.ui.view">
+        <field name="name">l10n.es.pmp.wizard.form</field>
+        <field name="model">l10n.es.pmp.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Average Payment Period to Suppliers (PMP)">
+                <field name="state" invisible="1" />
+                <field name="company_id" invisible="1" />
+
+                <group invisible="state != 'draft'">
+                    <group>
+                        <field name="date_start" />
+                        <field name="date_end" />
+                    </group>
+                </group>
+
+                <group
+                    invisible="state != 'done'"
+                    string="Official PMP Information (ICAC Resolution)"
+                >
+                    <group>
+                        <field name="pmp" readonly="1" />
+                        <field name="ratio_paid_operations" readonly="1" />
+                        <field name="ratio_pending_operations" readonly="1" />
+                    </group>
+                    <group>
+                        <field name="total_payments_made" readonly="1" />
+                        <field name="total_pending_payments" readonly="1" />
+                    </group>
+                </group>
+
+                <group
+                    invisible="state != 'done'"
+                    string="Additional Information (Crea y Crece Law 18/2022)"
+                >
+                    <group>
+                        <field name="volume_paid_in_term" readonly="1" />
+                        <field name="pct_volume_paid_in_term" readonly="1" />
+                    </group>
+                    <group>
+                        <field name="invoices_paid_in_term" readonly="1" />
+                        <field name="pct_invoices_paid_in_term" readonly="1" />
+                    </group>
+                </group>
+
+                <footer>
+                    <button
+                        name="action_calculate"
+                        string="Calculate"
+                        type="object"
+                        class="btn-primary"
+                        invisible="state != 'draft'"
+                    />
+                    <button
+                        name="action_calculate"
+                        string="Recalculate"
+                        type="object"
+                        class="btn-secondary"
+                        invisible="state != 'done'"
+                    />
+                    <button string="Close" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_l10n_es_pmp_wizard" model="ir.actions.act_window">
+        <field name="name">Average Payment Period to Suppliers (PMP)</field>
+        <field name="res_model">l10n.es.pmp.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem
+        id="menu_l10n_es_pmp_wizard"
+        name="Average Payment Period (PMP)"
+        parent="account.menu_finance_reports"
+        action="action_l10n_es_pmp_wizard"
+        sequence="150"
+    />
+</odoo>
