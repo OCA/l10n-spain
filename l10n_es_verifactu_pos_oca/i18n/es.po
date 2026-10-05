@@ -55,6 +55,17 @@ msgid "Enable AEAT"
 msgstr "Habilitar AEAT"
 
 #. module: l10n_es_verifactu_pos_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_pos_oca.view_pos_order_verifactu_form
+msgid "Generate VERI*FACTU chaining"
+msgstr "Generar encadenamiento VERI*FACTU"
+
+#. module: l10n_es_verifactu_pos_oca
+#: model:ir.actions.server,name:l10n_es_verifactu_pos_oca.pos_order_generate_pending_verifactu_chaining_ir_actions_server
+#: model:ir.cron,cron_name:l10n_es_verifactu_pos_oca.pos_order_generate_pending_verifactu_chaining
+msgid "Generate pending VERI*FACTU chaining for POS orders"
+msgstr "Generar el encadenamiento VERI*FACTU pendiente de los pedidos de TPV"
+
+#. module: l10n_es_verifactu_pos_oca
 #: model:ir.model.fields,help:l10n_es_verifactu_pos_oca.field_pos_order__aeat_send_failed
 msgid ""
 "Indicates that the last attempt to communicate this document to the SII has "
@@ -93,11 +104,64 @@ msgid "MacroData"
 msgstr "Macrodatos"
 
 #. module: l10n_es_verifactu_pos_oca
+#: model:ir.model.fields,help:l10n_es_verifactu_pos_oca.field_pos_order__verifactu_chaining_attempts
+msgid ""
+"Number of times the chaining of this order has been attempted and failed. "
+"Used by the recovery cron to stop retrying an order that cannot be chained."
+msgstr ""
+"Número de veces que se ha intentado encadenar este pedido sin éxito. La "
+"recuperación automática deja de reintentarlo cuando se alcanza el límite."
+
+#. module: l10n_es_verifactu_pos_oca
 #. odoo-python
 #: code:addons/l10n_es_verifactu_pos_oca/models/pos_order.py:0
 #, python-format
 msgid "POS reference"
 msgstr "Referencia TPV"
+
+#. module: l10n_es_verifactu_pos_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_pos_oca.view_pos_order_verifactu_search
+msgid "The last attempt to chain or send to VERI*FACTU has failed"
+msgstr "El último intento de encadenar o enviar a VERI*FACTU falló"
+
+#. module: l10n_es_verifactu_pos_oca
+#. odoo-python
+#: code:addons/l10n_es_verifactu_pos_oca/models/pos_order.py:0
+msgid "The order has been added to the chain."
+msgstr "El pedido se ha añadido a la cadena."
+
+#. module: l10n_es_verifactu_pos_oca
+#. odoo-python
+#: code:addons/l10n_es_verifactu_pos_oca/models/pos_order.py:0
+msgid "The order is not eligible for chaining."
+msgstr "El pedido no cumple las condiciones para encadenarse."
+
+#. module: l10n_es_verifactu_pos_oca
+#: model:ir.model.fields,field_description:l10n_es_verifactu_pos_oca.field_pos_order__verifactu_chaining_attempts
+msgid "VERI*FACTU chaining attempts"
+msgstr "Intentos de encadenamiento VERI*FACTU"
+
+#. module: l10n_es_verifactu_pos_oca
+#. odoo-python
+#: code:addons/l10n_es_verifactu_pos_oca/models/pos_order.py:0
+msgid "VERI*FACTU chaining generated"
+msgstr "Encadenamiento VERI*FACTU generado"
+
+#. module: l10n_es_verifactu_pos_oca
+#. odoo-python
+#: code:addons/l10n_es_verifactu_pos_oca/models/pos_order.py:0
+msgid "VERI*FACTU chaining not generated"
+msgstr "Encadenamiento VERI*FACTU no generado"
+
+#. module: l10n_es_verifactu_pos_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_pos_oca.view_pos_order_verifactu_search
+msgid "VERI*FACTU error"
+msgstr "Error VERI*FACTU"
+
+#. module: l10n_es_verifactu_pos_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_pos_oca.view_pos_order_verifactu_search
+msgid "VERI*FACTU failed"
+msgstr "VERI*FACTU fallido"
 
 #. module: l10n_es_verifactu_pos_oca
 #. odoo-python

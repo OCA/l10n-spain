@@ -40,6 +40,13 @@
                     groups="l10n_es_aeat.group_account_aeat"
                     invisible="(not verifactu_enabled) or (state not in ['paid', 'done']) or (aeat_state != 'sent_w_errors')"
                 />
+                <button
+                    type="object"
+                    string="Generate VERI*FACTU chaining"
+                    name="action_recover_verifactu_chaining"
+                    groups="l10n_es_aeat.group_account_aeat"
+                    invisible="(not verifactu_enabled) or (state not in ['paid', 'done']) or to_invoice or last_verifactu_invoice_entry_id"
+                />
             </button>
             <notebook position="inside">
                 <page
@@ -53,6 +60,7 @@
                     >
                         <field name="verifactu_enabled" invisible="0" readonly="1" />
                         <field name="aeat_state" invisible="1" />
+                        <field name="to_invoice" invisible="1" />
                         <field
                             name="last_verifactu_invoice_entry_id"
                             invisible="0"
@@ -67,6 +75,10 @@
                         <field name="verifactu_hash_string" readonly="1" />
                         <field name="verifactu_hash" readonly="1" />
                         <field name="verifactu_registration_date" readonly="1" />
+                        <field
+                            name="verifactu_chaining_attempts"
+                            invisible="not verifactu_chaining_attempts"
+                        />
                     </group>
                     <group string="VeriFactu History" name="group_aeat_history">
                         <field
@@ -104,10 +116,43 @@
                                 readonly="1"
                             />
                             <field name="verifactu_csv" readonly="1" />
+                            <field
+                                name="aeat_send_failed"
+                                invisible="not aeat_send_failed"
+                            />
+                            <field
+                                name="aeat_send_error"
+                                invisible="not aeat_send_failed"
+                            />
                         </group>
                     </group>
                 </page>
             </notebook>
+        </field>
+    </record>
+
+    <record id="view_pos_order_verifactu_search" model="ir.ui.view">
+        <field name="name">pos.order.verifactu.search</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_order_filter" />
+        <field name="arch" type="xml">
+            <filter name="order_date" position="after">
+                <separator />
+                <filter
+                    name="aeat_send_failed"
+                    string="VERI*FACTU failed"
+                    domain="[('aeat_send_failed', '=', True)]"
+                    help="The last attempt to chain or send to VERI*FACTU has failed"
+                />
+            </filter>
+            <filter name="order_month" position="after">
+                <filter
+                    string="VERI*FACTU error"
+                    name="verifactu_error"
+                    domain="[('aeat_send_failed', '=', True)]"
+                    context="{'group_by': 'aeat_send_error'}"
+                />
+            </filter>
         </field>
     </record>
 </odoo>
