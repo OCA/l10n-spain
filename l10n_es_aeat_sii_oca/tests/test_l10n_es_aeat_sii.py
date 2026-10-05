@@ -292,6 +292,32 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
             },
         )
 
+    def test_intracomunitary_customer_greek_vat_iso_prefix(self):
+        """A Greek VAT stored with the ISO prefix (GR) must be sent to the
+        SII with the intra-community prefix (EL), or the AEAT rejects it
+        with error 1104.
+        """
+        self._activate_certificate(self.certificate_password)
+        partner = self.env["res.partner"].create(
+            {
+                "name": "Greek Customer",
+                "country_id": self.ref("base.gr"),
+                "vat": "GR123456783",
+            }
+        )
+        invoice = self.invoice.copy(
+            {"partner_id": partner.id, "fiscal_position_id": self.fp_intra.id}
+        )
+        invoice.action_post()
+        sii_info = invoice._get_aeat_invoice_dict()
+        self.assertEqual(
+            sii_info["FacturaExpedida"]["Contraparte"],
+            {
+                "NombreRazon": "Greek Customer",
+                "IDOtro": {"IDType": "02", "ID": "EL123456783"},
+            },
+        )
+
     def test_intracomunitary_customer_without_valid_vat(self):
         """Un cliente bajo Régimen Intracomunitario cuya identificación (por
         override manual de aeat_identification_type/aeat_identification) no
