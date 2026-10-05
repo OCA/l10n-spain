@@ -1,8 +1,10 @@
+import copy
 import uuid
 
 from odoo import fields
 from odoo.exceptions import UserError
 from odoo.tests.common import tagged
+from odoo.tools import mute_logger
 
 from odoo.addons.l10n_es_verifactu_oca.tests.common import TestVerifactuCommon
 
@@ -748,3 +750,87 @@ class TestL10nEsVerifactuPOS(TestVerifactuCommon):
         # Should raise NotImplementedError
         with self.assertRaises(NotImplementedError):
             order.cancel_verifactu()
+
+    def _sync_order(self, order_data):
+        result = self.env["pos.order"].sync_from_ui([order_data])
+        return self.env["pos.order"].browse(result["pos.order"][0]["id"])
+
+    def test_draft_order_is_not_chained(self):
+        """An order synced as draft must stay out of the chain.
+
+        The chain is company-wide and shared with backend invoices, so a link
+        for an order that is not a fiscal document yet pollutes it for good:
+        the chain is append-only and the entry cannot be removed later.
+        """
+        order_data = self._create_ui_order_data()
+        order_data["state"] = "draft"
+        order = self._sync_order(order_data)
+
+        self.assertEqual(
+            order.state, "draft", "Syncing a draft order must leave it draft"
+        )
+        self.assertFalse(
+            order.last_verifactu_invoice_entry_id,
+            "A draft order must not get a chaining entry",
+        )
+        self.assertFalse(
+            order.verifactu_hash,
+            "A draft order must not get a hash: _get_verifactu_hash_string() "
+            "returns an empty string for it, and hashing that would chain the "
+            "SHA-256 of the empty string",
+        )
+
+    @mute_logger("odoo.addons.point_of_sale.models.pos_order")
+    def test_unpaid_order_is_not_chained(self):
+        """An order the core could not mark as paid must stay out of the chain.
+
+        The core calls action_pos_order_paid() inside a bare `except
+        Exception`, so when the payment does not add up the order silently
+        stays in draft while the sync goes on and reports success. Its
+        _logger.error is muted here: it is the expected outcome of this
+        scenario, and an ERROR line in the log fails the build.
+        """
+        self.assertFalse(
+            self.pos_config.cash_rounding,
+            "The test needs cash_rounding off so that action_pos_order_paid raises",
+        )
+        order_data = self._create_ui_order_data(amount=100)
+        # Half paid: action_pos_order_paid() raises "not fully paid"
+        order_data["amount_paid"] = 60.5
+        order_data["payment_ids"][0][2]["amount"] = 60.5
+        order = self._sync_order(order_data)
+
+        self.assertEqual(
+            order.state, "draft", "An underpaid order stays draft, not paid"
+        )
+        self.assertFalse(
+            order.last_verifactu_invoice_entry_id,
+            "An unpaid order must not get a chaining entry",
+        )
+
+    def test_order_chained_once_after_draft_sync(self):
+        """Syncing draft and then paid must produce exactly one entry."""
+        order_data = self._create_ui_order_data()
+        draft_data = copy.deepcopy(order_data)
+        draft_data["state"] = "draft"
+        draft = self._sync_order(draft_data)
+        self.assertEqual(draft.state, "draft", "Sanity: the first sync is a draft")
+        # Same uuid: the core finds the draft order and updates it. Like the
+        # till, the second sync does not resend the lines and payments it
+        # already has, or the core would add them again.
+        paid_data = copy.deepcopy(order_data)
+        paid_data.update(
+            state="paid", lines=[], payment_ids=[], access_token=draft.access_token
+        )
+        order = self._sync_order(paid_data)
+
+        self.assertEqual(order, draft)
+        self.assertEqual(order.state, "paid")
+        entries = self.env["verifactu.invoice.entry"].search(
+            [("model", "=", "pos.order"), ("document_id", "=", order.id)]
+        )
+        self.assertEqual(
+            len(entries),
+            1,
+            "The order must hold exactly one chain link, not one per sync",
+        )
