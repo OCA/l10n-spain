@@ -374,6 +374,30 @@ class TestL10nEsAeatVerifactuQR(TestVerifactuCommon):
                 "Invoice send be marked as failed after VERI*FACTU processing.",
             )
 
+    def test_send_invoices_to_verifactu_connection_error(self):
+        self._activate_certificate(self.certificate_password)
+        self.invoice.action_post()
+        with patch(
+            "odoo.addons.l10n_es_verifactu_oca.models."
+            "verifactu_invoice_entry.VerifactuInvoiceEntry._connect_verifactu"
+        ) as mock_connect:
+            mock_service = MagicMock()
+            mock_service.RegFactuSistemaFacturacion.return_value = {}
+            mock_connect.return_value = mock_service
+            self.env["verifactu.invoice.entry"]._cron_send_documents_to_verifactu()
+
+            self.assertEqual(
+                self.invoice.aeat_state,
+                "not_sent",
+                "Invoice should be marked as not sent after connection error.",
+            )
+            self.assertTrue(self.invoice.aeat_send_failed)
+            self.assertEqual(
+                self.invoice.aeat_send_error, "Connection error with VERI*FACTU"
+            )
+            last_line = self.invoice.last_verifactu_response_line_id
+            self.assertEqual(last_line.error_code, "CONNECTION_ERROR")
+
     def test_send_invoices_to_verifactu_duplicated(self):
         self._activate_certificate(self.certificate_password)
         self.invoice.action_post()
