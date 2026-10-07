@@ -6,9 +6,7 @@
     "name": "ATC Modelo 425",
     "version": "17.0.1.0.3",
     "category": "Localisation/Accounting",
-    "author": "Tecnativa,"
-    "Binhex System Solutions,"
-    "Odoo Community Association (OCA)",
+    "author": "Tecnativa, Binhex, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "license": "AGPL-3",
     "depends": [

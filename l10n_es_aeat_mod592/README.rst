@@ -115,7 +115,7 @@ Authors
 -------
 
 * Tecnativa
-* Binhex System Solutions
+* Binhex
 
 Contributors
 ------------
