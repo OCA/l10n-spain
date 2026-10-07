@@ -20,6 +20,7 @@
         "data/atc_verifactu_map_data.xml",
         "data/atc_verifactu_tax_agency_data.xml",
         "data/account_fiscal_position_template_canary_data.xml",
+        "views/report_invoice.xml",
     ],
     "post_init_hook": "post_init_hook",
 }
