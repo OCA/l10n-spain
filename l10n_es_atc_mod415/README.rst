@@ -53,7 +53,7 @@ Credits
 Authors
 ~~~~~~~
 
-* Binhex System Solutions
+* Binhex
 
 Contributors
 ~~~~~~~~~~~~
