@@ -1,7 +1,7 @@
 ##############################################################################
 #
 # Copyright 2019 Tecnativa - Pedro M. Baeza
-# Copyright (c) 2023 Binhex System Solutions
+# Copyright (c) 2023 Binhex
 # Copyright (c) 2023 Nicolás Ramos (http://binhex.es)
 #
 # The licence is in the file __manifest__.py
