@@ -41,9 +41,7 @@ class PaymentProvider(models.Model):
     redsys_terminal = fields.Char(
         "Terminal", default="1", required_if_provider="redsys"
     )
-    redsys_currency = fields.Char(
-        "Currency", default="978", required_if_provider="redsys"
-    )
+    redsys_currency = fields.Char(default="978", required_if_provider="redsys")
     redsys_transaction_type = fields.Char(
         "Transaction Type",
         default="0",
