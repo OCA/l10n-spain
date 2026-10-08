@@ -1,5 +1,5 @@
 # Copyright 2014-2022 Nicolás Ramos (http://binhex.es)
-# Copyright 2023 Binhex System Solutions
+# Copyright 2023 Binhex
 # Copyright 2024 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
@@ -7,7 +7,7 @@
     "name": "AEAT modelo 592",
     "version": "19.0.1.0.0",
     "category": "Accounting",
-    "author": "Tecnativa, Binhex System Solutions, Odoo Community Association (OCA)",
+    "author": "Tecnativa, Binhex, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "license": "AGPL-3",
     "depends": ["l10n_es_aeat", "report_csv", "report_xlsx", "stock"],
