@@ -3,6 +3,7 @@
 # Copyright 2025 ForgeFlow S.L.
 # Copyright 2025 Process Control - Jorge Luis López
 # Copyright 2025 Tecnativa - Pedro M. Baeza
+# Copyright 2026 Odoo Community Association (OCA)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
 import json
 from datetime import datetime
@@ -13,7 +14,7 @@ from urllib.parse import parse_qs, urlparse
 from freezegun import freeze_time
 
 from odoo import Command
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
 from odoo.modules.module import get_resource_path
 
 from .common import TestVerifactuCommon
@@ -223,6 +224,20 @@ class TestL10nEsAeatVerifactu(TestVerifactuCommon):
                 name, inv_type, lines, extra_vals
             )
         return
+
+    def test_sale_journal_requires_verifactu(self):
+        with self.assertRaises(ValidationError):
+            self.env["account.journal"].create(
+                {
+                    "name": "Strict VERI*FACTU journal",
+                    "code": "SVF",
+                    "type": "sale",
+                    "company_id": self.company.id,
+                    "verifactu_enabled": False,
+                }
+            )
+        with self.assertRaises(ValidationError):
+            self.invoice.journal_id.write({"verifactu_enabled": False})
 
 
 class TestL10nEsAeatVerifactuQR(TestVerifactuCommon):
