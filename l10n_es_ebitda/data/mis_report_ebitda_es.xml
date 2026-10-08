@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Acysos S.L.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl-3.0). -->
+<odoo>
+    <!-- METHOD 1 OVERRIDES -->
+    <record id="account_ebitda_report.mis_kpi_m1_taxes" model="mis.report.kpi">
+        <field
+            name="expression"
+        >balp['|', ('tag_ids.name', '=', 'EBITDA / Taxes'), ('code', '=like', '630%')]</field>
+    </record>
+
+    <record id="account_ebitda_report.mis_kpi_m1_int_exp" model="mis.report.kpi">
+        <field
+            name="expression"
+        >balp['|', ('tag_ids.name', '=', 'EBITDA / Interest Expense'), ('code', '=like', '66%')]</field>
+    </record>
+
+    <record id="account_ebitda_report.mis_kpi_m1_int_inc" model="mis.report.kpi">
+        <field
+            name="expression"
+        >-balp['|', ('tag_ids.name', '=', 'EBITDA / Interest Income'), ('code', '=like', '76%')]</field>
+    </record>
+
+    <record id="account_ebitda_report.mis_kpi_m1_exc_exp" model="mis.report.kpi">
+        <field
+            name="expression"
+        >balp['|', '|', ('tag_ids.name', '=', 'EBITDA / Exceptional Expense (Below EBITDA)'), ('code', '=like', '67%'), ('code', '=like', '69%')]</field>
+    </record>
+
+    <record id="account_ebitda_report.mis_kpi_m1_exc_inc" model="mis.report.kpi">
+        <field
+            name="expression"
+        >-balp['|', '|', ('tag_ids.name', '=', 'EBITDA / Exceptional Income (Below EBITDA)'), ('code', '=like', '77%'), ('code', '=like', '79%')]</field>
+    </record>
+
+    <!-- METHOD 2 OVERRIDES -->
+    <record id="account_ebitda_report.mis_kpi_m2_taxes" model="mis.report.kpi">
+        <field
+            name="expression"
+        >balp['|', ('tag_ids.name', '=', 'EBITDA / Taxes'), ('code', '=like', '630%')]</field>
+    </record>
+
+    <record id="account_ebitda_report.mis_kpi_m2_int_exp" model="mis.report.kpi">
+        <field
+            name="expression"
+        >balp['|', ('tag_ids.name', '=', 'EBITDA / Interest Expense'), ('code', '=like', '66%')]</field>
+    </record>
+
+    <record id="account_ebitda_report.mis_kpi_m2_int_inc" model="mis.report.kpi">
+        <field
+            name="expression"
+        >-balp['|', ('tag_ids.name', '=', 'EBITDA / Interest Income'), ('code', '=like', '76%')]</field>
+    </record>
+
+    <record id="account_ebitda_report.mis_kpi_m2_exc_exp" model="mis.report.kpi">
+        <field
+            name="expression"
+        >balp['|', '|', ('tag_ids.name', '=', 'EBITDA / Exceptional Expense (Below EBITDA)'), ('code', '=like', '67%'), ('code', '=like', '69%')]</field>
+    </record>
+
+    <record id="account_ebitda_report.mis_kpi_m2_exc_inc" model="mis.report.kpi">
+        <field
+            name="expression"
+        >-balp['|', '|', ('tag_ids.name', '=', 'EBITDA / Exceptional Income (Below EBITDA)'), ('code', '=like', '77%'), ('code', '=like', '79%')]</field>
+    </record>
+
+    <!-- PROFESSIONAL REPORT OVERRIDES -->
+    <record id="account_ebitda_report.mis_kpi_pro_taxes" model="mis.report.kpi">
+        <field
+            name="expression"
+        >balp['|', ('tag_ids.name', '=', 'EBITDA / Taxes'), ('code', '=like', '630%')]</field>
+    </record>
+
+    <record id="account_ebitda_report.mis_kpi_pro_int_exp" model="mis.report.kpi">
+        <field
+            name="expression"
+        >balp['|', ('tag_ids.name', '=', 'EBITDA / Interest Expense'), ('code', '=like', '66%')]</field>
+    </record>
+
+    <record id="account_ebitda_report.mis_kpi_pro_int_inc" model="mis.report.kpi">
+        <field
+            name="expression"
+        >-balp['|', ('tag_ids.name', '=', 'EBITDA / Interest Income'), ('code', '=like', '76%')]</field>
+    </record>
+
+    <record id="account_ebitda_report.mis_kpi_pro_exc_exp" model="mis.report.kpi">
+        <field
+            name="expression"
+        >balp['|', '|', ('tag_ids.name', '=', 'EBITDA / Exceptional Expense (Below EBITDA)'), ('code', '=like', '67%'), ('code', '=like', '69%')]</field>
+    </record>
+
+    <record id="account_ebitda_report.mis_kpi_pro_exc_inc" model="mis.report.kpi">
+        <field
+            name="expression"
+        >-balp['|', '|', ('tag_ids.name', '=', 'EBITDA / Exceptional Income (Below EBITDA)'), ('code', '=like', '77%'), ('code', '=like', '79%')]</field>
+    </record>
+
+    <record id="account_ebitda_report.mis_kpi_pro_debt" model="mis.report.kpi">
+        <field
+            name="expression"
+        >-bal['|', '|', ('tag_ids.name', '=', 'EBITDA / Financial Debt'), ('code', '=like', '17%'), ('code', '=like', '52%')]</field>
+    </record>
+
+    <record id="account_ebitda_report.mis_kpi_pro_capex" model="mis.report.kpi">
+        <field
+            name="expression"
+        >balp['|', '|', '|', ('tag_ids.name', '=', 'EBITDA / CAPEX (Fixed Asset Additions)'), ('code', '=like', '20%'), ('code', '=like', '21%'), ('code', '=like', '22%')]</field>
+    </record>
+</odoo>
