@@ -643,6 +643,12 @@ msgid "Not Send Without Errors Number"
 msgstr "Número de no enviados sin errores"
 
 #. module: l10n_es_aeat_sii_oca
+#. odoo-python
+#: code:addons/l10n_es_aeat_sii_oca/models/sii_mixin.py:0
+msgid "Not found in the SII response"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.account_journal_dashboard_kanban_view
 msgid "Not sent to SII"
 msgstr "No enviado al SII"
@@ -1138,7 +1144,7 @@ msgstr "El nº de factura del proveedor es obligatorio"
 
 #. module: l10n_es_aeat_sii_oca
 #. odoo-python
-#: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
+#: code:addons/l10n_es_aeat_sii_oca/models/sii_mixin.py:0
 msgid ""
 "The value in l10n_es_aeat_sii_oca.sii_batch system parameter must be an "
 "integer. Please, check the value of the parameter."
