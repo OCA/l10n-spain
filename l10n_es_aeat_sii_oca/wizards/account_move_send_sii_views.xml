@@ -62,6 +62,9 @@
                         string="of the selected invoices have changed but changes have not been sent to the SII yet. If you confirm, they will be sent to sii."
                     />
                 </p>
+                <group>
+                    <field name="send_now" />
+                </group>
                 <footer>
                     <button
                         name="action_confirm"
