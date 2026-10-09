@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+l10n_es_sigaus_amount_manager,l10n.es.sigaus.amount.manager,model_l10n_es_sigaus_amount,account.group_account_manager,1,1,1,1
+l10n_es_sigaus_amount_user_invoicing,l10n.es.sigaus.amount.user.invoicing,model_l10n_es_sigaus_amount,account.group_account_invoice,1,0,0,0

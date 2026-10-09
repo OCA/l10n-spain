@@ -1,0 +1,103 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_es_sigaus_sale
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-07-09 15:58+0000\n"
+"Last-Translator: Jaime Ruiz Maccione <jaime.ruiz@sygel.es>\n"
+"Language-Team: none\n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.6.2\n"
+
+#. module: l10n_es_sigaus_sale
+#: model_terms:ir.ui.view,arch_db:l10n_es_sigaus_sale.exception_sigaus_sales
+msgid ""
+".\n"
+"            The following products are subject to SIGAUS but have no weight."
+msgstr ""
+".\n"
+"            Els següents productes estan subjectes a SIGAUS però no tenen "
+"pes."
+
+#. module: l10n_es_sigaus_sale
+#: model_terms:ir.ui.view,arch_db:l10n_es_sigaus_sale.report_saleorder_document
+msgid "Aportación SIGAUS (RD 679/2006):"
+msgstr "Aportació SIGAUS (RD 679/2006):"
+
+#. module: l10n_es_sigaus_sale
+#: model_terms:ir.ui.view,arch_db:l10n_es_sigaus_sale.exception_sigaus_sales
+msgid "Exception(s) occurred on the sales order:"
+msgstr "S'han produït excepcions en la comanda de venda:"
+
+#. module: l10n_es_sigaus_sale
+#: model:ir.model.fields,field_description:l10n_es_sigaus_sale.field_sale_order_line__is_sigaus
+msgid "Is Sigaus"
+msgstr "És Sigaus"
+
+#. module: l10n_es_sigaus_sale
+#: model:ir.model,name:l10n_es_sigaus_sale.model_account_move
+msgid "Journal Entry"
+msgstr "Apunt comptable"
+
+#. module: l10n_es_sigaus_sale
+#: model_terms:ir.ui.view,arch_db:l10n_es_sigaus_sale.exception_sigaus_sales
+msgid "Product(s):"
+msgstr "Producte(s):"
+
+#. module: l10n_es_sigaus_sale
+#: model:ir.model,name:l10n_es_sigaus_sale.model_sale_order
+msgid "Sales Order"
+msgstr "Comanda de venda"
+
+#. module: l10n_es_sigaus_sale
+#: model:ir.model,name:l10n_es_sigaus_sale.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línia de comanda de venda"
+
+#. module: l10n_es_sigaus_sale
+#: model:ir.model.fields,field_description:l10n_es_sigaus_sale.field_sale_order_line__sigaus_amount
+msgid "Sigaus Amount"
+msgstr "Import Sigaus"
+
+#. module: l10n_es_sigaus_sale
+#: model:ir.model.fields,field_description:l10n_es_sigaus_sale.field_sale_order__sigaus_automated_exception_id
+msgid "Sigaus Automated Exception"
+msgstr "Excepció automatitzada de Sigaus"
+
+#. module: l10n_es_sigaus_sale
+#: model:ir.model.fields,field_description:l10n_es_sigaus_sale.field_sale_order__sigaus_company
+msgid "Sigaus Company"
+msgstr "Empresa Sigaus"
+
+#. module: l10n_es_sigaus_sale
+#: model:ir.model.fields,field_description:l10n_es_sigaus_sale.field_sale_order__sigaus_has_line
+msgid "Sigaus Has Line"
+msgstr "Sigaus té línia"
+
+#. module: l10n_es_sigaus_sale
+#: model:ir.model.fields,field_description:l10n_es_sigaus_sale.field_sale_order__sigaus_is_date
+msgid "Sigaus Is Date"
+msgstr "Sigaus és data"
+
+#. module: l10n_es_sigaus_sale
+#: model:ir.model.fields,field_description:l10n_es_sigaus_sale.field_sale_order__is_sigaus
+msgid "Subject to SIGAUS"
+msgstr "Subjecte a SIGAUS"
+
+#. module: l10n_es_sigaus_sale
+#: model:ir.model.fields,help:l10n_es_sigaus_sale.field_sale_order__sigaus_is_date
+msgid ""
+"Technical field to determine whether the date of a document subject to "
+"SIGAUS is equal or after the date selected in the company from which SIGAUS "
+"has to be applied."
+msgstr ""
+"Camp tècnic per determinar si la data d'un document subjecte a SIGAUS és "
+"igual o posterior a la data seleccionada a l'empresa des de la qual s'ha "
+"d'aplicar SIGAUS."
