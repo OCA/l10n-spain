@@ -229,3 +229,65 @@ class TestL10nEsAeatMod369Base(TestL10nEsAeatModBase):
         self.model369.total_amount = 0
         with self.assertRaises(UserError):
             self.create_account_move()
+
+    def test_model_369_duplicate_oss_taxes(self):
+        """Duplicate OSS taxes must not break field_number alignment
+        and move lines using the duplicate tax must be included."""
+        fr_general_tax = self.oss_taxes["FR"][0]
+        # Create a duplicate tax for FR with the same rate (simulates real bug:
+        # e.g. "OSS FR 20%" and "OSS FR 20% [DE]" coexisting)
+        dup_tax = self.env["account.tax"].create(
+            {
+                "name": "OSS FR duplicate [DE]",
+                "amount": fr_general_tax.amount,
+                "amount_type": "percent",
+                "type_tax_use": fr_general_tax.type_tax_use,
+                "oss_country_id": self.oss_countries["FR"].id,
+                "country_id": self.company.country_id.id,
+                "company_id": self.company.id,
+                "service_type": "goods",
+            }
+        )
+        # Create an invoice using the duplicate tax so we can verify
+        # that its move lines are also captured by the 369 report
+        fpo = self.env["account.fiscal.position"].search(
+            [("country_id", "=", self.oss_countries["FR"].id), ("oss_oca", "=", True)],
+            limit=1,
+        )
+        dup_invoice = self._invoice_sale_create(
+            "2017-02-01",
+            {
+                "fiscal_position_id": fpo.id,
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "name": "Test duplicate OSS tax",
+                            "account_id": self.accounts["700000"].id,
+                            "price_unit": 200,
+                            "quantity": 1,
+                            "tax_ids": [(6, 0, dup_tax.ids)],
+                        },
+                    ),
+                ],
+            },
+        )
+        self.model369.button_calculate()
+        # Both FR and DE must still have lines in the report
+        fr_lines = self.model369.spain_goods_line_ids.filtered(
+            lambda x: x.country_code == "FR" and not x.is_page_8_line
+        )
+        de_lines = self.model369.spain_goods_line_ids.filtered(
+            lambda x: x.country_code == "DE" and not x.is_page_8_line
+        )
+        self.assertTrue(fr_lines)
+        self.assertTrue(de_lines)
+        # FR amounts must include both the original invoice and the duplicate
+        expected_fr_tax = self.sale_invoices["FR"].amount_tax + dup_invoice.amount_tax
+        self.assertEqual(sum(fr_lines.mapped("amount")), expected_fr_tax)
+        # DE amounts must be unaffected
+        self.assertEqual(
+            sum(de_lines.mapped("amount")),
+            self.sale_invoices["DE"].amount_tax,
+        )
