@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Acysos S.L.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_picking_type_form_inherit_l10n_es_deca_oca" model="ir.ui.view">
+        <field name="name">stock.picking.type.view.form.inherit.l10n_es_deca_oca</field>
+        <field name="model">stock.picking.type</field>
+        <field name="inherit_id" ref="stock.view_picking_type_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='code']" position="after">
+                <field name="l10n_es_deca_enabled" invisible="code != 'incoming'" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
