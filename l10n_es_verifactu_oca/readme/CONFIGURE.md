@@ -25,3 +25,9 @@ con los siguientes comandos para tratar de solucionarlo:
     clave de registro VERI\*FACTU.
 2.  Para aplicar las claves ejecute el asistente de actualización del
     módulo accountchart_update.
+
+Al activar VERI\*FACTU se sellan con la huella de inalterabilidad todos
+los asientos publicados de los diarios de venta, incluso si la
+numeración tiene huecos. Esos asientos ya no se podrán modificar ni
+volver a borrador, así que corrija cualquier factura pendiente antes de
+activarlo.
