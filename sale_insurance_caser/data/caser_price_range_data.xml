@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Teléfono Móvil (asset type 200021). Insurance prices are seed
+         values; refresh them from the "Get Prices from Caser" button. -->
+    <record id="caser_price_range_mobile_1" model="caser.price.range">
+        <field name="caser_asset_type">200021</field>
+        <field name="min_price">95.01</field>
+        <field name="max_price">250.00</field>
+        <field name="code">1</field>
+        <field name="insurance_price_notax">29.55</field>
+        <field name="insurance_price">31.95</field>
+    </record>
+    <record id="caser_price_range_mobile_2" model="caser.price.range">
+        <field name="caser_asset_type">200021</field>
+        <field name="min_price">250.01</field>
+        <field name="max_price">300.00</field>
+        <field name="code">2</field>
+        <field name="insurance_price_notax">35.71</field>
+        <field name="insurance_price">38.62</field>
+    </record>
+    <record id="caser_price_range_mobile_3" model="caser.price.range">
+        <field name="caser_asset_type">200021</field>
+        <field name="min_price">300.01</field>
+        <field name="max_price">400.00</field>
+        <field name="code">3</field>
+        <field name="insurance_price_notax">39.40</field>
+        <field name="insurance_price">42.61</field>
+    </record>
+    <record id="caser_price_range_mobile_4" model="caser.price.range">
+        <field name="caser_asset_type">200021</field>
+        <field name="min_price">400.01</field>
+        <field name="max_price">550.00</field>
+        <field name="code">4</field>
+        <field name="insurance_price_notax">57.09</field>
+        <field name="insurance_price">61.75</field>
+    </record>
+    <record id="caser_price_range_mobile_5" model="caser.price.range">
+        <field name="caser_asset_type">200021</field>
+        <field name="min_price">550.01</field>
+        <field name="max_price">750.00</field>
+        <field name="code">5</field>
+        <field name="insurance_price_notax">70.52</field>
+        <field name="insurance_price">76.27</field>
+    </record>
+    <record id="caser_price_range_mobile_6" model="caser.price.range">
+        <field name="caser_asset_type">200021</field>
+        <field name="min_price">750.01</field>
+        <field name="max_price">850.00</field>
+        <field name="code">6</field>
+        <field name="insurance_price_notax">87.95</field>
+        <field name="insurance_price">95.12</field>
+    </record>
+    <record id="caser_price_range_mobile_7" model="caser.price.range">
+        <field name="caser_asset_type">200021</field>
+        <field name="min_price">850.01</field>
+        <field name="max_price">1000.00</field>
+        <field name="code">7</field>
+        <field name="insurance_price_notax">95.90</field>
+        <field name="insurance_price">103.71</field>
+    </record>
+    <record id="caser_price_range_mobile_8" model="caser.price.range">
+        <field name="caser_asset_type">200021</field>
+        <field name="min_price">1000.01</field>
+        <field name="max_price">1400.00</field>
+        <field name="code">8</field>
+        <field name="insurance_price_notax">141.23</field>
+        <field name="insurance_price">152.74</field>
+    </record>
+    <record id="caser_price_range_mobile_9" model="caser.price.range">
+        <field name="caser_asset_type">200021</field>
+        <field name="min_price">1400.01</field>
+        <field name="max_price">1700.00</field>
+        <field name="code">9</field>
+        <field name="insurance_price_notax">158.17</field>
+        <field name="insurance_price">171.06</field>
+    </record>
+    <record id="caser_price_range_mobile_10" model="caser.price.range">
+        <field name="caser_asset_type">200021</field>
+        <field name="min_price">1700.01</field>
+        <field name="max_price">2000.00</field>
+        <field name="code">10</field>
+        <field name="insurance_price_notax">185.07</field>
+        <field name="insurance_price">200.16</field>
+    </record>
+    <record id="caser_price_range_mobile_11" model="caser.price.range">
+        <field name="caser_asset_type">200021</field>
+        <field name="min_price">2000.01</field>
+        <field name="max_price">2200.00</field>
+        <field name="code">11</field>
+        <field name="insurance_price_notax">223.93</field>
+        <field name="insurance_price">242.18</field>
+    </record>
+    <record id="caser_price_range_mobile_12" model="caser.price.range">
+        <field name="caser_asset_type">200021</field>
+        <field name="min_price">2200.01</field>
+        <field name="max_price">2600.00</field>
+        <field name="code">12</field>
+        <field name="insurance_price_notax">274.47</field>
+        <field name="insurance_price">296.84</field>
+    </record>
+    <!-- Tablet (asset type 262). Insurance prices are seed values; refresh
+         them from the "Get Prices from Caser" button. -->
+    <record id="caser_price_range_tablet_1" model="caser.price.range">
+        <field name="caser_asset_type">262</field>
+        <field name="min_price">95.01</field>
+        <field name="max_price">250.00</field>
+        <field name="code">1</field>
+        <field name="insurance_price_notax">22.16</field>
+        <field name="insurance_price">24.00</field>
+    </record>
+    <record id="caser_price_range_tablet_2" model="caser.price.range">
+        <field name="caser_asset_type">262</field>
+        <field name="min_price">250.01</field>
+        <field name="max_price">300.00</field>
+        <field name="code">2</field>
+        <field name="insurance_price_notax">26.79</field>
+        <field name="insurance_price">29.02</field>
+    </record>
+    <record id="caser_price_range_tablet_3" model="caser.price.range">
+        <field name="caser_asset_type">262</field>
+        <field name="min_price">300.01</field>
+        <field name="max_price">400.00</field>
+        <field name="code">3</field>
+        <field name="insurance_price_notax">29.54</field>
+        <field name="insurance_price">32.02</field>
+    </record>
+    <record id="caser_price_range_tablet_4" model="caser.price.range">
+        <field name="caser_asset_type">262</field>
+        <field name="min_price">400.01</field>
+        <field name="max_price">550.00</field>
+        <field name="code">4</field>
+        <field name="insurance_price_notax">42.81</field>
+        <field name="insurance_price">46.40</field>
+    </record>
+    <record id="caser_price_range_tablet_5" model="caser.price.range">
+        <field name="caser_asset_type">262</field>
+        <field name="min_price">550.01</field>
+        <field name="max_price">750.00</field>
+        <field name="code">5</field>
+        <field name="insurance_price_notax">52.89</field>
+        <field name="insurance_price">57.33</field>
+    </record>
+    <record id="caser_price_range_tablet_6" model="caser.price.range">
+        <field name="caser_asset_type">262</field>
+        <field name="min_price">750.01</field>
+        <field name="max_price">850.00</field>
+        <field name="code">6</field>
+        <field name="insurance_price_notax">65.96</field>
+        <field name="insurance_price">71.49</field>
+    </record>
+    <record id="caser_price_range_tablet_7" model="caser.price.range">
+        <field name="caser_asset_type">262</field>
+        <field name="min_price">850.01</field>
+        <field name="max_price">1000.00</field>
+        <field name="code">7</field>
+        <field name="insurance_price_notax">71.91</field>
+        <field name="insurance_price">77.95</field>
+    </record>
+    <record id="caser_price_range_tablet_8" model="caser.price.range">
+        <field name="caser_asset_type">262</field>
+        <field name="min_price">1000.01</field>
+        <field name="max_price">1400.00</field>
+        <field name="code">8</field>
+        <field name="insurance_price_notax">105.91</field>
+        <field name="insurance_price">114.79</field>
+    </record>
+</odoo>
