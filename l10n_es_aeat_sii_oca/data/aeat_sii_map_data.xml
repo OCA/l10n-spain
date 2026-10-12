@@ -105,6 +105,7 @@
                 ref('s_iva0_art22'),
                 ref('s_iva0_art23'),
                 ref('s_iva0_nsd'),
+                ref('s_iva0_ns'),
             ])]"
         />
         <field name="sii_map_id" ref="aeat_sii_map" />
@@ -364,12 +365,7 @@
         model="aeat.sii.map.lines"
     >
         <field name="code">BaseNotIncludedInTotal</field>
-        <field
-            name="tax_xmlid_ids"
-            eval="[(6, 0, [
-          ref('s_iva0_ns'),
-        ])]"
-        />
+        <field name="tax_xmlid_ids" eval="[(6, 0, [])]" />
         <field name="sii_map_id" ref="aeat_sii_map" />
         <field name="name">Bases no incluidas en ImporteTotal</field>
     </record>
