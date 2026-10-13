@@ -205,6 +205,7 @@ class TestL10nEsAeat(BaseCommon):
         partner_without_identification = self.env["res.partner"].create(
             {
                 "name": "Partner without identification",
+                "country_id": self.env.ref("base.es").id,
             }
         )
         self.assertFalse(
@@ -220,9 +221,17 @@ class TestL10nEsAeat(BaseCommon):
         partner_only_aeat_identification = self.env["res.partner"].create(
             {
                 "name": "Partner only AEAT identification",
+                "country_id": self.env.ref("base.es").id,
                 "aeat_identification": "ABC123456",
             }
         )
         self.assertFalse(
             partner_only_aeat_identification._has_valid_aeat_identification()
+        )
+        partner_without_identification.country_id = self.env.ref("base.us")
+        self.assertTrue(partner_without_identification._has_valid_aeat_identification())
+        self.assertFalse(
+            partner_without_identification._has_valid_aeat_identification(
+                allow_alternative_identification=False
+            )
         )

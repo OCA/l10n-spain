@@ -5,6 +5,12 @@
 from odoo import fields, models
 from odoo.tools import ormcache
 
+AEAT_IDENTIFICATION_TYPE = [
+    ("03", "Passport"),
+    ("05", "Residential certificate"),
+    ("06", "Another document"),
+]
+
 
 class ResPartner(models.Model):
     _inherit = "res.partner"
@@ -24,11 +30,7 @@ class ResPartner(models.Model):
             "with a foreign VAT and instead with their passport "
             "or residential certificate. If there is no value it will work as before."
         ),
-        selection=[
-            ("03", "Passport"),
-            ("05", "Residential certificate"),
-            ("06", "Another document"),
-        ],
+        selection=AEAT_IDENTIFICATION_TYPE,
     )
     aeat_identification = fields.Char(help="Identification for AEAT purposes")
     # There are other options (but these options are managed automatically
@@ -137,11 +139,13 @@ class ResPartner(models.Model):
     def _has_valid_aeat_identification(self, allow_alternative_identification=True):
         """Check whether a partner has a valid identification for AEAT reports."""
         self.ensure_one()
+        if self.vat or not allow_alternative_identification:
+            return bool(self.vat)
+        _country_code, identifier_type, _vat_number = self._parse_aeat_vat_info()
+        req_vat_identif_types = [option[0] for option in AEAT_IDENTIFICATION_TYPE] + [
+            ""
+        ]
         return bool(
-            self.vat
-            or (
-                allow_alternative_identification
-                and self.aeat_identification_type
-                and self.aeat_identification
-            )
+            identifier_type not in req_vat_identif_types
+            or (self.aeat_identification_type and self.aeat_identification)
         )
