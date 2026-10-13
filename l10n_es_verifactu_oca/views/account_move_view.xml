@@ -40,6 +40,7 @@
                             name="group_verifactu_configuration"
                         >
                             <field name="aeat_state" invisible="1" />
+                            <field name="reversed_entry_id" invisible="1" />
                             <field
                                 name="verifactu_refund_type"
                                 string="Refund type"
@@ -49,6 +50,16 @@
                                 name="verifactu_refund_specific_type"
                                 string="Refund specific type"
                                 attrs="{'invisible': ['|', ('verifactu_enabled', '=', False), ('move_type', '!=', 'out_refund')]}"
+                            />
+                            <field
+                                name="verifactu_original_document_number"
+                                string="Original document number"
+                                attrs="{'required': [('verifactu_enabled', '=', True), ('move_type', '=', 'out_refund'), ('verifactu_refund_type', '=', 'I'), ('reversed_entry_id', '=', False)], 'invisible': ['|', '|', '|', ('verifactu_enabled', '=', False), ('move_type', '!=', 'out_refund'), ('verifactu_refund_type', '!=', 'I'), ('reversed_entry_id', '!=', False)]}"
+                            />
+                            <field
+                                name="verifactu_original_document_date"
+                                string="Original document date"
+                                attrs="{'required': [('verifactu_enabled', '=', True), ('move_type', '=', 'out_refund'), ('verifactu_refund_type', '=', 'I'), ('reversed_entry_id', '=', False)], 'invisible': ['|', '|', '|', ('verifactu_enabled', '=', False), ('move_type', '!=', 'out_refund'), ('verifactu_refund_type', '!=', 'I'), ('reversed_entry_id', '!=', False)]}"
                             />
                             <field
                                 name="verifactu_tax_key"
