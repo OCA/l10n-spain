@@ -1,7 +1,7 @@
 # Copyright 2021 Binovo IT Human Project SL
 # Copyright 2021 Landoo Sistemas de Informacion SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from datetime import date
+from datetime import date, datetime
 
 from odoo import exceptions
 from odoo.tests.common import tagged
@@ -67,6 +67,25 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
         description = description[:-3]
         invoice._compute_tbai_description()
         self.assertEqual(invoice.tbai_description_operation, description)
+
+    def test_invoice_expedition_date(self):
+        invoice = self.create_draft_invoice(
+            self.account_billing.id, self.fiscal_position_national, self.partner.id
+        )
+        invoice.invoice_date = date(2026, 10, 1)
+        invoice.date = date(2026, 9, 15)
+        invoice.tbai_date_operation = datetime(2026, 9, 15, 9, 0, 0)
+        # Not sent yet: the expedition date is the invoice date, not the
+        # accounting date.
+        self.assertEqual(invoice.tbai_get_value_fecha_exp_factura(), "01-10-2026")
+        # The operation date is declared when it differs from the expedition.
+        self.assertEqual(invoice.tbai_get_value_fecha_operacion(), "15-09-2026")
+
+        invoice.onchange_fiscal_position_id_tbai_vat_regime_key()
+        invoice.action_post()
+        # Sent: the date declared to Hacienda is returned as-is.
+        invoice.tbai_invoice_ids.sudo().expedition_date = "02-10-2026"
+        self.assertEqual(invoice.tbai_get_value_fecha_exp_factura(), "02-10-2026")
 
     def test_invoice_foreign_currency(self):
         invoice = self.create_draft_invoice(

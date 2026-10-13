@@ -534,7 +534,13 @@ class AccountMove(models.Model):
         return num_invoice
 
     def tbai_get_value_fecha_exp_factura(self):
-        invoice_date = self.date or self.invoice_date
+        # Hacienda identifies a rectified invoice by its expedition date. When
+        # the invoice has already been sent, return the declared date, so that
+        # rectificativas and anulaciones reference the value Hacienda holds
+        # instead of a recomputed one. Otherwise use the invoice date.
+        if self.tbai_invoice_id.expedition_date:
+            return self.tbai_invoice_id.expedition_date
+        invoice_date = self.invoice_date or self.date
         date = fields.Datetime.context_timestamp(
             self, fields.Datetime.from_string(invoice_date)
         )
@@ -571,7 +577,7 @@ class AccountMove(models.Model):
     def tbai_get_value_fecha_operacion(self):
         if self.tbai_date_operation:
             tbai_date_operation = self.tbai_date_operation.strftime("%d-%m-%Y")
-            date_invoice = (self.date or self.invoice_date).strftime("%d-%m-%Y")
+            date_invoice = (self.invoice_date or self.date).strftime("%d-%m-%Y")
             if tbai_date_operation == date_invoice:
                 tbai_date_operation = None
         else:
