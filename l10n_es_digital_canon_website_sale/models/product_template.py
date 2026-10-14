@@ -7,9 +7,9 @@ class ProductTemplate(models.Model):
     _inherit = "product.template"
 
     @api.model
-    def _get_website_digital_canon_tax(self, product_or_template, website=None):
+    def _get_website_digital_canon_tax(self, product_or_template):
         """Return the digital canon sale tax to include in website prices, if any."""
-        website = website or self.env["website"].get_current_website()
+        website = self.env["website"].get_current_website()
         if website.show_line_subtotals_tax_selection != "tax_included":
             return self.env["account.tax"]
         canon = product_or_template.sudo().l10n_es_digital_canon
@@ -31,13 +31,11 @@ class ProductTemplate(models.Model):
 
     @api.model
     def _apply_taxes_to_price(
-        self, price, currency, product_taxes, taxes, product_or_template, website=None
+        self, price, currency, product_taxes, taxes, product_or_template
     ):
         # Include the digital canon in the displayed price, as it will be
         # charged on the order (l10n_es_digital_canon adds it as a line tax).
-        taxes |= self._get_website_digital_canon_tax(
-            product_or_template, website=website
-        )
+        taxes |= self._get_website_digital_canon_tax(product_or_template)
         return super()._apply_taxes_to_price(
-            price, currency, product_taxes, taxes, product_or_template, website=website
+            price, currency, product_taxes, taxes, product_or_template
         )

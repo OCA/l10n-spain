@@ -11,7 +11,7 @@ class SaleOrderLine(models.Model):
         res = super()._compute_tax_id()
         for line in self:
             product = line.product_id
-            partner = line._get_digital_canon_partner()
+            partner = line.order_id.partner_shipping_id
             if (
                 line.tax_id
                 and line.order_id.website_id
