@@ -26,6 +26,10 @@ class VerifactuInvoiceEntryResponse(models.Model):
         "entry_response_id",
         string="Response lines",
     )
+    connection_error = fields.Char(
+        readonly=True,
+        help="Message reported by internal connection error exception.",
+    )
 
     def _compute_activity_type_id(self):
         for record in self:
