@@ -420,6 +420,16 @@ class DeliveryCarrier(models.Model):
             tracking_info = gls_request._get_tracking_states(
                 picking.carrier_tracking_ref
             )
+            if isinstance(tracking_info, list):
+                if len(tracking_info) > 1:
+                    raise UserError(
+                        _(
+                            "The tracking reference %s is not unique in GLS. "
+                            "Please contact GLS to manage this shipment."
+                        )
+                        % picking.carrier_tracking_ref
+                    )
+                tracking_info = tracking_info[0] if tracking_info else {}
             picking.tracking_json = tracking_info
             digitalizaciones = (tracking_info.get("digitalizaciones") or {}).get(
                 "digitalizacion"
