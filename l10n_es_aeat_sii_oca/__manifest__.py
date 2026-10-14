@@ -14,6 +14,7 @@
 # Copyright 2023 Aures Tic - Jose Zambudio <jose@aurestic.es>
 # Copyright 2023 Pol Reig <pol.reig@qubiq.es>
 # Copyright 2017-2024 Tecnativa - Pedro M. Baeza
+# Copyright 2026 Binovo IT Human Project SL
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
