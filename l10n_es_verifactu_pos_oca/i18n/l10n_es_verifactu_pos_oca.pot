@@ -6,6 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-08-13 13:51+0000\n"
+"PO-Revision-Date: 2026-08-13 13:51+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -61,6 +63,11 @@ msgid "CSV"
 msgstr ""
 
 #. module: l10n_es_verifactu_pos_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_pos_oca.view_pos_order_verifactu_form
+msgid "Chaining attempts"
+msgstr ""
+
+#. module: l10n_es_verifactu_pos_oca
 #: model:ir.model.fields,help:l10n_es_verifactu_pos_oca.field_pos_order__verifactu_macrodata
 msgid ""
 "Check to confirm that the document has an absolute amount greater o equal to"
@@ -85,6 +92,17 @@ msgstr ""
 #. module: l10n_es_verifactu_pos_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_pos_oca.view_pos_order_verifactu_form
 msgid "General"
+msgstr ""
+
+#. module: l10n_es_verifactu_pos_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_pos_oca.view_pos_order_verifactu_form
+msgid "Generate VERI*FACTU chaining"
+msgstr ""
+
+#. module: l10n_es_verifactu_pos_oca
+#: model:ir.actions.server,name:l10n_es_verifactu_pos_oca.pos_order_generate_pending_verifactu_chaining_ir_actions_server
+#: model:ir.cron,cron_name:l10n_es_verifactu_pos_oca.pos_order_generate_pending_verifactu_chaining
+msgid "Generate pending VERI*FACTU chaining for POS orders"
 msgstr ""
 
 #. module: l10n_es_verifactu_pos_oca
@@ -124,6 +142,13 @@ msgstr ""
 #. module: l10n_es_verifactu_pos_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_pos_oca.poz_order_verifactu_search
 msgid "Never sent to VERI*FACTU"
+msgstr ""
+
+#. module: l10n_es_verifactu_pos_oca
+#: model:ir.model.fields,help:l10n_es_verifactu_pos_oca.field_pos_order__verifactu_chaining_attempts
+msgid ""
+"Number of times the chaining of this order has been attempted and failed. "
+"Used by the recovery cron to stop retrying an order that cannot be chained."
 msgstr ""
 
 #. module: l10n_es_verifactu_pos_oca
@@ -240,6 +265,20 @@ msgstr ""
 #. odoo-python
 #: code:addons/l10n_es_verifactu_pos_oca/models/pos_order.py:0
 #, python-format
+msgid "The order has been added to the chain."
+msgstr ""
+
+#. module: l10n_es_verifactu_pos_oca
+#. odoo-python
+#: code:addons/l10n_es_verifactu_pos_oca/models/pos_order.py:0
+#, python-format
+msgid "The order is not eligible for chaining."
+msgstr ""
+
+#. module: l10n_es_verifactu_pos_oca
+#. odoo-python
+#: code:addons/l10n_es_verifactu_pos_oca/models/pos_order.py:0
+#, python-format
 msgid "There's a mismatch in taxes for RE. Check them."
 msgstr ""
 
@@ -269,6 +308,25 @@ msgstr ""
 #. module: l10n_es_verifactu_pos_oca
 #: model:ir.model.fields,field_description:l10n_es_verifactu_pos_oca.field_pos_order__verifactu_cancel_reason
 msgid "VERI*FACTU cancel reason"
+msgstr ""
+
+#. module: l10n_es_verifactu_pos_oca
+#: model:ir.model.fields,field_description:l10n_es_verifactu_pos_oca.field_pos_order__verifactu_chaining_attempts
+msgid "VERI*FACTU chaining attempts"
+msgstr ""
+
+#. module: l10n_es_verifactu_pos_oca
+#. odoo-python
+#: code:addons/l10n_es_verifactu_pos_oca/models/pos_order.py:0
+#, python-format
+msgid "VERI*FACTU chaining generated"
+msgstr ""
+
+#. module: l10n_es_verifactu_pos_oca
+#. odoo-python
+#: code:addons/l10n_es_verifactu_pos_oca/models/pos_order.py:0
+#, python-format
+msgid "VERI*FACTU chaining not generated"
 msgstr ""
 
 #. module: l10n_es_verifactu_pos_oca

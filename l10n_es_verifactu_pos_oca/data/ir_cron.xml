@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo noupdate="1">
+    <record
+        forcecreate="True"
+        id="pos_order_generate_pending_verifactu_chaining"
+        model="ir.cron"
+    >
+        <field name="name">Generate pending VERI*FACTU chaining for POS orders</field>
+        <field name="model_id" ref="model_pos_order" />
+        <field name="state">code</field>
+        <field
+            name="code"
+        >model._cron_generate_pending_verifactu_chaining(commit=True)</field>
+        <field name='interval_number'>10</field>
+        <field name='interval_type'>minutes</field>
+        <field name="numbercall">-1</field>
+    </record>
+</odoo>

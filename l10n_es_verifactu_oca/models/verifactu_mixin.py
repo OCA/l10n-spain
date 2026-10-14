@@ -30,6 +30,15 @@ VERIFACTU_EXTRA_AEAT_STATES = [
 ]
 
 
+class VerifactuChainingLocked(UserError):
+    """The chaining row is held by another transaction.
+
+    Signalled apart from any other UserError because it is transient: a caller
+    retrying on its own must not treat it as a document that can never be
+    chained.
+    """
+
+
 class VerifactuMixin(models.AbstractModel):
     _name = "verifactu.mixin"
     _inherit = "aeat.mixin"
@@ -356,7 +365,7 @@ class VerifactuMixin(models.AbstractModel):
                 chaining.invalidate_recordset(["last_verifactu_invoice_entry_id"])
         except psycopg2.OperationalError as err:
             if err.pgcode == "55P03":  # could not obtain the lock
-                raise UserError(
+                raise VerifactuChainingLocked(
                     _(
                         "Could not obtain last document sent to VERI*FACTU for "
                         "chaining %s.",
