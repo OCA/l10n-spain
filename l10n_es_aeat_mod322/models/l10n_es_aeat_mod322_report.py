@@ -259,7 +259,7 @@ class L10nEsAeatMod322Report(models.Model):
             match = re.match(r"(ES){0,1}(.*)", mod322_group.main_company_id.vat or "")
             record.dominant_company_vat = match.groups()[1] if match else False
             record.company_type = (
-                "P" if mod322_group.main_company_id == record.company_id else "D"
+                "D" if mod322_group.main_company_id == record.company_id else "P"
             )
             record.vinculated_partner_ids = (
                 mod322_group.main_company_id.partner_id

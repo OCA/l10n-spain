@@ -700,3 +700,27 @@ class TestL10nEsAeatMod322(TestL10nEsAeatMod322Base):
                 expected,
                 f"Box {field} mapping differs from BOE 2024-10 oracle",
             )
+
+    def test_company_type(self):
+        """The dominant company is 'D' and its dependents are 'P'."""
+        self.assertEqual(self.model322.company_type, "D")
+        self.assertEqual(self.model322.dominant_company_vat, "A12345674")
+        group = self.env["l10n.es.aeat.mod322.group"].search(
+            [("main_company_id", "=", self.company.id)]
+        )
+        dominant = self.env["res.company"].create({"name": "Dominant company"})
+        group.write(
+            {
+                "main_company_id": dominant.id,
+                "company_ids": [(6, 0, self.company.ids)],
+            }
+        )
+        dependent_report = self.model322.copy(
+            {
+                "name": "9990000000323",
+                "date_start": "2024-11-01",
+                "date_end": "2024-11-30",
+            }
+        )
+        self.assertEqual(dependent_report.company_type, "P")
+        self.assertFalse(dependent_report.dominant_company_vat)
