@@ -7,6 +7,7 @@
 # Copyright 2022 Moduon - Eduardo de Miguel
 # Copyright 2024 David Ramia
 # Copyright 2013-2024 Tecnativa - Pedro M. Baeza
+# Copyright 2025 Netkia - Carlos Sainz-Pardo
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl
 
 {
@@ -23,7 +24,6 @@
     "category": "Accounting & Finance",
     "development_status": "Mature",
     "depends": ["l10n_es", "account_tax_balance"],
-    # odoo_test_helper is needed for the tests
     "external_dependencies": {"python": ["unidecode"]},
     "data": [
         "security/aeat_security.xml",
@@ -41,6 +41,7 @@
         "views/aeat_tax_line_view.xml",
         "views/aeat_export_configuration_view.xml",
         "views/account_move_line_view.xml",
+        "views/l10n_es_aeat_real_estate_view.xml",
         "views/res_company_view.xml",
         "views/res_partner_view.xml",
         "views/aeat_certificate_view.xml",
