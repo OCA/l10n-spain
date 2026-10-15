@@ -23,6 +23,15 @@
                     invisible="not aeat_sending_enabled"
                 />
             </xpath>
+            <page name="accounting" position="after">
+                <page
+                    name="real_estate"
+                    string="Real Estates"
+                    groups="l10n_es_aeat.group_account_aeat,l10n_es_aeat.group_use_aeat_real_estates"
+                >
+                    <field name="real_estate_ids" />
+                </page>
+            </page>
         </field>
     </record>
 </odoo>
