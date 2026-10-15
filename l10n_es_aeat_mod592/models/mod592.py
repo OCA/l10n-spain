@@ -103,6 +103,14 @@ class L10nEsAeatmod592Report(models.Model):
         string="Manufacturer lines with error",
         compute="_compute_show_error_manufacturer",
     )
+    counterpart_account_id = fields.Many2one(
+        comodel_name="account.account",
+        string="Counterpart account",
+        compute="_compute_counterpart_account_id",
+        domain="[('company_id', '=', company_id)]",
+        readonly=False,
+        store=True,
+    )
 
     @api.depends("acquirer_line_ids")
     def _compute_total_acquirer_entries(self):
@@ -185,6 +193,95 @@ class L10nEsAeatmod592Report(models.Model):
             report.show_error_manufacturer = any(
                 not x.entries_ok for x in report.manufacturer_line_ids
             )
+
+    def _compute_allow_posting(self):
+        for report in self:
+            report.allow_posting = True
+
+    @api.depends("company_id", "company_id.mod592_counterpart_account_id")
+    def _compute_counterpart_account_id(self):
+        for report in self:
+            report.counterpart_account_id = (
+                report.company_id.mod592_counterpart_account_id
+            )
+
+    def _get_total_amount(self):
+        self.ensure_one()
+        return self.total_amount_acquirer + self.total_amount_manufacturer
+
+    def _get_mod592_account(self, company_field, account_template):
+        self.ensure_one()
+        account = self.company_id[company_field]
+        if not account:
+            account_id = self.company_id._get_account_id_from_xmlid(account_template)
+            account = self.env["account.account"].browse(account_id)
+        if not account:
+            raise UserError(_("No account found for Model 592 posting."))
+        return account
+
+    def _prepare_regularization_extra_move_lines(self):
+        lines = []
+        total_amount = self._get_total_amount()
+        if total_amount > 0:
+            account = self._get_mod592_account(
+                "mod592_payable_account_id", "account_common_4750"
+            )
+            lines.append(
+                {
+                    "name": account.name,
+                    "account_id": account.id,
+                    "debit": 0,
+                    "credit": total_amount,
+                }
+            )
+        elif total_amount < 0:
+            account = self._get_mod592_account(
+                "mod592_receivable_account_id", "account_common_4700"
+            )
+            lines.append(
+                {
+                    "name": account.name,
+                    "account_id": account.id,
+                    "debit": -total_amount,
+                    "credit": 0,
+                }
+            )
+        return lines
+
+    @api.model
+    def _prepare_counterpart_move_line(self, account, debit, credit):
+        balance = debit - credit
+        return {
+            "name": account.name,
+            "account_id": account.id,
+            "debit": 0.0 if balance > 0 else -balance,
+            "credit": balance if balance > 0 else 0.0,
+        }
+
+    def _prepare_regularization_move_lines(self):
+        self.ensure_one()
+        lines = self._prepare_regularization_extra_move_lines()
+        debit = sum(line["debit"] for line in lines)
+        credit = sum(line["credit"] for line in lines)
+        lines.append(
+            self._prepare_counterpart_move_line(
+                self.counterpart_account_id, debit, credit
+            )
+        )
+        return lines
+
+    def create_regularization_move(self):
+        self.ensure_one()
+        if not self.counterpart_account_id or not self.journal_id:
+            raise UserError(_("You must fill both journal and counterpart account."))
+        if not self._get_total_amount():
+            raise UserError(
+                _("It is not possible to create a move if the total amount is 0.")
+            )
+        move_vals = self._prepare_move_vals()
+        line_vals_list = self._prepare_regularization_move_lines()
+        move_vals["line_ids"] = [(0, 0, line_vals) for line_vals in line_vals_list]
+        self.move_id = self.env["account.move"].create(move_vals)
 
     def _cleanup_report(self):
         """Remove previous partner records and partner refunds in report."""
