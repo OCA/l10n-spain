@@ -1,3 +1,0 @@
-* Tecnativa <https://www.tecnativa.com>
-
-  * Carlos Dauden

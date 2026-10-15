@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ======================================
 Spanish supplier payment period report
 ======================================
@@ -17,35 +13,37 @@ Spanish supplier payment period report
 .. |badge1| image:: https://img.shields.io/badge/maturity-Alpha-red.png
     :target: https://odoo-community.org/page/development-status
     :alt: Alpha
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github
-    :target: https://github.com/OCA/l10n-spain/tree/15.0/l10n_es_payment_period_report
+    :target: https://github.com/OCA/l10n-spain/tree/18.0/l10n_es_payment_period_report
     :alt: OCA/l10n-spain
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/l10n-spain-15-0/l10n-spain-15-0-l10n_es_payment_period_report
+    :target: https://translation.odoo-community.org/projects/l10n-spain-18-0/l10n-spain-18-0-l10n_es_payment_period_report
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&target_branch=15.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&target_branch=18.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module provides a supplier payment period report for Spanish companies.
+This module provides a supplier payment period report for Spanish
+companies.
 
-It calculates the information needed for the supplier payment disclosure derived
-from Law 15/2010 and Law 18/2022:
+It calculates the information needed for the supplier payment disclosure
+derived from Law 15/2010 and Law 18/2022:
 
-* Total amount paid.
-* Amount paid within the configured legal payment period.
-* Number of paid supplier invoices.
-* Number of paid supplier invoices within the configured legal payment period.
-* The corresponding percentages.
+- Total amount paid.
+- Amount paid within the configured legal payment period.
+- Number of paid supplier invoices.
+- Number of paid supplier invoices within the configured legal payment
+  period.
+- The corresponding percentages.
 
 The computation is based on payable journal item reconciliations
-(``account.partial.reconcile``). The payment date is the last reconciliation
-date that completes the supplier invoice cancellation.
+(``account.partial.reconcile``). The payment date is the last
+reconciliation date that completes the supplier invoice cancellation.
 
 .. IMPORTANT::
    This is an alpha version, the data model and design can change at any time without warning.
@@ -62,13 +60,13 @@ Usage
 
 To use this module:
 
-#. Go to *Invoicing / Accounting > Reporting > Generic Statements > Supplier
-   Payment Period*.
-#. Select the company, fiscal year and legal payment days.
-#. Select the date used as the period start for each invoice.
-#. Press *Compute*.
-#. Review the summary and detail lines, open the audit tree, or export the
-   report to PDF or XLSX.
+1. Go to *Invoicing / Accounting > Reporting > Generic Statements >
+   Supplier Payment Period*.
+2. Select the company, fiscal year and legal payment days.
+3. Select the date used as the period start for each invoice.
+4. Press *Compute*.
+5. Review the summary and detail lines, open the audit tree, or export
+   the report to PDF or XLSX.
 
 Bug Tracker
 ===========
@@ -76,7 +74,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/l10n-spain/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_payment_period_report%0Aversion:%2015.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_payment_period_report%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -84,19 +82,20 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Tecnativa
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Tecnativa <https://www.tecnativa.com>
+- Tecnativa
+  <`https://www.tecnativa.com\\> <https://www.tecnativa.com\>>`__
 
-  * Carlos Dauden
+  - Carlos Dauden
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -116,6 +115,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-carlosdauden| 
 
-This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/15.0/l10n_es_payment_period_report>`_ project on GitHub.
+This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/18.0/l10n_es_payment_period_report>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
