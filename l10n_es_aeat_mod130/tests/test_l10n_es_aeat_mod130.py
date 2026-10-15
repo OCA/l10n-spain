@@ -2,7 +2,7 @@
 
 import logging
 
-from odoo import exceptions
+from odoo import Command, exceptions
 
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
     TestL10nEsAeatModBase,
@@ -25,8 +25,20 @@ class TestL10nEsAeatMod130Base(TestL10nEsAeatModBase):
     }
 
     def test_model_130(self):
-        self._invoice_sale_create("2019-01-01")
-        self._invoice_purchase_create("2019-01-01")
+        invoice_sale = self._invoice_sale_create("2019-01-01")
+        invoice_purchase = self._invoice_purchase_create("2019-01-01")
+        # Unposted copies must not affect income or expenses.
+        for invoice in (invoice_sale, invoice_purchase):
+            self.assertEqual(invoice.payment_state, "not_paid")
+            draft_invoice = invoice.copy(
+                {"date": "2019-01-01", "invoice_date": "2019-01-01"}
+            )
+            cancelled_invoice = draft_invoice.copy(
+                {"date": "2019-01-01", "invoice_date": "2019-01-01"}
+            )
+            cancelled_invoice.button_cancel()
+            self.assertEqual(draft_invoice.state, "draft")
+            self.assertEqual(cancelled_invoice.state, "cancel")
         # Create model
         model130 = self.env["l10n.es.aeat.mod130.report"].create(
             {
@@ -129,3 +141,44 @@ class TestL10nEsAeatMod130Base(TestL10nEsAeatModBase):
         for xml_id in export_config_xml_ids:
             export_config = self.env.ref(xml_id)
             self.assertTrue(export_to_boe._export_config(model130, export_config))
+
+    def test_model_130_only_posted_withholdings(self):
+        move = self.env["account.move"].create(
+            {
+                "company_id": self.company.id,
+                "journal_id": self.journal_misc.id,
+                "date": "2019-01-01",
+                "line_ids": [
+                    Command.create(
+                        {"account_id": self.accounts["473000"].id, "debit": 100}
+                    ),
+                    Command.create(
+                        {"account_id": self.accounts["475000"].id, "credit": 100}
+                    ),
+                ],
+            }
+        )
+        draft_move = move.copy({"date": "2019-01-01"})
+        cancelled_move = move.copy({"date": "2019-01-01"})
+        cancelled_move.button_cancel()
+        move.action_post()
+        self.assertEqual(draft_move.state, "draft")
+        self.assertEqual(cancelled_move.state, "cancel")
+        model130 = self.env["l10n.es.aeat.mod130.report"].create(
+            {
+                "company_id": self.company.id,
+                "company_vat": "1234567890",
+                "contact_name": "Test owner",
+                "contact_phone": "911234455",
+                "year": 2019,
+                "period_type": "1T",
+                "date_start": "2019-01-01",
+                "date_end": "2019-03-31",
+                "journal_id": self.journal_misc.id,
+            }
+        )
+        model130.button_calculate()
+        self.assertAlmostEqual(model130.casilla_06, 100, 2)
+        draft_move.action_post()
+        model130.button_recalculate()
+        self.assertAlmostEqual(model130.casilla_06, 200, 2)
