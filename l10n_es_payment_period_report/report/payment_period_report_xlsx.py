@@ -71,7 +71,7 @@ class L10nEsPaymentPeriodReportXlsx(models.AbstractModel):
             0,
             10,
             2,
-            _("Payments to suppliers within %s days") % wizard.legal_payment_days,
+            _("Payments to suppliers within %s days", wizard.legal_payment_days),
             header_format,
         )
         sheet.write(11, 0, f"{wizard.year}")

@@ -60,7 +60,7 @@ Usage
 
 To use this module:
 
-1. Go to *Invoicing / Accounting > Reporting > Generic Statements >
+1. Go to *Invoicing / Accounting > Reporting > OCA accounting reports >
    Supplier Payment Period*.
 2. Select the company, fiscal year and legal payment days.
 3. Select the date used as the period start for each invoice.

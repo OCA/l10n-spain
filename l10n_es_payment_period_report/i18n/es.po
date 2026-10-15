@@ -4,8 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-15 12:12+0000\n"
 "PO-Revision-Date: 2026-07-06 19:35+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -19,33 +20,29 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_es_payment_period_report.payment_period_report_pdf_document
 msgid ""
 "<br/>\n"
-"                            <strong>Fiscal year:</strong>"
+"                                    <strong>Fiscal year:</strong>"
 msgstr ""
 "<br/>\n"
-"                            <strong>Ejercicio fiscal:</strong>"
+"                                    <strong>Ejercicio fiscal:</strong>"
 
 #. module: l10n_es_payment_period_report
 #: model_terms:ir.ui.view,arch_db:l10n_es_payment_period_report.payment_period_report_pdf_document
 msgid ""
 "<br/>\n"
-"                            <strong>Legal payment days:</strong>"
+"                                    <strong>Legal payment days:</strong>"
 msgstr ""
 "<br/>\n"
-"                            <strong>Días legales de pago:</strong>"
-
-#. module: l10n_es_payment_period_report
-#: model_terms:ir.ui.view,arch_db:l10n_es_payment_period_report.payment_period_report_pdf_document
-msgid ""
-"<br/>\n"
-"                            <strong>Period:</strong>"
-msgstr ""
-"<br/>\n"
-"                            <strong>Periodo:</strong>"
+"                                    <strong>Días legales de pago:</strong>"
 
 #. module: l10n_es_payment_period_report
 #: model_terms:ir.ui.view,arch_db:l10n_es_payment_period_report.payment_period_report_pdf_document
 msgid "<strong>Company:</strong>"
 msgstr "<strong>Compañía:</strong>"
+
+#. module: l10n_es_payment_period_report
+#: model_terms:ir.ui.view,arch_db:l10n_es_payment_period_report.payment_period_report_pdf_document
+msgid "<strong>Period:</strong>"
+msgstr "<strong>Periodo:</strong>"
 
 #. module: l10n_es_payment_period_report
 #: model:ir.model.fields,field_description:l10n_es_payment_period_report.field_l10n_es_payment_period_report_line__accounting_date
@@ -58,9 +55,9 @@ msgid "Accounting date"
 msgstr "Fecha contable"
 
 #. module: l10n_es_payment_period_report
+#. odoo-python
 #: code:addons/l10n_es_payment_period_report/report/payment_period_report_xlsx.py:0
 #: model_terms:ir.ui.view,arch_db:l10n_es_payment_period_report.payment_period_report_pdf_document
-#, python-format
 msgid "Amount"
 msgstr "Importe"
 
@@ -75,25 +72,25 @@ msgid "Amount Total"
 msgstr "Importe total"
 
 #. module: l10n_es_payment_period_report
+#. odoo-python
 #: code:addons/l10n_es_payment_period_report/report/payment_period_report_xlsx.py:0
 #: model:ir.model.fields,field_description:l10n_es_payment_period_report.field_l10n_es_payment_period_report_wizard__total_amount_paid_within
 #: model_terms:ir.ui.view,arch_db:l10n_es_payment_period_report.payment_period_report_pdf_document
-#, python-format
 msgid "Amount paid within legal period"
 msgstr "Importe pagado dentro del plazo legal"
 
 #. module: l10n_es_payment_period_report
+#. odoo-python
 #: code:addons/l10n_es_payment_period_report/report/payment_period_report_xlsx.py:0
 #: model_terms:ir.ui.view,arch_db:l10n_es_payment_period_report.payment_period_report_pdf_document
-#, python-format
 msgid "Amount within legal period %"
 msgstr "% importe dentro del plazo legal"
 
 #. module: l10n_es_payment_period_report
+#. odoo-python
 #: code:addons/l10n_es_payment_period_report/report/payment_period_report_xlsx.py:0
 #: model:ir.model.fields,field_description:l10n_es_payment_period_report.field_l10n_es_payment_period_report_wizard__average_payment_period
 #: model_terms:ir.ui.view,arch_db:l10n_es_payment_period_report.payment_period_report_pdf_document
-#, python-format
 msgid "Average payment period"
 msgstr "Periodo medio de pago"
 
@@ -103,9 +100,9 @@ msgid "Close"
 msgstr "Cerrar"
 
 #. module: l10n_es_payment_period_report
+#. odoo-python
 #: code:addons/l10n_es_payment_period_report/report/payment_period_report_xlsx.py:0
 #: model:ir.model.fields,field_description:l10n_es_payment_period_report.field_l10n_es_payment_period_report_wizard__company_id
-#, python-format
 msgid "Company"
 msgstr "Compañía"
 
@@ -143,14 +140,14 @@ msgid "Date To"
 msgstr "Fecha hasta"
 
 #. module: l10n_es_payment_period_report
+#. odoo-python
 #: code:addons/l10n_es_payment_period_report/report/payment_period_report_xlsx.py:0
-#, python-format
 msgid "Date from"
 msgstr "Fecha desde"
 
 #. module: l10n_es_payment_period_report
+#. odoo-python
 #: code:addons/l10n_es_payment_period_report/report/payment_period_report_xlsx.py:0
-#, python-format
 msgid "Date to"
 msgstr "Fecha hasta"
 
@@ -186,9 +183,9 @@ msgid "Export XLSX"
 msgstr "Exportar XLSX"
 
 #. module: l10n_es_payment_period_report
+#. odoo-python
 #: code:addons/l10n_es_payment_period_report/report/payment_period_report_xlsx.py:0
 #: model:ir.model.fields,field_description:l10n_es_payment_period_report.field_l10n_es_payment_period_report_wizard__year
-#, python-format
 msgid "Fiscal year"
 msgstr "Ejercicio fiscal"
 
@@ -199,10 +196,10 @@ msgid "ID"
 msgstr ""
 
 #. module: l10n_es_payment_period_report
+#. odoo-python
 #: code:addons/l10n_es_payment_period_report/report/payment_period_report_xlsx.py:0
 #: model:ir.model.fields,field_description:l10n_es_payment_period_report.field_l10n_es_payment_period_report_line__move_id
 #: model_terms:ir.ui.view,arch_db:l10n_es_payment_period_report.payment_period_report_pdf_document
-#, python-format
 msgid "Invoice"
 msgstr "Factura"
 
@@ -212,10 +209,10 @@ msgid "Invoice Date"
 msgstr "Fecha de factura"
 
 #. module: l10n_es_payment_period_report
+#. odoo-python
 #: code:addons/l10n_es_payment_period_report/report/payment_period_report_xlsx.py:0
 #: model:ir.model.fields.selection,name:l10n_es_payment_period_report.selection__l10n_es_payment_period_report_wizard__date_start_type__invoice_date
 #: model_terms:ir.ui.view,arch_db:l10n_es_payment_period_report.payment_period_report_pdf_document
-#, python-format
 msgid "Invoice date"
 msgstr "Fecha de factura"
 
@@ -225,17 +222,17 @@ msgid "Invoices %"
 msgstr "% facturas"
 
 #. module: l10n_es_payment_period_report
+#. odoo-python
 #: code:addons/l10n_es_payment_period_report/report/payment_period_report_xlsx.py:0
 #: model:ir.model.fields,field_description:l10n_es_payment_period_report.field_l10n_es_payment_period_report_wizard__invoice_count_within
 #: model_terms:ir.ui.view,arch_db:l10n_es_payment_period_report.payment_period_report_pdf_document
-#, python-format
 msgid "Invoices paid within legal period"
 msgstr "Facturas pagadas dentro del plazo legal"
 
 #. module: l10n_es_payment_period_report
+#. odoo-python
 #: code:addons/l10n_es_payment_period_report/report/payment_period_report_xlsx.py:0
 #: model_terms:ir.ui.view,arch_db:l10n_es_payment_period_report.payment_period_report_pdf_document
-#, python-format
 msgid "Invoices within legal period %"
 msgstr "% facturas dentro del plazo legal"
 
@@ -243,12 +240,6 @@ msgstr "% facturas dentro del plazo legal"
 #: model:ir.model,name:l10n_es_payment_period_report.model_account_move
 msgid "Journal Entry"
 msgstr "Asiento contable"
-
-#. module: l10n_es_payment_period_report
-#: model:ir.model.fields,field_description:l10n_es_payment_period_report.field_l10n_es_payment_period_report_line____last_update
-#: model:ir.model.fields,field_description:l10n_es_payment_period_report.field_l10n_es_payment_period_report_wizard____last_update
-msgid "Last Modified on"
-msgstr "Última modificación el"
 
 #. module: l10n_es_payment_period_report
 #: model:ir.model.fields,field_description:l10n_es_payment_period_report.field_l10n_es_payment_period_report_line__write_uid
@@ -268,36 +259,36 @@ msgid "Legal Payment Days"
 msgstr "Días legales de pago"
 
 #. module: l10n_es_payment_period_report
+#. odoo-python
 #: code:addons/l10n_es_payment_period_report/report/payment_period_report_xlsx.py:0
-#, python-format
 msgid "Legal payment days"
 msgstr "Días legales de pago"
 
 #. module: l10n_es_payment_period_report
+#. odoo-python
 #: code:addons/l10n_es_payment_period_report/wizards/payment_period_report_wizard.py:0
-#, python-format
 msgid "Legal payment days must be greater than zero."
 msgstr "Los días legales de pago deben ser mayores que cero."
 
 #. module: l10n_es_payment_period_report
+#. odoo-python
 #: code:addons/l10n_es_payment_period_report/report/payment_period_report_xlsx.py:0
 #: model_terms:ir.ui.view,arch_db:l10n_es_payment_period_report.payment_period_report_pdf_document
-#, python-format
 msgid "Monetary volume"
 msgstr "Volumen monetario"
 
 #. module: l10n_es_payment_period_report
+#. odoo-python
 #: code:addons/l10n_es_payment_period_report/report/payment_period_report_xlsx.py:0
 #: model_terms:ir.ui.view,arch_db:l10n_es_payment_period_report.payment_period_report_pdf_document
-#, python-format
 msgid "No"
 msgstr ""
 
 #. module: l10n_es_payment_period_report
+#. odoo-python
 #: code:addons/l10n_es_payment_period_report/report/payment_period_report_xlsx.py:0
 #: model:ir.model.fields,field_description:l10n_es_payment_period_report.field_l10n_es_payment_period_report_wizard__invoice_count
 #: model_terms:ir.ui.view,arch_db:l10n_es_payment_period_report.payment_period_report_pdf_document
-#, python-format
 msgid "Number of invoices"
 msgstr "Número de facturas"
 
@@ -317,27 +308,27 @@ msgid "Payment Days"
 msgstr "Días de pago"
 
 #. module: l10n_es_payment_period_report
+#. odoo-python
 #: code:addons/l10n_es_payment_period_report/report/payment_period_report_xlsx.py:0
 #: model_terms:ir.ui.view,arch_db:l10n_es_payment_period_report.payment_period_report_pdf_document
-#, python-format
 msgid "Payment date"
 msgstr "Fecha de pago"
 
 #. module: l10n_es_payment_period_report
+#. odoo-python
 #: code:addons/l10n_es_payment_period_report/report/payment_period_report_xlsx.py:0
-#, python-format
 msgid "Payment days"
 msgstr "Días de pago"
 
 #. module: l10n_es_payment_period_report
+#. odoo-python
 #: code:addons/l10n_es_payment_period_report/report/payment_period_report_xlsx.py:0
-#, python-format
 msgid "Payments"
 msgstr "Pagos"
 
 #. module: l10n_es_payment_period_report
+#. odoo-python
 #: code:addons/l10n_es_payment_period_report/report/payment_period_report_xlsx.py:0
-#, python-format
 msgid "Payments to suppliers within %s days"
 msgstr "Pagos a proveedores en menos de %s días"
 
@@ -362,17 +353,17 @@ msgid "Spanish supplier payment period report wizard"
 msgstr "Asistente del informe español de periodo de pago a proveedores"
 
 #. module: l10n_es_payment_period_report
+#. odoo-python
 #: code:addons/l10n_es_payment_period_report/report/payment_period_report_xlsx.py:0
 #: model:ir.model.fields,field_description:l10n_es_payment_period_report.field_l10n_es_payment_period_report_line__date_start
 #: model:ir.model.fields,field_description:l10n_es_payment_period_report.field_l10n_es_payment_period_report_wizard__date_start_type
 #: model_terms:ir.ui.view,arch_db:l10n_es_payment_period_report.payment_period_report_pdf_document
-#, python-format
 msgid "Start date"
 msgstr "Fecha de inicio"
 
 #. module: l10n_es_payment_period_report
+#. odoo-python
 #: code:addons/l10n_es_payment_period_report/wizards/payment_period_report_wizard.py:0
-#, python-format
 msgid "Start date must be before end date."
 msgstr "La fecha de inicio debe ser anterior a la fecha final."
 
@@ -382,10 +373,10 @@ msgid "Summary"
 msgstr "Resumen"
 
 #. module: l10n_es_payment_period_report
+#. odoo-python
 #: code:addons/l10n_es_payment_period_report/report/payment_period_report_xlsx.py:0
 #: model:ir.model.fields,field_description:l10n_es_payment_period_report.field_l10n_es_payment_period_report_line__partner_id
 #: model_terms:ir.ui.view,arch_db:l10n_es_payment_period_report.payment_period_report_pdf_document
-#, python-format
 msgid "Supplier"
 msgstr "Proveedor"
 
@@ -395,18 +386,18 @@ msgid "Supplier Payment Period"
 msgstr "Periodo de pago a proveedores"
 
 #. module: l10n_es_payment_period_report
+#. odoo-python
 #: code:addons/l10n_es_payment_period_report/wizards/payment_period_report_wizard.py:0
 #: model_terms:ir.ui.view,arch_db:l10n_es_payment_period_report.payment_period_report_line_form
-#, python-format
 msgid "Supplier Payment Period Detail"
 msgstr "Detalle del periodo de pago a proveedores"
 
 #. module: l10n_es_payment_period_report
+#. odoo-python
 #: code:addons/l10n_es_payment_period_report/report/payment_period_report_xlsx.py:0
 #: model:ir.actions.act_window,name:l10n_es_payment_period_report.payment_period_report_wizard_action
 #: model_terms:ir.ui.view,arch_db:l10n_es_payment_period_report.payment_period_report_pdf_document
 #: model_terms:ir.ui.view,arch_db:l10n_es_payment_period_report.payment_period_report_wizard_form
-#, python-format
 msgid "Supplier Payment Period Report"
 msgstr "Informe de periodo de pago a proveedores"
 
@@ -432,10 +423,10 @@ msgid "Total"
 msgstr ""
 
 #. module: l10n_es_payment_period_report
+#. odoo-python
 #: code:addons/l10n_es_payment_period_report/report/payment_period_report_xlsx.py:0
 #: model:ir.model.fields,field_description:l10n_es_payment_period_report.field_l10n_es_payment_period_report_wizard__total_amount_paid
 #: model_terms:ir.ui.view,arch_db:l10n_es_payment_period_report.payment_period_report_pdf_document
-#, python-format
 msgid "Total amount paid"
 msgstr "Importe total pagado"
 
@@ -450,8 +441,8 @@ msgid "Within Legal Period"
 msgstr "Dentro del plazo legal"
 
 #. module: l10n_es_payment_period_report
+#. odoo-python
 #: code:addons/l10n_es_payment_period_report/report/payment_period_report_xlsx.py:0
-#, python-format
 msgid "Within legal period"
 msgstr "Dentro del plazo legal"
 
@@ -466,9 +457,9 @@ msgid "Wizard"
 msgstr "Asistente"
 
 #. module: l10n_es_payment_period_report
+#. odoo-python
 #: code:addons/l10n_es_payment_period_report/report/payment_period_report_xlsx.py:0
 #: model_terms:ir.ui.view,arch_db:l10n_es_payment_period_report.payment_period_report_pdf_document
-#, python-format
 msgid "Yes"
 msgstr "Sí"
 

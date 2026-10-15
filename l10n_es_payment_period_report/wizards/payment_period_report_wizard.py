@@ -149,7 +149,7 @@ class L10nEsPaymentPeriodReportWizard(models.TransientModel):
             "type": "ir.actions.act_window",
             "name": _("Supplier Payment Period Detail"),
             "res_model": "l10n.es.payment.period.report.line",
-            "view_mode": "tree,form",
+            "view_mode": "list,form",
             "domain": [("wizard_id", "=", self.id)],
             "target": "current",
         }
@@ -184,8 +184,9 @@ class L10nEsPaymentPeriodReportLine(models.TransientModel):
     payment_days = fields.Integer(readonly=True)
     within_legal_period = fields.Boolean(readonly=True)
 
-    def name_get(self):
-        return [
-            (line.id, f"{line.move_id.name or ''} - {line.partner_id.name or ''}")
-            for line in self
-        ]
+    @api.depends("move_id.name", "partner_id.name")
+    def _compute_display_name(self):
+        for line in self:
+            line.display_name = (
+                f"{line.move_id.name or ''} - {line.partner_id.name or ''}"
+            )

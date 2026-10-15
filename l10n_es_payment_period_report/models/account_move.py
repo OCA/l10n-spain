@@ -26,7 +26,7 @@ class AccountMove(models.Model):
         date_start_sql = self._l10n_es_payment_period_report_base_date_sql(
             date_start_type
         )
-        self.flush(
+        self.flush_model(
             [
                 "name",
                 "ref",
@@ -40,11 +40,11 @@ class AccountMove(models.Model):
                 "move_type",
             ]
         )
-        self.env["account.move.line"].flush(
+        self.env["account.move.line"].flush_model(
             ["move_id", "account_id", "company_id", "full_reconcile_id"]
         )
-        self.env["account.account"].flush(["internal_type"])
-        self.env["account.partial.reconcile"].flush(
+        self.env["account.account"].flush_model(["account_type"])
+        self.env["account.partial.reconcile"].flush_model(
             ["debit_move_id", "credit_move_id", "max_date"]
         )
         self.env.cr.execute(
@@ -63,7 +63,7 @@ class AccountMove(models.Model):
                   FROM account_move_line aml
                   JOIN account_account aa ON aa.id = aml.account_id
              LEFT JOIN matched_lines ml ON ml.line_id = aml.id
-                 WHERE aa.internal_type = 'payable'
+                 WHERE aa.account_type = 'liability_payable'
                    AND aml.company_id = %(company_id)s
               GROUP BY aml.move_id
             ),

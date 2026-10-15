@@ -3,7 +3,7 @@
 
 {
     "name": "Spanish supplier payment period report",
-    "version": "15.0.1.0.0",
+    "version": "18.0.1.0.0",
     "category": "Accounting",
     "summary": "Supplier payment period report for Spanish legal disclosure",
     "author": "Tecnativa, Odoo Community Association (OCA)",

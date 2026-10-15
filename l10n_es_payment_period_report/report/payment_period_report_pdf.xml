@@ -50,13 +50,13 @@
                                     <tbody>
                                         <tr>
                                             <td>Total amount paid</td>
-                                            <td class="text-right">
+                                            <td class="text-end">
                                                 <span t-field="o.total_amount_paid" />
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Amount paid within legal period</td>
-                                            <td class="text-right">
+                                            <td class="text-end">
                                                 <span
                                                     t-field="o.total_amount_paid_within"
                                                 />
@@ -64,9 +64,9 @@
                                         </tr>
                                         <tr>
                                             <td>Amount within legal period %</td>
-                                            <td class="text-right">
+                                            <td class="text-end">
                                                 <span
-                                                    t-esc="'%.2f' % o.amount_within_percent"
+                                                    t-out="'%.2f' % o.amount_within_percent"
                                                 />
                                             </td>
                                         </tr>
@@ -78,13 +78,13 @@
                                     <tbody>
                                         <tr>
                                             <td>Number of invoices</td>
-                                            <td class="text-right">
+                                            <td class="text-end">
                                                 <span t-field="o.invoice_count" />
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Invoices paid within legal period</td>
-                                            <td class="text-right">
+                                            <td class="text-end">
                                                 <span
                                                     t-field="o.invoice_count_within"
                                                 />
@@ -92,17 +92,17 @@
                                         </tr>
                                         <tr>
                                             <td>Invoices within legal period %</td>
-                                            <td class="text-right">
+                                            <td class="text-end">
                                                 <span
-                                                    t-esc="'%.2f' % o.invoice_within_percent"
+                                                    t-out="'%.2f' % o.invoice_within_percent"
                                                 />
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Average payment period</td>
-                                            <td class="text-right">
+                                            <td class="text-end">
                                                 <span
-                                                    t-esc="'%.2f' % o.average_payment_period"
+                                                    t-out="'%.2f' % o.average_payment_period"
                                                 />
                                             </td>
                                         </tr>
@@ -116,32 +116,32 @@
                             <thead>
                                 <tr>
                                     <th>
-                                        <span t-esc="o.year" />
+                                        <span t-out="o.year" />
                                     </th>
-                                    <th class="text-right">Amount</th>
-                                    <th class="text-right">%</th>
+                                    <th class="text-end">Amount</th>
+                                    <th class="text-end">%</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>Monetary volume</td>
-                                    <td class="text-right">
+                                    <td class="text-end">
                                         <span t-field="o.total_amount_paid_within" />
                                     </td>
-                                    <td class="text-right">
+                                    <td class="text-end">
                                         <span
-                                            t-esc="'%.2f' % o.amount_within_percent"
+                                            t-out="'%.2f' % o.amount_within_percent"
                                         />
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Number of invoices</td>
-                                    <td class="text-right">
+                                    <td class="text-end">
                                         <span t-field="o.invoice_count_within" />
                                     </td>
-                                    <td class="text-right">
+                                    <td class="text-end">
                                         <span
-                                            t-esc="'%.2f' % o.invoice_within_percent"
+                                            t-out="'%.2f' % o.invoice_within_percent"
                                         />
                                     </td>
                                 </tr>
@@ -157,8 +157,8 @@
                                     <th>Supplier</th>
                                     <th>Invoice date</th>
                                     <th>Start date</th>
-                                    <th class="text-right">Amount</th>
-                                    <th class="text-right">Days</th>
+                                    <th class="text-end">Amount</th>
+                                    <th class="text-end">Days</th>
                                     <th>Within period</th>
                                 </tr>
                             </thead>
@@ -179,10 +179,10 @@
                                     <td>
                                         <span t-field="line.date_start" />
                                     </td>
-                                    <td class="text-right">
+                                    <td class="text-end">
                                         <span t-field="line.amount_total" />
                                     </td>
-                                    <td class="text-right">
+                                    <td class="text-end">
                                         <span t-field="line.payment_days" />
                                     </td>
                                     <td>
