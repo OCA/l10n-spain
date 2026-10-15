@@ -1,7 +1,11 @@
 # Copyright 2025 ForgeFlow S.L.
+# Copyright 2026 César Andrés Sánchez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import UserError
+
+from odoo.addons.base.models.ir_model import MODULE_UNINSTALL_FLAG
 
 from ..models.verifactu_invoice_entry import VERIFACTU_SEND_STATES
 
@@ -46,3 +50,21 @@ class VerifactuInvoiceEntryResponseLine(models.Model):
     def _compute_is_cancellation(self):
         for rec in self:
             rec.is_cancellation = rec.entry_id.entry_type == "cancel"
+
+    def unlink(self):
+        """Keep send evidence for sealed entries (same policy as the entry)."""
+        self.check_access("unlink")
+        if not self.env.context.get(
+            "verifactu_force_unlink"
+        ) and not self.env.context.get(MODULE_UNINSTALL_FLAG):
+            sealed_lines = self.filtered(
+                lambda r: r.entry_id and r.entry_id._is_verifactu_sealed()
+            )
+            if sealed_lines:
+                raise UserError(
+                    _(
+                        "You cannot delete VERI*FACTU response lines linked to "
+                        "sealed invoice entries."
+                    )
+                )
+        return super().unlink()
