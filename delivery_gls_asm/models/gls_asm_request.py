@@ -1,4 +1,5 @@
 # Copyright 2020 Tecnativa - David Vidal
+# Copyright 2026 PYMING - Extreme Micro S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 import binascii
 import logging
@@ -17,6 +18,18 @@ try:
     from suds.sudsobject import asdict
 except (OSError, ImportError) as err:
     _logger.debug(err)
+
+
+# Verified literal GetExpCli answer when the customer reference does not exist.
+GLS_EXPEDITION_NOT_FOUND = "No se encuentra la expedición"
+
+
+class GlsAsmApiError(UserError):
+    """GLS rejected an operation with a documented numeric result code."""
+
+    def __init__(self, message, code=None):
+        super().__init__(message)
+        self.code = code
 
 
 class GlsAsmRequest:
@@ -235,7 +248,7 @@ class GlsAsmRequest:
         _logger.debug(res)
         res["_return"] = int(res["Resultado"]["_return"])
         if res["_return"] < 0:
-            raise UserError(
+            raise GlsAsmApiError(
                 _(
                     "GLS returned an error trying to record the shipping for %(ref)s.\n"
                     "Error:\n%(error)s"
@@ -245,7 +258,8 @@ class GlsAsmRequest:
                     "error": GLS_SHIPMENT_ERROR_CODES.get(
                         res["_return"], res["_return"]
                     ),
-                }
+                },
+                code=res["_return"],
             )
         if res.get("Etiquetas", {}).get("Etiqueta", {}).get("value"):
             res["gls_label"] = binascii.a2b_base64(
@@ -311,6 +325,44 @@ class GlsAsmRequest:
         res = self._recursive_asdict(res)
         return res
 
+    def _find_shipments(self, reference):
+        """Look up the expeditions recorded in GLS for our customer reference.
+
+        :param str reference: plain (unescaped) customer reference (refC)
+        :returns: list of expedition dicts; empty only for the explicit
+            GLS "not found" answer
+        :raises UserError: on any failure or unrecognized answer, so duplicate
+            recovery cannot link an unverified shipment
+        """
+        res = self._get_delivery_info(reference)
+        expeditions = res.get("expediciones") if isinstance(res, dict) else None
+        if isinstance(expeditions, dict):
+            keys = {key for key in expeditions if not key.startswith("_")}
+            if keys == {"exp"}:
+                found = expeditions["exp"]
+                found = found if isinstance(found, list) else [found]
+                if found and all(isinstance(exp, dict) for exp in found):
+                    return found
+            elif keys == {"Error"}:
+                error = " ".join(str(expeditions["Error"] or "").split())
+                if error == GLS_EXPEDITION_NOT_FOUND:
+                    return []
+        raise UserError(
+            _(
+                "GLS returned an unrecognized answer looking up the existing "
+                "shipment for %(ref)s, so no new shipment was recorded. "
+                "Check it in GLS and retry. "
+                "Response structure: %(structure)s."
+            )
+            % {
+                "ref": reference,
+                "structure": (
+                    f"root={type(res).__name__}, "
+                    f"expediciones={type(expeditions).__name__}"
+                ),
+            }
+        )
+
     def _get_pickup_info(self, reference=False):
         xml = Raw(
             f"""
@@ -364,7 +416,9 @@ class GlsAsmRequest:
             ) from e
         res = self._recursive_asdict(res)
         label = res.get("base64Binary")
-        return label and binascii.a2b_base64(str(label[0]))
+        if isinstance(label, list):
+            label = label[0] if label else False
+        return label and binascii.a2b_base64(str(label))
 
     def _cancel_shipment(self, reference=False):
         """Cancel shipment for a given reference
