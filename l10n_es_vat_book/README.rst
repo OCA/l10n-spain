@@ -141,6 +141,8 @@ Contributors
 - Victor Garcia <victor.garcia@kayuulab.com>
 - Luis Lafaurie <ldlafaurie@gmail.com>
 - Eduardo de miguel <edu@moduon.team>
+- Emilio Pascual (Moduon)
+- Alvaro (Domatix) <alvaro@domatix.com>
 
 Maintainers
 -----------
