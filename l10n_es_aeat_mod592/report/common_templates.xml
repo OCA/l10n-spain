@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="l10n_es_aeat_mod592.mod592_acquirer_summary">
+        <div class="col-xs-12 text-left" id="mod592_acquirer_summary_div">
+            <table
+                class="detail_table table table-sm"
+                id="mod592_acquirer_summary_table"
+            >
+                <tbody class="invoice_tbody">
+                    <tr>
+                        <td class="text-left td_detail_table">
+                       Fiscal Year:
+                      </td>
+                        <td class="td_detail_table">
+                            <span t-field="o.year" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-left td_detail_table">
+                       VAT:
+                      </td>
+                        <td class="td_detail_table">
+                            <span t-field="o.company_vat" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-left td_detail_table">
+                       Company:
+                      </td>
+                        <td class="td_detail_table">
+                            <span t-field="o.company_id" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-left td_detail_table">
+                       Contact phone:
+                      </td>
+                        <td class="td_detail_table">
+                            <span t-field="o.contact_phone" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-left td_detail_table">
+                       Surnames and name contact:
+                      </td>
+                        <td class="td_detail_table">
+                            <span t-field="o.contact_name" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-left td_detail_table">
+                       Declaration number:
+                      </td>
+                        <td class="td_detail_table">
+                            <span t-field="o.name" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-left td_detail_table">
+                       Period:
+                      </td>
+                        <td class="td_detail_table">
+                            <span t-field="o.period_type" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-left td_detail_table">
+                       Total number of records:
+                      </td>
+                        <td class="td_detail_table">
+                            <span t-field="o.total_acquirer_entries" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-left td_detail_table">
+                       Total weight:
+                      </td>
+                        <td class="td_detail_table">
+                            <span t-field="o.total_weight_acquirer" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-left td_detail_table">
+                        Total weight of non reclyclable:
+                      </td>
+                        <td class="td_detail_table">
+                            <span t-field="o.total_weight_acquirer_non_reclyclable" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-left td_detail_table">
+                       Legal representative VAT:
+                      </td>
+                        <td class="td_detail_table">
+                            <span t-field="o.representative_vat" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </template>
+    <template id="l10n_es_aeat_mod592.mod592_manufacturer_summary">
+        <div class="col-xs-12 text-left" id="mod592_manufacturer_summary_div">
+            <table
+                class="detail_table table table-sm"
+                id="mod592_manufacturer_summary_table"
+            >
+                <tbody class="invoice_tbody">
+                    <tr>
+                        <td class="text-left td_detail_table">
+                       Fiscal Year:
+                      </td>
+                        <td class="td_detail_table">
+                            <span t-field="o.year" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-left td_detail_table">
+                       VAT:
+                      </td>
+                        <td class="td_detail_table">
+                            <span t-field="o.company_vat" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-left td_detail_table">
+                       Company:
+                      </td>
+                        <td class="td_detail_table">
+                            <span t-field="o.company_id" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-left td_detail_table">
+                       Contact phone:
+                      </td>
+                        <td class="td_detail_table">
+                            <span t-field="o.contact_phone" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-left td_detail_table">
+                       Surnames and name contact:
+                      </td>
+                        <td class="td_detail_table">
+                            <span t-field="o.contact_name" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-left td_detail_table">
+                       Declaration number:
+                      </td>
+                        <td class="td_detail_table">
+                            <span t-field="o.name" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-left td_detail_table">
+                       Period:
+                      </td>
+                        <td class="td_detail_table">
+                            <span t-field="o.period_type" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-left td_detail_table">
+                       Total number of records:
+                      </td>
+                        <td class="td_detail_table">
+                            <span t-field="o.total_manufacturer_entries" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-left td_detail_table">
+                       Total weight:
+                      </td>
+                        <td class="td_detail_table">
+                            <span t-field="o.total_weight_manufacturer" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-left td_detail_table">
+                        Total weight of records non reclyclable:
+                      </td>
+                        <td class="td_detail_table">
+                            <span
+                                t-field="o.total_weight_manufacturer_non_reclyclable"
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-left td_detail_table">
+                       Legal representative VAT:
+                      </td>
+                        <td class="td_detail_table">
+                            <span t-field="o.representative_vat" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </template>
+    <template id="l10n_es_aeat_mod592.mod592_manufacturer_record_head">
+        <thead>
+            <tr>
+                <th id="detail_entry_number">Entrie</th>
+                <th id="detail_date_done">Date</th>
+                <th id="detail_concept">Concept</th>
+                <th id="detail_product_key">Key product</th>
+                <th id="detail_product_description">Product description</th>
+                <th id="detail_fiscal_manufacturer">Fiscal regime</th>
+                <th id="detail_proof">Proof document</th>
+                <th id="detail_supplier_document_type">Supplier document type</th>
+                <th id="detail_supplier_document_number">Supplier document number</th>
+                <th id="detail_supplier_social_reason">Supplier name</th>
+                <th id="detail_kgs">Weiht</th>
+                <th id="detail_no_recycling_kgs">Weiht non reclycable</th>
+                <th id="detail_entry_note">Entries observation</th>
+            </tr>
+        </thead>
+    </template>
+    <template id="l10n_es_aeat_mod592.mod592_manufacturer_record">
+        <td id="data_entry_number">
+            <span t-field="l.entry_number" />
+        </td>
+        <td id="data_date_done">
+            <span t-field="l.date_done" />
+        </td>
+        <td id="data_concept">
+            <span t-field="l.concept" />
+        </td>
+        <td id="data_product_key">
+            <span t-field="l.product_key" />
+        </td>
+        <td id="data_product_description">
+            <span t-field="l.product_description" />
+        </td>
+        <td id="data_proof">
+            <span t-field="l.proof" />
+        </td>
+        <td id="data_supplier_document_type">
+            <span t-field="l.supplier_document_type" />
+        </td>
+        <td id="data_supplier_document_number">
+            <span t-field="l.supplier_document_number" />
+        </td>
+        <td id="data_supplier_social_reason">
+            <span t-field="l.supplier_social_reason" />
+        </td>
+        <td class="text-right" id="data_kgs">
+            <span t-field="l.kgs" />
+        </td>
+        <td class="text-right" id="data_no_recycling_kgs">
+            <span t-field="l.no_recycling_kgs" />
+        </td>
+        <td id="data_entry_note">
+            <span t-field="l.entry_note" />
+        </td>
+    </template>
+    <template id="l10n_es_aeat_mod592.mod592_acquirer_record_head">
+        <thead>
+            <tr>
+                <th id="detail_entry_number">Entrie</th>
+                <th id="detail_date_done">Date</th>
+                <th id="detail_concept">Concept</th>
+                <th id="detail_product_key">Key product</th>
+                <th id="detail_fiscal_acquirer">Fiscal regime</th>
+                <th id="detail_proof">Proof document</th>
+                <th id="detail_supplier_document_type">Supplier document type</th>
+                <th id="detail_supplier_document_number">Supplier document number</th>
+                <th id="detail_supplier_social_reason">Supplier name</th>
+                <th id="detail_kgs">Weiht</th>
+                <th id="detail_no_recycling_kgs">Weiht non reclycable</th>
+                <th id="detail_entry_note">Entries observation</th>
+            </tr>
+        </thead>
+    </template>
+    <template id="l10n_es_aeat_mod592.mod592_acquirer_record">
+        <td id="data_entry_number">
+            <span t-field="l.entry_number" />
+        </td>
+        <td id="data_date_done">
+            <span t-field="l.date_done" />
+        </td>
+        <td id="data_concept">
+            <span t-field="l.concept" />
+        </td>
+        <td id="data_product_key">
+            <span t-field="l.product_key" />
+        </td>
+        <td id="data_fiscal_acquirer">
+            <span t-field="l.fiscal_acquirer" />
+        </td>
+        <td id="data_proof">
+            <span t-field="l.proof" />
+        </td>
+        <td id="data_supplier_document_type">
+            <span t-field="l.supplier_document_type" />
+        </td>
+        <td id="data_supplier_document_number">
+            <span t-field="l.supplier_document_number" />
+        </td>
+        <td id="data_supplier_social_reason">
+            <span t-field="l.supplier_social_reason" />
+        </td>
+        <td class="text-right" id="data_kgs">
+            <span t-field="l.kgs" />
+        </td>
+        <td class="text-right" id="data_no_recycling_kgs">
+            <span t-field="l.no_recycling_kgs" />
+        </td>
+        <td id="data_entry_note">
+            <span t-field="l.entry_note" />
+        </td>
+    </template>
+</odoo>
