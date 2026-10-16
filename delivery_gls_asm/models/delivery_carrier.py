@@ -113,12 +113,45 @@ class DeliveryCarrier(models.Model):
             )
         return tracking_url
 
+    @api.model
+    def _gls_asm_is_valid_parcelshop_code(self, code):
+        """GLS ParcelShop codes are 1 to 6 ASCII digits; never normalize them."""
+        return bool(code) and len(code) <= 6 and all("0" <= c <= "9" for c in code)
+
+    def _gls_asm_validate_parcelshop(self, pickings):
+        """Validate the whole ParcelShop batch before initializing the SOAP client."""
+        self.ensure_one()
+        if self.delivery_type != "gls_asm" or self.gls_asm_shiptime != "19":
+            return
+        if self.gls_is_pickup_service or self.gls_asm_service == "58":
+            raise UserError(
+                _(
+                    "GLS ParcelShop delivery cannot use a pickup or ShopReturn "
+                    "service. Configure a delivery service for this carrier; "
+                    "ShopReturn is a different flow."
+                )
+            )
+        invalid_pickings = pickings.filtered(
+            lambda picking: not self._gls_asm_is_valid_parcelshop_code(
+                picking.gls_asm_parcelshop_code
+            )
+        )
+        if invalid_pickings:
+            raise UserError(
+                _(
+                    "Enter a GLS ParcelShop code of 1 to 6 ASCII digits for: "
+                    "%(pickings)s. Keep any leading zeros.",
+                    pickings=", ".join(invalid_pickings.mapped("name")),
+                )
+            )
+
     def _prepare_gls_asm_shipping(self, picking):
         """Convert picking values for asm api
         :param picking record with picking to send
         :returns dict values for the connector
         """
         self.ensure_one()
+        self._gls_asm_validate_parcelshop(picking)
         # A picking can be delivered from any warehouse
         sender_partner = (
             picking.picking_type_id.warehouse_id.partner_id
@@ -160,7 +193,11 @@ class DeliveryCarrier(models.Model):
             "remite_departamento": "",
             "remite_nif": sender_partner.vat or "",
             "remite_observaciones": "",
-            "destinatario_codigo": "",
+            "destinatario_codigo": (
+                picking.gls_asm_parcelshop_code
+                if self.delivery_type == "gls_asm" and self.gls_asm_shiptime == "19"
+                else ""
+            ),
             "destinatario_plaza": "",
             "destinatario_nombre": (
                 escape(consignee.name or consignee.commercial_partner_id.name or "")
@@ -269,6 +306,7 @@ class DeliveryCarrier(models.Model):
         to this design, we have to inject vals in the context to be able to
         add them to the message.
         """
+        self._gls_asm_validate_parcelshop(pickings)
         gls_request = GlsAsmRequest(self._gls_asm_uid())
         result = []
         for picking in pickings:
@@ -339,6 +377,7 @@ class DeliveryCarrier(models.Model):
         to this design, we have to inject vals in the context to be able to
         add them to the message.
         """
+        self._gls_asm_validate_parcelshop(pickings)
         gls_request = GlsAsmRequest(self._gls_asm_uid())
         result = []
         for picking in pickings:

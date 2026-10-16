@@ -1,6 +1,7 @@
 # Copyright 2020 Tecnativa - David Vidal
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import _, fields, models
+from odoo.exceptions import UserError
 
 
 class StockPicking(models.Model):
@@ -68,6 +69,41 @@ class StockPicking(models.Model):
         copy=False,
     )
     gls_shipping_notes = fields.Text(string="Notas de envío GLS")
+    gls_asm_parcelshop_code = fields.Char(
+        string="GLS ParcelShop Code",
+        help="GLS ParcelShop code of 1 to 6 digits. Leading zeros are kept.",
+        copy=True,
+    )
+    gls_asm_carrier_shiptime = fields.Selection(
+        related="carrier_id.gls_asm_shiptime",
+        string="GLS Carrier Shipping Time",
+    )
+
+    def write(self, vals):
+        """Prevent changing the ParcelShop code once GLS recorded the shipment."""
+        if "gls_asm_parcelshop_code" in vals:
+            new_code = vals["gls_asm_parcelshop_code"] or False
+            booked = self.filtered(
+                lambda picking: (
+                    (
+                        picking.delivery_type == "gls_asm"
+                        and picking.carrier_tracking_ref
+                    )
+                    or picking.gls_asm_public_tracking_ref
+                    or picking.gls_asm_picking_ref
+                )
+                and (picking.gls_asm_parcelshop_code or False) != new_code
+            )
+            if booked:
+                raise UserError(
+                    _(
+                        "The GLS ParcelShop code cannot be changed after the "
+                        "shipment was recorded in GLS: %(pickings)s. Cancel the "
+                        "shipment first.",
+                        pickings=", ".join(booked.mapped("name")),
+                    )
+                )
+        return super().write(vals)
 
     def gls_asm_get_label(self):
         """Get GLS Label for this picking expedition"""
