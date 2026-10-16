@@ -24,3 +24,16 @@ class ResPartner(models.Model):
             if partner.verifactu_enabled:
                 partner.aeat_sending_enabled = True
         return res
+
+    def _is_valid_verifactu_receiver(self):
+        """Whether this partner can be the destinatario of a registro de alta.
+
+        Document types that must identify the customer (F1, F3, R1-R4) need
+        either a Spanish NIF or a foreign identifier stating its country: an
+        ``IDOtro`` without ``CodigoPais`` declares a document of nowhere.
+        """
+        self.ensure_one()
+        if not self.vat:
+            return False
+        country_code, _identifier_type, identifier = self._parse_aeat_vat_info()
+        return bool(identifier and (country_code == "ES" or self.country_id.code))
