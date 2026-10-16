@@ -88,6 +88,14 @@
                     placeholder="Notas para GLS"
                     invisible="gls_carrier_is_pickup_service or delivery_type != 'gls_asm'"
                 />
+                <field name="gls_asm_carrier_shiptime" invisible="1" />
+                <field
+                    name="gls_asm_parcelshop_code"
+                    placeholder="e.g. 001234"
+                    invisible="delivery_type != 'gls_asm' or gls_asm_carrier_shiptime != '19'"
+                    required="delivery_type == 'gls_asm' and gls_asm_carrier_shiptime == '19' and picking_type_code != 'incoming' and not (carrier_tracking_ref or gls_asm_public_tracking_ref or gls_asm_picking_ref) and state not in ['done', 'cancel']"
+                    readonly="carrier_tracking_ref or gls_asm_public_tracking_ref or gls_asm_picking_ref or state in ['done', 'cancel']"
+                />
             </xpath>
         </field>
     </record>
