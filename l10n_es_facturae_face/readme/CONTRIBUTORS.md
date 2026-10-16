@@ -1,4 +1,7 @@
-- Enric Tobella \<<etobella@creublanca.es>\>
-- Eric Antones \<<eantones@nuobit.com>\>
-- Manuel Regidor \<<manuel.regidor@sygel.es>\>
-- Valentín Vinagre \<<valentin.vinagre@sygel.es>\>
+-[Dixmit](https://wwww.dixmit.com)
+  - Enric Tobella
+- Nuobit
+  - Eric Antones \<<eantones@nuobit.com>\>
+- Sygel
+  - Manuel Regidor \<<manuel.regidor@sygel.es>\>
+  - Valentín Vinagre \<<valentin.vinagre@sygel.es>\>

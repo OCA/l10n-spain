@@ -86,7 +86,11 @@ class TestL10nEsFacturaeFace(EDIBackendCommonTestCase, TestL10nEsAeatCertificate
         )
         main_company = cls.env.ref("base.main_company")
         main_company.vat = "ESA12345674"
-        main_company.partner_id.country_id = cls.env.ref("base.uk")
+        main_company.partner_id.country_id = cls.env.ref("base.es")
+        main_company.partner_id.street = "Rue del Percebe, 13"
+        main_company.partner_id.city = "Madrid"
+        main_company.partner_id.zip = "28013"
+        main_company.partner_id.state_id = cls.env.ref("base.state_es_m")
         cls.env["res.currency.rate"].search(
             [("currency_id", "=", main_company.currency_id.id)]
         ).write({"company_id": False})
@@ -98,7 +102,7 @@ class TestL10nEsFacturaeFace(EDIBackendCommonTestCase, TestL10nEsAeatCertificate
             cls.bank = bank_obj.create(
                 {
                     "acc_number": "FR20 1242 1242 1242 1242 1242 124",
-                    "partner_id": main_company.partner.id,
+                    "partner_id": main_company.partner_id.id,
                     "bank_id": cls.env["res.bank"]
                     .search([("bic", "=", "PSSTFRPPXXX")], limit=1)
                     .id,
@@ -159,6 +163,16 @@ class TestL10nEsFacturaeFace(EDIBackendCommonTestCase, TestL10nEsAeatCertificate
                 "account_type": "income",
             }
         )
+        cls.product = cls.env["product.product"].create(
+            {
+                "name": "Test Product",
+                "type": "consu",
+                "default_code": "TEST_PRODUCT",
+                "list_price": 100.0,
+                "standard_price": 50.0,
+                "taxes_id": [(6, 0, cls.tax.ids)],
+            }
+        )
         cls.move = cls.env["account.move"].create(
             {
                 "partner_id": cls.partner.id,
@@ -171,7 +185,7 @@ class TestL10nEsFacturaeFace(EDIBackendCommonTestCase, TestL10nEsAeatCertificate
                         0,
                         0,
                         {
-                            "product_id": cls.env.ref("product.product_delivery_02").id,
+                            "product_id": cls.product.id,
                             "account_id": cls.account.id,
                             "name": "Producto de prueba",
                             "quantity": 1.0,

@@ -3,7 +3,7 @@
 
 import re
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -19,4 +19,4 @@ class ResCompany(models.Model):
                 "(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$)",
                 record.face_email,
             ):
-                raise ValidationError(_("Invalid facturae email"))
+                raise ValidationError(self.env._("Invalid facturae email"))

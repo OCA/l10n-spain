@@ -32,12 +32,12 @@ class L10nEsFacturaeUpdateHandler(models.AbstractModel):
         if response.resultado.codigo != "0":
             raise UserError(
                 self.env._(
-                    "Connection with FACe returned error %(code)s - %(description)s"
+                    "Connection with FACe returned error %(code)s - %(description)s",
+                    {
+                        "code": response.resultado.codigo,
+                        "description": response.resultado.descripcion,
+                    },
                 )
-                % {
-                    "code": response.resultado.codigo,
-                    "description": response.resultado.descripcion,
-                }
             )
         return json.dumps(helpers.serialize_object(response.factura))
 
