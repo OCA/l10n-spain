@@ -366,6 +366,15 @@ class VerifactuInvoiceEntry(models.Model):
                 rec.payload_error = False
             registro_factura_list.append(inv_dict)
             entries_to_send |= rec
+        response_model = self.env["verifactu.invoice.entry.response"].sudo()
+        if (
+            not registro_factura_list
+            and response_model._has_open_payload_error_activity()
+        ):
+            # Nothing could be built, so nothing is sent, and the activity left by
+            # an earlier run already points to these entries: a response on every
+            # run would only pile up empty ones.
+            return True
         res = {}
         if registro_factura_list:
             try:

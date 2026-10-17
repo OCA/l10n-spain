@@ -1,6 +1,6 @@
 # Copyright 2025 ForgeFlow S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-from odoo import _, fields, models
+from odoo import _, api, fields, models
 
 
 class VerifactuInvoiceEntryResponse(models.Model):
@@ -107,19 +107,11 @@ class VerifactuInvoiceEntryResponse(models.Model):
         responsible user. The cause of each entry is reported on the entry
         itself, and on its document, so the activity only has to point there.
         """
+        if self._has_open_payload_error_activity():
+            return False
         activity_type = self.env.ref("mail.mail_activity_data_warning")
         model_id = self.env["ir.model"]._get_id("verifactu.invoice.entry.response")
-        summary = self.env._("Check documents that could not be sent to VERI*FACTU")
-        existing = self.env["mail.activity"].search_count(
-            [
-                ("activity_type_id", "=", activity_type.id),
-                ("res_model", "=", "verifactu.invoice.entry.response"),
-                ("summary", "=", summary),
-            ],
-            limit=1,
-        )
-        if existing:
-            return False
+        summary = self._get_payload_error_activity_summary()
         responsible_group = self.env.ref(
             "l10n_es_verifactu_oca.group_verifactu_responsible"
         )
@@ -144,6 +136,27 @@ class VerifactuInvoiceEntryResponse(models.Model):
                 }
             )
         return self.env["mail.activity"].create(activity_vals)
+
+    @api.model
+    def _get_payload_error_activity_summary(self):
+        return self.env._("Check documents that could not be sent to VERI*FACTU")
+
+    @api.model
+    def _has_open_payload_error_activity(self):
+        return bool(
+            self.env["mail.activity"].search_count(
+                [
+                    (
+                        "activity_type_id",
+                        "=",
+                        self.env.ref("mail.mail_activity_data_warning").id,
+                    ),
+                    ("res_model", "=", "verifactu.invoice.entry.response"),
+                    ("summary", "=", self._get_payload_error_activity_summary()),
+                ],
+                limit=1,
+            )
+        )
 
     def complete_open_activity_on_exception(self):
         exception_activity_type = self.env.ref(

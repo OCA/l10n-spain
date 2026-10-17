@@ -229,6 +229,22 @@ class TestVerifactuBatchIsolation(TestVerifactuCommon):
         )
 
     @mute_logger("odoo.addons.l10n_es_verifactu_oca.models.verifactu_invoice_entry")
+    def test_runs_with_nothing_to_send_do_not_pile_up_responses(self):
+        """The first run reports the faulty document, the next ones add nothing."""
+        self._activate_certificate(self.certificate_password)
+        self._create_posted_invoice(self.tax_10)
+        self._unmap_tax_10()
+        responses = self.env["verifactu.invoice.entry.response"]
+        responses_before = responses.search([])
+        with patch(CONNECT_METHOD) as mock_connect:
+            self._mock_connection(mock_connect)
+            for _run in range(3):
+                self._run_cron()
+        new_responses = responses.search([]) - responses_before
+        self.assertEqual(len(new_responses), 1)
+        self.assertEqual(len(new_responses.activity_ids), 1)
+
+    @mute_logger("odoo.addons.l10n_es_verifactu_oca.models.verifactu_invoice_entry")
     def test_missing_document_does_not_break_the_batch(self):
         """An entry whose document is gone is reported, it does not stop the rest."""
         self._activate_certificate(self.certificate_password)
