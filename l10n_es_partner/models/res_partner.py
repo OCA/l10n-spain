@@ -6,6 +6,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl-3).
 
 from odoo import api, fields, models
+from odoo.fields import Domain
 
 
 class ResPartner(models.Model):
@@ -27,7 +28,7 @@ class ResPartner(models.Model):
         name_pattern = (
             self.env["ir.config_parameter"]
             .sudo()
-            .get_param("l10n_es_partner.name_pattern", default="")
+            .get_str("l10n_es_partner.name_pattern")
         )
         if not name_pattern:
             return
@@ -44,7 +45,7 @@ class ResPartner(models.Model):
             name_pattern = (
                 self.env["ir.config_parameter"]
                 .sudo()
-                .get_param("l10n_es_partner.name_pattern", default="")
+                .get_str("l10n_es_partner.name_pattern")
             )
             if name_pattern:
                 name = name_pattern % {
@@ -73,22 +74,17 @@ class ResPartner(models.Model):
         return res
 
     @api.model
-    @api.readonly
-    def name_search(self, name="", domain=None, operator="ilike", limit=100):
-        # Inject the field comercial in _rec_names_search if not exists
-        if "comercial" not in self._rec_names_search:
-            self._rec_names_search.append("comercial")
-        return super().name_search(
-            name=name, domain=domain, operator=operator, limit=limit
-        )
-
-    @api.model
-    def get_views(self, views, options=None):
-        res = super().get_views(views, options)
-        # Inject the commercial field into the domain when searching by complete_name
-        if "search" in res["views"]:
-            res["views"]["search"]["arch"] = res["views"]["search"]["arch"].replace(
-                "'|', ('complete_name', 'ilike', self)",
-                "'|','|',('complete_name','ilike',self),('comercial','ilike',self)",
+    def _search_display_name(self, operator, value):
+        """Search by trade name as well, both in name searches and in the
+        name filter of the search view"""
+        domain = super()._search_display_name(operator, value)
+        if (
+            operator.endswith("like")
+            and value
+            and "comercial" not in self._rec_names_search
+        ):
+            aggregator = (
+                Domain.AND if operator in Domain.NEGATIVE_OPERATORS else Domain.OR
             )
-        return res
+            domain = aggregator([domain, Domain("comercial", operator, value)])
+        return domain

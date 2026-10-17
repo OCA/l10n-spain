@@ -4,9 +4,7 @@ Incluye la siguiente funcionalidad:
   él.
 - Permite definir un patrón del nombre a mostrar a partir del nombre y
   el nombre comercial de la empresa.
-- Añade los campos nombre largo, NIF y web a los bancos.
-- Añade los datos de los bancos españoles extraídos del registro oficial
-  del Banco de España (<http://goo.gl/mtx6ic>). El asistente realiza la
-  descarga automática de Internet, pero si por cualquier razón hay algún
-  problema, existe una copia local cuya última actualización fue el
-  26/10/2017.
+- Rellena el nombre y el BIC del banco de las cuentas bancarias a partir
+  del IBAN, con los datos de los bancos españoles del registro oficial
+  del Banco de España que incluye la librería *schwifty*, a través del
+  módulo *base_bank_from_iban*.

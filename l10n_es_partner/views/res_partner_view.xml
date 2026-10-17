@@ -8,7 +8,7 @@
                 <field
                     name="comercial"
                     placeholder="Trade name"
-                    invisible="not is_company"
+                    invisible="not is_company and parent_id"
                 />
             </field>
         </field>
@@ -21,7 +21,7 @@
                 <field
                     name="comercial"
                     placeholder="Trade name"
-                    invisible="not is_company"
+                    invisible="not is_company and parent_id"
                 />
             </field>
         </field>
