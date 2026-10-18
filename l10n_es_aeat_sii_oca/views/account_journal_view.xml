@@ -29,7 +29,7 @@
                     expr="//t[@id='account.JournalBodySalePurchase']//div[@name='kanban_primary_right']"
                     position="inside"
                 >
-                    <div class="row" t-if="dashboard.number_not_sent">
+                    <div t-if="dashboard.number_not_sent" class="row">
                         <div class="col overflow-hidden text-start">
                             <a
                                 type="object"
@@ -43,7 +43,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="row" t-if="dashboard.number_aeat_failed">
+                    <div t-if="dashboard.number_aeat_failed" class="row">
                         <div class="col overflow-hidden text-start">
                             <a
                                 type="object"
