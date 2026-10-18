@@ -496,7 +496,7 @@ class L10nEsAeatMod303Report(models.Model):
                     amount = prev_report.remaining_cuota_compensar
                     if prev_report.result_type == "C":
                         amount -= prev_report.resultado_liquidacion
-                    mod303.potential_cuota_compensar = amount if amount > 0 else 0
+                    mod303.potential_cuota_compensar = max(0, amount)
             if mod303.return_last_period:
                 cuota_compensar = mod303.potential_cuota_compensar
             elif (
