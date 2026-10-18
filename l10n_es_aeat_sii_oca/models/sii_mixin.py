@@ -294,8 +294,10 @@ class SiiMixin(models.AbstractModel):
         # so the sending to SII cron is executed as soon as possible
         if (
             self.company_id.filtered(
-                lambda company: company.send_mode == "auto"
-                or (company.send_mode == "delayed" and company.delay_time == 0.0)
+                lambda company: (
+                    company.send_mode == "auto"
+                    or (company.send_mode == "delayed" and company.delay_time == 0.0)
+                )
             )
             or send_date
         ):
