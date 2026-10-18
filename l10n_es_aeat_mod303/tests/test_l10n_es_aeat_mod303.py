@@ -2,6 +2,7 @@
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0
 
 import logging
+from typing import ClassVar
 
 from odoo import exceptions
 
@@ -16,7 +17,7 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
     # Set 'debug' attribute to True to easy debug this test
     # Do not forget to include '--log-handler aeat:DEBUG' in Odoo command line
     debug = False
-    taxes_sale = {
+    taxes_sale: ClassVar[dict] = {
         # tax code: (base, tax_amount)
         "S_IVA4B": (1000, 40),
         "S_IVA4B//neg": (-100, -4),
@@ -37,7 +38,7 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
         "S_IVA0_G_I": (2400, 0),
         "S_IVA0_SP_I": (2500, 0),
     }
-    taxes_purchase = {
+    taxes_purchase: ClassVar[dict] = {
         # tax code: (base, tax_amount)
         "P_IVA4_IC_BC": (100, 0),
         "P_IVA10_IC_BC": (200, 0),
@@ -76,7 +77,7 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
         "P_IVA21_IBI": (390, 81.9),
         # 'P_IVA12_AGR': (410, 49.2),
     }
-    taxes_result = {
+    taxes_result: ClassVar[dict] = {
         # Régimen General - Base imponible 4%
         "1": (3 * 1000) + (3 * 1100) - 3 * 100,  # S_IVA4B, S_IVA4S
         # Régimen General - Cuota 4%
@@ -401,7 +402,7 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
             {
                 "name": "9990000000303",
                 "company_id": cls.company.id,
-                "company_vat": "1234567890",
+                "company_vat": "123456789",
                 "contact_name": "Test owner",
                 "statement_type": "N",
                 "support_type": "T",
@@ -620,7 +621,7 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
             {
                 "name": "3030000020251",
                 "company_id": self.company.id,
-                "company_vat": "1234567890",
+                "company_vat": "123456789",
                 "contact_name": "Test owner",
                 "statement_type": "N",
                 "support_type": "T",

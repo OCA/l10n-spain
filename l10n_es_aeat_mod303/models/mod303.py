@@ -301,14 +301,14 @@ class L10nEsAeatMod303Report(models.Model):
         for record in self:
             if record.use_aeat_account:
                 record.marca_sepa = "0"
-            elif record.partner_bank_id.bank_id.country == self.env.ref("base.es"):
+            elif record.partner_bank_id.country_id == self.env.ref("base.es"):
                 record.marca_sepa = "1"
             elif (
-                record.partner_bank_id.bank_id.country
+                record.partner_bank_id.country_id
                 in self.env.ref("base.europe").country_ids
             ):
                 record.marca_sepa = "2"
-            elif record.partner_bank_id.bank_id.country:
+            elif record.partner_bank_id.country_id:
                 record.marca_sepa = "3"
             else:
                 record.marca_sepa = "0"
@@ -557,13 +557,12 @@ class L10nEsAeatMod303Report(models.Model):
         """Don't populate results for fields 79-99 for reports different from
         last of the year one or when not exonerated of presenting model 390.
         """
-        if 79 <= map_line.field_number <= 99 or map_line.field_number == 125:
-            if (
-                self.exonerated_390 == "2"
-                or not self.has_operation_volume
-                or self.period_type not in ("4T", "12")
-            ):
-                return self.env["account.move.line"]
+        if (79 <= map_line.field_number <= 99 or map_line.field_number == 125) and (
+            self.exonerated_390 == "2"
+            or not self.has_operation_volume
+            or self.period_type not in ("4T", "12")
+        ):
+            return self.env["account.move.line"]
         return super()._get_tax_lines(
             date_start,
             date_end,

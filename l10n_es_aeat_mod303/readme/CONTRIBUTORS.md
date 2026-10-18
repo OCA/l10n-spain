@@ -6,6 +6,7 @@
   - Antonio Espinosa
   - Luis M. Ontalba
   - Pedro M. Baeza
+  - Carlos Dauden
 - [Sygel](https://www.sygel.es):
   - Harald Panten
   - Valentin Vinagre

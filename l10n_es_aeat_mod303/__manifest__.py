@@ -7,7 +7,7 @@
 
 {
     "name": "AEAT modelo 303",
-    "version": "19.0.1.0.2",
+    "version": "20.0.1.0.0",
     "category": "Accounting",
     "development_status": "Mature",
     "author": "Guadaltech,"
@@ -37,8 +37,7 @@
         "data/l10n.es.aeat.mod303.report.activity.code.csv",
         "views/mod303_view.xml",
         "views/l10n_es_aeat_mod303_report_activity_code_data_views.xml",
-        "security/l10n_es_aeat_mod303_security.xml",
-        "security/ir.model.access.csv",
+        "security/ir.access.csv",
     ],
     "maintainers": ["pedrobaeza"],
     "installable": True,
