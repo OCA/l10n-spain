@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!-- License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
 <odoo>
     <!-- List view -->
@@ -29,8 +29,8 @@
         </field>
     </record>
     <record
-        model="ir.actions.act_window"
         id="action_aeat_sii_mapping_registration_keys"
+        model="ir.actions.act_window"
     >
         <field name="name">Aeat SII Registration Keys</field>
         <field name="res_model">aeat.sii.mapping.registration.keys</field>

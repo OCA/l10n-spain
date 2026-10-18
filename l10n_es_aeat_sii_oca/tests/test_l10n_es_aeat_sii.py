@@ -500,7 +500,6 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
                 self.assertTrue(invoice.sii_dua_invoice)
             else:
                 self.assertFalse(invoice.sii_dua_invoice)
-        return
 
     def test_sii_description(self):
         company = self.invoice.company_id
@@ -560,9 +559,8 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
         for tax_agency in self.tax_agencies:
             invoice.company_id.tax_agency_id = tax_agency
             self._check_binding_address(invoice)
-        else:
-            invoice.company_id.tax_agency_id = False
-            self._check_binding_address(invoice)
+        invoice.company_id.tax_agency_id = False
+        self._check_binding_address(invoice)
 
     def test_refund_sii_refund_type(self):
         invoice = self.env["account.move"].create(

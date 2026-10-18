@@ -592,8 +592,10 @@ class AccountMove(models.Model):
             # Create trigger if any company needs to send doc to SII now
             # so the sending to SII cron is executed as soon as possible
             if invoices.company_id.filtered(
-                lambda company: company.send_mode == "auto"
-                or (company.send_mode == "delayed" and company.delay_time == 0.0)
+                lambda company: (
+                    company.send_mode == "auto"
+                    or (company.send_mode == "delayed" and company.delay_time == 0.0)
+                )
             ):
                 self.env.ref("l10n_es_aeat_sii_oca.invoice_send_to_sii")._trigger()
 
