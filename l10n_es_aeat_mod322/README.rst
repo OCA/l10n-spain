@@ -82,11 +82,12 @@ Authors
 Contributors
 ------------
 
-- Enric Tobella
-- `NuoBiT <https://www.nuobit.com>`__:
+-  Enric Tobella
+-  `NuoBiT <https://www.nuobit.com>`__:
 
-  * Frank Cespedes
-  * Eric Antones
+   -  Deniz Gallo dgallo@nuobit.com
+   -  Frank Cespedes fcespedes@nuobit.com
+   -  Eric Antones eantones@nuobit.com
 
 Maintainers
 -----------
