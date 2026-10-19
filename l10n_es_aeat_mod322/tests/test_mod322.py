@@ -774,6 +774,22 @@ class TestL10nEsAeatMod322(TestL10nEsAeatMod322Base):
             self.assertFalse(line.move_line_ids, f"Box {line.field_number}")
             self.assertEqual(line.amount, 0, f"Box {line.field_number}")
 
+    def test_resultado_liquidacion_casilla_112(self):
+        """[70] = [68] - [69] - [112], with [112] only when the taxpayer is
+        entitled to deduct it, and the counterpart account follows [70]."""
+        self.model322.button_calculate()
+        cuota = self.model322.cuota_liquidacion
+        self.assertGreater(cuota, 0)
+        self.assertAlmostEqual(self.model322.resultado_liquidacion, cuota, 2)
+        self.model322.casilla_112 = cuota + 100
+        self.assertAlmostEqual(self.model322.resultado_liquidacion, cuota, 2)
+        self.assertEqual(self.model322.counterpart_account_id, self.accounts["475000"])
+        self.model322.deduct_payment_petrol_delivery = True
+        self.assertAlmostEqual(self.model322.resultado_liquidacion, -100, 2)
+        self.assertTrue(self.model322.counterpart_account_id.code.startswith("4700"))
+        with self.assertRaises(exceptions.ValidationError):
+            self.model322.casilla_112 = -1
+
 
 class TestL10nEsAeatMod322Map2023(TestL10nEsAeatMod322Base):
     """The 2023 map and export config must be kept for periods up to 09/2024."""

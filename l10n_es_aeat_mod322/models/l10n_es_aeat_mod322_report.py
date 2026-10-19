@@ -98,6 +98,24 @@ class L10nEsAeatMod322Report(models.Model):
         store=True,
         compute="_compute_cuota_liquidacion",
     )
+    deduct_payment_petrol_delivery = fields.Boolean(
+        string="Deduct payment on account of fuel deliveries",
+        help="Taxpayer entitled to deduct the payment on account of deliveries "
+        "of petrol, diesel and biofuels after the completion of a warehouse "
+        "regime other than the customs one",
+    )
+    casilla_112 = fields.Float(
+        string="[112] Payment on account of fuel deliveries",
+        default=0,
+        help="Payment on account of deliveries of petrol, diesel and biofuels "
+        "after the completion of a warehouse regime other than the customs one",
+    )
+    resultado_liquidacion = fields.Float(
+        string="[70] Self-assessment result",
+        store=True,
+        compute="_compute_resultado_liquidacion",
+        help="[68] - [69] - [112]",
+    )
     operaciones_ejercicio = fields.Float(
         string="[88] Operaciones realizadas en el ejercicio",
         store=True,
@@ -132,15 +150,25 @@ class L10nEsAeatMod322Report(models.Model):
                 )
             )
 
+    @api.constrains("casilla_112")
+    def _check_casilla_112(self):
+        if self.filtered(lambda x: x.casilla_112 < 0):
+            raise ValidationError(
+                self.env._(
+                    "The payment on account of fuel deliveries must be "
+                    "indicated as a positive number."
+                )
+            )
+
     def _compute_allow_posting(self):
         self.allow_posting = True
 
-    @api.depends("company_id", "cuota_liquidacion")
+    @api.depends("company_id", "resultado_liquidacion")
     def _compute_counterpart_account_id(self):
         for record in self:
             account_prefix = "4750"
             result = float_compare(
-                record.cuota_liquidacion,
+                record.resultado_liquidacion,
                 0,
                 precision_digits=record.currency_id.decimal_places,
             )
@@ -175,6 +203,16 @@ class L10nEsAeatMod322Report(models.Model):
         for record in self:
             record.cuota_liquidacion = record.currency_id.round(
                 record.atribuible_estado - record.cuota_compensar
+            )
+
+    @api.depends("cuota_liquidacion", "deduct_payment_petrol_delivery", "casilla_112")
+    def _compute_resultado_liquidacion(self):
+        for record in self:
+            casilla_112 = (
+                record.casilla_112 if record.deduct_payment_petrol_delivery else 0.0
+            )
+            record.resultado_liquidacion = record.currency_id.round(
+                record.cuota_liquidacion - casilla_112
             )
 
     @api.depends("total_devengado", "total_deducir")

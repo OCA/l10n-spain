@@ -63,6 +63,28 @@
                             options="{'currency_field': 'currency_id'}"
                             readonly="state == 'done'"
                         />
+                        <field
+                            name="cuota_liquidacion"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+                        <field
+                            name="deduct_payment_petrol_delivery"
+                            invisible="year &lt; 2026 or (year == 2026 and period_type == '01')"
+                            readonly="state == 'done'"
+                        />
+                        <field
+                            name="casilla_112"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                            invisible="not deduct_payment_petrol_delivery"
+                            readonly="state == 'done'"
+                        />
+                        <field
+                            name="resultado_liquidacion"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
                     </group>
 
                     <group>
