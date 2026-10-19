@@ -352,7 +352,9 @@ class VerifactuInvoiceEntry(models.Model):
         )
         for verifactu_response_line in verifactu_response_lines:
             invoice_num = verifactu_response_line["IDFactura"]["NumSerieFactura"]
-            matching_entries = self.filtered(lambda r: r.document_name == invoice_num)
+            matching_entries = self.filtered(
+                lambda r: r.document_name == invoice_num
+            ).sorted(lambda x: x.create_date, reverse=True)
             if not matching_entries:
                 continue
             verifactu_invoice_entry = matching_entries[0]  # Assume one match
