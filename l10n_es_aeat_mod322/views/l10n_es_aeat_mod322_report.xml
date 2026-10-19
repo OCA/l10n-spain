@@ -64,6 +64,13 @@
                             readonly="state == 'done'"
                         />
                         <field
+                            name="casilla_77"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                            invisible="year &lt; 2026 or (year == 2026 and period_type == '01')"
+                            readonly="state == 'done'"
+                        />
+                        <field
                             name="cuota_liquidacion"
                             widget="monetary"
                             options="{'currency_field': 'currency_id'}"
