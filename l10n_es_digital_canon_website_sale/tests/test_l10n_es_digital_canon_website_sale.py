@@ -3,6 +3,9 @@
 from odoo.tests import tagged
 
 from odoo.addons.base.tests.common import BaseCommon
+from odoo.addons.website.tools import MockRequest
+
+from ..controllers.delivery import WebsiteSaleDelivery
 
 
 @tagged("post_install", "-at_install")
@@ -49,3 +52,12 @@ class TestL10nEsDigitalCanonWebsiteSale(BaseCommon):
             {"name": "French Customer", "country_id": self.env.ref("base.fr").id}
         )
         self.assertNotIn(self.canon_tax, self.order.order_line.tax_id)
+
+    def test_checkout_summary_taxes_exclude_canon(self):
+        with MockRequest(self.env, website=self.website):
+            values = WebsiteSaleDelivery()._order_summary_values(self.order)
+            expected = self.env["ir.qweb.field.monetary"].value_to_html(
+                self.order.amount_tax - self.canon_tax.amount,
+                {"display_currency": self.order.currency_id},
+            )
+        self.assertEqual(values["amount_tax"], expected)
