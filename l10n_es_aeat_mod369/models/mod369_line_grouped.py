@@ -138,29 +138,29 @@ class L10nEsAeatMod369LineGrouped(models.Model):
 
     @api.depends("vat_type")
     def _compute_vat_type_str(self):
+        export_obj = self.env["l10n.es.aeat.report.export_to_boe"]
         for line in self:
-            vat_type_split = str(line.vat_type).split(".")
-            line.vat_type_str = vat_type_split[0].zfill(3) + vat_type_split[1].zfill(2)
+            line.vat_type_str = export_obj._format_number(line.vat_type or 0.0, 3, 2)
 
     @api.depends("base")
     def _compute_base_str(self):
+        export_obj = self.env["l10n.es.aeat.report.export_to_boe"]
         for line in self:
-            base_split = str(line.base).split(".")
-            line.base_str = base_split[0].zfill(15) + base_split[1].zfill(2)
+            line.base_str = export_obj._format_number(line.base or 0.0, 15, 2)
 
     @api.depends("amount")
     def _compute_amount_str(self):
+        export_obj = self.env["l10n.es.aeat.report.export_to_boe"]
         for line in self:
-            amount_split = str(line.amount).split(".")
-            line.amount_str = amount_split[0].zfill(15) + amount_split[1].zfill(2)
+            line.amount_str = export_obj._format_number(line.amount or 0.0, 15, 2)
 
     @api.depends("tax_correction")
     def _compute_tax_correction_str(self):
+        export_obj = self.env["l10n.es.aeat.report.export_to_boe"]
         for line in self:
-            tax_correction_split = str(line.tax_correction).split(".")
-            line.tax_correction_str = tax_correction_split[0].zfill(
-                15
-            ) + tax_correction_split[1].zfill(2)
+            line.tax_correction_str = export_obj._format_number(
+                line.tax_correction or 0.0, 15, 2
+            )
 
     @api.depends("oss_country_id", "oss_country_id.code")
     def _compute_country_code(self):
