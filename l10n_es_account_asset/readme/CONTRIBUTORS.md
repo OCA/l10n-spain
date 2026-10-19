@@ -3,6 +3,7 @@
   - Antonio Espinosa
   - João Marques
   - Carlos Lopez
+  - Carlos Dauden
 - [Sygel](https://www.sygel.es):
   - Valentin Vinagre
   - Manuel Regidor

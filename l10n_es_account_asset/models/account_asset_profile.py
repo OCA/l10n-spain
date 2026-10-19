@@ -1,6 +1,8 @@
 # Copyright 2019 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+from typing import ClassVar
+
 from odoo import api, fields, models
 from odoo.tools import float_compare
 
@@ -8,7 +10,7 @@ from odoo.tools import float_compare
 class AccountAssetProfile(models.Model):
     _inherit = "account.asset.profile"
 
-    METHOD_PERIOD_MAPPING = {
+    METHOD_PERIOD_MAPPING: ClassVar[dict] = {
         "month": 1,
         "quarter": 4,
         "year": 12,
