@@ -92,6 +92,12 @@ class L10nEsAeatMod322Report(models.Model):
         help="Fee to compensate for prior periods, in which his statement "
         "was to return and compensation back option was chosen",
     )
+    casilla_77 = fields.Float(
+        string="[77] VAT deferred (Settle by customs)",
+        default=0,
+        help="Import VAT settled by the customs and pending to be paid, "
+        "when the payment is deferred to the self-assessment",
+    )
     cuota_liquidacion = fields.Float(
         string="[68] Result",
         default=0,
@@ -150,6 +156,16 @@ class L10nEsAeatMod322Report(models.Model):
                 )
             )
 
+    @api.constrains("casilla_77")
+    def _check_casilla_77(self):
+        if self.filtered(lambda x: x.casilla_77 < 0):
+            raise ValidationError(
+                self.env._(
+                    "The import VAT pending to be paid must be indicated as a "
+                    "positive number."
+                )
+            )
+
     @api.constrains("casilla_112")
     def _check_casilla_112(self):
         if self.filtered(lambda x: x.casilla_112 < 0):
@@ -198,11 +214,11 @@ class L10nEsAeatMod322Report(models.Model):
                 or [0.0]
             )
 
-    @api.depends("atribuible_estado", "cuota_compensar")
+    @api.depends("atribuible_estado", "casilla_77", "cuota_compensar")
     def _compute_cuota_liquidacion(self):
         for record in self:
             record.cuota_liquidacion = record.currency_id.round(
-                record.atribuible_estado - record.cuota_compensar
+                record.atribuible_estado + record.casilla_77 - record.cuota_compensar
             )
 
     @api.depends("cuota_liquidacion", "deduct_payment_petrol_delivery", "casilla_112")

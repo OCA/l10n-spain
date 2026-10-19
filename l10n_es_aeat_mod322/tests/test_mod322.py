@@ -791,6 +791,16 @@ class TestL10nEsAeatMod322(TestL10nEsAeatMod322Base):
         with self.assertRaises(exceptions.ValidationError):
             self.model322.casilla_112 = -1
 
+    def test_casilla_77(self):
+        """[68] = [65] + [77] - [66] + [67], and so [70] includes [77]."""
+        self.model322.button_calculate()
+        cuota = self.model322.cuota_liquidacion
+        self.model322.casilla_77 = 50
+        self.assertAlmostEqual(self.model322.cuota_liquidacion, cuota + 50, 2)
+        self.assertAlmostEqual(self.model322.resultado_liquidacion, cuota + 50, 2)
+        with self.assertRaises(exceptions.ValidationError):
+            self.model322.casilla_77 = -1
+
     def _create_report_2026(self, period, date_start, date_end):
         # Not a copy: export_config_id is copied and would not follow the dates
         return self.env["l10n.es.aeat.mod322.report"].create(
@@ -835,7 +845,13 @@ class TestL10nEsAeatMod322(TestL10nEsAeatMod322Base):
         self.assertEqual(report_01.export_config_id, config_2024)
         report_02 = self._create_report_2026("02", "2026-02-01", "2026-02-28")
         self.assertEqual(report_02.export_config_id, config_2026)
-        report_02.write({"deduct_payment_petrol_delivery": True, "casilla_112": 100})
+        report_02.write(
+            {
+                "casilla_77": 50,
+                "deduct_payment_petrol_delivery": True,
+                "casilla_112": 100,
+            }
+        )
         pages = self._export_pages_2026(report_02)
         self.assertEqual(len(pages["01"]), 1800)
         self.assertEqual(len(pages["02"]), 2300)
@@ -843,10 +859,12 @@ class TestL10nEsAeatMod322(TestL10nEsAeatMod322Base):
         # Page 1: declaration type (13) and flags (129-136), notes 3 to 8
         self.assertEqual(pages["01"][12], " ")
         self.assertEqual(pages["01"][128:136], " 1220001")
-        # Page 2: [68] (120), [112] (154) and [70] = [68] - [69] - [112] (171)
-        self.assertEqual(pages["02"][119:136], "00000000000000000")
+        # Page 2: [77] (69), [68] = [65] + [77] - [66] + [67] (120), [112] (154)
+        # and [70] = [68] - [69] - [112] (171)
+        self.assertEqual(pages["02"][68:85], "00000000000005000")
+        self.assertEqual(pages["02"][119:136], "00000000000005000")
         self.assertEqual(pages["02"][153:170], "00000000000010000")
-        self.assertEqual(pages["02"][170:187], "N0000000000010000")
+        self.assertEqual(pages["02"][170:187], "N0000000000005000")
         # Last period: page 3 and the year-end flags
         report_12 = self._create_report_2026("12", "2026-12-01", "2026-12-31")
         self.assertEqual(report_12.export_config_id, config_2026)
