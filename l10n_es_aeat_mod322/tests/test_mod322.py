@@ -2,6 +2,7 @@
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0
 
 import logging
+import re
 
 from odoo import exceptions, fields
 
@@ -789,6 +790,70 @@ class TestL10nEsAeatMod322(TestL10nEsAeatMod322Base):
         self.assertTrue(self.model322.counterpart_account_id.code.startswith("4700"))
         with self.assertRaises(exceptions.ValidationError):
             self.model322.casilla_112 = -1
+
+    def _create_report_2026(self, period, date_start, date_end):
+        # Not a copy: export_config_id is copied and would not follow the dates
+        return self.env["l10n.es.aeat.mod322.report"].create(
+            {
+                "name": f"9992026{period}0322",
+                "company_id": self.company.id,
+                "company_vat": "ESA12345674",
+                "contact_name": "Test owner",
+                "statement_type": "N",
+                "support_type": "T",
+                "contact_phone": "911234455",
+                "year": 2026,
+                "period_type": period,
+                "date_start": date_start,
+                "date_end": date_end,
+                "journal_id": self.journal_misc.id,
+            }
+        )
+
+    def _export_pages_2026(self, report):
+        report.button_calculate()
+        export_to_boe = self.env["l10n.es.aeat.report.export_to_boe"].create(
+            {"name": "test_export_to_boe_2026.txt"}
+        )
+        content = export_to_boe._export_config(report, report.export_config_id)
+        content = content.decode("iso-8859-1")
+        pages = {}
+        for page in ("01", "02", "03"):
+            match = re.search(f"<T322{page}000>.*?</T322{page}000>", content)
+            pages[page] = match and match.group()
+        return pages
+
+    def test_export_boe_2026(self):
+        """Format DR322e26v11 (Orden HAC/27/2026) applies from February 2026."""
+        config_2024 = self.env.ref(
+            "l10n_es_aeat_mod322.aeat_mod322_2024_10_main_export_config"
+        )
+        config_2026 = self.env.ref(
+            "l10n_es_aeat_mod322.aeat_mod322_2026_02_main_export_config"
+        )
+        report_01 = self._create_report_2026("01", "2026-01-01", "2026-01-31")
+        self.assertEqual(report_01.export_config_id, config_2024)
+        report_02 = self._create_report_2026("02", "2026-02-01", "2026-02-28")
+        self.assertEqual(report_02.export_config_id, config_2026)
+        report_02.write({"deduct_payment_petrol_delivery": True, "casilla_112": 100})
+        pages = self._export_pages_2026(report_02)
+        self.assertEqual(len(pages["01"]), 1800)
+        self.assertEqual(len(pages["02"]), 2300)
+        self.assertFalse(pages["03"])
+        # Page 1: declaration type (13) and flags (129-136), notes 3 to 8
+        self.assertEqual(pages["01"][12], " ")
+        self.assertEqual(pages["01"][128:136], " 1220001")
+        # Page 2: [68] (120), [112] (154) and [70] = [68] - [69] - [112] (171)
+        self.assertEqual(pages["02"][119:136], "00000000000000000")
+        self.assertEqual(pages["02"][153:170], "00000000000010000")
+        self.assertEqual(pages["02"][170:187], "N0000000000010000")
+        # Last period: page 3 and the year-end flags
+        report_12 = self._create_report_2026("12", "2026-12-01", "2026-12-31")
+        self.assertEqual(report_12.export_config_id, config_2026)
+        pages = self._export_pages_2026(report_12)
+        self.assertEqual(len(pages["01"]), 1800)
+        self.assertEqual(len(pages["03"]), 1600)
+        self.assertEqual(pages["01"][128:136], " 1223202")
 
 
 class TestL10nEsAeatMod322Map2023(TestL10nEsAeatMod322Base):

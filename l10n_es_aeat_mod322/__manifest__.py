@@ -27,6 +27,8 @@
         "data/2024-10/l10n.es.aeat.map.tax.line.csv",
         "data/2024-10/aeat.model.export.config.csv",
         "data/2024-10/aeat.model.export.config.line.csv",
+        "data/2026-02/aeat.model.export.config.csv",
+        "data/2026-02/aeat.model.export.config.line.csv",
     ],
     "demo": [],
 }
