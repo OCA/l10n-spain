@@ -219,6 +219,14 @@ class TestL10nEsAeatMod369Base(TestL10nEsAeatModBase):
 
             total_sale_invoices_tax += sale_invoice_by_key.amount_tax
         self.assertEqual(self.model369.total_amount, total_sale_invoices_tax)
+        # Export to BOE
+        export_to_boe = self.env["l10n.es.aeat.report.export_to_boe"].create(
+            {"name": "test_export_to_boe.txt"}
+        )
+        export_config = self.env.ref(
+            "l10n_es_aeat_mod369.aeat_mod369_2022_main_export_config"
+        )
+        self.assertTrue(export_to_boe._export_config(self.model369, export_config))
 
     def create_account_move(self):
         self.model369.journal_id = self.journal_misc.id
