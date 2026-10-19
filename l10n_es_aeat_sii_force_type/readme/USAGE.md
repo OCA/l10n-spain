@@ -1,5 +1,5 @@
 Desde la pestaña *SII* de la configuración de una posición fiscal, se
-puede configurar si *Forzar tipo de comunicación*, en cuyo cayo se podrá
+puede configurar si *Forzar tipo de comunicación*, en cuyo caso se podrá
 especificar también un *Tipo de comunicación por defecto*. Cuando se
 realice una factura correspondiente a una posición fiscal configurada de
 esta manera, se podrá forzar un determinado tipo de configuración, que

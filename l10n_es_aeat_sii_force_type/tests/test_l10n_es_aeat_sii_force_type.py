@@ -20,15 +20,11 @@ class TestL10nEsAeatSiiForceType(common.TransactionCase):
             )
         )
         cls.company = cls.env.ref("base.main_company")
-        if not cls.company.chart_template_id:
-            # Load a CoA if there's none in the company
-            coa = cls.env.ref("l10n_generic_coa.configurable_chart_template", False)
-            if not coa:
-                # Load the first available CoA
-                coa = cls.env["account.chart.template"].search(
-                    [("visible", "=", True)], limit=1
-                )
-            coa.try_loading(company=cls.company, install_demo=False)
+        if not cls.company.chart_template:
+            # Load the Spanish chart of accounts if the company has none
+            cls.env["account.chart.template"].try_loading(
+                "es_pymes", company=cls.company, install_demo=False
+            )
         cls.company.sii_enabled = True
         cls.company.vat = "ES98765432M"
         cls.fiscal_position = cls.env["account.fiscal.position"].create(
@@ -73,6 +69,16 @@ class TestL10nEsAeatSiiForceType(common.TransactionCase):
         self.invoice.fiscal_position_id = self.fiscal_position
         self.assertEqual(self.fiscal_position.sii_forced_communication_type, "A1")
         self.assertEqual(self.invoice._get_aeat_header().get("TipoComunicacion"), "A1")
+
+    @mute_logger("odoo.models", "odoo.models.unlink", "odoo.addons.base.ir.ir_model")
+    def test_01b_get_aeat_header_cancellation(self):
+        self.fiscal_position.sii_allow_force_communication_type = True
+        self.fiscal_position.sii_forced_communication_type = "A0"
+        self.assertEqual(self.invoice.sii_force_communication_type, "A0")
+        header = self.invoice._get_aeat_header(cancellation=True)
+        self.assertNotIn("TipoComunicacion", header)
+        header = self.invoice._get_aeat_header(tipo_comunicacion="A1")
+        self.assertEqual(header.get("TipoComunicacion"), "A0")
 
     def test_02_invoice_form_value_update(self):
         with Form(self.invoice) as invoice_form:
