@@ -1,7 +1,8 @@
 # Copyright 2023 Tecnativa - Ernesto García Medina
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-from datetime import datetime, timedelta
+from datetime import timedelta
 
+from odoo import fields
 from odoo.exceptions import UserError
 from odoo.tests import tagged
 
@@ -12,30 +13,6 @@ from odoo.addons.account_payment_order.tests.test_payment_order_outbound import 
 
 @tagged("post_install", "-at_install")
 class TestPaymentOrderOutboundBaseAEF(TestPaymentOrderOutboundBase):
-    @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
-        cls.bank_la_banque_postale = cls.env["res.bank"].create(
-            {
-                "name": "La Banque Postale",
-                "bic": "PSSTFRPPXXX",
-                "country": cls.env.ref("base.fr").id,
-                "street": "115 rue de Sèvres",
-                "zip": "75006",
-                "city": "Paris",
-            }
-        )
-        cls.bank_societe_generale = cls.env["res.bank"].create(
-            {
-                "name": "Société Générale",
-                "bic": "SOGEFRPPXXX",
-                "country": cls.env.ref("base.fr").id,
-                "street": "1 avenue du Roi Fabien 1er",
-                "zip": "75009",
-                "city": "Paris",
-            }
-        )
-
     def order_creation(self, date_prefered):
         # Open invoice
         self.invoice.action_post()
@@ -52,7 +29,10 @@ class TestPaymentOrderOutboundBaseAEF(TestPaymentOrderOutboundBase):
             self.env["account.payment.line.create"]
             .with_context(active_model="account.payment.order", active_id=order.id)
             .create(
-                {"date_type": "move", "filter_date": datetime.now() + timedelta(days=1)}
+                {
+                    "date_type": "move",
+                    "filter_date": fields.Datetime.now() + timedelta(days=1),
+                }
             )
         )
         line_create.payment_mode = "any"
@@ -62,6 +42,13 @@ class TestPaymentOrderOutboundBaseAEF(TestPaymentOrderOutboundBase):
         order.draft2open()
         order.open2generated()
         order.generated2uploaded()
+        return order
+
+    def _payment_file_lines(self, order):
+        attachment = self.env["ir.attachment"].search(
+            [("res_model", "=", "account.payment.order"), ("res_id", "=", order.id)]
+        )
+        return attachment.raw.decode("Windows-1252").split("\r\n")
 
     def set_payment_mode_aef(self):
         self.mode.write(
@@ -87,8 +74,9 @@ class TestPaymentOrderOutboundBaseAEF(TestPaymentOrderOutboundBase):
         self.set_payment_mode_aef()
         bank_journal = self.env["res.partner.bank"].create(
             {
-                "acc_number": "FR76 4242 4242 4242 4242 4242 424",
-                "bank_id": self.bank_la_banque_postale.id,
+                "account_number": "FR76 4242 4242 4242 4242 4242 424",
+                "bank_name": "La Banque Postale",
+                "bank_bic": "PSSTFRPPXXX",
                 "partner_id": self.company.partner_id.id,
             }
         )
@@ -113,12 +101,22 @@ class TestPaymentOrderOutboundBaseAEF(TestPaymentOrderOutboundBase):
                         0,
                         0,
                         {
-                            "acc_number": "FR20 1242 1242 1242 1242 1242 124",
-                            "bank_id": self.bank_la_banque_postale.id,
+                            "account_number": "FR20 1242 1242 1242 1242 1242 124",
+                            "bank_name": "La Banque Postale",
+                            "bank_bic": "PSSTFRPPXXX",
                         },
                     )
                 ],
             }
         )
         self.invoice.partner_bank_id = self.partner.bank_ids[-1].id
-        self.order_creation(False)
+        order = self.order_creation(False)
+        lines = self._payment_file_lines(order)
+        self.assertEqual([line[:1] for line in lines], list("1234567") + [""])
+        # Charge account of the company
+        self.assertEqual(lines[0][102:136].strip(), "FR7642424242424242424242424")
+        # Transfer to the IBAN and BIC of the supplier
+        self.assertEqual(lines[4][1], "T")
+        self.assertEqual(lines[4][2:36].strip(), "FR2012421242124212421242124")
+        self.assertEqual(lines[4][36:47], "PSSTFRPPXXX")
+        self.assertEqual(lines[4][47:81].strip(), "")

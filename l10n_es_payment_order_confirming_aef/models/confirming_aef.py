@@ -19,7 +19,7 @@ class ConfirmingAEF:
             validation_errors.append(
                 self._(
                     "- Propietario de la cuenta no establecido para la cuenta %s.",
-                    self.record.company_partner_bank_id.acc_number,
+                    self.record.company_partner_bank_id.account_number,
                 )
             )
         if not self.partner_bank.country_id:
@@ -138,7 +138,7 @@ class ConfirmingAEF:
         contract_cxb = self.record.payment_mode_id.aef_confirming_contract
         text += self._aef_convert_text(contract_cxb, 20, "left")
         # 103 - 136 Cuenta de cargo
-        cuenta = self.record.company_partner_bank_id.acc_number.replace(" ", "")
+        cuenta = self.record.company_partner_bank_id.account_number.replace(" ", "")
         text += self._aef_convert_text(cuenta, 34, "left")
         # 137 - 139 Código divisa
         currency = self.record.journal_id.currency_id or self.record.company_currency_id
@@ -216,10 +216,10 @@ class ConfirmingAEF:
         text += self.record.payment_mode_id.aef_confirming_type
         # 3 - 36 IBAN
         iban = (
-            line.partner_bank_id.acc_number.replace(" ", "")
+            line.partner_bank_id.account_number.replace(" ", "")
             if (
                 self.record.payment_mode_id.aef_confirming_type == "T"
-                and line.partner_bank_id.acc_type == "iban"
+                and line.partner_bank_id.account_type == "iban"
             )
             else ""
         )
