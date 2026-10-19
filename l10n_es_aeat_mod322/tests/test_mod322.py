@@ -3,7 +3,7 @@
 
 import logging
 
-from odoo import exceptions
+from odoo import exceptions, fields
 
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
     TestL10nEsAeatModBase,
@@ -27,15 +27,14 @@ class TestL10nEsAeatMod322Base(TestL10nEsAeatModBase):
         "S_IVA21B": (1400, 294),
         "S_IVA21B//neg": (-140, -29.4),
         "S_IVA21S": (1500, 315),
-        "S_IVA21ISP": (1600, 336),
         "S_REQ05": (1700, 8.5),
         "S_REQ014": (1800, 25.2),
         "S_REQ52": (1900, 98.8),
-        "S_IVA0_E": (2000, 0),
+        "S_IVA0_G_E": (2000, 0),
         "S_IVA_E": (2100, 0),
         "S_IVA_NS": (2200, 0),
         "S_IVA0_ISP": (2300, 0),
-        "S_IVA0_IC": (2400, 0),
+        "S_IVA0_G_I": (2400, 0),
         "S_IVA0_SP_I": (2500, 0),
         "S_IVA0": (2600, 0),
     }
@@ -89,11 +88,11 @@ class TestL10nEsAeatMod322Base(TestL10nEsAeatModBase):
         # Régimen General - Cuota 10% Intragrupo
         "6": 120 + 130 - 12,  # S_IVA10B, S_IVA10S
         # Régimen General - Base imponible 21%
-        # S_IVA21B, S_IVA21S, S_IVA21ISP Intragrupo
-        "7": 1400 + 1500 + 1600 - 140,
+        # S_IVA21B, S_IVA21S Intragrupo
+        "7": 1400 + 1500 - 140,
         # Régimen General - Cuota 21% Intragrupo
-        # S_IVA21B, S_IVA21S, S_IVA21ISP
-        "9": 294 + 315 + 336 - 29.4,
+        # S_IVA21B, S_IVA21S
+        "9": 294 + 315 - 29.4,
         # Modificación bases y cuotas - Base (Compras y ventas)  Resto
         "19": 0,
         # Modificación bases y cuotas - Cuota (Compras y ventas) Resto
@@ -108,11 +107,11 @@ class TestL10nEsAeatMod322Base(TestL10nEsAeatModBase):
         # Régimen General - Cuota 10% Resto
         "17": 2 * 120 + 2 * 130 - 2 * 12,  # S_IVA10B, S_IVA10S
         # Régimen General - Base imponible 21%
-        # S_IVA21B, S_IVA21S, S_IVA21ISP Resto
-        "18": 2 * 1400 + 2 * 1500 + 2 * 1600 - 2 * 140,
+        # S_IVA21B, S_IVA21S Resto
+        "18": 2 * 1400 + 2 * 1500 - 2 * 140,
         # Régimen General - Cuota 21% Resto
-        # S_IVA21B, S_IVA21S, S_IVA21ISP
-        "20": 2 * 294 + 2 * 315 + 2 * 336 - 2 * 29.4,
+        # S_IVA21B, S_IVA21S
+        "20": 2 * 294 + 2 * 315 - 2 * 29.4,
         "21": (
             (3 * 100)
             + (3 * 200)
@@ -166,9 +165,8 @@ class TestL10nEsAeatMod322Base(TestL10nEsAeatModBase):
                 - 120
                 + 1400  # S_IVA10B, S_IVA10S
                 + 1500
-                + 1600
                 - 140
-                + 100  # S_IVA21B,S_IVA21S,S_IVA21ISP
+                + 100  # S_IVA21B, S_IVA21S
                 + 200
                 + 300
                 + 400  # P_IVAx_IC_BC_2
@@ -197,9 +195,8 @@ class TestL10nEsAeatMod322Base(TestL10nEsAeatModBase):
                 - 12
                 + 294  # S_IVA10B, S_IVA10S
                 + 315
-                + 336
                 - 29.4
-                + 4  # S_IVA21B, S_IVA21S, S_IVA21ISP
+                + 4  # S_IVA21B, S_IVA21S
                 + 20
                 + 63
                 + 16  # P_IVAx_IC_BC_2
@@ -449,29 +446,31 @@ class TestL10nEsAeatMod322Base(TestL10nEsAeatModBase):
         # Regularización por aplicación del porcentaje definitivo de prorrata
         "61": 0,
         # Entregas intra. de bienes y servicios - Base ventas
-        "71": (2 * 2400) + (2 * 2500),  # S_IVA0_IC, S_IVA0_SP_I
+        # S_IVA0_G_I, S_IVA0_SP_I
+        "71": (2 * 2400) + (2 * 2500),
         # Exportaciones y operaciones asimiladas - Base ventas
-        "72": (2 * 2000) + (2 * 2600),  # S_IVA0_E + S_IVA0
+        # S_IVA0_G_E, S_IVA0
+        "72": (2 * 2000) + (2 * 2600),
     }
 
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
         # Create model
-        cls.company.write({"vat": "1234567890"})
+        cls.company.write({"vat": "ESA12345674"})
         cls.model322 = cls.env["l10n.es.aeat.mod322.report"].create(
             {
                 "name": "9990000000322",
                 "company_id": cls.company.id,
-                "company_vat": "1234567890",
+                "company_vat": "ESA12345674",
                 "contact_name": "Test owner",
                 "statement_type": "N",
                 "support_type": "T",
                 "contact_phone": "911234455",
-                "year": 2023,
-                "period_type": "01",
-                "date_start": "2023-01-01",
-                "date_end": "2023-01-31",
+                "year": 2024,
+                "period_type": "11",
+                "date_start": "2024-11-01",
+                "date_end": "2024-11-30",
                 "journal_id": cls.journal_misc.id,
             }
         )
@@ -479,8 +478,8 @@ class TestL10nEsAeatMod322Base(TestL10nEsAeatModBase):
             {
                 "name": "9994000000322",
                 "period_type": "12",
-                "date_start": "2023-12-01",
-                "date_end": "2023-12-31",
+                "date_start": "2024-12-01",
+                "date_end": "2024-12-31",
             }
         )
 
@@ -497,42 +496,42 @@ class TestL10nEsAeatMod322(TestL10nEsAeatMod322Base):
         )
         cls.env["l10n.es.aeat.mod322.group"].create(
             {
-                "name": "IVA/2023/23",
+                "name": "IVA/2024/23",
                 "main_company_id": cls.company.id,
                 "vinculated_partner_ids": [(4, cls.related_partner.id)],
             }
         )
         cls._invoice_purchase_create(
-            "2023-01-01", extra_vals={"partner_id": cls.related_partner.id}
+            "2024-11-01", extra_vals={"partner_id": cls.related_partner.id}
         )
-        cls._invoice_purchase_create("2023-01-02")
-        purchase = cls._invoice_purchase_create("2023-01-03")
-        cls._invoice_refund(purchase, "2023-01-18")
+        cls._invoice_purchase_create("2024-11-02")
+        purchase = cls._invoice_purchase_create("2024-11-03")
+        cls._invoice_refund(purchase, "2024-11-18")
         # Sale invoices
         cls._invoice_sale_create(
-            "2023-01-11", extra_vals={"partner_id": cls.related_partner.id}
+            "2024-11-11", extra_vals={"partner_id": cls.related_partner.id}
         )
-        cls._invoice_sale_create("2023-01-12")
-        sale = cls._invoice_sale_create("2023-01-13")
-        cls._invoice_refund(sale, "2023-01-14")
+        cls._invoice_sale_create("2024-11-12")
+        sale = cls._invoice_sale_create("2024-11-13")
+        cls._invoice_refund(sale, "2024-11-14")
 
     def _check_tax_lines(self):
         for field, result in iter(self.taxes_result.items()):
-            _logger.debug("Checking tax line: %s" % field)
+            _logger.debug("Checking tax line: %s", field)
             lines = self.model322.tax_line_ids.filtered(
-                lambda x: x.field_number == int(field)
+                lambda x, field=field: x.field_number == int(field)
             )
             self.assertAlmostEqual(
                 sum(lines.mapped("amount")),
                 result,
                 2,
-                "Incorrect result in field %s" % field,
+                f"Incorrect result in field {field}",
             )
 
     def test_model_322(self):
-        _logger.debug("Calculate AEAT 322 1T 2023")
+        _logger.debug("Calculate AEAT 322 11 2024")
         self.model322.button_calculate()
-        self.model322.invalidate_cache()
+        self.model322.env.invalidate_all()
         # Test default counterpart.
         self.assertEqual(
             self.model322.counterpart_account_id.id, self.accounts["475000"].id
@@ -618,7 +617,7 @@ class TestL10nEsAeatMod322(TestL10nEsAeatMod322Base):
             {"name": "test_export_to_boe.txt"}
         )
         export_config_xml_ids = [
-            "l10n_es_aeat_mod322.aeat_mod322_2023_main_export_config",
+            "l10n_es_aeat_mod322.aeat_mod322_2024_10_main_export_config",
         ]
         for xml_id in export_config_xml_ids:
             export_config = self.env.ref(xml_id)
@@ -648,3 +647,233 @@ class TestL10nEsAeatMod322(TestL10nEsAeatMod322Base):
         self.assertEqual(self.model322.calculation_date, False)
         self.model322.button_cancel()
         self.assertEqual(self.model322.state, "cancelled")
+
+    # Oracle for the boxes most sensitive to core tax renames, per Orden
+    # HAC/1167/2024, de 17 de octubre (BOE-A-2024-21961), applicable to the
+    # 322 statements from October 2024 onwards. When AEAT publishes a new
+    # format, update this dict together with data/ files and taxes_result.
+    BOE_BOX_TAXES = {
+        71: {
+            "account_tax_template_s_iva0_g_i",
+            "account_tax_template_s_iva0_sp_i",
+        },
+        72: {"account_tax_template_s_iva0_g_e", "account_tax_template_s_iva0"},
+        93: {
+            "account_tax_template_s_iva0_g_i",
+            "account_tax_template_s_iva0_sp_i",
+        },
+        94: {"account_tax_template_s_iva0_g_e"},
+    }
+
+    def _get_mod322_map_lines(self):
+        return (
+            self.env["l10n.es.aeat.map.tax"]
+            .sudo()
+            .search([("model", "=", 322)])
+            .map_line_ids
+        )
+
+    def test_map_lines_taxes_resolve(self):
+        """Guardian: every mapped tax template must resolve for the company.
+
+        Catches core template renames/removals like s_iva0_ic -> s_iva0_g_i.
+        """
+        for map_line in self._get_mod322_map_lines().filtered("tax_xmlid_ids"):
+            self.assertTrue(
+                map_line.get_taxes_for_company(self.company),
+                f"Box {map_line.field_number}: mapped taxes do not resolve "
+                f"({', '.join(map_line.tax_xmlid_ids.mapped('name'))})",
+            )
+
+    def test_map_box_oracle_boe_2024_10(self):
+        """Guardian: hardcoded oracle that breaks on purpose when the BOE
+        mapping for these boxes changes in a future format."""
+        lines_by_field = {
+            line.field_number: line
+            for line in self._get_mod322_map_lines()
+            if line.field_number in self.BOE_BOX_TAXES
+        }
+        for field, expected in self.BOE_BOX_TAXES.items():
+            self.assertIn(field, lines_by_field)
+            self.assertEqual(
+                set(lines_by_field[field].tax_xmlid_ids.mapped("name")),
+                expected,
+                f"Box {field} mapping differs from BOE 2024-10 oracle",
+            )
+
+
+class TestL10nEsAeatMod322Map2023(TestL10nEsAeatMod322Base):
+    """The 2023 map and export config must be kept for periods up to 09/2024."""
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.model322_2023 = cls._create_report(
+            "9990000000325", 2023, "01", "2023-01-01", "2023-01-31"
+        )
+
+    @classmethod
+    def _create_report(cls, name, year, period_type, date_start, date_end):
+        return cls.env["l10n.es.aeat.mod322.report"].create(
+            {
+                "name": name,
+                "company_id": cls.company.id,
+                "company_vat": "ESA12345674",
+                "contact_name": "Test owner",
+                "statement_type": "N",
+                "support_type": "T",
+                "contact_phone": "911234455",
+                "year": year,
+                "period_type": period_type,
+                "date_start": date_start,
+                "date_end": date_end,
+                "journal_id": cls.journal_misc.id,
+            }
+        )
+
+    def _get_map_for_report(self, report):
+        """Reuse the same map search than the one done in ``calculate``."""
+        return (
+            self.env["l10n.es.aeat.map.tax"]
+            .sudo()
+            .with_context(active_test=False)
+            .search(
+                [
+                    ("model", "=", report.number),
+                    "|",
+                    ("date_from", "<=", report.date_start),
+                    ("date_from", "=", False),
+                    "|",
+                    ("date_to", ">=", report.date_end),
+                    ("date_to", "=", False),
+                ],
+                limit=1,
+            )
+        )
+
+    def test_2023_map_and_export_config_dates(self):
+        map_2023 = self.env.ref("l10n_es_aeat_mod322.aeat_mod322_2023_map")
+        self.assertEqual(map_2023.date_from, fields.Date.to_date("2023-01-01"))
+        self.assertEqual(map_2023.date_to, fields.Date.to_date("2024-09-30"))
+        export_config = self.env.ref(
+            "l10n_es_aeat_mod322.aeat_mod322_2023_main_export_config"
+        )
+        self.assertEqual(export_config.date_start, fields.Date.to_date("2023-01-01"))
+        self.assertEqual(export_config.date_end, fields.Date.to_date("2024-09-30"))
+
+    def test_2023_map_lines(self):
+        map_2023 = self.env.ref("l10n_es_aeat_mod322.aeat_mod322_2023_map")
+        self.assertEqual(len(map_2023.map_line_ids), 76)
+        for xmlid in (
+            "aeat_mod322_2023_map_line_10_purchase",
+            "aeat_mod322_2023_map_line_21",
+            "aeat_mod322_2023_map_line_22",
+            "aeat_mod322_2023_map_line_42",
+            "aeat_mod322_2023_map_line_48",
+            "aeat_mod322_2023_map_line_50",
+            "aeat_mod322_2023_map_line_61",
+        ):
+            line = self.env.ref(f"l10n_es_aeat_mod322.{xmlid}")
+            self.assertEqual(line.map_parent_id, map_2023)
+
+    def test_2023_report_calculates_with_2023_map(self):
+        map_2023 = self.env.ref("l10n_es_aeat_mod322.aeat_mod322_2023_map")
+        self.model322_2023.calculate()
+        self.env.invalidate_all()
+        self.assertEqual(len(self.model322_2023.tax_line_ids), 76)
+        self.assertEqual(
+            self.model322_2023.tax_line_ids.map_line_id.map_parent_id, map_2023
+        )
+
+    def test_period_selects_map_and_export_config(self):
+        map_2023 = self.env.ref("l10n_es_aeat_mod322.aeat_mod322_2023_map")
+        map_2024_10 = self.env.ref("l10n_es_aeat_mod322.aeat_mod322_2024_10_map")
+        config_2023 = self.env.ref(
+            "l10n_es_aeat_mod322.aeat_mod322_2023_main_export_config"
+        )
+        config_2024_10 = self.env.ref(
+            "l10n_es_aeat_mod322.aeat_mod322_2024_10_main_export_config"
+        )
+        report_09 = self._create_report(
+            "9990900000322", 2024, "09", "2024-09-01", "2024-09-30"
+        )
+        report_10 = self._create_report(
+            "9991000000322", 2024, "10", "2024-10-01", "2024-10-31"
+        )
+        self.assertEqual(self._get_map_for_report(report_09), map_2023)
+        self.assertEqual(self._get_map_for_report(report_10), map_2024_10)
+        self.assertEqual(report_09.export_config_id, config_2023)
+        self.assertEqual(report_10.export_config_id, config_2024_10)
+        self.assertEqual(
+            report_09._get_export_config(report_09.date_start), config_2023
+        )
+        self.assertEqual(
+            report_10._get_export_config(report_10.date_start), config_2024_10
+        )
+
+
+class TestL10nEsAeatMod322CompanyInfo(TestL10nEsAeatMod322Base):
+    """``calculate`` must refresh the stored company info.
+
+    These stored fields are only triggered by ``company_id``, so a group
+    created or modified after the report would otherwise stay stale.
+    """
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.second_company = (
+            cls.env["res.company"]
+            .with_context(no_vat_validation=True)
+            .create({"name": "Dominant company", "vat": "ESB98765432"})
+        )
+        cls.related_partner = cls.env["res.partner"].create({"name": "Related company"})
+
+    def _create_group(self):
+        return self.env["l10n.es.aeat.mod322.group"].create(
+            {
+                "name": "IVA/2024/24",
+                "main_company_id": self.second_company.id,
+                "company_ids": [(6, 0, self.company.ids)],
+                "vinculated_partner_ids": [(6, 0, self.related_partner.ids)],
+            }
+        )
+
+    def test_calculate_refreshes_company_info(self):
+        # The report was created before the group, so its info is stale.
+        self.assertEqual(self.model322.company_type, "D")
+        self.assertFalse(self.model322.group_number)
+        group = self._create_group()
+        self.assertEqual(self.model322.company_type, "D")
+        self.assertFalse(self.model322.group_number)
+        self.model322.calculate()
+        self.env.invalidate_all()
+        self.assertEqual(self.model322.company_type, "P")
+        self.assertEqual(self.model322.group_number, group.name)
+        self.assertEqual(self.model322.dominant_company_vat, "B98765432")
+        self.assertEqual(
+            self.model322.vinculated_partner_ids,
+            self.second_company.partner_id
+            | self.company.partner_id
+            | self.related_partner,
+        )
+        # The report company becomes the dominant one again.
+        group.write(
+            {
+                "main_company_id": self.company.id,
+                "company_ids": [(6, 0, [])],
+            }
+        )
+        self.model322.calculate()
+        self.env.invalidate_all()
+        self.assertEqual(self.model322.company_type, "D")
+        self.assertEqual(self.model322.dominant_company_vat, "A12345674")
+
+    def test_calculate_refreshes_company_info_in_batch(self):
+        self._create_group()
+        reports = self.model322 | self.model322_4t
+        reports.calculate()
+        self.env.invalidate_all()
+        for report in reports:
+            self.assertEqual(report.company_type, "P")
+            self.assertEqual(report.dominant_company_vat, "B98765432")
