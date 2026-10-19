@@ -342,6 +342,9 @@ class L10nEsAeatMod322Report(models.Model):
     def _get_tax_lines(self, date_start, date_end, map_line):
         """Don't populate results for fields 79-99 for reports different from
         last of the year one or when not exonerated of presenting model 390.
+
+        From 2025 on, the transitional reduced-rate boxes (153-155 and
+        162-173) must be filled with 0.
         """
         self.ensure_one()
         if 79 <= map_line.field_number <= 99 or map_line.field_number in [
@@ -355,7 +358,7 @@ class L10nEsAeatMod322Report(models.Model):
                 or self.period_type not in ("4T", "12")
             ):
                 return self.env["account.move.line"]
-        if self.year == 2025 and (
+        if self.year >= 2025 and (
             162 <= map_line.field_number <= 173
             or map_line.field_number
             in [

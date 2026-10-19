@@ -725,6 +725,55 @@ class TestL10nEsAeatMod322(TestL10nEsAeatMod322Base):
         self.assertEqual(dependent_report.company_type, "P")
         self.assertFalse(dependent_report.dominant_company_vat)
 
+    def test_transitional_boxes_zero_from_2025(self):
+        """Boxes 153-155 and 162-173 (transitional reduced rates) are 0 from
+        2025 on, even if invoices use the 5%, 2% or 7.5% taxes."""
+        taxes = self._get_taxes("S_IVA5B,S_IVA2B,S_IVA7-5S")
+        self.assertEqual(len(taxes), 3)
+        for partner in (self.customer, self.related_partner):
+            invoice = self.env["account.move"].create(
+                {
+                    "company_id": self.company.id,
+                    "partner_id": partner.id,
+                    "invoice_date": "2026-11-10",
+                    "move_type": "out_invoice",
+                    "journal_id": self.journal_sale.id,
+                    "invoice_line_ids": [
+                        (
+                            0,
+                            0,
+                            {
+                                "name": f"Test for tax {tax.name}",
+                                "account_id": self.accounts["700000"].id,
+                                "price_unit": 1000,
+                                "quantity": 1,
+                                "tax_ids": [(6, 0, tax.ids)],
+                            },
+                        )
+                        for tax in taxes
+                    ],
+                }
+            )
+            invoice.action_post()
+            self.assertTrue(invoice.amount_tax)
+        report = self.model322.copy(
+            {
+                "name": "9990000002026",
+                "year": 2026,
+                "period_type": "11",
+                "date_start": "2026-11-01",
+                "date_end": "2026-11-30",
+            }
+        )
+        report.button_calculate()
+        transitional = report.tax_line_ids.filtered(
+            lambda x: 153 <= x.field_number <= 155 or 162 <= x.field_number <= 173
+        )
+        self.assertTrue(transitional)
+        for line in transitional:
+            self.assertFalse(line.move_line_ids, f"Box {line.field_number}")
+            self.assertEqual(line.amount, 0, f"Box {line.field_number}")
+
 
 class TestL10nEsAeatMod322Map2023(TestL10nEsAeatMod322Base):
     """The 2023 map and export config must be kept for periods up to 09/2024."""
