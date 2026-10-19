@@ -165,7 +165,10 @@ class SiiMatchReport(models.Model):
                 )
             else:
                 invoice_date = invoice["IDFactura"]["FechaExpedicionFacturaEmisor"]
-                invoice_date = datetime.strptime(invoice_date, AEAT_DATE_FORMAT)
+                # a date, so no time zone
+                invoice_date = datetime.strptime(  # noqa: DTZ007
+                    invoice_date, AEAT_DATE_FORMAT
+                ).date()
                 odoo_invoice = self.env["account.move"].search(
                     [
                         ("ref", "=", name),
@@ -220,7 +223,7 @@ class SiiMatchReport(models.Model):
             if self.invoice_type == "out"
             else ["in_invoice", "in_refund"]
         )
-        prev_move_ids = [x.id for x in invoices.keys() if x._name == "account.move"]
+        prev_move_ids = [x.id for x in invoices if x._name == "account.move"]
         invoices = self.env["account.move"].search(
             [
                 ("id", "not in", prev_move_ids),

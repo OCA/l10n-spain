@@ -28,7 +28,6 @@ class TestL10nEsAeatSiiMatch(TestL10nEsAeatSiiBase):
         cls.invoice = cls.env[cls.invoice._name].browse(cls.invoice.id)
 
     def test_invoice_diffs_values(self):
-        self._activate_certificate()
         invoice = self.invoice
         invoice.aeat_state = "sent"
         invoice.sii_csv = invoice._get_aeat_invoice_dict()
@@ -54,7 +53,6 @@ class TestL10nEsAeatSiiMatch(TestL10nEsAeatSiiBase):
         invoice registered, but Odoo never stored aeat_state/sii_csv. Contrasting
         it must recover the real send state, not just the informational fields.
         """
-        self._activate_certificate()
         invoice = self.invoice
         invoice.write(
             {
@@ -79,7 +77,6 @@ class TestL10nEsAeatSiiMatch(TestL10nEsAeatSiiBase):
     def test_send_duplicated_contrasts_with_aeat(self):
         """A record already registered in the AEAT when sending it is contrasted,
         recovering the CSV of its first registration."""
-        self._activate_certificate()
         invoice = self.invoice
         company_nif = self.company.partner_id._parse_aeat_vat_info()[2]
         service = FakeSiiService(
@@ -109,9 +106,10 @@ class TestL10nEsAeatSiiMatch(TestL10nEsAeatSiiBase):
             ),
             self.enter_registry_test_mode(),
         ):
+            # As the cron worker, which runs it with its own user
             self.env.ref(
                 "l10n_es_aeat_sii_oca.invoice_send_to_sii"
-            ).method_direct_trigger()
+            ).sudo().method_direct_trigger()
         self.assertEqual(invoice.aeat_state, "sent")
         self.assertEqual(invoice.sii_csv, "FAKECSV123")
         self.assertEqual(invoice.sii_contrast_state, "correct")
@@ -120,7 +118,6 @@ class TestL10nEsAeatSiiMatch(TestL10nEsAeatSiiBase):
         """When AEAT has no record at all, contrasting must not raise nor
         invent a send state - it just reports "no_exist" for manual review.
         """
-        self._activate_certificate()
         invoice = self.invoice
         invoice.write(
             {

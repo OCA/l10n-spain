@@ -11,35 +11,35 @@
                         type="object"
                         string="Calculate"
                         invisible="state not in ['draft']"
-                        icon="fa-cogs"
+                        icon="settings_applications"
                     />
                     <button
                         name="button_calculate"
                         type="object"
                         string="Re-Calculate"
                         invisible="state  not in ['calculated','error']"
-                        icon="fa-cogs"
+                        icon="settings_applications"
                     />
                     <button
                         name="button_confirm"
                         string="Confirm"
                         type="object"
                         invisible="state not in ['calculated']"
-                        icon="fa-check"
+                        icon="check"
                     />
                     <button
                         name="button_recover"
                         string="Draft"
                         type="object"
                         invisible="state not in ['cancelled']"
-                        icon="fa-undo"
+                        icon="undo"
                     />
                     <button
                         name="button_cancel"
                         string="Cancel"
                         type="object"
                         invisible="state not in ['calculated','done','error']"
-                        icon="fa-times"
+                        icon="close"
                     />
                     <field
                         name="state"
@@ -124,7 +124,7 @@
                                         name="open_result"
                                         string="View full tree"
                                         type="object"
-                                        icon="fa-check"
+                                        icon="check"
                                     />
                                     <field name="result_ids" nolabel="1">
                                         <list>
