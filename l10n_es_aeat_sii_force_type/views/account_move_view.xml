@@ -11,7 +11,7 @@
                 <field name="sii_allow_force_communication_type" invisible="1" />
                 <field
                     name="sii_force_communication_type"
-                    attrs="{'invisible': [('sii_allow_force_communication_type', '=', False)]}"
+                    invisible="not sii_allow_force_communication_type"
                 />
             </field>
         </field>
