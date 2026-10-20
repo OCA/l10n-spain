@@ -18,68 +18,76 @@ class ConfirmingSabadell:
         if not self.record.company_partner_bank_id.partner_id:
             raise UserError(
                 self.record.env._(
-                    "Propietario de la cuenta no establecido para la cuenta %s."
+                    "Propietario de la cuenta no establecido para la cuenta %s.",
+                    self.record.company_partner_bank_id.acc_number,
                 )
-                % self.record.company_partner_bank_id.acc_number
             )
         if not self.record.company_partner_bank_id.partner_id.vat:
             raise UserError(
                 self.record.env._(
-                    "Propietario de la cuenta %s no tiene un NIF establecido."
+                    "Propietario de la cuenta %s no tiene un NIF establecido.",
+                    self.record.company_partner_bank_id.display_name,
                 )
-                % (self.record.company_partner_bank_id.display_name)
             )
         # Errores lineas
         for line in self.record.payment_line_ids:
             # 19 - 30 Documento identificativo
             if not line.partner_id.vat:
                 raise UserError(
-                    self.record.env._("El Proveedor %s no tiene establecido el NIF.")
-                    % line.partner_id.name
+                    self.record.env._(
+                        "El Proveedor %s no tiene establecido el NIF.",
+                        line.partner_id.name,
+                    )
                 )
             # 44 - 110 Domicilio
             if not line.partner_id.street:
                 raise UserError(
                     self.record.env._(
-                        "El Proveedor %s no tiene establecido el Domicilio."
+                        "El Proveedor %s no tiene establecido el Domicilio.",
+                        line.partner_id.name,
                     )
-                    % line.partner_id.name
                 )
             # 52 - 66 Num Factura
             if line.move_line_id.ref and len(line.move_line_id.ref) > 15:
                 raise UserError(
                     self.record.env._(
                         "La referencia de factura %s de proveedor no puede ocupar "
-                        "más de 15 caracteres."
+                        "más de 15 caracteres.",
+                        line.move_line_id.ref,
                     )
-                    % line.move_line_id.ref
                 )
             # 111 - 150 Ciudad
             if not line.partner_id.city:
                 raise UserError(
-                    self.record.env._("El Proveedor %s no tiene establecida la Ciudad.")
-                    % line.partner_id.name
+                    self.record.env._(
+                        "El Proveedor %s no tiene establecida la Ciudad.",
+                        line.partner_id.name,
+                    )
                 )
             # 151- 155 CP
             if not line.partner_id.zip:
                 raise UserError(
-                    self.record.env._("El Proveedor %s no tiene establecido el C.P.")
-                    % line.partner_id.name
+                    self.record.env._(
+                        "El Proveedor %s no tiene establecido el C.P.",
+                        line.partner_id.name,
+                    )
                 )
             # 253 - 254 Codigo pais
             if not line.partner_id.country_id.code:
                 raise UserError(
-                    self.record.env._("El Proveedor %s no tiene establecido el País.")
-                    % line.partner_id.name
+                    self.record.env._(
+                        "El Proveedor %s no tiene establecido el País.",
+                        line.partner_id.name,
+                    )
                 )
             # 19 - 29 SWIFT
             if not line.partner_bank_id.bank_bic:
                 raise UserError(
                     self.record.env._(
                         "La cuenta bancaria del Proveedor %s \
-                        no tiene establecido el SWIFT."
+                        no tiene establecido el SWIFT.",
+                        line.partner_id.name,
                     )
-                    % line.partner_id.name
                 )
             # 30 - 63 IBAN
             if (
@@ -88,9 +96,9 @@ class ConfirmingSabadell:
             ):
                 raise UserError(
                     self.record.env._(
-                        "La Cuenta del Proveedor: %s tiene que estar en formato IBAN."
+                        "La Cuenta del Proveedor: %s tiene que estar en formato IBAN.",
+                        line.partner_id.name,
                     )
-                    % line.partner_id.name
                 )
 
     def _sab_convert_text(self, text, size, justified="right"):
@@ -155,9 +163,7 @@ class ConfirmingSabadell:
         )
         # 44 - 51 Fecha de proceso
         if self.record.date_prefered == "due":
-            fecha_planificada = fields.first(
-                self.record.payment_line_ids
-            ).ml_maturity_date
+            fecha_planificada = self.record.payment_line_ids[:1].ml_maturity_date
         elif self.record.date_prefered == "now":
             fecha_planificada = fields.Date.today()
         else:

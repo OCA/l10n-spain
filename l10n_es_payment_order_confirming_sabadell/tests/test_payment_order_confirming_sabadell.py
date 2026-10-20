@@ -5,15 +5,21 @@ from datetime import timedelta
 
 from odoo import fields
 from odoo.exceptions import UserError
-from odoo.tests import Form, common
+from odoo.tests import Form, tagged
+
+from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 
 from ..models.confirming_sabadell import ConfirmingSabadell
 
 
-class TestPaymentOrderConfirmingSabadell(common.TransactionCase):
+@tagged("-at_install", "post_install")
+class TestPaymentOrderConfirmingSabadell(AccountTestInvoicingCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.env.user.group_ids |= cls.env.ref(
+            "account_payment_order.group_account_payment"
+        )
         cls.a_expense = cls.env["account.account"].create(
             {
                 "code": "TEA",
@@ -26,9 +32,14 @@ class TestPaymentOrderConfirmingSabadell(common.TransactionCase):
                 "name": "Test bank",
                 "type": "bank",
                 "code": "test-bank",
-                "bank_account_id": cls.env.ref(
-                    "account_payment_mode.main_company_iban"
-                ).id,
+                "bank_account_id": cls.env["res.partner.bank"]
+                .create(
+                    {
+                        "acc_number": "FR76 4242 4242 4242 4242 4242 424",
+                        "partner_id": cls.env.company.partner_id.id,
+                    }
+                )
+                .id,
             }
         )
         cls.bank_journal.bank_account_id.acc_holder_name = "acc_holder_name"
@@ -67,7 +78,15 @@ class TestPaymentOrderConfirmingSabadell(common.TransactionCase):
         )
         cls.product = cls.env["product.product"].create({"name": "Test product"})
         cls.invoice = cls._create_invoice(cls)
-        cls.env.ref("account_payment_mode.main_company_iban2").partner_id = cls.partner
+        cls.env["res.partner.bank"].create(
+            {
+                "acc_number": "FR20 1242 1242 1242 1242 1242 124",
+                "partner_id": cls.partner.id,
+                "bank_id": cls.env["res.bank"]
+                .create({"name": "Test bank", "bic": "SOGEFRPPXXX"})
+                .id,
+            }
+        )
 
     def _create_invoice(self):
         move_form = Form(
