@@ -18,6 +18,9 @@ class AccountMove(models.Model):
     _name = "account.move"
     _inherit = ["account.move", "verifactu.mixin"]
 
+    # Overrides to add tracking
+    verifactu_hash_string = fields.Char(tracking=True)
+    verifactu_hash = fields.Char(tracking=True)
     verifactu_refund_specific_type = fields.Selection(
         string="VERI*FACTU refund specific type",
         selection=[
