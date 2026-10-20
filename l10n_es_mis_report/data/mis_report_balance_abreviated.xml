@@ -298,7 +298,7 @@
         <field name="description">V. Inversiones financieras a corto plazo</field>
         <field
             name="expression"
-        >+bale[5305%,5315%,5325%,5335%,5345%,5355%,5395%,540%,541%,542%,543%,545%,546%,547%,548%,549%,5590%,5593%,565%,566%,5945%,5955%,597%,598%] + pbale[551%] + pbale[5525%]</field>
+        >+bale[5305%,5315%,5325%,5335%,5345%,5355%,5395%,540%,541%,542%,543%,545%,546%,547%,548%,549%,5590%,5593%,565%,566%,5945%,5955%,597%,598%] + pbale[551%] + pbale[554%] + pbale[5525%]</field>
         <field name="auto_expand_accounts">True</field>
         <field
             name="auto_expand_accounts_style_id"
@@ -848,7 +848,7 @@
         <field name="description">3. Otras deudas a corto plazo</field>
         <field
             name="expression"
-        >-bale[1034%,1044%,190%,192%,194%,500%,501%,505%,506%,509%,5115%,5135%,5145%,521%,522%,523%,525%,526%,528%,5530%,5532%,555%,5565%,5566%,5595%,5598%,560%,561%,569%] - nbale[551%] - nbale[5525%]</field>
+        >-bale[1034%,1044%,190%,192%,194%,500%,501%,505%,506%,509%,5115%,5135%,5145%,521%,522%,523%,525%,526%,528%,5530%,5532%,555%,5565%,5566%,5595%,5598%,560%,561%,569%] - nbale[551%] - nbale[554%] - nbale[5525%]</field>
         <field name="auto_expand_accounts">True</field>
         <field
             name="auto_expand_accounts_style_id"
