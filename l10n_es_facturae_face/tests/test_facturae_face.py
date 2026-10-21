@@ -1,11 +1,17 @@
 # © 2017 Creu Blanca
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-import os
+import base64
+import hashlib
+import importlib.util
 from datetime import datetime, timedelta
+from pathlib import Path
+from types import SimpleNamespace
 from unittest import mock
 
+import jwt
 import requests
+from cryptography import x509
 from freezegun import freeze_time
 
 from odoo import exceptions
@@ -25,11 +31,13 @@ class TestL10nEsFacturaeFace(
 ):
     @classmethod
     def setUpClass(cls):
-        cls._super_send = requests.Session.send
         super().setUpClass()
+        cls.http_error_response = requests.Response()
+        cls.http_error_response.status_code = 400
+        cls.http_error_response.url = "https://face.example.test/providers/v1/invoices"
         cls.env["ir.config_parameter"].sudo().set_param(
-            "facturae.face.ws",
-            os.path.join(os.path.dirname(__file__), "wsdl", "facturasspp2.wsdl"),
+            "facturae.face.ws_rest",
+            "https://face.example.test",
         )
         cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         cls.tax = cls.env["account.tax"].create(
@@ -68,14 +76,35 @@ class TestL10nEsFacturaeFace(
         )
         main_company = cls.company
         main_company.vat = "ESA12345674"
-        main_company.partner_id.country_id = cls.env.ref("base.es")
-        main_company.partner_id.street = "Rue del Percebe, 13"
-        main_company.partner_id.city = "Madrid"
-        main_company.partner_id.zip = "28013"
-        main_company.partner_id.state_id = cls.env.ref("base.state_es_m")
-        cls.env["res.currency.rate"].search(
-            [("currency_id", "=", main_company.currency_id.id)]
-        ).write({"company_id": False})
+        main_company.partner_id.write(
+            {
+                "street": "Calle Mayor, 1",
+                "city": "Madrid",
+                "zip": "28001",
+                "state_id": cls.env.ref("base.state_es_m").id,
+                "country_id": cls.env.ref("base.es").id,
+            }
+        )
+        eur = cls.env["res.currency"].search([("name", "in", ["EUR", "eur"])], limit=1)
+        if not eur:
+            eur = cls.env.ref("base.EUR")
+        eur.write({"active": True, "name": "EUR"})
+        main_company.currency_id = eur.id
+
+        cls.env["res.currency.rate"].search([("currency_id", "=", eur.id)]).write(
+            {"company_id": False}
+        )
+        if not cls.env["res.currency.rate"].search(
+            [("currency_id", "=", eur.id)], limit=1
+        ):
+            cls.env["res.currency.rate"].create(
+                {
+                    "name": "2016-03-01",
+                    "rate": 1.0,
+                    "currency_id": eur.id,
+                    "company_id": False,
+                }
+            )
         bank_obj = cls.env["res.partner.bank"]
         cls.bank = bank_obj.search(
             [("acc_number", "=", "FR20 1242 1242 1242 1242 1242 124")], limit=1
@@ -147,12 +176,8 @@ class TestL10nEsFacturaeFace(
         )
         cls.product = cls.env["product.product"].create(
             {
-                "name": "Test Product",
-                "type": "consu",
-                "default_code": "TEST_PRODUCT",
-                "list_price": 100.0,
-                "standard_price": 50.0,
-                "taxes_id": [(6, 0, cls.tax.ids)],
+                "name": "Producto de prueba",
+                "type": "service",
             }
         )
         cls.move = cls.env["account.move"].create(
@@ -184,10 +209,128 @@ class TestL10nEsFacturaeFace(
             "l10n_es_facturae_face.facturae_face_update_exchange_type"
         )
 
-    # Don't block external requests.
-    @classmethod
-    def _request_handler(cls, s, r, /, **kw):
-        return cls._super_send(s, r, **kw)
+    def test_jwt_signature(self):
+        self._activate_certificate(self.certificate_password)
+        public_crt, private_key = self.env["l10n.es.aeat.certificate"].get_certificates(
+            self.company
+        )
+        handler = self.env["l10n_es.facturae.face.base.handler"]
+        token = handler.generate_jwt(public_crt, private_key)
+        header = jwt.get_unverified_header(token)
+        self.assertEqual(header["alg"], "RS256")
+        self.assertEqual(header["typ"], "JWT")
+        certificate = x509.load_der_x509_certificate(base64.b64decode(header["x5c"][0]))
+        public_key = certificate.public_key()
+        claims = jwt.decode(token, public_key, algorithms=["RS256"])
+        self.assertEqual(
+            claims["username"],
+            hashlib.sha1(header["x5c"][0].encode("utf-8")).hexdigest(),
+        )
+        self.assertEqual(claims["exp"] - claims["iat"], 300)
+        parts = token.split(".")
+        parts[1] = (
+            base64.urlsafe_b64encode(b'{"username":"tampered"}').rstrip(b"=").decode()
+        )
+        with self.assertRaises(jwt.InvalidSignatureError):
+            jwt.decode(".".join(parts), public_key, algorithms=["RS256"])
+        with freeze_time(datetime.now() + timedelta(minutes=6)):
+            with self.assertRaises(jwt.ExpiredSignatureError):
+                jwt.decode(token, public_key, algorithms=["RS256"])
+
+    def test_http_requests(self):
+        self._activate_certificate(self.certificate_password)
+        public_crt, private_key = self.env["l10n.es.aeat.certificate"].get_certificates(
+            self.company
+        )
+        handler = self.env["l10n_es.facturae.face.base.handler"]
+        calls = [
+            (
+                "send_webservice",
+                "post",
+                "/providers/v1/invoices",
+                (
+                    "<Facturae/>",
+                    "invoice.xml",
+                    "test@example.com",
+                    [SimpleNamespace(file_name="annex.txt", file_data="YW5uZXg=")],
+                ),
+            ),
+            ("consult_invoice", "get", "/providers/v1/invoices/123", ("123",)),
+            (
+                "cancel",
+                "post",
+                "/providers/v1/invoices/123/cancellation-requests",
+                ("123", "Cancellation reason"),
+            ),
+        ]
+        for method, verb, path, args in calls:
+            with self.subTest(method=method):
+                response = mock.Mock()
+                response.json.return_value = {"registryCode": "123"}
+                with mock.patch(f"requests.{verb}", return_value=response) as request:
+                    result = getattr(handler, method)(public_crt, private_key, *args)
+                self.assertEqual(result, {"registryCode": "123"})
+                request.assert_called_once()
+                self.assertEqual(
+                    request.call_args.args[0], "https://face.example.test" + path
+                )
+                self.assertEqual(request.call_args.kwargs["timeout"], 30)
+                authorization = request.call_args.kwargs["headers"]["Authorization"]
+                self.assertTrue(authorization.startswith("Bearer "))
+                self.assertEqual(
+                    jwt.get_unverified_header(authorization[7:])["alg"], "RS256"
+                )
+                response.raise_for_status.assert_called_once()
+                if method == "send_webservice":
+                    payload = request.call_args.kwargs["json"]
+                    self.assertEqual(
+                        base64.b64decode(payload["content"]), b"<Facturae/>"
+                    )
+                    self.assertEqual(payload["filename"], "invoice.xml")
+                    self.assertEqual(payload["email"], "test@example.com")
+                    self.assertEqual(
+                        payload["attachments"],
+                        [{"filename": "annex.txt", "content": "YW5uZXg="}],
+                    )
+                elif method == "cancel":
+                    self.assertEqual(
+                        request.call_args.kwargs["json"], {"comment": args[-1]}
+                    )
+                with (
+                    mock.patch(
+                        f"requests.{verb}", return_value=self.http_error_response
+                    ),
+                    self.assertRaisesRegex(exceptions.UserError, "400") as error,
+                ):
+                    getattr(handler, method)(public_crt, private_key, *args)
+                self.assertIsInstance(error.exception.__cause__, requests.HTTPError)
+
+    def test_migrate_rest_endpoint(self):
+        path = (
+            Path(__file__).resolve().parents[1]
+            / "migrations/19.0.1.0.0/post-migration.py"
+        )
+        spec = importlib.util.spec_from_file_location("face_rest_migration", path)
+        migration = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(migration)
+        params = self.env["ir.config_parameter"].sudo()
+        for old_url, new_url in [
+            (
+                "https://webservice.face.gob.es/facturasspp2?wsdl",
+                "https://api.face.gob.es",
+            ),
+            (
+                "https://se-face-webservice.redsara.es/facturasspp2?wsdl",
+                "https://se-api-face.redsara.es",
+            ),
+        ]:
+            with self.subTest(old_url=old_url):
+                params.set_param("facturae.face.ws", old_url)
+                migration.migrate.__wrapped__(self.env, "18.0.1.0.4")
+                self.assertEqual(params.get_param("facturae.face.ws_rest"), new_url)
+                self.assertFalse(params.get_param("facturae.face.ws"))
+                migration.migrate.__wrapped__(self.env, "18.0.1.0.4")
+                self.assertEqual(params.get_param("facturae.face.ws_rest"), new_url)
 
     def test_constrain_company_mail(self):
         with self.assertRaises(exceptions.ValidationError):
@@ -220,7 +363,8 @@ class TestL10nEsFacturaeFace(
         self.assertTrue(self.move.exchange_record_ids)
         exchange_record = self.move.exchange_record_ids
         self.assertEqual(exchange_record.edi_exchange_state, "output_pending")
-        exchange_record.backend_id.exchange_send(exchange_record)
+        with mock.patch("requests.post", return_value=self.http_error_response):
+            exchange_record.backend_id.exchange_send(exchange_record)
         self.assertEqual(exchange_record.edi_exchange_state, "output_error_on_send")
 
     def test_create_facturae_file_without_organo_gestor(self):
@@ -291,7 +435,10 @@ class TestL10nEsFacturaeFace(
             self.face_update_type.id,
             [c["type"]["id"] for c in self.move.edi_config.values()],
         )
-        with self.assertRaises(exceptions.UserError):
+        with (
+            mock.patch("requests.get", return_value=self.http_error_response),
+            self.assertRaises(exceptions.UserError),
+        ):
             self.move.with_context(
                 _edi_receive_break_on_error=True
             ).edi_create_exchange_record(self.face_update_type.id)
@@ -328,10 +475,6 @@ class TestL10nEsFacturaeFace(
             self.face_update_type.id,
             [c["type"]["id"] for c in self.move.edi_config.values()],
         )
-        try:
-            self.move.edi_create_exchange_record(self.face_update_type.id)
-        except exceptions.UserError:  # pylint: disable=W8138
-            pass
         with mock.patch("requests.get") as mock_client:
             mock_client.return_value = mock.Mock(
                 status_code=200,
@@ -364,7 +507,7 @@ class TestL10nEsFacturaeFace(
         exchange_record.flush_recordset()
         exchange_record.invalidate_recordset()
         self.assertEqual(exchange_record.l10n_es_facturae_status, "face-1300")
-        self.assertEqual(len(exchange_record.related_exchange_ids), 3)
+        self.assertEqual(len(exchange_record.related_exchange_ids), 2)
         with mock.patch("requests.get") as mock_client:
             mock_client.return_value = mock.Mock(
                 status_code=200,
@@ -380,12 +523,15 @@ class TestL10nEsFacturaeFace(
             self.env["edi.exchange.record"].with_context()._cron_face_update_method()
         exchange_record.flush_recordset()
         exchange_record.invalidate_recordset()
-        self.assertEqual(len(exchange_record.related_exchange_ids), 3)
+        self.assertEqual(len(exchange_record.related_exchange_ids), 2)
         # New record should not have been created
         cancel = self.env["edi.l10n.es.facturae.face.cancel"].create(
             {"move_id": self.move.id, "motive": "Anulacion"}
         )
-        with self.assertRaises(exceptions.UserError):
+        with (
+            mock.patch("requests.post", return_value=self.http_error_response),
+            self.assertRaises(exceptions.UserError),
+        ):
             cancel.cancel_face()
         with mock.patch("requests.post") as mock_client:
             mock_client.return_value = mock.Mock(

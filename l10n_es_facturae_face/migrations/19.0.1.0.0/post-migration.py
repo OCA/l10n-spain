@@ -10,11 +10,11 @@ def migrate(env, version):
     )
     if param and param == "https://webservice.face.gob.es/facturasspp2?wsdl":
         env["ir.config_parameter"].sudo().set_param(
-            "facturae.face.ws_rest", "https://se-api-face.redsara.es"
+            "facturae.face.ws_rest", "https://api.face.gob.es"
         )
     elif param:
         env["ir.config_parameter"].sudo().set_param(
-            "facturae.face.ws_rest", "https://api.face.gob.es"
+            "facturae.face.ws_rest", "https://se-api-face.redsara.es"
         )
     # We want to remove the old parameter to know in migrations in other versions
     # if the migration has been done or not, to avoid confusion
