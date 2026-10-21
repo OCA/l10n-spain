@@ -20,7 +20,7 @@
                 <field name="company_verifactu_enabled" invisible="1" />
                 <field
                     name="verifactu_enabled"
-                    attrs="{'invisible': ['|', ('company_verifactu_enabled', '=', False), ('type', '!=', 'sale')]}"
+                    attrs="{'invisible': ['|', ('company_verifactu_enabled', '=', False), ('type', '!=', 'sale')], 'readonly': [('company_verifactu_enabled', '=', True), ('verifactu_enabled', '=', True)]}"
                 />
             </xpath>
         </field>
