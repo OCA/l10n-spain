@@ -79,7 +79,9 @@ class L10nEsFacturaeFaceBaseHandler(models.AbstractModel):
         try:
             response.raise_for_status()
         except requests.exceptions.HTTPError as e:
-            raise UserError(self.env._("Error Sending invoice: {e}", e=e)) from e
+            raise UserError(
+                self.env._("Error Sending invoice: %(error)s", error=e)
+            ) from e
         return response.json()
 
     def consult_invoice(self, public_crt, private_key, invoice_number):
@@ -99,7 +101,9 @@ class L10nEsFacturaeFaceBaseHandler(models.AbstractModel):
         try:
             response.raise_for_status()
         except requests.exceptions.HTTPError as e:
-            raise UserError(self.env._("Error consulting invoice: {e}", e=e)) from e
+            raise UserError(
+                self.env._("Error consulting invoice: %(error)s", error=e)
+            ) from e
         return response.json()
 
     def cancel(self, public_crt, private_key, identifier, motive):
@@ -122,5 +126,7 @@ class L10nEsFacturaeFaceBaseHandler(models.AbstractModel):
         try:
             response.raise_for_status()
         except requests.exceptions.HTTPError as e:
-            raise UserError(self.env._("Error canceling invoice: {e}", e=e)) from e
+            raise UserError(
+                self.env._("Error canceling invoice: %(error)s", error=e)
+            ) from e
         return response.json()
