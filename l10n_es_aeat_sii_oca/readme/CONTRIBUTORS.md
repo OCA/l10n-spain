@@ -10,7 +10,9 @@
 - Javi Melendez \<<javimelex@gmail.com>\>
 - Santi Argüeso - Comunitea S.L. \<<santi@comunitea.com>\>
 - Angel Moya - PESOL \<<angel.moya@pesol.es>\>
-- Eric Antonés - NuoBiT Solutions, S.L. \<<eantones@nuobit.com>\>
+- NuoBiT Solutions S.L. \<http://www.nuobit.com\>:
+  - Eric Antones <eantones@nuobit.com>
+  - Deniz Gallo <eantones@nuobit.com>
 - [Sygel](https://www.sygel.es):
   - Valentin Vinagre
   - Manuel Regidor
