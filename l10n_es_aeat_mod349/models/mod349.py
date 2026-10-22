@@ -286,6 +286,10 @@ class Mod349(models.Model):
                 else:
                     period_type = month
             key = (partner, op_key, period_type, year)
+            if key in data and not original_details:
+                # Without a previous declaration, each origin invoice adds its
+                # own amount to the period
+                data[key]["original_amount"] += origin_amount
             key_vals = data.setdefault(
                 key,
                 {"original_amount": origin_amount, "refund_details": refund_detail_obj},
