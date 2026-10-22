@@ -272,26 +272,31 @@ class L10nEsVatBook(models.Model):
             sign = 1
         if move_line.tax_line_id:
             res = {}
-            tax = move_line.tax_line_id
-            move_line._process_aeat_tax_fee_info(res, tax, sign)
-            key = self.get_book_line_tax_key(move_line, tax)
-            value = tax_lines.setdefault(key, default_dict | {"tax_id": tax.id})
-            value["tax_amount"] += res[tax]["amount"]
-            value["deductible_amount"] += res[tax]["deductible_amount"]
-            value["move_line_ids"].append((4, move_line.id))
+            move_line._process_aeat_tax_fee_info(res, move_line.tax_line_id, sign)
+            for child_tax, info in res.items():
+                key = self.get_book_line_tax_key(move_line, child_tax)
+                value = tax_lines.setdefault(
+                    key, default_dict | {"tax_id": child_tax.id}
+                )
+                value["tax_amount"] += info["amount"]
+                value["deductible_amount"] += info["deductible_amount"]
+                value["move_line_ids"].append((4, move_line.id))
         for i, tax in enumerate(move_line.tax_ids):
             res = {}
             move_line._process_aeat_tax_base_info(res, tax, sign)
             if i == 0:
-                vat_book_line["base_amount"] += res[tax]["base"]
-            if tax not in implied_taxes:
-                continue
-            key = self.get_book_line_tax_key(move_line, tax)
-            value = tax_lines.setdefault(key, default_dict | {"tax_id": tax.id})
-            value["base_amount"] += res[tax]["base"]
-            value["base_move_line_ids"].append((4, move_line.id))
-            # For later matching special taxes
-            value["other_tax_ids"] = (move_line.tax_ids - tax).ids
+                vat_book_line["base_amount"] += next(iter(res.values()))["base"]
+            for child_tax, info in res.items():
+                if child_tax not in implied_taxes:
+                    continue
+                key = self.get_book_line_tax_key(move_line, child_tax)
+                value = tax_lines.setdefault(
+                    key, default_dict | {"tax_id": child_tax.id}
+                )
+                value["base_amount"] += info["base"]
+                value["base_move_line_ids"].append((4, move_line.id))
+                # For later matching special taxes
+                value["other_tax_ids"] = (move_line.tax_ids - tax).ids
 
     def _clear_old_data(self):
         """
