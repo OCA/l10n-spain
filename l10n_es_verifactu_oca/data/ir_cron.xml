@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2024 Almudena de La Puente <almudena@aurestic.es>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo noupdate="1">
+    <record forcecreate="True" id="invoice_entry_send_to_verifactu" model="ir.cron">
+        <field name="name">Send invoices to VERI*FACTU</field>
+        <field name="model_id" ref="model_verifactu_invoice_entry" />
+        <field name="state">code</field>
+        <field name="code">model._cron_send_documents_to_verifactu()</field>
+        <field name='interval_number'>1</field>
+        <field name='interval_type'>minutes</field>
+    </record>
+</odoo>

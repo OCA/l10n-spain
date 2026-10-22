@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--  Copyright 2024 Aures TIC - Almudena de La Puente
+    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
+<odoo>
+    <record id="verifactu_map_view_tree" model="ir.ui.view">
+        <field name="name">verifactu.map.view.list</field>
+        <field name="model">verifactu.map</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name" />
+                <field name="date_from" />
+                <field name="date_to" />
+            </list>
+        </field>
+    </record>
+    <record id="verifactu_map_view_form" model="ir.ui.view">
+        <field name="name">verifactu.map.view.form</field>
+        <field name="model">verifactu.map</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" />
+                        </group>
+                        <group>
+                            <field name="date_from" />
+                            <field name="date_to" />
+                        </group>
+                    </group>
+                    <group string="Mapping Lines" col="4">
+                        <field
+                            name="map_lines"
+                            nolabel="1"
+                            colspan="4"
+                            context="{'active_test': False}"
+                        />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_verifactu_mapping" model="ir.actions.act_window">
+        <field name="name">VERI*FACTU mappings</field>
+        <field name="res_model">verifactu.map</field>
+        <field name="path">verifactu-maps</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <menuitem
+        id="menu_verifactu_map"
+        parent="l10n_es_aeat.menu_l10n_es_aeat_config"
+        action="action_verifactu_mapping"
+    />
+</odoo>

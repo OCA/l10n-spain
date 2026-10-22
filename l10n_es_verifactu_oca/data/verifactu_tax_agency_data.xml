@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2024 Jose Zambudio <jose@aurestic.es>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="l10n_es_aeat.aeat_tax_agency_spain" model="aeat.tax.agency">
+        <field
+            name="verifactu_wsdl_out"
+        >https://prewww2.aeat.es/static_files/common/internet/dep/aplicaciones/es/aeat/tikeV1.0/cont/ws/SistemaFacturacion.wsdl</field>
+        <field
+            name="verifactu_wsdl_out_test_address"
+        >https://prewww1.aeat.es/wlpl/TIKE-CONT/ws/SistemaFacturacion/VerifactuSOAP</field>
+        <field
+            name="verifactu_qr_base_url"
+        >https://www2.agenciatributaria.gob.es/wlpl/TIKE-CONT/ValidarQR</field>
+        <field
+            name="verifactu_qr_base_url_test_address"
+        >https://prewww2.aeat.es/wlpl/TIKE-CONT/ValidarQR</field>
+    </record>
+</odoo>
