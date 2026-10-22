@@ -2,3 +2,4 @@
 
 from . import test_create_asset_from_invoice
 from . import test_l10n_es_account_asset
+from . import test_l10n_es_account_asset_chart
