@@ -783,3 +783,33 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
         data = dashboard_data.get(invoice1.journal_id.id, {})
         self.assertEqual(data.get("number_not_sent"), 3)
         self.assertEqual(data.get("number_aeat_failed"), 1)
+
+    def _create_sent_invoice_without_content(self):
+        invoice = self._create_invoice("out_invoice")
+        invoice.action_post()
+        # Registered outside Odoo: flagged as sent, no content stored
+        invoice.write({"aeat_state": "sent", "aeat_content_sent": False})
+        return invoice
+
+    def test_repost_sent_invoice_without_content(self):
+        invoice = self._create_sent_invoice_without_content()
+        invoice.button_draft()
+        invoice.action_post()
+        self.assertEqual(invoice.state, "posted")
+        self.assertEqual(invoice.aeat_state, "sent_modified")
+
+    def test_repost_cancelled_invoice_without_content(self):
+        invoice = self._create_sent_invoice_without_content()
+        invoice.button_cancel()
+        self.assertEqual(invoice.aeat_state, "sent_modified")
+        invoice.button_draft()
+        invoice.action_post()
+        self.assertEqual(invoice.state, "posted")
+        self.assertEqual(invoice.aeat_state, "sent_modified")
+
+    def test_repost_sent_invoice_same_content(self):
+        invoice = self._create_sent_invoice_without_content()
+        invoice.aeat_content_sent = json.dumps(invoice._get_aeat_invoice_dict())
+        invoice.button_draft()
+        invoice.action_post()
+        self.assertEqual(invoice.aeat_state, "sent")
