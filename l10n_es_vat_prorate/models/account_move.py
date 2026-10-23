@@ -4,6 +4,7 @@
 
 
 from odoo import api, fields, models
+from odoo.exceptions import ValidationError
 from odoo.tools import float_round
 
 
@@ -149,6 +150,28 @@ class AccountMove(models.Model):
         self.ensure_one()
         return self.invoice_line_ids.filtered_domain([("with_vat_prorate", "=", True)])
 
+    def _recompute_with_vat_prorate_if_needed(self):
+        """Recompute with_vat_prorate on invoice lines if needed.
+
+        This is necessary in scenarios where invoice lines are created without
+        properly setting with_vat_prorate (e.g., refunds, duplicates, imports).
+        """
+        self.ensure_one()
+        if not self.prorate_id:
+            return
+
+        for line in self.invoice_line_ids:
+            # Skip lines that are just for display (sections, notes)
+            if line.display_type in ("line_section", "line_note"):
+                continue
+
+            if self.prorate_id.type == "general":
+                # For general prorate: auto-detect based on taxes
+                should_have_prorate = any(tax.with_vat_prorate for tax in line.tax_ids)
+                if should_have_prorate != line.with_vat_prorate:
+                    line.with_vat_prorate = should_have_prorate
+            # For special prorate: respect manual value, don't change
+
     def _apply_vat_prorate(self):
         """Recalculate move.line_ids by applying the prorate.
         If a move line with with_tax_prorate=True already has a prorate_line,
@@ -158,6 +181,11 @@ class AccountMove(models.Model):
         with the prorate applied and recalculate prorate balance and tax balance
         We group the prorate lines by Tax->Account->Analytic Distribution.
         """
+        # First, ensure with_vat_prorate is correctly set on all invoice lines
+        # This is important for scenarios like refunds where lines are copied
+        # with with_vat_prorate=False due to copy=False
+        self._recompute_with_vat_prorate_if_needed()
+
         invoice_lines_with_prorate = self._get_invoice_line_with_prorate()
         taxes_with_prorate, prorate_vals = self._calculate_vat_prorate(
             invoice_lines_with_prorate
@@ -236,24 +264,56 @@ class AccountMove(models.Model):
                 and not self.env.context.get("skip_vat_prorate", False)
                 and move.state == "draft"
                 and (
-                    "line_ds" in vals
-                    and len(vals["line_ids"])
+                    ("line_ids" in vals and len(vals["line_ids"]))
                     or "invoice_line_ids" in vals
-                )
-                or any(
-                    key in vals
-                    for key in [
-                        "partner_id",
-                        "currency_id",
-                        "invoice_currency_rate",
-                        "prorate_id",
-                        "date",
-                        "invoice_date",
-                    ]
+                    or any(
+                        key in vals
+                        for key in [
+                            "partner_id",
+                            "currency_id",
+                            "invoice_currency_rate",
+                            "prorate_id",
+                            "date",
+                            "invoice_date",
+                        ]
+                    )
                 )
             ):
                 move._apply_vat_prorate()
         return res
+
+    def _check_prorate_applied(self):
+        self.ensure_one()
+        if (
+            self.company_id.with_vat_prorate
+            and self.prorate_id
+            and self.prorate_id.type == "general"
+            and any(
+                [
+                    invoice_line.with_vat_prorate
+                    for invoice_line in self.invoice_line_ids
+                ]
+            )
+            and any(self.invoice_line_ids.tax_ids.mapped("with_vat_prorate"))
+            and not [line for line in self.line_ids if line.vat_prorate]
+        ):
+            return False
+        return True
+
+    def _post(self, soft):
+        for invoice in self.filtered_domain(
+            [("move_type", "in", ["in_invoice", "in_refund"])]
+        ):
+            if not invoice._check_prorate_applied():
+                raise ValidationError(
+                    self.env._(
+                        "The invoice [ID %(invoice_id)s] cannot be posted. "
+                        "It is necessary to verify that the VAT prorate "
+                        "has been applied correctly.",
+                        invoice_id=invoice.id,
+                    )
+                )
+        return super()._post(soft)
 
 
 class AccountMoveLine(models.Model):
@@ -266,10 +326,12 @@ class AccountMoveLine(models.Model):
     )
 
     with_vat_prorate = fields.Boolean(
-        compute="_compute_with_vat_prorate",
-        store=True,
-        readonly=False,
+        string="With VAT Prorate",
         copy=False,
+        default=False,
+        help="Indicates if this line should apply VAT prorate. "
+        "For general prorate: automatically set based on taxes. "
+        "For special prorate: manually set by user.",
     )
 
     prorate_line_ids = fields.Many2many(
@@ -280,13 +342,54 @@ class AccountMoveLine(models.Model):
         copy=False,
     )
 
-    @api.depends("move_id.prorate_id", "company_id")
-    def _compute_with_vat_prorate(self):
+    @api.onchange("tax_ids")
+    def _onchange_with_vat_prorate(self):
+        """Auto-calculate with_vat_prorate based on prorate configuration.
+
+        For general prorate: automatically detect if line has taxes with prorate.
+        For special prorate: set default value, allow manual override.
+        """
         for rec in self:
-            rec.with_vat_prorate = rec.move_id.company_id.with_vat_prorate and (
-                rec.move_id.prorate_id.type == "general"
-                or rec.move_id.prorate_id.special_vat_prorate_default
-            )
+            if not rec.move_id or not rec.move_id.prorate_id:
+                rec.with_vat_prorate = False
+                continue
+
+            if rec.move_id.prorate_id.type == "general":
+                # Auto-detect: does this line have taxes marked for prorate?
+                rec.with_vat_prorate = any(tax.with_vat_prorate for tax in rec.tax_ids)
+            else:  # special
+                # Set default only for new lines (not yet in DB)
+                if not rec._origin or not rec._origin.id:
+                    rec.with_vat_prorate = (
+                        rec.move_id.prorate_id.special_vat_prorate_default
+                    )
+                # For existing lines: keep current value (manual override allowed)
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        """Set with_vat_prorate on creation for API/import scenarios."""
+        lines = super().create(vals_list)
+        for line in lines:
+            # Only process invoice lines with a move and prorate config
+            # Skip display lines (sections, notes)
+            if (
+                not line.move_id
+                or not line.move_id.prorate_id
+                or line.display_type in ("line_section", "line_note")
+            ):
+                continue
+
+            if line.move_id.prorate_id.type == "general":
+                # Recalculate based on taxes (onchange might not have run)
+                line.with_vat_prorate = any(
+                    tax.with_vat_prorate for tax in line.tax_ids
+                )
+            elif not line.with_vat_prorate:
+                # For special prorate: set default if not explicitly set
+                line.with_vat_prorate = (
+                    line.move_id.prorate_id.special_vat_prorate_default
+                )
+        return lines
 
     def _process_aeat_tax_fee_info(self, res, tax, sign):
         result = super()._process_aeat_tax_fee_info(res, tax, sign)

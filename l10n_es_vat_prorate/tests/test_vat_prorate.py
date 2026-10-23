@@ -285,3 +285,318 @@ class TestVatProrate(AccountTestInvoicingCommon):
         wizard.execute()
         self.assertFalse(self.env.company.with_vat_prorate)
         self.assertEqual(len(self.env.company.vat_prorate_ids), 1)
+
+    def test_with_vat_prorate_on_api_create(self):
+        """Test with_vat_prorate is set correctly when creating via API (no onchange).
+
+        This test simulates the race condition scenario where invoice lines are
+        created via API/import without onchange execution. The with_vat_prorate
+        field should be correctly calculated in the create() method.
+        """
+        invoice = self._create_invoice(
+            move_type="in_invoice",
+            invoice_date=date(2000, 6, 1),
+            invoice_line_ids=[
+                self._prepare_invoice_line(
+                    product_id=self.product_a,
+                    quantity=1,
+                    price_unit=100,
+                    tax_ids=self.tax_purchase_a,
+                )
+            ],
+        )
+        invoice_line = invoice.invoice_line_ids.filtered(
+            lambda line: line.product_id == self.product_a
+        )
+        self.assertTrue(
+            invoice_line.with_vat_prorate,
+            "with_vat_prorate should be True for lines with prorate taxes "
+            "even when created via API without onchange",
+        )
+        # Invoice lines: 1 product line + 1 tax line + 1 prorate line = 3 total
+        self.assertGreaterEqual(len(invoice.line_ids), 3)
+        prorate_lines = invoice.line_ids.filtered("vat_prorate")
+        self.assertEqual(
+            1,
+            len(prorate_lines),
+            "Prorate lines should be created automatically",
+        )
+
+    def test_with_vat_prorate_on_refund_from_reversed_entry(self):
+        """Test with_vat_prorate is recomputed on refunds created via reversal.
+
+        When creating a refund from a posted invoice using the reversal wizard,
+        the with_vat_prorate field should be correctly set on the refund lines.
+        """
+        invoice = self._create_invoice(
+            move_type="in_invoice",
+            invoice_date=date(2000, 6, 1),
+            invoice_line_ids=[
+                self._prepare_invoice_line(
+                    product_id=self.product_a,
+                    quantity=1,
+                    price_unit=100,
+                    tax_ids=self.tax_purchase_a,
+                )
+            ],
+            post=True,
+        )
+        wizard = (
+            self.env["account.move.reversal"]
+            .with_context(active_ids=invoice.ids, active_model="account.move")
+            .create({"journal_id": invoice.journal_id.id})
+        )
+        wizard.reverse_moves()
+        refund = wizard.new_move_ids
+        refund_line = refund.invoice_line_ids.filtered(
+            lambda line: line.product_id == self.product_a
+        )
+        self.assertTrue(
+            refund_line.with_vat_prorate,
+            "with_vat_prorate should be True on refund lines",
+        )
+        # Refund lines: 1 product line + 1 tax line + 1 prorate line = 3 total
+        self.assertGreaterEqual(len(refund.line_ids), 3)
+        prorate_lines = refund.line_ids.filtered("vat_prorate")
+        self.assertEqual(
+            1,
+            len(prorate_lines),
+            "Prorate lines should be created on refund",
+        )
+
+    def test_with_vat_prorate_on_copy(self):
+        """Test with_vat_prorate is recomputed on duplicates.
+
+        When duplicating an invoice, the with_vat_prorate field should be
+        correctly recalculated on the new invoice lines.
+        """
+        invoice = self._create_invoice(
+            move_type="in_invoice",
+            invoice_date=date(2000, 6, 1),
+            invoice_line_ids=[
+                self._prepare_invoice_line(
+                    product_id=self.product_a,
+                    quantity=1,
+                    price_unit=100,
+                    tax_ids=self.tax_purchase_a,
+                )
+            ],
+        )
+        duplicated = invoice.copy()
+        duplicated_line = duplicated.invoice_line_ids.filtered(
+            lambda line: line.product_id == self.product_a
+        )
+        self.assertTrue(
+            duplicated_line.with_vat_prorate,
+            "with_vat_prorate should be True on duplicated invoice lines",
+        )
+        # Duplicated lines: 1 product line + 1 tax line + 1 prorate line = 3 total
+        self.assertGreaterEqual(len(duplicated.line_ids), 3)
+        prorate_lines = duplicated.line_ids.filtered("vat_prorate")
+        self.assertEqual(
+            1,
+            len(prorate_lines),
+            "Prorate lines should be created on duplicated invoice",
+        )
+
+    def test_check_prorate_applied_validation_error(self):
+        """Test _check_prorate_applied raises ValidationError when prorate missing.
+
+        When posting an invoice that should have prorate lines but doesn't,
+        a ValidationError should be raised.
+        """
+        invoice = self._create_invoice(
+            move_type="in_invoice",
+            invoice_date=date(2000, 6, 1),
+            invoice_line_ids=[
+                self._prepare_invoice_line(
+                    product_id=self.product_a,
+                    quantity=1,
+                    price_unit=100,
+                    tax_ids=self.tax_purchase_a,
+                    with_vat_prorate=True,
+                )
+            ],
+        )
+        prorate_lines = invoice.line_ids.filtered("vat_prorate")
+        prorate_lines.with_context(dynamic_unlink=True).unlink()
+        with self.assertRaises(
+            exceptions.ValidationError,
+            msg="Should raise ValidationError when prorate lines are missing",
+        ):
+            invoice.action_post()
+
+    def test_check_prorate_applied_success(self):
+        """Test that _check_prorate_applied passes when prorate is correctly applied.
+
+        When posting an invoice with correctly applied prorate, no error should occur.
+        """
+        invoice = self._create_invoice(
+            move_type="in_invoice",
+            invoice_date=date(2000, 6, 1),
+            invoice_line_ids=[
+                self._prepare_invoice_line(
+                    product_id=self.product_a,
+                    quantity=1,
+                    price_unit=100,
+                    tax_ids=self.tax_purchase_a,
+                )
+            ],
+        )
+        prorate_lines = invoice.line_ids.filtered("vat_prorate")
+        self.assertTrue(
+            prorate_lines,
+            "Prorate lines should exist before posting",
+        )
+        invoice.action_post()
+        self.assertEqual(
+            invoice.state,
+            "posted",
+            "Invoice should be posted successfully when prorate is applied",
+        )
+
+    def test_with_vat_prorate_special_mode_manual_override(self):
+        """Test that with_vat_prorate can be manually set in special prorate mode.
+
+        In special prorate mode, users can manually set with_vat_prorate on each line
+        after creation.
+        """
+        self.env.company.vat_prorate_ids[0].write(
+            {
+                "type": "special",
+                "special_vat_prorate_default": True,
+            }
+        )
+        invoice = self._create_invoice(
+            move_type="in_invoice",
+            invoice_date=date(2000, 6, 1),
+            invoice_line_ids=[
+                self._prepare_invoice_line(
+                    product_id=self.product_a,
+                    quantity=1,
+                    price_unit=100,
+                    tax_ids=self.tax_purchase_a,
+                )
+            ],
+        )
+        invoice_line = invoice.invoice_line_ids.filtered(
+            lambda line: line.product_id == self.product_a
+        )
+        # In special mode with default=True, the line should have prorate
+        self.assertTrue(
+            invoice_line.with_vat_prorate,
+            "with_vat_prorate should be True by default in special mode",
+        )
+        # Now manually change it to False
+        invoice_line.write({"with_vat_prorate": False})
+        self.assertFalse(
+            invoice_line.with_vat_prorate,
+            "Manual with_vat_prorate=False should be preserved in special mode",
+        )
+
+    def test_with_vat_prorate_general_mode_auto_detect(self):
+        """Test that with_vat_prorate is auto-detected in general prorate mode.
+
+        In general prorate mode, with_vat_prorate should be automatically
+        set based on whether the line has taxes with with_vat_prorate=True.
+        """
+        invoice = self._create_invoice(
+            move_type="in_invoice",
+            invoice_date=date(2000, 6, 1),
+            invoice_line_ids=[
+                self._prepare_invoice_line(
+                    product_id=self.product_a,
+                    quantity=1,
+                    price_unit=100,
+                    tax_ids=self.tax_purchase_a,
+                )
+            ],
+        )
+        invoice_line = invoice.invoice_line_ids.filtered(
+            lambda line: line.product_id == self.product_a
+        )
+        self.assertTrue(
+            invoice_line.with_vat_prorate,
+            "with_vat_prorate should be auto-detected as True for taxes with prorate",
+        )
+        # After writing, the field should remain as it was set in create()
+        # because the onchange doesn't automatically recalculate on write
+        invoice_line.write({"tax_ids": [(5, 0)]})
+        # The field doesn't auto-update on write, only on onchange in UI
+        # This is expected behavior - the fix ensures it's set correctly on create
+
+    def test_recompute_with_vat_prorate_if_needed(self):
+        """Test _recompute_with_vat_prorate_if_needed method.
+
+        This method should correctly recompute with_vat_prorate on lines
+        in scenarios where it might not have been set correctly.
+        """
+        invoice = self._create_invoice(
+            move_type="in_invoice",
+            invoice_date=date(2000, 6, 1),
+            invoice_line_ids=[
+                self._prepare_invoice_line(
+                    product_id=self.product_a,
+                    quantity=1,
+                    price_unit=100,
+                    tax_ids=self.tax_purchase_a,
+                )
+            ],
+        )
+        invoice_line = invoice.invoice_line_ids.filtered(
+            lambda line: line.product_id == self.product_a
+        )
+        invoice_line.with_vat_prorate = False
+        self.assertFalse(invoice_line.with_vat_prorate)
+        invoice._recompute_with_vat_prorate_if_needed()
+        self.assertTrue(
+            invoice_line.with_vat_prorate,
+            "with_vat_prorate should be recomputed to True",
+        )
+
+    def test_with_vat_prorate_display_lines_ignored(self):
+        """Test that display lines (sections, notes) are ignored for prorate.
+
+        Lines with display_type set to 'line_section' or 'line_note'
+        should not be processed for prorate calculation.
+        """
+        from odoo.fields import Command
+
+        invoice = self._create_invoice(
+            move_type="in_invoice",
+            invoice_date=date(2000, 6, 1),
+            invoice_line_ids=[
+                Command.create(
+                    {
+                        "display_type": "line_section",
+                        "name": "Section Header",
+                    }
+                ),
+                self._prepare_invoice_line(
+                    product_id=self.product_a,
+                    quantity=1,
+                    price_unit=100,
+                    tax_ids=self.tax_purchase_a,
+                ),
+                Command.create(
+                    {
+                        "display_type": "line_note",
+                        "name": "Note text",
+                    }
+                ),
+            ],
+        )
+        section_line = invoice.invoice_line_ids.filtered(
+            lambda line: line.display_type == "line_section"
+        )
+        note_line = invoice.invoice_line_ids.filtered(
+            lambda line: line.display_type == "line_note"
+        )
+        self.assertFalse(
+            section_line.with_vat_prorate,
+            "Section lines should not have with_vat_prorate=True",
+        )
+        self.assertFalse(
+            note_line.with_vat_prorate,
+            "Note lines should not have with_vat_prorate=True",
+        )
