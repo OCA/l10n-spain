@@ -1,0 +1,51 @@
+<odoo>
+    <template id="communication_success" name="415 communication success">
+        <t t-call="portal.frontend_layout">
+            <div id="wrap">
+                <div class="oe_empty">
+                    <div class="container">
+                        <div class="row mb32">
+                            <div class="col-12 text-center">
+                                <h1
+                                    class="mt32"
+                                    style="font-size: 22px; letter-spacing: 2px; font-weight: bolder;"
+                                >Modelo 415</h1>
+                                <div id="ok">
+                                    <h4 class="mt32">
+                                        La comunicación se ha registrado correctamente.
+                                    </h4>
+                                    <p>Ya puede cerrar esta página si así lo desea.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+    <template id="communication_failed" name="415 communication failed">
+        <t t-call="portal.frontend_layout">
+            <div id="wrap">
+                <div class="oe_empty">
+                    <div class="container">
+                        <div class="row mb32">
+                            <div class="col-12 text-center">
+                                <h1
+                                    class="mt32"
+                                    style="font-size: 22px; letter-spacing: 2px; font-weight: bolder;"
+                                >Modelo 415</h1>
+                                <div id="bad">
+                                    <h4 class="mt32">
+                                        Ha habido un error registrando la comunicación.
+                                    </h4>
+                                    <p
+                                    >Revíselo y vuelva a intentarlo, o pongase en contacto por correo con nosotros.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>
