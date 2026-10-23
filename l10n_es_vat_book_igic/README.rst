@@ -39,8 +39,8 @@ Declaraciones ATC -> Libro de IVA.
 
 Es posible visualizar e imprimir por separado:
 
-- Libro Registro de Facturas Emitidas
-- Libro Registro de Facturas Recibidas
+-  Libro Registro de Facturas Emitidas
+-  Libro Registro de Facturas Recibidas
 
 Es posible exportar los registros a archivo con extensión xlsx.
 
@@ -57,8 +57,8 @@ Installation
 
 Para instalar este modulo necesitas:
 
-- l10n_es_igic
-- l10n_es_vat_book
+-  l10n_es_igic
+-  l10n_es_vat_book
 
 Se instalan automáticamente si están disponibles en la lista de addons.
 
@@ -95,11 +95,13 @@ Authors
 Contributors
 ------------
 
-- Nicolás Ramos <n.ramos@binhex.es>
+-  Nicolás Ramos <n.ramos@binhex.es>
 
-- `Binhex <https://www.binhex.cloud/>`__
+-  Mario Montes <m.montes@binhex.cloud>
 
-  - Adria Hortoneda
+-  `Binhex <https://www.binhex.cloud/>`__
+
+   -  Adria Hortoneda
 
 Maintainers
 -----------
