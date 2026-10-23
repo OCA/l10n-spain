@@ -5,11 +5,12 @@
 # Copyright 2017-2023 Tecnativa - Pedro M. Baeza
 # Copyright 2023 Moduon Team - Eduardo de Miguel
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
-
 import json
 from datetime import timedelta
+from unittest.mock import MagicMock, patch
 
 from odoo import exceptions, fields
+from odoo.tools import mute_logger
 from odoo.tools.misc import file_path
 
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_certificate import (
@@ -537,6 +538,7 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
             "Test customer header | Test line",
         )
 
+    @mute_logger("odoo.models.unlink")
     def test_vat_number_check(self):
         self.partner.write(
             {"vat": "F35999705", "country_id": self.env.ref("base.es").id}
@@ -633,11 +635,13 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
             )
         )
 
+    @mute_logger("odoo.models.unlink")
     def test_unlink_draft_invoice_when_not_sent_to_sii(self):
         draft_invoice = self.invoice.copy({})
         draft_invoice.unlink()
         self.assertFalse(draft_invoice.exists())
 
+    @mute_logger("odoo.models.unlink")
     def test_unlink_invoice_when_sent_to_sii(self):
         self.invoice.aeat_state = "sent"
         self.invoice.button_draft()  # Convert to draft to check only SII exception
@@ -749,8 +753,48 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
             .create({})
         )
         self.assertEqual(wizard.moves_to_send, 1)
-        invoice.send_sii_now()
-        self.assertLess(invoice.sii_send_date, future_send_date)
+        fake_serv = MagicMock()
+        fake_serv.SuministroLRFacturasEmitidas.return_value = {
+            "EstadoEnvio": "Correcto",
+            "CSV": "TEST-CSV",
+            "RespuestaLinea": [
+                {
+                    "IDFactura": invoice._get_aeat_invoice_dict_out(True)["IDFactura"],
+                    "CodigoErrorRegistro": "",
+                    "DescripcionErrorRegistro": "",
+                }
+            ],
+        }
+        with patch.object(type(invoice), "_connect_aeat", return_value=fake_serv):
+            invoice.send_sii_now()
+        self.assertFalse(invoice.sii_send_date)
+        self.assertEqual(invoice.aeat_state, "sent_modified")
+
+    def test_send_sii_now(self):
+        self.company.sii_method = "manual"
+        self.invoice.sii_send_date = False
+        invoice = self._create_invoice("out_invoice")
+        invoice.invoice_date = "2019-01-01"
+        invoice._post()
+        self.assertTrue(invoice.sii_enabled)
+        self.assertFalse(invoice.sii_send_date)
+        fake_serv = MagicMock()
+        fake_serv.SuministroLRFacturasEmitidas.return_value = {
+            "EstadoEnvio": "Correcto",
+            "CSV": "TEST-CSV",
+            "RespuestaLinea": [
+                {
+                    "IDFactura": invoice._get_aeat_invoice_dict_out()["IDFactura"],
+                    "EstadoRegistro": "Correcto",
+                    "CodigoErrorRegistro": "",
+                    "DescripcionErrorRegistro": "",
+                }
+            ],
+        }
+        with patch.object(type(invoice), "_connect_aeat", return_value=fake_serv):
+            invoice.send_sii_now()
+        self.assertFalse(invoice.sii_send_date)
+        self.assertEqual(invoice.aeat_state, "sent")
 
     def test_start_date(self):
         self.company.sii_start_date = "2018-01-01"
