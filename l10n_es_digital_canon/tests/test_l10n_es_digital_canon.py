@@ -1,5 +1,6 @@
 # Copyright 2025 Juan Carlos Oñate - Tecnativa <juancarlos.onate@tecnativa.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+from odoo import Command
 from odoo.tests import Form, tagged
 
 from odoo.addons.base.tests.common import BaseCommon
@@ -54,6 +55,20 @@ class TestL10nEsTaxDigitalCanon(BaseCommon):
             line_form.product_id = self.product
         invoice = move_form.save()
         self.assertNotIn(self.canon_tax, invoice.invoice_line_ids.tax_ids)
+
+    def test_canon_does_not_apply_for_customer_invoice_shipped_out_of_spain(self):
+        invoice = self.env["account.move"].create(
+            {
+                "move_type": "out_invoice",
+                "partner_id": self.partner_es.id,
+                "partner_shipping_id": self.partner_fr.id,
+                "invoice_line_ids": [Command.create({"product_id": self.product.id})],
+            }
+        )
+        canon_sale_tax = self.env.ref(
+            f"account.{self.company.id}_tax_template_canon_sale_3_75"
+        )
+        self.assertNotIn(canon_sale_tax, invoice.invoice_line_ids.tax_ids)
 
     def test_tax_selection(self):
         selection = (

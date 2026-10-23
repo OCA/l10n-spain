@@ -7,6 +7,7 @@
     "website": "https://github.com/OCA/l10n-spain",
     "author": "Tecnativa, Odoo Community Association (OCA)",
     "license": "AGPL-3",
+    "maintainers": ["juancarlosonate-tecnativa"],
     "depends": ["l10n_es", "purchase", "sale"],
     "data": [
         "reports/invoice_document_report.xml",
