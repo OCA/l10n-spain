@@ -9,6 +9,7 @@ class PosSession(models.Model):
         params["search_params"]["fields"].extend(
             [
                 "verifactu_enabled",
+                "verifactu_start_date",
             ]
         )
         return params

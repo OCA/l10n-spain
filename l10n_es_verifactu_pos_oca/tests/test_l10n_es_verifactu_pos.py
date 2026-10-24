@@ -172,9 +172,11 @@ class TestL10nEsVerifactuPOS(TestVerifactuCommon):
                         },
                     )
                 ],
+                # `_order_fields` reads it from the order data, so it has to be
+                # in here to reach the record.
+                "to_invoice": not simplified,
             },
             "id": uid,
-            "to_invoice": not simplified,
         }
 
     def test_simplified_invoice_verifactu_flow(self):
@@ -708,6 +710,52 @@ class TestL10nEsVerifactuPOS(TestVerifactuCommon):
         # Order-level description takes precedence
         order.verifactu_description = "Order description"
         self.assertEqual(order._get_verifactu_description(), "Order description")
+
+    def test_pos_verifactu_invoiced_order_is_not_registered(self):
+        """An order to be invoiced is registered as an invoice, not as a ticket.
+
+        The ticket must not show a QR code either, so the PoS UI needs the same
+        condition. This test pins the backend side of that contract.
+        """
+        orders_data = [self._create_ui_order_data(simplified=False)]
+        order_ids = self.env["pos.order"].create_from_ui(orders_data)
+        order = self.env["pos.order"].browse(order_ids[0]["id"])
+
+        self.assertTrue(order.to_invoice)
+        self.assertFalse(
+            order._is_verifactu_order(),
+            "An order to be invoiced must not take a link in the chain",
+        )
+        self.assertFalse(order.last_verifactu_invoice_entry_id)
+        # The sale is registered, but through its invoice.
+        self.assertTrue(order.account_move.last_verifactu_invoice_entry_id)
+
+    def test_pos_verifactu_start_date_is_loaded_in_pos_ui(self):
+        """The PoS UI needs the start date to hide the QR code before it."""
+        params = self.pos_session._loader_params_res_company()
+        self.assertIn("verifactu_start_date", params["search_params"]["fields"])
+
+    def test_pos_verifactu_journal_flag_reaches_the_pos_ui(self):
+        """The PoS UI needs the journal flag to hide the QR when it is off.
+
+        The journal the registration looks at is the PoS one, which a standard
+        install creates with type `general` (core `pos_config.generate_pos_journal`),
+        so the constraint requiring VERI*FACTU on sale journals does not reach
+        it: its flag can be off and the backend then registers nothing.
+        """
+        general_journal = self.env["account.journal"].create(
+            {
+                "name": "Point of Sale general",
+                "type": "general",
+                "code": "POSSG",
+                "company_id": self.company.id,
+            }
+        )
+        self.pos_config.journal_id = general_journal
+        self.assertTrue(self.pos_config.verifactu_journal_enabled)
+
+        general_journal.verifactu_enabled = False
+        self.assertFalse(self.pos_config.verifactu_journal_enabled)
 
     def test_pos_verifactu_subsanacion_rechazo(self):
         """Test Subsanacion and RechazoPrevio flags in invoice dict"""
