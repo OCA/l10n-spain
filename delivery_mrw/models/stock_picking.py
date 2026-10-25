@@ -15,7 +15,7 @@ class StockPicking(models.Model):
         label_name = f"mrw_label_{tracking_ref}.pdf"
         body = self.env._("MRW Shipping Label:")
         attachment = []
-        if label["EtiquetaFile"]:
+        if label and "EtiquetaFile" in label and label["EtiquetaFile"]:
             attachment = [
                 (
                     label_name,
