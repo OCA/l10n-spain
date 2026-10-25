@@ -1,7 +1,6 @@
 <odoo>
     <record model="ir.ui.view" id="delivery_mrw_manifest_wizard_form">
         <field name="model">mrw.manifest.wizard</field>
-        <field name="type">form</field>
         <field name="arch" type="xml">
             <form string="MRW Manifest">
                 <group>
@@ -17,7 +16,7 @@
                         type="object"
                         class="oe_highlight"
                     />
-                    <button string="Cancelar" special="cancel" />
+                    <button string="Cancel" special="cancel" />
                 </footer>
             </form>
         </field>
