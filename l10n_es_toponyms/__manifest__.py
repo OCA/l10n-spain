@@ -7,7 +7,7 @@
 
 {
     "name": "Topónimos españoles",
-    "version": "19.0.1.0.1",
+    "version": "20.0.1.0.0",
     "development_status": "Mature",
     "author": "Spanish Localization Team, "
     "ZikZakMedia, "
@@ -17,7 +17,7 @@
     "category": "Localization",
     "depends": ["base_location_geonames_import"],
     "license": "AGPL-3",
-    "data": ["security/ir.model.access.csv", "wizard/l10n_es_toponyms_wizard.xml"],
+    "data": ["security/ir.access.csv", "wizard/l10n_es_toponyms_wizard.xml"],
     "maintainers": ["pedrobaeza"],
     "installable": True,
 }
