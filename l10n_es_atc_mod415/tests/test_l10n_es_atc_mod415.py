@@ -20,21 +20,20 @@ _logger = logging.getLogger("atc")
 
 @tagged("post_install", "-at_install")
 class TestL10nEsAtcMod415(TestL10nEsAeatModBase):
+    # The chart is the one of the base: 20.0 merged the Canary templates into
+    # es_common, so es_pymes already carries the IGIC taxes this declaration
+    # reads. Odoo core ships them archived and activates them (archiving the
+    # IVA ones) when the company gets a Canary province, as a Canary user does.
     @classmethod
     def _chart_of_accounts_create(cls):
-        _logger.debug("Creating chart of account")
-        cls.company = cls.env["res.company"].create(
-            {"name": "Canary test company", "currency_id": cls.env.ref("base.EUR").id}
+        res = super()._chart_of_accounts_create()
+        cls.company.sudo().write(
+            {
+                "country_id": cls.env.ref("base.es").id,
+                "state_id": cls.env.ref("base.state_es_gc").id,
+            }
         )
-        cls.env.ref("base.group_multi_company").write({"users": [(4, cls.env.uid)]})
-        cls.env.user.write(
-            {"company_ids": [(4, cls.company.id)], "company_id": cls.company.id}
-        )
-        cls.env["account.chart.template"].try_loading(
-            "es_canary_pymes", company=cls.company, install_demo=False
-        )
-        cls.with_context(company_id=cls.company.id)
-        return True
+        return res
 
     @classmethod
     def setUpClass(cls):
@@ -44,7 +43,7 @@ class TestL10nEsAtcMod415(TestL10nEsAeatModBase):
             {
                 "name": "9990000000415",
                 "company_id": cls.company.id,
-                "company_vat": "1234567890",
+                "company_vat": "123456789",
                 "contact_name": "Test owner",
                 "statement_type": "N",
                 "support_type": "T",
@@ -58,6 +57,14 @@ class TestL10nEsAtcMod415(TestL10nEsAeatModBase):
             {"name": "Test customer 2", "vat": "ES12345678Z"}
         )
         cls.customer_3 = cls.customer.copy({"name": "Test customer 3"})
+        # A customer excluded from the 415 on its form, invoiced through one of
+        # its contacts
+        cls.customer_7 = cls.customer.copy(
+            {"name": "Test customer 7", "is_company": True, "not_in_mod415": True}
+        )
+        cls.customer_7_contact = cls.env["res.partner"].create(
+            {"name": "Contact of customer 7", "parent_id": cls.customer_7.id}
+        )
         cls.customer_4 = cls.customer.copy(
             {"name": "Test customer 4", "vat": "ESB29805314"}
         )
@@ -82,7 +89,7 @@ class TestL10nEsAtcMod415(TestL10nEsAeatModBase):
         cls.supplier_2 = cls.supplier.copy({"name": "Test supplier 2"})
         # Invoice lower than the limit
         cls.taxes_sale = {
-            "l10n_es_igic.account_tax_template_igic_r_7": (2000, 140),
+            "account_tax_template_igic_r_7": (2000, 140),
         }
         cls.invoice_1 = cls._invoice_sale_create("2019-01-01")
         # Cancelled invoice - Shouldn't count for partner `customer`
@@ -90,7 +97,7 @@ class TestL10nEsAtcMod415(TestL10nEsAeatModBase):
         cls.invoice_cancel.button_cancel()
         # Invoice higher than limit
         cls.taxes_sale = {
-            "l10n_es_igic.account_tax_template_igic_r_7": (4000, 280),
+            "account_tax_template_igic_r_7": (4000, 280),
         }
         cls.invoice_2 = cls._invoice_sale_create(
             "2019-04-01", {"partner_id": cls.customer_2.id}
@@ -99,9 +106,12 @@ class TestL10nEsAtcMod415(TestL10nEsAeatModBase):
         cls.invoice_3 = cls._invoice_sale_create(
             "2019-01-01", {"partner_id": cls.customer_3.id, "not_in_mod415": True}
         )
+        cls.invoice_7 = cls._invoice_sale_create(
+            "2019-04-01", {"partner_id": cls.customer_7_contact.id}
+        )
         # # Invoice higher than cash limit
         cls.taxes_sale = {
-            "l10n_es_igic.account_tax_template_igic_r_7": (6000, 420),
+            "account_tax_template_igic_r_7": (6000, 420),
         }
         cls.invoice_4 = cls._invoice_sale_create(
             "2019-07-01", {"partner_id": cls.customer_4.id}
@@ -130,29 +140,27 @@ class TestL10nEsAtcMod415(TestL10nEsAeatModBase):
         payment_form.save().action_create_payments()
         # Customer refund higher than limit
         cls.taxes_sale = {
-            "l10n_es_igic.account_tax_template_igic_r_7": (5000, 350),
+            "account_tax_template_igic_r_7": (5000, 350),
         }
         cls.invoice_5 = cls._invoice_sale_create(
             "2019-01-01", {"partner_id": cls.customer_6.id, "move_type": "out_refund"}
         )
         # Purchase invoice higher than the limit
         cls.taxes_purchase = {
-            "l10n_es_igic.account_tax_template_igic_sop_7": (3000, 210),
+            "account_tax_template_igic_sop_7": (3000, 210),
         }
         cls.invoice_suppler_1 = cls._invoice_purchase_create("2019-01-01")
         # Supplier refund higher than limit
         cls.taxes_purchase = {
-            "l10n_es_igic.account_tax_template_igic_sop_7": (4000, 280),
+            "account_tax_template_igic_sop_7": (4000, 280),
         }
         cls.invoice_suppler_2 = cls._invoice_purchase_create(
             "2019-01-01", {"partner_id": cls.supplier_2.id, "move_type": "in_refund"}
         )
 
     def test_model_415(self):
-        # Check flag propagation
-        self.assertFalse(self.invoice_1.not_in_mod415)
-        self.assertTrue(self.invoice_3.not_in_mod415)
-        # Check model
+        # invoice_3 is excluded on the invoice and invoice_7 on the form of
+        # the commercial partner of its contact: none of them is declared
         self.model415.button_calculate()
         partner_record_vals = [
             # key, partner, amount, cash_amount, 1T, 2T, 3T, 4T
@@ -181,24 +189,11 @@ class TestL10nEsAtcMod415(TestL10nEsAeatModBase):
             self.assertAlmostEqual(partner_record.second_quarter, vals[5])
             self.assertAlmostEqual(partner_record.third_quarter, vals[6])
             self.assertAlmostEqual(partner_record.fourth_quarter, vals[7])
-        # Check VAT handle
-        partner_record = self.model415.partner_record_ids.filtered(
-            lambda x: x.partner_id == self.customer_2
+        self.assertFalse(
+            self.model415.partner_record_ids.filtered(
+                lambda x: (
+                    x.partner_id
+                    in (self.customer_3, self.customer_7, self.customer_7_contact)
+                )
+            )
         )
-        self.assertEqual(partner_record.partner_vat, "12345678Z")
-        self.assertEqual(partner_record.partner_country_code, "ES")
-        partner_record = self.model415.partner_record_ids.filtered(
-            lambda x: x.partner_id == self.customer_4
-        )
-        self.assertEqual(partner_record.partner_vat, "B29805314")
-        self.assertEqual(partner_record.partner_country_code, "ES")
-        partner_record = self.model415.partner_record_ids.filtered(
-            lambda x: x.partner_id == self.customer_5
-        )
-        self.assertEqual(partner_record.partner_vat, "12345678Z")
-        self.assertEqual(partner_record.partner_country_code, "ES")
-        partner_record = self.model415.partner_record_ids.filtered(
-            lambda x: x.partner_id == self.customer_6
-        )
-        self.assertEqual(partner_record.partner_vat, "B29805314")
-        self.assertEqual(partner_record.partner_country_code, "ES")

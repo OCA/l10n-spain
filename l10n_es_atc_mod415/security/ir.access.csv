@@ -1,0 +1,6 @@
+id,name,model_id,group_id/id,operation,domain
+access_l10n_es_atc_mod415_manager,l10n_es_atc_mod415 manager,l10n.es.atc.mod415.report,l10n_es_aeat.group_account_aeat,crud,
+l10n_es_atc_mod415_report_rule,ATC Mod 415 multi-company,l10n.es.atc.mod415.report,,crud,"[('company_id', 'in', company_ids + [False])]"
+access_l10n_es_atc_mod415_partner_manager,l10n_es_atc_mod415_partner manager,l10n.es.atc.mod415.partner_record,l10n_es_aeat.group_account_aeat,crud,
+access_l10n_es_atc_mod415_real_estate_manager,l10n_es_atc_mod415_real_estate manager,l10n.es.atc.mod415.real_estate_record,l10n_es_aeat.group_account_aeat,crud,
+access_l10n_es_atc_mod415_move_manager,l10n_es_atc_mod415_move manager,l10n.es.atc.mod415.move.record,l10n_es_aeat.group_account_aeat,crud,

@@ -2,7 +2,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
+from odoo.fields import Command, Domain
 
 KEY_TAX_MAPPING = {
     "A": "l10n_es_atc_mod415.atc_mod415_map_a",
@@ -34,7 +35,7 @@ class L10nEsAtcMod415Report(models.Model):
     def btn_list_records(self):
         return {
             "domain": "[('report_id','in'," + str(self.ids) + ")]",
-            "name": _("Partner records"),
+            "name": self.env._("Partner records"),
             "view_mode": "list,form",
             "res_model": "l10n.es.atc.mod415.partner_record",
             "type": "ir.actions.act_window",
@@ -45,56 +46,58 @@ class L10nEsAtcMod415Report(models.Model):
 
         :param: taxes: Taxes to look for in move lines.
         """
-        return [
-            ("partner_id.not_in_mod415", "=", False),
-            ("move_id.not_in_mod415", "=", False),
-            ("date", ">=", self.date_start),
-            ("date", "<=", self.date_end),
-            "|",
-            ("tax_ids", "in", taxes.ids),
-            ("tax_line_id", "in", taxes.ids),
-            ("parent_state", "=", "posted"),
-        ]
+        return Domain.AND(
+            [
+                Domain("partner_id.not_in_mod415", "=", False),
+                Domain("move_id.not_in_mod415", "=", False),
+                Domain("date", ">=", self.date_start),
+                Domain("date", "<=", self.date_end),
+                Domain.OR(
+                    [
+                        Domain("tax_ids", "in", taxes.ids),
+                        Domain("tax_line_id", "in", taxes.ids),
+                    ]
+                ),
+                Domain("parent_state", "=", "posted"),
+            ]
+        )
 
     def _create_partner_records(self, key, map_ref, partner_record=None):
         sign = -1 if key == "B" else 1
         partner_record_obj = self.env["l10n.es.atc.mod415.partner_record"]
-        partner_obj = self.env["res.partner"]
         map_line = self.env.ref(map_ref)
         taxes = map_line.get_taxes_for_company(self.company_id)
         domain = self._account_move_line_domain(taxes)
         if partner_record:
-            domain += [("partner_id", "=", partner_record.partner_id.id)]
-        groups = self.env["account.move.line"].read_group(
-            domain,
-            ["partner_id", "balance"],
-            ["partner_id"],
+            domain = domain & Domain("partner_id", "=", partner_record.partner_id.id)
+        groups = self.env["account.move.line"]._read_group(
+            domain=domain,
+            aggregates=["balance:sum"],
+            groupby=["partner_id"],
         )
         filtered_groups = list(
-            filter(lambda d: abs(d["balance"]) > self.operations_limit, groups)
+            filter(lambda d: abs(d[1]) > self.operations_limit, groups)
         )
         for group in filtered_groups:
-            partner = partner_obj.browse(group["partner_id"][0])
+            partner = group[0]
             vals = {
                 "report_id": self.id,
                 "partner_id": partner.id,
                 "representative_vat": "",
                 "operation_key": key,
-                "amount": sign * group["balance"],
+                "amount": sign * group[1],
             }
             vals.update(self._get_partner_347_identification(partner))
-            move_groups = self.env["account.move.line"].read_group(
-                group["__domain"],
-                ["move_id", "balance"],
-                ["move_id"],
+            move_groups = self.env["account.move.line"]._read_group(
+                domain=domain & Domain("partner_id", "=", partner.id),
+                aggregates=["balance:sum"],
+                groupby=["move_id"],
             )
             vals["move_record_ids"] = [
-                (
-                    0,
-                    0,
+                Command.create(
                     {
-                        "move_id": move_group["move_id"][0],
-                        "amount": sign * move_group["balance"],
+                        "move_id": move_group[0].id,
+                        "amount": sign * move_group[1],
                     },
                 )
                 for move_group in move_groups
@@ -108,40 +111,47 @@ class L10nEsAtcMod415Report(models.Model):
                 partner_record_obj.create(vals)
 
     def _create_cash_moves(self):
-        partner_obj = self.env["res.partner"]
         move_line_obj = self.env["account.move.line"]
         cash_journals = self.env["account.journal"].search(
-            [("type", "=", "cash")],
+            [Domain("type", "=", "cash")],
         )
         if not cash_journals:
             return
-        domain = [
-            ("account_id.account_type", "=", "asset_receivable"),
-            ("journal_id", "in", cash_journals.ids),
-            ("date", ">=", self.date_start),
-            ("date", "<=", self.date_end),
-            ("partner_id.not_in_mod415", "=", False),
-        ]
-        cash_groups = move_line_obj.read_group(
-            domain, ["partner_id", "balance"], ["partner_id"]
+        domain = Domain.AND(
+            [
+                Domain("account_id.account_type", "=", "asset_receivable"),
+                Domain("journal_id", "in", cash_journals.ids),
+                Domain("date", ">=", self.date_start),
+                Domain("date", "<=", self.date_end),
+                Domain("partner_id.not_in_mod415", "=", False),
+            ]
+        )
+        cash_groups = move_line_obj._read_group(
+            domain=domain,
+            aggregates=["balance:sum"],
+            groupby=["partner_id"],
         )
         for cash_group in cash_groups:
-            partner = partner_obj.browse(cash_group["partner_id"][0])
+            partner = cash_group[0]
             partner_record_obj = self.env["l10n.es.atc.mod415.partner_record"]
-            amount = abs(cash_group["balance"])
+            amount = abs(cash_group[1])
             if amount > self.received_cash_limit:
-                move_lines = move_line_obj.search(cash_group["__domain"])
+                move_lines = move_line_obj.search(
+                    domain & Domain("partner_id", "=", partner.id)
+                )
                 partner_record = partner_record_obj.search(
-                    [
-                        ("partner_id", "=", partner.id),
-                        ("operation_key", "=", "B"),
-                        ("report_id", "=", self.id),
-                    ]
+                    Domain.AND(
+                        [
+                            Domain("partner_id", "=", partner.id),
+                            Domain("operation_key", "=", "B"),
+                            Domain("report_id", "=", self.id),
+                        ]
+                    )
                 )
                 if partner_record:
                     partner_record.write(
                         {
-                            "cash_record_ids": [(6, 0, move_lines.ids)],
+                            "cash_record_ids": [Command.set(move_lines.ids)],
                             "cash_amount": amount,
                         }
                     )
@@ -153,7 +163,7 @@ class L10nEsAtcMod415Report(models.Model):
                         "operation_key": "B",
                         "amount": 0,
                         "cash_amount": amount,
-                        "cash_record_ids": [(6, 0, move_lines.ids)],
+                        "cash_record_ids": [Command.set(move_lines.ids)],
                     }
                     vals.update(self._get_partner_347_identification(partner))
                     partner_record_obj.create(vals)
@@ -165,7 +175,7 @@ class L10nEsAtcMod415Report(models.Model):
             self._create_partner_records("A", KEY_TAX_MAPPING["A"])
             self._create_partner_records("B", KEY_TAX_MAPPING["B"])
             self._create_cash_moves()
-            self.flush_model()
+            self.env.flush_all()
             report.partner_record_ids.calculate_quarter_totals()
         return True
 
@@ -185,7 +195,7 @@ class L10nEsAtcMod415PartnerRecord(models.Model):
         comodel_name="l10n.es.atc.mod415.report",
         string="Modelo 415",
         ondelete="cascade",
-        default=_default_record_id,
+        default=lambda self: self._default_record_id(),
     )
     move_record_ids = fields.One2many(
         comodel_name="l10n.es.atc.mod415.move.record",
@@ -217,7 +227,7 @@ class L10nEsAtcMod415RealStateRecord(models.Model):
         string="Modelo 415",
         ondelete="cascade",
         index=1,
-        default=_default_record_id,
+        default=lambda self: self._default_record_id(),
     )
 
 
@@ -236,5 +246,5 @@ class L10nEsAtcMod415MoveRecord(models.Model):
         required=True,
         ondelete="cascade",
         index=True,
-        default=_default_partner_record,
+        default=lambda self: self._default_partner_record(),
     )
