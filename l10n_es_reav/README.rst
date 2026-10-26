@@ -21,13 +21,13 @@ REAV - Régimen Especial Agencias de Viajes
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github
-    :target: https://github.com/OCA/l10n-spain/tree/18.0/l10n_es_reav
+    :target: https://github.com/OCA/l10n-spain/tree/20.0/l10n_es_reav
     :alt: OCA/l10n-spain
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/l10n-spain-18-0/l10n-spain-18-0-l10n_es_reav
+    :target: https://translation.odoo-community.org/projects/l10n-spain-20-0/l10n-spain-20-0-l10n_es_reav
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&target_branch=18.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&target_branch=20.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
@@ -67,18 +67,8 @@ fiscal. Para ello debemos:
 Usage
 =====
 
-Una vez actualizado el plan contable (Impuestos y Posiciones fiscales)
-podremos asignar los impuestos REAV a los productos de la empresa:
-
-1. Crear o ir a la ficha de un producto
-
-2. | Asignar el siguiente impuesto en el campo "Impuestos cliente"
-   | *IVA Repercutido incluido REAV*
-
-3. | Asignar el siguiente impuesto en el campo "Impuestos proveedor"
-   | *IVA Soportado no deducible REAV*
-
-Tambien podemos asignar la posicion fiscal a los proveedores y clientes
+Una vez actualizado el plan contable (Impuestos y Posiciones fiscales),
+asignaremos la posición fiscal a los proveedores y clientes del régimen
 para cambiar los impuestos de compra y venta en las facturas:
 
 1. Crear o ir a la ficha de un contacto
@@ -86,13 +76,22 @@ para cambiar los impuestos de compra y venta en las facturas:
 2. | Asignar la siguiente posición fiscal en el campo "Posición fiscal"
    | *REAV - Agencias de viajes*
 
+La posición fiscal sustituye los impuestos de IVA general por *IVA
+Repercutido incluido REAV* en las ventas y por *IVA Soportado no
+deducible REAV* en las compras. Los impuestos REAV solo se aplican con
+esta posición fiscal: puestos directamente en un producto, desaparecen
+de las facturas con la posición fiscal nacional.
+
+Los impuestos REAV llevan la clave de régimen 05 (agencias de viajes),
+que pasa a las facturas para el SII y VERI*FACTU.
+
 Bug Tracker
 ===========
 
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/l10n-spain/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_reav%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_reav%0Aversion:%2020.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -118,6 +117,7 @@ Contributors
 - `Tecnativa <https://www.tecnativa.com>`__:
 
   - Juan Carlos Oñate
+  - Carlos Dauden
 
 Maintainers
 -----------
@@ -140,6 +140,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-Bilbonet| 
 
-This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/18.0/l10n_es_reav>`_ project on GitHub.
+This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/20.0/l10n_es_reav>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

@@ -4,3 +4,4 @@
   - Luis Rodríguez
 - [Tecnativa](https://www.tecnativa.com):
   - Juan Carlos Oñate
+  - Carlos Dauden
