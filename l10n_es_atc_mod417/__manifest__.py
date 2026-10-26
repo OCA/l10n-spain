@@ -2,7 +2,7 @@
 
 {
     "name": "ATC Modelo 417",
-    "version": "18.0.1.0.0",
+    "version": "20.0.1.0.0",
     "author": "Tecnativa, Odoo Community Association (OCA)",
     "category": "Accounting",
     "website": "https://github.com/OCA/l10n-spain",
@@ -17,16 +17,15 @@
         "deb": ["openjdk-8-jdk", "ttf-mscorefonts-installer", "fontconfig"],
     },
     "data": [
-        "security/l10n_es_atc_mod417_security.xml",
-        "security/ir.model.access.csv",
         "data/l10n.es.aeat.map.tax.csv",
         "data/l10n.es.aeat.map.tax.line.tax.csv",
         "data/l10n.es.aeat.map.tax.line.account.csv",
         "data/l10n.es.aeat.map.tax.line.csv",
         "reports/mod417_report.xml",
         "views/mod417_view.xml",
+        "security/ir.access.csv",
     ],
-    "maintainers": ["carlos-lopez-tecnativa"],
+    "maintainers": ["carlos-lopez-tecnativa", "carlosdauden"],
     "installable": True,
     "auto_install": False,
 }

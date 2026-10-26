@@ -32,7 +32,7 @@
                     string="Generar declaración"
                     invisible="state in ['draft', 'cancelled']"
                     type="object"
-                    icon="fa-share"
+                    icon="share"
                 />
             </header>
             <field name="export_config_id" position="attributes">

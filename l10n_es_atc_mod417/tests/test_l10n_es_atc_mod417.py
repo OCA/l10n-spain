@@ -5,12 +5,13 @@
 
 
 import logging
-from datetime import datetime
+from typing import ClassVar
 
 import requests
 from freezegun import freeze_time
 from lxml import etree
 
+from odoo import fields
 from odoo.exceptions import UserError
 from odoo.tests import tagged
 
@@ -26,7 +27,7 @@ class TestL10nEsAtcmod417Base(TestL10nEsAeatModBase):
     # Set 'debug' attribute to True to easy debug this test
     # Do not forget to include '--log-handler atc:DEBUG' in Odoo command line
     debug = False
-    taxes_sale = {
+    taxes_sale: ClassVar[dict] = {
         # tax code: (base, tax_amount)
         "l10n_es_igic.account_tax_template_igic_r_3": (2000, 60),
         "l10n_es_igic.account_tax_template_igic_r_3//neg": (-200, -6),
@@ -44,7 +45,7 @@ class TestL10nEsAtcmod417Base(TestL10nEsAeatModBase):
         "l10n_es_igic.account_tax_template_igic_re_ex": (1800, 0),
         "l10n_es_igic.account_tax_template_igic_cmino": (1900, 0),
     }
-    taxes_purchase = {
+    taxes_purchase: ClassVar[dict] = {
         # tax code: (base, tax_amount)
         "l10n_es_igic.account_tax_template_igic_p_ex": (100, 0),
         "l10n_es_igic.account_tax_template_igic_sop_0": (200, 0),
@@ -89,7 +90,7 @@ class TestL10nEsAtcmod417Base(TestL10nEsAeatModBase):
         "l10n_es_igic.account_tax_template_igic_p_re15": (450, 6.75),
         "l10n_es_igic.account_tax_template_igic_p_re20": (460, 9.2),
     }
-    taxes_result = {
+    taxes_result: ClassVar[dict] = {
         # IGIC Tipo cero - Base imponible 0%
         "1": (3 * 1500),  # account_tax_template_igic_r_0
         # IGIC Tipo cero - Cuota 0%
@@ -392,21 +393,9 @@ class TestL10nEsAtcmod417Base(TestL10nEsAeatModBase):
         ),
     }
 
-    @classmethod
-    def _chart_of_accounts_create(cls):
-        _logger.debug("Creating chart of account")
-        cls.company = cls.env["res.company"].create(
-            {"name": "Canary test company", "currency_id": cls.env.ref("base.EUR").id}
-        )
-        cls.env["account.chart.template"].try_loading(
-            "es_canary_pymes", company=cls.company, install_demo=False
-        )
-        cls.env.ref("base.group_multi_company").write({"users": [(4, cls.env.uid)]})
-        cls.env.user.write(
-            {"company_ids": [(4, cls.company.id)], "company_id": cls.company.id}
-        )
-        cls.with_context(company_id=cls.company.id)
-        return True
+    # The chart is the one of the base: 20.0 merged the Canary templates into
+    # es_common, so es_pymes already carries the IGIC taxes this declaration
+    # reads and there is nothing left to override.
 
     @classmethod
     def setUpClass(cls):
@@ -416,7 +405,7 @@ class TestL10nEsAtcmod417Base(TestL10nEsAeatModBase):
             {
                 "name": "9990000000417",
                 "company_id": cls.company.id,
-                "company_vat": "1234567890",
+                "company_vat": "123456789",
                 "contact_name": "Test owner",
                 "statement_type": "N",
                 "support_type": "T",
@@ -487,17 +476,23 @@ class TestL10nEsAeatmod417(TestL10nEsAtcmod417Base):
 
     def _set_f417_fields(self):
         self.model417.company_vat = "A58818501"
-        self.model417.year = datetime.now().year
+        self.model417.year = fields.Datetime.now().year
+        # Countries, cities and company data are administrator data, and the
+        # tests run as the BaseCommon test user since 20.0
         country_spain = self.env.ref("base.es")
-        country_spain.enforce_cities = True
-        las_palmas_city = self.env["res.city"].create(
-            {
-                "name": "Las Palmas de Gran Canaria",
-                "code": "35016",
-                "country_id": country_spain.id,
-            }
+        country_spain.sudo().enforce_cities = True
+        las_palmas_city = (
+            self.env["res.city"]
+            .sudo()
+            .create(
+                {
+                    "name": "Las Palmas de Gran Canaria",
+                    "code": "35016",
+                    "country_id": country_spain.id,
+                }
+            )
         )
-        self.model417.company_id.write(
+        self.model417.company_id.sudo().write(
             {
                 "street": "Test street",
                 "zip": "35001",

@@ -136,9 +136,8 @@ class L10nEsAtcmod417Report(models.Model):
     counterpart_account_id = fields.Many2one(
         comodel_name="account.account",
         string="Counterpart account",
-        default=_default_counterpart_417,
+        default=lambda self: self._default_counterpart_417(),
     )
-    allow_posting = fields.Boolean(string="Allow posting", default=True)
 
     @api.depends("tax_line_ids", "tax_line_ids.amount", "casilla_23", "casilla_24")
     def _compute_total_devengado(self):
@@ -176,7 +175,8 @@ class L10nEsAtcmod417Report(models.Model):
             )
 
     def _compute_allow_posting(self):
-        self.allow_posting = True
+        for report in self:
+            report.allow_posting = True
 
     @api.depends("resultado_autoliquidacion", "period_type")
     def _compute_result_type(self):
@@ -201,7 +201,7 @@ class L10nEsAtcmod417Report(models.Model):
                 msg = self.env._("Select an account for receiving the money")
         if msg:
             # Don't raise error, because data is not used
-            # raise exceptions.Warning(msg)
+            # raise exceptions.UserError(msg)
             pass
         return super().button_confirm()
 
