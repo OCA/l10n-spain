@@ -5,13 +5,9 @@
         <field name="name">ATC</field>
         <field name="parent_id" ref="l10n_es_aeat.menu_root_aeat" />
         <field name="sequence" eval="20" />
-        <field name="groups_id" eval="[(4, ref('group_account_atc'))]" />
+        <field
+            name="group_ids"
+            eval="[Command.link(ref('l10n_es_aeat.group_account_aeat'))]"
+        />
     </record>
-    <menuitem
-        id="menu_l10n_es_atc_config"
-        parent="account.menu_finance_configuration"
-        sequence="45"
-        groups="group_account_atc"
-        name="ATC"
-    />
 </odoo>

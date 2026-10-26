@@ -3,3 +3,4 @@
   - Miquel Pascual  \<<mpascual@apsl.net>\>
 - [Tecnativa](https://www.tecnativa.com):
   - Sergio Teruel
+  - Carlos Dauden

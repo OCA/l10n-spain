@@ -1,7 +1,6 @@
 # Copyright 2025 Tecnativa - Carlos Lopez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-import base64
 import contextlib
 import logging
 import os
@@ -13,9 +12,8 @@ from io import BytesIO
 
 import requests
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
-from odoo.tools import ustr
 from odoo.tools.float_utils import float_is_zero, float_round
 
 from odoo.addons.l10n_es_aeat.models.spanish_states_mapping import SPANISH_STATES
@@ -95,10 +93,12 @@ class L10nEsAtcReport(models.AbstractModel):
         messages = []
         partner_company = self.company_id.partner_id
         if not partner_company.street:
-            messages.append(_("- The company %s has no street") % partner_company.name)
+            messages.append(
+                self.env._("- The company %s has no street", partner_company.name)
+            )
         if not partner_company.zip:
             messages.append(
-                _("- The company %s has no zip code") % partner_company.name
+                self.env._("- The company %s has no zip code", partner_company.name)
             )
         return messages
 
@@ -109,14 +109,19 @@ class L10nEsAtcReport(models.AbstractModel):
         messages = self._atc_get_messages()
         if messages:
             raise UserError(
-                _("Please fix the following errors:\n%s") % "\n".join(messages)
+                self.env._(
+                    "Please fix the following errors:\n%(errors)s",
+                    errors="\n".join(messages),
+                )
             )
 
     def _atc_get_country_state_code(self, country_state):
         codigo_provincia = SPANISH_STATES.get(country_state.code)
         if not codigo_provincia:
             raise UserError(
-                _("The state code is not mapped for state: %s", country_state.code)
+                self.env._(
+                    "The state code is not mapped for state: %s", country_state.code
+                )
             )
         return codigo_provincia
 
@@ -128,6 +133,10 @@ class L10nEsAtcReport(models.AbstractModel):
         :param jar_filename: jar file name
         :param main_class: main class
         :return: browse_record(ir.attachment)
+
+        The XML is rendered with ``_render_qweb_xml``, added by the OCA module
+        ``report_xml``: every declaration module that calls this method must
+        depend on it.
         """
         xml_data = self.env["ir.actions.report"]._render_qweb_xml(
             report_name, self.ids
@@ -141,18 +150,29 @@ class L10nEsAtcReport(models.AbstractModel):
         cmd = self._atc_make_cmd(dir_paths, filename, jar_filename, main_class)
         try:
             result = subprocess.run(
-                " ".join(cmd), shell=True, capture_output=True, text=True
+                " ".join(cmd),
+                shell=True,
+                capture_output=True,
+                text=True,
+                check=False,
             )
             if result.returncode != 0:
                 raise UserError(
-                    f"Error al generar el modelo:\n"
-                    f"Código de salida: {result.returncode}\n"
-                    f"STDOUT:\n{result.stdout}\n"
-                    f"STDERR:\n{result.stderr}"
+                    self.env._(
+                        "Error al generar el modelo:\n"
+                        "Código de salida: %(returncode)s\n"
+                        "STDOUT:\n%(stdout)s\n"
+                        "STDERR:\n%(stderr)s",
+                        returncode=result.returncode,
+                        stdout=result.stdout,
+                        stderr=result.stderr,
+                    )
                 )
         except Exception as e:
             raise UserError(
-                _(f"Excepción durante la ejecución del comando:\n{ustr(e)}")
+                self.env._(
+                    "Excepción durante la ejecución del comando:\n%(error)s", error=e
+                )
             ) from e
         # check if there are errors
         if os.path.exists(dir_paths["errores_path"]):
@@ -161,7 +181,7 @@ class L10nEsAtcReport(models.AbstractModel):
                 errores = f.read()
             if errores:
                 raise UserError(
-                    _(
+                    self.env._(
                         "No se pudo generar el archivo. Errores encontrados:\n %s",
                         errores,
                     )
@@ -202,7 +222,7 @@ class L10nEsAtcReport(models.AbstractModel):
         :return: list with the command to run
         """
         irc_param = self.env["ir.config_parameter"].sudo()
-        java_param = irc_param.get_param("l10n_es_atc.java_parameters")
+        java_param = irc_param.get_str("l10n_es_atc.java_parameters")
         xml_path = dir_paths["xml_path"]
         errores_path = dir_paths["errores_path"]
         control_path = dir_paths["control_path"]
@@ -233,7 +253,7 @@ class L10nEsAtcReport(models.AbstractModel):
         url = ATC_JAR_URL.get(self._aeat_number)
         if not url:
             raise UserError(
-                _(
+                self.env._(
                     "Please configure the JAR URL for %s "
                     "by inheriting the variable `ATC_JAR_URL`.",
                     self._aeat_number,
@@ -264,7 +284,7 @@ class L10nEsAtcReport(models.AbstractModel):
                 _logger.debug(
                     "Could not check for JAR updates from %s: %s",
                     url,
-                    ustr(error),
+                    error,
                     exc_info=True,
                 )
             if attachment:
@@ -275,27 +295,31 @@ class L10nEsAtcReport(models.AbstractModel):
             response.raise_for_status()
         except Exception as error:
             raise UserError(
-                _(
+                self.env._(
                     "Error downloading the jar file from: %(url)s\n%(error)s",
                     url=url,
-                    error=ustr(error),
+                    error=error,
                 )
             ) from error
         content = response.content
         if not content:
             raise UserError(
-                _("The HTTP response from %(url)s is empty (no content)", url=url)
+                self.env._(
+                    "The HTTP response from %(url)s is empty (no content)", url=url
+                )
             )
         jar_content = None
-        with contextlib.suppress(zipfile.BadZipFile):
-            with zipfile.ZipFile(BytesIO(content)) as zip_file:
-                for file_name in zip_file.namelist():
-                    if file_name.endswith(jar_filename):
-                        jar_content = zip_file.read(file_name)
-                        break
+        with (
+            contextlib.suppress(zipfile.BadZipFile),
+            zipfile.ZipFile(BytesIO(content)) as zip_file,
+        ):
+            for file_name in zip_file.namelist():
+                if file_name.endswith(jar_filename):
+                    jar_content = zip_file.read(file_name)
+                    break
         if not jar_content:
             raise UserError(
-                _(
+                self.env._(
                     "The jar file: %(jar_filename)s "
                     "is not present in the zip file downloaded from: %(url)s",
                     jar_filename=jar_filename,
@@ -325,7 +349,7 @@ class L10nEsAtcReport(models.AbstractModel):
             file_path
         ):
             raise UserError(
-                _(
+                self.env._(
                     "Declaracion no generada. Revisa si el XML es válido y "
                     "los parámetros correctos."
                 )
@@ -351,15 +375,14 @@ class L10nEsAtcReport(models.AbstractModel):
             ],
             limit=1,
         )
-        datas = base64.b64encode(file_content).decode("ascii")
         if attachment:
-            attachment.write({"datas": datas})
+            attachment.write({"raw": file_content})
         else:
             attachment = Attachment.create(
                 {
                     "name": file_name,
                     "type": "binary",
-                    "datas": datas,
+                    "raw": file_content,
                     "res_model": self._name,
                     "res_id": self.id,
                 }
