@@ -112,7 +112,8 @@ msgstr "Cuenta Bancaria"
 #. module: l10n_es_atc_mod420
 #: model:ir.model.fields,help:l10n_es_atc_mod420.field_l10n_es_atc_mod420_report__casilla_23
 msgid "Basis of the fee in the passenger regime made by the subject passive"
-msgstr "Base de la tasa en régimen de pasajeros realizada por el sujeto pasivo"
+msgstr ""
+"Base de la tasa en régimen de pasajeros realizada por el sujeto pasivo"
 
 #. module: l10n_es_atc_mod420
 #: model:ir.model.fields,field_description:l10n_es_atc_mod420.field_l10n_es_atc_mod420_report__calculation_date
@@ -178,11 +179,11 @@ msgstr "Moneda"
 #: model:ir.model.fields,help:l10n_es_atc_mod420.field_l10n_es_atc_mod420_report__diferencia
 #, fuzzy
 msgid ""
-"Difference between the amounts of boxes 25-40, either its import positive or "
-"negative"
+"Difference between the amounts of boxes 25-40, either its import positive or"
+" negative"
 msgstr ""
-"Diferencia entre los importes de las casillas 25 a 40, ya sea su importación "
-"positiva o negativa"
+"Diferencia entre los importes de las casillas 25 a 40, ya sea su importación"
+" positiva o negativa"
 
 #. module: l10n_es_atc_mod420
 #: model:ir.model.fields,field_description:l10n_es_atc_mod420.field_l10n_es_atc_mod420_report__display_name
@@ -560,7 +561,8 @@ msgstr ""
 #: model:ir.model.fields,help:l10n_es_atc_mod420.field_l10n_es_atc_mod420_report__a_deducir
 #, fuzzy
 msgid ""
-"This box will only be completed in the event of complementary self-assessment"
+"This box will only be completed in the event of complementary self-"
+"assessment"
 msgstr ""
 "Esta casilla solo se completará en caso de autoevaluación complementaria"
 
@@ -692,300 +694,3 @@ msgstr "[44] Para deducir"
 #, fuzzy
 msgid "[45] Self-assessment result"
 msgstr "[45] Resultado de la autoevaluación"
-
-#~ msgid "Last Modified on"
-#~ msgstr "Última modificación el"
-
-#~ msgid "Main Attachment"
-#~ msgstr "Adjunto principal"
-
-#, fuzzy
-#~ msgid "0,00"
-#~ msgstr "0,00"
-
-#, fuzzy
-#~ msgid "13,50"
-#~ msgstr "13,50"
-
-#, fuzzy
-#~ msgid "20,00"
-#~ msgstr "20,00"
-
-#, fuzzy
-#~ msgid "3,00"
-#~ msgstr "3,00"
-
-#, fuzzy
-#~ msgid "7,00"
-#~ msgstr "7,00"
-
-#, fuzzy
-#~ msgid "9,50"
-#~ msgstr "9,50"
-
-#, fuzzy
-#~ msgid "<b>1. Período de liquidación</b>"
-#~ msgstr "<b>1. Período de liquidación</b>"
-
-#, fuzzy
-#~ msgid "<b>2.- Datos identificativos</b>"
-#~ msgstr "<b>2.- Datos identificativos</b>"
-
-#, fuzzy
-#~ msgid "<b>420</b>"
-#~ msgstr "<b>420</b>"
-
-#, fuzzy
-#~ msgid "<b>7.- Liquidación</b>"
-#~ msgstr "<b>7.- Liquidación</b>"
-
-#, fuzzy
-#~ msgid "<b>AUTOLIQUIDACIÓN TRIMESTRAL</b>"
-#~ msgstr "<b>AUTOLIQUIDACIÓN TRIMESTRAL</b>"
-
-#, fuzzy
-#~ msgid "<b>BORRADOR</b>"
-#~ msgstr "<b>BORRADOR</b>"
-
-#, fuzzy
-#~ msgid "<b>DOMICILIO FISCAL</b>"
-#~ msgstr "<b>DOMICILIO FISCAL</b>"
-
-#, fuzzy
-#~ msgid "<b>I.G.I.C. DEDUCIBLE Y RESULTADO AUTOLIQUIDACIÓN</b>"
-#~ msgstr "<b>I.G.I.C. DEDUCIBLE Y RESULTADO AUTOLIQUIDACIÓN</b>"
-
-#, fuzzy
-#~ msgid "<b>I.G.I.C. DEVENGADO</b>"
-#~ msgstr "<b>I.G.I.C. DEVENGADO</b>"
-
-#, fuzzy
-#~ msgid "<b>Modelo</b>"
-#~ msgstr "<b>Modelo</b>"
-
-#, fuzzy
-#~ msgid ""
-#~ "<b>Resultado de la autoliquidación ( <span style=\"background-color: "
-#~ "#808080;color:white\">23</span> -\t\t\t\t\t\t\t\t\t\t\t\t<span "
-#~ "style=\"background-color: #808080;color:white\">24</span> -"
-#~ "\t\t\t\t\t\t\t\t\t\t\t\t<span style=\"background-color: "
-#~ "#808080;color:white\">25</span> )\n"
-#~ "\t\t\t\t\t\t\t\t\t\t\t</b> ____"
-#~ msgstr ""
-#~ "<b>Resultado de la autoliquidación ( <span style=\"background-color: "
-#~ "#808080;color:white\">23</span> - <span style=\"background-color: "
-#~ "#808080;color:white\">24</span> - <span style=\"background-color: "
-#~ "#808080;color:white\">25</span> )\n"
-#~ "\t\t\t\t\t\t\t\t\t\t\t</b> ____"
-
-#, fuzzy
-#~ msgid "<b>RÉGIMEN GENERAL</b>"
-#~ msgstr "<b>RÉGIMEN GENERAL</b>"
-
-#, fuzzy
-#~ msgid "<b>Total cuotas deducibles_________________</b>"
-#~ msgstr "<b>Total cuotas deducibles_________________</b>"
-
-#, fuzzy
-#~ msgid "<b>Total de cuotas devengadas</b>"
-#~ msgstr "<b>Total de cuotas devengadas</b>"
-
-#, fuzzy
-#~ msgid "<span style=\"padding:0 3px\">Importe</span>"
-#~ msgstr "<span style=\"padding:0 3px\">Importe</span>"
-
-#, fuzzy
-#~ msgid "<span style=\"padding:1px\">IBAN</span>"
-#~ msgstr "<span style=\"padding:1px\">IBAN</span>"
-
-#, fuzzy
-#~ msgid "<span>40</span>"
-#~ msgstr "<span>40</span>"
-
-#, fuzzy
-#~ msgid "<span>41</span>"
-#~ msgstr "<span>41</span>"
-
-#, fuzzy
-#~ msgid "<span>42</span>"
-#~ msgstr "<span>42</span>"
-
-#, fuzzy
-#~ msgid "<span>43</span>"
-#~ msgstr "<span>43</span>"
-
-#, fuzzy
-#~ msgid "<span>44</span>"
-#~ msgstr "<span>44</span>"
-
-#, fuzzy
-#~ msgid "<span>45</span>"
-#~ msgstr "<span>45</span>"
-
-#, fuzzy
-#~ msgid ""
-#~ "A deducir (exclusivamente en caso de autoliquidación "
-#~ "complementaria)__________________"
-#~ msgstr ""
-#~ "A deducir (exclusivamente en caso de autoliquidación complementaria)___"
-
-#, fuzzy
-#~ msgid "Base imponible"
-#~ msgstr "Base imponible"
-
-#, fuzzy
-#~ msgid ""
-#~ "Compensaciones del régimen especial de la agricultura y "
-#~ "ganadería____________________"
-#~ msgstr ""
-#~ "Compensaciones del régimen especial de la agricultura y "
-#~ "ganadería____________________"
-
-#, fuzzy
-#~ msgid "Cuota devengada"
-#~ msgstr "Cuota devengada"
-
-#, fuzzy
-#~ msgid ""
-#~ "Cuotas del I.G.I.C. a compensar de períodos "
-#~ "anteriores______________________________"
-#~ msgstr ""
-#~ "Cuotas del I.G.I.C. a compensar de períodos "
-#~ "anteriores______________________________"
-
-#, fuzzy
-#~ msgid "Cuotas devengadas por inversión del sujeto pasivo"
-#~ msgstr "Cuotas devengadas por inversión del sujeto pasivo"
-
-#, fuzzy
-#~ msgid ""
-#~ "Cuotas devueltas en régimen de "
-#~ "viajeros_________________________________________"
-#~ msgstr ""
-#~ "Cuotas devueltas en régimen de "
-#~ "viajeros_________________________________________"
-
-#, fuzzy
-#~ msgid "Código internacional de cuenta bancaria"
-#~ msgstr "Código internacional de cuenta bancaria"
-
-#, fuzzy
-#~ msgid "Código postal:"
-#~ msgstr "Código postal:"
-
-#, fuzzy
-#~ msgid "Dirección:"
-#~ msgstr "Dirección:"
-
-#, fuzzy
-#~ msgid "EJERCICIO:"
-#~ msgstr "EJERCICIO:"
-
-#~ msgid "Empresa"
-#~ msgstr "Company"
-
-#~ msgid "Followers (Channels)"
-#~ msgstr "Seguidores (Canales)"
-
-#, fuzzy
-#~ msgid ""
-#~ "I.G.I.C. deducible en operaciones "
-#~ "interiores________________________________________"
-#~ msgstr ""
-#~ "I.G.I.C. deducible en operaciones "
-#~ "interiores________________________________________"
-
-#, fuzzy
-#~ msgid ""
-#~ "I.G.I.C. deducible por "
-#~ "importaciones______________________________________________"
-#~ msgstr ""
-#~ "I.G.I.C. deducible por "
-#~ "importaciones______________________________________________"
-
-#, fuzzy
-#~ msgid "IMPUESTO GENERAL INDIRECTO CANARIO"
-#~ msgstr "IMPUESTO GENERAL INDIRECTO CANARIO"
-
-#~ msgid "Model"
-#~ msgstr "Modelo"
-
-#, fuzzy
-#~ msgid "Municipio:"
-#~ msgstr "Municipio:"
-
-#, fuzzy
-#~ msgid "NIF:"
-#~ msgstr "NIF:"
-
-#~ msgid "Number of unread messages"
-#~ msgstr "Número de mensajes no leídos"
-
-#, fuzzy
-#~ msgid "PERÍODO:"
-#~ msgstr "PERÍODO:"
-
-#, fuzzy
-#~ msgid "Provincia:"
-#~ msgstr "Provincia:"
-
-#, fuzzy
-#~ msgid "Razón social:"
-#~ msgstr "Razón social:"
-
-#, fuzzy
-#~ msgid "Rectificación de cuotas impositivas repercutidas"
-#~ msgstr "Rectificación de cuotas impositivas repercutidas"
-
-#, fuzzy
-#~ msgid ""
-#~ "Rectificación de cuotas soportadas "
-#~ "deducidas_____________________________________"
-#~ msgstr ""
-#~ "Rectificación de cuotas soportadas "
-#~ "deducidas_____________________________________"
-
-#, fuzzy
-#~ msgid ""
-#~ "Regularización de inversiones o por cuotas soportadas antes del inicio de "
-#~ "la actividad______"
-#~ msgstr ""
-#~ "Regularización de inversiones o por cuotas soportadas antes del inicio de "
-#~ "la actividad______"
-
-#, fuzzy
-#~ msgid "Resultado:"
-#~ msgstr "Resultado"
-
-#~ msgid "SMS Delivery error"
-#~ msgstr "Error de entrega del SMS"
-
-#, fuzzy
-#~ msgid "Sin actividad"
-#~ msgstr "Sin actividad"
-
-#~ msgid "Teléfono:"
-#~ msgstr "Teléfono:"
-
-#, fuzzy
-#~ msgid "Tipo de gravamen %"
-#~ msgstr "Tipo de gravamen %"
-
-#~ msgid "Unread Messages"
-#~ msgstr "Mensajes sin leer"
-
-#~ msgid "Unread Messages Counter"
-#~ msgstr "Nº de mensajes sin leer"
-
-#~ msgid "________________"
-#~ msgstr "________________"
-
-#, fuzzy
-#~ msgid ""
-#~ "difference ( <span style=\"background-color: #808080;color:white\">15</"
-#~ "span> -\t\t\t\t\t\t\t\t\t\t\t<span style=\"background-color: "
-#~ "#808080;color:white\">22</span> ) _____________________"
-#~ msgstr ""
-#~ "diferencia ( <span style=\"background-color: #808080;color:white\">15</"
-#~ "span> - <span style=\"background-color: #808080;color:white\">22</span> ) "
-#~ "____"

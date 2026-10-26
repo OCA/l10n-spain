@@ -4,3 +4,4 @@
   - Pedro M. Baeza
   - Sergio Teruel
   - Carlos Lopez
+  - Carlos Dauden

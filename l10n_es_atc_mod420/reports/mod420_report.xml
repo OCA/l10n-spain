@@ -143,14 +143,10 @@
         <field name="model">l10n.es.atc.mod420.report</field>
         <field name="report_type">qweb-xml</field>
         <field name="report_name">l10n_es_atc_mod420.mod420_report_xml</field>
-        <field
-            name="binding_model_id"
-            ref="l10n_es_atc_mod420.model_l10n_es_atc_mod420_report"
-        />
-        <field name="binding_type">report</field>
+        <field name="binding_model_id" eval="False" />
         <field
             name="xsd_schema"
-            type="base64"
+            type="bytes"
             file="l10n_es_atc_mod420/reports/Presentacion-420-XMLSchema.xsd"
         />
     </record>
