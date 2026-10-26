@@ -3,6 +3,7 @@
 
 
 import logging
+from typing import ClassVar
 
 import requests
 from freezegun import freeze_time
@@ -23,7 +24,7 @@ class TestL10nEsAtcMod425Base(TestL10nEsAeatModBase):
     # Set 'debug' attribute to True to easy debug this test
     # Do not forget to include '--log-handler aeat:DEBUG' in Odoo command line
     debug = False
-    taxes_sale = {
+    taxes_sale: ClassVar[dict] = {
         # tax code: (base, tax_amount)
         "l10n_es_igic.account_tax_template_igic_r_3": (2000, 60),
         "l10n_es_igic.account_tax_template_igic_r_3//neg": (-200, -6),
@@ -41,7 +42,7 @@ class TestL10nEsAtcMod425Base(TestL10nEsAeatModBase):
         "l10n_es_igic.account_tax_template_igic_re_ex": (1800, 0),
         "l10n_es_igic.account_tax_template_igic_cmino": (1900, 0),
     }
-    taxes_purchase = {
+    taxes_purchase: ClassVar[dict] = {
         # tax code: (base, tax_amount)
         "l10n_es_igic.account_tax_template_igic_p_ex": (100, 0),
         "l10n_es_igic.account_tax_template_igic_sop_0": (200, 0),
@@ -86,7 +87,7 @@ class TestL10nEsAtcMod425Base(TestL10nEsAeatModBase):
         "l10n_es_igic.account_tax_template_igic_p_re15": (450, 6.75),
         "l10n_es_igic.account_tax_template_igic_p_re20": (460, 9.2),
     }
-    taxes_result = {
+    taxes_result: ClassVar[dict] = {
         # IGIC Tipo cero - Base imponible 0%
         "1": (3 * 1500),  # account_tax_template_igic_r_0
         # IGIC Tipo cero - Cuota 0%
@@ -371,21 +372,9 @@ class TestL10nEsAtcMod425Base(TestL10nEsAeatModBase):
         ),
     }
 
-    @classmethod
-    def _chart_of_accounts_create(cls):
-        _logger.debug("Creating chart of account")
-        cls.company = cls.env["res.company"].create(
-            {"name": "Canary test company", "currency_id": cls.env.ref("base.EUR").id}
-        )
-        cls.env["account.chart.template"].try_loading(
-            "es_canary_pymes", company=cls.company, install_demo=False
-        )
-        cls.env.ref("base.group_multi_company").write({"users": [(4, cls.env.uid)]})
-        cls.env.user.write(
-            {"company_ids": [(4, cls.company.id)], "company_id": cls.company.id}
-        )
-        cls.with_context(company_id=cls.company.id)
-        return True
+    # The chart is the one of the base: 20.0 merged the Canary templates into
+    # es_common, so es_pymes already carries the IGIC taxes this declaration
+    # reads and there is nothing left to override.
 
     @classmethod
     def setUpClass(cls):
@@ -395,7 +384,7 @@ class TestL10nEsAtcMod425Base(TestL10nEsAeatModBase):
             {
                 "name": "9990000000420",
                 "company_id": cls.company.id,
-                "company_vat": "1234567890",
+                "company_vat": "123456789",
                 "contact_name": "Test owner",
                 "statement_type": "N",
                 "support_type": "T",
@@ -407,19 +396,29 @@ class TestL10nEsAtcMod425Base(TestL10nEsAeatModBase):
                 "journal_id": cls.journal_misc.id,
             }
         )
-        cls.palmas_city = cls.env["res.city"].create(
-            {
-                "name": "Las Palmas de Gran Canaria",
-                "code": "35016",
-                "state_id": cls.env.ref("base.state_es_gc").id,
-                "country_id": cls.env.ref("base.es").id,
-            }
+        # Cities and company data are administrator data, and the tests run as
+        # the BaseCommon test user since 20.0
+        cls.palmas_city = (
+            cls.env["res.city"]
+            .sudo()
+            .create(
+                {
+                    "name": "Las Palmas de Gran Canaria",
+                    "code": "35016",
+                    "state_id": cls.env.ref("base.state_es_gc").id,
+                    "country_id": cls.env.ref("base.es").id,
+                }
+            )
         )
-        cls.palmas_zip = cls.env["res.city.zip"].create(
-            {
-                "name": "35001",
-                "city_id": cls.palmas_city.id,
-            }
+        cls.palmas_zip = (
+            cls.env["res.city.zip"]
+            .sudo()
+            .create(
+                {
+                    "name": "35001",
+                    "city_id": cls.palmas_city.id,
+                }
+            )
         )
 
 
@@ -480,9 +479,10 @@ class TestL10nEsAeatMod425(TestL10nEsAtcMod425Base):
         return True
 
     def _set_f425_fields(self):
-        self.model425.company_id.street = "Test street"
+        company = self.model425.company_id.sudo()
+        company.street = "Test street"
         self.model425.company_vat = "A58818501"
-        self.model425.company_id.atc_public_way = "CL"
+        company.atc_public_way = "CL"
         self.model425.main_activity_code = (
             "1"  # 1 - Actividades sujetas al Impuesto sobre Actividades Económicas
         )
@@ -495,7 +495,7 @@ class TestL10nEsAeatMod425(TestL10nEsAtcMod425Base):
         self.model425.first_representative_notary = "01"
         self.model425.first_representative_date = "2025-01-01"
         self.model425.casilla_118 = "1"  # Valor a compensar
-        with Form(self.model425.company_id) as company_form:
+        with Form(company) as company_form:
             company_form.zip_id = self.palmas_zip
 
     def test_model_425(self):

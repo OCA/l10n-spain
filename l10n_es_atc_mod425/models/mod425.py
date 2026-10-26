@@ -10,21 +10,27 @@ ATC_JAR_URL["425"] = (
 ACTIVITY_CODE_SELECTION = [
     (
         "1",
-        "1: Actividades sujetas al Impuesto sobre Actividades Económicas "
-        "(Activ. Empresariales)",
+        (
+            "1: Actividades sujetas al Impuesto sobre Actividades Económicas "
+            "(Activ. Empresariales)"
+        ),
     ),
     (
         "2",
-        "2: Actividades sujetas al Impuesto sobre Actividades Económicas "
-        "(Activ. Profesionales y Artísticas)",
+        (
+            "2: Actividades sujetas al Impuesto sobre Actividades Económicas "
+            "(Activ. Profesionales y Artísticas)"
+        ),
     ),
     ("3", "3: Arrendadores de Locales de Negocios y garajes"),
     ("4", "4: Actividades Agrícolas, Ganaderas o Pesqueras, no sujetas al IAE"),
     (
         "5",
-        "5: Sujetos pasivos que no hayan iniciado la realización de entregas "
-        "de bienes o prestaciones de servicios correspondientes a actividades "
-        "empresariales o profesionales y no estén dados de alta en el IAE",
+        (
+            "5: Sujetos pasivos que no hayan iniciado la realización de entregas "
+            "de bienes o prestaciones de servicios correspondientes a actividades "
+            "empresariales o profesionales y no estén dados de alta en el IAE"
+        ),
     ),
 ]
 REGIMEN_CODE_SELECTION = [
@@ -419,7 +425,6 @@ class L10nEsAtcMod425Report(models.Model):
                                 66,  # Criterio de caja - no incluido aún
                                 69,  # Agencias de viajes - no incluido aún
                                 71,  # Modificación bases y cuotas
-                                76,
                             )
                         )
                     ).mapped("amount")
@@ -493,7 +498,6 @@ class L10nEsAtcMod425Report(models.Model):
             "type": "ir.actions.act_url",
             "url": url,
             "target": "self",
-            "tag": "reload",
         }
 
     def action_generar_mod425(self):

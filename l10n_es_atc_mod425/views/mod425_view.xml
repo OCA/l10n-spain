@@ -27,7 +27,7 @@
                     string="Generar declaración"
                     invisible="state in ['draft', 'cancelled']"
                     type="object"
-                    icon="fa-share"
+                    icon="share"
                 />
             </header>
             <field name="statement_type" position="after">
