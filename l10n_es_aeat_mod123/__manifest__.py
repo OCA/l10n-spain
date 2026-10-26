@@ -3,7 +3,7 @@
 
 {
     "name": "AEAT modelo 123",
-    "version": "19.0.1.0.0",
+    "version": "20.0.1.0.0",
     "category": "Localisation/Accounting",
     "author": "Tecnativa, Spanish Localization Team, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
@@ -20,8 +20,7 @@
         "data/2016/l10n.es.aeat.map.tax.csv",
         "data/2016/l10n.es.aeat.map.tax.line.csv",
         "views/mod123_view.xml",
-        "security/ir.model.access.csv",
-        "security/mod_123_security.xml",
+        "security/ir.access.csv",
     ],
     "installable": True,
 }

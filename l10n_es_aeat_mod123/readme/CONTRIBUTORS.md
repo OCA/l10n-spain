@@ -1,5 +1,6 @@
 - [Tecnativa](https://www.tecnativa.com):
   - Pedro M. Baeza
+  - Carlos Dauden
 - [Sygel Technology](https://www.sygel.es):
   - Valentin Vinagre
   - Manuel Regidor

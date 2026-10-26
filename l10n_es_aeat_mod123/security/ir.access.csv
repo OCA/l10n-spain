@@ -1,0 +1,3 @@
+id,name,model_id,group_id/id,operation,domain
+access_l10n_es_aeat_mod123_manager,l10n_es_aeat_mod123 manager,l10n.es.aeat.mod123.report,l10n_es_aeat.group_account_aeat,crud,
+l10n_es_aeat_mod123_report_rule,AEAT Mod 123 multi-company,l10n.es.aeat.mod123.report,,crud,"['|',('company_id','=',False),('company_id','in',company_ids)]"
