@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_siltra,hr.siltra.manage,model_hr_siltra,hr_holidays.group_hr_holidays_manager,1,1,1,1
+access_hr_siltra_item,hr.siltra.item.manage,model_hr_siltra_item,hr_holidays.group_hr_holidays_manager,1,1,1,1
+access_res_company_seguridad_social,res.company.seguridad.social.access,model_res_company_seguridad_social,hr_holidays.group_hr_holidays_manager,1,0,0,0
+manage_res_company_seguridad_social,res.company.seguridad.social.manage,model_res_company_seguridad_social,base.group_system,1,1,1,1
