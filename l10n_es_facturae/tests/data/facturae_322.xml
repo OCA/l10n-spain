@@ -1,0 +1,238 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<fe:Facturae
+    xmlns:fe="http://www.facturae.gob.es/formato/Versiones/Facturaev3_2_2.xml"
+    xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+>
+    <FileHeader>
+        <SchemaVersion>3.2.2</SchemaVersion>
+        <Modality>I</Modality>
+        <InvoiceIssuerType>EM</InvoiceIssuerType>
+        <Batch>
+            <BatchIdentifier>2026/00001ESA12345674</BatchIdentifier>
+            <InvoicesCount>1</InvoicesCount>
+            <TotalInvoicesAmount>
+                <TotalAmount>204.31000000</TotalAmount>
+                <EquivalentInEuros>204.31</EquivalentInEuros>
+            </TotalInvoicesAmount>
+            <TotalOutstandingAmount>
+                <TotalAmount>204.31000000</TotalAmount>
+                <EquivalentInEuros>204.31</EquivalentInEuros>
+            </TotalOutstandingAmount>
+            <TotalExecutableAmount>
+                <TotalAmount>204.31000000</TotalAmount>
+                <EquivalentInEuros>204.31</EquivalentInEuros>
+            </TotalExecutableAmount>
+            <InvoiceCurrencyCode>EUR</InvoiceCurrencyCode>
+        </Batch>
+    </FileHeader>
+    <Parties>
+        <SellerParty>
+            <TaxIdentification>
+                <PersonTypeCode>J</PersonTypeCode>
+                <ResidenceTypeCode>R</ResidenceTypeCode>
+                <TaxIdentificationNumber>ESA12345674</TaxIdentificationNumber>
+            </TaxIdentification>
+            <LegalEntity>
+                <CorporateName>Empresa de Prueba</CorporateName>
+                <TradeName>Empresa de Prueba</TradeName>
+                <AddressInSpain>
+                    <Address>13 Rue del Percebe</Address>
+                    <PostCode>13700</PostCode>
+                    <Town>Tomelloso</Town>
+                    <Province>Ciudad Real</Province>
+                    <CountryCode>ESP</CountryCode>
+                </AddressInSpain>
+                <ContactDetails>
+                    <Telephone>926000000</Telephone>
+                    <ContactPersons>Empresa de Prueba</ContactPersons>
+                </ContactDetails>
+            </LegalEntity>
+        </SellerParty>
+        <BuyerParty>
+            <TaxIdentification>
+                <PersonTypeCode>J</PersonTypeCode>
+                <ResidenceTypeCode>R</ResidenceTypeCode>
+                <TaxIdentificationNumber>ESF35999705</TaxIdentificationNumber>
+            </TaxIdentification>
+            <AdministrativeCentres>
+                <AdministrativeCentre>
+                    <CentreCode>L01130821</CentreCode>
+                    <RoleTypeCode>01</RoleTypeCode>
+                    <AddressInSpain>
+                        <Address>Plaza de España, 1</Address>
+                        <PostCode>13700</PostCode>
+                        <Town>Tomelloso</Town>
+                        <Province>Ciudad Real</Province>
+                        <CountryCode>ESP</CountryCode>
+                    </AddressInSpain>
+                    <ContactDetails>
+                        <ContactPersons>Ayuntamiento de Prueba</ContactPersons>
+                    </ContactDetails>
+                    <CentreDescription>Ayuntamiento de Prueba</CentreDescription>
+                </AdministrativeCentre>
+                <AdministrativeCentre>
+                    <CentreCode>L01130822</CentreCode>
+                    <RoleTypeCode>02</RoleTypeCode>
+                    <AddressInSpain>
+                        <Address>Plaza de España, 1</Address>
+                        <PostCode>13700</PostCode>
+                        <Town>Tomelloso</Town>
+                        <Province>Ciudad Real</Province>
+                        <CountryCode>ESP</CountryCode>
+                    </AddressInSpain>
+                    <ContactDetails>
+                        <ContactPersons>Ayuntamiento de Prueba</ContactPersons>
+                    </ContactDetails>
+                    <CentreDescription>Ayuntamiento de Prueba</CentreDescription>
+                </AdministrativeCentre>
+                <AdministrativeCentre>
+                    <CentreCode>L01130823</CentreCode>
+                    <RoleTypeCode>03</RoleTypeCode>
+                    <AddressInSpain>
+                        <Address>Plaza de España, 1</Address>
+                        <PostCode>13700</PostCode>
+                        <Town>Tomelloso</Town>
+                        <Province>Ciudad Real</Province>
+                        <CountryCode>ESP</CountryCode>
+                    </AddressInSpain>
+                    <ContactDetails>
+                        <ContactPersons>Ayuntamiento de Prueba</ContactPersons>
+                    </ContactDetails>
+                    <CentreDescription>Ayuntamiento de Prueba</CentreDescription>
+                </AdministrativeCentre>
+            </AdministrativeCentres>
+            <LegalEntity>
+                <CorporateName>Ayuntamiento de Prueba</CorporateName>
+                <TradeName>Ayuntamiento de Prueba</TradeName>
+                <AddressInSpain>
+                    <Address>Plaza de España, 1</Address>
+                    <PostCode>13700</PostCode>
+                    <Town>Tomelloso</Town>
+                    <Province>Ciudad Real</Province>
+                    <CountryCode>ESP</CountryCode>
+                </AddressInSpain>
+                <ContactDetails>
+                    <ContactPersons>Ayuntamiento de Prueba</ContactPersons>
+                </ContactDetails>
+            </LegalEntity>
+        </BuyerParty>
+    </Parties>
+    <Invoices>
+        <Invoice>
+            <InvoiceHeader>
+                <InvoiceNumber>2026/00001</InvoiceNumber>
+                <InvoiceDocumentType>FC</InvoiceDocumentType>
+                <InvoiceClass>OO</InvoiceClass>
+            </InvoiceHeader>
+            <InvoiceIssueData>
+                <IssueDate>2026-01-15</IssueDate>
+                <InvoiceCurrencyCode>EUR</InvoiceCurrencyCode>
+                <TaxCurrencyCode>EUR</TaxCurrencyCode>
+                <LanguageName>en</LanguageName>
+                <InvoiceDescription>Pedido 77</InvoiceDescription>
+                <ReceiverTransactionReference>PED-77</ReceiverTransactionReference>
+                <FileReference>EXP-2026-15</FileReference>
+                <ReceiverContractReference>CTR-2026-01</ReceiverContractReference>
+            </InvoiceIssueData>
+            <TaxesOutputs>
+                <Tax>
+                    <TaxTypeCode>01</TaxTypeCode>
+                    <TaxRate>21.00000000</TaxRate>
+                    <TaxableBase>
+                        <TotalAmount>168.85000000</TotalAmount>
+                        <EquivalentInEuros>168.85</EquivalentInEuros>
+                    </TaxableBase>
+                    <TaxAmount>
+                        <TotalAmount>35.45850000</TotalAmount>
+                        <EquivalentInEuros>35.46</EquivalentInEuros>
+                    </TaxAmount>
+                </Tax>
+            </TaxesOutputs>
+            <InvoiceTotals>
+                <TotalGrossAmount>168.85000000</TotalGrossAmount>
+                <TotalGrossAmountBeforeTaxes>168.85000000</TotalGrossAmountBeforeTaxes>
+                <TotalTaxOutputs>35.46000000</TotalTaxOutputs>
+                <TotalTaxesWithheld>-0.00000000</TotalTaxesWithheld>
+                <InvoiceTotal>204.31000000</InvoiceTotal>
+                <TotalOutstandingAmount>204.31000000</TotalOutstandingAmount>
+                <TotalExecutableAmount>204.31000000</TotalExecutableAmount>
+            </InvoiceTotals>
+            <Items>
+                <InvoiceLine>
+                    <IssuerContractReference>VTA-2026-01</IssuerContractReference>
+                    <IssuerTransactionReference>ALB-2026-77</IssuerTransactionReference>
+                    <ReceiverContractReference>CTR-2026-01-1</ReceiverContractReference>
+                    <ReceiverTransactionReference
+                    >PED-77-1</ReceiverTransactionReference>
+                    <FileReference>EXP-2026-15-1</FileReference>
+                    <ItemDescription>[CAJA-40] Caja de cartón</ItemDescription>
+                    <Quantity>3.0</Quantity>
+                    <UnitPriceWithoutTax>25.50000000</UnitPriceWithoutTax>
+                    <TotalCost>76.50000000</TotalCost>
+                    <DiscountsAndRebates>
+                        <Discount>
+                            <DiscountReason>Descuento</DiscountReason>
+                            <DiscountRate>10.00000000</DiscountRate>
+                            <DiscountAmount>7.65000000</DiscountAmount>
+                        </Discount>
+                    </DiscountsAndRebates>
+                    <GrossAmount>68.85000000</GrossAmount>
+                    <TaxesOutputs>
+                        <Tax>
+                            <TaxTypeCode>01</TaxTypeCode>
+                            <TaxRate>21.00000000</TaxRate>
+                            <TaxableBase>
+                                <TotalAmount>68.85000000</TotalAmount>
+                                <EquivalentInEuros>68.85</EquivalentInEuros>
+                            </TaxableBase>
+                            <TaxAmount>
+                                <TotalAmount>14.45850000</TotalAmount>
+                                <EquivalentInEuros>14.46</EquivalentInEuros>
+                            </TaxAmount>
+                        </Tax>
+                    </TaxesOutputs>
+                    <ArticleCode>CAJA-40</ArticleCode>
+                </InvoiceLine>
+                <InvoiceLine>
+                    <ReceiverContractReference>CTR-2026-01</ReceiverContractReference>
+                    <ReceiverTransactionReference>PED-77</ReceiverTransactionReference>
+                    <FileReference>EXP-2026-15</FileReference>
+                    <ItemDescription>Montaje</ItemDescription>
+                    <Quantity>1.0</Quantity>
+                    <UnitPriceWithoutTax>100.00000000</UnitPriceWithoutTax>
+                    <TotalCost>100.00000000</TotalCost>
+                    <GrossAmount>100.00000000</GrossAmount>
+                    <TaxesOutputs>
+                        <Tax>
+                            <TaxTypeCode>01</TaxTypeCode>
+                            <TaxRate>21.00000000</TaxRate>
+                            <TaxableBase>
+                                <TotalAmount>100.00000000</TotalAmount>
+                                <EquivalentInEuros>100.00</EquivalentInEuros>
+                            </TaxableBase>
+                            <TaxAmount>
+                                <TotalAmount>21.00000000</TotalAmount>
+                                <EquivalentInEuros>21.00</EquivalentInEuros>
+                            </TaxAmount>
+                        </Tax>
+                    </TaxesOutputs>
+                </InvoiceLine>
+            </Items>
+            <PaymentDetails>
+                <Installment>
+                    <InstallmentDueDate>2026-01-15</InstallmentDueDate>
+                    <InstallmentAmount>204.31</InstallmentAmount>
+                    <PaymentMeans>04</PaymentMeans>
+                    <AccountToBeCredited>
+                        <IBAN>FR2012421242124212421242124</IBAN>
+                        <BankCode>12421</BankCode>
+                        <BIC>CAIXESBBXXX</BIC>
+                    </AccountToBeCredited>
+                </Installment>
+            </PaymentDetails>
+            <AdditionalData>
+                <InvoiceAdditionalInformation>Pedido 77</InvoiceAdditionalInformation>
+            </AdditionalData>
+        </Invoice>
+    </Invoices>
+</fe:Facturae>

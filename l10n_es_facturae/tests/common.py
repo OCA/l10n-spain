@@ -2,7 +2,6 @@
 # Copyright 2017 Creu Blanca
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-import base64
 from datetime import timedelta
 from unittest import mock
 
@@ -10,6 +9,7 @@ import xmlsig
 from lxml import etree
 
 from odoo import exceptions, fields
+from odoo.tools import BinaryBytes
 from odoo.tools.misc import mute_logger
 
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_certificate import (
@@ -21,6 +21,10 @@ from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
 
 
 class CommonTest(TestL10nEsAeatCertificateBase, TestL10nEsAeatModBase):
+    # The accounting manager who also maintains the customers; the company
+    # settings are changed as an administrator (sudo)
+    _test_user_groups = TestL10nEsAeatModBase._test_user_groups
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -73,11 +77,9 @@ class CommonTest(TestL10nEsAeatCertificateBase, TestL10nEsAeatModBase):
         bank_obj = self.env["res.partner.bank"]
         self.bank = bank_obj.create(
             {
-                "acc_number": "FR20 1242 1242 1242 1242 1242 124",
+                "account_number": "FR20 1242 1242 1242 1242 1242 124",
                 "partner_id": self.company.partner_id.id,
-                "bank_id": self.env["res.bank"]
-                .search([("bic", "=", "PSSTFRPPXXX")], limit=1)
-                .id,
+                "bank_bic": "PSSTFRPPXXX",
             }
         )
         self.payment_method = self.env.ref("account.account_payment_method_manual_in")
@@ -250,7 +252,7 @@ class CommonTest(TestL10nEsAeatCertificateBase, TestL10nEsAeatModBase):
             .create({})
         )
         wizard.create_facturae_file()
-        return etree.fromstring(base64.b64decode(wizard.facturae))
+        return etree.fromstring(wizard.facturae.content)
 
     def test_facturae_generation(self):
         self.move.action_post()
@@ -317,7 +319,7 @@ class CommonTest(TestL10nEsAeatCertificateBase, TestL10nEsAeatModBase):
                         0,
                         {
                             "filename": "new_file.pdf",
-                            "file": base64.b64encode(b"DEMO FILE"),
+                            "file": BinaryBytes(b"DEMO FILE"),
                         },
                     )
                 ]
@@ -344,18 +346,25 @@ class CommonTest(TestL10nEsAeatCertificateBase, TestL10nEsAeatModBase):
         )
 
     def test_bank(self):
-        self.bank.bank_id.bic = "CAIXESBB"
+        self.bank.bank_bic = "CAIXESBB"
         with self.assertRaises(exceptions.ValidationError):
             self.move.validate_facturae_fields()
         with self.assertRaises(exceptions.ValidationError):
             self.move_02.validate_facturae_fields()
-        self.bank.bank_id.bic = "CAIXESBBXXX"
-        self.bank.acc_number = "1111"
+        self.bank.bank_bic = "CAIXESBBXXX"
+        # The account of a journal is trusted: its number cannot change anymore
+        short_bank = self.env["res.partner.bank"].create(
+            {
+                "account_number": "1111",
+                "partner_id": self.company.partner_id.id,
+                "bank_bic": "CAIXESBBXXX",
+            }
+        )
+        (self.move | self.move_02).partner_bank_id = short_bank
         with self.assertRaises(exceptions.ValidationError):
             self.move.validate_facturae_fields()
         with self.assertRaises(exceptions.ValidationError):
             self.move_02.validate_facturae_fields()
-        self.bank.acc_number = "BE96 9988 7766 5544"
 
     def test_validation_error(self):
         self._activate_certificate(self.certificate_password)
@@ -625,8 +634,8 @@ class CommonTest(TestL10nEsAeatCertificateBase, TestL10nEsAeatModBase):
 
     def test_move_rounding(self):
         self._activate_certificate(self.certificate_password)
-        self.company.tax_calculation_rounding_method = "round_globally"
-        dp = self.env.ref("product.decimal_price")
+        self.company.sudo().tax_calculation_rounding_method = "round_globally"
+        dp = self.env.ref("product.decimal_price").sudo()
         dp.digits = 4
         # We do this for refreshing the cached value in this env
         self.assertEqual(dp.precision_get(dp.name), 4)
@@ -657,8 +666,8 @@ class CommonTest(TestL10nEsAeatCertificateBase, TestL10nEsAeatModBase):
 
     def test_move_rounding_with_discount(self):
         self._activate_certificate(self.certificate_password)
-        self.company.tax_calculation_rounding_method = "round_globally"
-        dp = self.env.ref("product.decimal_price")
+        self.company.sudo().tax_calculation_rounding_method = "round_globally"
+        dp = self.env.ref("product.decimal_price").sudo()
         dp.digits = 4
         # We do this for refreshing the cached value in this env
         self.assertEqual(dp.precision_get(dp.name), 4)
@@ -689,8 +698,8 @@ class CommonTest(TestL10nEsAeatCertificateBase, TestL10nEsAeatModBase):
 
     def test_hide_discount(self):
         self._activate_certificate(self.certificate_password)
-        self.company.tax_calculation_rounding_method = "round_globally"
-        dp = self.env.ref("product.decimal_price")
+        self.company.sudo().tax_calculation_rounding_method = "round_globally"
+        dp = self.env.ref("product.decimal_price").sudo()
         dp.digits = 4
         # We do this for refreshing the cached value in this env
         self.assertEqual(dp.precision_get(dp.name), 4)
@@ -718,14 +727,14 @@ class CommonTest(TestL10nEsAeatCertificateBase, TestL10nEsAeatModBase):
             }
         )
         # Check amouns and discount with facturae_hide_discount in company
-        self.company.facturae_hide_discount = True
+        self.company.sudo().facturae_hide_discount = True
         self._check_amounts(move, *self.hided_discount_check_amount)
         facturae_xml = self._create_facturae_file(move)
         self.assertFalse(
             facturae_xml.xpath("//InvoiceLine//DiscountAmount"),
         )
         # Check amouns and discount with facturae_hide_discount in partner_id
-        self.company.facturae_hide_discount = False
+        self.company.sudo().facturae_hide_discount = False
         self.partner.facturae_hide_discount = True
         self._check_amounts(move, *self.hided_discount_check_amount)
         facturae_xml = self._create_facturae_file(move)

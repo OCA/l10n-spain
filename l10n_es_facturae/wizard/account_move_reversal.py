@@ -15,8 +15,10 @@ class AccountMoveReversal(models.TransientModel):
             ("02", "Rectificación por diferencias"),
             (
                 "03",
-                "Rectificación por descuento por volumen de operaciones "
-                "durante un periodo",
+                (
+                    "Rectificación por descuento por volumen de operaciones "
+                    "durante un periodo"
+                ),
             ),
             ("04", "Autorizadas por la Agencia Tributaria"),
         ],
@@ -47,13 +49,17 @@ class AccountMoveReversal(models.TransientModel):
             ("83", "Base imponible modificada por descuentos y bonificaciones"),
             (
                 "84",
-                "Base imponible modificada por resolución firme, judicial "
-                "o administrativa",
+                (
+                    "Base imponible modificada por resolución firme, judicial "
+                    "o administrativa"
+                ),
             ),
             (
                 "85",
-                "Base imponible modificada cuotas repercutidas no "
-                "satisfechas. Auto de declaración de concurso",
+                (
+                    "Base imponible modificada cuotas repercutidas no "
+                    "satisfechas. Auto de declaración de concurso"
+                ),
             ),
         ],
         default="10",

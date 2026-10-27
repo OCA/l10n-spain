@@ -88,37 +88,27 @@
         <AdministrativeCentres
             t-if="partner.facturae and (partner.oficina_contable or partner.organo_gestor or partner.unidad_tramitadora or partner.organo_proponente)"
         >
-            <t t-call="l10n_es_facturae.administrative_center">
-                <t
-                    t-set="centre_code"
-                    t-value="administrative_partner.oficina_contable or partner.oficina_contable"
-                />
-                <t t-set="role_type_code" t-value="'01'" />
-            </t>
-            <t t-call="l10n_es_facturae.administrative_center">
-                <t
-                    t-set="centre_code"
-                    t-value="administrative_partner.organo_gestor or partner.organo_gestor"
-                />
-                <t t-set="role_type_code" t-value="'02'" />
-            </t>
-            <t t-call="l10n_es_facturae.administrative_center">
-                <t
-                    t-set="centre_code"
-                    t-value="administrative_partner.unidad_tramitadora or partner.unidad_tramitadora"
-                />
-                <t t-set="role_type_code" t-value="'03'" />
-            </t>
+            <t
+                t-call="l10n_es_facturae.administrative_center"
+                centre_code="administrative_partner.oficina_contable or partner.oficina_contable"
+                role_type_code.f="01"
+            />
+            <t
+                t-call="l10n_es_facturae.administrative_center"
+                centre_code="administrative_partner.organo_gestor or partner.organo_gestor"
+                role_type_code.f="02"
+            />
+            <t
+                t-call="l10n_es_facturae.administrative_center"
+                centre_code="administrative_partner.unidad_tramitadora or partner.unidad_tramitadora"
+                role_type_code.f="03"
+            />
             <t
                 t-call="l10n_es_facturae.administrative_center"
                 t-if="administrative_partner.organo_proponente or partner.organo_proponente"
-            >
-                <t
-                    t-set="centre_code"
-                    t-value="administrative_partner.organo_proponente or partner.organo_proponente"
-                />
-                <t t-set="role_type_code" t-value="'04'" />
-            </t>
+                centre_code="administrative_partner.organo_proponente or partner.organo_proponente"
+                role_type_code.f="04"
+            />
         </AdministrativeCentres>
         <LegalEntity t-if="buyer_type == 'J'">
             <CorporateName t-length="80" t-out="partner.name" />
@@ -232,13 +222,11 @@
                 <t t-if="move.thirdparty_number">
                     <InvoiceIssuerType t-out="'TE'" />
                     <ThirdParty>
-                        <t t-call="l10n_es_facturae.entity">
-                            <t t-set="partner" t-value="company_partner" />
-                            <t
-                                t-set="administrative_partner"
-                                t-value="company_partner"
-                            />
-                        </t>
+                        <t
+                            t-call="l10n_es_facturae.entity"
+                            partner="company_partner"
+                            administrative_partner="company_partner"
+                        />
                     </ThirdParty>
                 </t>
                 <Batch>
@@ -284,16 +272,18 @@
             </FileHeader>
             <Parties>
                 <SellerParty>
-                    <t t-call="l10n_es_facturae.entity">
-                        <t t-set="partner" t-value="company_partner" />
-                        <t t-set="administrative_partner" t-value="company_partner" />
-                    </t>
+                    <t
+                        t-call="l10n_es_facturae.entity"
+                        partner="company_partner"
+                        administrative_partner="company_partner"
+                    />
                 </SellerParty>
                 <BuyerParty>
-                    <t t-call="l10n_es_facturae.entity">
-                        <t t-set="partner" t-value="move_commercial_partner" />
-                        <t t-set="administrative_partner" t-value="move_partner" />
-                    </t>
+                    <t
+                        t-call="l10n_es_facturae.entity"
+                        partner="move_commercial_partner"
+                        administrative_partner="move_partner"
+                    />
                 </BuyerParty>
             </Parties>
             <Invoices>
@@ -578,7 +568,7 @@
                             />
                             <SequenceNumber />
                             <DeliveryNotesReferences />
-                            <ItemDescription t-length="2500" t-out="line.name" />
+                            <ItemDescription t-length="2500" t-out="line.label" />
                             <Quantity t-out="sign * line.quantity" />
                             <UnitOfMeasure />
                             <t
@@ -696,29 +686,32 @@
                                 t-set="partner_bank"
                                 t-value="move.partner_banks_to_show()[:1]"
                             />
-                            <t t-set="bank" t-value="partner_bank.bank_id" />
                             <t
                                 t-set="payment_means"
                                 t-value="move.payment_mode_id.facturae_code if partner_bank or move.payment_mode_id.facturae_code not in ['02', '04'] else '01'"
                             />
                             <PaymentMeans t-out="payment_means" />
+                            <t
+                                t-set="bank_code"
+                                t-value="payment_means in ('02', '04') and partner_bank._get_facturae_bank_code()"
+                            />
                             <AccountToBeDebited t-if="payment_means == '02'">
                                 <IBAN
                                     t-minlength="5"
                                     t-length="34"
-                                    t-out="''.join(partner_bank.acc_number.split())"
+                                    t-out="''.join(partner_bank.account_number.split())"
                                 />
                                 <BankCode
                                     t-length="60"
-                                    t-out="bank.code"
-                                    t-if="bank.code"
+                                    t-out="bank_code"
+                                    t-if="bank_code"
                                 />
                                 <BranchCode t-out="''" t-length="60" />
                                 <BIC
                                     t-minlength="11"
                                     t-length="11"
-                                    t-out="bank.bic"
-                                    t-if="bank.bic"
+                                    t-out="partner_bank.bank_bic"
+                                    t-if="partner_bank.bank_bic"
                                 />
                                 <PaymentReconciliationReference
                                     t-out="''"
@@ -729,19 +722,19 @@
                                 <IBAN
                                     t-minlength="5"
                                     t-length="34"
-                                    t-out="''.join(partner_bank.acc_number.split())"
+                                    t-out="''.join(partner_bank.account_number.split())"
                                 />
                                 <BankCode
                                     t-length="60"
-                                    t-out="bank.code"
-                                    t-if="bank.code"
+                                    t-out="bank_code"
+                                    t-if="bank_code"
                                 />
                                 <BranchCode t-out="''" t-length="60" />
                                 <BIC
                                     t-minlength="11"
                                     t-length="11"
-                                    t-out="bank.bic"
-                                    t-if="bank.bic"
+                                    t-out="partner_bank.bank_bic"
+                                    t-if="partner_bank.bank_bic"
                                 />
                             </AccountToBeCredited>
                             <CollectionAdditionalInformation />

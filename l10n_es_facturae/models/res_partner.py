@@ -70,13 +70,12 @@ class ResPartner(models.Model):
                             "Country must be defined for factura-e enabled partners."
                         )
                     )
-                if record.country_id.code_alpha3 == "ESP":
-                    if not record.state_id:
-                        raise ValidationError(
-                            self.env._(
-                                "State must be defined for factura-e enabled partners."
-                            )
+                if record.country_id.code_alpha3 == "ESP" and not record.state_id:
+                    raise ValidationError(
+                        self.env._(
+                            "State must be defined for factura-e enabled partners."
                         )
+                    )
 
     @api.model
     def _commercial_fields(self):

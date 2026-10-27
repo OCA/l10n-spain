@@ -26,7 +26,7 @@
             >
                 <button
                     name="button_edit_facturae_fields"
-                    icon="fa-tags"
+                    icon="sell"
                     column_invisible="not parent.facturae"
                     type="object"
                     title="Edit"
@@ -87,7 +87,7 @@
     <record id="view_facturae_fields" model="ir.ui.view">
         <field name="name">account.move.line.form (in l10n_es_facturae_fields)</field>
         <field name="model">account.move.line</field>
-        <field name="priority">100</field>
+        <field name="priority" eval="100" />
         <field name="arch" type="xml">
             <form create="0">
                 <field name="parent_state" invisible="1" />

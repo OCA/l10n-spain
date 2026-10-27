@@ -7,10 +7,9 @@
 # Copyright 2017 Creu Blanca
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-import base64
-
 from odoo import fields, models
 from odoo.exceptions import UserError
+from odoo.tools import BinaryBytes
 
 
 class Log(Exception):
@@ -66,11 +65,10 @@ class CreateFacturae(models.TransientModel):
                 "l10n_es_facturae.report_facturae", move.ids
             )[0]
             file_name = ("facturae_" + move.name + ".xml").replace("/", "-")
-        file = base64.b64encode(move_file)
         self.env["ir.attachment"].create(
             {
                 "name": file_name,
-                "datas": file,
+                "raw": move_file,
                 "res_model": "account.move",
                 "res_id": move.id,
                 "mimetype": "application/xml",
@@ -85,7 +83,7 @@ class CreateFacturae(models.TransientModel):
         self.write(
             {
                 "note": log(),
-                "facturae": file,
+                "facturae": BinaryBytes(move_file, file_name),
                 "facturae_fname": file_name,
                 "state": "second",
             }

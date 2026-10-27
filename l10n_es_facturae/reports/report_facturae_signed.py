@@ -5,9 +5,8 @@ import base64
 import hashlib
 import logging
 import random
-from datetime import datetime
+from datetime import UTC, datetime
 
-import pytz
 import xmlsig
 from cryptography import x509
 from cryptography.hazmat.backends import default_backend
@@ -50,13 +49,12 @@ class ReportFacturaeSigned(models.AbstractModel):
     def _get_facturae_schema_file(self, move):
         version = move.get_facturae_version()
         return tools.file_open(
-            f"addons/l10n_es_facturae/data/Facturaev{version}.xsd",
+            f"l10n_es_facturae/data/Facturaev{version}.xsd", mode="rb"
         )
 
     def _validate_facturae(self, move, xml_string):
-        facturae_schema = etree.XMLSchema(
-            etree.parse(self._get_facturae_schema_file(move))
-        )
+        with self._get_facturae_schema_file(move) as schema_file:
+            facturae_schema = etree.XMLSchema(etree.parse(schema_file))
         try:
             facturae_schema.assertValid(etree.fromstring(xml_string))
         except Exception as e:
@@ -145,7 +143,7 @@ class ReportFacturaeSigned(models.AbstractModel):
         signed_signature_properties = etree.SubElement(
             signed_properties, etree.QName(etsi, "SignedSignatureProperties")
         )
-        now = datetime.now().replace(microsecond=0, tzinfo=pytz.utc)
+        now = datetime.now(UTC).replace(microsecond=0)
         etree.SubElement(
             signed_signature_properties, etree.QName(etsi, "SigningTime")
         ).text = now.isoformat()

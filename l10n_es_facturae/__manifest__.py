@@ -12,7 +12,7 @@
 
 {
     "name": "Creación de Facturae",
-    "version": "19.0.1.0.0",
+    "version": "20.0.1.0.0",
     "author": "ASR-OSS, "
     "FactorLibre, "
     "Tecon, "
@@ -28,13 +28,12 @@
         "l10n_es_partner",
         "l10n_es",
         "base_iso3166",
-        "base_vat",
         "report_xml",
         "report_qweb_parameter",
         "l10n_es_aeat",
     ],
     "data": [
-        "security/ir.model.access.csv",
+        "security/ir.access.csv",
         "views/res_partner_view.xml",
         "views/res_company.xml",
         "views/payment_mode_view.xml",

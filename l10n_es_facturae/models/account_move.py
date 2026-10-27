@@ -21,8 +21,10 @@ class AccountMove(models.Model):
             ("02", "Rectificación por diferencias"),
             (
                 "03",
-                "Rectificación por descuento por volumen de operaciones "
-                "durante un periodo",
+                (
+                    "Rectificación por descuento por volumen de operaciones "
+                    "durante un periodo"
+                ),
             ),
             ("04", "Autorizadas por la Agencia Tributaria"),
         ]
@@ -52,13 +54,17 @@ class AccountMove(models.Model):
             ("83", "Base imponible modificada por descuentos y bonificaciones"),
             (
                 "84",
-                "Base imponible modificada por resolución firme, judicial "
-                "o administrativa",
+                (
+                    "Base imponible modificada por resolución firme, judicial "
+                    "o administrativa"
+                ),
             ),
             (
                 "85",
-                "Base imponible modificada cuotas repercutidas no "
-                "satisfechas. Auto de declaración de concurso",
+                (
+                    "Base imponible modificada cuotas repercutidas no "
+                    "satisfechas. Auto de declaración de concurso"
+                ),
             ),
         ]
     )
@@ -180,11 +186,11 @@ class AccountMove(models.Model):
             partner_bank = self.partner_banks_to_show()[:1]
             if (
                 partner_bank
-                and partner_bank.bank_id.bic
-                and len(partner_bank.bank_id.bic) != 11
+                and partner_bank.bank_bic
+                and len(partner_bank.bank_bic) != 11
             ):
                 raise ValidationError(self.env._("Selected account BIC must be 11"))
-            if partner_bank and len(partner_bank.acc_number) < 5:
+            if partner_bank and len(partner_bank.account_number) < 5:
                 raise ValidationError(self.env._("Selected account is too small"))
         self.validate_company_facturae_fields(self.company_id)
 
@@ -223,7 +229,7 @@ class AccountMove(models.Model):
             description, content_type = attachment.filename.rsplit(".", 1)
             result.append(
                 {
-                    "data": attachment.file.decode("utf-8"),
+                    "data": attachment.file.to_base64(),
                     "content_type": content_type,
                     "encoding": "BASE64",
                     "description": description,
