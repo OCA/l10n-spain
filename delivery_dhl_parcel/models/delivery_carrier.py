@@ -276,7 +276,7 @@ class DeliveryCarrier(models.Model):
         dhl_parcel_request = DhlParcelRequest(self)
         for picking in pickings.filtered("carrier_tracking_ref"):
             response = dhl_parcel_request.cancel_shipment(picking.carrier_tracking_ref)
-            if not response.status_code == 200:
+            if response.status_code != 200:
                 msg = self.env._(
                     "DHL Parcel Cancellation failed with reason: %(reason)s",
                     reason=response.get("Message", "Connection Error"),

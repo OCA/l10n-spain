@@ -1,5 +1,6 @@
 # Copyright 2021 Studio73 - Ethan Hildick <ethan@studio73.es>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+import base64
 import time
 from unittest import mock
 from unittest.mock import MagicMock, Mock
@@ -17,6 +18,11 @@ request_model = (
 
 
 class TestDeliveryDhlParcel(BaseCommon):
+    _test_user_groups = (
+        "stock.group_stock_manager",
+        "base.group_partner_manager",
+    )
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -78,6 +84,20 @@ class TestDeliveryDhlParcel(BaseCommon):
             }
         )
 
+    def _check_label_attachment(self):
+        """The decoded PDF label is attached to the picking chatter"""
+        label = self.env["ir.attachment"].search(
+            [
+                ("res_model", "=", "stock.picking"),
+                ("res_id", "=", self.picking.id),
+                ("name", "=", "dhl_parcel_0870002260.pdf"),
+            ]
+        )
+        self.assertEqual(len(label), 1)
+        self.assertEqual(
+            label.raw.content, base64.b64decode("JVBERiasdasdsdcfnsdhfbasdf==")
+        )
+
     @mock.patch(f"{request_model}._get_new_auth_token", return_value="12345")
     @mock.patch(
         f"{request_model}.create_shipment",
@@ -98,6 +118,7 @@ class TestDeliveryDhlParcel(BaseCommon):
             "0870002260",
             "Tracking doesn't match test data",
         )
+        self._check_label_attachment()
 
     @mock.patch("odoo.addons.delivery_dhl_parcel.models.dhl_parcel_request.requests")
     def test_get_new_auth_token_success(self, mock_requests):
@@ -327,7 +348,8 @@ class TestDeliveryDhlParcel(BaseCommon):
     def test_06_dhl_parcel_get_label(self, redirect_mock, *args):
         self.picking.carrier_tracking_ref = "0870002260"
         label = self.picking.dhl_parcel_get_label()
-        self.assertTrue(label)
+        self.assertEqual(label, base64.b64decode("JVBERiasdasdsdcfnsdhfbasdf=="))
+        self._check_label_attachment()
 
     def test_07_dhl_parcel_rate_shipment(self):
         msg = self.carrier_dhl_parcel.dhl_parcel_rate_shipment(

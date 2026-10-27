@@ -4,3 +4,4 @@
 - [Tecnativa](https://www.tecnativa.com):
   - Víctor Martínez
   - Cristina Hidalgo
+  - Carlos Dauden

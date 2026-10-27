@@ -64,7 +64,7 @@
                     string="End day"
                     type="object"
                     class="oe_stat_button"
-                    icon="fa-file-text-o"
+                    icon="article"
                     invisible="delivery_type != 'dhl_parcel'"
                 />
             </xpath>

@@ -180,7 +180,7 @@ class DhlParcelRequest:
             url=DHL_PATH + "shipment?"
             f"Year={self.year}&Tracking={reference}&Action=HOLD",
         )
-        return True if res.status_code == 200 else False
+        return res.status_code == 200
 
     def release_shipment(self, reference=False):
         """Release shipment
@@ -192,7 +192,7 @@ class DhlParcelRequest:
             url=DHL_PATH + "shipment?"
             f"Year={self.year}&Tracking={reference}&Action=RELEASE",
         )
-        return True if res.status_code == 200 else False
+        return res.status_code == 200
 
     def end_day(self, customers="", report_type=""):
         """End day
