@@ -251,13 +251,11 @@ class DeliveryCarrier(models.Model):
         try:
             account_number, business_unit = self.seur_atlas_account_code.split("-")
             trackings = seur_request.tracking_services__extended(
-                **{
-                    "refType": "REFERENCE",
-                    "ref": picking.name,
-                    "idNumber": self.seur_atlas_vat,
-                    "accountNumber": int(account_number),
-                    "businessUnit": int(business_unit),
-                }
+                refType="REFERENCE",
+                ref=picking.name,
+                idNumber=self.seur_atlas_vat,
+                accountNumber=int(account_number),
+                businessUnit=int(business_unit),
             )
         except Exception as e:
             raise (e)
