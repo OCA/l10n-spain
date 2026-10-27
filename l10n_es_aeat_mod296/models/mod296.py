@@ -84,17 +84,14 @@ class L10nEsAeatMod296Report(models.Model):
             partner_groups = self.partner_group(
                 move_lines_base.ids, move_lines_cuota.ids
             )
+            lines_by_partner = (move_lines_base + move_lines_cuota).grouped(
+                lambda x: x.partner_id.id
+            )
             for partner_id in partner_groups:
-                move_lines_base_partner = move_lines_base.filtered(
-                    lambda x, partner_id=partner_id: x.partner_id.id == partner_id
-                )
-                move_lines_cuota_partner = move_lines_cuota.filtered(
-                    lambda x, partner_id=partner_id: x.partner_id.id == partner_id
-                )
                 data = self._prepare_mod296_line(
                     partner_id,
                     partner_groups[partner_id],
-                    (move_lines_base_partner + move_lines_cuota_partner),
+                    lines_by_partner[partner_id],
                 )
                 line_lst.append((0, 0, data))
             report.lines296 = line_lst
@@ -120,7 +117,7 @@ class L10nEsAeatMod296ReportLine(models.Model):
     mod296_id = fields.Many2one(
         comodel_name="l10n.es.aeat.mod296.report", string="Mod 296"
     )
-    partner_id = fields.Many2one(comodel_name="res.partner", string="Partner")
+    partner_id = fields.Many2one(comodel_name="res.partner")
     move_line_ids = fields.Many2many(
         comodel_name="account.move.line", string="Move Lines"
     )
@@ -141,47 +138,63 @@ class L10nEsAeatMod296ReportLine(models.Model):
         selection=[
             (
                 "1",
-                "1 - Dividends and other income derived from the participation "
-                "in own funds of entities.",
+                (
+                    "1 - Dividends and other income derived from the participation "
+                    "in own funds of entities."
+                ),
             ),
             (
                 "2",
-                "2 - Interest and other income derived from the transfer to "
-                "parties of own capital.",
+                (
+                    "2 - Interest and other income derived from the transfer to "
+                    "parties of own capital."
+                ),
             ),
             (
                 "3",
-                "3 - Canons derived from patents, trademarks, drawings or "
-                "models, plans, formulas or secret procedures.",
+                (
+                    "3 - Canons derived from patents, trademarks, drawings or "
+                    "models, plans, formulas or secret procedures."
+                ),
             ),
             ("4", "4 - Fees derived from rights on literary and artistic works."),
             ("5", "5 - Canons derived from rights on scientific works."),
             (
                 "6",
-                "6 - Fees derived from rights on cinematographic films "
-                "and recorded sound or visual works.",
+                (
+                    "6 - Fees derived from rights on cinematographic films "
+                    "and recorded sound or visual works."
+                ),
             ),
             (
                 "7",
-                "7 - Canons derived from information related to industrial, "
-                "commercial or scientific experiences (know-how).",
+                (
+                    "7 - Canons derived from information related to industrial, "
+                    "commercial or scientific experiences (know-how)."
+                ),
             ),
             ("8", "8 - Fees derived from rights on computer programs."),
             (
                 "9",
-                "9 - Fees derived from personal rights susceptible to "
-                "transfer, such as image rights.",
+                (
+                    "9 - Fees derived from personal rights susceptible to "
+                    "transfer, such as image rights."
+                ),
             ),
             (
                 "10",
-                "10 - Canons derived from industrial, commercial or "
-                "scientific equipment.",
+                (
+                    "10 - Canons derived from industrial, commercial or "
+                    "scientific equipment."
+                ),
             ),
             ("11", "11 - Other canons not previously mentioned."),
             (
                 "12",
-                "12 - Capital income from capitalization operations and "
-                "life or disability insurance contracts.",
+                (
+                    "12 - Capital income from capitalization operations and "
+                    "life or disability insurance contracts."
+                ),
             ),
             ("13", "13 - Other income from movable capital not mentioned above."),
             ("14", "14 - Real estate performance."),
@@ -194,8 +207,10 @@ class L10nEsAeatMod296ReportLine(models.Model):
             ("21", "21 - Pensions and passive assets."),
             (
                 "22",
-                "22 - Remuneration of administrators and members of boards of "
-                "directors.",
+                (
+                    "22 - Remuneration of administrators and members of boards of "
+                    "directors."
+                ),
             ),
             ("23", "23 - Performance derived from reinsurance operations."),
             ("24", "24 - Maritime or air navigation entities."),
@@ -207,9 +222,11 @@ class L10nEsAeatMod296ReportLine(models.Model):
         selection=[
             (
                 "1",
-                "1 - Retention practiced at the general rates or scales of "
-                "taxation of article 25 of the rewritten text of the "
-                "Non-Resident Income Tax Law.",
+                (
+                    "1 - Retention practiced at the general rates or scales of "
+                    "taxation of article 25 of the rewritten text of the "
+                    "Non-Resident Income Tax Law."
+                ),
             ),
             (
                 "2",
@@ -217,40 +234,52 @@ class L10nEsAeatMod296ReportLine(models.Model):
             ),
             (
                 "3",
-                "3 - Internal exemption (mainly: article 14 of the revised "
-                "text of the Law on Non-Resident Income Tax)",
+                (
+                    "3 - Internal exemption (mainly: article 14 of the revised "
+                    "text of the Law on Non-Resident Income Tax)"
+                ),
             ),
             ("4", "4 - Exemption by application of a Convention."),
             (
                 "5",
-                "5 - No Retention for previous payment of the Tax by "
-                "the taxpayer or his representative..",
+                (
+                    "5 - No Retention for previous payment of the Tax by "
+                    "the taxpayer or his representative.."
+                ),
             ),
             (
                 "6",
-                "6 - The declared recipient is a foreign entity "
-                "for the collective management of intellectual property rights, "
-                "with a retention having applied the limit of taxation, or "
-                "the exemption, of a Convention.",
+                (
+                    "6 - The declared recipient is a foreign entity "
+                    "for the collective management of intellectual property rights, "
+                    "with a retention having applied the limit of taxation, or "
+                    "the exemption, of a Convention."
+                ),
             ),
             (
                 "7",
-                "7 - The recipient is a taxpayer of the Personal Income Tax of "
-                "the special regime applicable to workers displaced "
-                "to Spanish territory.",
+                (
+                    "7 - The recipient is a taxpayer of the Personal Income Tax of "
+                    "the special regime applicable to workers displaced "
+                    "to Spanish territory."
+                ),
             ),
             (
                 "8",
-                "8 - The declared recipient is an entity resident abroad that "
-                "sells shares or units of Spanish collective investment "
-                "institutions, with a withholding tax applying a limit "
-                "of taxation established in the lower Agreement.",
+                (
+                    "8 - The declared recipient is an entity resident abroad that "
+                    "sells shares or units of Spanish collective investment "
+                    "institutions, with a withholding tax applying a limit "
+                    "of taxation established in the lower Agreement."
+                ),
             ),
             (
                 "9",
-                "9 - The declared recipient is an entity residing abroad "
-                "selling shares or participations of Spanish collective investment"
-                " institutions, with a retention having applied the type of lien.",
+                (
+                    "9 - The declared recipient is an entity residing abroad "
+                    "selling shares or participations of Spanish collective investment"
+                    " institutions, with a retention having applied the type of lien."
+                ),
             ),
         ],
         string="Subkey",
@@ -262,8 +291,10 @@ class L10nEsAeatMod296ReportLine(models.Model):
             ("2", "2. Emisor code corresponds to an code I.S.I.N."),
             (
                 "3",
-                "3. Emisor code corresponds to values foreign that have not "
-                "been assigned I.S.I.N., whose emisor does not have a NIF",
+                (
+                    "3. Emisor code corresponds to values foreign that have not "
+                    "been assigned I.S.I.N., whose emisor does not have a NIF"
+                ),
             ),
         ],
         string="Code",

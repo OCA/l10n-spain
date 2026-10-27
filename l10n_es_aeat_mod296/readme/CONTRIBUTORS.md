@@ -4,4 +4,5 @@
   - Antonio Espinosa
   - Victor M.M. Torres
   - David Bañón Gil
+  - Carlos Dauden
 - Valentin Vinagre \<valentin.vinagre@qubiq.es\>

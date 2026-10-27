@@ -6,21 +6,20 @@
 
 {
     "name": "AEAT modelo 296",
-    "version": "19.0.1.0.0",
+    "version": "20.0.1.0.0",
     "category": "Localisation/Accounting",
     "author": "Tecnativa, AvanzOSC, Qubiq, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "license": "AGPL-3",
     "depends": ["l10n_es_aeat", "l10n_es_aeat_mod216"],
     "data": [
-        "security/ir.model.access.csv",
         "data/l10n.es.aeat.map.tax.csv",
         "data/l10n.es.aeat.map.tax.line.tax.csv",
         "data/l10n.es.aeat.map.tax.line.csv",
         "data/aeat.model.export.config.csv",
         "data/aeat.model.export.config.line.csv",
         "views/mod296_views.xml",
-        "security/ir_rule.xml",
+        "security/ir.access.csv",
     ],
     "installable": True,
 }
