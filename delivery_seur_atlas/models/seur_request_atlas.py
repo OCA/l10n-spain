@@ -129,7 +129,7 @@ class SeurAtlasRequest:
     # SEUR ATLAS API METHODS
 
     @seur_method("POST")
-    def shipments(self, payload: dict = None):
+    def shipments(self, payload: dict | None = None):
         return self.response.json()["data"]
 
     @seur_method("GET")
@@ -137,7 +137,7 @@ class SeurAtlasRequest:
         return self.response.json()["data"]
 
     @seur_method("POST")
-    def shipments__cancel(self, payload: dict = None):
+    def shipments__cancel(self, payload: dict | None = None):
         return self.response.json()["data"]
 
     @seur_method("GET")

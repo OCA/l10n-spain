@@ -1,5 +1,8 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 # Copyright 2024 Tecnativa - David Vidal
+import base64
+import json
+from unittest import mock
 from unittest.mock import patch
 
 from odoo.tests import Form
@@ -14,6 +17,11 @@ def mock_set_token(self):
 
 
 class TestDeliverySeurAtlas(BaseCommon):
+    _test_user_groups = (
+        "stock.group_stock_manager",
+        "base.group_partner_manager",
+    )
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -80,9 +88,7 @@ class TestDeliverySeurAtlas(BaseCommon):
     @patch.object(
         SeurAtlasRequest,
         "labels",
-        return_value=[
-            {"ecb": "47470138102387", "pack": "1/1", "label": "ZPL label..."}
-        ],
+        return_value=[{"ecb": "47470138102387", "pack": "1/1", "label": "ZPL label ñ"}],
     )
     @patch.object(
         SeurAtlasRequest,
@@ -110,9 +116,67 @@ class TestDeliverySeurAtlas(BaseCommon):
     ):
         """The picking is confirm and the shipping is recorded into Seur"""
         # TODO: Try to get persistent credentials to avoid mocks
+        self.carrier_seur_atlas.seur_atlas_label_format = "ZPL"
         self.picking.button_validate()
         self.assertEqual(self.picking.carrier_tracking_ref, "028111000201420210716")
+        # The ZPL label is attached to the picking, encoded as SEUR sends it
+        label = self.env["ir.attachment"].search(
+            [("res_model", "=", "stock.picking"), ("res_id", "=", self.picking.id)]
+        )
+        self.assertEqual(label.name, "seur_47470138102387.txt")
+        self.assertEqual(label.mimetype, "text/plain")
+        self.assertEqual(label.raw.content, "ZPL label ñ".encode("iso-8859-15"))
         self.picking.tracking_state_update()
         self.assertEqual(self.picking.delivery_state, "in_transit")
         self.picking.cancel_shipment()
         self.assertFalse(self.picking.carrier_tracking_ref)
+
+    def _mock_seur_api(self, data_by_endpoint):
+        """Patch the HTTP calls to the SEUR Atlas API: the token request and
+        each API endpoint, which answers ``{"data": data_by_endpoint[endpoint]}``.
+        Returns the list of (method, endpoint, request kwargs) sent."""
+        calls = []
+
+        def response(content):
+            res = mock.MagicMock(ok=True, status_code=200, text=json.dumps(content))
+            res.content = res.text.encode()
+            res.json.return_value = content
+            return res
+
+        def request(method, url, **kwargs):
+            endpoint = url.split("/pic/v1/")[1]
+            calls.append((method, endpoint, kwargs))
+            return response({"data": data_by_endpoint[endpoint]})
+
+        module = "odoo.addons.delivery_seur_atlas.models.seur_request_atlas.requests"
+        self.startPatcher(
+            patch(f"{module}.post", return_value=response({"access_token": "tk"}))
+        )
+        self.startPatcher(patch(f"{module}.request", side_effect=request))
+        return calls
+
+    def test_02_seur_atlas_pdf_label(self):
+        """A PDF label arrives in base64 and is attached as a printable PDF"""
+        calls = self._mock_seur_api(
+            {
+                "shipments": {"shipmentCode": "028111000201420210717"},
+                "labels": [
+                    {
+                        "ecb": "47470138102388",
+                        "pack": "1/1",
+                        "pdf": base64.b64encode(b"%PDF-1.4 label").decode(),
+                    }
+                ],
+            }
+        )
+        self.carrier_seur_atlas.seur_atlas_label_format = "PDF"
+        self.picking.button_validate()
+        self.assertEqual(self.picking.carrier_tracking_ref, "028111000201420210717")
+        self.assertEqual([c[1] for c in calls], ["shipments", "labels"])
+        self.assertEqual(calls[1][2]["params"]["type"], "PDF")
+        label = self.env["ir.attachment"].search(
+            [("res_model", "=", "stock.picking"), ("res_id", "=", self.picking.id)]
+        )
+        self.assertEqual(label.name, "seur_47470138102388.pdf")
+        self.assertEqual(label.mimetype, "application/pdf")
+        self.assertEqual(label.raw.content, b"%PDF-1.4 label")

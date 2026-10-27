@@ -81,7 +81,7 @@ class DeliveryCarrier(models.Model):
             # We can modify the general request timeout if needed
             timeout=self.env["ir.config_parameter"]
             .sudo()
-            .get_param("seur_atlas_timeout", default=5),
+            .get_int("seur_atlas_timeout", default=5),
         )
 
     @api.model
@@ -165,7 +165,9 @@ class DeliveryCarrier(models.Model):
             ],
         }
 
-    def seur_atlas_labels(self, code, seur_request: SeurAtlasRequest = None) -> bin:
+    def seur_atlas_labels(
+        self, code, seur_request: SeurAtlasRequest | None = None
+    ) -> bin:
         """Generate labels for the shipping code"""
         # Allow to reuse the request, like when we create the shipping
         if not seur_request:
@@ -180,8 +182,6 @@ class DeliveryCarrier(models.Model):
                 outputType=self.seur_atlas_label_output_type,
                 qr=self.seur_atlas_qr,
             )
-        except Exception as e:
-            raise (e)
         finally:
             self._seur_atlas_log_request(seur_request)
         return response
@@ -196,13 +196,13 @@ class DeliveryCarrier(models.Model):
                 # to encode the file in such ISO as well so special characters
                 # print fine
                 label_content = label_content.encode("iso-8859-15")
-                label_content = base64.b64encode(label_content)
+            else:
+                label_content = base64.b64decode(label_content)
             filename = f"seur_{label_data['ecb']}.{seur_label_format}"
             self.env["ir.attachment"].create(
                 {
                     "name": filename,
-                    "datas": label_content,
-                    "store_fname": filename,
+                    "raw": label_content,
                     "res_model": picking._name,
                     "res_id": picking.id,
                     "mimetype": (
@@ -221,8 +221,6 @@ class DeliveryCarrier(models.Model):
         response = {}
         try:
             response = seur_request.shipments(payload=payload)
-        except Exception as e:
-            raise (e)
         finally:
             self._seur_atlas_log_request(seur_request)
         picking.carrier_tracking_ref = response["shipmentCode"]
@@ -257,8 +255,6 @@ class DeliveryCarrier(models.Model):
                 accountNumber=int(account_number),
                 businessUnit=int(business_unit),
             )
-        except Exception as e:
-            raise (e)
         finally:
             self._seur_atlas_log_request(seur_request)
         # We won't have tracking states when the shipping is just created
