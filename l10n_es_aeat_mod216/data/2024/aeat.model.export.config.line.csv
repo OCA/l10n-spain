@@ -26,7 +26,7 @@
 "aeat_mod216_2024_sub01_export_line_25","aeat_mod216_2024_sub01_export_config",25,"Liquidación - II Rentas no sometidas a retención o ingreso a cuenta - Totales - Base de retenciones e ingresos a cuenta [19]","float",17,2,"right",0,"N",,,,"${object.casilla_19}",,,,
 "aeat_mod216_2024_sub01_export_line_26","aeat_mod216_2024_sub01_export_config",26,"Liquidación - Resultados a ingresar de anteriores autoliquidaciones por el mismo concepto, ejercicio y período [20]","float",17,2,"right",0,"N",,,,"${object.casilla_20}",,,,
 "aeat_mod216_2024_sub01_export_line_27","aeat_mod216_2024_sub01_export_config",27,"Liquidación - Resultado a ingresar ([13] - [20]) [21]","float",17,2,"right",0,"N",,,,"${object.casilla_21}",,,,
-"aeat_mod216_2024_sub01_export_line_28","aeat_mod216_2024_sub01_export_config",28,"Domiciliación - IBAN","string",34,0,"left",1,"N",,,,"${object.partner_bank_id and object.partner_bank_id.acc_number.replace(' ', '') or ''}",,,,
+"aeat_mod216_2024_sub01_export_line_28","aeat_mod216_2024_sub01_export_config",28,"Domiciliación - IBAN","string",34,0,"left",1,"N",,,,"${object.partner_bank_id.sanitized_account_number or ''}",,,,
 "aeat_mod216_2024_sub01_export_line_29","aeat_mod216_2024_sub01_export_config",29,"Complementaria - Declaración complementaria","boolean",1,0,"left",1,"N","X"," ","","${object.statement_type == 'C'}",,,,
 "aeat_mod216_2024_sub01_export_line_30","aeat_mod216_2024_sub01_export_config",30,"Complementaria - Número justificante declaración anterior","string",13,0,"left",1,"N",,,,"${object.previous_number if object.statement_type == 'C' else ''}",,,,
 "aeat_mod216_2024_sub01_export_line_31","aeat_mod216_2024_sub01_export_config",31,"Reservado para la administración: Rellenar con blancos","string",143,0,"left",1,"N",,,,,,,,

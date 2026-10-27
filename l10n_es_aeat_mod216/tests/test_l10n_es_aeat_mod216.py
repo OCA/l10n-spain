@@ -3,6 +3,7 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0
 
 import logging
+from typing import ClassVar
 
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
     TestL10nEsAeatModBase,
@@ -15,13 +16,13 @@ class TestL10nEsAeatMod216Base(TestL10nEsAeatModBase):
     # Set 'debug' attribute to True to easy debug this test
     # Do not forget to include '--log-handler aeat:DEBUG' in Odoo command line
     debug = False
-    taxes_purchase = {
+    taxes_purchase: ClassVar[dict] = {
         # tax code: (base, tax_amount)
         "l10n_es.account_tax_template_p_irpfnrnue24p": (1000, 240),
         "l10n_es.account_tax_template_p_irpfnrue19p": (2000, 380),
         "l10n_es.account_tax_template_p_irpfnrnue0p": (3000, 0),
     }
-    taxes_result = {
+    taxes_result: ClassVar[dict] = {
         # Rendimientos del trabajo (dinerarios) - Base
         "2": 12000,
         # Rendimientos del trabajo (dinerarios) - Retenciones
@@ -39,7 +40,7 @@ class TestL10nEsAeatMod216Base(TestL10nEsAeatModBase):
             {
                 "name": "9990000000216",
                 "company_id": self.company.id,
-                "company_vat": "1234567890",
+                "company_vat": "123456789",
                 "contact_name": "Test owner",
                 "statement_type": "N",
                 "support_type": "T",
@@ -106,7 +107,7 @@ class TestL10nEsAeatMod216Base(TestL10nEsAeatModBase):
             {
                 "name": "9990000000216",
                 "company_id": self.company.id,
-                "company_vat": "1234567890",
+                "company_vat": "123456789",
                 "contact_name": "Test owner",
                 "statement_type": "N",
                 "support_type": "T",

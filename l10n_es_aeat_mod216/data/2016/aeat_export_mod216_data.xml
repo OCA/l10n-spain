@@ -196,7 +196,7 @@
         <field name="name">Domiciliación - IBAN</field>
         <field
             name="expression"
-        >${object.partner_bank_id and object.partner_bank_id.acc_number and object.partner_bank_id.acc_number.replace(" ", "") or ""}</field>
+        >${object.partner_bank_id.sanitized_account_number or ""}</field>
         <field name="export_type">string</field>
         <field name="size">34</field>
         <field name="alignment">left</field>

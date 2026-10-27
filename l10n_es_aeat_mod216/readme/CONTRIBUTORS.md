@@ -3,6 +3,7 @@
   - Antonio Espinosa
   - Victor M.M. Torres
   - David Bañón
+  - Carlos Dauden
 - Ainara Galdona \<ainara.galdona@avanzosc.es\>
 - Eficent - Jordi Ballester
 - Emilio Pascual ([Moduon](https://www.moduon.team/))
