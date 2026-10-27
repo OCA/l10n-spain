@@ -130,9 +130,10 @@ class L10nEsAeatMod190Report(models.Model):
         manual_records.partner_record_ids.unlink()
         for report in self - manual_records:
             tax_lines = report.tax_line_ids.filtered(
-                lambda x, report=report: x.field_number
-                in (11, 12, 13, 14, 15, 16, 17, 18, 19)
-                and x.res_id == report.id
+                lambda x, report=report: (
+                    x.field_number in (11, 12, 13, 14, 15, 16, 17, 18, 19)
+                    and x.res_id == report.id
+                )
             )
             tax_line_vals = {}
             partner_vals = []

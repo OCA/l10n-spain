@@ -38,7 +38,7 @@
             reduzcan la base imponible), sin perjuicio de la obligación de
             declarar los datos relativos a dichos conceptos en el modelo 345.
         </field>
-        <field name="active">True</field>
+        <field name="active" eval="True" />
         <field name="ad_required">2</field>
     </record>
     <record id="aeat_m190_perception_key_02" model="l10n.es.aeat.report.perception.key">
@@ -56,7 +56,7 @@
             Se consignará, obligatoriamente, la subclave que en cada caso
             proceda de las indicadas en el campo subclave.
         </field>
-        <field name="active">True</field>
+        <field name="active" eval="True" />
         <field name="ad_required">1</field>
     </record>
     <record id="aeat_m190_perception_key_03" model="l10n.es.aeat.report.perception.key">
@@ -70,7 +70,7 @@
             las prestaciones o subsidios por desempleo, con excepción de las
             prestaciones satisfechas por este concepto en la modalidad de pago único.
         </field>
-        <field name="active">True</field>
+        <field name="active" eval="True" />
         <field name="ad_required">2</field>
     </record>
     <record id="aeat_m190_perception_key_04" model="l10n.es.aeat.report.perception.key">
@@ -96,7 +96,7 @@
             seguirán las indicaciones contenidas en la descripción del campo
             "Ejercicio de devengo" (posiciones 148-151) queresulten de aplicación.
         </field>
-        <field name="active">True</field>
+        <field name="active" eval="True" />
         <field name="ad_required">0</field>
     </record>
     <record id="aeat_m190_perception_key_05" model="l10n.es.aeat.report.perception.key">
@@ -113,7 +113,7 @@
             representativos. Se consignará obligatoriamente la subclave que en cada
             caso proceda de las indicadas en el campo subclave.
         </field>
-        <field name="active">True</field>
+        <field name="active" eval="True" />
         <field name="ad_required">1</field>
     </record>
     <record id="aeat_m190_perception_key_06" model="l10n.es.aeat.report.perception.key">
@@ -132,7 +132,7 @@
             Se consignará, obligatoriamente, la subclave que en cada caso proceda
             de las indicadas en el campo subclave.
         </field>
-        <field name="active">True</field>
+        <field name="active" eval="True" />
         <field name="ad_required">0</field>
     </record>
     <record id="aeat_m190_perception_key_07" model="l10n.es.aeat.report.perception.key">
@@ -149,7 +149,7 @@
             Impuesto. Se consignará, obligatoriamente, la subclave que en cada
             caso proceda de las indicadas en el campo subclave.
         </field>
-        <field name="active">True</field>
+        <field name="active" eval="True" />
         <field name="ad_required">0</field>
     </record>
     <record id="aeat_m190_perception_key_08" model="l10n.es.aeat.report.perception.key">
@@ -175,7 +175,7 @@
             Se consignará, obligatoriamente, la subclave que en cada
             caso proceda de las indicadas en el campo subclave.
         </field>
-        <field name="active">True</field>
+        <field name="active" eval="True" />
         <field name="ad_required">0</field>
     </record>
     <record id="aeat_m190_perception_key_09" model="l10n.es.aeat.report.perception.key">
@@ -201,7 +201,7 @@
             Se consignará, obligatoriamente, la subclave que en cada
             caso proceda de las indicadas en el campo subclave.
         </field>
-        <field name="active">True</field>
+        <field name="active" eval="True" />
         <field name="ad_required">0</field>
     </record>
     <record id="aeat_m190_perception_key_10" model="l10n.es.aeat.report.perception.key">
@@ -225,7 +225,7 @@
             del derecho de imagen, en aplicación del régimen especial
             establecido en el artículo 92 de la Ley del Impuesto.
         </field>
-        <field name="active">True</field>
+        <field name="active" eval="True" />
         <field name="ad_required">0</field>
     </record>
     <record id="aeat_m190_perception_key_11" model="l10n.es.aeat.report.perception.key">
@@ -263,7 +263,7 @@
             Se consignará, obligatoriamente, la subclave que en cada
             caso proceda de las indicadas en el campo subclave.
         </field>
-        <field name="active">True</field>
+        <field name="active" eval="True" />
         <field name="ad_required">0</field>
     </record>
     <record id="aeat_m190_perception_key_12" model="l10n.es.aeat.report.perception.key">
@@ -293,7 +293,7 @@
             Se consignará, obligatoriamente, la subclave que en cada
             caso proceda de las indicadas en el campo subclave.
         </field>
-        <field name="active">True</field>
+        <field name="active" eval="True" />
         <field name="ad_required">0</field>
     </record>
 </odoo>
