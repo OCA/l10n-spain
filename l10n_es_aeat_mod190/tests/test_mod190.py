@@ -3,12 +3,12 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import logging
+from typing import ClassVar
 
 from odoo import SUPERUSER_ID
 from odoo.exceptions import UserError
 from odoo.tests import Form, new_test_user
 
-from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
     TestL10nEsAeatModBase,
 )
@@ -18,7 +18,7 @@ _logger = logging.getLogger("aeat.190")
 
 class TestL10nEsAeatMod190Base(TestL10nEsAeatModBase):
     debug = False
-    taxes_purchase = {
+    taxes_purchase: ClassVar[dict] = {
         # tax code: (base, tax_amount)
         "P_IRPF19": (100, -19),
         "P_IRPF20": (1000, -200),
@@ -28,20 +28,16 @@ class TestL10nEsAeatMod190Base(TestL10nEsAeatModBase):
         "P_IRPF21TDIT": (1500, -15),
     }
 
+    # The tests run as the BaseCommon test user: an AEAT user who may see the
+    # sensitive data of the perceptors
+    _test_user_groups = (
+        *TestL10nEsAeatModBase._test_user_groups,
+        "l10n_es_aeat_mod190.group_aeat_mod190",
+    )
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.account_manager.group_ids |= cls.env.ref(
-            "l10n_es_aeat_mod190.group_aeat_mod190"
-        ) | cls.env.ref("base.group_partner_manager")
-        cls.env = cls.env(
-            context=dict(cls.env.context, **DISABLED_MAIL_CONTEXT),
-            user=cls.account_manager.id,
-        )
-        cls.supplier, cls.customer = (
-            cls.supplier.with_user(cls.env.user),
-            cls.customer.with_user(cls.env.user),
-        )
         cls.supplier.write(
             {
                 "incluir_190": True,
@@ -85,7 +81,7 @@ class TestL10nEsAeatMod190Base(TestL10nEsAeatModBase):
         model190 = self.env["l10n.es.aeat.mod190.report"].create(
             {
                 "company_id": self.company.id,
-                "company_vat": "1234567890",
+                "company_vat": "123456789",
                 "contact_name": "Test owner",
                 "contact_phone": "911234455",
                 "year": 2017,
@@ -162,11 +158,14 @@ class TestL10nEsAeatMod190Base(TestL10nEsAeatModBase):
         # Debemos devolverla a draft para editarla
         second_invoice.fiscal_position_id = self.fiscal_position
         self.assertTrue(second_invoice.aeat_perception_key_id)
+        # Key G has subkeys to choose from, key A has none
+        self.assertTrue(second_invoice.is_aeat_perception_subkey_visible)
+        self.assertFalse(self.supplier.is_aeat_perception_subkey_visible)
         second_invoice._post()
         model190 = self.env["l10n.es.aeat.mod190.report"].create(
             {
                 "company_id": self.company.id,
-                "company_vat": "1234567890",
+                "company_vat": "123456789",
                 "contact_name": "Test owner",
                 "contact_phone": "911234455",
                 "year": 2017,
@@ -255,7 +254,7 @@ class TestL10nEsAeatMod190Base(TestL10nEsAeatModBase):
         model190 = self.env["l10n.es.aeat.mod190.report"].create(
             {
                 "company_id": self.company.id,
-                "company_vat": "1234567890",
+                "company_vat": "123456789",
                 "contact_name": "Test owner",
                 "contact_phone": "911234455",
                 "year": 2017,
@@ -279,3 +278,81 @@ class TestL10nEsAeatMod190Base(TestL10nEsAeatModBase):
         self.assertEqual(partner_record.partner_id, self.supplier)
         self.assertFalse(partner_record.percepciones_dinerarias)
         self.assertFalse(partner_record.retenciones_dinerarias)
+
+    def test_mod190_export_boe(self):
+        """The BOE file of the 2025 record design, from the report form."""
+        for partner in self.supplier | self.customer:
+            partner.write(
+                {
+                    "vat": "ESC2259530J",
+                    "country_id": self.browse_ref("base.es").id,
+                    "state_id": self.browse_ref("base.state_es_bi").id,
+                }
+            )
+        self.supplier.name = "Perceptor Uno"
+        self.customer.name = "Perceptor Dos"
+        self._invoice_purchase_create("2025-01-01", {"partner_id": self.supplier.id})
+        self._invoice_purchase_create("2025-01-02", {"partner_id": self.customer.id})
+        model190 = self.env["l10n.es.aeat.mod190.report"].create(
+            {
+                "name": "1900000000001",
+                "company_id": self.company.id,
+                "company_vat": "123456789",
+                "contact_name": "Test owner",
+                "contact_phone": "911234455",
+                "contact_email": "owner@example.com",
+                "year": 2025,
+                "date_start": "2025-01-01",
+                "date_end": "2025-12-31",
+            }
+        )
+        model190.button_calculate()
+        self.assertEqual(
+            model190.export_config_id,
+            self.env.ref("l10n_es_aeat_mod190.aeat_mod190_2025_main_export_config"),
+        )
+        wizard = (
+            self.env["l10n.es.aeat.report.export_to_boe"]
+            .with_context(active_id=model190.id, active_model=model190._name)
+            .create({})
+        )
+        wizard.action_get_file()
+        content = wizard.data.content
+        # One declarant record and one record per perceptor and key, 500
+        # characters each, as the 2025 record design (DR190) describes them
+        expected = [
+            (
+                b"11902025123456789SPANISH TEST COMPANY                    T91"
+                b"1234455TEST OWNER                              1900000000001"
+                b"  0000000000000000000002N000000000940000000000000153600OWNER"
+                b"@EXAMPLE.COM                                                "
+                b"                                                            "
+                b"                                                            "
+                b"                                                            "
+                b"                                                            "
+                b"                    "
+            ),
+            (
+                b"21902025123456789C2259530J         PERCEPTOR DOS            "
+                b"               48G01 00000003200000000000054300 000000000000"
+                b"0000000000000000000000000000000000000         00000000000000"
+                b"000000000001000000000000000000000000000000000000000000000000"
+                b"00000000000000 00000001500000000000022500 000000000000000000"
+                b"000000000000000000000000000000000000000000000000000000000000"
+                b"0000000000000000000000000000000000                          "
+                b"                                                            "
+                b"                    "
+            ),
+            (
+                b"21902025123456789C2259530J         PERCEPTOR UNO            "
+                b"               48A00 00000000000000000000000000 000000000000"
+                b"0000000000000000000000000000000020000         10000000000000"
+                b"000000000001000000000000000000000000000000000000000000000000"
+                b"00000000000000 00000004700000000000076800 000000000000000000"
+                b"000000000000000000000000000000000000000000000000000000000000"
+                b"0000000000000000000000000000000000                          "
+                b"                                                            "
+                b"                    "
+            ),
+        ]
+        self.assertEqual(content, b"".join(record + b"\r\n" for record in expected))

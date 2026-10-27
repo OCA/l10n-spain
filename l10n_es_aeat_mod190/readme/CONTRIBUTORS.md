@@ -10,6 +10,7 @@
   - Manuel Regidor González
 - [Tecnativa](https://www.tecnativa.com):
   - Víctor Martínez
+  - Carlos Dauden
 - [Moduon](https://www.moduon.team)
   - Jairo Llopis
   - Emilio Pascual

@@ -5,6 +5,7 @@
 from collections import defaultdict
 
 from odoo import api, exceptions, fields, models
+from odoo.fields import Command, Domain
 
 from odoo.addons.l10n_es_aeat.models.spanish_states_mapping import SPANISH_STATES
 
@@ -161,7 +162,9 @@ class L10nEsAeatMod190Report(models.Model):
                     partner_vals.append(values)
                     tax_line_vals[rp.id][key_id.id][subkey_id.id] = values
             # Set partner_record_ids
-            report.partner_record_ids = [(5, 0)] + [(0, 0, x) for x in partner_vals]
+            report.partner_record_ids = [Command.clear()] + [
+                Command.create(vals) for vals in partner_vals
+            ]
         return res
 
     def _get_line_mod190_vals(self, rp, key_id, subkey_id):
@@ -200,7 +203,7 @@ class L10nEsAeatMod190Report(models.Model):
                         lambda x: x.field_number == field_number
                     ).map_line_id,
                 )
-                + domain,
+                & domain,
                 ["partner_id", "aeat_perception_key_id", "aeat_perception_subkey_id"],
                 ["credit:sum", "debit:sum"],
             )
@@ -223,9 +226,7 @@ class L10nEsAeatMod190ReportLine(models.Model):
         string="Partner Record OK",
         help="Checked if partner record is OK",
     )
-    partner_id = fields.Many2one(
-        comodel_name="res.partner", string="Partner", required=True
-    )
+    partner_id = fields.Many2one(comodel_name="res.partner", required=True)
     partner_vat = fields.Char(string="NIF", compute="_compute_partner_vat", store=True)
     representante_legal_vat = fields.Char(
         string="L. R. VAT", compute="_compute_representante_legal_vat", store=True
@@ -306,13 +307,17 @@ class L10nEsAeatMod190ReportLine(models.Model):
         selection=[
             (
                 "1",
-                "1 - Single, widowed, divorced or separated with children "
-                "under 18 or incapacitated",
+                (
+                    "1 - Single, widowed, divorced or separated with children "
+                    "under 18 or incapacitated"
+                ),
             ),
             (
                 "2",
-                "2 - Married and not legally separated and your spouse has "
-                "no annual income above the amount referred to",
+                (
+                    "2 - Married and not legally separated and your spouse has "
+                    "no annual income above the amount referred to"
+                ),
             ),
             ("3", "3 - Other."),
         ],
@@ -330,13 +335,17 @@ class L10nEsAeatMod190ReportLine(models.Model):
             ("0", "0 - No disability or degree of disability less than 33 percent."),
             (
                 "1",
-                "1 - Degree of disability greater than 33 percent and less than "
-                "66 percent.",
+                (
+                    "1 - Degree of disability greater than 33 percent and less than "
+                    "66 percent."
+                ),
             ),
             (
                 "2",
-                "2 - Degree of disability greater than 33 percent and less than "
-                "66 percent, and reduced mobility.",
+                (
+                    "2 - Degree of disability greater than 33 percent and less than "
+                    "66 percent, and reduced mobility."
+                ),
             ),
             ("3", "3 - Degree of disability equal to or greater than 65%."),
         ],
@@ -376,13 +385,17 @@ class L10nEsAeatMod190ReportLine(models.Model):
         selection=[
             (
                 "0",
-                "0 - Si en ningún momento del ejercicio ha resultado de "
-                "aplicación la reducción del tipo de retención.",
+                (
+                    "0 - Si en ningún momento del ejercicio ha resultado de "
+                    "aplicación la reducción del tipo de retención."
+                ),
             ),
             (
                 "1",
-                "1 - Si en algún momento del ejercicio ha resultado de "
-                "aplicación la reducción del tipo de retención.",
+                (
+                    "1 - Si en algún momento del ejercicio ha resultado de "
+                    "aplicación la reducción del tipo de retención."
+                ),
             ),
         ],
         string="Comunicación préstamos vivienda habitual",
@@ -622,11 +635,11 @@ class L10nEsAeatMod190ReportLine(models.Model):
     @api.depends("report_id", "report_id.tax_line_ids", "discapacidad")
     def _compute_percepciones(self):
         tax_data = defaultdict(lambda: defaultdict(dict))
-        domain = []
+        domain = Domain.TRUE
         if len(self.partner_id) == 1:
             # This should only happen when we are making a small update on
             # 'discapacidad'
-            domain.append(("partner_id", "=", self.partner_id.id))
+            domain = Domain("partner_id", "=", self.partner_id.id)
         for report in self.report_id:
             if report.tax_line_ids:
                 tax_data[report.id] = {
@@ -691,14 +704,18 @@ class L10nEsAeatMod190ReportLine(models.Model):
                 tax_data[item.report_id.id]["17"].get(key, 0) for key in keys
             )
 
+    def _is_key_b01(self):
+        self.ensure_one()
+        return self.aeat_perception_key_id == self.env.ref(
+            "l10n_es_aeat_mod190.aeat_m190_perception_key_02"
+        ) and self.aeat_perception_subkey_id == self.env.ref(
+            "l10n_es_aeat_mod190.aeat_m190_perception_subkey_02_01"
+        )
+
     @api.depends("aeat_perception_key_id", "aeat_perception_subkey_id")
     def _compute_visible_key_b01(self):
         for record in self:
-            record.visible_key_b01 = record.aeat_perception_key_id == self.env.ref(
-                "l10n_es_aeat_mod190.aeat_m190_perception_key_02"
-            ) and record.aeat_perception_subkey_id == self.env.ref(
-                "l10n_es_aeat_mod190.aeat_m190_perception_subkey_02_01"
-            )
+            record.visible_key_b01 = record._is_key_b01()
 
     @api.onchange("partner_id")
     def onchange_partner_id(self):
@@ -727,12 +744,8 @@ class L10nEsAeatMod190ReportLine(models.Model):
             "clave_b01_resto",
         }
         for record in self:
-            if (
-                record.aeat_perception_key_id
-                == self.env.ref("l10n_es_aeat_mod190.aeat_m190_perception_key_02")
-                and record.aeat_perception_subkey_id
-                == self.env.ref("l10n_es_aeat_mod190.aeat_m190_perception_subkey_02_01")
-                and not any([record[field] for field in fields_clave_b01])
+            if record._is_key_b01() and not any(
+                record[field] for field in fields_clave_b01
             ):
                 raise exceptions.ValidationError(
                     self.env._(

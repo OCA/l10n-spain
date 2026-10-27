@@ -2,7 +2,7 @@
 
 {
     "name": "AEAT modelo 190",
-    "version": "19.0.1.0.0",
+    "version": "20.0.1.0.0",
     "category": "Localization/Accounting",
     "author": "Punt Sistemes SLU,"
     "Odoo Community Association (OCA),"
@@ -18,7 +18,7 @@
         "data/2025/aeat.model.export.config.csv",
         "data/2025/aeat.model.export.config.line.csv",
         "security/l10n_es_aeat_mod190_security.xml",
-        "security/ir.model.access.csv",
+        "security/ir.access.csv",
         "data/perception_key_data.xml",
         "data/perception_subkey_data.xml",
         "data/l10n.es.aeat.map.tax.csv",

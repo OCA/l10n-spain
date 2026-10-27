@@ -80,14 +80,18 @@ class ResPartner(models.Model):
         selection=[
             (
                 "1",
-                "1 - Soltero, viudo, divorciado o separado con hijos menores"
-                " de 18 años o mayores incapacitados",
+                (
+                    "1 - Soltero, viudo, divorciado o separado con hijos menores"
+                    " de 18 años o mayores incapacitados"
+                ),
             ),
             (
                 "2",
-                "2 - Casado y no separado legalmente y su conyuge no tiene "
-                "rentas anuales superiores a la cuantía a la que se refiere "
-                "la situación 2ª de las contempladas en el artículo 81.1",
+                (
+                    "2 - Casado y no separado legalmente y su conyuge no tiene "
+                    "rentas anuales superiores a la cuantía a la que se refiere "
+                    "la situación 2ª de las contempladas en el artículo 81.1"
+                ),
             ),
             ("3", "3 - Distinta de las anteriores."),
         ],
@@ -114,13 +118,17 @@ class ResPartner(models.Model):
             ("0", "0 - Sin discapacidad o grado de minusvalía inferior al 33 por 100."),
             (
                 "1",
-                "1 - Grado de minusvalía superior al 33 por 100 e inferior "
-                "al 66 por 100.",
+                (
+                    "1 - Grado de minusvalía superior al 33 por 100 e inferior "
+                    "al 66 por 100."
+                ),
             ),
             (
                 "2",
-                "2 - Grado de minusvalía superior al 33 por 100 e inferior "
-                "al 66 por 100, y movilidad reducida.",
+                (
+                    "2 - Grado de minusvalía superior al 33 por 100 e inferior "
+                    "al 66 por 100, y movilidad reducida."
+                ),
             ),
             ("3", "3 - Grado de minusvalía igual o superior al 65 por 100."),
         ],
@@ -325,39 +333,27 @@ class ResPartner(models.Model):
                 ad_required += record.aeat_perception_subkey_id.ad_required
             record.ad_required = ad_required
 
-    @api.depends("aeat_perception_key_id")
+    @api.depends("aeat_perception_key_id.aeat_perception_subkey_ids")
     def _compute_is_aeat_perception_subkey_visible(self):
         for record in self:
             record.is_aeat_perception_subkey_visible = bool(
-                record.env["l10n.es.aeat.report.perception.subkey"].search(
-                    [
-                        (
-                            "aeat_perception_key_id",
-                            "=",
-                            record.aeat_perception_key_id.id,
-                        ),
-                    ]
-                )
+                record.aeat_perception_key_id.aeat_perception_subkey_ids
             )
 
     @api.depends("aeat_perception_key_id", "aeat_perception_subkey_id")
     def _compute_is_first_child_computation_visible(self):
-        aeat_perception_key_id = [  # A, C
-            "l10n_es_aeat_mod190.aeat_m190_perception_key_01",
-            "l10n_es_aeat_mod190.aeat_m190_perception_key_03",
-        ]
-        aeat_perception_subkey_id = [  # B01, B03, B04, B99
-            "l10n_es_aeat_mod190.aeat_m190_perception_subkey_02_01",
-            "l10n_es_aeat_mod190.aeat_m190_perception_subkey_02_03",
-            "l10n_es_aeat_mod190.aeat_m190_perception_subkey_02_04",
-            "l10n_es_aeat_mod190.aeat_m190_perception_subkey_02_99",
-        ]
+        keys = {  # A, C
+            self.env.ref(f"l10n_es_aeat_mod190.aeat_m190_perception_key_{code}")
+            for code in ("01", "03")
+        }
+        subkeys = {  # B01, B03, B04, B99
+            self.env.ref(f"l10n_es_aeat_mod190.aeat_m190_perception_subkey_02_{code}")
+            for code in ("01", "03", "04", "99")
+        }
         for record in self:
             record.is_first_child_computation_visible = (
-                record.aeat_perception_key_id
-                in {self.env.ref(item) for item in aeat_perception_key_id}
-                or record.aeat_perception_subkey_id
-                in {self.env.ref(item) for item in aeat_perception_subkey_id}
+                record.aeat_perception_key_id in keys
+                or record.aeat_perception_subkey_id in subkeys
             )
 
     @api.onchange("aeat_perception_key_id")

@@ -41,19 +41,11 @@ class AccountMoveLine(models.Model):
         compute="_compute_is_aeat_perception_subkey_visible"
     )
 
-    @api.depends("aeat_perception_key_id")
+    @api.depends("aeat_perception_key_id.aeat_perception_subkey_ids")
     def _compute_is_aeat_perception_subkey_visible(self):
         for record in self:
             record.is_aeat_perception_subkey_visible = bool(
-                record.env["l10n.es.aeat.report.perception.subkey"].search(
-                    [
-                        (
-                            "aeat_perception_key_id",
-                            "=",
-                            record.aeat_perception_key_id.id,
-                        ),
-                    ]
-                )
+                record.aeat_perception_key_id.aeat_perception_subkey_ids
             )
 
     @api.depends("move_id.aeat_perception_key_id", "move_id.aeat_perception_subkey_id")
