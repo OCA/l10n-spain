@@ -162,7 +162,7 @@ class TestL10nEsAeatMod216Base(TestL10nEsAeatModBase):
         self.assertEqual(round(self.model216.casilla_12, 2), round(retenciones, 2))
         self.assertEqual(round(self.model216.casilla_13, 2), round(retenciones + 38, 2))
         self.assertEqual(self.model216.casilla_16, 4)
-        self.assertEqual(round(self.model216.casilla_19, 2), round(305, 2))
+        self.assertEqual(round(self.model216.casilla_19, 2), 305)
         self.assertEqual(round(self.model216.casilla_21, 2), round(result, 2))
         # Export to BOE
         export_to_boe = self.env["l10n.es.aeat.report.export_to_boe"].create(
