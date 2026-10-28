@@ -1,20 +1,128 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <record id="view_res_bank_form" model="ir.ui.view">
-        <field name="model">res.bank</field>
-        <field name="inherit_id" ref="base.view_res_bank_form" />
+    <record id="view_l10n_es_bank_list" model="ir.ui.view">
+        <field name="name">l10n.es.bank.list</field>
+        <field name="model">l10n.es.bank</field>
         <field name="arch" type="xml">
-            <group name="bank_details" position="attributes">
-                <attribute name="col">2</attribute>
-            </group>
-            <field name="name" position="after">
+            <list string="Spanish Banks" decoration-muted="not active">
+                <field name="name" />
+                <field name="lname" optional="hide" />
+                <field name="code" />
+                <field name="bic" optional="show" />
+                <field name="city" optional="show" />
+                <field name="country_id" optional="hide" />
+                <field name="active" widget="boolean_toggle" optional="hide" />
+            </list>
+        </field>
+    </record>
+    <record id="view_l10n_es_bank_form" model="ir.ui.view">
+        <field name="name">l10n.es.bank.form</field>
+        <field name="model">l10n.es.bank</field>
+        <field name="arch" type="xml">
+            <form string="Spanish Bank">
+                <sheet>
+                    <widget
+                        name="web_ribbon"
+                        title="Archived"
+                        bg_color="text-bg-danger"
+                        invisible="active"
+                    />
+                    <group>
+                        <group>
+                            <field name="name" />
+                            <field name="lname" />
+                            <field name="code" />
+                            <field name="bic" />
+                            <field name="vat" />
+                            <field name="website" widget="url" />
+                        </group>
+                        <group>
+                            <field name="phone" />
+                            <field name="email" />
+                            <field name="active" />
+                            <label for="street" string="Address" />
+                            <div class="o_address_format">
+                                <field
+                                    name="street"
+                                    placeholder="Street..."
+                                    class="o_address_street"
+                                />
+                                <field
+                                    name="street2"
+                                    placeholder="Street 2..."
+                                    class="o_address_street"
+                                />
+                                <field
+                                    name="city"
+                                    placeholder="City"
+                                    class="o_address_city"
+                                />
+                                <field
+                                    name="state_id"
+                                    placeholder="State"
+                                    class="o_address_state"
+                                    options="{'no_open': True}"
+                                />
+                                <field
+                                    name="zip"
+                                    placeholder="ZIP"
+                                    class="o_address_zip"
+                                />
+                                <field
+                                    name="country_id"
+                                    placeholder="Country"
+                                    class="o_address_country"
+                                    options="{'no_open': True, 'no_create': True}"
+                                />
+                            </div>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="view_l10n_es_bank_search" model="ir.ui.view">
+        <field name="name">l10n.es.bank.search</field>
+        <field name="model">l10n.es.bank</field>
+        <field name="arch" type="xml">
+            <search string="Spanish Banks">
+                <field name="name" />
                 <field name="lname" />
-            </field>
-            <field name="bic" position="after">
+                <field name="code" />
+                <field name="bic" />
                 <field name="vat" />
-            </field>
-            <field name="email" position="after">
-                <field name="website" widget="url" />
+                <filter
+                    name="inactive"
+                    string="Archived"
+                    domain="[('active', '=', False)]"
+                />
+            </search>
+        </field>
+    </record>
+    <record id="action_l10n_es_bank" model="ir.actions.act_window">
+        <field name="name">Spanish Banks</field>
+        <field name="res_model">l10n.es.bank</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_l10n_es_bank_search" />
+    </record>
+    <menuitem
+        id="menu_l10n_es_bank"
+        name="Spanish Banks"
+        action="action_l10n_es_bank"
+        sequence="90"
+        groups="base.group_partner_manager,base.group_system"
+    />
+    <record id="view_partner_bank_form_l10n_es_partner" model="ir.ui.view">
+        <field name="name">res.partner.bank.form.l10n.es.partner</field>
+        <field name="model">res.partner.bank</field>
+        <field name="inherit_id" ref="base.view_partner_bank_form" />
+        <field name="arch" type="xml">
+            <field name="bank_name" position="before">
+                <field
+                    name="l10n_es_bank_id"
+                    options="{'no_create': True}"
+                    domain="[('active', '=', True)]"
+                />
             </field>
         </field>
     </record>

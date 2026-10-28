@@ -10,3 +10,5 @@
   - Miquel Pascual \<<mpascual@apsl.net>\>
 - [Dixmit](https://www.dixmit.com):
   - Enric Tobella
+- [Studio73](https://www.studio73.es):
+  - Pablo Cortés

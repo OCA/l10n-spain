@@ -4,7 +4,6 @@
 
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-import codecs
 import csv
 import logging
 import os
@@ -72,7 +71,7 @@ def gen_bank_data_csv(src_path, dest_path):
     bics = {}
     bic_file_path = os.path.join(os.path.dirname(__file__), "bics.csv")
     try:
-        with codecs.open(bic_file_path, mode="r", encoding="utf-8") as csvfile:
+        with open(bic_file_path, encoding="utf-8", newline="") as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
                 bics[row["ENTIDAD"]] = row["BIC"]
@@ -93,14 +92,14 @@ def gen_bank_data_csv(src_path, dest_path):
         "zip",
         "phone",
         "active",
-        "state:id",
-        "country:id",
+        "state_id:id",
+        "country_id:id",
     ]
 
     try:
         with (
-            codecs.open(src_path, mode="r", encoding="utf-8") as infile,
-            codecs.open(dest_path, mode="w", encoding="utf-8") as outfile,
+            open(src_path, encoding="utf-8", newline="") as infile,
+            open(dest_path, "w", encoding="utf-8", newline="") as outfile,
         ):
             reader = csv.DictReader(infile)
             writer = csv.DictWriter(outfile, fieldnames=fieldnames)
@@ -141,16 +140,16 @@ def gen_bank_data_csv(src_path, dest_path):
                     "zip": codpostal,
                     "phone": row.get("TELEFONO", ""),
                     "active": "1",
-                    "state:id": state_ref,
-                    "country:id": "base.es",
+                    "state_id:id": state_ref,
+                    "country_id:id": "base.es",
                 }
                 writer.writerow(new_row)
 
     except FileNotFoundError:
         _logger.error("Archivo no encontrado en la ruta: %s", src_path)
         return
-    except Exception as e:
-        _logger.error("Error inesperado al procesar %s: %s", src_path, e)
+    except (OSError, UnicodeError, csv.Error, KeyError, TypeError) as error:
+        _logger.error("Error al procesar %s: %s", src_path, error)
         return
     _logger.info("Fichero %s generado correctamente.", dest_path)
 

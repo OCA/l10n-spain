@@ -1,0 +1,5 @@
+id,name,model_id/id,group_id/id,operation,domain
+access_l10n_es_bank_user,l10n.es.bank user,model_l10n_es_bank,base.group_user,r,
+access_l10n_es_bank_group_partner_manager,l10n.es.bank partner manager,model_l10n_es_bank,base.group_partner_manager,crud,
+access_l10n_es_bank_group_system,l10n.es.bank system,model_l10n_es_bank,base.group_system,crud,
+access_l10n_es_partner_import_wizard,l10n.es.partner.import.wizard,model_l10n_es_partner_import_wizard,base.group_user,cru,

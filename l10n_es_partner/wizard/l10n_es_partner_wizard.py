@@ -2,7 +2,6 @@
 # Copyright 2025 Studio73 - Pablo Cortés <pablo.cortes@studio73.es>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl-3).
 
-import codecs
 import csv
 import logging
 import os
@@ -34,13 +33,13 @@ class L10nEsPartnerImportWizard(models.TransientModel):
         try:
             workbook = xlrd.open_workbook(xls_path)
             sheet = workbook.sheet_by_index(0)
-            with codecs.open(csv_path, mode="w", encoding="utf-8") as csv_file:
+            with open(csv_path, mode="w", encoding="utf-8", newline="") as csv_file:
                 writer = csv.writer(csv_file)
                 for row_num in range(sheet.nrows):
                     writer.writerow(sheet.row_values(row_num))
             return True
-        except Exception as e:
-            _logger.error(f"Error al convertir XLS a CSV: {e}")
+        except (OSError, ValueError, xlrd.XLRDError) as error:
+            _logger.error("Error al convertir XLS a CSV: %s", error)
             return False
 
     def _load_csv_data(self, csv_path):
@@ -58,19 +57,19 @@ class L10nEsPartnerImportWizard(models.TransientModel):
             "zip",
             "phone",
             "active",
-            "state:id",
-            "country:id",
+            "state_id:id",
+            "country_id:id",
         ]
 
-        data = []
-        with codecs.open(csv_path, "r", encoding="utf-8") as f:
-            reader = csv.reader(f)
-            next(reader)
-            for row in reader:
-                data.append(row)
+        with open(csv_path, encoding="utf-8", newline="") as csv_file:
+            reader = csv.reader(csv_file)
+            next(reader, None)
+            data = list(reader)
 
         if data:
-            self.env["res.bank"].load(fieldnames, data)
+            self.env["l10n.es.bank"].with_context(module="l10n_es_partner").load(
+                fieldnames, data
+            )
 
     def import_local(self):
         module_path = get_module_path("l10n_es_partner")
@@ -83,14 +82,10 @@ class L10nEsPartnerImportWizard(models.TransientModel):
     def execute(self):
         import requests
 
-        xls_file, csv_in_file, csv_out_file = None, None, None
-        try:
-            xls_file = tempfile.NamedTemporaryFile(delete=False, suffix=".xls")
-            csv_in_file = tempfile.NamedTemporaryFile(delete=False, suffix=".csv")
-            csv_out_file = tempfile.NamedTemporaryFile(delete=False, suffix=".csv")
-            xls_file.close()
-            csv_in_file.close()
-
+        with tempfile.TemporaryDirectory() as temp_dir:
+            xls_path = os.path.join(temp_dir, "banks.xls")
+            csv_in_path = os.path.join(temp_dir, "banks-in.csv")
+            csv_out_path = os.path.join(temp_dir, "banks-out.csv")
             csv_to_process = ""
             try:
                 response = requests.get(
@@ -98,27 +93,20 @@ class L10nEsPartnerImportWizard(models.TransientModel):
                     timeout=15,
                 )
                 response.raise_for_status()
-                with open(xls_file.name, "wb") as f:
-                    f.write(response.content)
+                with open(xls_path, "wb") as bank_file:
+                    bank_file.write(response.content)
 
-                if not self._xls_to_csv(xls_file.name, csv_in_file.name):
+                if not self._xls_to_csv(xls_path, csv_in_path):
                     self.import_fail = True
                     return
-                csv_to_process = csv_in_file.name
-            except Exception:
+                csv_to_process = csv_in_path
+            except requests.RequestException:
                 _logger.warning("Error al descargar. Usando fichero local de respaldo.")
                 csv_to_process = tools.file_path(
                     "l10n_es_partner/gen_src/REGBANESP_CONESTAB_A.csv"
                 )
 
-            gen_bank_data_csv(csv_to_process, csv_out_file.name)
+            gen_bank_data_csv(csv_to_process, csv_out_path)
 
-            self._load_csv_data(csv_out_file.name)
+            self._load_csv_data(csv_out_path)
             _logger.info("Importación de bancos finalizada correctamente.")
-        finally:
-            if xls_file:
-                os.remove(xls_file.name)
-            if csv_in_file:
-                os.remove(csv_in_file.name)
-            if csv_out_file:
-                os.remove(csv_out_file.name)

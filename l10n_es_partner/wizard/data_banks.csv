@@ -1,4 +1,4 @@
-id,name,lname,code,bic,street,street2,website,vat,city,zip,phone,active,state:id,country:id
+id,name,lname,code,bic,street,street2,website,vat,city,zip,phone,active,state_id:id,country_id:id
 res_bank_es_1542,J.P. Morgan Sec,"J.P. Morgan Securities Ltd, Sucursal En España",1542,,"Cl. Jose Ortega Y Gasset, 29",,,W0068121C,Madrid,28006,915161200,1,base.state_es_m,base.es
 res_bank_es_1543,"Cofidis,S.A.,Se","Cofidis, S.A. Sucursal En España",1543,,"Pz. De La Pau, 0","Edificio Wtc, Ap1",www.cofidis.es,W0017686G,Cornella De Llobregat,8940,902308030,1,base.state_es_b,base.es
 res_bank_es_1544,Andbanc S.E.,"Andbanc Luxembourg, S.A., Sucursal En España",1544,BACAESMMXXX,"Ps. De La Castellana, 55",Pl. 3,,W0182803G,Madrid,28046,912062850,1,base.state_es_m,base.es

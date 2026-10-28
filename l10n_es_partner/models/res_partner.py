@@ -10,6 +10,7 @@ from odoo import api, fields, models
 
 class ResPartner(models.Model):
     _inherit = "res.partner"
+    _rec_names_search = ("complete_name", "email", "ref", "vat", "comercial")
 
     comercial = fields.Char("Trade name", size=128, index="trigram")
 
@@ -27,7 +28,7 @@ class ResPartner(models.Model):
         name_pattern = (
             self.env["ir.config_parameter"]
             .sudo()
-            .get_param("l10n_es_partner.name_pattern", default="")
+            .get_str("l10n_es_partner.name_pattern", default="")
         )
         if not name_pattern:
             return
@@ -44,7 +45,7 @@ class ResPartner(models.Model):
             name_pattern = (
                 self.env["ir.config_parameter"]
                 .sudo()
-                .get_param("l10n_es_partner.name_pattern", default="")
+                .get_str("l10n_es_partner.name_pattern", default="")
             )
             if name_pattern:
                 name = name_pattern % {
@@ -71,13 +72,3 @@ class ResPartner(models.Model):
         res = super()._commercial_fields()
         res += ["comercial"]
         return res
-
-    @api.model
-    @api.readonly
-    def name_search(self, name="", domain=None, operator="ilike", limit=100):
-        # Inject the field comercial in _rec_names_search if not exists
-        if "comercial" not in self._rec_names_search:
-            self._rec_names_search.append("comercial")
-        return super().name_search(
-            name=name, domain=domain, operator=operator, limit=limit
-        )

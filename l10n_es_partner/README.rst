@@ -21,29 +21,29 @@ Adaptación de los clientes, proveedores y bancos para España
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github
-    :target: https://github.com/OCA/l10n-spain/tree/19.0/l10n_es_partner
+    :target: https://github.com/OCA/l10n-spain/tree/20.0/l10n_es_partner
     :alt: OCA/l10n-spain
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/l10n-spain-19-0/l10n-spain-19-0-l10n_es_partner
+    :target: https://translation.odoo-community.org/projects/l10n-spain-20-0/l10n-spain-20-0-l10n_es_partner
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&target_branch=19.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&target_branch=20.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
 Incluye la siguiente funcionalidad:
 
-- Añade el campo *Nombre comercial* a las empresas y permite buscar por
-  él.
-- Permite definir un patrón del nombre a mostrar a partir del nombre y
-  el nombre comercial de la empresa.
-- Añade los campos nombre largo, NIF y web a los bancos.
-- Añade los datos de los bancos españoles extraídos del registro oficial
-  del Banco de España (http://goo.gl/mtx6ic). El asistente realiza la
-  descarga automática de Internet, pero si por cualquier razón hay algún
-  problema, existe una copia local cuya última actualización fue el
-  26/10/2017.
+-  Añade el campo *Nombre comercial* a las empresas y permite buscar por
+   él.
+-  Permite definir un patrón del nombre a mostrar a partir del nombre y
+   el nombre comercial de la empresa.
+-  Añade los campos nombre largo, NIF y web a los bancos.
+-  Añade los datos de los bancos españoles extraídos del registro
+   oficial del Banco de España (http://goo.gl/mtx6ic). El asistente
+   realiza la descarga automática de Internet, pero si por cualquier
+   razón hay algún problema, existe una copia local cuya última
+   actualización fue el 26/10/2017.
 
 **Table of contents**
 
@@ -53,8 +53,36 @@ Incluye la siguiente funcionalidad:
 Installation
 ============
 
-Este módulo depende de *base_bank_from_iban* que se encuentra en el
-repositorio https://github.com/OCA/community-data-files
+This module depends on *base_bank_from_iban* from
+https://github.com/OCA/community-data-files.
+
+Upgrade from Odoo 19
+--------------------
+
+The Odoo 20 upgrade removes the core ``res.bank`` model. Before Odoo
+loads any Odoo 20 module, take a database backup and pass the migration
+snapshot script to the same Odoo update command that upgrades the
+database:
+
+.. code:: text
+
+   --pre-upgrade-scripts=/path/to/l10n_es_partner/migrations/20.0.1.0.0/pre-migration.py
+
+The normal core upgrade must include ``l10n_es_partner`` in the modules
+being updated. The pre-upgrade script snapshots every ``res.bank`` row,
+its external IDs and account links before ``base`` is loaded. The module
+post-migration restores them into ``l10n.es.bank``, rebuilds account
+links, fills only empty account bank details, and verifies the restored
+counts. It drops the auxiliary tables only after all checks pass.
+Third-party columns are copied when the new model has a matching field
+name. If the snapshot contains a column without a matching field on
+``l10n.es.bank``, the migration stops and keeps the snapshot for an
+explicit mapping.
+
+This command option only provides the early snapshot step. It does not
+perform the full Odoo 19 to 20 core database upgrade; validate the
+complete sequence on a disposable Odoo 19 database using the project's
+supported upgrade procedure.
 
 Configuration
 =============
@@ -79,7 +107,7 @@ Para importar los datos de los bancos españoles hay que ir a Facturación
 Known issues / Roadmap
 ======================
 
-- Take BICs from https://github.com/PeterNotenboom/SwiftCodes.
+-  Take BICs from https://github.com/PeterNotenboom/SwiftCodes.
 
 Bug Tracker
 ===========
@@ -87,7 +115,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/l10n-spain/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_partner%0Aversion:%2019.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_partner%0Aversion:%2020.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -100,25 +128,30 @@ Authors
 * ZikZak
 * Acysos
 * Tecnativa
+* Studio73
 
 Contributors
 ------------
 
-- Jordi Esteve <jesteve@zikzakmedia.com>
-- Ignacio Ibeas <ignacio@acysos.com>
-- Pedro M. Baeza <pedro.baeza@tecnativa.com>
-- Sergio Teruel <sergio@incaser.es>
-- Ismael Calvo <ismael.calvo@factorlibre.com>
-- Carlos Dauden <carlos.dauden@tecnativa.com>
-- Manuel Regidor <manuel.regidor@sygel.es>
-- `APSL - Nagarro <https://apsl.tech>`__:
+-  Jordi Esteve <jesteve@zikzakmedia.com>
+-  Ignacio Ibeas <ignacio@acysos.com>
+-  Pedro M. Baeza <pedro.baeza@tecnativa.com>
+-  Sergio Teruel <sergio@incaser.es>
+-  Ismael Calvo <ismael.calvo@factorlibre.com>
+-  Carlos Dauden <carlos.dauden@tecnativa.com>
+-  Manuel Regidor <manuel.regidor@sygel.es>
+-  `APSL - Nagarro <https://apsl.tech>`__:
 
-  - Javier Antó <janto@apsl.net>
-  - Miquel Pascual <mpascual@apsl.net>
+   -  Javier Antó <janto@apsl.net>
+   -  Miquel Pascual <mpascual@apsl.net>
 
-- `Dixmit <https://www.dixmit.com>`__:
+-  `Dixmit <https://www.dixmit.com>`__:
 
-  - Enric Tobella
+   -  Enric Tobella
+
+-  `Studio73 <https://www.studio73.es>`__:
+
+   -  Pablo Cortés
 
 Maintainers
 -----------
@@ -141,6 +174,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-pedrobaeza| 
 
-This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/19.0/l10n_es_partner>`_ project on GitHub.
+This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/20.0/l10n_es_partner>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
