@@ -6,6 +6,12 @@ from odoo import fields, models
 from odoo.fields import Domain
 from odoo.tools import ormcache
 
+AEAT_IDENTIFICATION_TYPE = [
+    ("03", "Passport"),
+    ("05", "Residential certificate"),
+    ("06", "Another document"),
+]
+
 
 class ResPartner(models.Model):
     _inherit = "res.partner"
@@ -25,11 +31,7 @@ class ResPartner(models.Model):
             "with a foreign VAT and instead with their passport "
             "or residential certificate. If there is no value it will work as before."
         ),
-        selection=[
-            ("03", "Passport"),
-            ("05", "Residential certificate"),
-            ("06", "Another document"),
-        ],
+        selection=AEAT_IDENTIFICATION_TYPE,
     )
     aeat_identification = fields.Char(help="Identification for AEAT purposes")
     # There are other options (but these options are managed automatically
@@ -45,6 +47,7 @@ class ResPartner(models.Model):
     aeat_sending_enabled = fields.Boolean(
         compute="_compute_aeat_sending_enabled",
     )
+    real_estate_ids = fields.One2many("l10n.es.aeat.real_estate", "partner_id")
 
     def _compute_aeat_sending_enabled(self):
         self.aeat_sending_enabled = False
@@ -102,7 +105,9 @@ class ResPartner(models.Model):
             # Return mapped vats like Greece. Take into account mapped countries
             country_code = aeat_country_code
             vat_number = vat_number[2:]
-            identifier_type = "02"
+            identifier_type = (
+                "02" if self._check_vat_number(country_code, vat_number) else "04"
+            )
         else:
             if self.country_id.code:
                 country_code = self.country_id.code
@@ -114,7 +119,13 @@ class ResPartner(models.Model):
                 self._map_aeat_country_code(country_code)
                 in self._get_aeat_europe_codes()
             ):
-                identifier_type = "02"
+                # An EU country alone doesn't mean `vat_number` is really a
+                # valid intra-community VAT (e.g. an Italian "codice
+                # fiscale" for an individual isn't a "partita IVA" and the
+                # SII rejects it under IDType 02 with error 1104).
+                identifier_type = (
+                    "02" if self._check_vat_number(country_code, vat_number) else "04"
+                )
             else:
                 country_code = self._map_aeat_country_code(country_code, extended=True)
                 identifier_type = "04"
@@ -129,11 +140,13 @@ class ResPartner(models.Model):
     def _has_valid_aeat_identification(self, allow_alternative_identification=True):
         """Check whether a partner has a valid identification for AEAT reports."""
         self.ensure_one()
+        if self.vat or not allow_alternative_identification:
+            return bool(self.vat)
+        _country_code, identifier_type, _vat_number = self._parse_aeat_vat_info()
+        req_vat_identif_types = [option[0] for option in AEAT_IDENTIFICATION_TYPE] + [
+            ""
+        ]
         return bool(
-            self.vat
-            or (
-                allow_alternative_identification
-                and self.aeat_identification_type
-                and self.aeat_identification
-            )
+            identifier_type not in req_vat_identif_types
+            or (self.aeat_identification_type and self.aeat_identification)
         )

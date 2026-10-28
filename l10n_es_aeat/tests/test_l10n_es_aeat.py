@@ -70,6 +70,29 @@ class TestL10nEsAeat(BaseCommon):
         self.assertEqual(identifier_type, "02")
         self.assertEqual(vat_number, "61954506077")
 
+    def test_parse_vat_info_it_valid_vat(self):
+        self.partner.write(
+            {"vat": "12345670017", "country_id": self.env.ref("base.it").id}
+        )
+        country_code, identifier_type, vat_number = self.partner._parse_aeat_vat_info()
+        self.assertEqual(country_code, "IT")
+        self.assertEqual(identifier_type, "02")
+        self.assertEqual(vat_number, "12345670017")
+
+    def test_parse_vat_info_it_codice_fiscale(self):
+        """A personal "codice fiscale" is not a "partita IVA": sending it to
+        the SII as identifier type 02 (NIF-IVA) gets rejected with error
+        1104 "Valor del campo ID incorrecto".
+        """
+        # base_vat doesn't accept a "codice fiscale" as VAT anymore
+        self.partner.with_context(no_vat_validation=True).write(
+            {"vat": "MRTMTT91D08F205J", "country_id": self.env.ref("base.it").id}
+        )
+        country_code, identifier_type, vat_number = self.partner._parse_aeat_vat_info()
+        self.assertEqual(country_code, "IT")
+        self.assertEqual(identifier_type, "04")
+        self.assertEqual(vat_number, "MRTMTT91D08F205J")
+
     def test_parse_vat_info_gf_wo_prefix(self):
         self.partner.write(
             {"vat": "61954506077", "country_id": self.env.ref("base.gf").id}
@@ -183,6 +206,7 @@ class TestL10nEsAeat(BaseCommon):
         partner_without_identification = self.env["res.partner"].create(
             {
                 "name": "Partner without identification",
+                "country_id": self.env.ref("base.es").id,
             }
         )
         self.assertFalse(
@@ -198,9 +222,17 @@ class TestL10nEsAeat(BaseCommon):
         partner_only_aeat_identification = self.env["res.partner"].create(
             {
                 "name": "Partner only AEAT identification",
+                "country_id": self.env.ref("base.es").id,
                 "aeat_identification": "ABC123456",
             }
         )
         self.assertFalse(
             partner_only_aeat_identification._has_valid_aeat_identification()
+        )
+        partner_without_identification.country_id = self.env.ref("base.us")
+        self.assertTrue(partner_without_identification._has_valid_aeat_identification())
+        self.assertFalse(
+            partner_without_identification._has_valid_aeat_identification(
+                allow_alternative_identification=False
+            )
         )
