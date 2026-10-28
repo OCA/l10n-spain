@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <!-- Import wizard -->
-    <record model="ir.ui.view" id="l10n_es_partner_import_wizard">
+    <record id="l10n_es_partner_import_wizard" model="ir.ui.view">
         <field name="name">l10n.es.partner.import.form</field>
         <field name="model">l10n.es.partner.import.wizard</field>
-        <field name="priority">99</field>
+        <field name="priority" eval="99" />
         <field name="arch" type="xml">
             <form string="Import Spanish Bank Data">
                 <group>
@@ -63,6 +63,6 @@
     <record id="config_l10n_es_partner_import" model="ir.actions.todo">
         <field name="name">Import spanish bank data</field>
         <field name="action_id" ref="action_l10n_es_partner_import" />
-        <field name="sequence">20</field>
+        <field name="sequence" eval="20" />
     </record>
 </odoo>
