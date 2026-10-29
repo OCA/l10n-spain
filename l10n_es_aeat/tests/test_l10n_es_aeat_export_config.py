@@ -4,6 +4,12 @@ from odoo.addons.base.tests.common import BaseCommon
 
 
 class TestL10nEsAeatExportConfig(BaseCommon):
+    _test_user_groups = (
+        "base.group_user",
+        "base.group_system",
+        "l10n_es_aeat.group_account_aeat",
+    )
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()

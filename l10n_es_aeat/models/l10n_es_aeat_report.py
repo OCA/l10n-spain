@@ -17,7 +17,7 @@ from .spanish_states_mapping import SPANISH_STATES as ss
 
 class L10nEsAeatReport(models.AbstractModel):
     _name = "l10n.es.aeat.report"
-    _inherit = ["mail.thread", "mail.activity.mixin"]
+    _inherit = ["mail.thread", "mail.activity.mixin"]  # noqa: RUF012
     _description = "AEAT report base module"
     _order = "date_start desc,id desc"
     _rec_name = "name"
@@ -96,7 +96,6 @@ class L10nEsAeatReport(models.AbstractModel):
 
     company_id = fields.Many2one(
         comodel_name="res.company",
-        string="Company",
         required=True,
         default=lambda self: self.env.company,
     )
@@ -213,7 +212,6 @@ class L10nEsAeatReport(models.AbstractModel):
     )
     journal_id = fields.Many2one(
         comodel_name="account.journal",
-        string="Journal",
         domain="[('type', '=', 'general'), ('company_id', '=', company_id)]",
         default=lambda self: self._default_journal(),
         help="Journal in which post the move.",
@@ -234,12 +232,12 @@ class L10nEsAeatReport(models.AbstractModel):
         comodel_name="res.partner.bank",
         string="Bank account",
         help="Company bank account used for the presentation",
-        domain="[('acc_type', '=', 'iban'), ('partner_id', '=', partner_id)]",
+        domain="[('account_type', '=', 'iban'), ('partner_id', '=', partner_id)]",
     )
     error_count = fields.Integer(
         compute="_compute_error_count",
     )
-    tax_agency_ids = fields.Many2many("aeat.tax.agency", string="Tax Agency")
+    tax_agency_ids = fields.Many2many("aeat.tax.agency")
 
     _name_uniq = models.Constraint(
         "unique(name, company_id)",

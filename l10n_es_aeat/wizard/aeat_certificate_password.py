@@ -2,7 +2,6 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 
-import base64
 import contextlib
 import logging
 import os
@@ -20,7 +19,7 @@ try:
     from cryptography.hazmat.primitives import serialization
     from cryptography.hazmat.primitives.serialization import pkcs12
 
-    CRYPTOGRAPHY_VERSION_3 = tuple(map(int, cryptography.__version__.split("."))) >= (
+    CRYPTOGRAPHY_VERSION_3 = tuple(map(int, cryptography.__version__.split("."))) >= (  # noqa: RUF048
         3,
         0,
     )
@@ -38,7 +37,7 @@ except (OSError, ImportError) as err:
     _logger.debug(err)
 
 # FIXME To be removed in v16, as it is now specified in the manifest
-if tuple(map(int, cryptography.__version__.split("."))) < (3, 0):
+if tuple(map(int, cryptography.__version__.split("."))) < (3, 0):  # noqa: RUF048
     _logger.warning(
         "Cryptography version is not supported. Upgrade to 3.0.0 or greater."
     )
@@ -89,7 +88,7 @@ class L10nEsAeatCertificatePassword(models.TransientModel):
             self.env.cr.dbname,
             record.folder,
         )
-        file = base64.decodebytes(record.file)
+        file = record.file.content
         try:
             if directory and not os.path.exists(directory):
                 os.makedirs(directory)

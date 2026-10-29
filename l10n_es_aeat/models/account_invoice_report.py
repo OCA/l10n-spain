@@ -2,7 +2,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import fields, models
-from odoo.tools import SQL
 
 
 class AccountInvoiceReport(models.Model):
@@ -14,8 +13,5 @@ class AccountInvoiceReport(models.Model):
         readonly=True,
     )
 
-    def _select(self) -> SQL:
-        return SQL(
-            "%s, line.l10n_es_aeat_real_estate_id",
-            super()._select(),
-        )
+    def _select_list(self, table):
+        return super()._select_list(table) + [table.l10n_es_aeat_real_estate_id]

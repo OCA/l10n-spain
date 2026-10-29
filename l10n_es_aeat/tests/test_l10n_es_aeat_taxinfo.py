@@ -5,13 +5,13 @@
 
 import logging
 
-from .test_l10n_es_aeat_mod_base import TestL10nEsAeatModBase
+from .common import TestL10nEsAeatModBase
 
 _logger = logging.getLogger("aeat")
 
 
 class TestL10nEsAeatTaxInfo(TestL10nEsAeatModBase):
-    taxes_sale = {
+    taxes_sale = {  # noqa: RUF012
         # tax code: (base, tax_amount)
         "S_IVA21B": (1000, 0),
     }
@@ -33,7 +33,7 @@ class TestL10nEsAeatTaxInfo(TestL10nEsAeatModBase):
 
 
 class TestL10nEsAeatTaxInfoGroup(TestL10nEsAeatModBase):
-    taxes_sale = {
+    taxes_sale = {  # noqa: RUF012
         # tax code: (base, tax_amount)
         "S_IVAG1021B": (1000, 0),
     }

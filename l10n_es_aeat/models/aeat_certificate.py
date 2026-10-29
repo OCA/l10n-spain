@@ -9,6 +9,7 @@ from cryptography.hazmat.primitives.serialization import Encoding
 
 from odoo import api, exceptions, fields, models
 from odoo.fields import Domain
+from odoo.tools.binary import BinaryBytes
 
 _logger = logging.getLogger(__name__)
 
@@ -16,7 +17,7 @@ try:
     import cryptography
     from cryptography import x509
 
-    CRYPTOGRAPHY_VERSION_3 = tuple(map(int, cryptography.__version__.split("."))) >= (
+    CRYPTOGRAPHY_VERSION_3 = tuple(map(int, cryptography.__version__.split("."))) >= (  # noqa: RUF048
         3,
         0,
     )
@@ -66,7 +67,6 @@ class L10nEsAeatCertificate(models.Model):
     private_key = fields.Char(readonly=True)
     company_id = fields.Many2one(
         comodel_name="res.company",
-        string="Company",
         required=True,
         default=lambda self: self.env.company,
     )
@@ -100,7 +100,7 @@ class L10nEsAeatCertificate(models.Model):
                 certificate = load_pem_x509_certificate(f.read())
             public_key = certificate.public_bytes(Encoding.PEM)
             record.public_key_filename = f"{record.name}.pem"
-            record.public_key_file = public_key
+            record.public_key_file = BinaryBytes(public_key)
 
     def load_password_wizard(self):
         self.ensure_one()

@@ -15,7 +15,7 @@ class AccountTax(models.Model):
     )
 
     def _clear_tax_id_from_tax_template_cache(self):
-        self.env.registry.clear_cache()
+        self.env.transaction.invalidate_ormcache()
 
     @api.model_create_multi
     def create(self, vals_list):

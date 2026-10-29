@@ -70,24 +70,26 @@ class AccountMoveLine(models.Model):
         for the taxes dictionary obtained in ~~account.move~~._get_aeat_tax_info().
         """
         taxes = tax.amount_type == "group" and tax.children_tax_ids or tax
-        for tax in taxes:
+        for child_tax in taxes:
             res.setdefault(
-                tax, {"tax": tax, "base": 0, "amount": 0, "deductible_amount": 0}
+                child_tax,
+                {"tax": child_tax, "base": 0, "amount": 0, "deductible_amount": 0},
             )
-            res[tax]["base"] += self.balance * sign
+            res[child_tax]["base"] += self.balance * sign
 
     def _process_aeat_tax_fee_info(self, res, tax, sign):
         """It modifies the dictionary given in res for setting the tax amount info
         for the taxes dictionary obtained in ~~account.move~~._get_aeat_tax_info().
         """
         taxes = tax.amount_type == "group" and tax.children_tax_ids or tax
-        for tax in taxes:
+        for child_tax in taxes:
             res.setdefault(
-                tax, {"tax": tax, "base": 0, "amount": 0, "deductible_amount": 0}
+                child_tax,
+                {"tax": child_tax, "base": 0, "amount": 0, "deductible_amount": 0},
             )
             amount = self.balance * sign
-            res[tax]["amount"] += amount
+            res[child_tax]["amount"] += amount
             # Don't add it here if non deductible
-            group = tax.tax_group_id
+            group = child_tax.tax_group_id
             if not group.get_external_id()[group.id].endswith("_tax_group_iva_nd"):
-                res[tax]["deductible_amount"] += amount
+                res[child_tax]["deductible_amount"] += amount

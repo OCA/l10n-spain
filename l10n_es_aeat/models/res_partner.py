@@ -3,8 +3,8 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo import fields, models
+from odoo.api import ormcache
 from odoo.fields import Domain
-from odoo.tools import ormcache
 
 AEAT_IDENTIFICATION_TYPE = [
     ("03", "Passport"),
