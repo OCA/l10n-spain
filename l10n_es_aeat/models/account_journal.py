@@ -18,7 +18,6 @@ class AccountJournal(models.Model):
     # to send it.
     tax_agency_id = fields.Many2one(
         comodel_name="aeat.tax.agency",
-        string="Tax Agency",
         copy=False,
         help="You can select a tax agency other than the one defined in the company,"
         "so you can pay taxes at different agencies.",

@@ -13,7 +13,7 @@
 {
     "name": "AEAT Base",
     "summary": "Modulo base para declaraciones de la AEAT",
-    "version": "19.0.2.0.0",
+    "version": "20.0.1.0.0",
     "author": "Pexego, "
     "Acysos S.L., "
     "AvanzOSC, "
@@ -27,7 +27,7 @@
     "external_dependencies": {"python": ["unidecode"]},
     "data": [
         "security/aeat_security.xml",
-        "security/ir.model.access.csv",
+        "security/ir.access.csv",
         "data/aeat_partner.xml",
         "data/ir_config_parameter.xml",
         "data/aeat_tax_agency_data.xml",

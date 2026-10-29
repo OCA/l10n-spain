@@ -211,9 +211,8 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
             return result and str(result) or ""
 
         val = b""
-        if line.conditional_expression:
-            if not merge_eval(line.conditional_expression):
-                return val
+        if line.conditional_expression and not merge_eval(line.conditional_expression):
+            return val
         if line.repeat_expression:
             obj_list = merge_eval(line.repeat_expression)
         else:

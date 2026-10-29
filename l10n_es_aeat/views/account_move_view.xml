@@ -16,7 +16,7 @@
                 />
             </xpath>
             <xpath
-                expr="//field[@name='invoice_line_ids']//list/field[@name='name']"
+                expr="//field[@name='invoice_line_ids']//list/column[@name='product_and_description']"
                 position="after"
             >
                 <field
