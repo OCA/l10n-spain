@@ -13,6 +13,10 @@ class VerifactuInvoiceEntryResponse(models.Model):
     name = fields.Char()
     invoice_data = fields.Text()
     response = fields.Text()
+    connection_error = fields.Text(
+        readonly=True,
+        help="Technical details of an exception raised while contacting VERI*FACTU.",
+    )
     verifactu_csv = fields.Text(string="VERI*FACTU CSV")
     date_response = fields.Datetime(readonly=True)
     activity_type_id = fields.Many2one(
