@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_partner_form" model="ir.ui.view">
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="account.view_partner_property_form" />
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="AEAT" id="aeat">
+                    <group name="aeat_general">
+                        <field name="aeat_anonymous_cash_customer" />
+                        <field name="aeat_identification_type" />
+                        <field
+                            name="aeat_identification"
+                            required="aeat_identification_type"
+                            invisible="not aeat_identification_type"
+                        />
+                    </group>
+                </page>
+            </notebook>
+            <xpath expr="//field[@name='vat']" position="after">
+                <field
+                    name="aeat_simplified_invoice"
+                    invisible="not aeat_sending_enabled"
+                />
+            </xpath>
+            <page name="accounting" position="after">
+                <page
+                    name="real_estate"
+                    string="Real Estates"
+                    groups="l10n_es_aeat.group_account_aeat,l10n_es_aeat.group_use_aeat_real_estates"
+                >
+                    <field name="real_estate_ids" />
+                </page>
+            </page>
+        </field>
+    </record>
+</odoo>

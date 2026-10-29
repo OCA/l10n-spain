@@ -1,0 +1,273 @@
+# Copyright 2016-2019 Tecnativa - Pedro M. Baeza
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
+from odoo import exceptions
+
+from odoo.addons.base.tests.common import BaseCommon
+
+
+class TestL10nEsAeat(BaseCommon):
+    _test_user_groups = (
+        "base.group_user",
+        "base.group_system",
+        "account.group_account_manager",
+    )
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.export_model = cls.env["l10n.es.aeat.report.export_to_boe"]
+        cls.partner = cls.env["res.partner"].create({"name": "test partner"})
+
+    def test_format_string(self):
+        text = " &'(),-./01:;abAB_ÇÑ\"áéíóúÁÉÍÓÚ+!"
+        self.assertEqual(
+            self.export_model._format_string(text, len(text)),
+            " &'(),-./01:;ABAB_ÇÑAEIOUAEIOU   ".encode("iso-8859-1"),
+        )
+
+    def test_parse_vat_info_es_wo_prefix(self):
+        self.partner.write(
+            {"vat": "12345678Z", "country_id": self.env.ref("base.es").id}
+        )
+        country_code, identifier_type, vat_number = self.partner._parse_aeat_vat_info()
+        self.assertEqual(country_code, "ES")
+        self.assertEqual(identifier_type, "")
+        self.assertEqual(vat_number, "12345678Z")
+
+    def test_parse_vat_info_es_w_prefix(self):
+        self.partner.vat = "ES12345678Z"
+        country_code, identifier_type, vat_number = self.partner._parse_aeat_vat_info()
+        self.assertEqual(country_code, "ES")
+        self.assertEqual(identifier_type, "")
+        self.assertEqual(vat_number, "12345678Z")
+
+    def test_parse_vat_info_es_passport_exception(self):
+        with self.assertRaises(exceptions.ValidationError):
+            self.partner.write(
+                {"vat": "ZZ_MY_PASSPORT", "country_id": self.env.ref("base.es").id}
+            )
+
+    def test_parse_vat_info_es_passport(self):
+        self.partner.write(
+            {
+                "aeat_identification": "ZZ_MY_PASSPORT",
+                "aeat_identification_type": "05",
+                "country_id": self.env.ref("base.es").id,
+            }
+        )
+        country_code, identifier_type, identifier = self.partner._parse_aeat_vat_info()
+        self.assertEqual(country_code, "ES")
+        self.assertEqual(identifier_type, "05")
+        self.assertEqual(identifier, "ZZ_MY_PASSPORT")
+
+    def test_parse_vat_info_fr_wo_prefix(self):
+        self.partner.write(
+            {"vat": "61954506077", "country_id": self.env.ref("base.fr").id}
+        )
+        country_code, _identifier_type, vat_number = self.partner._parse_aeat_vat_info()
+        self.assertEqual(country_code, "FR")
+        self.assertEqual(vat_number, "61954506077")
+
+    def test_parse_vat_info_fr_w_prefix(self):
+        self.partner.vat = "fr61954506077"
+        country_code, identifier_type, vat_number = self.partner._parse_aeat_vat_info()
+        self.assertEqual(country_code, "FR")
+        self.assertEqual(identifier_type, "02")
+        self.assertEqual(vat_number, "61954506077")
+
+    def test_parse_vat_info_it_valid_vat(self):
+        self.partner.write(
+            {"vat": "12345670017", "country_id": self.env.ref("base.it").id}
+        )
+        country_code, identifier_type, vat_number = self.partner._parse_aeat_vat_info()
+        self.assertEqual(country_code, "IT")
+        self.assertEqual(identifier_type, "02")
+        self.assertEqual(vat_number, "12345670017")
+
+    def test_parse_vat_info_it_codice_fiscale(self):
+        """A personal "codice fiscale" is not a "partita IVA": sending it to
+        the SII as identifier type 02 (NIF-IVA) gets rejected with error
+        1104 "Valor del campo ID incorrecto".
+        """
+        # base_vat doesn't accept a "codice fiscale" as VAT anymore
+        self.partner.with_context(no_vat_validation=True).write(
+            {"vat": "MRTMTT91D08F205J", "country_id": self.env.ref("base.it").id}
+        )
+        country_code, identifier_type, vat_number = self.partner._parse_aeat_vat_info()
+        self.assertEqual(country_code, "IT")
+        self.assertEqual(identifier_type, "04")
+        self.assertEqual(vat_number, "MRTMTT91D08F205J")
+
+    def test_parse_vat_info_gf_wo_prefix(self):
+        self.partner.write(
+            {"vat": "61954506077", "country_id": self.env.ref("base.gf").id}
+        )
+        country_code, identifier_type, vat_number = self.partner._parse_aeat_vat_info()
+        self.assertEqual(country_code, "FR")
+        self.assertEqual(identifier_type, "04")
+        self.assertEqual(vat_number, "61954506077")
+
+    def test_parse_vat_info_gf_w_prefix(self):
+        self.partner.vat = "GF61954506077"
+        country_code, identifier_type, vat_number = self.partner._parse_aeat_vat_info()
+        self.assertEqual(country_code, "FR")
+        self.assertEqual(identifier_type, "04")
+        self.assertEqual(vat_number, "GF61954506077")
+
+    def test_parse_vat_info_cu_wo_prefix(self):
+        self.partner.write(
+            {"vat": "12345678Z", "country_id": self.env.ref("base.cu").id}
+        )
+        country_code, identifier_type, vat_number = self.partner._parse_aeat_vat_info()
+        self.assertEqual(country_code, "CU")
+        self.assertEqual(identifier_type, "04")
+        self.assertEqual(vat_number, "12345678Z")
+
+    def test_parse_vat_info_cu_w_prefix(self):
+        self.partner.vat = "CU12345678Z"
+        country_code, identifier_type, vat_number = self.partner._parse_aeat_vat_info()
+        self.assertEqual(country_code, "CU")
+        self.assertEqual(identifier_type, "04")
+        self.assertEqual(vat_number, "CU12345678Z")
+
+    def test_parse_vat_info_no_collision_between_partners(self):
+        """Two partners without VAT and the same country must not share their
+        AEAT identification. This guards against a caching regression where the
+        result was keyed only on (vat, country_id), so partners without VAT in
+        the same country returned another partner's aeat_identification.
+        """
+        portugal = self.env.ref("base.pt")
+        partner_a = self.env["res.partner"].create(
+            {
+                "name": "PT partner A",
+                "country_id": portugal.id,
+                "aeat_identification": "PT_IDENTIFICATION_A",
+                "aeat_identification_type": "06",
+            }
+        )
+        partner_b = self.env["res.partner"].create(
+            {
+                "name": "PT partner B",
+                "country_id": portugal.id,
+                "aeat_identification": "PT_IDENTIFICATION_B",
+                "aeat_identification_type": "06",
+            }
+        )
+        self.assertEqual(
+            partner_a._parse_aeat_vat_info(),
+            ("PT", "06", "PT_IDENTIFICATION_A"),
+        )
+        self.assertEqual(
+            partner_b._parse_aeat_vat_info(),
+            ("PT", "06", "PT_IDENTIFICATION_B"),
+        )
+
+    def test_unique_date_range(self):
+        self.env["l10n.es.aeat.map.tax"].create(
+            {"date_from": "2020-01-01", "date_to": "2020-12-31", "model": 303}
+        )
+        with self.assertRaises(exceptions.UserError):
+            self.env["l10n.es.aeat.map.tax"].create(
+                {"date_to": "2021-01-01", "model": 303}
+            )
+
+    def test_01_tax_map_cache_is_invalidated_after_tax_create_and_delete(self):
+        company = self.env.company
+        tax_template_xmlid = "account_tax_template_aeat_cache_test"
+        self.assertFalse(company._get_tax_id_from_xmlid(tax_template_xmlid))
+
+        tax = self.env["account.tax"].create(
+            {
+                "name": "AEAT cache invalidation test",
+                "amount_type": "percent",
+                "amount": 21,
+                "type_tax_use": "sale",
+                "company_id": company.id,
+            }
+        )
+        external_id = self.env["ir.model.data"].create(
+            {
+                "module": "account",
+                "name": f"{company.id}_{tax_template_xmlid}",
+                "model": "account.tax",
+                "res_id": tax.id,
+                "noupdate": True,
+            }
+        )
+        self.assertEqual(company._get_tax_id_from_xmlid(tax_template_xmlid), tax.id)
+
+        external_id.unlink()
+        tax.unlink()
+        self.assertFalse(company._get_tax_id_from_xmlid(tax_template_xmlid))
+
+    def test_map_aeat_iso_code_greece(self):
+        res_partner_obj = self.env["res.partner"]
+        greece_country = self.env.ref("base.gr")
+        iso_code = "EL"
+        mapping_return = res_partner_obj._map_aeat_country_iso_code(greece_country)
+        self.assertEqual(iso_code, mapping_return)
+
+    def test_map_aeat_iso_code_no_mapping(self):
+        res_partner_obj = self.env["res.partner"]
+        spain_country = self.env.ref("base.es")
+        iso_code = "ES"
+        mapping_return = res_partner_obj._map_aeat_country_iso_code(spain_country)
+        self.assertEqual(iso_code, mapping_return)
+
+    def test_has_valid_aeat_identification(self):
+        partner_with_vat = self.env["res.partner"].create(
+            {
+                "name": "Partner with VAT",
+                "vat": "ES12345678Z",
+            }
+        )
+        self.assertTrue(partner_with_vat._has_valid_aeat_identification())
+        partner_with_aeat_identification = self.env["res.partner"].create(
+            {
+                "name": "Partner with AEAT identification",
+                "aeat_identification_type": "06",
+                "aeat_identification": "ABC123456",
+            }
+        )
+        self.assertTrue(
+            partner_with_aeat_identification._has_valid_aeat_identification()
+        )
+        self.assertFalse(
+            partner_with_aeat_identification._has_valid_aeat_identification(
+                allow_alternative_identification=False
+            )
+        )
+        partner_without_identification = self.env["res.partner"].create(
+            {
+                "name": "Partner without identification",
+                "country_id": self.env.ref("base.es").id,
+            }
+        )
+        self.assertFalse(
+            partner_without_identification._has_valid_aeat_identification()
+        )
+        partner_only_aeat_type = self.env["res.partner"].create(
+            {
+                "name": "Partner only AEAT type",
+                "aeat_identification_type": "06",
+            }
+        )
+        self.assertFalse(partner_only_aeat_type._has_valid_aeat_identification())
+        partner_only_aeat_identification = self.env["res.partner"].create(
+            {
+                "name": "Partner only AEAT identification",
+                "country_id": self.env.ref("base.es").id,
+                "aeat_identification": "ABC123456",
+            }
+        )
+        self.assertFalse(
+            partner_only_aeat_identification._has_valid_aeat_identification()
+        )
+        partner_without_identification.country_id = self.env.ref("base.us")
+        self.assertTrue(partner_without_identification._has_valid_aeat_identification())
+        self.assertFalse(
+            partner_without_identification._has_valid_aeat_identification(
+                allow_alternative_identification=False
+            )
+        )
