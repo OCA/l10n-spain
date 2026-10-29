@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!-- Copyright 2016 Tecnativa - Antonio Espinosa
      Copyright 2019 Tecnativa - Pedro M. Baeza
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
@@ -165,7 +165,7 @@
             </form>
         </field>
     </record>
-    <record model="ir.actions.act_window" id="action_aeat_export_config">
+    <record id="action_aeat_export_config" model="ir.actions.act_window">
         <field name="name">Export config</field>
         <field name="res_model">aeat.model.export.config</field>
         <field name="view_mode">list,form</field>

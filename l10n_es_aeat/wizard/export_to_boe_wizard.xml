@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!-- License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
     <record id="wizard_aeat_export" model="ir.ui.view">
@@ -46,14 +46,14 @@
     <!-- NOTE: These two records must be copied on child module, changing
     both ids, res_model to the inherited one, act_window_id and name
     (if you want) -->
-    <record model="ir.actions.act_window" id="action_wizard_aeat_export">
+    <record id="action_wizard_aeat_export" model="ir.actions.act_window">
         <field name="name">Export AEAT BOE file</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">l10n.es.aeat.report.export_to_boe</field>
         <field name="view_mode">form</field>
         <field name="target">new</field>
     </record>
-    <record model="ir.actions.act_window.view" id="action_wizard_aeat_export_form">
+    <record id="action_wizard_aeat_export_form" model="ir.actions.act_window.view">
         <field name="act_window_id" ref="action_wizard_aeat_export" />
         <field name="view_mode">form</field>
         <field name="view_id" ref="l10n_es_aeat.wizard_aeat_export" />

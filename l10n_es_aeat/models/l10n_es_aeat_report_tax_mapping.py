@@ -185,7 +185,7 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
         for group in groups:
             balance = group[1] - group[2]
             if balance:
-                debit = balance if balance > 0 else 0
+                debit = max(0, balance)
                 credit = -balance if balance < 0 else 0
                 lines.append(
                     self._prepare_regularization_move_line(
