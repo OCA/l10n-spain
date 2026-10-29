@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
 
 import base64
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
 import cryptography
 from cryptography import x509
@@ -16,7 +16,10 @@ from odoo.tests import Form
 
 from odoo.addons.base.tests.common import BaseCommon
 
-CRYPTOGRAPHY_VERSION_3 = tuple(map(int, cryptography.__version__.split("."))) >= (3, 0)
+CRYPTOGRAPHY_VERSION_3 = tuple(map(int, cryptography.__version__.split("."))) >= (  # noqa: RUF048
+    3,
+    0,
+)
 if not CRYPTOGRAPHY_VERSION_3:
     from cryptography.hazmat.backends import default_backend
 
@@ -66,6 +69,13 @@ else:
 
 
 class TestL10nEsAeatCertificateBase(BaseCommon):
+    _test_user_groups = (
+        "base.group_user",
+        "base.group_system",
+        "account.group_account_manager",
+        "l10n_es_aeat.group_account_aeat",
+    )
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -74,7 +84,8 @@ class TestL10nEsAeatCertificateBase(BaseCommon):
         public_key = private_key.public_key()
         builder = x509.CertificateBuilder()
         cls.certificate_name = "Test Certificate"
-        one_day = timedelta(1, 0, 0)
+        one_day = timedelta(days=1)
+        now = datetime.now(tz=timezone.utc).replace(tzinfo=None)
         builder = (
             builder.subject_name(
                 x509.Name(
@@ -88,8 +99,8 @@ class TestL10nEsAeatCertificateBase(BaseCommon):
                     ]
                 )
             )
-            .not_valid_before(datetime.today() - one_day)
-            .not_valid_after(datetime.today() + (one_day * 30))
+            .not_valid_before(now - one_day)
+            .not_valid_after(now + (one_day * 30))
             .serial_number(x509.random_serial_number())
             .public_key(public_key)
         )
@@ -108,7 +119,7 @@ class TestL10nEsAeatCertificateBase(BaseCommon):
         cls.sii_cert = cls.env["l10n.es.aeat.certificate"].create(
             {
                 "folder": "Test folder",
-                "file": base64.b64encode(content),
+                "file": base64.b64encode(content).decode(),
             }
         )
 

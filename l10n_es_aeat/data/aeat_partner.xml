@@ -14,7 +14,7 @@
         <field name="website">https://www.agenciatributaria.gob.es</field>
         <field
             name="image_1920"
-            type="base64"
+            type="bytes"
             file="l10n_es_aeat/static/description/icon.png"
         />
     </record>
