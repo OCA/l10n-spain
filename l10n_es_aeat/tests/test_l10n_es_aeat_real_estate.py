@@ -4,8 +4,9 @@
 import logging
 
 from odoo.exceptions import ValidationError
+from odoo.fields import Command
 
-from .test_l10n_es_aeat_mod_base import TestL10nEsAeatModBase
+from .common import TestL10nEsAeatModBase
 
 _logger = logging.getLogger("aeat")
 
@@ -16,7 +17,7 @@ class TestL10nEsAeatRealEstate(TestL10nEsAeatModBase):
     debug = False
 
     # Referencias catastrales generadas aleatoriamente
-    references = {
+    references = {  # noqa: RUF012
         1: "8374992BV4192Q4560EG",
         2: "7466896WH0452Y6611MK",
         3: "5910144GZ3516I1918GW",
@@ -206,3 +207,38 @@ class TestL10nEsAeatRealEstate(TestL10nEsAeatModBase):
         # Al cambiar el NIF del partner se recalcula
         partner.vat = "ES00000001R"
         self.assertEqual(rec.representative_vat, "ES00000001R")
+
+    def test_01_invoice_report_queries_and_groups_by_real_estate(self):
+        real_estate = self.env["l10n.es.aeat.real_estate"].create(
+            {
+                **self._base_vals("Invoice report estate"),
+                "partner_id": self.customer.id,
+                "state_id": self.env.ref("base.state_es_m").id,
+            }
+        )
+        invoice = self._invoice_sale_create(
+            "2024-02-01",
+            {
+                "invoice_line_ids": [
+                    Command.create(
+                        {
+                            "name": "Real estate invoice line",
+                            "account_id": self.accounts["700000"].id,
+                            "price_unit": 1000,
+                            "quantity": 1,
+                            "l10n_es_aeat_real_estate_id": real_estate.id,
+                        }
+                    )
+                ]
+            },
+        )
+        report = self.env["account.invoice.report"]
+        domain = [("move_id", "=", invoice.id)]
+        self.assertEqual(
+            report.search(domain).mapped("l10n_es_aeat_real_estate_id"),
+            real_estate,
+        )
+        self.assertEqual(
+            report._read_group(domain, ["l10n_es_aeat_real_estate_id"], ["__count"]),
+            [(real_estate, 1)],
+        )
