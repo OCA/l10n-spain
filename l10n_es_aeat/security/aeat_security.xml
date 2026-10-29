@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!-- License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo noupdate="1">
-    <record model="res.groups.privilege" id="res_groups_privilege_aeat">
+    <record id="res_groups_privilege_aeat" model="res.groups.privilege">
         <field name="name">Aeat Permissions</field>
         <field name="category_id" ref="base.module_category_hidden" />
-        <field name="sequence">8</field>
+        <field name="sequence" eval="8" />
     </record>
-    <record model="res.groups" id="group_account_aeat">
+    <record id="group_account_aeat" model="res.groups">
         <field name="name">AEAT manager</field>
         <field name="privilege_id" ref="res_groups_privilege_aeat" />
         <field
@@ -14,7 +14,7 @@
             eval="[Command.link(ref('base.user_root')), Command.link(ref('base.user_admin'))]"
         />
     </record>
-    <record model="res.groups" id="group_use_aeat_real_estates">
+    <record id="group_use_aeat_real_estates" model="res.groups">
         <field name="name">Use AEAT Real Estates</field>
         <field
             name="user_ids"
