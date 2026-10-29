@@ -11,20 +11,18 @@ from .aeat_address_types import AEAT_ADDRESS_TYPES
 
 class L10nEsAeatRealEstate(models.Model):
     _name = "l10n.es.aeat.real_estate"
-    _inherit = ["mail.thread", "mail.activity.mixin"]
+    _inherit = ["mail.thread", "mail.activity.mixin"]  # noqa: RUF012
     _description = "Real Estates for AEAT"
 
     active = fields.Boolean(default=True)
     name = fields.Char(required=True)
     company_id = fields.Many2one(
         comodel_name="res.company",
-        string="Company",
         required=True,
         default=lambda s: s.env.company,
     )
     partner_id = fields.Many2one(
         "res.partner",
-        string="Partner",
         required=True,
         help="Partner that owns this real estate",
     )
@@ -79,7 +77,6 @@ class L10nEsAeatRealEstate(models.Model):
     )
     country_id = fields.Many2one(
         comodel_name="res.country",
-        string="Country",
         default=lambda self: self.env.ref("base.es"),
     )
     state_id = fields.Many2one(

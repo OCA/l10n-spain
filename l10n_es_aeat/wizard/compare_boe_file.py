@@ -28,10 +28,11 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
     def _compare_boe_lines(self, config, data, offset=0):
         lines = []
         for line in config.config_line_ids:
-            if line.conditional_expression:
+            if line.conditional_expression and not safe_eval(
+                line.conditional_expression
+            ):
                 # Try to evaluate condition to see if it's not report dependent
-                if not safe_eval(line.conditional_expression):
-                    continue
+                continue
             if line.export_type == "subconfig":
                 offset, sub_lines = self._compare_boe_lines(
                     line.subconfig_id, data, offset=offset
@@ -84,7 +85,6 @@ class L10nEsAeatReportExportToBoeLine(models.TransientModel):
 
     wizard_id = fields.Many2one(
         comodel_name="l10n.es.aeat.report.compare_boe_file",
-        string="Wizard",
         required=True,
         readonly=True,
         ondelete="cascade",
@@ -109,16 +109,18 @@ class L10nEsAeatReportExportToBoeLine(models.TransientModel):
         for line in self.filtered(lambda x: x.export_line_id.export_type == "float"):
             content = line.content
             sign = 1
-            if line.export_line_id.apply_sign:
-                if content[0] == line.export_line_id.negative_sign:
-                    content = content[1:]
-                    sign = -1
+            if (
+                line.export_line_id.apply_sign
+                and content[0] == line.export_line_id.negative_sign
+            ):
+                content = content[1:]
+                sign = -1
             if line.export_line_id.decimal_size:
                 try:
                     line.content_float = sign * (
                         float(content) / 10**line.export_line_id.decimal_size
                     )
-                except Exception as e:
+                except Exception as e:  # noqa: BLE001
                     _logger.debug(e)
             else:
                 line.content_float = sign * line.content

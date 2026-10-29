@@ -7,6 +7,12 @@ from odoo.addons.base.tests.common import BaseCommon
 
 
 class TestL10nEsAeat(BaseCommon):
+    _test_user_groups = (
+        "base.group_user",
+        "base.group_system",
+        "account.group_account_manager",
+    )
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -59,7 +65,7 @@ class TestL10nEsAeat(BaseCommon):
         self.partner.write(
             {"vat": "61954506077", "country_id": self.env.ref("base.fr").id}
         )
-        country_code, identifier_type, vat_number = self.partner._parse_aeat_vat_info()
+        country_code, _identifier_type, vat_number = self.partner._parse_aeat_vat_info()
         self.assertEqual(country_code, "FR")
         self.assertEqual(vat_number, "61954506077")
 
@@ -165,6 +171,35 @@ class TestL10nEsAeat(BaseCommon):
             self.env["l10n.es.aeat.map.tax"].create(
                 {"date_to": "2021-01-01", "model": 303}
             )
+
+    def test_01_tax_map_cache_is_invalidated_after_tax_create_and_delete(self):
+        company = self.env.company
+        tax_template_xmlid = "account_tax_template_aeat_cache_test"
+        self.assertFalse(company._get_tax_id_from_xmlid(tax_template_xmlid))
+
+        tax = self.env["account.tax"].create(
+            {
+                "name": "AEAT cache invalidation test",
+                "amount_type": "percent",
+                "amount": 21,
+                "type_tax_use": "sale",
+                "company_id": company.id,
+            }
+        )
+        external_id = self.env["ir.model.data"].create(
+            {
+                "module": "account",
+                "name": f"{company.id}_{tax_template_xmlid}",
+                "model": "account.tax",
+                "res_id": tax.id,
+                "noupdate": True,
+            }
+        )
+        self.assertEqual(company._get_tax_id_from_xmlid(tax_template_xmlid), tax.id)
+
+        external_id.unlink()
+        tax.unlink()
+        self.assertFalse(company._get_tax_id_from_xmlid(tax_template_xmlid))
 
     def test_map_aeat_iso_code_greece(self):
         res_partner_obj = self.env["res.partner"]

@@ -4,8 +4,8 @@
 import logging
 
 from odoo import api, fields, models
+from odoo.api import ormcache
 from odoo.fields import Domain
-from odoo.tools import ormcache
 
 _logger = logging.getLogger(__name__)
 
@@ -13,7 +13,7 @@ _logger = logging.getLogger(__name__)
 class ResCompany(models.Model):
     _inherit = "res.company"
 
-    tax_agency_id = fields.Many2one("aeat.tax.agency", string="Tax Agency")
+    tax_agency_id = fields.Many2one("aeat.tax.agency")
     representative_vat = fields.Char(
         string="L.R. VAT number",
         size=9,
@@ -33,7 +33,7 @@ class ResCompany(models.Model):
         for model in models:
             try:
                 self.env[model.model]._register_hook(companies=companies)
-            except Exception as e:
+            except Exception as e:  # noqa: BLE001
                 _logger.debug(e)
         return companies
 
@@ -71,9 +71,8 @@ class ResCompany(models.Model):
         :returns: Company taxes recordset.
         """
         self.ensure_one()
-        tax_ids = set(self._get_tax_id_from_xmlid(x) for x in xmlids)
-        if False in tax_ids:  # for avoiding that incorrect XML-IDs breaks the rest
-            tax_ids.remove(False)
+        tax_ids = {self._get_tax_id_from_xmlid(x) for x in xmlids}
+        tax_ids.discard(False)
         tax_obj = self.env["account.tax"]
         extra_taxes = tax_obj.search([("aeat_equivalent_tax_id", "in", list(tax_ids))])
         return tax_obj.browse(tax_ids) | extra_taxes
