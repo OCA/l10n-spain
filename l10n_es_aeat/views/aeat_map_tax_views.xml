@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!-- Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
      Copyright 2018,2024 Tecnativa - Pedro M. Baeza
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
@@ -79,7 +79,7 @@
             </form>
         </field>
     </record>
-    <record model="ir.actions.act_window" id="action_l10n_es_aeat_map_tax">
+    <record id="action_l10n_es_aeat_map_tax" model="ir.actions.act_window">
         <field name="name">Tax mapping</field>
         <field name="res_model">l10n.es.aeat.map.tax</field>
         <field name="view_mode">list,form</field>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!-- Copyright 2019 Tecnativa - Pedro M. Baeza
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl) -->
 <odoo>
@@ -42,7 +42,7 @@
             </form>
         </field>
     </record>
-    <record model="ir.actions.act_window" id="action_wizard_compare_boe_file">
+    <record id="action_wizard_compare_boe_file" model="ir.actions.act_window">
         <field name="name">Compare AEAT BOE file</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">l10n.es.aeat.report.compare_boe_file</field>
