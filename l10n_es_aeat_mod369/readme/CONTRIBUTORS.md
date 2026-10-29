@@ -1,0 +1,9 @@
+- [Studio73](https://www.studio73.es):
+  - Ethan Hildick
+- [Tecnativa](https://www.tecnativa.com):
+  - Víctor Martínez
+  - Pedro M. Baeza
+- [Planeta Huerto](https://www.planetahuerto.es):
+  - Juanjo Algaz
+- [FactorLibre](https://factorlibre.com):
+  - Aritz Olea
