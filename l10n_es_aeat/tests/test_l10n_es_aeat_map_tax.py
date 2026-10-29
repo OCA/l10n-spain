@@ -51,6 +51,8 @@ _DATES_MAPPING = [
 
 
 class TestL10nEsAeat(BaseCommon):
+    _test_user_groups = ("base.group_user", "base.group_system")
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()

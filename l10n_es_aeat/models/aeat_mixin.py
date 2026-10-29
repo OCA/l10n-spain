@@ -103,9 +103,10 @@ class AeatMixin(models.AbstractModel):
     def _get_document_period(self):
         return f"{fields.Date.to_date(self._get_document_fiscal_date()).month:02d}"
 
-    def _is_aeat_simplified_invoice(self):
-        """Inheritable method to allow control when an
-        invoice are simplified or normal"""
+    def _is_aeat_unidentified_document(self):
+        """Whether the document has no identified recipient (simplified
+        invoices and their summaries and credit notes), so it is sent without
+        counterpart and without the VAT of the partner."""
         return self._aeat_get_partner().aeat_simplified_invoice
 
     def _get_document_amount_total(self):
@@ -157,7 +158,7 @@ class AeatMixin(models.AbstractModel):
         self.ensure_one()
         partner = self._aeat_get_partner()
         country_code = self._get_aeat_country_code()
-        is_simplified_invoice = self._is_aeat_simplified_invoice()
+        is_simplified_invoice = self._is_aeat_unidentified_document()
         if country_code == "ES" and not partner.vat and not is_simplified_invoice:
             raise UserError(self.env._("The partner has not a VAT configured."))
         if not self.company_id.chart_template:

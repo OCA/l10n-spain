@@ -5,6 +5,7 @@
 from odoo import exceptions, fields
 from odoo.orm.model_classes import add_to_registry
 from odoo.tests import Form, tagged
+from odoo.tools.safe_eval import safe_eval
 
 from odoo.addons.base.tests.common import BaseCommon
 
@@ -13,6 +14,13 @@ TEST_MODEL_NAME = "l10n.es.aeat.mod999.report"
 
 @tagged("post_install", "-at_install")
 class TestL10nEsAeatReport(BaseCommon):
+    _test_user_groups = (
+        "base.group_user",
+        "base.group_system",
+        "account.group_account_invoice",
+        "l10n_es_aeat.group_account_aeat",
+    )
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -23,6 +31,14 @@ class TestL10nEsAeatReport(BaseCommon):
         cls.registry._setup_models__(cls.env.cr, [TEST_MODEL_NAME])
         cls.registry.init_models(
             cls.env.cr, [TEST_MODEL_NAME], {"models_to_check": True}
+        )
+        cls.env["ir.access"].create(
+            {
+                "name": "AEAT test report access",
+                "model_id": cls.env["ir.model"]._get_id(TEST_MODEL_NAME),
+                "group_id": cls.env.ref("base.group_system").id,
+                "operation": "crud",
+            }
         )
         cls.addClassCleanup(cls.registry.__delitem__, TEST_MODEL_NAME)
 
@@ -87,3 +103,32 @@ class TestL10nEsAeatReport(BaseCommon):
         self.env.company.representative_vat = "36477262K"
         report_form = Form(self.AeatReport)
         self.assertEqual(report_form.representative_vat, "36477262K")
+
+    def test_01_bank_domain_only_accepts_iban_of_report_partner(self):
+        report = self.AeatReport.new({"company_id": self.company.id})
+        partner = report.partner_id
+        bank_model = self.env["res.partner.bank"]
+        matching_iban = bank_model.create(
+            {
+                "partner_id": partner.id,
+                "account_number": "ES66 2100 0418 4012 3456 7891",
+            }
+        )
+        other_partner_iban = bank_model.create(
+            {
+                "partner_id": self.env["res.partner"].create({"name": "Other"}).id,
+                "account_number": "ES66 2100 0418 4012 3456 7891",
+            }
+        )
+        non_iban = bank_model.create(
+            {"partner_id": partner.id, "account_number": "1234-5678"}
+        )
+        domain = safe_eval(
+            report._fields["partner_bank_id"].domain,
+            {"partner_id": partner.id},
+        )
+
+        self.assertTrue(bank_model._fields["account_type"].store)
+        self.assertEqual(bank_model.search(domain), matching_iban)
+        self.assertNotIn(other_partner_iban, bank_model.search(domain))
+        self.assertNotIn(non_iban, bank_model.search(domain))
