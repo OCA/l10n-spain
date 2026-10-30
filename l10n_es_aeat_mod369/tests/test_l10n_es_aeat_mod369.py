@@ -2,6 +2,7 @@
 # Copyright 2022 Tecnativa - Víctor Martínez
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0
 import logging
+import re
 
 from odoo.exceptions import UserError
 
@@ -223,6 +224,177 @@ class TestL10nEsAeatMod369Base(TestL10nEsAeatModBase):
         self.assertEqual(credit_line.credit, abs(self.model369.total_amount))
         self.assertEqual(account_4700.id, debit_line.account_id.id)
         self.assertEqual(debit_line.debit, abs(self.model369.total_amount))
+
+    def _export_369(self):
+        wizard = self.env["l10n.es.aeat.report.export_to_boe"].create({})
+        # The fixture report is dated 2017, so the 2022+ config is passed explicitly
+        export_config = self.env.ref(
+            "l10n_es_aeat_mod369.aeat_mod369_2022_main_export_config"
+        )
+        content = wizard._export_config(self.model369, export_config)
+        return content.decode("iso-8859-1")
+
+    @staticmethod
+    def _get_export_pages(content):
+        return [
+            match.group(0)
+            for match in re.finditer(r"<T369(\d\d)>.*?</T369\1>", content, flags=re.S)
+        ]
+
+    @staticmethod
+    def _page_items(page, tag, item_size):
+        body = page[len("<%s>" % tag) + 1 : -len("</%s>" % tag)]
+        return [body[i : i + item_size] for i in range(0, 28 * item_size, item_size)]
+
+    def _create_goods_lines(self, total):
+        """Complete spain_goods_line_ids with positive base lines up to ``total``."""
+        goods = self.model369.spain_goods_line_ids.filtered(lambda x: x.base > 0)
+        self.assertGreaterEqual(len(goods), 1, "Expected goods lines in the fixture")
+        sources = list(goods)
+        index = len(sources)
+        while len(self.model369.spain_goods_line_ids.filtered(lambda x: x.base > 0)) < (
+            total
+        ):
+            source = sources[index % len(sources)]
+            self.env["l10n.es.aeat.mod369.line.grouped"].create(
+                {
+                    "report_id": self.model369.id,
+                    "country_id": self.env.ref("base.es").id,
+                    "oss_country_id": source.oss_country_id.id,
+                    "tax_id": source.tax_id.id,
+                    "mod369_line_ids": [(6, 0, source.mod369_line_ids.ids)],
+                }
+            )
+            index += 1
+        self.model369.invalidate_cache()
+        goods = self.model369.spain_goods_line_ids.filtered(lambda x: x.base > 0)
+        self.assertEqual(len(goods), total)
+
+    def test_model_369_export_file_baseline(self):
+        self.model369.button_calculate()
+        pages = self._get_export_pages(self._export_369())
+        self.assertEqual(
+            [page[:8] for page in pages],
+            [
+                "<T36900>",
+                "<T36904>",
+                "<T36905>",
+                "<T36906>",
+                "<T36907>",
+                "<T36908>",
+                "<T36909>",
+            ],
+        )
+        self.assertEqual(
+            [len(page) for page in pages], [110, 1423, 1211, 1687, 1687, 763, 5803]
+        )
+        items = (
+            "FR02000 0000000000001000000000000000002000"
+            "FR01000 0000000000001000000000000000001000"
+            "FR00550 0000000000001000000000000000000550"
+            "DE01900 0000000000001000000000000000001900"
+            "DE00700 0000000000001000000000000000000700"
+        )
+        self.assertEqual(pages[2], "<T36905> " + items + " " * 983 + "</T36905>")
+        self.assertEqual(pages[5], "<T36908> " + " " * 745 + "</T36908>")
+
+    def test_model_369_export_goods_complementary_pages(self):
+        self.model369.button_calculate()
+        self._create_goods_lines(57)
+        pages = [
+            page
+            for page in self._get_export_pages(self._export_369())
+            if page.startswith("<T36905>")
+        ]
+        self.assertEqual(len(pages), 3, "Expected 3 goods pages for 57 lines")
+        self.assertEqual([page[8] for page in pages], [" ", "C", "C"])
+        self.assertEqual(len({len(page) for page in pages}), 1)
+        self.assertEqual(len(set(pages)), 3, "Each page must use its own lines")
+        counts = [
+            len([item for item in self._page_items(page, "T36905", 42) if item.strip()])
+            for page in pages
+        ]
+        self.assertEqual(counts, [28, 28, 1])
+        self.assertEqual(sum(counts), 57)
+
+    def test_model_369_export_goods_single_page_at_limit(self):
+        self.model369.button_calculate()
+        self._create_goods_lines(28)
+        source = self.model369.spain_goods_line_ids.filtered(lambda x: x.base > 0)[0]
+        self.env["l10n.es.aeat.mod369.line.grouped"].create(
+            {
+                "report_id": self.model369.id,
+                "country_id": self.env.ref("base.es").id,
+                "oss_country_id": source.oss_country_id.id,
+                "tax_id": source.tax_id.id,
+            }
+        )
+        self.model369.invalidate_cache()
+        self.assertEqual(len(self.model369.spain_goods_line_ids), 29)
+        pages = [
+            page
+            for page in self._get_export_pages(self._export_369())
+            if page.startswith("<T36905>")
+        ]
+        self.assertEqual(len(pages), 1, "28 lines with base > 0 fit in one page")
+        self.assertEqual(pages[0][8], " ")
+        items = self._page_items(pages[0], "T36905", 42)
+        self.assertEqual(len([item for item in items if item.strip()]), 28)
+
+    def test_model_369_export_corrections_complementary_pages(self):
+        self.model369.button_calculate()
+        grouped_model = self.env["l10n.es.aeat.mod369.line.grouped"]
+        for index in range(29):
+            grouped_model.create(
+                {
+                    "report_id": self.model369.id,
+                    "country_id": self.env.ref("base.es").id,
+                    "oss_country_id": self.oss_countries["FR"].id,
+                    "is_refund": True,
+                    "refund_fiscal_year": 2016,
+                    "refund_period": "T%d" % (index % 4 + 1),
+                    "tax_correction": -(index + 1) - 0.37,
+                }
+            )
+        self.model369.invalidate_cache()
+        self.assertEqual(len(self.model369.refund_line_ids), 29)
+        pages = [
+            page
+            for page in self._get_export_pages(self._export_369())
+            if page.startswith("<T36908>")
+        ]
+        self.assertEqual(len(pages), 2, "Expected 2 corrections pages for 29 lines")
+        self.assertEqual([page[8] for page in pages], [" ", "C"])
+        self.assertEqual(len({len(page) for page in pages}), 1)
+        counts = [
+            len([item for item in self._page_items(page, "T36908", 26) if item.strip()])
+            for page in pages
+        ]
+        self.assertEqual(counts, [28, 1])
+        self.assertIn("-0000000000000137", self._page_items(pages[0], "T36908", 26)[0])
+        self.assertIn("-0000000000002937", self._page_items(pages[1], "T36908", 26)[0])
+
+    def test_model_369_amount_strings_rounded_and_signed(self):
+        grouped_model = self.env["l10n.es.aeat.mod369.line.grouped"]
+        self.assertEqual(
+            grouped_model._format_export_amount(16720.469999999998),
+            "00000000001672047",
+        )
+        self.assertEqual(
+            grouped_model._format_export_amount(-15.37), "-0000000000001537"
+        )
+        self.assertEqual(
+            grouped_model._format_export_amount(-16720.469999999998),
+            "-0000000001672047",
+        )
+        line = grouped_model.create(
+            {
+                "report_id": self.model369.id,
+                "is_refund": True,
+                "tax_correction": -18.8,
+            }
+        )
+        self.assertEqual(line.tax_correction_str, "-0000000000001880")
 
     def test_model_369_account_move_zero_amount(self):
         self.model369.button_calculate()
