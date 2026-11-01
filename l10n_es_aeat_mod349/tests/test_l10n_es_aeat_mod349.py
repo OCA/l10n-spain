@@ -315,6 +315,9 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
         self.assertEqual(model349_3.total_partner_refunds, 1)
         self.assertEqual(model349_3.partner_refund_ids.total_origin_amount, 200)
         self.assertEqual(model349_3.partner_refund_ids.total_operation_amount, 100)
+        # Correct the original amount by hand
+        model349_3.partner_refund_ids.total_origin_amount = 250
+        self.assertEqual(model349_3.partner_refund_ids.total_operation_amount, 150)
 
     def test_model_349_refund_with_multiple_origin_invoices(self):
         # Create 2 vendor bill and 1 refunds in different periods
