@@ -22,17 +22,26 @@ msgstr ""
 #: model:ir.model.fields,help:l10n_es_aeat_sii_match.field_account_move__sii_match_state
 #: model:ir.model.fields,help:l10n_es_aeat_sii_match.field_sii_mixin__sii_match_state
 msgid ""
-"- No testable: The counterpart is not subscribed to SII the record will not be contrasted.\n"
-"- In process of contrast: AEAT is processing the data soon will be a result.\n"
-"- Not contrasted: The counterpart has not sent the invoice to SII, AEAT gives up to 4 months in order to contrast the information.\n"
-"- Partially contrasted: A invoice has been found but some data is different.\n"
+"- No testable: The counterpart is not subscribed to SII the record will not "
+"be contrasted.\n"
+"- In process of contrast: AEAT is processing the data soon will be a "
+"result.\n"
+"- Not contrasted: The counterpart has not sent the invoice to SII, AEAT "
+"gives up to 4 months in order to contrast the information.\n"
+"- Partially contrasted: A invoice has been found but some data is "
+"different.\n"
 "- Contrasted: The counterpart has send the invoice to SII, all is OK."
 msgstr ""
-"- No contrastable: La contraparte no está obligada a presentar datos en el SII y el registro nunca se contrastará.\n"
-"- En proceso de contraste: AEAT está procesando los datos y en breve tendrá el resultado.\n"
-"- No contrastada: La contraparte todavía no ha registrado la factura en el SII, AEAT da 4 meses para que el contraste se produzca.\n"
-"- Parcialmente contrastada: Se ha encontrado la factura vinculada pero algún dato es distinto entre ambos registros.\n"
-"- Contrastada: La contraparte ha enviado correctamente la factura, todo está correcto."
+"- No contrastable: La contraparte no está obligada a presentar datos en el "
+"SII y el registro nunca se contrastará.\n"
+"- En proceso de contraste: AEAT está procesando los datos y en breve tendrá "
+"el resultado.\n"
+"- No contrastada: La contraparte todavía no ha registrado la factura en el "
+"SII, AEAT da 4 meses para que el contraste se produzca.\n"
+"- Parcialmente contrastada: Se ha encontrado la factura vinculada pero algún "
+"dato es distinto entre ambos registros.\n"
+"- Contrastada: La contraparte ha enviado correctamente la factura, todo está "
+"correcto."
 
 #. module: l10n_es_aeat_sii_match
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__l10n_es_aeat_sii_match_report__period_type__01
@@ -207,9 +216,11 @@ msgid "Created on"
 msgstr "Creado en"
 
 #. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_account_move__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_difference__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_report__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_result__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_sii_mixin__display_name
 msgid "Display Name"
 msgstr "Nombre mostrado"
 
@@ -259,15 +270,11 @@ msgid "Fiscal year"
 msgstr "Ejercicio fiscal"
 
 #. module: l10n_es_aeat_sii_match
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_report_filter
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_result_filter
-msgid "Group By"
-msgstr "Agrupar por"
-
-#. module: l10n_es_aeat_sii_match
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_account_move__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_difference__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_report__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_l10n_es_aeat_sii_match_result__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_match.field_sii_mixin__id
 msgid "ID"
 msgstr "ID (Identificacador)"
 
@@ -369,8 +376,8 @@ msgstr ""
 #. module: l10n_es_aeat_sii_match
 #. odoo-python
 #: code:addons/l10n_es_aeat_sii_match/models/aeat_sii_match_report.py:0
-msgid "No VAT configured for the company '{}'"
-msgstr "El VAT de la compañía '{}' no esta configurado"
+msgid "No VAT configured for the company '%s'"
+msgstr ""
 
 #. module: l10n_es_aeat_sii_match
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_match.selection__account_move__sii_match_state__1
@@ -576,10 +583,12 @@ msgstr "Resumen"
 #. odoo-python
 #: code:addons/l10n_es_aeat_sii_match/models/account_move.py:0
 msgid ""
-"The invoices must be posted and either already sent to the SII or have a failed send, in order to be matched.\n"
+"The invoices must be posted and either already sent to the SII or have a "
+"failed send, in order to be matched.\n"
 "Non-matchable invoices: %(invoice_names)s"
 msgstr ""
-"Las facturas tienen que estar contabilizadas y, o bien ya enviadas al SII, o bien con un envío fallido, para poder ser contrastadas.\n"
+"Las facturas tienen que estar contabilizadas y, o bien ya enviadas al SII, o "
+"bien con un envío fallido, para poder ser contrastadas.\n"
 "Facturas no contrastables: %(invoice_names)s"
 
 #. module: l10n_es_aeat_sii_match
@@ -592,6 +601,12 @@ msgstr "Registros totales"
 msgid "View full tree"
 msgstr "Ver vista completa"
 
+#~ msgid "Group By"
+#~ msgstr "Agrupar por"
+
+#~ msgid "No VAT configured for the company '{}'"
+#~ msgstr "El VAT de la compañía '{}' no esta configurado"
+
 #~ msgid "Odoo invoice"
 #~ msgstr "Factura Odoo"
 
@@ -600,8 +615,8 @@ msgstr "Ver vista completa"
 
 #, python-format
 #~ msgid ""
-#~ "You have not installed deepdiff library, please install it in order to use "
-#~ "this feature"
+#~ "You have not installed deepdiff library, please install it in order to "
+#~ "use this feature"
 #~ msgstr ""
-#~ "La librería deepdiff no esta instalada, por favor tienes que instalarla para"
-#~ " utilizar esta característica"
+#~ "La librería deepdiff no esta instalada, por favor tienes que instalarla "
+#~ "para utilizar esta característica"
