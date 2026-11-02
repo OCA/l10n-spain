@@ -57,7 +57,7 @@
                                 </group>
                             </group>
                         </page>
-                        <page string="Details">
+                        <page string="Response lines">
                             <field name="response_line_ids" readonly="1">
                                 <list>
                                     <field name="entry_id" column_invisible="1" />
