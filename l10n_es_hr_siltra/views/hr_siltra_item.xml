@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Dixmit
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="hr_siltra_item_tree_view">
+        <field name="model">hr.siltra.item</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="employee_id" />
+                <field name="ssnid" />
+                <field name="process_type" />
+                <field name="start_date" />
+                <field name="end_date" />
+                <field name="partial_percentage" invisible="process_type != 'DOP'" />
+                <field name="data" />
+                <button
+                    name="validate"
+                    type="object"
+                    string="Validate"
+                    class="btn-primary"
+                    invisible="state != 'draft'"
+                />
+                <button
+                    name="view_leave"
+                    type="object"
+                    string="View Leave"
+                    class="btn-primary"
+                    invisible="not leave_id"
+                />
+            </list>
+        </field>
+    </record>
+</odoo>
