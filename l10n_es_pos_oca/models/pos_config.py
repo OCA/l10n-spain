@@ -35,8 +35,7 @@ class PosConfig(models.Model):
     l10n_es_simplified_invoice_limit = fields.Float(
         string="Sim.Inv limit amount",
         digits="Account",
-        help="Over this amount is not legally posible to create "
-        "a simplified invoice",
+        help="Over this amount is not legally posible to create a simplified invoice",
         default=3000,  # Spanish legal limit
     )
     l10n_es_simplified_invoice_prefix = fields.Char(
