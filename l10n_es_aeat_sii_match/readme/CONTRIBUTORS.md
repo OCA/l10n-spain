@@ -8,3 +8,4 @@
   - Víctor Martínez
   - David Bañón Gil
   - Pedro M. Baeza
+  - Sergio Teruel
