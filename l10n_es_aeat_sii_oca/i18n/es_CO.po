@@ -622,6 +622,12 @@ msgid "Not Send Without Errors Number"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
+#. odoo-python
+#: code:addons/l10n_es_aeat_sii_oca/models/sii_mixin.py:0
+msgid "Not found in the SII response"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.account_journal_dashboard_kanban_view
 msgid "Not sent to SII"
 msgstr ""
@@ -938,6 +944,12 @@ msgid "Sii Refund Specific Invoice Type"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_bank_statement_line__sii_send_date_visible
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_send_date_visible
+msgid "Sii Send Date Visible"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_company__sii_start_date
 msgid "Sii Start Date"
 msgstr ""
@@ -1103,7 +1115,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
 #. odoo-python
-#: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
+#: code:addons/l10n_es_aeat_sii_oca/models/sii_mixin.py:0
 msgid ""
 "The value in l10n_es_aeat_sii_oca.sii_batch system parameter must be an "
 "integer. Please, check the value of the parameter."
