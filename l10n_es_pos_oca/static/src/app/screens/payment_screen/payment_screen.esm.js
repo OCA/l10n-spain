@@ -21,7 +21,7 @@ patch(PaymentScreen.prototype, {
      */
     async validateOrder(isForceValidate) {
         const below_limit =
-            this.currentOrder.get_total_with_tax() <=
+            this.currentOrder.priceIncl <=
             this.pos.config.l10n_es_simplified_invoice_limit;
 
         if (this.pos.config.is_simplified_config) {

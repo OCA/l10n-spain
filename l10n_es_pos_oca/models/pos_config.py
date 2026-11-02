@@ -1,6 +1,6 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 
 
 class PosConfig(models.Model):
@@ -82,7 +82,7 @@ class PosConfig(models.Model):
                 prefix = f"{initial_prefix}_{ith}"
             simp_inv_seq_id = self.env["ir.sequence"].create(
                 {
-                    "name": _("Simplified Invoice %s") % vals["name"],
+                    "name": self.env._("Simplified Invoice %s", vals["name"]),
                     "implementation": "standard",
                     "padding": self._get_default_padding(),
                     "prefix": prefix,
@@ -105,7 +105,7 @@ class PosConfig(models.Model):
         ).copy(default)
 
     def write(self, vals):
-        if not self._context.get("copy_pos_config") and "name" not in vals:
+        if not self.env.context.get("copy_pos_config") and "name" not in vals:
             for pos in self:
                 sequence = pos.l10n_es_simplified_invoice_sequence_id
                 sequence.check_simplified_invoice_unique_prefix()
@@ -142,7 +142,7 @@ class PosConfig(models.Model):
 
     def _get_l10n_es_sequence_name(self):
         """HACK: This is done for getting the proper translation."""
-        return _("Simplified Invoice %s")
+        return self.env._("Simplified Invoice %s")
 
     def next_l10n_es_sequence_number(self):
         seq = self.l10n_es_simplified_invoice_sequence_id

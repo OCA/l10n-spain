@@ -17,7 +17,7 @@ def post_init_hook(env, vals=None):
         pos_name = (
             pos.name
             if not pos_name_dupes[pos.name]
-            else "%s_%d" % (pos.name, pos_name_dupes[pos.name])
+            else f"{pos.name}_{pos_name_dupes[pos.name]}"
         )
         if not pos_vals.get("prefix"):
             pos_vals["prefix"] = initial_prefix = (

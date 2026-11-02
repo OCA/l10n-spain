@@ -21,7 +21,7 @@ patch(TicketScreen.prototype, {
         fields.SIMPLIFIED_INVOICE = {
             repr: (order) => order.get_l10n_es_unique_id() || "",
             displayName: _t("Simplified Invoice"),
-            modelField: "l10n_es_unique_id",
+            modelFields: ["l10n_es_unique_id"],
         };
         return fields;
     },

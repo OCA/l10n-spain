@@ -30,20 +30,7 @@ class PosOrder(models.Model):
         return float_compare(amount_total, limit, precision_digits=precision_digits) < 0
 
     @api.model
-    def _order_fields(self, ui_order):
-        res = super()._order_fields(ui_order)
-        if ui_order.get("l10n_es_unique_id", False):
-            res.update(
-                {
-                    "l10n_es_unique_id": ui_order["l10n_es_unique_id"],
-                    "l10n_es_simplified_number": ui_order["l10n_es_simplified_number"],
-                    "is_l10n_es_simplified_invoice": True,
-                }
-            )
-        return res
-
-    @api.model
-    def _update_sequence_number(self, pos):
+    def _l10n_es_update_sequence_number(self, pos):
         pos.l10n_es_simplified_invoice_sequence_id.next_by_id()
 
     @api.model
@@ -64,7 +51,7 @@ class PosOrder(models.Model):
                 }
             )
             if not pos.prevent_offline_validation:
-                self._update_sequence_number(pos)
+                self._l10n_es_update_sequence_number(pos)
         return super()._process_order(pos_order, existing_order)
 
     def _prepare_refund_values(self, current_session):

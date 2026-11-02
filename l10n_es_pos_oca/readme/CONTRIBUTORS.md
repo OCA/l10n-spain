@@ -20,3 +20,5 @@
   - Antoni Marroig \<<amarroig@apsl.net>\>
 - [Alia Technologies](https://alialabs.com):
   - César Parguiñas \<<cesarportas@alialabs.com>\>
+- [Domatix](https://www.domatix.com):
+  - Álvaro López \<<alvaro@domatix.com>\>
