@@ -117,3 +117,12 @@ class L10nEsAccountStatementImportN43(common.TransactionCase):
             [("statement_id.journal_id", "=", self.journal.id)]
         )
         self.assertEqual(len(st_lines), 2)
+
+    def test_n43_partner_search_all_deterministic_order(self):
+        """With n43_partner_search="all", heuristics are applied following
+        the field selection order (caixabank, santander, sabadell)."""
+        partner_st = self.env["res.partner"].create({"name": "Santander Match N43"})
+        self.env["res.partner"].create({"name": "Sabadell Match N43"})
+        line = {"conceptos": {"01": ("Santander Match N43", "Sabadell Match N43")}}
+        partner = self.import_wizard._get_n43_partner(line, self.journal)
+        self.assertEqual(partner, partner_st)
