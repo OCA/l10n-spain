@@ -763,10 +763,14 @@ class SiiMixin(models.AbstractModel):
         the default value (point 9.3 of the document
         SII_Descripcion_ServicioWeb_v0.7.pdf), so by default we return
         the current date or, if exists, the stored
-        sii_account_registration_date
+        sii_account_registration_date. The default date is today's date in
+        peninsular Spanish time, the AEAT time reference, whatever the
+        timezone of the server or of the user is.
         :return String date in the format %Y-%m-%d"""
         self.ensure_one()
-        return self.sii_account_registration_date or fields.Date.today()
+        return self.sii_account_registration_date or fields.Date.context_today(
+            self.with_context(tz="Europe/Madrid")
+        )
 
     def _send_document_to_sii(self):
         for document in self.filtered(
