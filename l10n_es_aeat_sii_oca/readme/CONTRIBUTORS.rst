@@ -23,3 +23,6 @@
 * `Factor Libre <https://factorlibre.com>`__:
 
   * Luis J. Salvatierra <luis.salvatierra@factorlibre.com>
+* `Binovo IT Human Project SL <https://www.binovo.es>`__:
+
+  * Jesús Sánchez <jsanchez@binovo.es>
