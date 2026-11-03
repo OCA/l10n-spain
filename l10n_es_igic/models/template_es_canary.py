@@ -14,6 +14,33 @@ class AccountChartTemplate(models.AbstractModel):
             "parent": "es_common",
         }
 
+    @template("es_common_canary", "account.fiscal.position")
+    def _get_es_common_canary_fiscal_position_notes(self):
+        """Notas de las posiciones fiscales del regimen minorista. El CSV de
+        plantillas de posicion fiscal del addon no usa la columna `note`; se
+        aportan por codigo y se fusionan con los registros del CSV (ver
+        _get_chart_template_data)."""
+        return {
+            "fp_retailer_canary": {
+                "note": _(
+                    "Régimen minorista: ventas (repercutido → exento minorista) "
+                    "y compras locales a proveedor minorista (art. 29.3, carga "
+                    "implícita 4727). Sin importaciones."
+                ),
+            },
+            "fp_purchase_local_retailer_canary": {
+                "note": _(
+                    "Escenario B: empresa minorista - compras locales "
+                    "(IGIC en coste, sin 4727)"
+                ),
+            },
+            "fp_purchase_import_retailer_canary": {
+                "note": _(
+                    "Escenario B: empresa minorista - importaciones (IGIC en coste)"
+                ),
+            },
+        }
+
     @template("es_common_canary", "res.company")
     def _get_es_common_canary_res_company(self):
         return {
