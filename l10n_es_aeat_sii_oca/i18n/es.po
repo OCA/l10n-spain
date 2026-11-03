@@ -1030,6 +1030,19 @@ msgid "Test Address"
 msgstr "Dirección pruebas"
 
 #. module: l10n_es_aeat_sii_oca
+#. odoo-python
+#: code:addons/l10n_es_aeat_sii_oca/models/sii_mixin.py:0
+#, python-format
+msgid ""
+"The SII account registration date (%(reg_date)s) cannot be earlier than "
+"the supplier invoice date (%(invoice_date)s). Send the invoice again from "
+"that date on."
+msgstr ""
+"La fecha de registro contable del SII (%(reg_date)s) no puede ser anterior a "
+"la fecha de la factura del proveedor (%(invoice_date)s). Vuelva a enviar la "
+"factura a partir de esa fecha."
+
+#. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_res_company__sii_description
 msgid ""
 "The description for invoices. Only used when the field SII Description "
