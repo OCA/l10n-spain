@@ -68,7 +68,7 @@ class ResCompanyVatProrate(models.Model):
     _order = "date DESC"
 
     company_id = fields.Many2one("res.company", required=True)
-    date = fields.Date(required=True, default=fields.Date.today())
+    date = fields.Date(required=True, default=fields.Date.context_today)
     type = fields.Selection(
         selection=[("general", "General"), ("special", "Special")],
         required=True,
