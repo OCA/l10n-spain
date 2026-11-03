@@ -77,15 +77,15 @@ Para crear un modelo, por ejemplo de un trimestre del año:
 5.  Rellenar (si es necesario) aquellos campos que Odoo no calcula
     automáticamente:
 
-    - Viajeros Base: Casilla [23]
-    - Viajeros Cuota: Casilla [24]
-    - Cuotas ganaderas y pesqueras: Casilla [36]
-    - Cuotas de bienes de inversión: Casilla [37]
-    - Cuota Antes del inicio de la actividad: Casilla [38]
-    - Cuota prorrata: Casilla [39]
-    - Regularización de cuotas: Casilla [42]
-    - Cuotas a compensar: Casilla [43]
-    - A deducir: Casilla [44]
+    -  Viajeros Base: Casilla [23]
+    -  Viajeros Cuota: Casilla [24]
+    -  Cuotas ganaderas y pesqueras: Casilla [36]
+    -  Cuotas de bienes de inversión: Casilla [37]
+    -  Cuota Antes del inicio de la actividad: Casilla [38]
+    -  Cuota prorrata: Casilla [39]
+    -  Regularización de cuotas: Casilla [42]
+    -  Cuotas a compensar: Casilla [43]
+    -  A deducir: Casilla [44]
 
 6.  Cuando los valores sean los correctos, pulsar en el botón
     "Confirmar"
@@ -146,13 +146,15 @@ Authors
 Contributors
 ------------
 
-- Nicolás Ramos <n.ramos@binhex.cloud>
-- Christian Ramos <c.ramos@binhex.cloud>
-- `Tecnativa <https://www.tecnativa.com>`__:
+-  Nicolás Ramos <n.ramos@binhex.cloud>
+-  Christian Ramos <c.ramos@binhex.cloud>
+-  `Tecnativa <https://www.tecnativa.com>`__:
 
-  - Pedro M. Baeza
-  - Sergio Teruel
-  - Carlos Lopez
+   -  Pedro M. Baeza
+   -  Sergio Teruel
+   -  Carlos Lopez
+
+-  Mario Montes <m.montes@binhex.cloud>
 
 Maintainers
 -----------
