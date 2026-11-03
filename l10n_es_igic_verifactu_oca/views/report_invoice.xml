@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="report_invoice_document_repep"
+        inherit_id="account.report_invoice_document"
+    >
+        <xpath expr="//div[@name='comment']" position="after">
+            <p t-if="o._igic_repep_legend()" name="igic_repep_legend">
+                exención franquicia fiscal
+            </p>
+        </xpath>
+    </template>
+</odoo>
