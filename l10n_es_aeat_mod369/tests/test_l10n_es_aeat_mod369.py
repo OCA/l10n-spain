@@ -173,6 +173,114 @@ class TestL10nEsAeatMod369Base(TestL10nEsAeatModBase):
             total_sale_invoices_tax += sale_invoice_by_key.amount_tax
         self.assertEqual(self.model369.total_amount, total_sale_invoices_tax)
 
+    def _fr_tax(self, rate):
+        tax = self.oss_taxes["FR"].filtered(lambda tax: tax.amount == rate)
+        self.assertEqual(len(tax), 1)
+        return tax
+
+    def _refund_line_vals(self, tax, price_unit):
+        return (
+            0,
+            0,
+            {
+                "name": "Test for OSS tax",
+                "account_id": self.accounts["700000"].id,
+                "price_unit": price_unit,
+                "quantity": 1,
+                "tax_ids": [(6, 0, tax.ids)],
+            },
+        )
+
+    def _previous_period_refund(self, lines, origin_date="2016-11-15"):
+        origin = self._invoice_sale_create(
+            origin_date,
+            {
+                "fiscal_position_id": self.sale_invoices["FR"].fiscal_position_id.id,
+                "invoice_line_ids": lines,
+            },
+        )
+        refund = origin._reverse_moves(
+            [{"date": "2017-02-10", "invoice_date": "2017-02-10"}]
+        )
+        refund.action_post()
+        return refund
+
+    def _fr_correction_groups(self):
+        self.model369.button_calculate()
+        france = self.oss_countries["FR"]
+        corrections = self.model369.refund_line_ids.filtered(
+            lambda group: group.oss_country_id == france
+        )
+        page_8 = self.model369.total_line_ids.filtered(
+            lambda group: group.oss_country_id == france
+        )
+        self.assertEqual(len(page_8), 1)
+        return corrections, page_8
+
+    def test_model_369_exchange_refund_net_of_both_quotas(self):
+        refund = self._previous_period_refund(
+            [
+                self._refund_line_vals(self._fr_tax(20), 43.10),
+                self._refund_line_vals(self._fr_tax(10), -10.10),
+            ]
+        )
+        quota_lines = refund.line_ids.filtered("tax_line_id")
+        self.assertAlmostEqual(sum(quota_lines.mapped("debit")), 8.62)
+        self.assertAlmostEqual(sum(quota_lines.mapped("credit")), 1.01)
+        corrections, page_8 = self._fr_correction_groups()
+        self.assertEqual(len(corrections), 1)
+        self.assertEqual(corrections.refund_fiscal_year, 2016)
+        self.assertEqual(corrections.refund_period, "T4")
+        self.assertAlmostEqual(corrections.tax_correction, -7.61)
+        self.assertEqual(corrections.tax_correction_str, "-0000000000000761")
+        self.assertAlmostEqual(page_8.neg_corrections, -7.61)
+        self.assertAlmostEqual(page_8.result_total, page_8.amount - 7.61)
+
+    def test_model_369_exchange_refund_positive_net(self):
+        self._previous_period_refund(
+            [
+                self._refund_line_vals(self._fr_tax(5.5), 100.00),
+                self._refund_line_vals(self._fr_tax(20), -30.00),
+            ]
+        )
+        corrections, page_8 = self._fr_correction_groups()
+        self.assertEqual(len(corrections), 1)
+        self.assertAlmostEqual(corrections.tax_correction, 0.50)
+        self.assertEqual(corrections.tax_correction_str, "00000000000000050")
+        self.assertAlmostEqual(page_8.result_total, page_8.amount + 0.50)
+
+    def test_model_369_regular_refund_unchanged(self):
+        self._previous_period_refund(
+            [
+                self._refund_line_vals(self._fr_tax(20), 9.05),
+                self._refund_line_vals(self._fr_tax(10), 10.10),
+            ]
+        )
+        corrections, page_8 = self._fr_correction_groups()
+        self.assertEqual(len(corrections), 1)
+        self.assertAlmostEqual(corrections.tax_correction, -2.82)
+        self.assertEqual(corrections.tax_correction_str, "-0000000000000282")
+        self.assertAlmostEqual(page_8.result_total, page_8.amount - 2.82)
+
+    def test_model_369_refunds_of_several_previous_periods(self):
+        self._previous_period_refund(
+            [
+                self._refund_line_vals(self._fr_tax(20), 43.10),
+                self._refund_line_vals(self._fr_tax(10), -10.10),
+            ]
+        )
+        self._previous_period_refund(
+            [self._refund_line_vals(self._fr_tax(20), 9.05)],
+            origin_date="2016-08-15",
+        )
+        corrections, page_8 = self._fr_correction_groups()
+        by_period = {group.refund_period: group for group in corrections}
+        self.assertEqual(set(by_period), {"T3", "T4"})
+        self.assertAlmostEqual(by_period["T4"].tax_correction, -7.61)
+        self.assertAlmostEqual(by_period["T3"].tax_correction, -1.81)
+        self.assertAlmostEqual(page_8.neg_corrections, -9.42)
+        self.assertAlmostEqual(page_8.result_total, page_8.amount - 9.42)
+
     def create_account_move(self):
         self.model369.journal_id = self.journal_misc.id
         account_template = self.env.ref("l10n_es.account_common_477")
