@@ -88,6 +88,20 @@ Grabar servicios
       correspondiente y podremos descargar las etiquetas en PDF con su
       correspondiente numeración.
 
+Recuperar un envío duplicado
+----------------------------
+
+Al validar o enviar el albarán, el módulo graba el servicio con
+normalidad, sin consultas adicionales. Solo si GLS rechaza la grabación
+como duplicada (códigos -70 o -118), busca la expedición existente con
+la referencia completa del albarán. Si es una única expedición
+compatible con el albarán, la vincula: restaura el seguimiento y la
+etiqueta, y lo deja indicado en el chatter. No se graba un envío nuevo.
+
+Si la expedición no coincide, está anulada o la respuesta no es válida,
+se muestra un error y no se registra ningún envío nuevo. El módulo no
+garantiza evitar duplicados de otra fecha si GLS no los rechaza.
+
 Pedir recogidas
 ---------------
 
@@ -110,8 +124,10 @@ Cancelar servicios
       correspondiente en la pestaña de *Información Adicional*, sección
       *Información de entrega* una vez el pedido esté confirmado y la
       expedición generada.
-   2. Podremos generar una nueva expedición una vez cancelado si fuese
-      necesario.
+   2. Tras cancelar, se puede intentar grabar una nueva expedición. Si
+      GLS la rechaza como duplicada porque la anterior figura como
+      anulada, el módulo muestra un error y no crea otra: hay que
+      revisarlo con GLS.
 
 Obtener etiquetas
 -----------------
@@ -164,6 +180,8 @@ Known issues / Roadmap
   por lo que siempre se cotizan a 0. Si la cotización de envíos es
   necesaria, puede instalarse el módulo OCA delivery_price_method o bien
   personalizar el método de cotización para este tipo de transportista.
+- La recuperación de envíos duplicados solo cubre envíos nacionales sin
+  reembolso ni devolución.
 
 Bug Tracker
 ===========

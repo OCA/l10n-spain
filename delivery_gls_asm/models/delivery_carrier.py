@@ -1,6 +1,9 @@
 # Copyright 2020 Tecnativa - David Vidal
+# Copyright 2026 PYMING - Extreme Micro S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+import binascii
 import logging
+import unicodedata
 from xml.sax.saxutils import escape
 
 from odoo import _, api, fields, models
@@ -16,9 +19,16 @@ from .gls_asm_master_data import (
     GLS_SHIPPING_TIMES,
     GLS_TRACKING_LINKS,
 )
-from .gls_asm_request import GlsAsmRequest
+from .gls_asm_request import GlsAsmApiError, GlsAsmRequest
 
 _logger = logging.getLogger(__name__)
+
+# GrabaServicios codes meaning that our customer reference is already recorded.
+GLS_DUPLICATE_REFERENCE_CODES = (-70, -118)
+# GetExpCli states of a cancelled expedition. "borrado" is NOT a cancellation.
+GLS_CANCELLED_STATES = ("5", "51")
+# Degree and ordinal indicators that GLS drops from addresses ("5°A" -> "5A").
+GLS_NUMBER_MARKERS = str.maketrans("", "", "\u00b0\u00ba\u00aa")
 
 
 class DeliveryCarrier(models.Model):
@@ -287,7 +297,18 @@ class DeliveryCarrier(models.Model):
                     )
                 )
             vals.update({"tracking_number": False, "exact_price": 0})
-            response = gls_request._send_shipping(vals)
+            # Surface pending database conflicts before the external write.
+            self.env.flush_all()
+            try:
+                response = gls_request._send_shipping(vals)
+            except GlsAsmApiError as error:
+                if error.code not in GLS_DUPLICATE_REFERENCE_CODES:
+                    raise
+                # GLS bookings survive Odoo rollbacks. Recover only when GLS
+                # explicitly rejects this booking as a duplicate reference.
+                response = self._gls_asm_recover_shipping(gls_request, picking, vals)
+                if not response:
+                    raise
             self.log_xml(
                 response and response.get("gls_sent_xml", ""),
                 "GLS ASM Shipping Request",
@@ -319,6 +340,13 @@ class DeliveryCarrier(models.Model):
             body = _("GLS Shipping extra info:\n" "barcode: %s") % response.get(
                 "_codbarras"
             )
+            if response.get("gls_recovered"):
+                body += "\n" + _(
+                    "Recovered existing GLS shipment %(exp)s recorded for "
+                    "reference %(ref)s: no new shipment was recorded.",
+                    exp=response.get("_codexp"),
+                    ref=response.get("gls_reference"),
+                )
             attachment = []
             if response.get("gls_label"):
                 attachment = [
@@ -330,6 +358,216 @@ class DeliveryCarrier(models.Model):
             picking.message_post(body=body, attachments=attachment)
             result.append(vals)
         return result
+
+    @api.model
+    def _gls_asm_normalize_text(self, value):
+        """Compare GLS texts ignoring case, accents, punctuation and spacing.
+
+        GLS rewrites some characters (e.g. ``'`` becomes ``´``) and drops
+        number markers (``5°A`` becomes ``5A``). Number markers are removed
+        before NFKD, which would turn ``º``/``ª`` into letters. Any other
+        character that is not a letter or digit becomes a separator, so words
+        and numbers never merge (``12-14`` differs from ``1214``).
+        """
+        text = str(value or "").translate(GLS_NUMBER_MARKERS)
+        text = unicodedata.normalize("NFKD", text)
+        text = "".join(
+            char if char.isalnum() else " "
+            for char in text
+            if not unicodedata.combining(char)
+        )
+        return " ".join(text.casefold().split())
+
+    def _gls_asm_shipment_mismatches(self, picking, vals, expedition):
+        """Return the reasons why an existing GLS expedition is not ours."""
+        self.ensure_one()
+        consignee = picking.partner_id
+        reference = picking.name.replace("\\", "/")
+        required = (
+            "refC",
+            "codexp",
+            "codbar",
+            "codestado",
+            "codServicio",
+            "codHorario",
+            "tipo_portes",
+            "bultos",
+            "cp_dst",
+            "codpais_dst",
+            "nombre_dst",
+            "calle_dst",
+            "localidad_dst",
+        )
+        if any(
+            not isinstance(expedition.get(key), str | int)
+            or isinstance(expedition.get(key), bool)
+            for key in required
+        ):
+            return [_("missing or malformed shipment details")]
+
+        def value(key):
+            return str(expedition.get(key) or "").strip()
+
+        mismatches = []
+        # GetExpCli's international-reference mapping has not been verified.
+        # Without it native tracking would incorrectly use the domestic link.
+        if consignee.country_id.code != "ES":
+            mismatches.append(_("international tracking cannot be verified"))
+        if value("refC") != reference:
+            mismatches.append(_("reference %s", value("refC")))
+        if not value("codexp") or not value("codbar"):
+            mismatches.append(_("missing expedition number or barcode"))
+        if value("codestado") not in GLS_SHIPMENT_TYPE_STATES:
+            mismatches.append(_("missing or unknown shipment state"))
+        for key, ours, label in (
+            ("codServicio", vals["servicio"], _("service")),
+            ("codHorario", vals["horario"], _("shipping time")),
+            ("tipo_portes", vals["portes"], _("postage type")),
+            ("cp_dst", vals["destinatario_cp"], _("destination zip")),
+            ("codpais_dst", consignee.country_id.phone_code, _("destination country")),
+        ):
+            if value(key) != str(ours or "").strip():
+                mismatches.append(f"{label} {value(key)}")
+        try:
+            parcels = int(value("bultos"))
+        except ValueError:
+            parcels = None
+        if parcels != int(vals["bultos"] or 0):
+            mismatches.append(_("parcels %s", value("bultos")))
+        for key, ours, label in (
+            (
+                "nombre_dst",
+                consignee.name or consignee.commercial_partner_id.name,
+                _("consignee"),
+            ),
+            ("calle_dst", consignee.street, _("destination street")),
+            ("localidad_dst", consignee.city, _("destination city")),
+        ):
+            theirs = value(key)
+            if not theirs or self._gls_asm_normalize_text(ours) != (
+                self._gls_asm_normalize_text(theirs)
+            ):
+                mismatches.append(f"{label} {theirs}")
+        # GetExpCli's verified schema does not expose these booking options:
+        # never invent field names or assume a match for an existing shipment.
+        if self.gls_asm_cash_on_delivery:
+            mismatches.append(_("cash on delivery cannot be verified"))
+        if vals.get("retorno") == "1" or self.gls_asm_service == "58":
+            mismatches.append(_("return service cannot be verified"))
+        if self.gls_asm_shiptime == "19" or vals.get("destinatario_codigo"):
+            mismatches.append(_("ParcelShop code cannot be verified"))
+        return mismatches
+
+    def _gls_asm_recover_shipping(self, gls_request, picking, vals):
+        """Recover this picking after GLS rejects a booking as a duplicate.
+
+        :returns: a GrabaServicios-like response dict, or ``False`` when GLS
+            explicitly reports that the reference does not exist, leaving the
+            caller to propagate the original duplicate error (never to rebook)
+        :raises UserError: when the lookup is inconclusive or the existing
+            expedition cannot be safely reused
+        """
+        self.ensure_one()
+        reference = picking.name.replace("\\", "/")
+        expeditions = gls_request._find_shipments(reference)
+        if not expeditions:
+            # The rejected booking is still unresolved, with or without local
+            # links. Preserve them and let the caller re-raise the duplicate.
+            return False
+        if len(expeditions) > 1:
+            raise UserError(
+                _(
+                    "GLS already has %(count)s shipments for reference %(ref)s. "
+                    "Link the right one manually; no new shipment was recorded.",
+                    count=len(expeditions),
+                    ref=reference,
+                )
+            )
+        expedition = expeditions[0]
+        if str(expedition.get("codestado") or "").strip() in GLS_CANCELLED_STATES:
+            raise UserError(
+                _(
+                    "The existing GLS shipment for %(ref)s is cancelled. "
+                    "Review the cancellation with GLS before arranging a replacement "
+                    "using a new picking; no new shipment was recorded.",
+                    ref=reference,
+                )
+            )
+        # Never replace local links with a different expedition, append a new
+        # tracking number, or clear an international reference we cannot verify.
+        for local, remote, field in (
+            (
+                picking.carrier_tracking_ref,
+                str(expedition.get("codexp") or "").strip(),
+                _("local tracking number"),
+            ),
+            (
+                picking.gls_asm_public_tracking_ref,
+                str(expedition.get("codbar") or "").strip(),
+                _("local GLS barcode"),
+            ),
+        ):
+            if local and local != remote:
+                raise UserError(
+                    _(
+                        "The %(field)s conflicts with the existing GLS shipment "
+                        "for %(ref)s. Review it with GLS; local references were "
+                        "not changed and no new shipment was recorded.",
+                        field=field,
+                        ref=reference,
+                    )
+                )
+        if picking.gls_asm_picking_ref:
+            raise UserError(
+                _(
+                    "The existing local international reference for %(ref)s "
+                    "cannot be verified. Review it with GLS; local references "
+                    "were not changed and no new shipment was recorded.",
+                    ref=reference,
+                )
+            )
+        mismatches = self._gls_asm_shipment_mismatches(picking, vals, expedition)
+        if mismatches:
+            raise UserError(
+                _(
+                    "GLS already has shipment %(exp)s for reference %(ref)s, but "
+                    "it does not match this picking (%(reasons)s). Review it in "
+                    "GLS; no new shipment was recorded.",
+                    exp=expedition.get("codexp") or "",
+                    ref=reference,
+                    reasons=", ".join(mismatches),
+                )
+            )
+        barcode = str(expedition["codbar"]).strip()
+        try:
+            label = gls_request._shipping_label(barcode)
+        except (binascii.Error, ValueError):
+            # Invalid base64 is a recoverable label error, never a reason to book.
+            label = False
+        if not label or not label.startswith(b"%PDF-"):
+            raise UserError(
+                _(
+                    "GLS returned a missing or invalid PDF for existing shipment "
+                    "%(exp)s. "
+                    "Retry label recovery; no new shipment was recorded.",
+                    exp=expedition["codexp"],
+                )
+            )
+        _logger.info(
+            "Recovered existing GLS shipment %s for picking %s",
+            expedition["codexp"],
+            picking.id,
+        )
+        return {
+            "_return": 0,
+            "_codexp": str(expedition["codexp"]).strip(),
+            "_codbarras": barcode,
+            "Referencias": {"Referencia": []},
+            "gls_label": label,
+            "gls_recovered": True,
+            "gls_reference": reference,
+            "gls_sent_xml": "",
+        }
 
     def gls_asm_send_pickup(self, pickings):
         """Send the request to GLS to pick a package up

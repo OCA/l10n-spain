@@ -385,20 +385,21 @@ otras APIs.</p>
 <li><a class="reference internal" href="#configuration" id="toc-entry-2">Configuration</a></li>
 <li><a class="reference internal" href="#usage" id="toc-entry-3">Usage</a><ul>
 <li><a class="reference internal" href="#grabar-servicios" id="toc-entry-4">Grabar servicios</a></li>
-<li><a class="reference internal" href="#pedir-recogidas" id="toc-entry-5">Pedir recogidas</a></li>
-<li><a class="reference internal" href="#cancelar-servicios" id="toc-entry-6">Cancelar servicios</a></li>
-<li><a class="reference internal" href="#obtener-etiquetas" id="toc-entry-7">Obtener etiquetas</a></li>
-<li><a class="reference internal" href="#seguimiento-de-envios" id="toc-entry-8">Seguimiento de envíos</a></li>
-<li><a class="reference internal" href="#manifiesto-de-envios" id="toc-entry-9">Manifiesto de envíos</a></li>
-<li><a class="reference internal" href="#depuracion-de-errores" id="toc-entry-10">Depuración de errores</a></li>
+<li><a class="reference internal" href="#recuperar-un-envio-duplicado" id="toc-entry-5">Recuperar un envío duplicado</a></li>
+<li><a class="reference internal" href="#pedir-recogidas" id="toc-entry-6">Pedir recogidas</a></li>
+<li><a class="reference internal" href="#cancelar-servicios" id="toc-entry-7">Cancelar servicios</a></li>
+<li><a class="reference internal" href="#obtener-etiquetas" id="toc-entry-8">Obtener etiquetas</a></li>
+<li><a class="reference internal" href="#seguimiento-de-envios" id="toc-entry-9">Seguimiento de envíos</a></li>
+<li><a class="reference internal" href="#manifiesto-de-envios" id="toc-entry-10">Manifiesto de envíos</a></li>
+<li><a class="reference internal" href="#depuracion-de-errores" id="toc-entry-11">Depuración de errores</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#known-issues-roadmap" id="toc-entry-11">Known issues / Roadmap</a></li>
-<li><a class="reference internal" href="#bug-tracker" id="toc-entry-12">Bug Tracker</a></li>
-<li><a class="reference internal" href="#credits" id="toc-entry-13">Credits</a><ul>
-<li><a class="reference internal" href="#authors" id="toc-entry-14">Authors</a></li>
-<li><a class="reference internal" href="#contributors" id="toc-entry-15">Contributors</a></li>
-<li><a class="reference internal" href="#maintainers" id="toc-entry-16">Maintainers</a></li>
+<li><a class="reference internal" href="#known-issues-roadmap" id="toc-entry-12">Known issues / Roadmap</a></li>
+<li><a class="reference internal" href="#bug-tracker" id="toc-entry-13">Bug Tracker</a></li>
+<li><a class="reference internal" href="#credits" id="toc-entry-14">Credits</a><ul>
+<li><a class="reference internal" href="#authors" id="toc-entry-15">Authors</a></li>
+<li><a class="reference internal" href="#contributors" id="toc-entry-16">Contributors</a></li>
+<li><a class="reference internal" href="#maintainers" id="toc-entry-17">Maintainers</a></li>
 </ul>
 </li>
 </ul>
@@ -447,8 +448,20 @@ correspondiente numeración.</li>
 </ol>
 </blockquote>
 </div>
+<div class="section" id="recuperar-un-envio-duplicado">
+<h3><a class="toc-backref" href="#toc-entry-5">Recuperar un envío duplicado</a></h3>
+<p>Al validar o enviar el albarán, el módulo graba el servicio con
+normalidad, sin consultas adicionales. Solo si GLS rechaza la grabación
+como duplicada (códigos -70 o -118), busca la expedición existente con
+la referencia completa del albarán. Si es una única expedición
+compatible con el albarán, la vincula: restaura el seguimiento y la
+etiqueta, y lo deja indicado en el chatter. No se graba un envío nuevo.</p>
+<p>Si la expedición no coincide, está anulada o la respuesta no es válida,
+se muestra un error y no se registra ningún envío nuevo. El módulo no
+garantiza evitar duplicados de otra fecha si GLS no los rechaza.</p>
+</div>
 <div class="section" id="pedir-recogidas">
-<h3><a class="toc-backref" href="#toc-entry-5">Pedir recogidas</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-6">Pedir recogidas</a></h3>
 <blockquote>
 <ol class="arabic simple">
 <li>Al confirmar el albarán con un servicio de recogida, el envío NO
@@ -465,7 +478,7 @@ paquetes de envío.</li>
 </blockquote>
 </div>
 <div class="section" id="cancelar-servicios">
-<h3><a class="toc-backref" href="#toc-entry-6">Cancelar servicios</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-7">Cancelar servicios</a></h3>
 <blockquote>
 <ol class="arabic simple">
 <li>Al igual que en otros métodos de envío, en los albaranes de salida
@@ -473,13 +486,15 @@ podemos cancelar un servicio determinado mediante la acción
 correspondiente en la pestaña de <em>Información Adicional</em>, sección
 <em>Información de entrega</em> una vez el pedido esté confirmado y la
 expedición generada.</li>
-<li>Podremos generar una nueva expedición una vez cancelado si fuese
-necesario.</li>
+<li>Tras cancelar, se puede intentar grabar una nueva expedición. Si
+GLS la rechaza como duplicada porque la anterior figura como
+anulada, el módulo muestra un error y no crea otra: hay que
+revisarlo con GLS.</li>
 </ol>
 </blockquote>
 </div>
 <div class="section" id="obtener-etiquetas">
-<h3><a class="toc-backref" href="#toc-entry-7">Obtener etiquetas</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-8">Obtener etiquetas</a></h3>
 <blockquote>
 <ol class="arabic simple">
 <li>Si por error hubiésemos eliminado el adjunto de las etiquetas que
@@ -490,7 +505,7 @@ superior de la vista formulario del albarán.</li>
 </blockquote>
 </div>
 <div class="section" id="seguimiento-de-envios">
-<h3><a class="toc-backref" href="#toc-entry-8">Seguimiento de envíos</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-9">Seguimiento de envíos</a></h3>
 <blockquote>
 <ol class="arabic simple">
 <li>El módulo está integrado con delivery_state para poder recabar la
@@ -504,7 +519,7 @@ este envío en Odoo.</li>
 </blockquote>
 </div>
 <div class="section" id="manifiesto-de-envios">
-<h3><a class="toc-backref" href="#toc-entry-9">Manifiesto de envíos</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-10">Manifiesto de envíos</a></h3>
 <blockquote>
 <ol class="arabic simple">
 <li>Para obtener el manifiesto de expediciones que firmaría el
@@ -520,7 +535,7 @@ de los envíos del servicio seleccionado.</li>
 </blockquote>
 </div>
 <div class="section" id="depuracion-de-errores">
-<h3><a class="toc-backref" href="#toc-entry-10">Depuración de errores</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-11">Depuración de errores</a></h3>
 <blockquote>
 <ol class="arabic simple">
 <li>Es importante tener en cuenta que solo funcionará con códigos
@@ -536,16 +551,18 @@ las peticiones y las respuestas en el log.</li>
 </div>
 </div>
 <div class="section" id="known-issues-roadmap">
-<h2><a class="toc-backref" href="#toc-entry-11">Known issues / Roadmap</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-12">Known issues / Roadmap</a></h2>
 <ul class="simple">
 <li>La API no facilita métodos para cotizar el coste real de los envíos,
 por lo que siempre se cotizan a 0. Si la cotización de envíos es
 necesaria, puede instalarse el módulo OCA delivery_price_method o bien
 personalizar el método de cotización para este tipo de transportista.</li>
+<li>La recuperación de envíos duplicados solo cubre envíos nacionales sin
+reembolso ni devolución.</li>
 </ul>
 </div>
 <div class="section" id="bug-tracker">
-<h2><a class="toc-backref" href="#toc-entry-12">Bug Tracker</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-13">Bug Tracker</a></h2>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/l10n-spain/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
@@ -553,15 +570,15 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
-<h2><a class="toc-backref" href="#toc-entry-13">Credits</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-14">Credits</a></h2>
 <div class="section" id="authors">
-<h3><a class="toc-backref" href="#toc-entry-14">Authors</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-15">Authors</a></h3>
 <ul class="simple">
 <li>Tecnativa</li>
 </ul>
 </div>
 <div class="section" id="contributors">
-<h3><a class="toc-backref" href="#toc-entry-15">Contributors</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-16">Contributors</a></h3>
 <ul class="simple">
 <li><a class="reference external" href="https://www.tecnativa.com">Tecnativa</a>:<ul>
 <li>David Vidal</li>
@@ -576,7 +593,7 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 </ul>
 </div>
 <div class="section" id="maintainers">
-<h3><a class="toc-backref" href="#toc-entry-16">Maintainers</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-17">Maintainers</a></h3>
 <p>This module is maintained by the OCA.</p>
 <a class="reference external image-reference" href="https://odoo-community.org">
 <img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" />
