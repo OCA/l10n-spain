@@ -12,6 +12,16 @@ Estas son las distintas operaciones posibles con este módulo:
 >     correspondiente y podremos descargar las etiquetas en PDF con su
 >     correspondiente numeración.
 
+## Entregas en ParcelShop
+
+> 1.  En el método de envío GLS ASM, escoja el horario *ParcelShop*.
+> 2.  En la pestaña *Nota* del albarán de salida, introduzca en *GLS
+>     ParcelShop Code* el código de punto de GLS (de 1 a 6 dígitos,
+>     conservando los ceros a la izquierda, por ejemplo `001234`). No
+>     hay selector ni importador de puntos.
+> 3.  Una vez grabado el envío, el código no se puede editar hasta que
+>     GLS acepte su cancelación.
+
 ## Pedir recogidas
 
 > 1.  Al confirmar el albarán con un servicio de recogida, el envío NO
