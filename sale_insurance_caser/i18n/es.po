@@ -159,6 +159,12 @@ msgid "Caser Insurance Price Range"
 msgstr "Rango de precios de seguro Caser"
 
 #. module: sale_insurance_caser
+#: model:ir.model.fields,field_description:sale_insurance_caser.field_res_config_settings__caser_product_categ_id
+#: model_terms:ir.ui.view,arch_db:sale_insurance_caser.view_sale_config_settings_form
+msgid "Caser Insurance Product Category"
+msgstr "Categoría de productos de seguro Caser"
+
+#. module: sale_insurance_caser
 #: model:ir.model.fields,field_description:sale_insurance_caser.field_sale_order__caser_insurance_state
 #: model_terms:ir.ui.view,arch_db:sale_insurance_caser.view_sales_order_filter_caser
 msgid "Caser Insurance State"
@@ -234,6 +240,24 @@ msgstr "Póliza Caser ya registrada: %s"
 #: code:addons/sale_insurance_caser/models/caser_price_range.py:0
 msgid "Caser tarification error: %s"
 msgstr "Error de tarificación Caser: %s"
+
+#. module: sale_insurance_caser
+#: model:ir.model.fields,help:sale_insurance_caser.field_res_config_settings__caser_product_categ_id
+msgid ""
+"Category of the insurance products created from the price ranges. Set its "
+"income account to book the insurance on it."
+msgstr ""
+"Categoría de los productos de seguro creados desde los tramos de precio. "
+"Indique su cuenta de ingresos para contabilizar el seguro en ella."
+
+#. module: sale_insurance_caser
+#: model_terms:ir.ui.view,arch_db:sale_insurance_caser.view_sale_config_settings_form
+msgid ""
+"Category of the insurance products. Its income account is used in the "
+"invoices."
+msgstr ""
+"Categoría de los productos de seguro. Su cuenta de ingresos se usa en las "
+"facturas."
 
 #. module: sale_insurance_caser
 #: model:ir.model.fields,field_description:sale_insurance_caser.field_caser_price_range__code
