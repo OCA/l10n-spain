@@ -1,7 +1,6 @@
 # Copyright 2019 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-import base64
 import logging
 
 from odoo import Command, api, exceptions, fields, models
@@ -62,7 +61,7 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
         if not active_id or not active_model:
             return False
         config = self.env[active_model].browse(active_id)
-        data = base64.decodebytes(self.data)
+        data = self.data.content
         offset, lines = self._compare_boe_lines(config, data)
         # Allow a bit of difference according presence of final CR+LF
         if abs(offset - len(data)) > 2:

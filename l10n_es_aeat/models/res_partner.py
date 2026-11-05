@@ -6,12 +6,6 @@ from odoo import fields, models
 from odoo.api import ormcache
 from odoo.fields import Domain
 
-AEAT_IDENTIFICATION_TYPE = [
-    ("03", "Passport"),
-    ("05", "Residential certificate"),
-    ("06", "Another document"),
-]
-
 
 class ResPartner(models.Model):
     _inherit = "res.partner"
@@ -20,25 +14,6 @@ class ResPartner(models.Model):
         string="AEAT - Anonymous customer",
         help="Check this for anonymous cash customer. AEAT communication",
     )
-    aeat_identification_type = fields.Selection(
-        string="AEAT Identification type",
-        help=(
-            "Used to specify an identification type to send to AEAT. Normally for "
-            "sending national and export invoices to AEAT where the customer country "
-            "is not Spain, it would calculate an identification type of 04 if the VAT "
-            "field is filled and 06 if it was not. This field is to specify "
-            "types of 03 through 05, in the event that the customer doesn't identify "
-            "with a foreign VAT and instead with their passport "
-            "or residential certificate. If there is no value it will work as before."
-        ),
-        selection=AEAT_IDENTIFICATION_TYPE,
-    )
-    aeat_identification = fields.Char(help="Identification for AEAT purposes")
-    # There are other options (but these options are managed automatically
-    #   on _parse_aeat_vat_info):
-    # 02 - NIF - VAT
-    # 04 - Official document from the original country
-    # 07 - Not registered on census
     aeat_simplified_invoice = fields.Boolean(
         string="Simplified invoices in AEAT?",
         help="Checking this mark, invoices done to this partner will be "
@@ -129,24 +104,43 @@ class ResPartner(models.Model):
             else:
                 country_code = self._map_aeat_country_code(country_code, extended=True)
                 identifier_type = "04"
-        if country_code == "ES":
+        if (
+            country_code == "ES"
+            and self.has_vat
+            and self._check_vat_number("ES", vat_number)
+        ):
             identifier_type = ""
+            identifier = vat_number
+        elif identifier_type == "02":
+            identifier = vat_number
+        else:
+            doc_type, doc = self._l10n_es_get_additional_identifier_type()
+            if doc == "NO_DISPONIBLE" or (doc_type == "04" and doc == self.vat):
+                return (
+                    country_code,
+                    "" if country_code == "ES" else identifier_type,
+                    vat_number,
+                )
+            identifier_type, identifier = doc_type, doc
         return (
             country_code,
-            self.aeat_identification_type or identifier_type,
-            self.aeat_identification if self.aeat_identification_type else vat_number,
+            identifier_type,
+            identifier,
         )
 
     def _has_valid_aeat_identification(self, allow_alternative_identification=True):
         """Check whether a partner has a valid identification for AEAT reports."""
         self.ensure_one()
-        if self.vat or not allow_alternative_identification:
-            return bool(self.vat)
-        _country_code, identifier_type, _vat_number = self._parse_aeat_vat_info()
-        req_vat_identif_types = [option[0] for option in AEAT_IDENTIFICATION_TYPE] + [
-            ""
-        ]
-        return bool(
-            identifier_type not in req_vat_identif_types
-            or (self.aeat_identification_type and self.aeat_identification)
-        )
+        vat = (self.vat or "").strip().upper()
+        vat_is_useful = self.has_vat and vat not in ("", "NO_DISPONIBLE")
+        if vat_is_useful or not allow_alternative_identification:
+            return vat_is_useful
+        for identifier in (
+            self.l10n_es_passport,
+            self.l10n_es_foreign_id,
+            self.l10n_es_res_cert,
+            self.l10n_es_other_id,
+        ):
+            if (identifier or "").strip().upper() not in ("", "NO_DISPONIBLE"):
+                return True
+        return False
