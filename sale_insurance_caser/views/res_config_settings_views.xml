@@ -26,6 +26,12 @@
                         <field name="caser_sica_code" />
                     </setting>
                     <setting
+                        string="Caser Insurance Product Category"
+                        help="Category of the insurance products. Its income account is used in the invoices."
+                    >
+                        <field name="caser_product_categ_id" />
+                    </setting>
+                    <setting
                         string="Caser Price Ranges"
                         help="Configure price ranges for insurance policies."
                     >

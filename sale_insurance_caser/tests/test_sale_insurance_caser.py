@@ -119,6 +119,33 @@ class TestSaleInsuranceCaser(BaseCommon):
             ).id
         )
 
+    def _mock_tarification_response(self):
+        mock_response = MagicMock()
+        mock_response.status_code = 200
+        mock_response.text = """<?xml version="1.0" encoding="UTF-8"?>
+<SERVICIO>
+    <P_TEXTO>OK</P_TEXTO>
+    <P_LISTRECIBOS_LISTABEANS>
+        <REPETIDO>
+            <PRIMA_ipriom>40.00</PRIMA_ipriom>
+            <PRIMA_itotre>48.40</PRIMA_itotre>
+        </REPETIDO>
+        <REPETIDO>
+            <PRIMA_ipriom>41.00</PRIMA_ipriom>
+            <PRIMA_itotre>49.61</PRIMA_itotre>
+        </REPETIDO>
+        <REPETIDO>
+            <PRIMA_ipriom>42.00</PRIMA_ipriom>
+            <PRIMA_itotre>50.82</PRIMA_itotre>
+        </REPETIDO>
+        <REPETIDO>
+            <PRIMA_ipriom>43.00</PRIMA_ipriom>
+            <PRIMA_itotre>52.03</PRIMA_itotre>
+        </REPETIDO>
+    </P_LISTRECIBOS_LISTABEANS>
+</SERVICIO>"""
+        return mock_response
+
     def _create_sale_order_with_insurance(self, lines):
         return self.env["sale.order"].create(
             {
@@ -235,30 +262,7 @@ class TestSaleInsuranceCaser(BaseCommon):
             [("code", "in", ["3", "4"])], limit=2
         )
         self.assertTrue(price_ranges)
-        mock_response = MagicMock()
-        mock_response.status_code = 200
-        mock_response.text = """<?xml version="1.0" encoding="UTF-8"?>
-<SERVICIO>
-    <P_TEXTO>OK</P_TEXTO>
-    <P_LISTRECIBOS_LISTABEANS>
-        <REPETIDO>
-            <PRIMA_ipriom>40.00</PRIMA_ipriom>
-            <PRIMA_itotre>48.40</PRIMA_itotre>
-        </REPETIDO>
-        <REPETIDO>
-            <PRIMA_ipriom>41.00</PRIMA_ipriom>
-            <PRIMA_itotre>49.61</PRIMA_itotre>
-        </REPETIDO>
-        <REPETIDO>
-            <PRIMA_ipriom>42.00</PRIMA_ipriom>
-            <PRIMA_itotre>50.82</PRIMA_itotre>
-        </REPETIDO>
-        <REPETIDO>
-            <PRIMA_ipriom>43.00</PRIMA_ipriom>
-            <PRIMA_itotre>52.03</PRIMA_itotre>
-        </REPETIDO>
-    </P_LISTRECIBOS_LISTABEANS>
-</SERVICIO>"""
+        mock_response = self._mock_tarification_response()
         with patch(
             "odoo.addons.sale_insurance_caser.models.caser_api_mixin.CaserApiMixin._send_caser_soap_request",
             return_value=mock_response,
@@ -600,3 +604,16 @@ class TestSaleInsuranceCaser(BaseCommon):
         self.assertFalse(insurance_line.caser_error_message)
         self.assertEqual(insurance_line.caser_policy_number, "POL999")
         self.assertEqual(order2.caser_insurance_state, "done")
+
+    def test_10_insurance_product_category_from_settings(self):
+        categ = self.env["product.category"].create({"name": "Insurance"})
+        self.env["res.config.settings"].create(
+            {"caser_product_categ_id": categ.id}
+        ).execute()
+        price_range = self.env.ref("sale_insurance_caser.caser_price_range_mobile_5")
+        with patch(
+            "odoo.addons.sale_insurance_caser.models.caser_api_mixin.CaserApiMixin._send_caser_soap_request",
+            return_value=self._mock_tarification_response(),
+        ):
+            price_range.action_get_tarification_prices()
+        self.assertEqual(price_range.product_id.categ_id, categ)
