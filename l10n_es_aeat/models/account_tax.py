@@ -40,7 +40,7 @@ class AccountTax(models.Model):
         takes itself as base.
         """
         vals_list = super().copy_data(default=default)
-        for record, vals in zip(self, vals_list, strict=False):
+        for record, vals in zip(self, vals_list):
             if not vals.get("aeat_equivalent_tax_id"):
                 vals["aeat_equivalent_tax_id"] = (
                     record.aeat_equivalent_tax_id.id or record.id
