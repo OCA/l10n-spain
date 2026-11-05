@@ -43,7 +43,7 @@ aeat_mod111_sub01_export_line_41,41,aeat_mod111_sub01_export_config,Total liquid
 aeat_mod111_sub01_export_line_42,42,aeat_mod111_sub01_export_config,Complementaria - Declaración complementaria,${object.statement_type == 'C'},,boolean,1,left,,,X, ,,
 aeat_mod111_sub01_export_line_43,43,aeat_mod111_sub01_export_config,Complementaria - Número justificante de la declaración anterior,"${object.previous_number if object.statement_type in ('C', 'S') else ''}",,string,13,left,,,,,,
 aeat_mod111_sub01_export_line_44,44,aeat_mod111_sub01_export_config,Administración presentando declaración de Colegio Concertado (CC),${object.colegio_concertado},,boolean,1,left,,,X, ,,
-aeat_mod111_sub01_export_line_45,45,aeat_mod111_sub01_export_config,Domiciliación - IBAN,"${object.partner_bank_id and object.partner_bank_id.acc_number and object.partner_bank_id.acc_number.replace("" "", """") or """"}",,string,34,left,,,,,,
+aeat_mod111_sub01_export_line_45,45,aeat_mod111_sub01_export_config,Domiciliación - IBAN,"${object.partner_bank_id and object.partner_bank_id.account_number and object.partner_bank_id.account_number.replace("" "", """") or """"}",,string,34,left,,,,,,
 aeat_mod111_sub01_export_line_46,46,aeat_mod111_sub01_export_config,Reservado para la Administración (389),,,string,389,left,,,,,,
 aeat_mod111_sub01_export_line_47,47,aeat_mod111_sub01_export_config,Reservado para el sello electrónico de la AEAT (13),,,string,13,left,,,,,,
 aeat_mod111_sub01_export_line_48,48,aeat_mod111_sub01_export_config,Indicador de fin de registro: </T11101000>,,</T11101000>,string,12,left,,,,,,

@@ -16,7 +16,7 @@ class TestL10nEsAeatMod111Base(TestL10nEsAeatModBase):
     # Set 'debug' attribute to True to easy debug this test
     # Do not forget to include '--log-handler aeat:DEBUG' in Odoo command line
     debug = False
-    taxes_purchase = {
+    taxes_purchase = {  # noqa: RUF012
         # tax code: (base, tax_amount)
         "P_IRPF21T": (1000, 150),
         "P_IRPF21TD": (2000, 300),
@@ -32,7 +32,7 @@ class TestL10nEsAeatMod111Base(TestL10nEsAeatModBase):
         "P_IRPF21P": (300, 63),
         "P_IRPF24": (400, 96),
     }
-    taxes_result = {
+    taxes_result = {  # noqa: RUF012
         # Rendimientos del trabajo (dinerarios) - Base
         "2": (2 * 1000) + (2 * 2000),  # P_IRPF21T, P_IRPF21TD
         # Rendimientos del trabajo (dinerarios) - Retenciones
@@ -84,7 +84,7 @@ class TestL10nEsAeatMod111Base(TestL10nEsAeatModBase):
             {
                 "name": "9990000000111",
                 "company_id": self.company.id,
-                "company_vat": "1234567890",
+                "company_vat": "12345678Z",
                 "contact_name": "Test owner",
                 "statement_type": "N",
                 "support_type": "T",
@@ -162,7 +162,7 @@ class TestL10nEsAeatMod111Base(TestL10nEsAeatModBase):
             .sudo()
             .create(
                 {
-                    "acc_number": "ES70 2082 5971 6787 3766 2882",
+                    "account_number": "ES70 2082 5971 6787 3766 2882",
                     "bank_name": "Test Bank",
                     "partner_id": self.company.partner_id.id,
                 }
@@ -178,3 +178,10 @@ class TestL10nEsAeatMod111Base(TestL10nEsAeatModBase):
             self.model111.button_confirm()
         self.model111.casilla_29 = 0
         self.model111.button_confirm()
+        # Check the direct debit IBAN is exported to the BOE file
+        export_file = (
+            self.env["l10n.es.aeat.report.export_to_boe"]
+            .create({"name": "test_mod111.txt"})
+            ._export_config(self.model111, export_config)
+        )
+        self.assertIn(b"ES7020825971678737662882", export_file)
