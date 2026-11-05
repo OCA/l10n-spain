@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -65,25 +65,6 @@ msgid "Companies"
 msgstr ""
 
 #. module: l10n_es_facturae_face
-#. odoo-python
-#: code:addons/l10n_es_facturae_face/models/edi_exchange_record.py:0
-msgid "Company %s cannot be processed"
-msgstr ""
-
-#. module: l10n_es_facturae_face
-#. odoo-python
-#: code:addons/l10n_es_facturae_face/models/l10n_es_facturae_face_base_handler.py:0
-#: code:addons/l10n_es_facturae_face/models/l10n_es_facturae_face_update_handler.py:0
-msgid "Connection with FACe returned error %(code)s - %(description)s"
-msgstr ""
-
-#. module: l10n_es_facturae_face
-#. odoo-python
-#: code:addons/l10n_es_facturae_face/models/l10n_es_facturae_face_base_handler.py:0
-msgid "Connection with FACe returned error: %(error)s"
-msgstr ""
-
-#. module: l10n_es_facturae_face
 #: model:ir.model,name:l10n_es_facturae_face.model_res_partner
 msgid "Contact"
 msgstr ""
@@ -105,7 +86,15 @@ msgid "Created on"
 msgstr ""
 
 #. module: l10n_es_facturae_face
+#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_account_move__display_name
+#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_edi_exchange_record__display_name
 #: model:ir.model.fields,field_description:l10n_es_facturae_face.field_edi_l10n_es_facturae_face_cancel__display_name
+#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_l10n_es_facturae_face_base_handler__display_name
+#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_l10n_es_facturae_face_cancel_handler__display_name
+#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_l10n_es_facturae_face_output_handler__display_name
+#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_l10n_es_facturae_face_update_handler__display_name
+#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_res_company__display_name
+#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_res_partner__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -117,6 +106,24 @@ msgstr ""
 #. module: l10n_es_facturae_face
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae_face.edi_l10n_es_facturae_face_cancel_form_view
 msgid "Edi L10n Es Facturae FACe Cancel"
+msgstr ""
+
+#. module: l10n_es_facturae_face
+#. odoo-python
+#: code:addons/l10n_es_facturae_face/models/l10n_es_facturae_face_base_handler.py:0
+msgid "Error Sending invoice: %(error)s"
+msgstr ""
+
+#. module: l10n_es_facturae_face
+#. odoo-python
+#: code:addons/l10n_es_facturae_face/models/l10n_es_facturae_face_base_handler.py:0
+msgid "Error canceling invoice: %(error)s"
+msgstr ""
+
+#. module: l10n_es_facturae_face
+#. odoo-python
+#: code:addons/l10n_es_facturae_face/models/l10n_es_facturae_face_base_handler.py:0
+msgid "Error consulting invoice: %(error)s"
 msgstr ""
 
 #. module: l10n_es_facturae_face
@@ -199,7 +206,15 @@ msgid "Handler to update an invoice via FACe webservice"
 msgstr ""
 
 #. module: l10n_es_facturae_face
+#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_account_move__id
+#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_edi_exchange_record__id
 #: model:ir.model.fields,field_description:l10n_es_facturae_face.field_edi_l10n_es_facturae_face_cancel__id
+#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_l10n_es_facturae_face_base_handler__id
+#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_l10n_es_facturae_face_cancel_handler__id
+#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_l10n_es_facturae_face_output_handler__id
+#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_l10n_es_facturae_face_update_handler__id
+#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_res_company__id
+#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_res_partner__id
 msgid "ID"
 msgstr ""
 
