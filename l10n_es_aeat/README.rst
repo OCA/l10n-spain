@@ -131,6 +131,31 @@ Para gestionar inmuebles, hay que:
 3. Ya se podrá añadir un inmueble en el campo Inmueble de las lineas de
    factura.
 
+Identificación de clientes para la AEAT
+---------------------------------------
+
+Introduzca los documentos en el apartado nativo **Identificadores
+adicionales** de la ficha del contacto. El módulo utiliza estos mismos
+datos para la identificación de la AEAT, evitando duplicar campos de
+documento en la pestaña AEAT.
+
+La prioridad es el NIF español o un VAT comunitario válido. En los demás
+casos, se utiliza el primer identificador nativo disponible, en este
+orden: pasaporte, documento extranjero o VAT, certificado de residencia
+y otro documento. Un VAT sin formato comunitario válido puede servir
+como documento extranjero según la validación fiscal existente.
+
+Para validar una identificación se requiere un VAT útil o uno de esos
+documentos. El valor ``NO_DISPONIBLE`` y un contacto extranjero sin
+documento no acreditan una identificación válida.
+
+Durante la actualización desde la versión anterior, los tipos heredados
+03, 05 y 06 se copian a su clave nativa cuando está vacía. Si hay datos
+incompletos, un tipo no convertible o un valor nativo distinto, la
+actualización continúa; conserva las columnas heredadas para
+conciliación y registra el contacto y el motivo en el log, sin incluir
+el documento personal.
+
 Known issues / Roadmap
 ======================
 
@@ -138,6 +163,12 @@ Known issues / Roadmap
    auto-selecciona por fechas de validez.
 -  Las partes específicas de las Diputaciones Forales no están
    incluidas.
+-  Las futuras migraciones de ``l10n_es_aeat_mod592``,
+   ``l10n_es_aeat_sii_oca`` y ``l10n_es_vat_book`` deben adaptar sus
+   referencias a los campos retirados de identificación AEAT.
+   ``l10n_es_vat_book`` también debe revisar que los contactos
+   extranjeros sin VAT ni documento real ya no se consideran
+   identificados para AEAT.
 
 Bug Tracker
 ===========
@@ -180,7 +211,7 @@ Contributors
 -  Valentin Vinagre <valentin.vinagre@sygel.es>
 -  Manuel Regidor <manuel.regidor@sygel.es>
 -  Jairo Llopis (https://www.moduon.team)
--  ``Studio73 <https://www.studio73.es>``\ \_\_:
+-  `Studio73 <https://www.studio73.es>`__:
 
    -  Pablo Cortés
 

@@ -28,35 +28,35 @@
                         type="object"
                         string="Calculate"
                         invisible="state != 'draft'"
-                        icon="fa-cogs"
+                        icon="settings_applications"
                     />
                     <button
                         name="button_recalculate"
                         type="object"
                         string="Recalculate"
                         invisible="state != 'calculated'"
-                        icon="fa-refresh"
+                        icon="refresh"
                     />
                     <button
                         name="button_confirm"
                         string="Confirm"
                         type="object"
                         invisible="state != 'calculated'"
-                        icon="fa-check"
+                        icon="check"
                     />
                     <button
                         name="%(action_wizard_aeat_export)d"
                         type="action"
                         string="Export to BOE"
                         invisible="state not in ('posted', 'done')"
-                        icon="fa-share"
+                        icon="share"
                     />
                     <button
                         name="button_recover"
                         string="Draft"
                         type="object"
                         invisible="state != 'cancelled'"
-                        icon="fa-undo"
+                        icon="undo"
                     />
                     <button
                         name="button_open_move"
@@ -77,14 +77,14 @@
                         string="Cancel"
                         type="object"
                         invisible="state not in ('calculated', 'done')"
-                        icon="fa-times"
+                        icon="close"
                     />
                     <button
                         name="button_unpost"
                         string="Cancel"
                         type="object"
                         invisible="state != 'posted'"
-                        icon="fa-times"
+                        icon="close"
                     />
                     <field
                         name="state"

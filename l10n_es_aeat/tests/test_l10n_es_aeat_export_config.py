@@ -1,5 +1,7 @@
 # © 2017 FactorLibre - Hugo Santos <hugo.santos@factorlibre.com>
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0
+from odoo.tools import BinaryBytes
+
 from odoo.addons.base.tests.common import BaseCommon
 
 
@@ -175,3 +177,38 @@ class TestL10nEsAeatExportConfig(BaseCommon):
         )
         export_file = export_to_boe._export_config(new_report, export_config)
         self.assertEqual(b"<T           001001500X >", export_file)
+
+    def test_compare_boe_file(self) -> None:
+        export_config = self.env["aeat.model.export.config"].create(
+            {
+                "name": "Test compare export config",
+                "model_number": "000",
+                "config_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "sequence": 1,
+                            "name": "BOE data",
+                            "fixed_value": "BOE",
+                            "export_type": "string",
+                            "size": 3,
+                            "alignment": "left",
+                        },
+                    )
+                ],
+            }
+        )
+        wizard = (
+            self.env["l10n.es.aeat.report.compare_boe_file"]
+            .with_context(
+                active_id=export_config.id,
+                active_model=export_config._name,
+            )
+            .create({"data": BinaryBytes(b"BOE", filename="boe.txt")})
+        )
+
+        action = wizard.button_compare_file()
+
+        self.assertEqual(action["res_id"], wizard.id)
+        self.assertEqual(wizard.line_ids.content, "BOE")

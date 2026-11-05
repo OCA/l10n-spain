@@ -400,13 +400,16 @@ puede ser introducida por datos XML o por interfaz.</li>
 <ul class="simple">
 <li><a class="reference internal" href="#installation" id="toc-entry-1">Installation</a></li>
 <li><a class="reference internal" href="#configuration" id="toc-entry-2">Configuration</a></li>
-<li><a class="reference internal" href="#usage" id="toc-entry-3">Usage</a></li>
-<li><a class="reference internal" href="#known-issues-roadmap" id="toc-entry-4">Known issues / Roadmap</a></li>
-<li><a class="reference internal" href="#bug-tracker" id="toc-entry-5">Bug Tracker</a></li>
-<li><a class="reference internal" href="#credits" id="toc-entry-6">Credits</a><ul>
-<li><a class="reference internal" href="#authors" id="toc-entry-7">Authors</a></li>
-<li><a class="reference internal" href="#contributors" id="toc-entry-8">Contributors</a></li>
-<li><a class="reference internal" href="#maintainers" id="toc-entry-9">Maintainers</a></li>
+<li><a class="reference internal" href="#usage" id="toc-entry-3">Usage</a><ul>
+<li><a class="reference internal" href="#identificacion-de-clientes-para-la-aeat" id="toc-entry-4">Identificación de clientes para la AEAT</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#known-issues-roadmap" id="toc-entry-5">Known issues / Roadmap</a></li>
+<li><a class="reference internal" href="#bug-tracker" id="toc-entry-6">Bug Tracker</a></li>
+<li><a class="reference internal" href="#credits" id="toc-entry-7">Credits</a><ul>
+<li><a class="reference internal" href="#authors" id="toc-entry-8">Authors</a></li>
+<li><a class="reference internal" href="#contributors" id="toc-entry-9">Contributors</a></li>
+<li><a class="reference internal" href="#maintainers" id="toc-entry-10">Maintainers</a></li>
 </ul>
 </li>
 </ul>
@@ -478,18 +481,45 @@ p12</li>
 <li>Ya se podrá añadir un inmueble en el campo Inmueble de las lineas de
 factura.</li>
 </ol>
+<div class="section" id="identificacion-de-clientes-para-la-aeat">
+<h3><a class="toc-backref" href="#toc-entry-4">Identificación de clientes para la AEAT</a></h3>
+<p>Introduzca los documentos en el apartado nativo <strong>Identificadores
+adicionales</strong> de la ficha del contacto. El módulo utiliza estos mismos
+datos para la identificación de la AEAT, evitando duplicar campos de
+documento en la pestaña AEAT.</p>
+<p>La prioridad es el NIF español o un VAT comunitario válido. En los demás
+casos, se utiliza el primer identificador nativo disponible, en este
+orden: pasaporte, documento extranjero o VAT, certificado de residencia
+y otro documento. Un VAT sin formato comunitario válido puede servir
+como documento extranjero según la validación fiscal existente.</p>
+<p>Para validar una identificación se requiere un VAT útil o uno de esos
+documentos. El valor <tt class="docutils literal">NO_DISPONIBLE</tt> y un contacto extranjero sin
+documento no acreditan una identificación válida.</p>
+<p>Durante la actualización desde la versión anterior, los tipos heredados
+03, 05 y 06 se copian a su clave nativa cuando está vacía. Si hay datos
+incompletos, un tipo no convertible o un valor nativo distinto, la
+actualización continúa; conserva las columnas heredadas para
+conciliación y registra el contacto y el motivo en el log, sin incluir
+el documento personal.</p>
+</div>
 </div>
 <div class="section" id="known-issues-roadmap">
-<h2><a class="toc-backref" href="#toc-entry-4">Known issues / Roadmap</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-5">Known issues / Roadmap</a></h2>
 <ul class="simple">
 <li>La configuración de exportación a BOE no se filtran ni se
 auto-selecciona por fechas de validez.</li>
 <li>Las partes específicas de las Diputaciones Forales no están
 incluidas.</li>
+<li>Las futuras migraciones de <tt class="docutils literal">l10n_es_aeat_mod592</tt>,
+<tt class="docutils literal">l10n_es_aeat_sii_oca</tt> y <tt class="docutils literal">l10n_es_vat_book</tt> deben adaptar sus
+referencias a los campos retirados de identificación AEAT.
+<tt class="docutils literal">l10n_es_vat_book</tt> también debe revisar que los contactos
+extranjeros sin VAT ni documento real ya no se consideran
+identificados para AEAT.</li>
 </ul>
 </div>
 <div class="section" id="bug-tracker">
-<h2><a class="toc-backref" href="#toc-entry-5">Bug Tracker</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-6">Bug Tracker</a></h2>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/l10n-spain/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
@@ -497,9 +527,9 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
-<h2><a class="toc-backref" href="#toc-entry-6">Credits</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-7">Credits</a></h2>
 <div class="section" id="authors">
-<h3><a class="toc-backref" href="#toc-entry-7">Authors</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-8">Authors</a></h3>
 <ul class="simple">
 <li>Pexego</li>
 <li>Acysos S.L.</li>
@@ -508,7 +538,7 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 </ul>
 </div>
 <div class="section" id="contributors">
-<h3><a class="toc-backref" href="#toc-entry-8">Contributors</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-9">Contributors</a></h3>
 <ul class="simple">
 <li>Pexego (<a class="reference external" href="http://www.pexego.es">http://www.pexego.es</a>)</li>
 <li>Ignacio Ibeas, Acysos (<a class="reference external" href="http://www.acysos.com">http://www.acysos.com</a>)</li>
@@ -527,7 +557,7 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <li>Valentin Vinagre &lt;<a class="reference external" href="mailto:valentin.vinagre&#64;sygel.es">valentin.vinagre&#64;sygel.es</a>&gt;</li>
 <li>Manuel Regidor &lt;<a class="reference external" href="mailto:manuel.regidor&#64;sygel.es">manuel.regidor&#64;sygel.es</a>&gt;</li>
 <li>Jairo Llopis (<a class="reference external" href="https://www.moduon.team">https://www.moduon.team</a>)</li>
-<li><tt class="docutils literal">Studio73 <span class="pre">&lt;https://www.studio73.es&gt;</span></tt>__:<ul>
+<li><a class="reference external" href="https://www.studio73.es">Studio73</a>:<ul>
 <li>Pablo Cortés</li>
 </ul>
 </li>
@@ -535,7 +565,7 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 </ul>
 </div>
 <div class="section" id="maintainers">
-<h3><a class="toc-backref" href="#toc-entry-9">Maintainers</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-10">Maintainers</a></h3>
 <p>This module is maintained by the OCA.</p>
 <a class="reference external image-reference" href="https://odoo-community.org">
 <img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" />

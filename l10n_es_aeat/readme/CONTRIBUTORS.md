@@ -15,6 +15,6 @@
 - Valentin Vinagre \<<valentin.vinagre@sygel.es>\>
 - Manuel Regidor \<<manuel.regidor@sygel.es>\>
 - Jairo Llopis (<https://www.moduon.team>)
-- `Studio73 <https://www.studio73.es>`__:
+- [Studio73](https://www.studio73.es):
   - Pablo Cortés
 - Carlos Sainz-Pardo (https://www.netkia.es)
