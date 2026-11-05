@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<odoo noupdate="1">
+    <record id="face_rest_link" model="ir.config_parameter">
+        <field name="key">facturae.face.ws_rest</field>
+        <field name="value">https://se-api-face.redsara.es</field>
+    </record>
+</odoo>
