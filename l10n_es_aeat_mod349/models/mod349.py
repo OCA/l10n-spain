@@ -638,7 +638,7 @@ class Mod349PartnerRefund(models.Model):
                 and record.total_origin_amount >= 0.0
             )
 
-    @api.depends("refund_detail_ids")
+    @api.depends("refund_detail_ids.amount_untaxed", "total_origin_amount")
     def _compute_total_operation_amount(self):
         for record in self:
             rectified_amount = sum(record.mapped("refund_detail_ids.amount_untaxed"))
