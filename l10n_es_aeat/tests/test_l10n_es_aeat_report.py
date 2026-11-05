@@ -104,6 +104,61 @@ class TestL10nEsAeatReport(BaseCommon):
         report_form = Form(self.AeatReport)
         self.assertEqual(report_form.representative_vat, "36477262K")
 
+    def test_export_to_boe_file(self) -> None:
+        export_config = self.env["aeat.model.export.config"].create(
+            {
+                "name": "Test BOE export config",
+                "model_number": "999",
+                "model_id": self.env["ir.model"]._get_id(TEST_MODEL_NAME),
+                "date_start": "1900-01-01",
+                "config_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "sequence": 1,
+                            "name": "BOE data",
+                            "fixed_value": "BOE",
+                            "export_type": "string",
+                            "size": 3,
+                            "alignment": "left",
+                        },
+                    )
+                ],
+            }
+        )
+        report = self.AeatReport.create(
+            {
+                "company_vat": "12345678Z",
+                "contact_name": "Test Contact",
+                "contact_phone": "123456789",
+                "year": 2026,
+                "period_type": "0A",
+                "date_start": "2026-01-01",
+                "date_end": "2026-12-31",
+                "export_config_id": export_config.id,
+            }
+        )
+        wizard = (
+            self.env["l10n.es.aeat.report.export_to_boe"]
+            .with_context(active_id=report.id, active_model=report._name)
+            .create({})
+        )
+
+        action = wizard.action_get_file()
+        attachment = self.env["ir.attachment"].search(
+            [
+                ("name", "=", wizard.name),
+                ("res_model", "=", report._name),
+                ("res_id", "=", report.id),
+            ],
+            limit=1,
+        )
+
+        self.assertEqual(action["res_id"], wizard.id)
+        self.assertEqual(wizard.data.content, b"BOE")
+        self.assertEqual(attachment.raw.content, b"BOE")
+
     def test_01_bank_domain_only_accepts_iban_of_report_partner(self):
         report = self.AeatReport.new({"company_id": self.company.id})
         partner = report.partner_id
