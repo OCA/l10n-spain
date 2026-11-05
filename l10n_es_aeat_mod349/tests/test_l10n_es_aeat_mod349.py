@@ -204,7 +204,7 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
         model349_2t.button_calculate()
         self.assertEqual(model349_2t.total_partner_records, 1)
         self.assertEqual(model349_2t.total_partner_refunds, 1)
-        self.assertEqual(model349_2t.total_partner_refunds_amount, 300)
+        self.assertEqual(model349_2t.total_partner_refunds_amount, 0)
         e_record = model349_2t.partner_record_ids.filtered(
             lambda x: x.operation_key == "E"
         )
@@ -292,6 +292,7 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
         self.assertEqual(model349_2.total_partner_refunds, 1)
         self.assertEqual(model349_2.partner_refund_ids.total_origin_amount, 300)
         self.assertEqual(model349_2.partner_refund_ids.total_operation_amount, 200)
+        self.assertEqual(model349_2.total_partner_refunds_amount, 200)
 
         model349_3 = model349_model.create(
             {
@@ -318,6 +319,7 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
         # Correct the original amount by hand
         model349_3.partner_refund_ids.total_origin_amount = 250
         self.assertEqual(model349_3.partner_refund_ids.total_operation_amount, 150)
+        self.assertEqual(model349_3.total_partner_refunds_amount, 150)
 
     def test_model_349_refund_with_multiple_origin_invoices(self):
         # Create 2 vendor bill and 1 refunds in different periods
