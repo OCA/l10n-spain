@@ -1,5 +1,6 @@
 # Copyright 2025 ForgeFlow S.L.
 # Copyright 2025 Tecnativa - Pedro M. Baeza
+# Copyright 2026 César Andrés Sánchez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 import datetime
 import json
@@ -13,6 +14,8 @@ from zeep.transports import Transport
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools import split_every
+
+from odoo.addons.base.models.ir_model import MODULE_UNINSTALL_FLAG
 
 VERIFACTU_SEND_STATES = [
     ("not_sent", "Not sent"),
@@ -123,6 +126,35 @@ class VerifactuInvoiceEntry(models.Model):
     @property
     def document(self):
         return self.env[self.model].browse(self.document_id).exists()
+
+    def _is_verifactu_sealed(self):
+        """Return True when the entry already carries a document hash."""
+        self.ensure_one()
+        return bool(self.document_hash)
+
+    def unlink(self):
+        """Prevent deletion of sealed local RF nodes.
+
+        Settings ACL alone is not enough: a Settings user could otherwise
+        remove a hashed ``not_sent`` / ``sent`` entry and lose ``aeat_json_data``.
+        Explicit cleanup (tests / rare maintenance) must pass
+        ``verifactu_force_unlink`` in the context.
+
+        ACL is checked first so Accounting users still get ``AccessError``.
+        """
+        self.check_access("unlink")
+        if not self.env.context.get(
+            "verifactu_force_unlink"
+        ) and not self.env.context.get(MODULE_UNINSTALL_FLAG):
+            sealed = self.filtered(lambda r: r._is_verifactu_sealed())
+            if sealed:
+                raise UserError(
+                    _(
+                        "You cannot delete sealed VERI*FACTU invoice entries "
+                        "(document hash already generated)."
+                    )
+                )
+        return super().unlink()
 
     @api.model
     def _cron_send_documents_to_verifactu(self):
