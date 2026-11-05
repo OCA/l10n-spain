@@ -59,7 +59,6 @@
         <field
             name="tax_xmlid_ids"
             eval="[(6, 0, [
-                ref('s_iva_e'),
                 ref('s_iva0_sp_i'),
                 ref('s_iva_ns')
             ])]"
@@ -101,6 +100,7 @@
         <field
             name="tax_xmlid_ids"
             eval="[(6, 0, [
+                ref('s_iva_e'),
                 ref('s_iva0'),
                 ref('s_iva0_art22'),
                 ref('s_iva0_art23'),
