@@ -5,11 +5,11 @@
 # Copyright 2019 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-import base64
 import re
 
 from odoo import exceptions, fields, models
 from odoo.fields import Domain
+from odoo.tools import BinaryBytes
 from odoo.tools.safe_eval import safe_eval
 
 EXPRESSION_PATTERN = re.compile(r"(\$\{.+?\})")
@@ -144,7 +144,6 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
         else:
             raise exceptions.UserError(self.env._("No export configuration selected."))
         # Generate the file and save as attachment
-        file = base64.encodebytes(contents)
         # We need to split name and format it to avoid warning W8301
         file_name_tpl = self.env._("%(number)s_report_%(date)s.txt")
         file_name = file_name_tpl % {
@@ -161,12 +160,18 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
         attachment_obj.create(
             {
                 "name": file_name,
-                "datas": file,
+                "raw": contents,
                 "res_model": report._name,
                 "res_id": report.id,
             }
         )
-        self.write({"state": "get", "data": file, "name": file_name})
+        self.write(
+            {
+                "state": "get",
+                "data": BinaryBytes(contents, filename=file_name),
+                "name": file_name,
+            }
+        )
         # Force view to be the parent one
         data_obj = self.env.ref("l10n_es_aeat.wizard_aeat_export")
         # TODO: Permitir si se quiere heredar la vista padre

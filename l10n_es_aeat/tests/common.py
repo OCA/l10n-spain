@@ -309,7 +309,7 @@ class TestL10nEsAeatModBase(BaseCommon):
                 "email": "billing.user@example.com",
                 "company_id": cls.company.id,
                 "company_ids": [Command.set([cls.company.id])],
-                "group_ids": [Command.set([invocing_grp.id, account_manager_grp.id])],
+                "group_ids": [Command.set([invocing_grp.id])],
             }
         )
         cls.account_user = Users.create(
