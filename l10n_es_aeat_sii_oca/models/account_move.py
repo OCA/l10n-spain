@@ -487,6 +487,11 @@ class AccountMove(models.Model):
 
     def _sii_invoice_dict_not_modified(self):
         self.ensure_one()
+        if not self.aeat_content_sent:
+            # Registered outside Odoo (AEAT portal, previous system, data
+            # migration): without the sent content we cannot tell whether it
+            # changed, so consider it modified.
+            return False
         to_send = self._get_aeat_invoice_dict()
         content_sent = json.loads(self.aeat_content_sent)
         return to_send == content_sent
