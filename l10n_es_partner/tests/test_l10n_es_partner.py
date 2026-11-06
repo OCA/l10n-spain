@@ -56,6 +56,17 @@ class TestL10nEsPartner(common.TransactionCase):
             ),
         )
 
+    def test_search_view_commercial(self):
+        """The name filter of the contacts search view finds the trade name"""
+        partner_obj = self.env["res.partner"]
+        self.assertIn(
+            self.partner, partner_obj.search([("display_name", "ilike", "comercial")])
+        )
+        self.assertNotIn(
+            self.partner,
+            partner_obj.search([("display_name", "not ilike", "comercial")]),
+        )
+
     def test_import_banks(self):
         # Then import banks
         self.wizard.import_local()
