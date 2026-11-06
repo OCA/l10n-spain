@@ -15,3 +15,5 @@
   - Jorge Hernández \<<jhernandez@coninpe.com>\>
 - [Sygel](https://www.sygel.es):
   - Alberto Martínez \<<alberto.martinez@sygel.es>\>
+- [Moduon](https://www.moduon.team):
+  - Emilio Pascual

@@ -17,7 +17,7 @@
 "aeat_mod115_sub01_export_line_16","aeat_mod115_sub01_export_config",16,"Resultado a ingresar [05]","float",17,2,"right","True","N",0,,"X","${object.casilla_05}",,,,
 "aeat_mod115_sub01_export_line_17","aeat_mod115_sub01_export_config",17,"Complementaria - Declaración complementaria","boolean",1,0,"left",,"N",0," ","X","${object.statement_type == 'C'}",,,,
 "aeat_mod115_sub01_export_line_18","aeat_mod115_sub01_export_config",18,"Complementaria - Número justificante de la declaración anterior","string",13,0,"left",,"N",0,,"X","${object.previous_number if object.statement_type == 'C' else ''}",,,,
-"aeat_mod115_sub01_export_line_19","aeat_mod115_sub01_export_config",19,"Domiciliación - IBAN","string",34,0,"left",,"N",0,,"X","${object.partner_bank_id.sanitized_acc_number or """"}",,,,
+"aeat_mod115_sub01_export_line_19","aeat_mod115_sub01_export_config",19,"Domiciliación - IBAN","string",34,0,"left",,"N",0,,"X","${object.partner_bank_id.sanitized_account_number or """"}",,,,
 "aeat_mod115_sub01_export_line_20","aeat_mod115_sub01_export_config",20,"Reservado para la Administración (236)","string",236,0,"left",,"N",0,,"X",,,,,
 "aeat_mod115_sub01_export_line_21","aeat_mod115_sub01_export_config",21,"Reservado para el sello electrónico de la AEAT (13)","string",13,0,"left",,"N",0,,"X",,,,,
 "aeat_mod115_sub01_export_line_22","aeat_mod115_sub01_export_config",22,"Indicador de fin de registro: </T11501000>","string",12,0,"left",,"N",0,,"X",,"</T11501000>",,,

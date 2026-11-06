@@ -12,14 +12,14 @@ class TestL10nEsAeatMod115Base(TestL10nEsAeatModBase):
     # Set 'debug' attribute to True to easy debug this test
     # Do not forget to include '--log-handler aeat:DEBUG' in Odoo command line
     debug = False
-    taxes_purchase = {
+    taxes_purchase = {  # noqa: RUF012
         # tax code: (base, tax_amount)
         "P_IRPF19A": (1000, 190),
         "P_IRPF195A": (2000, 390),
         "P_IRPF20A": (3000, 600),
         "P_IRPF21A": (4000, 840),
     }
-    taxes_result = {
+    taxes_result = {  # noqa: RUF012
         # Base retenciones e ingresos a cuenta
         "2": (
             (2 * 1000)
@@ -45,7 +45,7 @@ class TestL10nEsAeatMod115Base(TestL10nEsAeatModBase):
             {
                 "name": "9990000000115",
                 "company_id": cls.company.id,
-                "company_vat": "1234567890",
+                "company_vat": "12345678Z",
                 "contact_name": "Test owner",
                 "statement_type": "N",
                 "support_type": "T",
@@ -97,6 +97,13 @@ class TestL10nEsAeatMod115Base(TestL10nEsAeatModBase):
             self.model115.button_confirm()
         self.model115.partner_bank_id = self.customer_bank.id
         self.model115.button_confirm()
+        # Check the direct debit IBAN is exported to the BOE file
+        export_file = (
+            self.env["l10n.es.aeat.report.export_to_boe"]
+            .create({"name": "test_mod115.txt"})
+            ._export_config(self.model115, self.model115.export_config_id)
+        )
+        self.assertIn(b"ES6621000418401234567891", export_file)
 
     def test_negative_model_115(self):
         # Make the invoice in a different period for having negative result
