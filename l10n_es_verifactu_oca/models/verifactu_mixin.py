@@ -40,10 +40,8 @@ class VerifactuMixin(models.AbstractModel):
         compute="_compute_verifactu_enabled",
         search="_search_verifactu_enabled",
     )
-    verifactu_hash_string = fields.Char(
-        string="VERI*FACTU hash string", copy=False, tracking=True
-    )
-    verifactu_hash = fields.Char(string="VERI*FACTU hash", copy=False, tracking=True)
+    verifactu_hash_string = fields.Char(string="VERI*FACTU hash string", copy=False)
+    verifactu_hash = fields.Char(string="VERI*FACTU hash", copy=False)
     verifactu_refund_type = fields.Selection(
         string="VERI*FACTU refund type",
         selection=[
