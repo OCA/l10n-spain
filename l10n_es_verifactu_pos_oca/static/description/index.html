@@ -379,18 +379,42 @@ ul.auto-toc {
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#known-issues-roadmap" id="toc-entry-1">Known issues / Roadmap</a></li>
-<li><a class="reference internal" href="#bug-tracker" id="toc-entry-2">Bug Tracker</a></li>
-<li><a class="reference internal" href="#credits" id="toc-entry-3">Credits</a><ul>
-<li><a class="reference internal" href="#authors" id="toc-entry-4">Authors</a></li>
-<li><a class="reference internal" href="#contributors" id="toc-entry-5">Contributors</a></li>
-<li><a class="reference internal" href="#maintainers" id="toc-entry-6">Maintainers</a></li>
+<li><a class="reference internal" href="#configuration" id="toc-entry-1">Configuration</a></li>
+<li><a class="reference internal" href="#usage" id="toc-entry-2">Usage</a></li>
+<li><a class="reference internal" href="#known-issues-roadmap" id="toc-entry-3">Known issues / Roadmap</a></li>
+<li><a class="reference internal" href="#bug-tracker" id="toc-entry-4">Bug Tracker</a></li>
+<li><a class="reference internal" href="#credits" id="toc-entry-5">Credits</a><ul>
+<li><a class="reference internal" href="#authors" id="toc-entry-6">Authors</a></li>
+<li><a class="reference internal" href="#contributors" id="toc-entry-7">Contributors</a></li>
+<li><a class="reference internal" href="#maintainers" id="toc-entry-8">Maintainers</a></li>
 </ul>
 </li>
 </ul>
 </div>
+<div class="section" id="configuration">
+<h2><a class="toc-backref" href="#toc-entry-1">Configuration</a></h2>
+<p>El parámetro de sistema <tt class="docutils literal">l10n_es_verifactu_pos_oca.max_chaining_attempts</tt>
+(por defecto: 10) limita cuántas veces reintenta la acción planificada un
+mismo pedido. Los fallos que se resuelven solos, como una colisión del bloqueo
+de encadenamiento, no cuentan; un pedido que alcanza el límite deja de entrar
+en el barrido y necesita el botón manual.</p>
+</div>
+<div class="section" id="usage">
+<h2><a class="toc-backref" href="#toc-entry-2">Usage</a></h2>
+<p>Cuando falla el encadenamiento de un pedido de TPV ya cobrado, la venta no se
+interrumpe: el pedido queda marcado y se localiza con el filtro «VERI*FACTU
+failed» en Punto de venta &gt; Pedidos, con el error a la vista en su pestaña
+VERI*FACTU.</p>
+<p>Los pedidos pendientes los encadena la acción planificada «Generar el
+encadenamiento VERI*FACTU pendiente de los pedidos de TPV», que se ejecuta
+cada diez minutos y toma primero los más antiguos, de modo que entran en la
+cadena en el orden en que se cobraron.</p>
+<p>El botón «Generar encadenamiento VERI*FACTU» de la ficha del pedido hace lo
+mismo para un pedido suelto. Es la vía de vuelta para un pedido que haya
+agotado los intentos, porque el botón no mira ese contador.</p>
+</div>
 <div class="section" id="known-issues-roadmap">
-<h2><a class="toc-backref" href="#toc-entry-1">Known issues / Roadmap</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-3">Known issues / Roadmap</a></h2>
 <ul class="simple">
 <li>Implement cancelling simplified and complete invoices from the PoS</li>
 <li>Configure new chaining from PoS Config</li>
@@ -398,7 +422,7 @@ ul.auto-toc {
 </ul>
 </div>
 <div class="section" id="bug-tracker">
-<h2><a class="toc-backref" href="#toc-entry-2">Bug Tracker</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-4">Bug Tracker</a></h2>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/l10n-spain/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
@@ -406,22 +430,22 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
-<h2><a class="toc-backref" href="#toc-entry-3">Credits</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-5">Credits</a></h2>
 <div class="section" id="authors">
-<h3><a class="toc-backref" href="#toc-entry-4">Authors</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-6">Authors</a></h3>
 <ul class="simple">
 <li>Factor Libre S.L.</li>
 </ul>
 </div>
 <div class="section" id="contributors">
-<h3><a class="toc-backref" href="#toc-entry-5">Contributors</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-7">Contributors</a></h3>
 <ul class="simple">
 <li>Luis J. Salvatierra &lt;<a class="reference external" href="mailto:luis.salvatierra&#64;factorlibre.com">luis.salvatierra&#64;factorlibre.com</a>&gt;</li>
 <li>Almudena de La Puente &lt;<a class="reference external" href="mailto:almudena.delapuente&#64;factorlibre.com">almudena.delapuente&#64;factorlibre.com</a>&gt;</li>
 </ul>
 </div>
 <div class="section" id="maintainers">
-<h3><a class="toc-backref" href="#toc-entry-6">Maintainers</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-8">Maintainers</a></h3>
 <p>This module is maintained by the OCA.</p>
 <a class="reference external image-reference" href="https://odoo-community.org">
 <img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" />
