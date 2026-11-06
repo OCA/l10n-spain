@@ -239,6 +239,124 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
             },
         )
 
+    def _create_sii_partner(self, vat, country_xmlid, name="SII partner"):
+        return (
+            self.env["res.partner"]
+            .with_context(no_vat_validation=True)
+            .create(
+                {
+                    "name": name,
+                    "country_id": self.ref(country_xmlid) if country_xmlid else False,
+                    "vat": vat,
+                }
+            )
+        )
+
+    def _get_sii_counterpart(self, partner, id_type, move_type="out_invoice"):
+        """Post an invoice for the partner with a fiscal position whose SII
+        identification type is ``id_type`` and return its Contraparte."""
+        self._activate_certificate(self.certificate_password)
+        fp_extra = self.browse_ref(f"l10n_es.{self.company.id}_fp_extra")
+        fp_extra.sii_partner_identification_type = id_type
+        vals = {"partner_id": partner.id, "fiscal_position_id": fp_extra.id}
+        if move_type == "in_invoice":
+            invoice = self._create_invoice_for_sii("in_invoice")
+            vals["ref"] = "SUPPLIER-XI-001"
+            invoice.write(vals)
+        else:
+            invoice = self.invoice.copy(vals)
+        invoice.action_post()
+        sii_info = invoice._get_aeat_invoice_dict()
+        key = "FacturaRecibida" if move_type == "in_invoice" else "FacturaExpedida"
+        return sii_info[key]["Contraparte"]
+
+    def test_01_sii_identifier_xi_intracommunity(self):
+        partner = self._create_sii_partner("XI123456782", "base.uk")
+        counterpart = self._get_sii_counterpart(partner, "2")
+        self.assertEqual(counterpart["IDOtro"], {"IDType": "02", "ID": "XI123456782"})
+
+    def test_02_sii_identifier_xi_extracommunity(self):
+        partner = self._create_sii_partner("XI123456782", "base.uk")
+        counterpart = self._get_sii_counterpart(partner, "3")
+        self.assertEqual(
+            counterpart["IDOtro"],
+            {"CodigoPais": "GB", "IDType": "06", "ID": "123456782"},
+        )
+        counterpart = self._get_sii_counterpart(partner, "1")
+        self.assertEqual(counterpart["IDOtro"], {"IDType": "02", "ID": "XI123456782"})
+
+    def test_03_sii_identifier_xi_supplier_invoice(self):
+        partner = self._create_sii_partner("XI123456782", "base.uk")
+        counterpart = self._get_sii_counterpart(partner, "2", "in_invoice")
+        self.assertEqual(counterpart["IDOtro"], {"IDType": "02", "ID": "XI123456782"})
+        counterpart = self._get_sii_counterpart(partner, "3", "in_invoice")
+        self.assertEqual(
+            counterpart["IDOtro"],
+            {"CodigoPais": "GB", "IDType": "06", "ID": "123456782"},
+        )
+
+    def test_04_sii_identifier_other_countries_unchanged(self):
+        for vat in ("EL094259216", "GR094259216"):
+            greek = self._create_sii_partner(vat, "base.gr", "Greek customer")
+            counterpart = self._get_sii_counterpart(greek, "2")
+            self.assertEqual(
+                counterpart["IDOtro"],
+                {"IDType": "02", "ID": "EL094259216"},
+                f"Greek VAT {vat} must be sent with the EL prefix",
+            )
+            counterpart = self._get_sii_counterpart(greek, "1")
+            self.assertEqual(
+                counterpart["IDOtro"],
+                {"CodigoPais": "GR", "IDType": "02", "ID": "EL094259216"},
+            )
+        # The VAT prefix keeps coming from the partner country
+        italian = self._create_sii_partner("IT00743110157", "base.lu", "Italian")
+        counterpart = self._get_sii_counterpart(italian, "2")
+        self.assertEqual(counterpart["IDOtro"], {"IDType": "02", "ID": "LU00743110157"})
+        french = self._create_sii_partner("FR23334175221", "base.fr", "French")
+        counterpart = self._get_sii_counterpart(french, "1")
+        self.assertEqual(
+            counterpart["IDOtro"],
+            {"CodigoPais": "FR", "IDType": "02", "ID": "FR23334175221"},
+        )
+
+    def test_05_sii_identifier_xi_same_partner_both_regimes(self):
+        partner = self._create_sii_partner("XI123456782", "base.uk")
+        counterpart = self._get_sii_counterpart(partner, "2")
+        self.assertEqual(counterpart["IDOtro"], {"IDType": "02", "ID": "XI123456782"})
+        counterpart = self._get_sii_counterpart(partner, "3")
+        self.assertEqual(
+            counterpart["IDOtro"],
+            {"CodigoPais": "GB", "IDType": "06", "ID": "123456782"},
+        )
+
+    def test_06_sii_identifier_xi_retry_1117(self):
+        partner = self._create_sii_partner("XI123456782", "base.uk")
+        fp_extra = self.browse_ref(f"l10n_es.{self.company.id}_fp_extra")
+        fp_extra.sii_partner_identification_type = "1"
+        invoice = self._create_invoice_for_sii("out_invoice")
+        invoice.write(
+            {
+                "partner_id": partner.id,
+                "fiscal_position_id": fp_extra.id,
+                "aeat_send_error": "1117 | Retry as not registered",
+            }
+        )
+        self.assertEqual(
+            invoice._get_sii_identifier(),
+            {"IDOtro": {"CodigoPais": "GB", "IDType": "07", "ID": "123456782"}},
+        )
+
+    def test_07_sii_identifier_xi_without_country(self):
+        partner = self._create_sii_partner("XI123456782", False)
+        counterpart = self._get_sii_counterpart(partner, "2")
+        self.assertEqual(counterpart["IDOtro"], {"IDType": "02", "ID": "XI123456782"})
+        counterpart = self._get_sii_counterpart(partner, "3")
+        self.assertEqual(
+            counterpart["IDOtro"],
+            {"CodigoPais": "GB", "IDType": "06", "ID": "123456782"},
+        )
+
     def test_job_creation(self):
         self.assertTrue(self.invoice.invoice_jobs_ids)
 

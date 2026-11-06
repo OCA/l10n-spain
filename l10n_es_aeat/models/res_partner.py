@@ -89,6 +89,24 @@ class ResPartner(models.Model):
             )
         return europe.country_ids.mapped("code") + ["XI"]
 
+    def _get_aeat_vat_prefix(self):
+        """Return the VAT prefix in AEAT format, taken from the VAT number."""
+        self.ensure_one()
+        country_code = self._map_aeat_country_code(self._parse_aeat_vat_info()[0])
+        country = self.env["res.country"].search([("code", "=", country_code)], limit=1)
+        if country:
+            return self._map_aeat_country_iso_code(country)
+        return country_code
+
+    def _get_aeat_declared_country_code(self):
+        """Return the country code to declare to AEAT, mapping the VAT prefixes
+        that are not a country code to their country.
+        """
+        self.ensure_one()
+        country_code = self._parse_aeat_vat_info()[0]
+        country_code_map = {"XI": "GB"}
+        return country_code_map.get(country_code, country_code)
+
     def _parse_aeat_vat_info(self):
         """Return tuple with split info (country_code, identifier_type and
         vat_number) from vat and country partner
