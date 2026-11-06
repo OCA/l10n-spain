@@ -772,6 +772,12 @@ class SiiMixin(models.AbstractModel):
         for document in self.filtered(
             lambda i: i.state in self._get_valid_document_states()
         ):
+            date_error = document._get_sii_registration_date_error()
+            if date_error:
+                document.write(
+                    {"aeat_send_failed": True, "aeat_send_error": date_error}
+                )
+                continue
             if document.aeat_state == "not_sent":
                 tipo_comunicacion = "A0"
             else:
@@ -854,6 +860,25 @@ class SiiMixin(models.AbstractModel):
                 new_cr.commit()
                 new_cr.close()
                 raise ValidationError(fault) from fault
+
+    def _get_sii_registration_date_error(self):
+        """Return an error message when the registration date that would be
+        sent is earlier than the document date (AEAT error 1176), or False."""
+        self.ensure_one()
+        if self._get_mapping_key()[:2] != "in":
+            return False
+        reg_date = fields.Date.to_date(self._get_account_registration_date())
+        document_date = fields.Date.to_date(self._get_document_date())
+        if document_date and reg_date < document_date:
+            return _(
+                "The SII account registration date (%(reg_date)s) cannot be "
+                "earlier than the supplier invoice date (%(invoice_date)s). "
+                "Send the invoice again from that date on."
+            ) % {
+                "reg_date": self._change_date_format(reg_date),
+                "invoice_date": self._change_date_format(document_date),
+            }
+        return False
 
     def confirm_one_document(self):
         self.sudo()._send_document_to_sii()

@@ -9,6 +9,7 @@
 import json
 
 from odoo import exceptions
+from odoo.fields import Date
 from odoo.modules.module import get_resource_path
 
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_certificate import (
@@ -517,6 +518,85 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
                 "2018-02-01", extra_vals=dict(extra_data_wo_ref, ref="TEST REF")
             )
         )
+
+    def _create_sii_supplier_invoice(self, invoice_date):
+        supplier = self.supplier.copy()
+        supplier.country_id = self.env.ref("base.es")
+        supplier.vat = "A46180576"
+        return self._invoice_purchase_create(
+            invoice_date,
+            extra_vals={
+                "partner_id": supplier.id,
+                "ref": "TEST REF",
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "name": "Test line",
+                            "account_id": self.accounts["600000"].id,
+                            "price_unit": 100.0,
+                            "quantity": 1,
+                        },
+                    )
+                ],
+            },
+        )
+
+    def _patch_aeat_connection(self):
+        """Replace the AEAT connection and return the list of documents that
+        reached it."""
+        connected = []
+        response = {
+            "EstadoEnvio": "Correcto",
+            "CSV": "TEST",
+            "RespuestaLinea": [{"CodigoErrorRegistro": False}],
+        }
+
+        class FakeService:
+            def SuministroLRFacturasEmitidas(self, header, inv_dict):
+                return response
+
+            def SuministroLRFacturasRecibidas(self, header, inv_dict):
+                return response
+
+        def fake_connect(document, mapping_key):
+            connected.append(document)
+            return FakeService()
+
+        self.patch(type(self.invoice), "_connect_aeat", fake_connect)
+        return connected
+
+    def test_guard_future_invoice_not_sent(self):
+        """A received invoice dated in the future is not sent to the SII and
+        nothing but the send error is written on it."""
+        future_date = Date.add(Date.today(), days=30)
+        invoice = self._create_sii_supplier_invoice(future_date)
+        connected = self._patch_aeat_connection()
+        invoice._send_document_to_sii()
+        self.assertFalse(connected, "The AEAT connection must not be opened")
+        self.assertTrue(invoice.aeat_send_failed)
+        self.assertIn(invoice._change_date_format(future_date), invoice.aeat_send_error)
+        self.assertEqual(invoice.invoice_date, future_date)
+        self.assertFalse(invoice.sii_account_registration_date)
+        self.assertFalse(invoice.aeat_header_sent)
+        self.assertFalse(invoice.aeat_content_sent)
+
+    def test_guard_lets_other_invoices_through(self):
+        """The guard doesn't block a received invoice with a valid date nor an
+        issued invoice dated in the future."""
+        received = self._create_sii_supplier_invoice(
+            Date.subtract(Date.today(), days=30)
+        )
+        issued = self.invoice.copy({"invoice_date": Date.add(Date.today(), days=30)})
+        issued.action_post()
+        connected = self._patch_aeat_connection()
+        for invoice in received | issued:
+            invoice._send_document_to_sii()
+        self.assertEqual(connected, [received, issued])
+        for invoice in received | issued:
+            self.assertFalse(invoice.aeat_send_failed)
+            self.assertEqual(invoice.aeat_state, "sent")
 
     def test_unlink_draft_invoice_when_not_sent_to_sii(self):
         draft_invoice = self.invoice.copy({})

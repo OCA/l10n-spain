@@ -997,6 +997,16 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
+#. odoo-python
+#: code:addons/l10n_es_aeat_sii_oca/models/sii_mixin.py:0
+#, python-format
+msgid ""
+"The SII account registration date (%(reg_date)s) cannot be earlier than "
+"the supplier invoice date (%(invoice_date)s). Send the invoice again from "
+"that date on."
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.view_account_invoice_sii_filter
 msgid "The last attemp to sent to SII has failed"
 msgstr ""
