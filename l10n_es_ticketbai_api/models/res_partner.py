@@ -46,6 +46,13 @@ class ResPartner(models.Model):
                         % record.name
                     )
 
+    @api.model
+    def _commercial_fields(self):
+        return super()._commercial_fields() + [
+            "tbai_partner_idtype",
+            "tbai_partner_identification_number",
+        ]
+
     def tbai_get_partner_country_code(self):
         country_code, vat_number = (
             self.vat and tbai_utils.split_vat(self.vat) or (None, None)

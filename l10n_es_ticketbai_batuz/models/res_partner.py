@@ -1,7 +1,7 @@
 # Copyright 2021 Digital5, S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class ResPartner(models.Model):
@@ -12,3 +12,7 @@ class ResPartner(models.Model):
         help="Checking this mark, invoices done to this partner will be "
         "sent to LROE as simplified invoices.",
     )
+
+    @api.model
+    def _commercial_fields(self):
+        return super()._commercial_fields() + ["lroe_simplified_invoice"]
