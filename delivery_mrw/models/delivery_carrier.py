@@ -69,12 +69,16 @@ class DeliveryCarrier(models.Model):
 
     international_shipping = fields.Boolean(default=False)
 
-    @api.depends("mrw_international_service", "mrw_national_service")
+    @api.depends(
+        "mrw_international_service",
+        "mrw_national_service",
+        "international_shipping",
+    )
     def _compute_mrw_service(self):
         for item in self:
             item.mrw_service = (
                 item.mrw_international_service
-                if self.international_shipping
+                if item.international_shipping
                 else item.mrw_national_service
             )
 
@@ -172,14 +176,15 @@ class DeliveryCarrier(models.Model):
 
     @api.constrains("mrw_en_franquicia")
     def check_mrw_en_franquicia(self):
-        if self.mrw_en_franquicia in ("R", "A"):
-            raise UserError(
-                self.env._(
-                    "For the moment MRW only supports:\n"
-                    "- Sin recogida ni entrega en franquicia.\n"
-                    "- Con entrega en franquicia. "
+        for record in self:
+            if record.mrw_en_franquicia in ("R", "A"):
+                raise UserError(
+                    self.env._(
+                        "For the moment MRW only supports:\n"
+                        "- Sin recogida ni entrega en franquicia.\n"
+                        "- Con entrega en franquicia. "
+                    )
                 )
-            )
 
     @api.model
     def _mrw_log_request(self, mrw_request):
@@ -232,8 +237,8 @@ class DeliveryCarrier(models.Model):
                 "Via": street + street2,
                 "CodigoPostal": partner.zip or "",
                 "Poblacion": partner.city or "",
-                "Estado": partner.state_id.name,
-                "CodigoPais": partner.country_id.code,
+                "Estado": partner.state_id.name or "",
+                "CodigoPais": partner.country_id.code or "",
             }
         number = re.search(
             r"(?!(\d+[ºª]?-))(?!(\d+[ºª]))(?<![-\d])\d+", street
@@ -401,7 +406,7 @@ class DeliveryCarrier(models.Model):
             self.env._("MRW Shipping Label:"),
         )
         attachment = []
-        if label["EtiquetaFile"]:
+        if label and label.get("EtiquetaFile"):
             attachment = [
                 (
                     f"mrw_label_{mrw_tracking_ref}.pdf",
