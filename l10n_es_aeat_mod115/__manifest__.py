@@ -5,7 +5,7 @@
 
 {
     "name": "AEAT modelo 115",
-    "version": "19.0.1.0.0",
+    "version": "20.0.1.0.0",
     "development_status": "Mature",
     "category": "Localisation/Accounting",
     "author": "AvanzOSC, Tecnativa, Odoo Community Association (OCA)",
@@ -13,8 +13,7 @@
     "license": "AGPL-3",
     "depends": ["l10n_es", "l10n_es_aeat"],
     "data": [
-        "security/ir.model.access.csv",
-        "security/l10n_es_aeat_mod115_security.xml",
+        "security/ir.access.csv",
         "data/aeat.model.export.config.csv",
         "data/aeat.model.export.config.line.csv",
         "data/l10n.es.aeat.map.tax.csv",
