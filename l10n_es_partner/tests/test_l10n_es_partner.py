@@ -1,105 +1,124 @@
 # Copyright 2016-2017 Tecnativa - Pedro M. Baeza
 # Copyright 2017 Tecnativa - Carlos Dauden <carlos.dauden@tecnativa.com>
-# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl-3).
+# Copyright 2026 Studio73 - Pablo Cortés <pablo.cortes@studio73.es>
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-import requests
+from odoo.tests import Form
 
-from odoo.tests import common
+from .common import L10nEsPartnerCommon
 
 
-class TestL10nEsPartner(common.TransactionCase):
-    @classmethod
-    def setUpClass(cls):
-        cls._super_send = requests.Session.send
-        super().setUpClass()
-        # Make sure there's no commercial name on display_name field
-        cls.env["ir.config_parameter"].set_param("l10n_es_partner.name_pattern", "")
-        cls.country_spain = cls.env.ref("base.es")
-        cls.partner = cls.env["res.partner"].create(
-            {
-                "name": "Empresa de prueba",
-                "comercial": "Nombre comercial",
-                "vat": "ES12345678Z",
-                "country_id": cls.country_spain.id,
-            }
-        )
-        cls.wizard = cls.env["l10n.es.partner.import.wizard"].create({})
-        cls.env.user.company_id.country_id = cls.country_spain.id
-        cls.bank_obj = cls.env["res.partner.bank"].with_context(
-            default_partner_id=cls.partner.id
-        )
-
-    @classmethod
-    def _request_handler(cls, s, r, /, **kw):
-        """Don't block external requests."""
-        return cls._super_send(s, r, **kw)
-
-    def test_search_commercial(self):
-        partner_obj = self.env["res.partner"]
-        self.assertIn(
-            self.partner.id, map(lambda x: x[0], partner_obj.name_search("prueba"))
-        )
+class TestPartnerSearchAndDisplay(L10nEsPartnerCommon):
+    def test_01_search_by_partner_and_commercial_name(self):
+        partner_model = self.env["res.partner"]
+        partner_ids = [partner[0] for partner in partner_model.name_search("prueba")]
+        commercial_ids = [
+            partner[0] for partner in partner_model.name_search("comercial")
+        ]
+        self.assertIn(self.partner.id, partner_ids)
         self.assertNotIn(
             self.partner.id,
-            map(
-                lambda x: x[0], partner_obj.name_search("prueba", operator="not ilike")
-            ),
+            [
+                partner[0]
+                for partner in partner_model.name_search("prueba", operator="not ilike")
+            ],
         )
         self.assertIn(
-            self.partner.id, map(lambda x: x[0], partner_obj.name_search("comercial"))
+            self.partner,
+            partner_model.search([("display_name", "ilike", "prueba")]),
         )
         self.assertNotIn(
+            self.partner,
+            partner_model.search([("display_name", "not ilike", "prueba")]),
+        )
+        self.assertIn(self.partner.id, commercial_ids)
+        self.assertNotIn(
             self.partner.id,
-            map(
-                lambda x: x[0],
-                partner_obj.name_search("comercial", operator="not ilike"),
-            ),
+            [
+                partner[0]
+                for partner in partner_model.name_search(
+                    "comercial", operator="not ilike"
+                )
+            ],
+        )
+        self.assertIn(
+            self.partner,
+            partner_model.search([("display_name", "ilike", "comercial")]),
+        )
+        self.assertNotIn(
+            self.partner,
+            partner_model.search([("display_name", "not ilike", "comercial")]),
         )
 
-    def test_import_banks(self):
-        # Then import banks
-        self.wizard.import_local()
-        bank = self.env["res.bank"].search([("code", "=", "0182")])
-        self.assertTrue(bank)
-        # Make sure the bank doesn't exist
-        bank.unlink()
-        # Import banks again but now from Internet
-        self.wizard.execute()
-        bank = self.env["res.bank"].search([("code", "=", "0182")])
-        self.assertTrue(bank)
-
-    def test_name(self):
-        self.env["ir.config_parameter"].set_param(
+    def test_02_name_pattern_formats_address_and_name_updates(self):
+        self.env["ir.config_parameter"].sudo().set_str(
             "l10n_es_partner.name_pattern", "%(comercial_name)s (%(name)s)"
         )
-        partner2 = self.env["res.partner"].create(
-            {
-                "name": "Empresa de prueba",
-                "comercial": "Nombre comercial",
-                "street": "My street",
-            }
+        partner = (
+            self.env["res.partner"]
+            .sudo()
+            .create(
+                {
+                    "name": "Empresa de prueba",
+                    "comercial": "Nombre comercial",
+                    "street": "My street",
+                }
+            )
         )
-        self.assertEqual(partner2.display_name, "Nombre comercial (Empresa de prueba)")
-        self.assertEqual(partner2.complete_name, "Nombre comercial (Empresa de prueba)")
+        expected_name = "Nombre comercial (Empresa de prueba)"
+        self.assertEqual(partner.display_name, expected_name)
+        self.assertEqual(partner.complete_name, expected_name)
         self.assertEqual(
-            partner2.with_context(show_address=True).display_name,
-            "Nombre comercial (Empresa de prueba)\nMy street",
+            partner.with_context(show_address=True).display_name,
+            f"{expected_name}\nMy street",
         )
-        # We will enforce the computation
-        partner2.with_context(
-            show_address=True, display_commercial=True
-        )._compute_complete_name()
-        partner2.write({"comercial": "Nuevo nombre"})
-        self.assertEqual(partner2.display_name, "Nuevo nombre (Empresa de prueba)")
-        self.assertEqual(partner2.complete_name, "Nuevo nombre (Empresa de prueba)")
-        names = dict(
-            [
-                (
-                    partner2.id,
-                    partner2.with_context(no_display_commercial=True).display_name,
-                )
-            ]
+
+        partner.write({"comercial": "Nombre actualizado"})
+        expected_name = "Nombre actualizado (Empresa de prueba)"
+        self.assertEqual(partner.display_name, expected_name)
+        self.assertEqual(partner.complete_name, expected_name)
+
+    def test_03_context_hides_commercial_name(self):
+        self.env["ir.config_parameter"].sudo().set_str(
+            "l10n_es_partner.name_pattern", "%(comercial_name)s (%(name)s)"
         )
-        self.assertEqual(names.get(partner2.id), "Empresa de prueba")
-        names = dict([(partner2.id, partner2.display_name)])
-        self.assertEqual(names.get(partner2.id), "Nuevo nombre (Empresa de prueba)")
+        partner = (
+            self.env["res.partner"]
+            .sudo()
+            .create({"name": "Empresa de prueba", "comercial": "Nombre comercial"})
+        )
+        self.assertEqual(
+            partner.with_context(no_display_commercial=True).display_name,
+            "Empresa de prueba",
+        )
+
+
+class TestPartnerCommercialFieldSync(L10nEsPartnerCommon):
+    def test_01_commercial_name_is_copied_to_child_contacts(self) -> None:
+        child = self.env["res.partner"].create(
+            {"name": "Contacto hijo", "parent_id": self.partner.id}
+        )
+        self.assertEqual(child.comercial, self.partner.comercial)
+
+        self.partner.write({"comercial": "Nombre actualizado"})
+        self.assertEqual(child.comercial, "Nombre actualizado")
+
+
+class TestPartnerCommercialNameVisibility(L10nEsPartnerCommon):
+    def test_01_name_is_visible_for_individuals_and_hidden_for_children(self) -> None:
+        partner_model = self.env["res.partner"]
+        for view_xmlid in ("base.view_partner_form", "base.view_partner_simple_form"):
+            view = self.env.ref(view_xmlid)
+            with Form(partner_model, view=view) as partner_form:
+                partner_form.name = "Autónomo sin NIF"
+                partner_form.email = "autonomo@example.test"
+                partner_form.comercial = "Bar Pepe"
+            self.assertFalse(partner_form.record.is_company)
+            self.assertEqual(partner_form.record.comercial, "Bar Pepe")
+
+            with Form(partner_model, view=view) as child_form:
+                child_form.name = "Contacto hijo"
+                child_form.parent_id = self.partner
+                child_form.email = "contacto@example.test"
+                with self.assertRaises(AssertionError):
+                    child_form.comercial = "Nombre oculto"
