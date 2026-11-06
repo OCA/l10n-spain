@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2026 Tecnativa - Carlos Dauden
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_partner_bank_form" model="ir.ui.view">
+        <field name="model">res.partner.bank</field>
+        <field name="inherit_id" ref="base.view_partner_bank_form" />
+        <field name="arch" type="xml">
+            <field name="bank_bic" position="after">
+                <field name="l10n_es_bank_code" invisible="not l10n_es_bank_code" />
+            </field>
+        </field>
+    </record>
+    <record id="view_partner_bank_tree" model="ir.ui.view">
+        <field name="model">res.partner.bank</field>
+        <field name="inherit_id" ref="base.view_partner_bank_tree" />
+        <field name="arch" type="xml">
+            <field name="bank_bic" position="after">
+                <field name="l10n_es_bank_code" optional="hide" />
+            </field>
+        </field>
+    </record>
+    <record id="view_partner_bank_search" model="ir.ui.view">
+        <field name="model">res.partner.bank</field>
+        <field name="inherit_id" ref="base.view_partner_bank_search" />
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="l10n_es_bank_code" />
+            </field>
+            <xpath expr="//search" position="inside">
+                <group>
+                    <filter
+                        name="groupby_l10n_es_bank_code"
+                        string="Bank Entity Code"
+                        context="{'group_by': 'l10n_es_bank_code'}"
+                    />
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
