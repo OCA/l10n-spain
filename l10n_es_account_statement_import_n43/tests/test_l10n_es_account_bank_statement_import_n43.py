@@ -126,3 +126,22 @@ class L10nEsAccountStatementImportN43(common.TransactionCase):
         line = {"conceptos": {"01": ("Santander Match N43", "Sabadell Match N43")}}
         partner = self.import_wizard._get_n43_partner(line, self.journal)
         self.assertEqual(partner, partner_st)
+
+    def test_import_n43_own_company_not_matched(self):
+        """A concept containing the company name must not set the own
+        company as partner of the imported line."""
+        self.env.company.partner_id.name = "Own Company N43 Test"
+        n43_file_path = file_path("l10n_es_account_statement_import_n43/tests/test.n43")
+        n43_content = (
+            open(n43_file_path, "rb")
+            .read()
+            .replace(b"TEST PARTNER N43", b"OWN COMPANY N43 TEST")
+        )
+        self.import_wizard.statement_file = base64.b64encode(n43_content)
+        self.import_wizard.import_file_button()
+        st_lines = self.env["account.bank.statement.line"].search(
+            [("statement_id.journal_id", "=", self.journal.id)]
+        )
+        self.assertEqual(len(st_lines), 3)
+        matched_line = st_lines.filtered(lambda line: line.ref == "000975737917")
+        self.assertFalse(matched_line.partner_id)
