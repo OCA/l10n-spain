@@ -1,0 +1,4 @@
+- [Tecnativa](https://www.tecnativa.com):
+  - Carlos Dauden
+- [Studio73](https://www.studio73.es):
+  - Pablo Cortés
