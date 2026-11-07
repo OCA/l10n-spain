@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Acysos S.L.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record
+        id="model_stock_picking_get_share_url_action_server"
+        model="ir.actions.server"
+    >
+        <field name="name">Stock picking get share url</field>
+        <field name="model_id" ref="stock.model_stock_picking" />
+        <field name="state">code</field>
+        <field name="code">
+action = record._get_share_url()
+        </field>
+    </record>
+</odoo>

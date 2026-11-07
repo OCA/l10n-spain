@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Acysos S.L.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <!-- Handles deliveries from stock.picking and stock.picking.batch-->
+    <record id="action_report_deca" model="ir.actions.report">
+        <field name="name">DeCA</field>
+        <field name="model">stock.picking</field>
+        <field name="domain">[('picking_type_id.code', '=', 'outgoing')]</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">l10n_es_deca_oca.report_deca</field>
+        <field name="print_report_name">'DeCA - %s' % (object.name)</field>
+    </record>
+</odoo>
