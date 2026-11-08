@@ -725,6 +725,39 @@ class TestL10nEsAeatMod322(TestL10nEsAeatMod322Base):
         self.assertEqual(dependent_report.company_type, "P")
         self.assertFalse(dependent_report.dominant_company_vat)
 
+    def test_manual_tax_line_amount_recomputes_totals(self):
+        """Editing an existing tax line amount updates the stored totals."""
+        self.model322.button_calculate()
+        self.env.invalidate_all()
+        line_60 = self.model322.tax_line_ids.filtered(
+            lambda line: line.field_number == 60
+        )[:1]
+        self.assertTrue(line_60)
+        total_deducir = self.model322.total_deducir
+        casilla_63 = self.model322.casilla_63
+        atribuible_estado = self.model322.atribuible_estado
+        cuota_liquidacion = self.model322.cuota_liquidacion
+        line_60.amount += 10
+        self.env.invalidate_all()
+        self.assertAlmostEqual(self.model322.total_deducir, total_deducir + 10, 2)
+        self.assertAlmostEqual(self.model322.casilla_63, casilla_63 - 10, 2)
+        self.assertAlmostEqual(
+            self.model322.atribuible_estado, atribuible_estado - 10, 2
+        )
+        self.assertAlmostEqual(
+            self.model322.cuota_liquidacion, cuota_liquidacion - 10, 2
+        )
+        line_80 = self.model322.tax_line_ids.filtered(
+            lambda line: line.field_number == 80
+        )[:1]
+        self.assertTrue(line_80)
+        operaciones_ejercicio = self.model322.operaciones_ejercicio
+        line_80.amount += 10
+        self.env.invalidate_all()
+        self.assertAlmostEqual(
+            self.model322.operaciones_ejercicio, operaciones_ejercicio + 10, 2
+        )
+
 
 class TestL10nEsAeatMod322Map2023(TestL10nEsAeatMod322Base):
     """The 2023 map and export config must be kept for periods up to 09/2024."""

@@ -59,10 +59,12 @@ class L10nEsAeatMod322Report(models.Model):
         help="¿Existe volumen de operaciones (art. 121 LIVA)?",
     )
     total_deducir = fields.Float(
-        string="[62] Total a deducir", compute="_compute_total_deducir"
+        string="[62] Total a deducir",
+        compute="_compute_total_deducir",
     )
     total_devengado = fields.Float(
-        string="[38] Total devengador", compute="_compute_total_devengado"
+        string="[38] Total devengado",
+        compute="_compute_total_devengado",
     )
     casilla_63 = fields.Float(
         string="[63] General scheme result",
@@ -147,15 +149,19 @@ class L10nEsAeatMod322Report(models.Model):
             if result == -1:
                 account_prefix = "4700"
             code = (f"{account_prefix}%",)
-            record.counterpart_account_id = self.env["account.account"].search(
-                [
-                    ("code", "=like", code[0]),
-                    ("company_ids", "in", record.company_id.id),
-                ],
-                limit=1,
+            record.counterpart_account_id = (
+                self.env["account.account"]
+                .with_company(record.company_id)
+                .search(
+                    [
+                        ("code", "=like", code[0]),
+                        ("company_ids", "in", record.company_id.ids),
+                    ],
+                    limit=1,
+                )
             )
 
-    @api.depends("tax_line_ids")
+    @api.depends("tax_line_ids", "tax_line_ids.amount")
     def _compute_operaciones_ejercicio(self):
         for record in self:
             record.operaciones_ejercicio = sum(
@@ -191,58 +197,66 @@ class L10nEsAeatMod322Report(models.Model):
                 record.casilla_63 * record.porcentaje_atribuible_estado / 100.0
             )
 
-    @api.depends("tax_line_ids")
+    @api.depends("tax_line_ids", "tax_line_ids.amount")
     def _compute_total_devengado(self):
         for record in self:
-            record.total_devengado = sum(
-                record.tax_line_ids.filtered(
-                    lambda r: r.field_number
-                    in [
-                        161,
-                        173,
-                        3,
-                        164,
-                        6,
-                        9,
-                        152,
-                        167,
-                        11,
-                        14,
-                        155,
-                        17,
-                        20,
-                        22,
-                        24,
-                        26,
-                        158,
-                        29,
-                        170,
-                        32,
-                        35,
-                        37,
-                    ]
-                ).mapped("amount")
+            record.total_devengado = record.currency_id.round(
+                sum(
+                    record.tax_line_ids.filtered(
+                        lambda r: r.field_number
+                        in [
+                            161,
+                            173,
+                            3,
+                            164,
+                            6,
+                            9,
+                            152,
+                            167,
+                            11,
+                            14,
+                            155,
+                            17,
+                            20,
+                            22,
+                            24,
+                            26,
+                            158,
+                            29,
+                            170,
+                            32,
+                            35,
+                            37,
+                        ]
+                    ).mapped("amount")
+                )
             )
 
-    @api.depends("tax_line_ids")
+    @api.depends("tax_line_ids", "tax_line_ids.amount")
     def _compute_total_deducir(self):
         for record in self:
-            record.total_deducir = sum(
-                record.tax_line_ids.filtered(
-                    lambda r: r.field_number
-                    in [40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 59, 60, 61]
-                ).mapped("amount")
+            record.total_deducir = record.currency_id.round(
+                sum(
+                    record.tax_line_ids.filtered(
+                        lambda r: r.field_number
+                        in [40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 59, 60, 61]
+                    ).mapped("amount")
+                )
             )
 
     @api.depends("company_id")
     def _compute_company_info(self):
         for record in self:
-            mod322_group = self.env["l10n.es.aeat.mod322.group"].search(
-                [
-                    "|",
-                    ("main_company_id", "=", record.company_id.id),
-                    ("company_ids", "=", record.company_id.id),
-                ]
+            mod322_group = (
+                self.env["l10n.es.aeat.mod322.group"]
+                .sudo()
+                .search(
+                    [
+                        "|",
+                        ("main_company_id", "=", record.company_id.id),
+                        ("company_ids", "=", record.company_id.id),
+                    ]
+                )
             )
             if len(mod322_group) > 1:
                 raise ValidationError(
