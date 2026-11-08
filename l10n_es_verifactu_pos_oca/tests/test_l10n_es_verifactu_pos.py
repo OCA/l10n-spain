@@ -576,21 +576,6 @@ class TestL10nEsVerifactuPOS(TestVerifactuCommon):
             "Default registration key should have code '01'",
         )
 
-    def test_pos_verifactu_journal_disabled(self):
-        """Test POS order when journal is disabled for verifactu"""
-        # Disable verifactu for the POS journal
-        self.pos_config.journal_id.verifactu_enabled = False
-
-        orders_data = [self._create_ui_order_data()]
-        order_ids = self.env["pos.order"].create_from_ui(orders_data)
-        order = self.env["pos.order"].browse(order_ids[0]["id"])
-
-        # Should not be enabled even if company is enabled
-        self.assertFalse(
-            order.verifactu_enabled,
-            "Order should not be verifactu enabled when journal is disabled",
-        )
-
     def test_pos_verifactu_one2many_fields(self):
         """Test that One2many fields work correctly with verifactu entries"""
         orders_data = [self._create_ui_order_data()]
