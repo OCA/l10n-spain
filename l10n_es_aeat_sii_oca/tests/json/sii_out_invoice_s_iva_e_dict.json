@@ -1,0 +1,36 @@
+{
+  "IDFactura": {
+    "IDEmisorFactura": {
+      "NIF": "U2687761C"
+    },
+    "NumSerieFacturaEmisor": "TEST001",
+    "FechaExpedicionFacturaEmisor": "01-01-2020"
+  },
+  "PeriodoLiquidacion": {
+    "Ejercicio": 2020,
+    "Periodo": "01"
+  },
+  "FacturaExpedida": {
+    "TipoFactura": "F1",
+    "ClaveRegimenEspecialOTrascendencia": "01",
+    "DescripcionOperacion": "/",
+    "TipoDesglose": {
+      "DesgloseTipoOperacion": {
+        "PrestacionServicios": {
+          "NoSujeta": {
+            "ImporteTAIReglasLocalizacion": 100.0
+          }
+        }
+      }
+    },
+    "ImporteTotal": 100.0,
+    "Contraparte": {
+      "NombreRazon": "US Customer",
+      "IDOtro": {
+        "CodigoPais": "US",
+        "IDType": "06",
+        "ID": "NO_DISPONIBLE"
+      }
+    }
+  }
+}

@@ -369,6 +369,17 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
         self.assertFalse(self.partner.sii_enabled)
 
     def test_get_invoice_data(self):
+        key_02 = self.env["aeat.sii.mapping.registration.keys"].search(
+            [("code", "=", "02"), ("type", "=", "sale")]
+        )
+        export_partner = self.env["res.partner"].create(
+            {"name": "US Customer", "country_id": self.env.ref("base.us").id}
+        )
+        export_vals = {
+            "partner_id": export_partner.id,
+            "fiscal_position_id": self.fp_extra.id,
+        }
+        export_02_vals = dict(export_vals, sii_registration_key=key_02.id)
         mapping = [
             ("out_invoice", [(100, ["s_iva21b"]), (200, ["s_iva21s"])], {}, False),
             ("out_invoice", [(100, ["s_iva10b"]), (200, ["s_iva21s"])], {}, False),
@@ -387,8 +398,25 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
             ),
             ("out_invoice", [(100, ["s_iva0_sp_i"]), (200, ["s_iva0_g_i"])], {}, False),
             ("out_refund", [(100, ["s_iva0_sp_i"]), (200, ["s_iva0_g_i"])], {}, False),
-            ("out_invoice", [(100, ["s_iva_e"]), (200, ["s_iva0_g_e"])], {}, False),
-            ("out_refund", [(100, ["s_iva_e"]), (200, ["s_iva0_g_e"])], {}, False),
+            # Export of goods with a service not subject by location rules: keys
+            # 01 + 02, as the key 02 alone is rejected (AEAT error 1252)
+            (
+                "out_invoice",
+                [(100, ["s_iva_e"]), (200, ["s_iva0_g_e"])],
+                export_02_vals,
+                False,
+            ),
+            (
+                "out_refund",
+                [(100, ["s_iva_e"]), (200, ["s_iva0_g_e"])],
+                export_02_vals,
+                False,
+            ),
+            # Only services not subject by location rules: key 01
+            ("out_invoice", [(100, ["s_iva_e"])], export_02_vals, False),
+            # Export of goods with the key 01: key 02, as the key 01 alone is
+            # rejected with the exemption cause E2 (AEAT error 1301)
+            ("out_invoice", [(200, ["s_iva0_g_e"])], export_vals, False),
             (
                 "in_invoice",
                 [(100, ["p_iva10_bc", "p_irpf19"]), (200, ["p_iva21_sc", "p_irpf19"])],

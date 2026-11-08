@@ -1,32 +1,49 @@
 {
   "IDFactura": {
-    "IDEmisorFactura": {"NIF": "U2687761C"},
+    "IDEmisorFactura": {
+      "NIF": "U2687761C"
+    },
     "NumSerieFacturaEmisor": "TEST001",
     "FechaExpedicionFacturaEmisor": "01-01-2020"
   },
-  "PeriodoLiquidacion": {"Ejercicio": 2020, "Periodo": "01"},
+  "PeriodoLiquidacion": {
+    "Ejercicio": 2020,
+    "Periodo": "01"
+  },
   "FacturaExpedida": {
     "TipoFactura": "F1",
     "ClaveRegimenEspecialOTrascendencia": "01",
+    "ClaveRegimenEspecialOTrascendenciaAdicional1": "02",
     "DescripcionOperacion": "/",
     "TipoDesglose": {
-      "DesgloseFactura": {
-        "Sujeta": {
-          "Exenta": {
-            "DetalleExenta": [
-              {
-                "BaseImponible": 200,
-                "CausaExencion": "E5"
-              }
-            ]
+      "DesgloseTipoOperacion": {
+        "Entrega": {
+          "Sujeta": {
+            "Exenta": {
+              "DetalleExenta": [
+                {
+                  "BaseImponible": 200.0,
+                  "CausaExencion": "E2"
+                }
+              ]
+            }
           }
         },
-        "NoSujeta": {
-          "ImporteTAIReglasLocalizacion": 100.0
+        "PrestacionServicios": {
+          "NoSujeta": {
+            "ImporteTAIReglasLocalizacion": 100.0
+          }
         }
       }
     },
     "ImporteTotal": 300.0,
-    "Contraparte": {"NombreRazon": "Test partner", "NIF": "F35999705"}
+    "Contraparte": {
+      "NombreRazon": "US Customer",
+      "IDOtro": {
+        "CodigoPais": "US",
+        "IDType": "06",
+        "ID": "NO_DISPONIBLE"
+      }
+    }
   }
 }
