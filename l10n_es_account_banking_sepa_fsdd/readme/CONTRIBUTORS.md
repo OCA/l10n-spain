@@ -9,3 +9,5 @@
   - Ángel García de la Chica Herrera
 - [Ingeos](https://www.ingeos.es/):
   - Sisco Casasempere
+- [Studio73](https://www.studio73.es):
+  - Pablo Cortés
