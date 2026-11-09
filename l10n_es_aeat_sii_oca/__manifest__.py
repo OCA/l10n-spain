@@ -19,7 +19,7 @@
 
 {
     "name": "Suministro Inmediato de Información en el IVA",
-    "version": "19.0.1.1.10",
+    "version": "20.0.1.0.0",
     "category": "Accounting & Finance",
     "website": "https://github.com/OCA/l10n-spain",
     "author": "Acysos S.L.,"
@@ -37,7 +37,7 @@
     "application": False,
     "installable": True,
     "development_status": "Mature",
-    "maintainers": ["pedrobaeza"],
+    "maintainers": ["pedrobaeza", "carlosdauden"],
     "external_dependencies": {"python": ["zeep", "requests"]},
     "depends": [
         "account_invoice_refund_link",
@@ -51,17 +51,10 @@
         "views/account_move_views.xml",
         "wizards/account_move_reversal_views.xml",
         "wizards/account_move_send_sii_views.xml",
-        "views/aeat_sii_mapping_registration_keys_view.xml",
-        "data/aeat_sii_mapping_registration_keys_data.xml",
-        "views/aeat_sii_map_view.xml",
-        "data/l10n.es.aeat.map.tax.line.tax.csv",
-        "data/aeat_sii_map_data.xml",
-        "security/ir.model.access.csv",
-        "views/product_view.xml",
         "views/account_fiscal_position_view.xml",
         "views/aeat_tax_agency_view.xml",
         "views/account_journal_view.xml",
+        "security/ir.access.csv",
     ],
     "images": ["static/description/SII_1.jpg"],
-    "post_init_hook": "add_key_to_existing_invoices",
 }

@@ -23,12 +23,18 @@ from odoo.fields import Domain
 from odoo.modules.registry import Registry
 
 SII_VALID_INVOICE_STATES = ["posted"]
+# Types allowed with the marks of art. 7.2/7.3 and of art. 6.1.d RD 1619/2012
+# (AEAT errors 2022 and 2023; F3 is not a type of Odoo core)
+SII_QUALIFIED_SIMPLIFIED_TYPES = ("F1", "R1", "R2", "R3", "R4")
+SII_UNIDENTIFIED_RECIPIENT_TYPES = ("F2", "R5")
+# AEAT limit of simplified invoices (art. 4.2 RD 1619/2012, validation 20)
+SII_SIMPLIFIED_INVOICE_LIMIT = 3000
 _logger = logging.getLogger(__name__)
 
 
 class AccountMove(models.Model):
     _name = "account.move"
-    _inherit = ["account.move", "sii.mixin"]
+    _inherit = ["account.move", "sii.mixin"]  # noqa: RUF012
 
     def _get_default_type(self):
         context = self.env.context
@@ -38,24 +44,12 @@ class AccountMove(models.Model):
         inv_type = self._get_default_type()
         return "I" if inv_type in ["out_refund", "in_refund"] else False
 
-    sii_refund_specific_invoice_type = fields.Selection(
-        selection=[
-            ("R1", "Error based on law and Art. 80 One and Two LIVA (R1)"),
-            ("R2", "Art. 80 Three LIVA - Bankruptcy (R2)"),
-            ("R3", "Art. 80 Four LIVA - Bad debt (R3)"),
-            ("R4", "Rest of causes (R4)"),
-        ],
-        help="Fill this field when the refund are one of the specific cases"
-        " of article 80 of LIVA for notifying to SII with the proper"
-        " invoice type.",
-    )
-    sii_registration_key_additional1 = fields.Many2one(
-        comodel_name="aeat.sii.mapping.registration.keys",
-        string="Additional SII registration key",
-    )
-    sii_registration_key_additional2 = fields.Many2one(
-        comodel_name="aeat.sii.mapping.registration.keys",
-        string="Additional 2 SII registration key",
+    l10n_es_regime_code_additional2 = fields.Selection(
+        string="VAT Regime Code (Additional 2)",
+        selection="_l10n_es_regime_code_selection",
+        compute="_compute_l10n_es_regime_code",
+        store=True,
+        readonly=False,
     )
     sii_property_location = fields.Selection(
         string="Real property location",
@@ -63,14 +57,18 @@ class AccountMove(models.Model):
         selection=[
             (
                 "1",
-                "[1]-Real property with cadastral code located within "
-                "the Spanish territory except Basque Country or Navarra",
+                (
+                    "[1]-Real property with cadastral code located within "
+                    "the Spanish territory except Basque Country or Navarra"
+                ),
             ),
             ("2", "[2]-Real property located in the Basque Country or Navarra"),
             (
                 "3",
-                "[3]-Real property in any of the above situations "
-                "but without cadastral code",
+                (
+                    "[3]-Real property in any of the above situations "
+                    "but without cadastral code"
+                ),
             ),
             ("4", "[4]-Real property located in a foreign country"),
         ],
@@ -79,15 +77,32 @@ class AccountMove(models.Model):
         string="Real property cadastrial code",
         copy=False,
     )
-    sii_lc_operation = fields.Boolean(
-        string="Customs - Complementary settlement",
-        help="Check this mark if this invoice represents a complementary "
-        "settlement for customs.\n"
-        "The invoice number should start with LC, QZC, QRC, A01 or A02.",
-        copy=False,
-    )
-    sii_is_accounting_receipt = fields.Boolean(string="Is accounting receipt?")
     sii_dua_invoice = fields.Boolean(compute="_compute_dua_invoice")
+    sii_qualified_simplified_invoice = fields.Boolean(
+        string="Qualified simplified invoice",
+        compute="_compute_sii_invoice_marks",
+        store=True,
+        readonly=False,
+        copy=False,
+        help="Simplified invoice that identifies the recipient, as art. 7.2 and "
+        "7.3 RD 1619/2012 allow when the recipient asks for it (F1 or R1-R4). "
+        "Set on the customer invoices of a simplified invoices journal; on a "
+        "vendor bill, check it when the supplier issued a simplified invoice "
+        "with your company's VAT number.",
+    )
+    sii_unidentified_recipient_invoice = fields.Boolean(
+        string="Invoice without recipient identification (art. 6.1.d)",
+        compute="_compute_sii_invoice_marks",
+        store=True,
+        readonly=False,
+        copy=False,
+        help="Full invoice without the recipient's VAT number, which art. 6.1.d "
+        "RD 1619/2012 only requires for intra-community deliveries, reverse "
+        "charge and operations located in Spain (F2 or R5). Set on the "
+        "simplified type invoices of a full invoices journal whose taxes are all "
+        "not subject by location rules, such as distance sales to consumers of "
+        "other member states. Unlike simplified invoices, it has no amount limit.",
+    )
 
     @api.depends("move_type")
     def _compute_sii_refund_type(self):
@@ -97,29 +112,156 @@ class AccountMove(models.Model):
             else:
                 record.sii_refund_type = False
 
-    @api.depends("move_type")
-    def _compute_sii_registration_key_domain(self):
-        return super()._compute_sii_registration_key_domain()
+    @api.depends("commercial_partner_id.aeat_simplified_invoice")
+    def _compute_l10n_es_invoice_type(self):
+        """On top of the core rules, a customer marked for simplified invoices
+        always gets a simplified document (F2/R5, or the F4 of a summary), and
+        a regular customer refund defaults to R1 instead of R4."""
+        previous = {move: move.l10n_es_invoice_type for move in self}
+        res = super()._compute_l10n_es_invoice_type()
+        for move in self:
+            if (move.state == "posted" and previous[move]) or (
+                move.country_code != "ES"
+                or move.move_type not in ("out_invoice", "out_refund")
+            ):
+                continue
+            if move.commercial_partner_id.aeat_simplified_invoice:
+                if move.move_type == "out_refund":
+                    move.l10n_es_invoice_type = "R5"
+                elif move.l10n_es_invoice_type != "F4":
+                    move.l10n_es_invoice_type = "F2"
+            elif (
+                move.move_type == "out_refund"
+                and move.l10n_es_invoice_type == "R4"
+                and previous[move] in (False, "R5")
+            ):
+                move.l10n_es_invoice_type = "R1"
+        return res
 
-    @api.depends("move_type")
-    def _compute_sii_registration_key(self):
-        return super()._compute_sii_registration_key()
+    @api.depends(
+        "move_type",
+        "partner_id",
+        "l10n_es_invoice_type",
+        "journal_id.sii_simplified_invoices",
+        "commercial_partner_id.aeat_simplified_invoice",
+        "invoice_line_ids.tax_ids.l10n_es_type",
+    )
+    def _compute_sii_invoice_marks(self):
+        """Simplified invoices go in their own series (art. 7.1.a RD
+        1619/2012), so the journal tells them from the full ones: an invoice of
+        a simplified series that identifies the customer is a qualified one; a
+        full invoice without identification is only valid where art. 6.1.d does
+        not require the customer's VAT number, an operation not located in
+        Spain. Only the recipient of a vendor bill knows whether the supplier
+        issued a qualified simplified invoice."""
+        simplified_partner = self.env.ref(
+            "l10n_es.partner_simplified", raise_if_not_found=False
+        )
+        for move in self:
+            if move.state == "posted":
+                continue
+            invoice_type = move.l10n_es_invoice_type
+            if not move.is_sale_document():
+                move.sii_qualified_simplified_invoice = (
+                    move.sii_qualified_simplified_invoice
+                    and invoice_type in SII_QUALIFIED_SIMPLIFIED_TYPES
+                )
+                move.sii_unidentified_recipient_invoice = False
+                continue
+            simplified_series = move.journal_id.sii_simplified_invoices
+            move.sii_qualified_simplified_invoice = (
+                simplified_series and invoice_type in SII_QUALIFIED_SIMPLIFIED_TYPES
+            )
+            taxes = move.invoice_line_ids.tax_ids.flatten_taxes_hierarchy().filtered(
+                lambda tax: tax.l10n_es_type != "ignore"
+            )
+            move.sii_unidentified_recipient_invoice = bool(
+                not simplified_series
+                and invoice_type in SII_UNIDENTIFIED_RECIPIENT_TYPES
+                and taxes
+                and all(tax.l10n_es_type == "no_sujeto_loc" for tax in taxes)
+                and not move.commercial_partner_id.aeat_simplified_invoice
+                and move.partner_id != simplified_partner
+            )
+
+    @api.depends(
+        "fiscal_position_id.sii_regime_code_sale",
+        "fiscal_position_id.sii_regime_code_purchase",
+        "company_id.sii_enabled",
+    )
+    def _compute_l10n_es_regime_code(self):
+        """For SII companies, the registration key forced by the fiscal position
+        goes first, and a third key goes to the second additional one."""
+        res = super()._compute_l10n_es_regime_code()
+        for move in self:
+            if move.state == "posted" and move.l10n_es_regime_code:
+                continue
+            if not move.company_id.sii_enabled or not move.is_invoice(
+                include_receipts=True
+            ):
+                move.l10n_es_regime_code_additional2 = False
+                continue
+            codes = move._get_sii_regime_code_list() + [False, False]
+            move.l10n_es_regime_code = codes[0]
+            move.l10n_es_regime_code_additional = codes[1]
+            move.l10n_es_regime_code_additional2 = codes[2]
+        return res
+
+    def _get_sii_regime_code_list(self):
+        """Return the registration keys of the invoice, main one first.
+
+        Like core, each product line gives the regime codes of its taxes, or the
+        default code of the company when they have none, sorted by the core
+        priority. A key forced by the fiscal position goes first and replaces
+        the default code.
+        """
+        self.ensure_one()
+        priorities = {"07": 0, "05": 1, "03": 2, "08": 2}
+        default_code = self.company_id._get_sii_default_regime_code()
+        codes = set()
+        for line in self.invoice_line_ids.filtered(
+            lambda line: line.display_type == "product"
+        ):
+            line_codes = {
+                code
+                for code in line.tax_ids.flatten_taxes_hierarchy().mapped(
+                    "l10n_es_regime_code"
+                )
+                if code
+            }
+            codes |= line_codes or {default_code}
+        use = "purchase" if self.is_purchase_document(include_receipts=True) else "sale"
+        forced_code = self.fiscal_position_id._get_sii_forced_regime_code(use)
+        if forced_code:
+            codes -= {forced_code, default_code}
+        sorted_codes = sorted(codes, key=lambda code: (priorities.get(code, 99), code))
+        if forced_code:
+            return [forced_code] + sorted_codes
+        return sorted_codes or [default_code]
+
+    def _get_sii_regime_codes(self):
+        self.ensure_one()
+        tax_model = self.env["account.tax"]
+        codes = [
+            tax_model._l10n_es_regime_code_aeat(code)
+            for code in (
+                self.l10n_es_regime_code,
+                self.l10n_es_regime_code_additional,
+                self.l10n_es_regime_code_additional2,
+            )
+            if code
+        ]
+        return codes or [self.company_id._get_sii_default_regime_code()]
 
     @api.depends("amount_total")
     def _compute_macrodata(self):
         return super()._compute_macrodata()
 
-    @api.depends("company_id", "fiscal_position_id", "invoice_line_ids.tax_ids")
+    @api.depends("invoice_line_ids.tax_ids.l10n_es_type")
     def _compute_dua_invoice(self):
         for invoice in self:
-            xmlids = [
-                "account_tax_template_p_iva4_ibc_group",
-                "account_tax_template_p_iva10_ibc_group",
-                "account_tax_template_p_iva21_ibc_group",
-            ]
-            taxes = invoice.company_id._get_taxes_from_xmlids(xmlids)
-            invoice.sii_dua_invoice = invoice.line_ids.filtered(
-                lambda x, taxes=taxes: bool(taxes & x.tax_ids)
+            invoice.sii_dua_invoice = invoice.is_purchase_document() and (
+                invoice._l10n_es_is_dua()
             )
 
     def _aeat_get_partner(self):
@@ -154,9 +296,8 @@ class AccountMove(models.Model):
                         self._raise_exception_sii(self.env._("supplier"))
                 elif "ref" in vals:
                     self._raise_exception_sii(self.env._("supplier invoice number"))
-            elif invoice.move_type in ["out_invoice", "out_refund"]:
-                if "name" in vals:
-                    self._raise_exception_sii(self.env._("invoice number"))
+            elif invoice.move_type in ["out_invoice", "out_refund"] and "name" in vals:
+                self._raise_exception_sii(self.env._("invoice number"))
         return super().write(vals)
 
     def _filter_sii_unlink_not_possible(self):
@@ -219,6 +360,42 @@ class AccountMove(models.Model):
         # Use the method at l10n_es_aeat that returns the needed info
         return self._get_aeat_tax_info()
 
+    def _get_sii_document_taxes(self):
+        self.ensure_one()
+        return (
+            self.line_ids.tax_ids | self.line_ids.tax_line_id
+        ).flatten_taxes_hierarchy()
+
+    def _get_sii_tax_scope(self, tax):
+        """Without a scope on the tax, the lines with the tax decide: services
+        when all of them have a service product, goods otherwise."""
+        if tax.tax_scope:
+            return super()._get_sii_tax_scope(tax)
+        lines = self.invoice_line_ids.filtered(
+            lambda line: (
+                line.display_type == "product"
+                and tax in line.tax_ids.flatten_taxes_hierarchy()
+            )
+        )
+        if lines and all(line.product_id.type == "service" for line in lines):
+            return "service"
+        return "consu"
+
+    def _get_sii_base_not_in_total(self):
+        self.ensure_one()
+        sign = -1 if self.move_type[:3] == "out" else 1
+        lines = self.invoice_line_ids.filtered(
+            lambda line: (
+                line.display_type == "product"
+                and line.tax_ids
+                and all(
+                    tax.l10n_es_type == "ignore"
+                    for tax in line.tax_ids.flatten_taxes_hierarchy()
+                )
+            )
+        )
+        return sum(lines.mapped("balance")) * sign
+
     def _get_sii_in_taxes(self):
         """Get the taxes for purchase invoices.
 
@@ -226,49 +403,32 @@ class AccountMove(models.Model):
         """
         self.ensure_one()
         taxes_dict = {}
-        taxes_sfrs = self._get_aeat_taxes_map(["SFRS"], self.date)
-        taxes_sfrsa = self._get_aeat_taxes_map(["SFRSA"], self.date)
-        taxes_sfrisp = self._get_aeat_taxes_map(["SFRISP"], self.date)
-        taxes_sfrns = self._get_aeat_taxes_map(["SFRNS"], self.date)
-        taxes_sfrnd = self._get_aeat_taxes_map(["SFRND"], self.date)
-        taxes_sfrbi = self._get_aeat_taxes_map(["SFRBI"], self.date)
-        taxes_not_in_total = self._get_aeat_taxes_map(["NotIncludedInTotal"], self.date)
-        taxes_not_in_total_neg = self._get_aeat_taxes_map(
-            ["NotIncludedInTotalNegative"], self.date
-        )
-        base_not_in_total = self._get_aeat_taxes_map(
-            ["BaseNotIncludedInTotal"], self.date
-        )
         tax_amount = 0.0
-        not_in_amount_total = 0.0
+        not_in_amount_total = self._get_sii_base_not_in_total()
         tax_lines = self._get_aeat_tax_info()
         for tax_line in tax_lines.values():
             tax = tax_line["tax"]
-            if tax in taxes_not_in_total:
-                not_in_amount_total += tax_line["amount"]
-            elif tax in taxes_not_in_total_neg:
-                not_in_amount_total -= tax_line["amount"]
-            elif tax in base_not_in_total:
-                not_in_amount_total += tax_line["base"]
-            if tax in taxes_sfrisp:
+            codes = self._get_sii_tax_codes(tax)
+            not_in_amount_total += self._get_sii_amount_not_in_total(tax_line, codes)
+            if "SFRISP" in codes:
                 base_dict = taxes_dict.setdefault(
                     "InversionSujetoPasivo",
                     {"DetalleIVA": []},
                 )
-            elif tax in taxes_sfrs + taxes_sfrns + taxes_sfrsa + taxes_sfrnd:
+            elif codes & {"SFRS", "SFRNS", "SFRSA", "SFRND"}:
                 base_dict = taxes_dict.setdefault("DesgloseIVA", {"DetalleIVA": []})
             else:
                 continue
             tax_dict = self._get_sii_tax_dict(tax_line, tax_lines)
-            if tax in taxes_sfrisp + taxes_sfrs + taxes_sfrsa:
+            if codes & {"SFRISP", "SFRS", "SFRSA"}:
                 tax_amount += tax_line["deductible_amount"]
-            if tax in taxes_sfrbi:
+            if "SFRBI" in codes:
                 tax_dict["BienInversion"] = "S"
-            if tax in taxes_sfrns:
+            if "SFRNS" in codes:
                 tax_dict.pop("TipoImpositivo")
                 tax_dict.pop("CuotaSoportada")
                 base_dict["DetalleIVA"].append(tax_dict)
-            elif tax in taxes_sfrsa:
+            elif "SFRSA" in codes:
                 tax_dict["PorcentCompensacionREAGYP"] = tax_dict.pop("TipoImpositivo")
                 tax_dict["ImporteCompensacionREAGYP"] = tax_dict.pop("CuotaSoportada")
                 base_dict["DetalleIVA"].append(tax_dict)
@@ -285,38 +445,90 @@ class AccountMove(models.Model):
     def _get_mapping_key(self):
         return self.move_type
 
+    def _is_aeat_simplified_invoice(self):
+        """Issued documents without an identified recipient: simplified
+        invoices (F2), their refunds (R5) and summaries of them (F4). The AEAT
+        rejects the counterpart on exactly these types; a simplified invoice
+        that identifies the recipient (art. 7.2 and 7.3 RD 1619/2012) goes as F1
+        or R1-R4. A received F2 or F4 always identifies its issuer."""
+        self.ensure_one()
+        return self.is_sale_document() and self.l10n_es_invoice_type in (
+            "F2",
+            "F4",
+            "R5",
+        )
+
     def _aeat_check_exceptions(self):
         res = super()._aeat_check_exceptions()
-        is_simplified_invoice = self._is_aeat_simplified_invoice()
-        if is_simplified_invoice and self.move_type[:2] == "in":
-            error_msg = self.env._("You can't make a supplier simplified invoice.")
-            raise UserError(error_msg)
+        if self.is_invoice() and not self.l10n_es_invoice_type:
+            raise UserError(self.env._("The invoice type is required."))
+        self._sii_check_invoice_type()
         if not self.ref and self.move_type in ["in_invoice", "in_refund"]:
             error_msg = self.env._("The supplier number invoice is required")
             raise UserError(error_msg)
         return res
 
+    def _sii_check_invoice_type(self):
+        """What the AEAT would reject because of the invoice type and its marks
+        (errors 2022 and 2023, validations of simplified invoices)."""
+        invoice_type = self.l10n_es_invoice_type
+        if (
+            self.sii_qualified_simplified_invoice
+            and invoice_type not in SII_QUALIFIED_SIMPLIFIED_TYPES
+        ):
+            raise UserError(
+                self.env._(
+                    "A qualified simplified invoice (art. 7.2 and 7.3 RD "
+                    "1619/2012) identifies the recipient: its type must be F1 or "
+                    "R1-R4."
+                )
+            )
+        if (
+            self.sii_unidentified_recipient_invoice
+            and invoice_type not in SII_UNIDENTIFIED_RECIPIENT_TYPES
+        ):
+            raise UserError(
+                self.env._(
+                    "An invoice without recipient identification (art. 6.1.d RD "
+                    "1619/2012) must be of type F2 or R5."
+                )
+            )
+        limited_types = ("F2", "R5") if self.is_purchase_document() else ("F2",)
+        if (
+            invoice_type in limited_types
+            and not self.sii_unidentified_recipient_invoice
+            and self.company_currency_id.compare_amounts(
+                abs(self.amount_total_signed), SII_SIMPLIFIED_INVOICE_LIMIT
+            )
+            > 0
+        ):
+            raise UserError(
+                self.env._(
+                    "A simplified invoice cannot exceed %(limit)s euros (art. 4 "
+                    "RD 1619/2012): it must be a full invoice, with the "
+                    "recipient identified, or, for an operation not located in "
+                    "Spain, an invoice without recipient identification (art. "
+                    "6.1.d).",
+                    limit=SII_SIMPLIFIED_INVOICE_LIMIT,
+                )
+            )
+        if (
+            self.move_type == "in_invoice"
+            and invoice_type == "F2"
+            and self._get_sii_in_taxes()[1]
+        ):
+            raise UserError(
+                self.env._(
+                    "A simplified invoice received (F2) does not give the right "
+                    "to deduct VAT (art. 97 LIVA): use non deductible taxes or, if "
+                    "it carries your company's VAT number, register it as a full "
+                    "invoice (F1) marked as qualified simplified invoice."
+                )
+            )
+
     def _get_sii_invoice_type(self):
         self.ensure_one()
-        invoice_type = ""
-        if self.sii_lc_operation:
-            return "LC"
-        if self.move_type in ["in_invoice", "in_refund"]:
-            if self.move_type == "in_refund":
-                invoice_type = "R4"
-            elif self.sii_is_accounting_receipt:
-                invoice_type = "F6"
-            else:
-                invoice_type = "F1"
-        elif self.move_type in ["out_invoice", "out_refund"]:
-            is_simplified = self._is_aeat_simplified_invoice()
-            invoice_type = "F2" if is_simplified else "F1"
-            if self.move_type == "out_refund":
-                if self.sii_refund_specific_invoice_type:
-                    invoice_type = self.sii_refund_specific_invoice_type
-                else:
-                    invoice_type = "R5" if is_simplified else "R1"
-        return invoice_type
+        return self.l10n_es_invoice_type
 
     def _get_aeat_invoice_dict_out(self, cancel=False):
         inv_dict = super()._get_aeat_invoice_dict_out(cancel=cancel)
@@ -324,23 +536,7 @@ class AccountMove(models.Model):
             return inv_dict
         if self.thirdparty_invoice:
             inv_dict["FacturaExpedida"]["EmitidaPorTercerosODestinatario"] = "S"
-        if self.sii_registration_key_additional1:
-            inv_dict["FacturaExpedida"].update(
-                {
-                    "ClaveRegimenEspecialOTrascendenciaAdicional1": (
-                        self.sii_registration_key_additional1.code
-                    )
-                }
-            )
-        if self.sii_registration_key_additional2:
-            inv_dict["FacturaExpedida"].update(
-                {
-                    "ClaveRegimenEspecialOTrascendenciaAdicional2": (
-                        self.sii_registration_key_additional2.code
-                    )
-                }
-            )
-        if self.sii_registration_key.code in ["12", "13"]:
+        if self._get_sii_regime_codes()[0] in ["12", "13"]:
             inv_dict["FacturaExpedida"]["DatosInmueble"] = {
                 "DetalleInmueble": {
                     "SituacionInmueble": self.sii_property_location,
@@ -348,6 +544,10 @@ class AccountMove(models.Model):
                 }
             }
         exp_dict = inv_dict["FacturaExpedida"]
+        if self.sii_qualified_simplified_invoice:
+            exp_dict["FacturaSimplificadaArticulos7.2_7.3"] = "S"
+        if self.sii_unidentified_recipient_invoice:
+            exp_dict["FacturaSinIdentifDestinatarioAritculo6.1.d"] = "S"
         if self.move_type == "out_refund":
             exp_dict["TipoRectificativa"] = self.sii_refund_type
             if self.sii_refund_type == "S":
@@ -407,13 +607,12 @@ class AccountMove(models.Model):
             company_name = partner.name[0:120]
             if self.sii_dua_invoice:
                 company_name = self.company_id.name
-                if not self.sii_lc_operation:
-                    invoice_type = "F5"
 
+            regime_codes = self._get_sii_regime_codes()
             inv_dict["FacturaRecibida"] = {
                 # TODO: Incluir los 5 tipos de facturas rectificativas
                 "TipoFactura": invoice_type,
-                "ClaveRegimenEspecialOTrascendencia": self.sii_registration_key.code,
+                "ClaveRegimenEspecialOTrascendencia": regime_codes[0],
                 "DescripcionOperacion": self.sii_description,
                 "DesgloseFactura": desglose_factura,
                 "Contraparte": {"NombreRazon": company_name},
@@ -426,22 +625,12 @@ class AccountMove(models.Model):
                 )
             if self.sii_macrodata:
                 inv_dict["FacturaRecibida"].update(Macrodato="S")
-            if self.sii_registration_key_additional1:
-                inv_dict["FacturaRecibida"].update(
-                    {
-                        "ClaveRegimenEspecialOTrascendenciaAdicional1": (
-                            self.sii_registration_key_additional1.code
-                        )
-                    }
-                )
-            if self.sii_registration_key_additional2:
-                inv_dict["FacturaRecibida"].update(
-                    {
-                        "ClaveRegimenEspecialOTrascendenciaAdicional2": (
-                            self.sii_registration_key_additional2.code
-                        )
-                    }
-                )
+            if self.sii_qualified_simplified_invoice:
+                inv_dict["FacturaRecibida"]["FacturaSimplificadaArticulos7.2_7.3"] = "S"
+            for index, regime_code in enumerate(regime_codes[1:], start=1):
+                inv_dict["FacturaRecibida"][
+                    f"ClaveRegimenEspecialOTrascendenciaAdicional{index}"
+                ] = regime_code
             # Uso condicional de IDOtro/NIF
             inv_dict["FacturaRecibida"]["Contraparte"].update(ident)
             if self.move_type == "in_refund":
@@ -624,19 +813,6 @@ class AccountMove(models.Model):
             )
         return super().button_draft()
 
-    def _get_document_product_exempt(self, applied_taxes):
-        return set(
-            self.mapped("invoice_line_ids")
-            .filtered(
-                lambda x: (
-                    any(tax in x.tax_ids for tax in applied_taxes)
-                    and x.product_id.sii_exempt_cause
-                    and x.product_id.sii_exempt_cause != "none"
-                )
-            )
-            .mapped("product_id.sii_exempt_cause")
-        )
-
     def is_sii_invoice(self):
         """Hook method to be overridden in additional modules to verify
         if the invoice must be sended trough SII system, for special cases.
@@ -758,6 +934,18 @@ class AccountMove(models.Model):
         if not default_values_list:
             default_values_list = [{} for move in self]
         for move, default_values in zip(self, default_values_list, strict=False):
+            if move.move_type == "out_invoice" and move.country_code == "ES":
+                # Core takes R4 for the refund of a regular invoice and R5 only
+                # for F2/R5 originals: R1 (art. 80 One and Two LIVA) is the usual
+                # cause, and the refund of a summary (F4) is simplified too
+                default_values.setdefault(
+                    "l10n_es_invoice_type",
+                    "R5" if move._is_aeat_simplified_invoice() else "R1",
+                )
+            if move.sii_qualified_simplified_invoice:
+                # A qualified simplified invoice is rectified by another one
+                # (FAQ 2.50 of the SII: R1-R4 with the mark)
+                default_values.setdefault("sii_qualified_simplified_invoice", True)
             if move.sii_enabled:
                 extra_dict = {}
                 sii_refund_type = self.env.context.get("sii_refund_type", False)
@@ -785,7 +973,7 @@ class AccountMove(models.Model):
             return int(
                 self.env["ir.config_parameter"]
                 .sudo()
-                .get_param("l10n_es_aeat_sii_oca.sii_batch", "50")
+                .get_str("l10n_es_aeat_sii_oca.sii_batch", "50")
             )
         except ValueError as e:
             raise UserError(
