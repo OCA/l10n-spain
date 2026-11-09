@@ -692,3 +692,36 @@ class TestL10nEsAeatMod420(TestL10nEsAtcMod420Base):
             self.model420.with_context(
                 test_l10n_es_atc_report=True
             ).action_generar_mod420()
+
+
+@tagged("post_install", "-at_install")
+class TestL10nEsAtcMod420CoreTaxes(TestL10nEsAtcMod420Base):
+    """IGIC taxes of the Odoo core chart that the model did not include before."""
+
+    taxes_sale: ClassVar[dict] = {}
+    taxes_purchase: ClassVar[dict] = {
+        "l10n_es_igic.account_tax_template_igic_sop_3_s": (1000, 30),
+        "l10n_es_igic.account_tax_template_igic_ISP5": (1100, 55),
+        "l10n_es_igic.account_tax_template_igic_p_re05": (1200, 6),
+        "l10n_es_igic.account_tax_template_igic_sop_i_5": (1300, 65),
+        "l10n_es_igic.account_tax_template_igic_sop_i_5_inv": (1400, 70),
+    }
+
+    def test_model_420_core_taxes(self):
+        self._invoice_purchase_create("2017-01-10")
+        self.model420.button_calculate()
+        expected = {
+            "19": 1100,  # reverse charge (output IGIC)
+            "20": 55,
+            "26": 1000 + 1100 + 1200,  # domestic goods and services
+            "27": 30 + 55 + 6,
+            "30": 1300,  # imports of goods
+            "31": 65,
+            "32": 1400,  # imports of investment goods
+            "33": 70,
+        }
+        for field, amount in expected.items():
+            lines = self.model420.tax_line_ids.filtered(
+                lambda x, field=field: x.field_number == int(field)
+            )
+            self.assertAlmostEqual(sum(lines.mapped("amount")), amount, 2, field)
