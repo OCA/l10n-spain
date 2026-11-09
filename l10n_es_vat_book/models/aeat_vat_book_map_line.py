@@ -32,7 +32,7 @@ class AeatVatBookMapLines(models.Model):
         string="Tax Account Restriction",
         help="Journal items with this account will be excluded",
     )
-    tax_agency_ids = fields.Many2many("aeat.tax.agency", string="Tax Agency")
+    tax_agency_ids = fields.Many2many("aeat.tax.agency")
 
     def get_taxes_for_company(self, company):
         """Obtain the taxes corresponding to this line according the given company."""

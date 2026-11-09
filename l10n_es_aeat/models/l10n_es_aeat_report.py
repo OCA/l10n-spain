@@ -96,7 +96,6 @@ class L10nEsAeatReport(models.AbstractModel):
 
     company_id = fields.Many2one(
         comodel_name="res.company",
-        string="Company",
         required=True,
         default=lambda self: self.env.company,
     )
@@ -213,7 +212,6 @@ class L10nEsAeatReport(models.AbstractModel):
     )
     journal_id = fields.Many2one(
         comodel_name="account.journal",
-        string="Journal",
         domain="[('type', '=', 'general'), ('company_id', '=', company_id)]",
         default=lambda self: self._default_journal(),
         help="Journal in which post the move.",
@@ -239,7 +237,7 @@ class L10nEsAeatReport(models.AbstractModel):
     error_count = fields.Integer(
         compute="_compute_error_count",
     )
-    tax_agency_ids = fields.Many2many("aeat.tax.agency", string="Tax Agency")
+    tax_agency_ids = fields.Many2many("aeat.tax.agency")
 
     _name_uniq = models.Constraint(
         "unique(name, company_id)",

@@ -489,11 +489,10 @@ class Mod349PartnerRecord(models.Model):
     )
     partner_id = fields.Many2one(
         comodel_name="res.partner",
-        string="Partner",
         required=True,
     )
     partner_vat = fields.Char(string="VAT", size=15, index=True)
-    country_id = fields.Many2one(comodel_name="res.country", string="Country")
+    country_id = fields.Many2one(comodel_name="res.country")
     operation_key = fields.Selection(
         selection=_selection_operation_key,
     )
@@ -594,7 +593,6 @@ class Mod349PartnerRefund(models.Model):
     )
     partner_id = fields.Many2one(
         comodel_name="res.partner",
-        string="Partner",
         required=True,
         index=True,
     )
@@ -602,7 +600,7 @@ class Mod349PartnerRefund(models.Model):
     operation_key = fields.Selection(
         selection=_selection_operation_key,
     )
-    country_id = fields.Many2one(comodel_name="res.country", string="Country")
+    country_id = fields.Many2one(comodel_name="res.country")
     total_operation_amount = fields.Float(
         compute="_compute_total_operation_amount",
         string="Total rectified amount",

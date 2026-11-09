@@ -52,9 +52,7 @@ class L10nEsAeatmod592LineMixin(models.AbstractModel):
         store=True,
     )
     entry_note = fields.Text(string="Entries observation")
-    stock_move_id = fields.Many2one(
-        comodel_name="stock.move", string="Stock Move", required=True
-    )
+    stock_move_id = fields.Many2one(comodel_name="stock.move", required=True)
     product_id = fields.Many2one(
         comodel_name="product.product", related="stock_move_id.product_id"
     )

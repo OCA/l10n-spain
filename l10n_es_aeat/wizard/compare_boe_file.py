@@ -84,7 +84,6 @@ class L10nEsAeatReportExportToBoeLine(models.TransientModel):
 
     wizard_id = fields.Many2one(
         comodel_name="l10n.es.aeat.report.compare_boe_file",
-        string="Wizard",
         required=True,
         readonly=True,
         ondelete="cascade",

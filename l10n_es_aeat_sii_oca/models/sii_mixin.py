@@ -40,7 +40,6 @@ class SiiMixin(models.AbstractModel):
 
     company_id = fields.Many2one(
         comodel_name="res.company",
-        string="Company",
     )
     sii_description = fields.Char(
         string="SII computed description",

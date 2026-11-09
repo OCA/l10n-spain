@@ -71,14 +71,12 @@ class L10nEsVatBook(models.Model):
 
     tax_summary_ids = fields.One2many(
         comodel_name="l10n.es.vat.book.tax.summary",
-        string="Tax Summary",
         inverse_name="vat_book_id",
         readonly=True,
     )
 
     issued_tax_summary_ids = fields.One2many(
         comodel_name="l10n.es.vat.book.tax.summary",
-        string="Issued Tax Summary",
         inverse_name="vat_book_id",
         domain=[("book_type", "=", "issued")],
         readonly=True,
@@ -86,7 +84,6 @@ class L10nEsVatBook(models.Model):
 
     received_tax_summary_ids = fields.One2many(
         comodel_name="l10n.es.vat.book.tax.summary",
-        string="Received Tax Summary",
         inverse_name="vat_book_id",
         domain=[("book_type", "=", "received")],
         readonly=True,
@@ -94,14 +91,12 @@ class L10nEsVatBook(models.Model):
 
     summary_ids = fields.One2many(
         comodel_name="l10n.es.vat.book.summary",
-        string="Summary",
         inverse_name="vat_book_id",
         readonly=True,
     )
 
     issued_summary_ids = fields.One2many(
         comodel_name="l10n.es.vat.book.summary",
-        string="Issued Summary",
         inverse_name="vat_book_id",
         domain=[("book_type", "=", "issued")],
         readonly=True,
@@ -109,7 +104,6 @@ class L10nEsVatBook(models.Model):
 
     received_summary_ids = fields.One2many(
         comodel_name="l10n.es.vat.book.summary",
-        string="Received Summary",
         inverse_name="vat_book_id",
         domain=[("book_type", "=", "received")],
         readonly=True,

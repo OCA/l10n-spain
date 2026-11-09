@@ -23,7 +23,6 @@ class L10nEsAeatMod303Report(models.Model):
     )
     with_vat_prorate = fields.Boolean(related="company_id.with_vat_prorate")
     prorate_id = fields.Many2one(
-        string="Prorate",
         comodel_name="res.company.vat.prorate",
         compute="_compute_prorate_id",
         ondelete="restrict",
