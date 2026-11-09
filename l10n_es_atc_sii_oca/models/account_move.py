@@ -64,8 +64,9 @@ class AccountMove(models.Model):
         return inv_dict
 
     def _get_sii_identifier(self):
+        invoice = self
         if self._get_sii_tax_agency() == self.env.ref(
             "l10n_es_aeat.aeat_tax_agency_canarias"
         ):
-            self = self.with_context(is_canary_tax_agency=True)
-        return super()._get_sii_identifier()
+            invoice = self.with_context(is_canary_tax_agency=True)
+        return super(AccountMove, invoice)._get_sii_identifier()
