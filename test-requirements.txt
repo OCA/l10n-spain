@@ -1,0 +1,13 @@
+# OCA/bank-payment 20.0 migration PRs verified open on 2026-11-09.
+# Tested PR heads: #1635 277ccb017479db8acb172204cc8e36047acbd989;
+# #1636 3f77f5c3a9ab4a4c8c16a64374154d0b8733c434;
+# #1638 9866db25511f7118d60ac7d2f9493050e9f562d1;
+# #1644 65e94e1f84b777a2834fb78702b3a6741577b143;
+# #1657 0138a3e2e9c891dde220b26b5f1ef567ff7ee790.
+odoo-addon-account_payment_mode @ git+https://github.com/OCA/bank-payment.git@refs/pull/1635/head#subdirectory=account_payment_mode
+odoo-addon-account_payment_order @ git+https://github.com/OCA/bank-payment.git@refs/pull/1636/head#subdirectory=account_payment_order
+odoo-addon-account_banking_pain_base @ git+https://github.com/OCA/bank-payment.git@refs/pull/1638/head#subdirectory=account_banking_pain_base
+odoo-addon-account_banking_mandate @ git+https://github.com/OCA/bank-payment.git@refs/pull/1644/head#subdirectory=account_banking_mandate
+odoo-addon-account_banking_sepa_direct_debit @ git+https://github.com/OCA/bank-payment.git@refs/pull/1657/head#subdirectory=account_banking_sepa_direct_debit
+odoo-addon-account_banking_sepa_direct_debit==20.0.*
+odoo==20.0.*
