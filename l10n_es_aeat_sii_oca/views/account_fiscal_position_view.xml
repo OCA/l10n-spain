@@ -12,16 +12,20 @@
             <xpath expr="//field[@name='country_group_id']/.." position="after">
                 <group string="SII" name="group_sii" invisible="not sii_enabled">
                     <field name="aeat_active" />
+                    <field name="sii_available_regime_codes_sale" invisible="1" />
                     <field
-                        name="sii_registration_key_sale"
+                        name="sii_regime_code_sale"
+                        widget="dynamic_selection"
+                        options="{'available_field': 'sii_available_regime_codes_sale'}"
                         invisible="not aeat_active"
                     />
+                    <field name="sii_available_regime_codes_purchase" invisible="1" />
                     <field
-                        name="sii_registration_key_purchase"
+                        name="sii_regime_code_purchase"
+                        widget="dynamic_selection"
+                        options="{'available_field': 'sii_available_regime_codes_purchase'}"
                         invisible="not aeat_active"
                     />
-                    <field name="sii_no_taxable_cause" invisible="not aeat_active" />
-                    <field name="sii_exempt_cause" invisible="not aeat_active" />
                     <field
                         name="sii_partner_identification_type"
                         invisible="not aeat_active"

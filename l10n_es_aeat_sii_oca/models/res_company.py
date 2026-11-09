@@ -5,14 +5,30 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from datetime import datetime, timedelta
-
-import pytz
+from zoneinfo import ZoneInfo
 
 from odoo import fields, models
 
 
 class ResCompany(models.Model):
     _inherit = "res.company"
+
+    def _l10n_es_regime_available_codes(self, use, applicability=None):
+        codes = super()._l10n_es_regime_available_codes(
+            use, applicability=applicability
+        )
+        if self.sii_enabled and use in ("sale", "purchase") and "06" not in codes:
+            codes = list(codes) + ["06"]
+        return codes
+
+    def _get_sii_default_regime_code(self):
+        """Registration key of the lines whose taxes have no regime code.
+
+        The special VAT regime of the company only gives an SII key for the
+        cash basis criterion: the codes of the other regimes are VERI*FACTU ones.
+        """
+        self.ensure_one()
+        return "07" if self.l10n_es_special_vat_regime == "cash_basis" else "01"
 
     sii_enabled = fields.Boolean(string="Enable SII")
     sii_test = fields.Boolean(string="Is it the SII test environment?")
@@ -81,12 +97,13 @@ class ResCompany(models.Model):
     def _get_sii_sending_time(self):
         if self.send_mode == "fixed":
             tz = self.env.tz
-            offset = datetime.now(pytz.timezone(tz)).strftime("%z") if tz else "+00"
+            offset = datetime.now(ZoneInfo(tz)).strftime("%z") if tz else "+00"
             hour_diff = int(offset[:3])
             hour, minute = divmod(self.sent_time * 60, 60)
             hour = int(hour - hour_diff)
             minute = int(minute)
-            now = datetime.now()
+            # Naive UTC, as the dates of the jobs
+            now = fields.Datetime.now()
             if now.hour > hour or (now.hour == hour and now.minute > minute):
                 now += timedelta(days=1)
             now = now.replace(hour=hour, minute=minute)
@@ -97,4 +114,4 @@ class ResCompany(models.Model):
                 if self.send_mode == "auto" or not self.delay_time
                 else self.delay_time
             )
-            return datetime.now() + timedelta(hours=delay_time)
+            return fields.Datetime.now() + timedelta(hours=delay_time)

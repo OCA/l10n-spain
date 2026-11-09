@@ -2,4 +2,3 @@
 
 from . import models
 from . import wizards
-from .hooks import add_key_to_existing_invoices

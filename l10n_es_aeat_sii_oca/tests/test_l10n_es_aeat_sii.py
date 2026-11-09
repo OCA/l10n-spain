@@ -70,17 +70,11 @@ class TestL10nEsAeatSiiBase(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase
         comparing the expected SII dict with .
         """
         module = module or "l10n_es_aeat_sii_oca"
-        domain = Domain("code", "=", "01") & Domain(
-            "type", "=", "sale" if "out" in inv_type else "purchase"
-        )
-        sii_key_obj = self.env["aeat.sii.mapping.registration.keys"]
         vals = {
             "name": "TEST001",
             "partner_id": self.partner.id,
             "invoice_date": "2020-01-01",
             "move_type": inv_type,
-            # FIXME: This should be auto-assigned, but not working due to unknown glitch
-            "sii_registration_key": sii_key_obj.search(domain, limit=1).id,
             "invoice_line_ids": [],
         }
         for line in lines:
@@ -104,7 +98,7 @@ class TestL10nEsAeatSiiBase(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase
         result_dict = invoice._get_aeat_invoice_dict()
         path = file_path(f"{module}/tests/json/{json_file}")
         if not path:
-            raise Exception(f"Incorrect JSON file: {json_file}")
+            raise FileNotFoundError(f"Incorrect JSON file: {json_file}")
         with open(path) as f:
             expected_dict = json.loads(f.read())
         self.assertEqual(expected_dict, result_dict)
@@ -137,13 +131,14 @@ class TestL10nEsAeatSiiBase(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        # The certificate is created before the test company, which is the only
+        # company the test user keeps
+        cls.sii_cert.company_id = cls.company
         cls.maxDiff = None  # needed for the dict comparison
         cls.partner = cls.env["res.partner"].create(
             {"name": "Test partner", "vat": "ESF35999705"}
         )
-        cls.product = cls.env["product.product"].create(
-            {"name": "Test product", "sii_exempt_cause": "E5"}
-        )
+        cls.product = cls.env["product.product"].create({"name": "Test product"})
         cls.account_expense = cls.env.ref(
             f"account.{cls.company.id}_account_common_600"
         )
@@ -164,6 +159,10 @@ class TestL10nEsAeatSiiBase(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase
 
 
 class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
+    # As in TestL10nEsAeatCertificateBase: activating the certificate and the SII
+    # settings write the company, which only an administrator can do
+    _test_user_groups = (*TestL10nEsAeatSiiBase._test_user_groups, "base.group_system")
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -173,7 +172,7 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
         cls.user = cls.env["res.users"].create(
             {
                 "name": "Test user",
-                "login": "test_user",
+                "login": "sii_user",
                 "group_ids": [(4, cls.env.ref("account.group_account_invoice").id)],
                 "email": "somebody@somewhere.com",
             }
@@ -319,7 +318,7 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
 
     def test_intracomunitary_customer_without_valid_vat(self):
         """Un cliente bajo Régimen Intracomunitario cuya identificación (por
-        override manual de aeat_identification_type/aeat_identification) no
+        documento alternativo del contacto, como el "codice fiscale") no
         es un NIF-IVA real no debe forzarse a IDType 02, o el SII rechaza la
         factura con el error 1104 "Valor del campo ID incorrecto".
         """
@@ -328,8 +327,7 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
             {
                 "name": "Italian Individual Customer",
                 "country_id": self.ref("base.it"),
-                "aeat_identification_type": "06",
-                "aeat_identification": "FAKECODICEFISCALE",
+                "l10n_es_other_id": "FAKECODICEFISCALE",
             }
         )
         invoice = self.invoice.copy(
@@ -493,13 +491,11 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
             ),
         ]
         for inv_type, lines, extra_vals, is_dua in mapping:
-            invoice = self._create_and_test_invoice_sii_dict(
-                inv_type, lines, extra_vals
-            )
-            if is_dua:
-                self.assertTrue(invoice.sii_dua_invoice)
-            else:
-                self.assertFalse(invoice.sii_dua_invoice)
+            with self.subTest(inv_type=inv_type, lines=lines):
+                invoice = self._create_and_test_invoice_sii_dict(
+                    inv_type, lines, extra_vals
+                )
+                self.assertEqual(invoice.sii_dua_invoice, is_dua)
 
     def test_sii_description(self):
         company = self.invoice.company_id

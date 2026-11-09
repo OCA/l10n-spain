@@ -34,7 +34,6 @@ class SiiMixin(models.AbstractModel):
 
     company_id = fields.Many2one(
         comodel_name="res.company",
-        string="Company",
     )
     sii_description = fields.Char(
         string="SII computed description",
@@ -69,24 +68,6 @@ class SiiMixin(models.AbstractModel):
         "is independent of the date of the accounting entry of the "
         "document",
     )
-    sii_registration_key_domain = fields.Char(
-        compute="_compute_sii_registration_key_domain",
-        string="SII registration key domain",
-    )
-    sii_registration_key = fields.Many2one(
-        comodel_name="aeat.sii.mapping.registration.keys",
-        string="SII registration key",
-        compute="_compute_sii_registration_key",
-        store=True,
-        readonly=False,
-        # required=True, This is not set as required here to avoid the
-        # set not null constraint warning
-    )
-    sii_registration_key_code = fields.Char(
-        compute="_compute_sii_registration_key_code",
-        readonly=True,
-        string="SII Code",
-    )
     sii_enabled = fields.Boolean(
         string="Enable SII",
         compute="_compute_sii_enabled",
@@ -106,42 +87,6 @@ class SiiMixin(models.AbstractModel):
 
     def _compute_sii_description(self):
         self.sii_description = "/"
-
-    def _compute_sii_registration_key_domain(self):
-        for document in self:
-            mapping_key = document._get_mapping_key()
-            if mapping_key in {"out_invoice", "out_refund"}:
-                document.sii_registration_key_domain = "sale"
-            elif mapping_key in {"in_invoice", "in_refund"}:
-                document.sii_registration_key_domain = "purchase"
-            else:
-                document.sii_registration_key_domain = False
-
-    @api.depends("fiscal_position_id")
-    def _compute_sii_registration_key(self):
-        for document in self:
-            mapping_key = document._get_mapping_key()
-            if document.fiscal_position_id:
-                if "out" in mapping_key:
-                    key = document.fiscal_position_id.sii_registration_key_sale
-                else:
-                    key = document.fiscal_position_id.sii_registration_key_purchase
-                # Only assign sii_registration_key if it's set in the fiscal position
-                if key:
-                    document.sii_registration_key = key
-            else:
-                domain = Domain("code", "=", "01") & Domain(
-                    "type",
-                    "=",
-                    "sale" if mapping_key.startswith("out_") else "purchase",
-                )
-                sii_key_obj = self.env["aeat.sii.mapping.registration.keys"]
-                document.sii_registration_key = sii_key_obj.search(domain, limit=1)
-
-    @api.depends("sii_registration_key")
-    def _compute_sii_registration_key_code(self):
-        for record in self:
-            record.sii_registration_key_code = record.sii_registration_key.code
 
     def _compute_sii_enabled(self):
         raise NotImplementedError
@@ -182,28 +127,137 @@ class SiiMixin(models.AbstractModel):
                 )
             )
 
-    @api.model
-    def _get_aeat_taxes_map(self, codes, date):
-        """Return the codes that correspond to that sii map line codes.
+    def _get_sii_document_taxes(self):
+        """Return the taxes (group taxes flattened) of the document."""
+        raise NotImplementedError()
 
-        :param codes: List of code strings to get the mapping.
-        :param date: Date to map
-        :return: Recordset with the corresponding codes
-        """
-        map_obj = self.env["aeat.sii.map"].sudo().with_context(active_test=False)
-        tax_agency = self._get_sii_tax_agency()
-        sii_map = map_obj.search(
-            Domain("tax_agency_id", "in", [tax_agency.id, False])
-            & (
-                (Domain("date_from", "<=", date) | Domain("date_from", "=", False))
-                & (Domain("date_to", ">=", date) | Domain("date_to", "=", False))
-            ),
-            limit=1,
+    def _get_sii_tax_scope(self, tax):
+        """Return 'service' or 'consu' for placing the tax in the services or the
+        goods block of the breakdown."""
+        return "service" if tax.tax_scope == "service" else "consu"
+
+    @api.model
+    def _get_sii_fiscal_position_gen_type(self, fiscal_position):
+        """Return 1 (national), 2 (intra-community) or 3 (export) for a fiscal
+        position."""
+        partner_ident = fiscal_position.sii_partner_identification_type
+        if partner_ident:
+            return int(partner_ident)
+        if fiscal_position.name == "Régimen Intracomunitario":
+            return 2
+        if fiscal_position.name == "Régimen Extracomunitario":
+            return 3
+        return 1
+
+    def _is_sii_self_assessed_tax(self, tax):
+        """Purchase tax self-assessed on an intra-community or foreign operation,
+        whose quota the AEAT expects in ImporteTotal (it is not in the invoice
+        total, as its negative repartition line cancels it). The operation is
+        foreign when the invoice is, or when the tax only belongs to
+        intra-community or foreign fiscal positions; national reverse charge is
+        not added."""
+        if not any(
+            line.repartition_type == "tax" and line.factor_percent < 0
+            for line in tax.invoice_repartition_line_ids
+        ):
+            return False
+        if self._get_sii_gen_type() in (2, 3):
+            return True
+        positions = tax.fiscal_position_ids
+        return bool(positions) and all(
+            self._get_sii_fiscal_position_gen_type(position) in (2, 3)
+            for position in positions
         )
-        tax_templates = sii_map.map_lines.filtered(
-            lambda x: x.code in codes
-        ).tax_xmlid_ids
-        return self.company_id._get_taxes_from_xmlids(tax_templates.mapped("name"))
+
+    def _get_sii_tax_codes(self, tax):
+        """Return the SII breakdown codes of a tax of the document, from the
+        Spanish data of the tax (type, scope and investment good):
+
+        * Sales: SFESB/SFESS (subject, goods/services), SFESISP (reverse
+          charge), SFESBE/SFESSE (exempt, goods/services) and SFENS/SFESNS (not
+          subject, goods/services).
+        * Purchases: SFRS (subject, exempt and DUA), SFRSA (REAGYP), SFRISP
+          (reverse charge), SFRNS (not subject), SFRND (not deductible), SFRBI
+          (investment good) and NotIncludedInTotalNegative (self-assessed VAT
+          of a foreign invoice).
+        * Both: RE (equivalence surcharge) and NotIncludedInTotal (withholding,
+          or any tax whose quota is not in the invoice total).
+
+        Taxes of type 'ignore' get no code: they are not reported, as the taxes
+        that are not for the tax agency of the document (see
+        `_is_sii_reported_tax`).
+        """
+        if not self._is_sii_reported_tax(tax):
+            return set()
+        es_type = tax.l10n_es_type
+        if es_type == "recargo":
+            return {"RE"}
+        if es_type == "retencion":
+            return {"NotIncludedInTotal"}
+        codes = set()
+        if self._get_mapping_key() in ("out_invoice", "out_refund"):
+            is_service = self._get_sii_tax_scope(tax) == "service"
+            if es_type == "sujeto":
+                codes.add("SFESS" if is_service else "SFESB")
+            elif es_type == "sujeto_isp":
+                codes.add("SFESISP")
+            elif es_type == "exento":
+                codes.add("SFESSE" if is_service else "SFESBE")
+            elif es_type in ("no_sujeto", "no_sujeto_loc"):
+                codes.add("SFESNS" if is_service else "SFENS")
+            return codes
+        if es_type in ("sujeto", "exento", "dua"):
+            codes.add("SFRS")
+        elif es_type == "sujeto_agricultura":
+            codes.add("SFRSA")
+        elif es_type == "sujeto_isp":
+            codes.add("SFRISP")
+        elif es_type in ("no_sujeto", "no_sujeto_loc"):
+            codes.add("SFRNS")
+        elif es_type == "no_deducible":
+            codes.add("SFRND")
+        if codes and tax.l10n_es_bien_inversion:
+            codes.add("SFRBI")
+        if codes and self._is_sii_self_assessed_tax(tax):
+            codes.add("NotIncludedInTotalNegative")
+        return codes
+
+    def _is_sii_reported_tax(self, tax):
+        """The SII of the AEAT is for the VAT: the taxes of other indirect taxes
+        (IGIC, IPSI) are not reported to it. Taxes without applicability, such
+        as withholdings or equivalence surcharges, are."""
+        return tax.l10n_es_applicability in (False, "01")
+
+    def _get_aeat_taxes_map(self, codes, date):
+        """Return the taxes of the document that go to the given SII breakdown
+        codes (see `_get_sii_tax_codes`).
+
+        :param codes: List of code strings to get the taxes.
+        :param date: Unused, kept for the API of `aeat.mixin`.
+        :return: Recordset with the corresponding taxes
+        """
+        codes = set(codes)
+        return self._get_sii_document_taxes().filtered(
+            lambda tax: self._get_sii_tax_codes(tax) & codes
+        )
+
+    def _get_sii_amount_not_in_total(self, tax_line, codes):
+        """Return the amount of a tax line that is not in ImporteTotal:
+        withholdings, foreign VAT of not subject operations (OSS) and, with a
+        negative sign, self-assessed VAT of foreign invoices."""
+        if "NotIncludedInTotal" in codes:
+            return tax_line["amount"]
+        if "NotIncludedInTotalNegative" in codes:
+            return -tax_line["amount"]
+        if codes and tax_line["tax"].l10n_es_type in ("no_sujeto", "no_sujeto_loc"):
+            return tax_line["amount"]
+        return 0
+
+    def _get_sii_base_not_in_total(self):
+        """Return the base of the operations that are outside the invoice for VAT
+        purposes (lines whose taxes are all of type 'ignore', e.g.
+        disbursements), which is not in ImporteTotal."""
+        return 0
 
     def _get_dua_sii_exempt_taxes(self):
         self.ensure_one()
@@ -242,7 +296,7 @@ class SiiMixin(models.AbstractModel):
             return True
         try:
             self.sudo().write({"sii_send_date": False})
-        except Exception:
+        except Exception:  # noqa: BLE001
             return False
         return True
 
@@ -331,16 +385,7 @@ class SiiMixin(models.AbstractModel):
             int: 1 (National), 2 (Intracom), 3 (Export)
         """
         self.ensure_one()
-        partner_ident = self.fiscal_position_id.sii_partner_identification_type
-        if partner_ident:
-            res = int(partner_ident)
-        elif self.fiscal_position_id.name == "Régimen Intracomunitario":
-            res = 2
-        elif self.fiscal_position_id.name == "Régimen Extracomunitario":
-            res = 3
-        else:
-            res = 1
-        return res
+        return self._get_sii_fiscal_position_gen_type(self.fiscal_position_id)
 
     def _is_aeat_simplified_invoice(self):
         """Inheritable method to allow control when an
@@ -359,9 +404,7 @@ class SiiMixin(models.AbstractModel):
             if (
                 (gen_type != 3 or country_code == "ES")
                 and not partner.vat
-                and not (
-                    partner.aeat_identification_type and partner.aeat_identification
-                )
+                and not partner._has_valid_aeat_identification()
                 and not is_simplified_invoice
             ):
                 raise UserError(self.env._("The partner has not a VAT configured."))
@@ -383,37 +426,28 @@ class SiiMixin(models.AbstractModel):
             period = str(int(((month - 1) / 3) + 1)) + "T"
         return period
 
-    def _get_document_product_exempt(self, applied_taxes):
-        raise NotImplementedError()
+    def _get_sii_exempt_cause(self, tax):
+        """Return the exemption cause (CausaExencion) of an exempt tax: the one
+        of the tax, else E5 on intra-community operations and E2 on exports, as
+        the cause is optional for the AEAT."""
+        if tax.l10n_es_exempt_reason:
+            return tax.l10n_es_exempt_reason
+        return {2: "E5", 3: "E2"}.get(self._get_sii_gen_type(), False)
 
-    def _get_sii_exempt_cause(self, applied_taxes):
-        """Código de la causa de exención según 3.6 y 3.7 de la FAQ del SII.
-
-        :param applied_taxes: Taxes that are exempt for filtering the lines.
-        """
-        self.ensure_one()
-        gen_type = self._get_sii_gen_type()
-        if gen_type == 2:
-            return "E5"
-        else:
-            exempt_cause = False
-            product_exempt_causes = self._get_document_product_exempt(applied_taxes)
-            if len(product_exempt_causes) > 1:
-                raise UserError(
-                    self.env._(
-                        "Currently there's no support for multiple exempt causes."
-                    )
-                )
-            if product_exempt_causes:
-                exempt_cause = product_exempt_causes.pop()
-            elif (
-                self.fiscal_position_id.sii_exempt_cause
-                and self.fiscal_position_id.sii_exempt_cause != "none"
-            ):
-                exempt_cause = self.fiscal_position_id.sii_exempt_cause
-            if gen_type == 3 and exempt_cause not in ["E2", "E3"]:
-                exempt_cause = "E2"
-            return exempt_cause
+    def _add_sii_exempt_detail(self, breakdown, tax, base):
+        """Add the base of an exempt tax to its exemption cause detail."""
+        exempt_dict = breakdown.setdefault("Sujeta", {}).setdefault(
+            "Exenta", {"DetalleExenta": []}
+        )
+        exempt_cause = self._get_sii_exempt_cause(tax)
+        for detail in exempt_dict["DetalleExenta"]:
+            if detail.get("CausaExencion") == exempt_cause:
+                detail["BaseImponible"] += base
+                return
+        detail = {"BaseImponible": base}
+        if exempt_cause:
+            detail["CausaExencion"] = exempt_cause
+        exempt_dict["DetalleExenta"].append(detail)
 
     def _get_tax_info(self):
         # TODO: To be renamed to _get_sii_tax_info
@@ -457,12 +491,17 @@ class SiiMixin(models.AbstractModel):
             tax_dict["CuotaRecargoEquivalencia"] = tax_lines[req_tax]["amount"]
         return tax_dict
 
-    def _get_no_taxable_cause(self):
-        self.ensure_one()
-        return (
-            self.fiscal_position_id.sii_no_taxable_cause
-            or "ImporteTAIReglasLocalizacion"
-        )
+    def _get_sii_no_taxable_cause(self, tax):
+        """Return the NoSujeta node of a not subject tax: articles 7, 14 and
+        others, or location rules."""
+        if tax.l10n_es_type == "no_sujeto":
+            return "ImportePorArticulos7_14_Otros"
+        return "ImporteTAIReglasLocalizacion"
+
+    def _get_sii_regime_codes(self):
+        """Return the AEAT registration keys of the document: main first, then
+        the additional ones."""
+        raise NotImplementedError()
 
     @api.model
     def _merge_tax_dict(self, vat_list, tax_dict, comp_keys, merge_keys):
@@ -506,26 +545,13 @@ class SiiMixin(models.AbstractModel):
                 return True
         return False
 
-    def _get_sii_out_taxes(self):  # noqa: C901
+    def _get_sii_out_taxes(self):
         """Get the taxes for sales documents.
 
         :param self: Single document record.
         """
         self.ensure_one()
         taxes_dict = {}
-        date = self._get_document_fiscal_date()
-        taxes_sfesb = self._get_aeat_taxes_map(["SFESB"], date)
-        taxes_sfesbe = self._get_aeat_taxes_map(["SFESBE"], date)
-        taxes_sfesisp = self._get_aeat_taxes_map(["SFESISP"], date)
-        # taxes_sfesisps = self._get_taxes_map(['SFESISPS'])
-        taxes_sfens = self._get_aeat_taxes_map(["SFENS"], date)
-        taxes_sfess = self._get_aeat_taxes_map(["SFESS"], date)
-        taxes_sfesse = self._get_aeat_taxes_map(["SFESSE"], date)
-        taxes_sfesns = self._get_aeat_taxes_map(["SFESNS"], date)
-        taxes_not_in_total = self._get_aeat_taxes_map(["NotIncludedInTotal"], date)
-        taxes_not_in_total_neg = self._get_aeat_taxes_map(
-            ["NotIncludedInTotalNegative"], date
-        )
         do_breakdown = self._is_sii_type_breakdown_required()
         if do_breakdown:
             tax_breakdown = taxes_dict.setdefault("DesgloseTipoOperacion", {})
@@ -535,102 +561,45 @@ class SiiMixin(models.AbstractModel):
             tax_breakdown = taxes_dict.setdefault("DesgloseFactura", {})
             good_breakdown = tax_breakdown
             service_breakdown = tax_breakdown
-        base_not_in_total = self._get_aeat_taxes_map(["BaseNotIncludedInTotal"], date)
-        not_in_amount_total = 0
-        exempt_cause = self._get_sii_exempt_cause(taxes_sfesbe + taxes_sfesse)
+        not_in_amount_total = self._get_sii_base_not_in_total()
         tax_lines = self._get_tax_info()
         for tax_line in tax_lines.values():
             tax = tax_line["tax"]
-            if tax in taxes_not_in_total:
-                not_in_amount_total += tax_line["amount"]
-            elif tax in taxes_not_in_total_neg:
-                not_in_amount_total -= tax_line["amount"]
-            elif tax in base_not_in_total:
-                not_in_amount_total += tax_line["base"]
-            if tax in (taxes_sfesb + taxes_sfesbe + taxes_sfesisp):
-                sub_dict = good_breakdown.setdefault("Sujeta", {})
-                # TODO l10n_es no tiene impuesto exento de bienes
-                # corrientes nacionales
-                if tax in taxes_sfesbe:
-                    exempt_dict = sub_dict.setdefault(
-                        "Exenta",
-                        {"DetalleExenta": [{"BaseImponible": 0}]},
-                    )
-                    det_dict = exempt_dict["DetalleExenta"][0]
-                    if exempt_cause:
-                        det_dict["CausaExencion"] = exempt_cause
-                    det_dict["BaseImponible"] += tax_line["base"]
-                else:
-                    not_exempt_type = "S2" if tax in taxes_sfesisp else "S1"
-                    sub_dict.setdefault(
-                        "NoExenta",
-                        {
-                            "TipoNoExenta": not_exempt_type,
-                            "DesgloseIVA": {"DetalleIVA": []},
-                        },
-                    )
-                    if not_exempt_type != sub_dict["NoExenta"]["TipoNoExenta"]:
-                        # There's a mix of ISP/non ISP -> S3
-                        sub_dict["NoExenta"]["TipoNoExenta"] = "S3"
-                    sub = sub_dict["NoExenta"]["DesgloseIVA"]["DetalleIVA"]
-                    tax_dict = self._get_sii_tax_dict(tax_line, tax_lines)
-                    if not self._merge_tax_dict(
-                        sub,
-                        tax_dict,
-                        ["TipoImpositivo"],
-                        ["BaseImponible", "CuotaRepercutida"],
-                    ):
-                        sub.append(tax_dict)
-            # No sujetas
-            if tax in taxes_sfens:
-                # ImporteTAIReglasLocalizacion or ImportePorArticulos7_14_Otros
-                default_no_taxable_cause = self._get_no_taxable_cause()
-                nsub_dict = good_breakdown.setdefault(
-                    "NoSujeta",
-                    {default_no_taxable_cause: 0},
+            codes = self._get_sii_tax_codes(tax)
+            not_in_amount_total += self._get_sii_amount_not_in_total(tax_line, codes)
+            if codes & {"SFESBE", "SFESSE"}:
+                breakdown = good_breakdown if "SFESBE" in codes else service_breakdown
+                self._add_sii_exempt_detail(breakdown, tax, tax_line["base"])
+            elif codes & {"SFESB", "SFESISP", "SFESS"}:
+                breakdown = service_breakdown if "SFESS" in codes else good_breakdown
+                # TODO: services with reverse charge (S2) are sent as S1
+                not_exempt_type = "S2" if "SFESISP" in codes else "S1"
+                sub_dict = breakdown.setdefault("Sujeta", {})
+                sub_dict.setdefault(
+                    "NoExenta",
+                    {
+                        "TipoNoExenta": not_exempt_type,
+                        "DesgloseIVA": {"DetalleIVA": []},
+                    },
                 )
-                nsub_dict[default_no_taxable_cause] += tax_line["base"]
-            if tax in (taxes_sfess + taxes_sfesse + taxes_sfesns):
-                if tax in taxes_sfesse:
-                    service_breakdown.setdefault("Sujeta", {})
-                    exempt_dict = service_breakdown["Sujeta"].setdefault(
-                        "Exenta",
-                        {"DetalleExenta": [{"BaseImponible": 0}]},
-                    )
-                    det_dict = exempt_dict["DetalleExenta"][0]
-                    if exempt_cause:
-                        det_dict["CausaExencion"] = exempt_cause
-                    det_dict["BaseImponible"] += tax_line["base"]
-                if tax in taxes_sfess:
-                    service_breakdown.setdefault("Sujeta", {})
-                    # TODO l10n_es_ no tiene impuesto ISP de servicios
-                    # not_exempt_type = "S2" if tax in taxes_sfesisps else "S1"
-                    not_exempt_type = "S1"
-                    not_exempt = service_breakdown["Sujeta"].setdefault(
-                        "NoExenta",
-                        {
-                            "TipoNoExenta": not_exempt_type,
-                            "DesgloseIVA": {"DetalleIVA": []},
-                        },
-                    )
-                    if not_exempt_type != not_exempt["TipoNoExenta"]:
-                        # There's a mix of ISP/non ISP -> S3
-                        not_exempt["TipoNoExenta"] = "S3"
-                    sub = not_exempt["DesgloseIVA"]["DetalleIVA"]
-                    tax_dict = self._get_sii_tax_dict(tax_line, tax_lines)
-                    if not self._merge_tax_dict(
-                        sub,
-                        tax_dict,
-                        ["TipoImpositivo"],
-                        ["BaseImponible", "CuotaRepercutida"],
-                    ):
-                        sub.append(tax_dict)
-                if tax in taxes_sfesns:
-                    default_no_taxable_cause = self._get_no_taxable_cause()
-                    nsub_dict = service_breakdown.setdefault(
-                        "NoSujeta", {default_no_taxable_cause: 0}
-                    )
-                    nsub_dict[default_no_taxable_cause] += tax_line["base"]
+                if not_exempt_type != sub_dict["NoExenta"]["TipoNoExenta"]:
+                    # There's a mix of ISP/non ISP -> S3
+                    sub_dict["NoExenta"]["TipoNoExenta"] = "S3"
+                sub = sub_dict["NoExenta"]["DesgloseIVA"]["DetalleIVA"]
+                tax_dict = self._get_sii_tax_dict(tax_line, tax_lines)
+                if not self._merge_tax_dict(
+                    sub,
+                    tax_dict,
+                    ["TipoImpositivo"],
+                    ["BaseImponible", "CuotaRepercutida"],
+                ):
+                    sub.append(tax_dict)
+            elif codes & {"SFENS", "SFESNS"}:
+                breakdown = service_breakdown if "SFESNS" in codes else good_breakdown
+                no_taxable_cause = self._get_sii_no_taxable_cause(tax)
+                nsub_dict = breakdown.setdefault("NoSujeta", {})
+                nsub_dict.setdefault(no_taxable_cause, 0)
+                nsub_dict[no_taxable_cause] += tax_line["base"]
         # Ajustes finales breakdown: eliminar clave vacía de entrega / servicios
         if "DesgloseTipoOperacion" in taxes_dict:
             if not taxes_dict["DesgloseTipoOperacion"]["Entrega"]:
@@ -763,13 +732,18 @@ class SiiMixin(models.AbstractModel):
         if not cancel:
             tipo_desglose, not_in_amount_total = self._get_sii_out_taxes()
             amount_total = self._get_document_amount_total() - not_in_amount_total
+            regime_codes = self._get_sii_regime_codes()
             inv_dict["FacturaExpedida"] = {
                 "TipoFactura": self._get_sii_invoice_type(),
-                "ClaveRegimenEspecialOTrascendencia": (self.sii_registration_key.code),
+                "ClaveRegimenEspecialOTrascendencia": regime_codes[0],
                 "DescripcionOperacion": self.sii_description,
                 "TipoDesglose": tipo_desglose,
                 "ImporteTotal": amount_total,
             }
+            for index, regime_code in enumerate(regime_codes[1:], start=1):
+                inv_dict["FacturaExpedida"][
+                    f"ClaveRegimenEspecialOTrascendenciaAdicional{index}"
+                ] = regime_code
             if self.sii_macrodata:
                 inv_dict["FacturaExpedida"].update(Macrodato="S")
             exp_dict = inv_dict["FacturaExpedida"]
@@ -902,7 +876,7 @@ class SiiMixin(models.AbstractModel):
                     )
                 doc_vals["aeat_send_error"] = send_error
                 document.write(doc_vals)
-            except Exception as fault:
+            except Exception as fault:  # noqa: BLE001
                 new_cr = Registry(self.env.cr.dbname).cursor()
                 env = api.Environment(new_cr, self.env.uid, self.env.context)
                 document = env[document._name].browse(document.id)
