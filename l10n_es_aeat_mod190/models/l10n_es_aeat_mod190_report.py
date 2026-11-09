@@ -222,9 +222,7 @@ class L10nEsAeatMod190ReportLine(models.Model):
         string="Partner Record OK",
         help="Checked if partner record is OK",
     )
-    partner_id = fields.Many2one(
-        comodel_name="res.partner", string="Partner", required=True
-    )
+    partner_id = fields.Many2one(comodel_name="res.partner", required=True)
     partner_vat = fields.Char(string="NIF", compute="_compute_partner_vat", store=True)
     representante_legal_vat = fields.Char(
         string="L. R. VAT", compute="_compute_representante_legal_vat", store=True

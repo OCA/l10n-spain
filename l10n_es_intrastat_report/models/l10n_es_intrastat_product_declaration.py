@@ -199,9 +199,7 @@ class IntrastatProductComputationLine(models.Model):
     _inherit = "intrastat.product.computation.line"
     _description = "Intrastat Product Computation Line for Spain"
 
-    intrastat_state_id = fields.Many2one(
-        comodel_name="res.country.state", string="Intrastat State"
-    )
+    intrastat_state_id = fields.Many2one(comodel_name="res.country.state")
     partner_vat = fields.Char(string="Customer VAT")
 
     def _prepare_grouped_fields(self, fields_to_sum):
@@ -247,7 +245,5 @@ class IntrastatProductDeclarationLine(models.Model):
     _inherit = "intrastat.product.declaration.line"
     _description = "Intrastat Product Declaration Line for Spain"
 
-    intrastat_state_id = fields.Many2one(
-        comodel_name="res.country.state", string="Intrastat State"
-    )
+    intrastat_state_id = fields.Many2one(comodel_name="res.country.state")
     partner_vat = fields.Char(string="Customer VAT")

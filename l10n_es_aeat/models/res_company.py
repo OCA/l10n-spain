@@ -13,7 +13,7 @@ _logger = logging.getLogger(__name__)
 class ResCompany(models.Model):
     _inherit = "res.company"
 
-    tax_agency_id = fields.Many2one("aeat.tax.agency", string="Tax Agency")
+    tax_agency_id = fields.Many2one("aeat.tax.agency")
     representative_vat = fields.Char(
         string="L.R. VAT number",
         size=9,

@@ -405,9 +405,7 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
             ("G", "G - Compras agencia viaje"),
         ],
     )
-    partner_id = fields.Many2one(
-        comodel_name="res.partner", string="Partner", required=True
-    )
+    partner_id = fields.Many2one(comodel_name="res.partner", required=True)
     partner_vat = fields.Char(string="VAT number", size=9)
     representative_vat = fields.Char(
         string="L.R. VAT number", size=9, help="Legal Representative VAT number"
@@ -711,7 +709,6 @@ class L10nEsAeatMod347RealStateRecord(models.Model):
     )
     partner_id = fields.Many2one(
         comodel_name="res.partner",
-        string="Partner",
         required=True,
     )
     partner_vat = fields.Char(

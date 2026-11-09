@@ -18,13 +18,11 @@ class L10nEsAeatRealEstate(models.Model):
     name = fields.Char(required=True)
     company_id = fields.Many2one(
         comodel_name="res.company",
-        string="Company",
         required=True,
         default=lambda s: s.env.company,
     )
     partner_id = fields.Many2one(
         "res.partner",
-        string="Partner",
         required=True,
         help="Partner that owns this real estate",
     )
@@ -79,7 +77,6 @@ class L10nEsAeatRealEstate(models.Model):
     )
     country_id = fields.Many2one(
         comodel_name="res.country",
-        string="Country",
         default=lambda self: self.env.ref("base.es"),
     )
     state_id = fields.Many2one(

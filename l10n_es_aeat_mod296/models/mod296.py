@@ -120,7 +120,7 @@ class L10nEsAeatMod296ReportLine(models.Model):
     mod296_id = fields.Many2one(
         comodel_name="l10n.es.aeat.mod296.report", string="Mod 296"
     )
-    partner_id = fields.Many2one(comodel_name="res.partner", string="Partner")
+    partner_id = fields.Many2one(comodel_name="res.partner")
     move_line_ids = fields.Many2many(
         comodel_name="account.move.line", string="Move Lines"
     )
