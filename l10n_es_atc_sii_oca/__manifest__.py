@@ -2,7 +2,7 @@
 
 {
     "name": "Suministro Inmediato de Información en el IGIC",
-    "version": "18.0.1.0.1",
+    "version": "20.0.1.0.0",
     "category": "Accounting & Finance",
     "website": "https://github.com/OCA/l10n-spain",
     "author": "Sistemas de Datos S.L, "
