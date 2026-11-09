@@ -9,7 +9,7 @@
 
 {
     "name": "AEAT modelo 349",
-    "version": "19.0.1.1.2",
+    "version": "20.0.1.0.0",
     "author": "Tecnativa, ForgeFlow, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "category": "Localisation/Accounting",
@@ -28,8 +28,7 @@
         "report/common_templates.xml",
         "report/aeat_mod349.xml",
         "report/report_views.xml",
-        "security/ir.model.access.csv",
-        "security/mod_349_security.xml",
+        "security/ir.access.csv",
     ],
     "development_status": "Mature",
     "maintainers": ["pedrobaeza"],

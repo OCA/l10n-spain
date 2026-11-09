@@ -3,6 +3,7 @@
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0
 
 import logging
+from typing import ClassVar
 
 from odoo.tests.common import tagged
 
@@ -18,21 +19,13 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
     # Set 'debug' attribute to True to easy debug this test
     # Do not forget to include '--log-handler aeat:DEBUG' in Odoo command line
     debug = False
-    taxes_sale = {
+    taxes_sale: ClassVar[dict] = {
         "S_IVA0_G_I": (2400, 0),
     }
-    taxes_purchase = {
+    taxes_purchase: ClassVar[dict] = {
         "P_IVA21_IC_BC": (150, 0),
         "P_IVA21_IC_BC//2": (150, 0),
     }
-
-    @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
-        # Compatibility with account_edi_ubl_cii
-        # It is necessary to set the value of company_registry so that if we define
-        # as country_id=BE the tests do not fail.
-        cls.customer.write({"company_registry": "0411905847"})
 
     @classmethod
     def _invoice_refund(cls, invoice, dt, price_unit=None):
@@ -77,7 +70,7 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
             {
                 "name": "3490000000001",
                 "company_id": self.company.id,
-                "company_vat": "1234567890",
+                "company_vat": "123456789",
                 "contact_name": "Test owner",
                 "statement_type": "N",
                 "support_type": "T",
@@ -126,7 +119,7 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
             {
                 "name": "3490000000002",
                 "company_id": self.company.id,
-                "company_vat": "1234567890",
+                "company_vat": "123456789",
                 "contact_name": "Test owner",
                 "statement_type": "C",
                 "support_type": "T",
@@ -157,7 +150,7 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
             {
                 "name": "3490000000003",
                 "company_id": self.company.id,
-                "company_vat": "1234567890",
+                "company_vat": "123456789",
                 "contact_name": "Test owner",
                 "statement_type": "S",
                 "support_type": "T",
@@ -188,7 +181,7 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
             {
                 "name": "3490000000004",
                 "company_id": self.company.id,
-                "company_vat": "1234567890",
+                "company_vat": "123456789",
                 "contact_name": "Test owner",
                 "statement_type": "N",
                 "support_type": "T",
@@ -253,7 +246,7 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
             {
                 "name": "3490000000001",
                 "company_id": self.company.id,
-                "company_vat": "1234567890",
+                "company_vat": "123456789",
                 "contact_name": "Test owner",
                 "statement_type": "N",
                 "support_type": "T",
@@ -274,7 +267,7 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
             {
                 "name": "3490000000002",
                 "company_id": self.company.id,
-                "company_vat": "1234567890",
+                "company_vat": "123456789",
                 "contact_name": "Test owner",
                 "statement_type": "N",
                 "support_type": "T",
@@ -297,7 +290,7 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
             {
                 "name": "3490000000003",
                 "company_id": self.company.id,
-                "company_vat": "1234567890",
+                "company_vat": "123456789",
                 "contact_name": "Test owner",
                 "statement_type": "N",
                 "support_type": "T",
@@ -329,7 +322,7 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
             {
                 "name": "3490000000001",
                 "company_id": self.company.id,
-                "company_vat": "1234567890",
+                "company_vat": "123456789",
                 "contact_name": "Test owner",
                 "statement_type": "N",
                 "support_type": "T",
@@ -350,7 +343,7 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
             {
                 "name": "3490000000002",
                 "company_id": self.company.id,
-                "company_vat": "1234567890",
+                "company_vat": "123456789",
                 "contact_name": "Test owner",
                 "statement_type": "N",
                 "support_type": "T",
@@ -394,7 +387,7 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
             {
                 "name": "3490000000001",
                 "company_id": self.company.id,
-                "company_vat": "1234567890",
+                "company_vat": "123456789",
                 "contact_name": "Test owner",
                 "statement_type": "N",
                 "support_type": "T",

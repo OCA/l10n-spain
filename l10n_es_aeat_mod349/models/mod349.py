@@ -115,13 +115,12 @@ class Mod349(models.Model):
                 # Check for refunds if the origin invoice period is different
                 # from the declaration
                 origin_invoice = move_line.move_id.reversed_entry_id
-                if origin_invoice:
-                    if (
-                        origin_invoice.date < self.date_start
-                        or origin_invoice.date > self.date_end
-                    ):
-                        self._create_349_refund_detail(move_line)
-                        continue
+                if origin_invoice and (
+                    origin_invoice.date < self.date_start
+                    or origin_invoice.date > self.date_end
+                ):
+                    self._create_349_refund_detail(move_line)
+                    continue
             self._create_349_record_detail(move_line)
 
     def _create_349_record_detail(self, move_line):
@@ -283,7 +282,7 @@ class Mod349(models.Model):
                 if self.period_type == "0A":
                     period_type = "0A"
                 elif self.period_type in ("1T", "2T", "3T", "4T"):
-                    period_type = f"{int(math.ceil(int(month) / 3.0))}T"
+                    period_type = f"{math.ceil(int(month) / 3.0)}T"
                 else:
                     period_type = month
             key = (partner, op_key, period_type, year)
@@ -485,11 +484,10 @@ class Mod349PartnerRecord(models.Model):
     )
     partner_id = fields.Many2one(
         comodel_name="res.partner",
-        string="Partner",
         required=True,
     )
     partner_vat = fields.Char(string="VAT", size=15, index=True)
-    country_id = fields.Many2one(comodel_name="res.country", string="Country")
+    country_id = fields.Many2one(comodel_name="res.country")
     operation_key = fields.Selection(
         selection=_selection_operation_key,
     )
@@ -558,7 +556,6 @@ class Mod349PartnerRecordDetail(models.Model):
     )
     partner_id = fields.Many2one(
         comodel_name="res.partner",
-        string="Partner",
         related="partner_record_id.partner_id",
         readonly=True,
     )
@@ -590,7 +587,6 @@ class Mod349PartnerRefund(models.Model):
     )
     partner_id = fields.Many2one(
         comodel_name="res.partner",
-        string="Partner",
         required=True,
         index=True,
     )
@@ -598,7 +594,7 @@ class Mod349PartnerRefund(models.Model):
     operation_key = fields.Selection(
         selection=_selection_operation_key,
     )
-    country_id = fields.Many2one(comodel_name="res.country", string="Country")
+    country_id = fields.Many2one(comodel_name="res.country")
     total_operation_amount = fields.Float(
         compute="_compute_total_operation_amount",
         string="Total rectified amount",
@@ -668,7 +664,6 @@ class Mod349PartnerRefundDetail(models.Model):
     )
     partner_id = fields.Many2one(
         comodel_name="res.partner",
-        string="Partner",
         related="refund_id.partner_id",
         readonly=True,
     )
