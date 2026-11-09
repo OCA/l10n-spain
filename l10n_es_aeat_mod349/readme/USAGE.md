@@ -15,3 +15,8 @@ Consideraciones importantes:
   se propondrán todas las operaciones que apliquen para el periodo.
 - En caso de indicar 'Complementaria', se propondrán únicamente aquellas
   operaciones que no hubieran sido aún presentadas en otra declaración.
+- La clave de operación de cada impuesto es la etiqueta del 349
+  (mod349[E], mod349[A]...) que Odoo core pone en la línea de reparto de
+  la base del impuesto. Para cambiarla o declarar un impuesto propio,
+  basta con poner esa etiqueta en el impuesto. Las facturas marcadas como
+  operación triangular se declaran con la clave T.

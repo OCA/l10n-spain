@@ -2,5 +2,4 @@
 
 from . import account_move
 from . import account_tax
-from . import aeat_349_map_line
 from . import mod349

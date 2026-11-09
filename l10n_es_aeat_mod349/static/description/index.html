@@ -471,6 +471,11 @@ para obtener el resultado en PDF.</li>
 se propondrán todas las operaciones que apliquen para el periodo.</li>
 <li>En caso de indicar ‘Complementaria’, se propondrán únicamente aquellas
 operaciones que no hubieran sido aún presentadas en otra declaración.</li>
+<li>La clave de operación de cada impuesto es la etiqueta del 349
+(mod349[E], mod349[A]…) que Odoo core pone en la línea de reparto de
+la base del impuesto. Para cambiarla o declarar un impuesto propio,
+basta con poner esa etiqueta en el impuesto. Las facturas marcadas
+como operación triangular se declaran con la clave T.</li>
 </ul>
 </div>
 <div class="section" id="known-issues-roadmap">
@@ -479,6 +484,9 @@ operaciones que no hubieran sido aún presentadas en otra declaración.</li>
 <li>Las facturas rectificativas que no se hayan realizado desde otra
 factura quedarán descolgadas y no se presentarán en el 349.</li>
 <li>Añadir aclaración de cuál es el error en los registros.</li>
+<li>En la clave C (sustituciones en acuerdos de ventas de bienes en
+consigna) no se rellenan el NIF ni el nombre del empresario sustituto
+(posiciones 179 a 235 del registro de operador intracomunitario).</li>
 </ul>
 </div>
 <div class="section" id="bug-tracker">

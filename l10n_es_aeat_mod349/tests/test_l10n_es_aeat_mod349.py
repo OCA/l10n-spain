@@ -5,6 +5,7 @@
 import logging
 from typing import ClassVar
 
+from odoo import Command
 from odoo.tests.common import tagged
 
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
@@ -473,3 +474,95 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
             lambda x: x.partner_vat == self.customer.vat
         )
         self.assertTrue(partner_record.partner_record_ok)
+
+    def test_model_349_keys_from_core_tags(self):
+        """The operation key of each tax is the 349 tag that Odoo core puts on it,
+        including the keys M, H, R, D and C and the taxes that are new in 20.0."""
+        self.customer.write(
+            {"vat": "BE0411905847", "country_id": self.env.ref("base.be").id}
+        )
+        self.supplier.write(
+            {"vat": "BG0000100159", "country_id": self.env.ref("base.bg").id}
+        )
+        sale_keys = {
+            "S_IVA0_G_I": ("E", 100),
+            "S_IVA0_EU_E_M": ("M", 200),
+            "S_IVA0_EU_E_H": ("H", 300),
+            "S_IVA0_EU_E_T": ("T", 400),
+            "S_IVA0_BC": ("R", 500),
+            "S_IVA_0_BC_TAI": ("D", 600),
+            "S_IVA_0_BC_SUS": ("C", 700),
+        }
+        Tax = self.env["account.tax"].with_context(active_test=False)
+        for desc, (key, _amount) in sale_keys.items():
+            tax = self._get_taxes(desc)
+            self.assertEqual(tax.l10n_es_aeat_349_operation_key, key, desc)
+            self.assertIn(
+                tax, Tax.search([("l10n_es_aeat_349_operation_key", "=", key)])
+            )
+        purchase_tax = self._get_taxes("P_IVA5_IC_BI")
+        self.assertEqual(purchase_tax.l10n_es_aeat_349_operation_key, "A")
+        self.assertNotIn(
+            self._get_taxes("S_IVA21B"),
+            Tax.search([("l10n_es_aeat_349_operation_key", "!=", False)]),
+        )
+        self._invoice_sale_create(
+            "2025-01-10",
+            {
+                "invoice_line_ids": [
+                    Command.create(
+                        {
+                            "name": desc,
+                            "account_id": self.accounts["700000"].id,
+                            "price_unit": amount,
+                            "quantity": 1,
+                            "tax_ids": [Command.set(self._get_taxes(desc).ids)],
+                        }
+                    )
+                    for desc, (_key, amount) in sale_keys.items()
+                ]
+            },
+        )
+        self._invoice_purchase_create(
+            "2025-01-10",
+            {
+                "invoice_line_ids": [
+                    Command.create(
+                        {
+                            "name": "P_IVA5_IC_BI",
+                            "account_id": self.accounts["600000"].id,
+                            "price_unit": 800,
+                            "quantity": 1,
+                            "tax_ids": [Command.set(purchase_tax.ids)],
+                        }
+                    )
+                ]
+            },
+        )
+        model349 = (
+            self.env["l10n.es.aeat.mod349.report"]
+            .with_user(self.account_manager)
+            .create(
+                {
+                    "name": "3490000000002",
+                    "company_id": self.company.id,
+                    "company_vat": "123456789",
+                    "contact_name": "Test owner",
+                    "statement_type": "N",
+                    "support_type": "T",
+                    "contact_phone": "911234455",
+                    "year": 2025,
+                    "period_type": "1T",
+                    "date_start": "2025-01-01",
+                    "date_end": "2025-03-31",
+                }
+            )
+        )
+        model349.button_calculate()
+        amounts = {
+            record.operation_key: record.total_operation_amount
+            for record in model349.partner_record_ids
+        }
+        expected = {key: amount for key, amount in sale_keys.values()}
+        expected["A"] = 800
+        self.assertEqual(amounts, expected)

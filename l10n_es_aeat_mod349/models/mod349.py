@@ -321,12 +321,26 @@ class Mod349(models.Model):
 
     @api.model
     def _get_taxes(self):
-        """Obtain all the taxes to be considered for 349."""
-        map_lines = self.env["aeat.349.map.line"].search([])  # pylint: disable=W8163
-        tax_templates = map_lines.tax_xmlid_ids
-        if not tax_templates:
-            raise exceptions.UserError(self.env._("No Tax Mapping was found"))
-        return self.company_id._get_taxes_from_xmlids(tax_templates.mapped("name"))
+        """Obtain all the taxes to be considered for 349: the ones with an operation
+        key, given by the 349 tags of Odoo core."""
+        taxes = (
+            self.env["account.tax"]
+            .with_context(active_test=False)
+            .search(
+                [
+                    ("company_id", "child_of", self.company_id.root_id.id),
+                    ("l10n_es_aeat_349_operation_key", "!=", False),
+                ]
+            )
+        )
+        if not taxes:
+            raise exceptions.UserError(
+                self.env._(
+                    "No tax with a 349 operation key was found. Update the "
+                    "chart of accounts to get the 349 tags of the taxes."
+                )
+            )
+        return taxes
 
     def _cleanup_report(self):
         """Remove previous partner records and partner refunds in report."""

@@ -4,6 +4,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
+from odoo.fields import Domain
 
 
 class AccountMove(models.Model):
@@ -31,6 +32,20 @@ class AccountMoveLine(models.Model):
             ("I", "I - Intra-Community services acquisitions"),
             ("S", "S - Intra-Community services"),
             ("T", "T - Triangular operations"),
+            ("M", "M - Intra-Community supplies after an exempt import"),
+            (
+                "H",
+                (
+                    "H - Intra-Community supplies after an exempt import made by "
+                    "the tax representative"
+                ),
+            ),
+            ("R", "R - Transfers under call-off stock arrangements"),
+            ("D", "D - Returns of goods sent under call-off stock arrangements"),
+            (
+                "C",
+                "C - Substitutions of the recipient under call-off stock arrangements",
+            ),
         ],
         string="AEAT 349 Operation key",
         compute="_compute_l10n_es_aeat_349_operation_key",
@@ -39,10 +54,15 @@ class AccountMoveLine(models.Model):
     )
 
     def _search_l10n_es_aeat_349_operation_key(self, operator, value):
-        if value == "T":
-            return [("move_id.eu_triangular_deal", "=", True)]
-        else:
-            return [("tax_ids.l10n_es_aeat_349_operation_key", operator, value)]
+        if operator != "in":
+            return NotImplemented
+        triangular = Domain("move_id.eu_triangular_deal", "=", True)
+        domain = ~triangular & Domain(
+            "tax_ids.l10n_es_aeat_349_operation_key", "in", list(value)
+        )
+        if "T" in value:
+            domain |= triangular
+        return domain
 
     @api.depends("tax_ids", "move_id.eu_triangular_deal")
     def _compute_l10n_es_aeat_349_operation_key(self):
