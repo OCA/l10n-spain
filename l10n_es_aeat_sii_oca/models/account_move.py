@@ -28,7 +28,7 @@ _logger = logging.getLogger(__name__)
 
 class AccountMove(models.Model):
     _name = "account.move"
-    _inherit = ["account.move", "sii.mixin"]
+    _inherit = ["account.move", "sii.mixin"]  # noqa: RUF012
 
     def _get_default_type(self):
         context = self.env.context
@@ -49,13 +49,12 @@ class AccountMove(models.Model):
         " of article 80 of LIVA for notifying to SII with the proper"
         " invoice type.",
     )
-    sii_registration_key_additional1 = fields.Many2one(
-        comodel_name="aeat.sii.mapping.registration.keys",
-        string="Additional SII registration key",
-    )
-    sii_registration_key_additional2 = fields.Many2one(
-        comodel_name="aeat.sii.mapping.registration.keys",
-        string="Additional 2 SII registration key",
+    l10n_es_regime_code_additional2 = fields.Selection(
+        string="VAT Regime Code (Additional 2)",
+        selection="_l10n_es_regime_code_selection",
+        compute="_compute_l10n_es_regime_code",
+        store=True,
+        readonly=False,
     )
     sii_property_location = fields.Selection(
         string="Real property location",
@@ -63,14 +62,18 @@ class AccountMove(models.Model):
         selection=[
             (
                 "1",
-                "[1]-Real property with cadastral code located within "
-                "the Spanish territory except Basque Country or Navarra",
+                (
+                    "[1]-Real property with cadastral code located within "
+                    "the Spanish territory except Basque Country or Navarra"
+                ),
             ),
             ("2", "[2]-Real property located in the Basque Country or Navarra"),
             (
                 "3",
-                "[3]-Real property in any of the above situations "
-                "but without cadastral code",
+                (
+                    "[3]-Real property in any of the above situations "
+                    "but without cadastral code"
+                ),
             ),
             ("4", "[4]-Real property located in a foreign country"),
         ],
@@ -97,29 +100,84 @@ class AccountMove(models.Model):
             else:
                 record.sii_refund_type = False
 
-    @api.depends("move_type")
-    def _compute_sii_registration_key_domain(self):
-        return super()._compute_sii_registration_key_domain()
+    @api.depends(
+        "fiscal_position_id.sii_regime_code_sale",
+        "fiscal_position_id.sii_regime_code_purchase",
+        "company_id.sii_enabled",
+    )
+    def _compute_l10n_es_regime_code(self):
+        """For SII companies, the registration key forced by the fiscal position
+        goes first, and a third key goes to the second additional one."""
+        res = super()._compute_l10n_es_regime_code()
+        for move in self:
+            if move.state == "posted" and move.l10n_es_regime_code:
+                continue
+            if not move.company_id.sii_enabled or not move.is_invoice(
+                include_receipts=True
+            ):
+                move.l10n_es_regime_code_additional2 = False
+                continue
+            codes = move._get_sii_regime_code_list() + [False, False]
+            move.l10n_es_regime_code = codes[0]
+            move.l10n_es_regime_code_additional = codes[1]
+            move.l10n_es_regime_code_additional2 = codes[2]
+        return res
 
-    @api.depends("move_type")
-    def _compute_sii_registration_key(self):
-        return super()._compute_sii_registration_key()
+    def _get_sii_regime_code_list(self):
+        """Return the registration keys of the invoice, main one first.
+
+        Like core, each product line gives the regime codes of its taxes, or the
+        default code of the company when they have none, sorted by the core
+        priority. A key forced by the fiscal position goes first and replaces
+        the default code.
+        """
+        self.ensure_one()
+        priorities = {"07": 0, "05": 1, "03": 2, "08": 2}
+        default_code = self.company_id._get_sii_default_regime_code()
+        codes = set()
+        for line in self.invoice_line_ids.filtered(
+            lambda line: line.display_type == "product"
+        ):
+            line_codes = {
+                code
+                for code in line.tax_ids.flatten_taxes_hierarchy().mapped(
+                    "l10n_es_regime_code"
+                )
+                if code
+            }
+            codes |= line_codes or {default_code}
+        use = "purchase" if self.is_purchase_document(include_receipts=True) else "sale"
+        forced_code = self.fiscal_position_id._get_sii_forced_regime_code(use)
+        if forced_code:
+            codes -= {forced_code, default_code}
+        sorted_codes = sorted(codes, key=lambda code: (priorities.get(code, 99), code))
+        if forced_code:
+            return [forced_code] + sorted_codes
+        return sorted_codes or [default_code]
+
+    def _get_sii_regime_codes(self):
+        self.ensure_one()
+        tax_model = self.env["account.tax"]
+        codes = [
+            tax_model._l10n_es_regime_code_aeat(code)
+            for code in (
+                self.l10n_es_regime_code,
+                self.l10n_es_regime_code_additional,
+                self.l10n_es_regime_code_additional2,
+            )
+            if code
+        ]
+        return codes or [self.company_id._get_sii_default_regime_code()]
 
     @api.depends("amount_total")
     def _compute_macrodata(self):
         return super()._compute_macrodata()
 
-    @api.depends("company_id", "fiscal_position_id", "invoice_line_ids.tax_ids")
+    @api.depends("invoice_line_ids.tax_ids.l10n_es_type")
     def _compute_dua_invoice(self):
         for invoice in self:
-            xmlids = [
-                "account_tax_template_p_iva4_ibc_group",
-                "account_tax_template_p_iva10_ibc_group",
-                "account_tax_template_p_iva21_ibc_group",
-            ]
-            taxes = invoice.company_id._get_taxes_from_xmlids(xmlids)
-            invoice.sii_dua_invoice = invoice.line_ids.filtered(
-                lambda x, taxes=taxes: bool(taxes & x.tax_ids)
+            invoice.sii_dua_invoice = invoice.is_purchase_document() and (
+                invoice._l10n_es_is_dua()
             )
 
     def _aeat_get_partner(self):
@@ -154,9 +212,8 @@ class AccountMove(models.Model):
                         self._raise_exception_sii(self.env._("supplier"))
                 elif "ref" in vals:
                     self._raise_exception_sii(self.env._("supplier invoice number"))
-            elif invoice.move_type in ["out_invoice", "out_refund"]:
-                if "name" in vals:
-                    self._raise_exception_sii(self.env._("invoice number"))
+            elif invoice.move_type in ["out_invoice", "out_refund"] and "name" in vals:
+                self._raise_exception_sii(self.env._("invoice number"))
         return super().write(vals)
 
     def _filter_sii_unlink_not_possible(self):
@@ -219,6 +276,42 @@ class AccountMove(models.Model):
         # Use the method at l10n_es_aeat that returns the needed info
         return self._get_aeat_tax_info()
 
+    def _get_sii_document_taxes(self):
+        self.ensure_one()
+        return (
+            self.line_ids.tax_ids | self.line_ids.tax_line_id
+        ).flatten_taxes_hierarchy()
+
+    def _get_sii_tax_scope(self, tax):
+        """Without a scope on the tax, the lines with the tax decide: services
+        when all of them have a service product, goods otherwise."""
+        if tax.tax_scope:
+            return super()._get_sii_tax_scope(tax)
+        lines = self.invoice_line_ids.filtered(
+            lambda line: (
+                line.display_type == "product"
+                and tax in line.tax_ids.flatten_taxes_hierarchy()
+            )
+        )
+        if lines and all(line.product_id.type == "service" for line in lines):
+            return "service"
+        return "consu"
+
+    def _get_sii_base_not_in_total(self):
+        self.ensure_one()
+        sign = -1 if self.move_type[:3] == "out" else 1
+        lines = self.invoice_line_ids.filtered(
+            lambda line: (
+                line.display_type == "product"
+                and line.tax_ids
+                and all(
+                    tax.l10n_es_type == "ignore"
+                    for tax in line.tax_ids.flatten_taxes_hierarchy()
+                )
+            )
+        )
+        return sum(lines.mapped("balance")) * sign
+
     def _get_sii_in_taxes(self):
         """Get the taxes for purchase invoices.
 
@@ -226,49 +319,32 @@ class AccountMove(models.Model):
         """
         self.ensure_one()
         taxes_dict = {}
-        taxes_sfrs = self._get_aeat_taxes_map(["SFRS"], self.date)
-        taxes_sfrsa = self._get_aeat_taxes_map(["SFRSA"], self.date)
-        taxes_sfrisp = self._get_aeat_taxes_map(["SFRISP"], self.date)
-        taxes_sfrns = self._get_aeat_taxes_map(["SFRNS"], self.date)
-        taxes_sfrnd = self._get_aeat_taxes_map(["SFRND"], self.date)
-        taxes_sfrbi = self._get_aeat_taxes_map(["SFRBI"], self.date)
-        taxes_not_in_total = self._get_aeat_taxes_map(["NotIncludedInTotal"], self.date)
-        taxes_not_in_total_neg = self._get_aeat_taxes_map(
-            ["NotIncludedInTotalNegative"], self.date
-        )
-        base_not_in_total = self._get_aeat_taxes_map(
-            ["BaseNotIncludedInTotal"], self.date
-        )
         tax_amount = 0.0
-        not_in_amount_total = 0.0
+        not_in_amount_total = self._get_sii_base_not_in_total()
         tax_lines = self._get_aeat_tax_info()
         for tax_line in tax_lines.values():
             tax = tax_line["tax"]
-            if tax in taxes_not_in_total:
-                not_in_amount_total += tax_line["amount"]
-            elif tax in taxes_not_in_total_neg:
-                not_in_amount_total -= tax_line["amount"]
-            elif tax in base_not_in_total:
-                not_in_amount_total += tax_line["base"]
-            if tax in taxes_sfrisp:
+            codes = self._get_sii_tax_codes(tax)
+            not_in_amount_total += self._get_sii_amount_not_in_total(tax_line, codes)
+            if "SFRISP" in codes:
                 base_dict = taxes_dict.setdefault(
                     "InversionSujetoPasivo",
                     {"DetalleIVA": []},
                 )
-            elif tax in taxes_sfrs + taxes_sfrns + taxes_sfrsa + taxes_sfrnd:
+            elif codes & {"SFRS", "SFRNS", "SFRSA", "SFRND"}:
                 base_dict = taxes_dict.setdefault("DesgloseIVA", {"DetalleIVA": []})
             else:
                 continue
             tax_dict = self._get_sii_tax_dict(tax_line, tax_lines)
-            if tax in taxes_sfrisp + taxes_sfrs + taxes_sfrsa:
+            if codes & {"SFRISP", "SFRS", "SFRSA"}:
                 tax_amount += tax_line["deductible_amount"]
-            if tax in taxes_sfrbi:
+            if "SFRBI" in codes:
                 tax_dict["BienInversion"] = "S"
-            if tax in taxes_sfrns:
+            if "SFRNS" in codes:
                 tax_dict.pop("TipoImpositivo")
                 tax_dict.pop("CuotaSoportada")
                 base_dict["DetalleIVA"].append(tax_dict)
-            elif tax in taxes_sfrsa:
+            elif "SFRSA" in codes:
                 tax_dict["PorcentCompensacionREAGYP"] = tax_dict.pop("TipoImpositivo")
                 tax_dict["ImporteCompensacionREAGYP"] = tax_dict.pop("CuotaSoportada")
                 base_dict["DetalleIVA"].append(tax_dict)
@@ -324,23 +400,7 @@ class AccountMove(models.Model):
             return inv_dict
         if self.thirdparty_invoice:
             inv_dict["FacturaExpedida"]["EmitidaPorTercerosODestinatario"] = "S"
-        if self.sii_registration_key_additional1:
-            inv_dict["FacturaExpedida"].update(
-                {
-                    "ClaveRegimenEspecialOTrascendenciaAdicional1": (
-                        self.sii_registration_key_additional1.code
-                    )
-                }
-            )
-        if self.sii_registration_key_additional2:
-            inv_dict["FacturaExpedida"].update(
-                {
-                    "ClaveRegimenEspecialOTrascendenciaAdicional2": (
-                        self.sii_registration_key_additional2.code
-                    )
-                }
-            )
-        if self.sii_registration_key.code in ["12", "13"]:
+        if self._get_sii_regime_codes()[0] in ["12", "13"]:
             inv_dict["FacturaExpedida"]["DatosInmueble"] = {
                 "DetalleInmueble": {
                     "SituacionInmueble": self.sii_property_location,
@@ -410,10 +470,11 @@ class AccountMove(models.Model):
                 if not self.sii_lc_operation:
                     invoice_type = "F5"
 
+            regime_codes = self._get_sii_regime_codes()
             inv_dict["FacturaRecibida"] = {
                 # TODO: Incluir los 5 tipos de facturas rectificativas
                 "TipoFactura": invoice_type,
-                "ClaveRegimenEspecialOTrascendencia": self.sii_registration_key.code,
+                "ClaveRegimenEspecialOTrascendencia": regime_codes[0],
                 "DescripcionOperacion": self.sii_description,
                 "DesgloseFactura": desglose_factura,
                 "Contraparte": {"NombreRazon": company_name},
@@ -426,22 +487,10 @@ class AccountMove(models.Model):
                 )
             if self.sii_macrodata:
                 inv_dict["FacturaRecibida"].update(Macrodato="S")
-            if self.sii_registration_key_additional1:
-                inv_dict["FacturaRecibida"].update(
-                    {
-                        "ClaveRegimenEspecialOTrascendenciaAdicional1": (
-                            self.sii_registration_key_additional1.code
-                        )
-                    }
-                )
-            if self.sii_registration_key_additional2:
-                inv_dict["FacturaRecibida"].update(
-                    {
-                        "ClaveRegimenEspecialOTrascendenciaAdicional2": (
-                            self.sii_registration_key_additional2.code
-                        )
-                    }
-                )
+            for index, regime_code in enumerate(regime_codes[1:], start=1):
+                inv_dict["FacturaRecibida"][
+                    f"ClaveRegimenEspecialOTrascendenciaAdicional{index}"
+                ] = regime_code
             # Uso condicional de IDOtro/NIF
             inv_dict["FacturaRecibida"]["Contraparte"].update(ident)
             if self.move_type == "in_refund":
@@ -624,19 +673,6 @@ class AccountMove(models.Model):
             )
         return super().button_draft()
 
-    def _get_document_product_exempt(self, applied_taxes):
-        return set(
-            self.mapped("invoice_line_ids")
-            .filtered(
-                lambda x: (
-                    any(tax in x.tax_ids for tax in applied_taxes)
-                    and x.product_id.sii_exempt_cause
-                    and x.product_id.sii_exempt_cause != "none"
-                )
-            )
-            .mapped("product_id.sii_exempt_cause")
-        )
-
     def is_sii_invoice(self):
         """Hook method to be overridden in additional modules to verify
         if the invoice must be sended trough SII system, for special cases.
@@ -785,7 +821,7 @@ class AccountMove(models.Model):
             return int(
                 self.env["ir.config_parameter"]
                 .sudo()
-                .get_param("l10n_es_aeat_sii_oca.sii_batch", "50")
+                .get_str("l10n_es_aeat_sii_oca.sii_batch", "50")
             )
         except ValueError as e:
             raise UserError(
