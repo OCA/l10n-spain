@@ -1,7 +1,7 @@
-- El `aeat.sii.map` que este módulo incluye para la agencia tributaria canaria nunca es
-  el que se usa. `_get_aeat_taxes_map` de `l10n_es_aeat_sii_oca` busca
-  `tax_agency_id in (agency, False)` con `limit=1` y sin orden, así que el mapeo
-  genérico que crea `l10n_es_aeat_sii_oca` gana por orden de identificador y los
-  impuestos de IGIC nunca se clasifican: una factura con solo impuestos de IGIC llega a
-  la ATC con el desglose vacío. O la búsqueda prefiere el mapeo de la agencia frente al
-  genérico, o este módulo tiene que sobrescribirla.
+- Los impuestos exentos de IGIC de la plantilla contable no tienen causa de exención:
+  las facturas se envían con la causa del tipo de operación (E5 intracomunitaria, E2
+  exportación) o sin ninguna. Hay que indicar la causa de cada impuesto exento que se
+  use.
+- Los impuestos de IGIC de la plantilla contable que el mapeo SII de la agencia
+  tributaria canaria no incluía (comerciantes minoristas, no sujetos, exportaciones)
+  reciben ahora el desglose de su tipo, mientras que antes no se comunicaban.

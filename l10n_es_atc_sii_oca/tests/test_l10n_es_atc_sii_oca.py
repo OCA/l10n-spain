@@ -28,17 +28,12 @@ class TestL10nEsAtcSiiOca(TestL10nEsAeatSiiBase):
         super().setUpClass()
         cls.agency_canarias = cls.env.ref("l10n_es_aeat.aeat_tax_agency_canarias")
         cls.agency_spain = cls.env.ref("l10n_es_aeat.aeat_tax_agency_spain")
-        cls.igic = cls.company._get_taxes_from_xmlids(["account_tax_template_igic_r_7"])
-        # The breakdown is built from the taxes the selected aeat.sii.map
-        # classifies. The ATC map this module ships is never the selected one
-        # (see readme/ROADMAP.md), so an invoice has to carry a tax of the
-        # generic map for a breakdown to exist at all and the renaming this
-        # module does to be observable.
-        cls.mapped_tax = cls.company._get_taxes_from_xmlids(
-            ["account_tax_template_s_iva21b"]
-        )
-        # The product of the base is exempt (E5), so its invoice carries no
-        # tax breakdown at all: this one is taxed
+        # A mainland company with an establishment in the Canary Islands: the
+        # IGIC taxes are archived by default
+        cls.igic = cls._tax("igic_r_7")
+        cls.igic_investment = cls._tax("igic_sop_7_inv")
+        (cls.igic | cls.igic_investment).active = True
+        cls.vat = cls._tax("s_iva21b")
         cls.taxed_product = cls.env["product.product"].create(
             {"name": "Test taxed product"}
         )
@@ -51,13 +46,19 @@ class TestL10nEsAtcSiiOca(TestL10nEsAeatSiiBase):
             }
         )
 
-    def _canary_invoice(self, partner=None, taxes=None):
+    @classmethod
+    def _tax(cls, xml_id):
+        return cls.company._get_taxes_from_xmlids([f"account_tax_template_{xml_id}"])
+
+    def _canary_invoice(self, taxes_list, partner=None, move_type="out_invoice"):
         return self.env["account.move"].create(
             {
                 "company_id": self.company.id,
                 "partner_id": (partner or self.partner).id,
                 "invoice_date": "2020-01-01",
-                "move_type": "out_invoice",
+                "ref": "sup-001",
+                "sii_account_registration_date": "2020-10-01",
+                "move_type": move_type,
                 "invoice_line_ids": [
                     (
                         0,
@@ -68,53 +69,102 @@ class TestL10nEsAtcSiiOca(TestL10nEsAeatSiiBase):
                             "name": "Test line",
                             "price_unit": 100,
                             "quantity": 1,
-                            "tax_ids": [(6, 0, (taxes or self.mapped_tax).ids)],
+                            "tax_ids": [(6, 0, taxes.ids)],
                         },
                     )
+                    for taxes in taxes_list
                 ],
             }
         )
 
-    def test_the_canary_igic_taxes_come_from_the_merged_chart(self):
-        """20.0 ships the IGIC taxes in es_common, not in a Canary chart."""
-        self.assertEqual(len(self.igic), 1)
-        self.assertEqual(self.igic.amount, 7)
-
-    def test_atc_sii_map_covers_the_igic_taxes(self):
-        """The ATC map sends the IGIC taxes under the issued-invoices code."""
-        sii_map = self.env.ref("l10n_es_atc_sii_oca.atc_sii_map")
-        self.assertEqual(sii_map.tax_agency_id, self.agency_canarias)
-        goods_line = sii_map.map_lines.filtered(lambda x: x.code == "SFESB")
-        self.assertIn(
-            "account_tax_template_igic_r_7", goods_line.tax_xmlid_ids.mapped("name")
-        )
+    def test_igic_tax_data(self):
+        """The IGIC taxes carry the Spanish data that the breakdown needs."""
+        self.assertEqual(self._tax("igic_ISP7").l10n_es_type, "sujeto_isp")
+        self.assertEqual(self._tax("igic_p_re07").l10n_es_type, "recargo")
+        self.assertEqual(self._tax("igic_re_ex").l10n_es_type, "exento")
+        self.assertEqual(self._tax("s_igic_ns").l10n_es_type, "no_sujeto")
+        self.assertTrue(self.igic_investment.l10n_es_bien_inversion)
+        # IGIC taxes that the core leaves without applicability
+        self.assertEqual(self._tax("igic_sop_7_s").l10n_es_applicability, "03")
 
     def test_atc_header_declares_its_own_sii_version(self):
         """The ATC still runs version 1.0 of the SII, the AEAT does not."""
         self.company.tax_agency_id = self.agency_canarias
-        invoice = self._canary_invoice()
+        invoice = self._canary_invoice([self.igic])
         self.assertEqual(invoice._get_aeat_header()["IDVersionSii"], "1.0")
         self.company.tax_agency_id = self.agency_spain
         self.assertNotEqual(invoice._get_aeat_header()["IDVersionSii"], "1.0")
 
-    def test_the_breakdown_sent_to_the_atc_is_igic_not_iva(self):
-        """The ATC rejects the IVA key names, so they are renamed to IGIC."""
-        invoice = self._canary_invoice()
+    def test_each_agency_gets_its_own_taxes(self):
+        """The ATC gets the IGIC breakdown, with the IGIC key names, and the
+        AEAT the VAT one."""
+        invoice = self._canary_invoice([self.igic, self.vat])
         self.company.tax_agency_id = self.agency_canarias
-        keys = collect_keys(invoice._get_aeat_invoice_dict_out())
-        self.assertIn("DesgloseIGIC", keys)
-        self.assertNotIn("DesgloseIVA", keys)
-        self.assertNotIn("DetalleIVA", keys)
-        # The same invoice sent to the AEAT keeps the IVA names
+        sii_dict = invoice._get_aeat_invoice_dict_out()["FacturaExpedida"]
+        self.assertEqual(
+            sii_dict["TipoDesglose"]["DesgloseFactura"]["Sujeta"]["NoExenta"],
+            {
+                "TipoNoExenta": "S1",
+                "DesgloseIGIC": {
+                    "DetalleIGIC": [
+                        {
+                            "TipoImpositivo": "7.0",
+                            "BaseImponible": 100.0,
+                            "CuotaRepercutida": 7.0,
+                        }
+                    ]
+                },
+            },
+        )
+        self.assertNotIn("DesgloseIVA", collect_keys(sii_dict))
         self.company.tax_agency_id = self.agency_spain
-        aeat_keys = collect_keys(invoice._get_aeat_invoice_dict_out())
-        self.assertIn("DesgloseIVA", aeat_keys)
-        self.assertNotIn("DesgloseIGIC", aeat_keys)
+        sii_dict = invoice._get_aeat_invoice_dict_out()["FacturaExpedida"]
+        self.assertEqual(
+            sii_dict["TipoDesglose"]["DesgloseFactura"]["Sujeta"]["NoExenta"][
+                "DesgloseIVA"
+            ]["DetalleIVA"],
+            [
+                {
+                    "TipoImpositivo": "21.0",
+                    "BaseImponible": 100.0,
+                    "CuotaRepercutida": 21.0,
+                }
+            ],
+        )
+        self.assertNotIn("DesgloseIGIC", collect_keys(sii_dict))
+
+    def test_igic_purchase_regime_code(self):
+        """The IGIC purchases have their own registration keys, and the
+        investment goods are flagged."""
+        self.assertIn(
+            "15_igic_purchase",
+            self.igic_investment.l10n_es_available_regime_codes.split(","),
+        )
+        self.assertNotIn(
+            "15_igic_purchase",
+            self.igic.l10n_es_available_regime_codes.split(","),
+        )
+        self.company.tax_agency_id = self.agency_canarias
+        invoice = self._canary_invoice([self.igic_investment], move_type="in_invoice")
+        invoice.l10n_es_regime_code = "15_igic_purchase"
+        sii_dict = invoice._get_aeat_invoice_dict_in()["FacturaRecibida"]
+        self.assertEqual(sii_dict["ClaveRegimenEspecialOTrascendencia"], "15")
+        self.assertEqual(
+            sii_dict["DesgloseFactura"]["DesgloseIGIC"]["DetalleIGIC"],
+            [
+                {
+                    "TipoImpositivo": "7.0",
+                    "BaseImponible": 100.0,
+                    "CuotaSoportada": 7.0,
+                    "BienInversion": "S",
+                }
+            ],
+        )
 
     def test_a_foreign_vat_is_an_official_document_for_the_atc(self):
         """IDType 02 is rejected with error 1103: the ATC only takes 04."""
         self.company.tax_agency_id = self.agency_canarias
-        invoice = self._canary_invoice(partner=self.foreign_partner)
+        invoice = self._canary_invoice([self.igic], partner=self.foreign_partner)
         self.assertEqual(invoice._get_sii_identifier()["IDOtro"]["IDType"], "04")
         self.company.tax_agency_id = self.agency_spain
         self.assertEqual(invoice._get_sii_identifier()["IDOtro"]["IDType"], "02")
