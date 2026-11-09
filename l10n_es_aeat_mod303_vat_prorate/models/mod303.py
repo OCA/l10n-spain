@@ -23,7 +23,6 @@ class L10nEsAeatMod303Report(models.Model):
     )
     with_vat_prorate = fields.Boolean(related="company_id.with_vat_prorate")
     prorate_id = fields.Many2one(
-        string="Prorate",
         comodel_name="res.company.vat.prorate",
         compute="_compute_prorate_id",
         ondelete="restrict",
@@ -185,11 +184,16 @@ class L10nEsAeatMod303Report(models.Model):
         date_from = f"{self.year}-01-01"
         date_to = f"{self.year}-12-31"
         # Get base amount for taxed operations
-        model_data = self.env["ir.model.data"].search(
-            [
-                ("module", "=", "l10n_es_aeat_mod303"),
-                ("name", "like", "s_iva%"),
-            ]
+        # ir.model.data is only readable by an administrator since 20.0
+        model_data = (
+            self.env["ir.model.data"]
+            .sudo()
+            .search(
+                [
+                    ("module", "=", "l10n_es_aeat_mod303"),
+                    ("name", "like", "s_iva%"),
+                ]
+            )
         )
         regex = re.compile(r"^s_iva[1-9]\d*(b|s|isp)$")
         affected_taxes = [

@@ -3,6 +3,8 @@
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0
 
 
+from typing import ClassVar
+
 from odoo import Command, exceptions
 
 from odoo.addons.l10n_es_aeat_mod303.tests.test_l10n_es_aeat_mod303 import (
@@ -11,11 +13,11 @@ from odoo.addons.l10n_es_aeat_mod303.tests.test_l10n_es_aeat_mod303 import (
 
 
 class TestL10nEsAeatMod303VatProrate(TestL10nEsAeatMod303Base):
-    taxes_sale = {
+    taxes_sale: ClassVar[dict] = {
         # tax code: (base, tax_amount)
         "S_IVA21B": (1000, 210),
     }
-    taxes_purchase = {
+    taxes_purchase: ClassVar[dict] = {
         # tax code: (base, tax_amount)
         "P_IVA21_BC": (500, 105),
     }
@@ -31,7 +33,8 @@ class TestL10nEsAeatMod303VatProrate(TestL10nEsAeatMod303Base):
 
     def test_model_303_with_prorate(self):
         # Set vat prorate configuration for company
-        self.company.write(
+        # Company data are set by an administrator
+        self.company.sudo().write(
             {
                 "with_vat_prorate": True,
                 "vat_prorate_ids": [
@@ -74,7 +77,8 @@ class TestL10nEsAeatMod303VatProrate(TestL10nEsAeatMod303Base):
 
     def test_model_303_with_special_prorate_default(self):
         # Set vat prorate configuration for company
-        self.company.write(
+        # Company data are set by an administrator
+        self.company.sudo().write(
             {
                 "with_vat_prorate": True,
                 "vat_prorate_ids": [
@@ -110,7 +114,8 @@ class TestL10nEsAeatMod303VatProrate(TestL10nEsAeatMod303Base):
 
     def test_model_303_with_special_prorate_manual(self):
         # Set vat prorate configuration for company
-        self.company.write(
+        # Company data are set by an administrator
+        self.company.sudo().write(
             {
                 "with_vat_prorate": True,
                 "vat_prorate_ids": [
@@ -177,7 +182,8 @@ class TestL10nEsAeatMod303VatProrate(TestL10nEsAeatMod303Base):
         self.assertEqual(self.model303_4t.casilla_44, -4.2)
 
     def test_button_compute(self):
-        self.company.write(
+        # Company data are set by an administrator
+        self.company.sudo().write(
             {
                 "with_vat_prorate": True,
                 "vat_prorate_ids": [
@@ -239,7 +245,8 @@ class TestL10nEsAeatMod303VatProrate(TestL10nEsAeatMod303Base):
         self.assertEqual(self.model303.casilla_44, 0)
 
     def test_button_compute_other_exempt(self):
-        self.company.write(
+        # Company data are set by an administrator
+        self.company.sudo().write(
             {
                 "with_vat_prorate": True,
                 "vat_prorate_ids": [

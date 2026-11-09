@@ -2,6 +2,7 @@
   - Pedro M. Baeza
   - Víctor Martínez
   - Carolina Fernandez
+  - Carlos Dauden
 - [Sygel](https://www.sygel.es)
   - Harald Panten
   - Manuel Regidor
