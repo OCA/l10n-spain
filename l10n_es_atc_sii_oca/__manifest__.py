@@ -12,16 +12,12 @@
     "license": "AGPL-3",
     "installable": True,
     "development_status": "Beta",
+    "maintainers": ["carlosdauden"],
     "depends": [
         "l10n_es",
         "l10n_es_aeat_sii_oca",
         "l10n_es_atc",
     ],
-    "data": [
-        "data/aeat_sii_tax_agency_data.xml",
-        "data/aeat_sii_mapping_registration_keys_data.xml",
-        "data/l10n.es.aeat.map.tax.line.tax.csv",
-        "data/aeat_sii_map_data.xml",
-    ],
+    "data": ["data/aeat_sii_tax_agency_data.xml"],
     "images": ["static/description/icon.png"],
 }

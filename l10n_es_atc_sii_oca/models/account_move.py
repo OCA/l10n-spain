@@ -63,6 +63,17 @@ class AccountMove(models.Model):
             inv_dict = self._sii_atc_replace_tax_keys(inv_dict)
         return inv_dict
 
+    def _is_sii_reported_tax(self, tax):
+        """The SII of the Canary tax agency is for the IGIC: it gets the IGIC
+        taxes and the withholdings, not the VAT ones."""
+        if self._get_sii_tax_agency() == self.env.ref(
+            "l10n_es_aeat.aeat_tax_agency_canarias"
+        ):
+            return tax.l10n_es_applicability == "03" or (
+                not tax.l10n_es_applicability and tax.l10n_es_type == "retencion"
+            )
+        return super()._is_sii_reported_tax(tax)
+
     def _get_sii_identifier(self):
         invoice = self
         if self._get_sii_tax_agency() == self.env.ref(

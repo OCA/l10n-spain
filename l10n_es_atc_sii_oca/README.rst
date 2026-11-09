@@ -49,25 +49,37 @@ Suministro Inmediato de Información en el IGIC
 Usage
 =====
 
-Cuando se valida una factura automáticamente envía la comunicación al
-servidor de la ATC.
+Cuando se valida una factura, se envía automáticamente al SII de la
+Agencia Tributaria Canaria (ATC).
 
-Se debe establecer en la configuración de la compañía la agencia
-tributaria: **Agencia Tributaria Canaria (1.0)**. En caso contrario, se
-enviará al SII de la **AEAT**.
+Se debe establecer la agencia tributaria **Agencia Tributaria Canaria**
+en la compañía o, en una compañía peninsular con un establecimiento en
+Canarias, en los diarios de las facturas de ese establecimiento. En caso
+contrario, las facturas se envían al SII de la **AEAT**.
+
+Los impuestos de IGIC forman parte del plan contable español general.
+Odoo los archiva en las compañías cuya provincia no es canaria: en ese
+caso hay que activar los que se usen.
+
+A la ATC solo se comunican los impuestos de IGIC (aplicabilidad IGIC) y
+las retenciones, y a la AEAT solo los de IVA. El desglose sale de los
+datos españoles de cada impuesto (tipo, alcance y bien de inversión),
+como en ``l10n_es_aeat_sii_oca``.
+
+Las claves de registro de las compras con IGIC (15, 16 y 17) se pueden
+indicar en los impuestos de compra de IGIC o en la factura.
 
 Known issues / Roadmap
 ======================
 
-- El ``aeat.sii.map`` que este módulo incluye para la agencia tributaria
-  canaria nunca es el que se usa. ``_get_aeat_taxes_map`` de
-  ``l10n_es_aeat_sii_oca`` busca ``tax_agency_id in (agency, False)``
-  con ``limit=1`` y sin orden, así que el mapeo genérico que crea
-  ``l10n_es_aeat_sii_oca`` gana por orden de identificador y los
-  impuestos de IGIC nunca se clasifican: una factura con solo impuestos
-  de IGIC llega a la ATC con el desglose vacío. O la búsqueda prefiere
-  el mapeo de la agencia frente al genérico, o este módulo tiene que
-  sobrescribirla.
+- Los impuestos exentos de IGIC de la plantilla contable no tienen causa
+  de exención: las facturas se envían con la causa del tipo de operación
+  (E5 intracomunitaria, E2 exportación) o sin ninguna. Hay que indicar
+  la causa de cada impuesto exento que se use.
+- Los impuestos de IGIC de la plantilla contable que el mapeo SII de la
+  agencia tributaria canaria no incluía (comerciantes minoristas, no
+  sujetos, exportaciones) reciben ahora el desglose de su tipo, mientras
+  que antes no se comunicaban.
 
 Bug Tracker
 ===========
@@ -119,6 +131,14 @@ This module is maintained by the OCA.
 OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
+
+.. |maintainer-carlosdauden| image:: https://github.com/carlosdauden.png?size=40px
+    :target: https://github.com/carlosdauden
+    :alt: carlosdauden
+
+Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
+
+|maintainer-carlosdauden| 
 
 This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/20.0/l10n_es_atc_sii_oca>`_ project on GitHub.
 
