@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <record model="ir.ui.view" id="l10n_es_aeat_mod303_prorrata_form">
+    <record id="l10n_es_aeat_mod303_prorrata_form" model="ir.ui.view">
         <field name="name">l10n.es.aeat.mod303.prorrata.form</field>
         <field name="model">l10n.es.aeat.mod303.report</field>
         <field

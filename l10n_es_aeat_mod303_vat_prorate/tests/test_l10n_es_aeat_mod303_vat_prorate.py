@@ -135,7 +135,7 @@ class TestL10nEsAeatMod303VatProrate(TestL10nEsAeatMod303Base):
                         "quantity": 1,
                         "tax_ids": [
                             Command.link(t.id)
-                            for t in self._get_taxes("P_IVA21_BC".split("//")[0])
+                            for t in self._get_taxes(["P_IVA21_BC"][0])
                         ],
                         "with_vat_prorate": False,
                     },
@@ -148,7 +148,7 @@ class TestL10nEsAeatMod303VatProrate(TestL10nEsAeatMod303Base):
                         "quantity": 1,
                         "tax_ids": [
                             Command.link(t.id)
-                            for t in self._get_taxes("P_IVA21_BC".split("//")[0])
+                            for t in self._get_taxes(["P_IVA21_BC"][0])
                         ],
                         "with_vat_prorate": True,
                     },
