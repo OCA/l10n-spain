@@ -26,16 +26,22 @@ class AccountJournal(models.Model):
         "company_id", "company_id.verifactu_enabled", "verifactu_enabled", "type"
     )  # company_id* triggers aren't launched anyway - see res.company~write method
     def _compute_restrict_mode_hash_table(self):
-        self.restrict_mode_hash_table = False
-        self.restrict_mode_hash_table_readonly = False
+        locked = set()
+        if self._origin.ids:
+            self.env.cr.execute(
+                "SELECT id FROM account_journal WHERE id IN %s "
+                "AND restrict_mode_hash_table",
+                (tuple(self._origin.ids),),
+            )
+            locked = {row[0] for row in self.env.cr.fetchall()}
         for record in self:
-            if (
+            verifactu = (
                 record.company_id.verifactu_enabled
                 and record.verifactu_enabled
                 and record.type == "sale"
-            ):
-                record.restrict_mode_hash_table = True
-                record.restrict_mode_hash_table_readonly = True
+            )
+            record.restrict_mode_hash_table_readonly = verifactu
+            record.restrict_mode_hash_table = verifactu or record._origin.id in locked
 
     def check_hash_modification(self, vals):
         verifactu_enabled = vals.get("verifactu_enabled", self.verifactu_enabled)
