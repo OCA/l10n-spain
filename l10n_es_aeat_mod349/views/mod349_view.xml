@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <!-- #######################################
         ### AEAT MODEL 349 PARTNER RECORD DETAIL ###
@@ -245,8 +245,8 @@
         <field name="help">Create and query AEAT Model 349 reports</field>
     </record>
     <record
-        model="ir.actions.act_window.view"
         id="action_l10n_es_aeat_mod303_report_tree"
+        model="ir.actions.act_window.view"
     >
         <field name="sequence" eval="2" />
         <field name="view_mode">list</field>
@@ -254,8 +254,8 @@
         <field name="act_window_id" ref="action_l10n_es_aeat_mod349_report" />
     </record>
     <record
-        model="ir.actions.act_window.view"
         id="action_l10n_es_aeat_mod349_report_form"
+        model="ir.actions.act_window.view"
     >
         <field name="sequence" eval="3" />
         <field name="view_mode">form</field>

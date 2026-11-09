@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <!-- Tipo registro 2 – Registro de abono clientes: -->
     <record
@@ -14,7 +14,7 @@
         id="aeat_mod349_partner_refund_export_line_01"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">1</field>
+        <field name="sequence" eval="1" />
         <field name="export_config_id" ref="aeat_mod349_partner_refund_export_config" />
         <field name="name">Constante: 2</field>
         <field name="fixed_value">2</field>
@@ -27,7 +27,7 @@
         id="aeat_mod349_partner_refund_export_line_02"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">2</field>
+        <field name="sequence" eval="2" />
         <field name="export_config_id" ref="aeat_mod349_partner_refund_export_config" />
         <field name="name">Constante: 349</field>
         <field name="fixed_value">349</field>
@@ -40,7 +40,7 @@
         id="aeat_mod349_partner_refund_export_line_03"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">3</field>
+        <field name="sequence" eval="3" />
         <field name="export_config_id" ref="aeat_mod349_partner_refund_export_config" />
         <field name="name">Ejercicio</field>
         <field name="expression">${object.report_id.year}</field>
@@ -53,7 +53,7 @@
         id="aeat_mod349_partner_refund_export_line_04"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">4</field>
+        <field name="sequence" eval="4" />
         <field name="export_config_id" ref="aeat_mod349_partner_refund_export_config" />
         <field name="name">NIF del declarante</field>
         <field name="expression">${object.report_id.company_vat}</field>
@@ -66,7 +66,7 @@
         id="aeat_mod349_partner_refund_export_line_05"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">5</field>
+        <field name="sequence" eval="5" />
         <field name="export_config_id" ref="aeat_mod349_partner_refund_export_config" />
         <field name="name">Blancos</field>
         <field name="fixed_value" />
@@ -79,7 +79,7 @@
         id="aeat_mod349_partner_refund_export_line_06"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">6</field>
+        <field name="sequence" eval="6" />
         <field name="export_config_id" ref="aeat_mod349_partner_refund_export_config" />
         <field name="name">NIF operador Intracomunitario</field>
         <field name="expression">${object.partner_vat}</field>
@@ -93,7 +93,7 @@
         id="aeat_mod349_partner_refund_export_line_07"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">7</field>
+        <field name="sequence" eval="7" />
         <field name="export_config_id" ref="aeat_mod349_partner_refund_export_config" />
         <field
             name="name"
@@ -108,7 +108,7 @@
         id="aeat_mod349_partner_refund_export_line_08"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">8</field>
+        <field name="sequence" eval="8" />
         <field name="export_config_id" ref="aeat_mod349_partner_refund_export_config" />
         <field name="name">Clave de operación</field>
         <field name="expression">${object.operation_key}</field>
@@ -121,7 +121,7 @@
         id="aeat_mod349_partner_refund_export_line_09"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">9</field>
+        <field name="sequence" eval="9" />
         <field name="export_config_id" ref="aeat_mod349_partner_refund_export_config" />
         <field name="name">Blancos</field>
         <field name="fixed_value" />
@@ -134,7 +134,7 @@
         id="aeat_mod349_partner_refund_export_line_10"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">10</field>
+        <field name="sequence" eval="10" />
         <field name="export_config_id" ref="aeat_mod349_partner_refund_export_config" />
         <field name="name">Ejercicio (de la declaración que se corrige)</field>
         <field name="expression">${object.year}</field>
@@ -147,7 +147,7 @@
         id="aeat_mod349_partner_refund_export_line_11"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">11</field>
+        <field name="sequence" eval="11" />
         <field name="export_config_id" ref="aeat_mod349_partner_refund_export_config" />
         <field name="name">Periodo (de la declaración que se corrige)</field>
         <field name="expression">${object.period_type}</field>
@@ -162,7 +162,7 @@
         id="aeat_mod349_partner_refund_export_line_12"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">12</field>
+        <field name="sequence" eval="12" />
         <field name="export_config_id" ref="aeat_mod349_partner_refund_export_config" />
         <field name="name">Base Imponible rectificada</field>
         <field name="expression">${object.total_operation_amount}</field>
@@ -181,7 +181,7 @@
         id="aeat_mod349_partner_refund_export_line_13"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">13</field>
+        <field name="sequence" eval="13" />
         <field name="export_config_id" ref="aeat_mod349_partner_refund_export_config" />
         <field name="name">Base imponible declarada anteriormente</field>
         <field name="expression">${object.total_origin_amount}</field>
@@ -196,7 +196,7 @@
         id="aeat_mod349_partner_refund_export_line_14"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">14</field>
+        <field name="sequence" eval="14" />
         <field name="export_config_id" ref="aeat_mod349_partner_refund_export_config" />
         <field name="name">Blancos</field>
         <field name="fixed_value" />
