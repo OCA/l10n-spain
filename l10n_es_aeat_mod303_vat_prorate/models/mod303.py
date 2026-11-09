@@ -5,9 +5,8 @@
 
 import datetime
 import math
-import re
 
-from odoo import Command, api, exceptions, fields, models
+from odoo import api, exceptions, fields, models
 from odoo.fields import Domain
 from odoo.tools import float_is_zero
 
@@ -179,51 +178,67 @@ class L10nEsAeatMod303Report(models.Model):
             lines.append(line_vals)
         return lines
 
+    def _get_vat_prorate_taxed_taxes(self):
+        """Sale taxes whose base gives the right to deduct, from the tax type that
+        Odoo core sets on every Spanish tax (``l10n_es_type``)."""
+        Tax = self.env["account.tax"].with_context(active_test=False)
+        return Tax.search(
+            Domain.AND(
+                [
+                    Domain("company_id", "child_of", self.company_id.root_id.id),
+                    Domain("type_tax_use", "=", "sale"),
+                    Domain("l10n_es_type", "in", Tax._l10n_es_get_sujeto_tax_types()),
+                ]
+            )
+        )
+
+    def _get_vat_prorate_exempt_taxes(self):
+        return self.company_id._get_taxes_from_xmlids(
+            [
+                f"account_tax_template_{xmlid}"
+                for xmlid in (
+                    "s_iva0",
+                    "s_iva0_art22",
+                    "s_iva0_art23",
+                    "s_iva0_nsd",
+                    "s_iva0_ns",
+                )
+            ]
+        )
+
+    def _get_vat_prorate_base(self, taxes, date_from, date_to):
+        """Base of the posted move lines of the period with any of the given taxes,
+        with the conditions of the AEAT engine for a base line of every move type
+        (see ``_get_move_line_domain``)."""
+        domain = Domain.AND(
+            [
+                Domain("company_id", "child_of", self.company_id.id),
+                Domain("date", ">=", date_from),
+                Domain("date", "<=", date_to),
+                Domain("parent_state", "=", "posted"),
+                Domain("tax_ids", "in", taxes.ids),
+                Domain.OR(
+                    [
+                        Domain("move_id.tax_cash_basis_rec_id", "!=", False),
+                        Domain("tax_line_id.tax_exigibility", "!=", "on_payment"),
+                        Domain("tax_ids.tax_exigibility", "!=", "on_payment"),
+                    ]
+                ),
+                self._get_partner_domain(),
+            ]
+        )
+        return -sum(self.env["account.move.line"].search(domain).mapped("balance"))
+
     def button_compute(self):
         self.ensure_one()
         date_from = f"{self.year}-01-01"
         date_to = f"{self.year}-12-31"
-        # Get base amount for taxed operations
-        # ir.model.data is only readable by an administrator since 20.0
-        model_data = (
-            self.env["ir.model.data"]
-            .sudo()
-            .search(
-                [
-                    ("module", "=", "l10n_es_aeat_mod303"),
-                    ("name", "like", "s_iva%"),
-                ]
-            )
+        taxed = self._get_vat_prorate_base(
+            self._get_vat_prorate_taxed_taxes(), date_from, date_to
         )
-        regex = re.compile(r"^s_iva[1-9]\d*(b|s|isp)$")
-        affected_taxes = [
-            f"{rec.module}.{rec.name}" for rec in model_data if regex.match(rec.name)
-        ]
-        MapLine = self.env["l10n.es.aeat.map.tax.line"]
-        mapline_vals = {
-            "move_type": "all",
-            "field_type": "base",
-            "sum_type": "both",
-            "exigible_type": "yes",
-            "tax_xmlid_ids": [Command.link(self.env.ref(x).id) for x in affected_taxes],
-        }
-        map_line = MapLine.new(mapline_vals)
-        move_lines = self._get_tax_lines(date_from, date_to, map_line)
-        taxed = -sum(move_lines.mapped("balance"))
-        # Get base amount of exempt operations
-        mapline_vals["tax_xmlid_ids"] = [
-            Command.link(self.env.ref(f"l10n_es_aeat_mod303.{x}").id)
-            for x in [
-                "s_iva0",
-                "s_iva0_art22",
-                "s_iva0_art23",
-                "s_iva0_nsd",
-                "s_iva0_ns",
-            ]
-        ]
-        map_line = MapLine.new(mapline_vals)
-        move_lines = self._get_tax_lines(date_from, date_to, map_line)
-        exempt = -sum(move_lines.mapped("balance"))
+        exempt = self._get_vat_prorate_base(
+            self._get_vat_prorate_exempt_taxes(), date_from, date_to
+        )
         total_base = taxed + exempt
         self.vat_prorate_percent = (
             math.ceil(taxed / total_base * 100) if total_base > 0 else 100

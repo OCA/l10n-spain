@@ -307,3 +307,37 @@ class TestL10nEsAeatMod303VatProrate(TestL10nEsAeatMod303Base):
         self.model303.button_compute()
         self.assertEqual(self.model303.vat_prorate_percent, 67)
         self.assertEqual(self.model303.casilla_44, 0)
+
+    def test_button_compute_all_taxed_rates(self):
+        """Every sale tax that Odoo core types as subject counts as taxed, whatever
+        its rate: 7.5 % and 0 % too."""
+        self.company.sudo().write(
+            {
+                "with_vat_prorate": True,
+                "vat_prorate_ids": [
+                    Command.create({"date": "2024-01-01", "vat_prorate": 10})
+                ],
+            }
+        )
+        lines = []
+        for desc, price in (
+            ("S_IVA21B", 100),
+            ("S_IVA7-5B", 100),
+            ("S_IVA0B", 100),
+            ("S_IVA0", 100),
+        ):
+            lines.append(
+                Command.create(
+                    {
+                        "name": f"Venta {price}€ {desc}",
+                        "account_id": self.accounts["700000"].id,
+                        "price_unit": price,
+                        "quantity": 1,
+                        "tax_ids": [Command.link(t.id) for t in self._get_taxes(desc)],
+                    }
+                )
+            )
+        self._invoice_sale_create("2024-01-01", {"invoice_line_ids": lines})
+        self.model303.button_compute()
+        # 300 taxed of 400
+        self.assertEqual(self.model303.vat_prorate_percent, 75)

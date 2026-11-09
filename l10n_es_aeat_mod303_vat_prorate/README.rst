@@ -64,6 +64,11 @@ Usage
   está activado y period_type es '4T' o '12'. En versiones anteriores
   (v14), este cálculo se realizaba a través de un wizard independiente.
 
+- El cálculo de la prorrata definitiva toma como operaciones con derecho
+  a deducción la base de las ventas con impuestos de tipo sujeto o
+  sujeto ISP de Odoo core, sea cual sea el porcentaje (también 0 % y 7,5
+  %).
+
 Known issues / Roadmap
 ======================
 
