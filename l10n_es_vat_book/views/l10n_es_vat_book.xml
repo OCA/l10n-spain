@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record id="view_l10n_es_vat_book_tree" model="ir.ui.view">
         <field name="name">l10n_es.vat.book.tree</field>
@@ -108,13 +108,13 @@
         </p>
         </field>
     </record>
-    <record model="ir.actions.act_window.view" id="action_l10n_vat_book_report_tree">
+    <record id="action_l10n_vat_book_report_tree" model="ir.actions.act_window.view">
         <field name="sequence" eval="2" />
         <field name="view_mode">list</field>
         <field name="view_id" ref="view_l10n_es_vat_book_tree" />
         <field name="act_window_id" ref="l10n_es_vat_book_action" />
     </record>
-    <record model="ir.actions.act_window.view" id="action_l10n_vat_book_report_form">
+    <record id="action_l10n_vat_book_report_form" model="ir.actions.act_window.view">
         <field name="sequence" eval="3" />
         <field name="view_mode">form</field>
         <field name="view_id" ref="view_l10n_es_vat_book_form" />
