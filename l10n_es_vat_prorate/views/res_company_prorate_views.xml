@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!-- Copyright 2022 Creu Blanca
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
-    <record model="ir.ui.view" id="res_company_vat_prorate_form_view">
+    <record id="res_company_vat_prorate_form_view" model="ir.ui.view">
         <field name="name">res.company.vat.prorate.form (in l10n_es_vat_prorate)</field>
         <field name="model">res.company.vat.prorate</field>
         <field name="arch" type="xml">
@@ -22,7 +22,7 @@
             </form>
         </field>
     </record>
-    <record model="ir.ui.view" id="res_company_vat_prorate_list_view">
+    <record id="res_company_vat_prorate_list_view" model="ir.ui.view">
         <field name="name">res.company.vat.prorate.list (in l10n_es_vat_prorate)</field>
         <field name="model">res.company.vat.prorate</field>
         <field name="arch" type="xml">

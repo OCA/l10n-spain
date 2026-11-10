@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!-- Copyright 2022 Creu Blanca
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
-    <record model="ir.ui.view" id="account_tax_form_view">
+    <record id="account_tax_form_view" model="ir.ui.view">
         <field name="name">account.tax.form (in l10n_es_vat_prorate)</field>
         <field name="model">account.tax</field>
         <field name="inherit_id" ref="account.view_tax_form" />

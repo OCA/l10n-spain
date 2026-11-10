@@ -121,4 +121,3 @@ class TestSIIVatProrate(TestL10nEsAeatSiiBase):
             self._create_and_test_invoice_sii_dict(
                 inv_type, lines, extra_vals, module="l10n_es_vat_prorate"
             )
-        return

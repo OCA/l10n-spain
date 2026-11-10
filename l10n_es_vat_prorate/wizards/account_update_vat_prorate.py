@@ -57,8 +57,9 @@ class AccountUpdateVatProrate(models.TransientModel):
         self.ensure_one()
         sudo_company = self.company_id.sudo()
         sudo_company.vat_prorate_ids.filtered(
-            lambda r: r.id
-            not in self.vat_prorate_ids.mapped("origin_vat_prorate_id.id")
+            lambda r: (
+                r.id not in self.vat_prorate_ids.mapped("origin_vat_prorate_id.id")
+            )
         ).unlink()
         for vat_prorate in self.vat_prorate_ids:
             vals = {
