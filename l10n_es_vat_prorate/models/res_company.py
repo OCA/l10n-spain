@@ -4,7 +4,6 @@
 
 from odoo import api, fields, models
 from odoo.exceptions import ValidationError
-from odoo.tools import ormcache
 
 from .prorate_taxes import PRORATE_TAXES
 
@@ -20,7 +19,7 @@ class ResCompany(models.Model):
         "res.company.vat.prorate", inverse_name="company_id"
     )
 
-    @ormcache("self")
+    @api.ormcache("self")
     def _get_prorate_accounts(self):
         prorate_taxes_mapping = {}
         for tax_tmpl in PRORATE_TAXES:

@@ -16,9 +16,9 @@
                     <field name="vat_prorate_ids" />
                 </page>
             </notebook>
-            <field name="company_registry" position="after">
+            <xpath expr="//field[@id='company_currency']" position="after">
                 <field name="with_vat_prorate" />
-            </field>
+            </xpath>
         </field>
     </record>
 </odoo>

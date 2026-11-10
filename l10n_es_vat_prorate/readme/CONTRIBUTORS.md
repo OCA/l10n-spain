@@ -4,6 +4,7 @@
   - Carolina Fernandez
   - Christian Ramos
   - Adasat Torres
+  - Carlos Dauden
 - [Sygel](https://www.sygel.es/):
   - Harald Panten
   - Manuel Regidor

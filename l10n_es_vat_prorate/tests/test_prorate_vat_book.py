@@ -1,4 +1,5 @@
 from datetime import date
+from typing import ClassVar
 
 from odoo.tests.common import tagged
 
@@ -7,7 +8,7 @@ from odoo.addons.l10n_es_vat_book.tests import test_l10n_es_aeat_vat_book
 
 @tagged("-at_install", "post_install")
 class TestProrateVatBook(test_l10n_es_aeat_vat_book.TestL10nEsAeatVatBookBase):
-    taxes_purchase = {
+    taxes_purchase: ClassVar[dict] = {
         # tax code: (base, tax_amount)
         "P_IVA21_SC": (200, 42),
     }
@@ -16,12 +17,13 @@ class TestProrateVatBook(test_l10n_es_aeat_vat_book.TestL10nEsAeatVatBookBase):
     def setUpClass(cls):
         try:
             super().setUpClass()
-        except Exception:
+        except Exception:  # noqa: BLE001 (the optional module may not be installed)
             cls.skipTest(cls, "l10n_es_aeat_vat_book seems not installed")
         # The module may exist but not be installed
         if "l10n.es.vat.book" not in cls.env:
             cls.skipTest(cls, "l10n_es_aeat_vat_book seems not installed")
-        cls.company.write(
+        # Company data are set by an administrator
+        cls.company.sudo().write(
             {
                 "with_vat_prorate": True,
                 "vat_prorate_ids": [
@@ -34,12 +36,13 @@ class TestProrateVatBook(test_l10n_es_aeat_vat_book.TestL10nEsAeatVatBookBase):
         # Purchase invoices
         self._invoice_purchase_create("2025-01-01")
         # Create model
-        self.company.vat = "ES12345678Z"
+        # Company data are set by an administrator
+        self.company.sudo().vat = "ES12345678Z"
         vat_book = self.env["l10n.es.vat.book"].create(
             {
                 "name": "Test VAT Book",
                 "company_id": self.company.id,
-                "company_vat": "1234567890",
+                "company_vat": "123456789",
                 "contact_name": "Test owner",
                 "statement_type": "N",
                 "support_type": "T",
