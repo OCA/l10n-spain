@@ -32,7 +32,7 @@
                     type="object"
                     aria-label="Show journal items"
                     title="Show journal items"
-                    icon="fa-search-plus"
+                    icon="zoom_in"
                 />
                 <field name="tax_id" />
                 <field name="tax_amount" />
@@ -41,7 +41,7 @@
                     type="object"
                     aria-label="Show journal items"
                     title="Show journal items"
-                    icon="fa-search-plus"
+                    icon="zoom_in"
                 />
                 <field name="total_amount" />
             </list>

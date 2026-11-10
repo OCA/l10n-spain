@@ -11,15 +11,13 @@
 
 {
     "name": "Libros registro del IVA y del IRPF",
-    "version": "19.0.1.0.2",
+    "version": "20.0.1.0.0",
     "author": "PRAXYA, ForgeFlow, Tecnativa, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "license": "AGPL-3",
     "category": "Accounting",
     "depends": ["l10n_es_aeat", "report_xlsx"],
     "data": [
-        "security/ir_rule.xml",
-        "security/ir.model.access.csv",
         "data/l10n.es.aeat.map.tax.line.account.csv",
         "data/l10n.es.aeat.map.tax.line.tax.csv",
         "data/aeat.vat.book.map.line.csv",
@@ -33,6 +31,7 @@
         "report/vat_book_invoices_issued.xml",
         "report/vat_book_invoices_received.xml",
         "report/vat_book_xlsx.xml",
+        "security/ir.access.csv",
     ],
     "installable": True,
 }

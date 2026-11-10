@@ -3,6 +3,7 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0
 
 import logging
+from typing import ClassVar
 
 from odoo import fields
 
@@ -15,11 +16,11 @@ _logger = logging.getLogger("aeat.vat.book")
 
 class TestL10nEsAeatVatBookBase(TestL10nEsAeatModBase):
     debug = False
-    taxes_sale = {
+    taxes_sale: ClassVar[dict] = {
         # tax code: (base, tax_amount)
         "S_IVA21S": (1500, 315),
     }
-    taxes_purchase = {
+    taxes_purchase: ClassVar[dict] = {
         # tax code: (base, tax_amount)
         "P_IVA21_SC": (230, 48.3),
         "P_IVA0_ND": (100, 21),
@@ -37,8 +38,7 @@ class TestL10nEsAeatVatBook(TestL10nEsAeatVatBookBase):
         self.customer.write(
             {
                 "vat": False,
-                "aeat_identification_type": "06",
-                "aeat_identification": "ABC123456",
+                "l10n_es_other_id": "ABC123456",
             }
         )
         # Purchase invoices
@@ -50,12 +50,13 @@ class TestL10nEsAeatVatBook(TestL10nEsAeatVatBookBase):
         tax = self.company._get_taxes_from_xmlids(["account_tax_template_p_iva21_sc"])
         tax.active = False
         # Create model
-        self.company.vat = "ES12345678Z"
+        # Company data are set by an administrator
+        self.company.sudo().vat = "ES12345678Z"
         vat_book = self.env["l10n.es.vat.book"].create(
             {
                 "name": "Test VAT Book",
                 "company_id": self.company.id,
-                "company_vat": "1234567890",
+                "company_vat": "123456789",
                 "contact_name": "Test owner",
                 "statement_type": "N",
                 "support_type": "T",
@@ -158,3 +159,52 @@ class TestL10nEsAeatVatBook(TestL10nEsAeatVatBookBase):
         self.assertEqual(len(vat_book.issued_line_ids), 0)
         self.assertEqual(len(vat_book.rectification_issued_line_ids), 0)
         self.assertEqual(len(vat_book.issued_tax_summary_ids), 0)
+
+
+class TestL10nEsAeatVatBookCoreTaxes(TestL10nEsAeatVatBookBase):
+    """Taxes of the Odoo core chart that the book did not list before."""
+
+    taxes_sale: ClassVar[dict] = {
+        "S_IVA0_EU_E_T": (1000, 0),
+        "S_IVA0_BC": (1100, 0),
+        "S_REQ1": (1200, 12),
+        "S_IRPF24": (1300, -312),
+    }
+    taxes_purchase: ClassVar[dict] = {
+        "P_IVA5_BI": (100, 5),
+        "P_IVA10_IBI": (200, 20),
+        "P_IVA5_IC_BI": (300, 15),
+        "P_REQ026": (400, 1.04),
+        "P_IRPF24": (500, -120),
+    }
+
+    def test_vat_book_core_taxes(self):
+        self._invoice_sale_create("2024-01-10")
+        self._invoice_purchase_create("2024-01-10")
+        # Company data are set by an administrator
+        self.company.sudo().vat = "ES12345678Z"
+        vat_book = self.env["l10n.es.vat.book"].create(
+            {
+                "name": "Test VAT Book",
+                "company_id": self.company.id,
+                "company_vat": "123456789",
+                "contact_name": "Test owner",
+                "statement_type": "N",
+                "support_type": "T",
+                "contact_phone": "911234455",
+                "year": 2024,
+                "period_type": "1T",
+                "date_start": "2024-01-01",
+                "date_end": "2024-03-31",
+            }
+        )
+        vat_book.button_calculate()
+        for summaries, taxes in (
+            (vat_book.issued_tax_summary_ids, self.taxes_sale),
+            (vat_book.received_tax_summary_ids, self.taxes_purchase),
+        ):
+            for code, (base, _amount) in taxes.items():
+                summary = summaries.filtered(
+                    lambda x, code=code: x.tax_id == self._get_taxes(code)
+                )
+                self.assertAlmostEqual(summary.base_amount, base, 2, code)
