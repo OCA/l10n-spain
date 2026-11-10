@@ -18,3 +18,5 @@
   - Luis J. Salvatierra
 - Batista10:
   - Ivan Vilata i Balaguer
+- César Andrés Sánchez (`cesar-andress`):
+  - César Andrés Sánchez <cesar.andress@ucjc.edu>
