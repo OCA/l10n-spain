@@ -68,9 +68,9 @@ class TestL10nEsAeatMod296Base(TestL10nEsAeatModBase):
         export_to_boe = self.env["l10n.es.aeat.report.export_to_boe"].create(
             {"name": "test_export_to_boe.txt"}
         )
-        export_config_xml_ids = [
-            "l10n_es_aeat_mod296.aeat_mod296_main_export_config",
-        ]
-        for xml_id in export_config_xml_ids:
-            export_config = self.env.ref(xml_id)
-            self.assertTrue(export_to_boe._export_config(self.model296, export_config))
+        export_config = self.env.ref(
+            "l10n_es_aeat_mod296.aeat_mod296_main_export_config"
+        )
+        content = export_to_boe._export_config(self.model296, export_config)
+        # The declarant name is the company name
+        self.assertIn(export_to_boe._format_string(self.company.name, 40), content)

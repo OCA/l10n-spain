@@ -56,6 +56,17 @@
                 >
                     <field name="lines296" nolabel="1" colspan="2" />
                 </group>
+                <separator
+                    string="Tax lines"
+                    name="group_tax_lines"
+                    invisible="state == 'draft'"
+                />
+                <field
+                    name="tax_line_ids"
+                    nolabel="1"
+                    readonly="1"
+                    invisible="state == 'draft'"
+                />
             </group>
             <form position="inside">
                 <chatter />
@@ -79,14 +90,18 @@
         <field name="arch" type="xml">
             <form string="Detail 296">
                 <group string="Common data in all recipients" colspan="2" col="2">
-                    <field name="partner_id" />
+                    <group colspan="2" col="2">
+                        <field name="partner_id" />
+                    </group>
                     <group colspan="2" col="4">
                         <field name="fisica_juridica" />
                         <field name="fecha_devengo" />
                         <field name="naturaleza" />
                     </group>
-                    <field name="clave" />
-                    <field name="subclave" />
+                    <group colspan="2" col="4">
+                        <field name="clave" />
+                        <field name="subclave" />
+                    </group>
                     <group colspan="2" col="4">
                         <field name="base_retenciones_ingresos" />
                         <field name="porcentaje_retencion" />
@@ -122,11 +137,16 @@
                         <field name="provincia" />
                         <field name="pais" />
                     </group>
-                    <field name="nif_pais_residencia" />
-                    <field name="fecha_nacimiento" />
-                    <field name="ciudad_nacimiento" />
-                    <field name="pais_nacimiento" />
-                    <field name="pais_residencia_fiscal" />
+                    <group colspan="2" col="2">
+                        <field name="nif_pais_residencia" />
+                        <field name="fecha_nacimiento" />
+                        <field name="ciudad_nacimiento" />
+                        <field name="pais_nacimiento" />
+                        <field name="pais_residencia_fiscal" />
+                    </group>
+                </group>
+                <group string="Move Lines">
+                    <field name="move_line_ids" nolabel="1" colspan="2" readonly="1" />
                 </group>
             </form>
         </field>

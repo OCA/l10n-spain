@@ -49,7 +49,7 @@ id,export_config_id:id,"sequence","name","export_type","size","decimal_size","al
 "aeat_mod296_main_export_line_02","aeat_mod296_main_export_config",2,"Identificación: modelo","string",3,0,"left",,"N",0,,"X",,"296",,,
 "aeat_mod296_main_export_line_03","aeat_mod296_main_export_config",3,"Identificación: ejercicio","string",4,0,"left",,"N",0,,"X",${object.year},,,,
 "aeat_mod296_main_export_line_04","aeat_mod296_main_export_config",4,"Identificación: nif declarante","string",9,0,"left",,"N",0,,"X","${object.company_vat}",,,,
-"aeat_mod296_main_export_line_05","aeat_mod296_main_export_config",5,"Identificación: Apellidos o razón social","string",40,0,"left",,"N",0,,"X","${object.company_id.name",,,,
+"aeat_mod296_main_export_line_05","aeat_mod296_main_export_config",5,"Identificación: Apellidos o razón social","string",40,0,"left",,"N",0,,"X","${object.company_id.name}",,,,
 "aeat_mod296_main_export_line_06","aeat_mod296_main_export_config",6,"Identificación: Tipo de soporte","string",1,0,"left",,"N",0,,"X",${object.support_type},,,,
 "aeat_mod296_main_export_line_07","aeat_mod296_main_export_config",7,"Persona con quien relacionarse: teléfono","string",9,0,"left",,"N",0,,"X",${object.contact_phone},,,,
 "aeat_mod296_main_export_line_08","aeat_mod296_main_export_config",8,"Persona con quien relacionarse: apellidos y nombre","string",40,0,"left",,"N",0,,"X",${object.contact_name},,,,
