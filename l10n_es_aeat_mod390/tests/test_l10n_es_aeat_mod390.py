@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl
 
 from collections import OrderedDict
+from typing import ClassVar
 
 from odoo import exceptions
 
@@ -11,7 +12,7 @@ from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
 
 
 class TestL10nEsAeatMod390Base(TestL10nEsAeatModBase):
-    taxes_sale = {
+    taxes_sale: ClassVar[dict] = {
         # tax code: (base, tax_amount)
         "S_IVA4B": (1000, 40),
         "S_IVA4B//neg": (-100, -4),
@@ -33,7 +34,7 @@ class TestL10nEsAeatMod390Base(TestL10nEsAeatModBase):
         "S_IVA0_SP_I": (2500, 0),
         "S_IVA0": (2600, 0),
     }
-    taxes_purchase = {
+    taxes_purchase: ClassVar[dict] = {
         # tax code: (base, tax_amount)
         "P_IVA4_IC_BC": (100, 0),
         "P_IVA10_IC_BC": (200, 0),
@@ -71,7 +72,7 @@ class TestL10nEsAeatMod390Base(TestL10nEsAeatModBase):
         # "P_IVA12_AGR": (410, 49.2),
         "P_IVA0_ND": (420, 0),
     }
-    taxes_result = OrderedDict(
+    taxes_result: ClassVar[OrderedDict] = OrderedDict(
         [
             # Régimen ordinario - Base imponible 4%
             ("1", 6000.0),
@@ -219,7 +220,7 @@ class TestL10nEsAeatMod390Base(TestL10nEsAeatModBase):
             {
                 "name": "9990000000390",
                 "company_id": cls.company.id,
-                "company_vat": "1234567890",
+                "company_vat": "123456789",
                 "contact_name": "Test owner",
                 "statement_type": "N",
                 "support_type": "T",
@@ -235,7 +236,7 @@ class TestL10nEsAeatMod390Base(TestL10nEsAeatModBase):
             {
                 "name": "999000001390",
                 "company_id": cls.company.id,
-                "company_vat": "1234567890",
+                "company_vat": "123456789",
                 "contact_name": "Test owner",
                 "statement_type": "N",
                 "support_type": "T",
@@ -351,7 +352,7 @@ class TestL10nEsAeatMod390(TestL10nEsAeatMod390Base):
             {
                 "name": "9991000000303",
                 "company_id": self.company.id,
-                "company_vat": "1234567890",
+                "company_vat": "123456789",
                 "contact_name": "Test owner",
                 "statement_type": "N",
                 "support_type": "T",
@@ -453,7 +454,7 @@ class TestL10nEsAeatMod390(TestL10nEsAeatMod390Base):
             {
                 "name": "9991000000303",
                 "company_id": self.company.id,
-                "company_vat": "1234567890",
+                "company_vat": "123456789",
                 "contact_name": "Test owner",
                 "statement_type": "N",
                 "support_type": "T",

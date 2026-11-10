@@ -1,5 +1,6 @@
 - [Tecnativa](https://www.tecnativa.com):
   - Pedro M. Baeza \<<pedro.baeza@tecnativa.com>\>
+  - Carlos Dauden
 - Albert Cabedo
 - [Acysos](http://www.acysos.com):
   - Ignacio Ibeas
