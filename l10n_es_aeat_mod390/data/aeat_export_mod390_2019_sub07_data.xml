@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!-- Copyright 2019 Tecnativa - Pedro M. Baeza
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
@@ -11,7 +11,7 @@
         id="aeat_mod390_2019_sub07_export_line_01"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">1</field>
+        <field name="sequence" eval="1" />
         <field name="export_config_id" ref="aeat_mod390_2019_sub07_export_config" />
         <field name="name">Constante: &lt;T</field>
         <field name="fixed_value">&lt;T</field>
@@ -23,7 +23,7 @@
         id="aeat_mod390_2019_sub07_export_line_02"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">2</field>
+        <field name="sequence" eval="2" />
         <field name="export_config_id" ref="aeat_mod390_2019_sub07_export_config" />
         <field name="name">Constante: 390</field>
         <field name="fixed_value">390</field>
@@ -35,7 +35,7 @@
         id="aeat_mod390_2019_sub07_export_line_03"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">3</field>
+        <field name="sequence" eval="3" />
         <field name="export_config_id" ref="aeat_mod390_2019_sub07_export_config" />
         <field name="name">Página</field>
         <field name="fixed_value">07</field>
@@ -47,7 +47,7 @@
         id="aeat_mod390_2019_sub07_export_line_04"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">4</field>
+        <field name="sequence" eval="4" />
         <field name="export_config_id" ref="aeat_mod390_2019_sub07_export_config" />
         <field name="name">Constante: 000&gt;</field>
         <field name="fixed_value">000&gt;</field>
@@ -59,7 +59,7 @@
         id="aeat_mod390_2019_sub07_export_line_05"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">5</field>
+        <field name="sequence" eval="5" />
         <field name="export_config_id" ref="aeat_mod390_2019_sub07_export_config" />
         <field name="name">Indicador de página complementaria: En blanco</field>
         <field name="fixed_value" />
@@ -71,7 +71,7 @@
         id="aeat_mod390_2019_sub07_export_line_06"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">6</field>
+        <field name="sequence" eval="6" />
         <field name="export_config_id" ref="aeat_mod390_2019_sub07_export_config" />
         <field
             name="name"
@@ -89,7 +89,7 @@
         id="aeat_mod390_2019_sub07_export_line_07"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">7</field>
+        <field name="sequence" eval="7" />
         <field name="export_config_id" ref="aeat_mod390_2019_sub07_export_config" />
         <field
             name="name"
@@ -107,7 +107,7 @@
         id="aeat_mod390_2019_sub07_export_line_08"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">8</field>
+        <field name="sequence" eval="8" />
         <field name="export_config_id" ref="aeat_mod390_2019_sub07_export_config" />
         <field name="name">11. Oper. Específicas - Importaciones exentas [231]</field>
         <field
@@ -123,7 +123,7 @@
         id="aeat_mod390_2019_sub07_export_line_09"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">9</field>
+        <field name="sequence" eval="9" />
         <field name="export_config_id" ref="aeat_mod390_2019_sub07_export_config" />
         <field
             name="name"
@@ -141,7 +141,7 @@
         id="aeat_mod390_2019_sub07_export_line_10"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">10</field>
+        <field name="sequence" eval="10" />
         <field name="export_config_id" ref="aeat_mod390_2019_sub07_export_config" />
         <field
             name="name"
@@ -157,7 +157,7 @@
         id="aeat_mod390_2019_sub07_export_line_11"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">11</field>
+        <field name="sequence" eval="11" />
         <field name="export_config_id" ref="aeat_mod390_2019_sub07_export_config" />
         <field
             name="name"
@@ -173,7 +173,7 @@
         id="aeat_mod390_2019_sub07_export_line_12"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">12</field>
+        <field name="sequence" eval="12" />
         <field name="export_config_id" ref="aeat_mod390_2019_sub07_export_config" />
         <field
             name="name"
@@ -191,7 +191,7 @@
         id="aeat_mod390_2019_sub07_export_line_13"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">13</field>
+        <field name="sequence" eval="13" />
         <field name="export_config_id" ref="aeat_mod390_2019_sub07_export_config" />
         <field
             name="name"
@@ -207,7 +207,7 @@
         id="aeat_mod390_2019_sub07_export_line_14"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">14</field>
+        <field name="sequence" eval="14" />
         <field name="export_config_id" ref="aeat_mod390_2019_sub07_export_config" />
         <field
             name="name"
@@ -223,7 +223,7 @@
         id="aeat_mod390_2019_sub07_export_line_15"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">15</field>
+        <field name="sequence" eval="15" />
         <field name="export_config_id" ref="aeat_mod390_2019_sub07_export_config" />
         <field
             name="name"
@@ -239,7 +239,7 @@
         id="aeat_mod390_2019_sub07_export_line_16"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">16</field>
+        <field name="sequence" eval="16" />
         <field name="export_config_id" ref="aeat_mod390_2019_sub07_export_config" />
         <field
             name="name"
@@ -255,7 +255,7 @@
         id="aeat_mod390_2019_sub07_export_line_17"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">17</field>
+        <field name="sequence" eval="17" />
         <field name="export_config_id" ref="aeat_mod390_2019_sub07_export_config" />
         <field name="name">12. Prorratas - 1 - Actividad desarrollada</field>
         <field name="fixed_value" />
@@ -267,7 +267,7 @@
         id="aeat_mod390_2019_sub07_export_line_18"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">18</field>
+        <field name="sequence" eval="18" />
         <field name="export_config_id" ref="aeat_mod390_2019_sub07_export_config" />
         <field name="name">12. Prorratas - 1 - Código CNAE [114]</field>
         <field name="fixed_value" />
@@ -279,7 +279,7 @@
         id="aeat_mod390_2019_sub07_export_line_19"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">19</field>
+        <field name="sequence" eval="19" />
         <field name="export_config_id" ref="aeat_mod390_2019_sub07_export_config" />
         <field name="name">12. Prorratas - 1 - Importe de operaciones [115]</field>
         <field name="fixed_value">0</field>
@@ -293,7 +293,7 @@
         id="aeat_mod390_2019_sub07_export_line_20"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">20</field>
+        <field name="sequence" eval="20" />
         <field name="export_config_id" ref="aeat_mod390_2019_sub07_export_config" />
         <field
             name="name"
@@ -309,7 +309,7 @@
         id="aeat_mod390_2019_sub07_export_line_21"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">21</field>
+        <field name="sequence" eval="21" />
         <field name="export_config_id" ref="aeat_mod390_2019_sub07_export_config" />
         <field name="name">12. Prorratas - 1 - Tipo de prorrata [117]</field>
         <field name="fixed_value" />
@@ -321,7 +321,7 @@
         id="aeat_mod390_2019_sub07_export_line_22"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">22</field>
+        <field name="sequence" eval="22" />
         <field name="export_config_id" ref="aeat_mod390_2019_sub07_export_config" />
         <field name="name">12. Prorratas - 1 - % de prorrata [118]</field>
         <field name="fixed_value">0</field>
@@ -335,7 +335,7 @@
         id="aeat_mod390_2019_sub07_export_line_23"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">23</field>
+        <field name="sequence" eval="23" />
         <field name="export_config_id" ref="aeat_mod390_2019_sub07_export_config" />
         <field name="name">12. Prorratas - 2 - Actividad desarrollada</field>
         <field name="fixed_value" />
@@ -347,7 +347,7 @@
         id="aeat_mod390_2019_sub07_export_line_24"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">24</field>
+        <field name="sequence" eval="24" />
         <field name="export_config_id" ref="aeat_mod390_2019_sub07_export_config" />
         <field name="name">12. Prorratas - 2 - Código CNAE [119]</field>
         <field name="fixed_value" />
@@ -359,7 +359,7 @@
         id="aeat_mod390_2019_sub07_export_line_25"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">25</field>
+        <field name="sequence" eval="25" />
         <field name="export_config_id" ref="aeat_mod390_2019_sub07_export_config" />
         <field name="name">12. Prorratas - 2 - Importe de operaciones [120]</field>
         <field name="fixed_value">0</field>
@@ -373,7 +373,7 @@
         id="aeat_mod390_2019_sub07_export_line_26"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">26</field>
+        <field name="sequence" eval="26" />
         <field name="export_config_id" ref="aeat_mod390_2019_sub07_export_config" />
         <field
             name="name"
@@ -389,7 +389,7 @@
         id="aeat_mod390_2019_sub07_export_line_27"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">27</field>
+        <field name="sequence" eval="27" />
         <field name="export_config_id" ref="aeat_mod390_2019_sub07_export_config" />
         <field name="name">12. Prorratas - 2 - Tipo de prorrata [122]</field>
         <field name="fixed_value" />
@@ -401,7 +401,7 @@
         id="aeat_mod390_2019_sub07_export_line_28"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">28</field>
+        <field name="sequence" eval="28" />
         <field name="export_config_id" ref="aeat_mod390_2019_sub07_export_config" />
         <field name="name">12. Prorratas - 2 - % de prorrata [123]</field>
         <field name="fixed_value">0</field>
@@ -415,7 +415,7 @@
         id="aeat_mod390_2019_sub07_export_line_29"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">29</field>
+        <field name="sequence" eval="29" />
         <field name="export_config_id" ref="aeat_mod390_2019_sub07_export_config" />
         <field name="name">12. Prorratas - 3 - Actividad desarrollada</field>
         <field name="fixed_value" />
@@ -427,7 +427,7 @@
         id="aeat_mod390_2019_sub07_export_line_30"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">30</field>
+        <field name="sequence" eval="30" />
         <field name="export_config_id" ref="aeat_mod390_2019_sub07_export_config" />
         <field name="name">12. Prorratas - 3 - Código CNAE [124]</field>
         <field name="fixed_value" />
@@ -439,7 +439,7 @@
         id="aeat_mod390_2019_sub07_export_line_31"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">31</field>
+        <field name="sequence" eval="31" />
         <field name="export_config_id" ref="aeat_mod390_2019_sub07_export_config" />
         <field name="name">12. Prorratas - 3 - Importe de operaciones [125]</field>
         <field name="fixed_value">0</field>
@@ -453,7 +453,7 @@
         id="aeat_mod390_2019_sub07_export_line_32"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">32</field>
+        <field name="sequence" eval="32" />
         <field name="export_config_id" ref="aeat_mod390_2019_sub07_export_config" />
         <field
             name="name"
@@ -469,7 +469,7 @@
         id="aeat_mod390_2019_sub07_export_line_33"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">33</field>
+        <field name="sequence" eval="33" />
         <field name="export_config_id" ref="aeat_mod390_2019_sub07_export_config" />
         <field name="name">12. Prorratas - 3 - Tipo de prorrata [127]</field>
         <field name="fixed_value" />
@@ -481,7 +481,7 @@
         id="aeat_mod390_2019_sub07_export_line_34"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">34</field>
+        <field name="sequence" eval="34" />
         <field name="export_config_id" ref="aeat_mod390_2019_sub07_export_config" />
         <field name="name">12. Prorratas - 3 - % de prorrata [128]</field>
         <field name="fixed_value">0</field>
@@ -495,7 +495,7 @@
         id="aeat_mod390_2019_sub07_export_line_35"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">35</field>
+        <field name="sequence" eval="35" />
         <field name="export_config_id" ref="aeat_mod390_2019_sub07_export_config" />
         <field name="name">12. Prorratas - 4 - Actividad desarrollada</field>
         <field name="fixed_value" />
@@ -507,7 +507,7 @@
         id="aeat_mod390_2019_sub07_export_line_36"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">36</field>
+        <field name="sequence" eval="36" />
         <field name="export_config_id" ref="aeat_mod390_2019_sub07_export_config" />
         <field name="name">12. Prorratas - 4 - Código CNAE [129]</field>
         <field name="fixed_value" />
@@ -519,7 +519,7 @@
         id="aeat_mod390_2019_sub07_export_line_37"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">37</field>
+        <field name="sequence" eval="37" />
         <field name="export_config_id" ref="aeat_mod390_2019_sub07_export_config" />
         <field name="name">12. Prorratas - 4 - Importe de operaciones [130]</field>
         <field name="fixed_value">0</field>
@@ -533,7 +533,7 @@
         id="aeat_mod390_2019_sub07_export_line_38"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">38</field>
+        <field name="sequence" eval="38" />
         <field name="export_config_id" ref="aeat_mod390_2019_sub07_export_config" />
         <field
             name="name"
@@ -549,7 +549,7 @@
         id="aeat_mod390_2019_sub07_export_line_39"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">39</field>
+        <field name="sequence" eval="39" />
         <field name="export_config_id" ref="aeat_mod390_2019_sub07_export_config" />
         <field name="name">12. Prorratas - 4 - Tipo de prorrata [132]</field>
         <field name="fixed_value" />
@@ -561,7 +561,7 @@
         id="aeat_mod390_2019_sub07_export_line_40"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">40</field>
+        <field name="sequence" eval="40" />
         <field name="export_config_id" ref="aeat_mod390_2019_sub07_export_config" />
         <field name="name">12. Prorratas - 4 - % de prorrata [133]</field>
         <field name="fixed_value">0</field>
@@ -575,7 +575,7 @@
         id="aeat_mod390_2019_sub07_export_line_41"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">41</field>
+        <field name="sequence" eval="41" />
         <field name="export_config_id" ref="aeat_mod390_2019_sub07_export_config" />
         <field name="name">12. Prorratas - 5 - Actividad desarrollada</field>
         <field name="fixed_value" />
@@ -587,7 +587,7 @@
         id="aeat_mod390_2019_sub07_export_line_42"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">42</field>
+        <field name="sequence" eval="42" />
         <field name="export_config_id" ref="aeat_mod390_2019_sub07_export_config" />
         <field name="name">12. Prorratas - 5 - Código CNAE [134]</field>
         <field name="fixed_value" />
@@ -599,7 +599,7 @@
         id="aeat_mod390_2019_sub07_export_line_43"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">43</field>
+        <field name="sequence" eval="43" />
         <field name="export_config_id" ref="aeat_mod390_2019_sub07_export_config" />
         <field name="name">12. Prorratas - 5 - Importe de operaciones [135]</field>
         <field name="fixed_value">0</field>
@@ -613,7 +613,7 @@
         id="aeat_mod390_2019_sub07_export_line_44"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">44</field>
+        <field name="sequence" eval="44" />
         <field name="export_config_id" ref="aeat_mod390_2019_sub07_export_config" />
         <field
             name="name"
@@ -629,7 +629,7 @@
         id="aeat_mod390_2019_sub07_export_line_45"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">45</field>
+        <field name="sequence" eval="45" />
         <field name="export_config_id" ref="aeat_mod390_2019_sub07_export_config" />
         <field name="name">12. Prorratas - 5 - Tipo de prorrata [137]</field>
         <field name="fixed_value" />
@@ -641,7 +641,7 @@
         id="aeat_mod390_2019_sub07_export_line_46"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">46</field>
+        <field name="sequence" eval="46" />
         <field name="export_config_id" ref="aeat_mod390_2019_sub07_export_config" />
         <field name="name">12. Prorratas - 5 - % de prorrata [138]</field>
         <field name="fixed_value">0</field>
@@ -655,7 +655,7 @@
         id="aeat_mod390_2019_sub07_export_line_47"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">47</field>
+        <field name="sequence" eval="47" />
         <field name="export_config_id" ref="aeat_mod390_2019_sub07_export_config" />
         <field name="name">Reservado para la A.E.A.T. (Dejar en blanco)</field>
         <field name="fixed_value" />
@@ -667,7 +667,7 @@
         id="aeat_mod390_2019_sub07_export_line_48"
         model="aeat.model.export.config.line"
     >
-        <field name="sequence">48</field>
+        <field name="sequence" eval="48" />
         <field name="export_config_id" ref="aeat_mod390_2019_sub07_export_config" />
         <field name="name">Indicador de fin de registro: &lt;/T39007000&gt;</field>
         <field name="fixed_value">&lt;/T39007000&gt;</field>

@@ -385,55 +385,57 @@ class L10nEsAeatMod390Report(models.Model):
         for report in self:
             report.casilla_33 = sum(
                 report.tax_line_ids.filtered(
-                    lambda x: x.field_number
-                    in (
-                        700,
-                        667,
-                        1,
-                        702,
-                        669,
-                        3,
-                        5,  # Régimen ordinario
-                        704,
-                        671,
-                        500,
-                        706,
-                        673,
-                        502,
-                        504,  # Intragrupo - no incluido aún
-                        708,
-                        675,
-                        643,
-                        710,
-                        677,
-                        645,
-                        647,  # Criterio de caja - no incluido aún
-                        712,
-                        679,
-                        7,
-                        714,
-                        681,
-                        9,
-                        11,  # Bienes usados, etc - no incluido aún
-                        13,  # Agencias de viajes - no incluido aún
-                        716,
-                        683,
-                        21,
-                        718,
-                        685,
-                        23,
-                        25,  # Adquis. intracomunitaria bienes
-                        720,
-                        687,
-                        545,
-                        722,
-                        689,
-                        547,
-                        551,  # Adquis. intracomunitaria servicios
-                        27,  # IVA otras operaciones sujeto pasivo
-                        29,  # Modificación bases y cuotas
-                        649,  # Modif. bases y cuotas intragrupo - no incluido aún
-                        31,  # Modif. bases y cuotas concurso ac.
+                    lambda x: (
+                        x.field_number
+                        in (
+                            700,
+                            667,
+                            1,
+                            702,
+                            669,
+                            3,
+                            5,  # Régimen ordinario
+                            704,
+                            671,
+                            500,
+                            706,
+                            673,
+                            502,
+                            504,  # Intragrupo - no incluido aún
+                            708,
+                            675,
+                            643,
+                            710,
+                            677,
+                            645,
+                            647,  # Criterio de caja - no incluido aún
+                            712,
+                            679,
+                            7,
+                            714,
+                            681,
+                            9,
+                            11,  # Bienes usados, etc - no incluido aún
+                            13,  # Agencias de viajes - no incluido aún
+                            716,
+                            683,
+                            21,
+                            718,
+                            685,
+                            23,
+                            25,  # Adquis. intracomunitaria bienes
+                            720,
+                            687,
+                            545,
+                            722,
+                            689,
+                            547,
+                            551,  # Adquis. intracomunitaria servicios
+                            27,  # IVA otras operaciones sujeto pasivo
+                            29,  # Modificación bases y cuotas
+                            649,  # Modif. bases y cuotas intragrupo - no incluido aún
+                            31,  # Modif. bases y cuotas concurso ac.
+                        )
                     )
                 ).mapped("amount")
             )
@@ -443,55 +445,57 @@ class L10nEsAeatMod390Report(models.Model):
         for report in self:
             report.casilla_34 = sum(
                 report.tax_line_ids.filtered(
-                    lambda x: x.field_number
-                    in (
-                        701,
-                        668,
-                        2,
-                        703,
-                        670,
-                        4,
-                        6,  # Régimen ordinario
-                        705,
-                        672,
-                        501,
-                        707,
-                        674,
-                        503,
-                        505,  # Intragrupo - no incluido aún
-                        709,
-                        676,
-                        644,
-                        711,
-                        678,
-                        46,
-                        648,  # Criterio de caja - no incluido aún
-                        713,
-                        680,
-                        8,
-                        715,
-                        682,
-                        10,
-                        12,  # Bienes usados, etc - no incluido aún
-                        14,  # Agencias de viajes - no incluido aún
-                        717,
-                        684,
-                        22,
-                        719,
-                        686,
-                        24,
-                        26,  # Adquis. intracomunitaria bienes
-                        721,
-                        688,
-                        546,
-                        723,
-                        690,
-                        548,
-                        552,  # Adquis. intracomunitaria servicios
-                        28,  # IVA otras operaciones sujeto pasivo
-                        30,  # Modificación bases y cuotas
-                        650,  # Modif. bases y cuotas intragrupo - no incluido aún
-                        32,  # Modif. bases y cuotas concurso ac.
+                    lambda x: (
+                        x.field_number
+                        in (
+                            701,
+                            668,
+                            2,
+                            703,
+                            670,
+                            4,
+                            6,  # Régimen ordinario
+                            705,
+                            672,
+                            501,
+                            707,
+                            674,
+                            503,
+                            505,  # Intragrupo - no incluido aún
+                            709,
+                            676,
+                            644,
+                            711,
+                            678,
+                            46,
+                            648,  # Criterio de caja - no incluido aún
+                            713,
+                            680,
+                            8,
+                            715,
+                            682,
+                            10,
+                            12,  # Bienes usados, etc - no incluido aún
+                            14,  # Agencias de viajes - no incluido aún
+                            717,
+                            684,
+                            22,
+                            719,
+                            686,
+                            24,
+                            26,  # Adquis. intracomunitaria bienes
+                            721,
+                            688,
+                            546,
+                            723,
+                            690,
+                            548,
+                            552,  # Adquis. intracomunitaria servicios
+                            28,  # IVA otras operaciones sujeto pasivo
+                            30,  # Modificación bases y cuotas
+                            650,  # Modif. bases y cuotas intragrupo - no incluido aún
+                            32,  # Modif. bases y cuotas concurso ac.
+                        )
                     )
                 ).mapped("amount")
             )
@@ -501,18 +505,20 @@ class L10nEsAeatMod390Report(models.Model):
         for report in self:
             report.casilla_47 = report.casilla_34 + sum(
                 report.tax_line_ids.filtered(
-                    lambda x: x.field_number
-                    in (
-                        664,
-                        692,
-                        36,
-                        666,
-                        694,
-                        600,
-                        602,
-                        42,  # Recargo de equivalencia
-                        44,  # Modificación recargo de equivalencia
-                        46,  # Mod. recargo equiv. concurso
+                    lambda x: (
+                        x.field_number
+                        in (
+                            664,
+                            692,
+                            36,
+                            666,
+                            694,
+                            600,
+                            602,
+                            42,  # Recargo de equivalencia
+                            44,  # Modificación recargo de equivalencia
+                            46,  # Mod. recargo equiv. concurso
+                        )
                     )
                 ).mapped("amount")
             )
@@ -711,23 +717,25 @@ class L10nEsAeatMod390Report(models.Model):
         for report in self:
             report.casilla_108 = sum(
                 report.tax_line_ids.filtered(
-                    lambda x: x.field_number
-                    in (
-                        99,
-                        653,
-                        103,
-                        104,
-                        105,
-                        110,
-                        100,
-                        101,
-                        102,
-                        125,
-                        126,
-                        127,
-                        128,
-                        227,
-                        228,
+                    lambda x: (
+                        x.field_number
+                        in (
+                            99,
+                            653,
+                            103,
+                            104,
+                            105,
+                            110,
+                            100,
+                            101,
+                            102,
+                            125,
+                            126,
+                            127,
+                            128,
+                            227,
+                            228,
+                        )
                     )
                 ).mapped("amount")
             ) - sum(
