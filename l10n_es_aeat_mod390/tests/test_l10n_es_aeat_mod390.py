@@ -523,3 +523,65 @@ class TestL10nEsAeatMod390(TestL10nEsAeatMod390Base):
         self.assertAlmostEqual(self.model390_2023.casilla_97, 0.0, 2)
         self.assertAlmostEqual(self.model390_2023.casilla_98, 560.85, 2)
         self.assertAlmostEqual(self.model390_2023.casilla_662, 0.0, 2)
+
+
+class TestL10nEsAeatMod390Rate5(TestL10nEsAeatMod390Base):
+    """The 5 % deductible taxes of the Odoo core chart reach their own boxes of
+    the 2024 design and its export."""
+
+    taxes_sale: ClassVar[dict] = {}
+    taxes_purchase: ClassVar[dict] = {
+        "P_IVA5_BI": (1280, 64),
+        "P_IVA5_IBC": (1320, 66),
+        "P_IVA5_IBI": (1340, 67),
+        "P_IVA5_IC_BI": (1380, 69),
+        "P_IVA5_IC_SC": (1420, 71),
+    }
+
+    def test_model_390_rate_5(self):
+        self._invoice_purchase_create("2024-03-01")
+        model390 = self.env["l10n.es.aeat.mod390.report"].create(
+            {
+                "name": "9990000002390",
+                "company_id": self.company.id,
+                "company_vat": "123456789",
+                "contact_name": "Test owner",
+                "statement_type": "N",
+                "support_type": "T",
+                "contact_phone": "911234455",
+                "year": 2024,
+                "period_type": "0A",
+                "date_start": "2024-01-01",
+                "date_end": "2024-12-31",
+                "journal_id": self.journal_misc.id,
+            }
+        )
+        model390.button_calculate()
+        export_to_boe = self.env["l10n.es.aeat.report.export_to_boe"].create(
+            {"name": "test_export_to_boe.txt"}
+        )
+        expected = {
+            # box: (amount, export line)
+            728: (1280, "sub03_export_line_38"),
+            729: (64, "sub03_export_line_39"),
+            732: (1320, "sub03_export_line_66"),
+            733: (66, "sub03_export_line_67"),
+            734: (1340, "sub03_export_line_80"),
+            735: (67, "sub03_export_line_81"),
+            738: (1380, "sub04_export_line_10"),
+            739: (69, "sub04_export_line_11"),
+            740: (1420, "sub04_export_line_24"),
+            741: (71, "sub04_export_line_25"),
+        }
+        for box, (amount, export_line) in expected.items():
+            lines = model390.tax_line_ids.filtered(
+                lambda x, box=box: x.field_number == box
+            )
+            self.assertAlmostEqual(sum(lines.mapped("amount")), amount, 2, box)
+            line = self.env.ref(f"l10n_es_aeat_mod390.aeat_mod390_2024_{export_line}")
+            self.assertTrue(
+                export_to_boe._export_line_process(model390, line).endswith(
+                    f"{round(amount * 100):016d}".encode()
+                ),
+                box,
+            )
