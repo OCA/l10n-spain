@@ -894,11 +894,19 @@ class SiiMixin(models.AbstractModel):
     def _get_sii_invoice_key(self, id_factura):
         """Identify an invoice both in the sent content and in the response line.
         The number alone is not enough, as received invoices from different
-        issuers can share it."""
+        issuers can share it.
+
+        The supplier number is compared stripped. Some agencies store it
+        without the surrounding spaces and return it that way, while the
+        sent payload keeps the original value.
+        """
         issuer = id_factura["IDEmisorFactura"]
+        number = id_factura["NumSerieFacturaEmisor"]
+        if isinstance(number, str):
+            number = number.strip()
         return (
             issuer.get("NIF") or (issuer.get("IDOtro") or {}).get("ID"),
-            id_factura["NumSerieFacturaEmisor"],
+            number,
             id_factura["FechaExpedicionFacturaEmisor"],
         )
 
