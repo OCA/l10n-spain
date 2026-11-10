@@ -121,6 +121,32 @@ class TestVatProrate(AccountTestInvoicingCommon):
         self.assertEqual(7, len(invoice.line_ids))
         self.assertEqual(4, len(invoice.line_ids.filtered(lambda r: r.tax_line_id)))
 
+    def test_prorate_taxes_from_tax_type(self):
+        """The taxes to prorate come from the Odoo core tax type of each tax, so the
+        7.5 % or 5 % investment goods taxes are prorated as the 21 % ones."""
+
+        def tax(name):
+            return self.env.ref(
+                f"account.{self.env.company.id}_account_tax_template_{name}"
+            )
+
+        for name in ("p_iva21_bc", "p_iva7-5_bc", "p_iva5_bi", "p_iva21_ibc"):
+            self.assertTrue(tax(name).with_vat_prorate, name)
+            self.assertFalse(tax(name).prorate_account_ids, name)
+        for name in ("p_iva10_nd", "p_irpf19", "s_iva21b", "p_iva0_bc"):
+            self.assertFalse(tax(name).with_vat_prorate, name)
+        # Self-assessed taxes: only the deductible account is prorated
+        for name in ("p_iva7-5_ic_bc", "p_iva21_sp_in", "p_iva21_isp"):
+            self.assertTrue(tax(name).with_vat_prorate, name)
+            self.assertEqual(
+                tax(name).prorate_account_ids.mapped("code"), ["472000"], name
+            )
+        # A tax created by the user follows the same rule
+        new_tax = tax("p_iva21_bc").copy({"name": "IVA 21% propio"})
+        self.assertTrue(new_tax.with_vat_prorate)
+        new_tax.l10n_es_type = "no_deducible"
+        self.assertFalse(new_tax.with_vat_prorate)
+
     def test_prorate_same_accounts_in_invoice(self):
         self.product_b.property_account_expense_id = self.company_data[
             "default_account_expense"

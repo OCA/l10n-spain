@@ -5,8 +5,6 @@
 from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
-from .prorate_taxes import PRORATE_TAXES
-
 
 class ResCompany(models.Model):
     _inherit = "res.company"
@@ -18,22 +16,6 @@ class ResCompany(models.Model):
     vat_prorate_ids = fields.One2many(
         "res.company.vat.prorate", inverse_name="company_id"
     )
-
-    @api.ormcache("self")
-    def _get_prorate_accounts(self):
-        prorate_taxes_mapping = {}
-        for tax_tmpl in PRORATE_TAXES:
-            if PRORATE_TAXES.get(tax_tmpl).get("prorate_account_template_ids"):
-                prorate_account_ids = []
-                vals = PRORATE_TAXES.get(tax_tmpl)
-                for account_tmpl in vals.get("prorate_account_template_ids"):
-                    account_from_tmpl_id = self._get_account_id_from_xmlid(account_tmpl)
-                    if account_from_tmpl_id:
-                        prorate_account_ids.append(account_from_tmpl_id)
-                prorate_taxes_mapping[tax_tmpl] = {
-                    "prorate_account_ids": prorate_account_ids,
-                }
-        return prorate_taxes_mapping
 
     def get_prorate(self, date):
         self.ensure_one()
