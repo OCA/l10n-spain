@@ -8,21 +8,27 @@ from odoo.tools import float_compare
 ACTIVITY_CODE_SELECTION = [
     (
         "1",
-        "1: Actividades sujetas al Impuesto sobre Actividades Económicas "
-        "(Activ. Empresariales)",
+        (
+            "1: Actividades sujetas al Impuesto sobre Actividades Económicas "
+            "(Activ. Empresariales)"
+        ),
     ),
     (
         "2",
-        "2: Actividades sujetas al Impuesto sobre Actividades Económicas "
-        "(Activ. Profesionales y Artísticas)",
+        (
+            "2: Actividades sujetas al Impuesto sobre Actividades Económicas "
+            "(Activ. Profesionales y Artísticas)"
+        ),
     ),
     ("3", "3: Arrendadores de Locales de Negocios y garajes"),
     ("4", "4: Actividades Agrícolas, Ganaderas o Pesqueras, no sujetas al IAE"),
     (
         "5",
-        "5: Sujetos pasivos que no hayan iniciado la realización de entregas "
-        "de bienes o prestaciones de servicios correspondientes a actividades "
-        "empresariales o profesionales y no estén dados de alta en el IAE",
+        (
+            "5: Sujetos pasivos que no hayan iniciado la realización de entregas "
+            "de bienes o prestaciones de servicios correspondientes a actividades "
+            "empresariales o profesionales y no estén dados de alta en el IAE"
+        ),
     ),
     ("6", "6: Otras actividades no sujetas al IAE"),
 ]
