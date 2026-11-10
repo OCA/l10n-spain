@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <template id="l10n_es_vat_book.vat_book_dates">
-        <div class="col-12 text-center" id="dates_div">
-            <table class="detail_table" id="fiscal_periods_table">
+        <div id="dates_div" class="col-12 text-center">
+            <table id="fiscal_periods_table" class="detail_table">
                 <tbody class="invoice_tbody">
                     <tr>
                         <td class="text-right td_detail_table">
@@ -25,8 +25,8 @@
                            Date Range:
                           </td>
                         <td class="td_detail_table">
-                              <span t-esc="o._format_date(o.date_start)" />-<span
-                            t-esc="o._format_date(o.date_end)"
+                              <span t-out="o._format_date(o.date_start)" />-<span
+                            t-out="o._format_date(o.date_end)"
                         />
                           </td>
                     </tr>
@@ -35,8 +35,8 @@
         </div>
     </template>
     <template id="l10n_es_vat_book.vat_book_contact">
-        <div class="col-12 text-center" id="vat_book_contact_div">
-            <table class="detail_table" id="vat_book_contact_table">
+        <div id="vat_book_contact_div" class="col-12 text-center">
+            <table id="vat_book_contact_table" class="detail_table">
                 <tbody class="invoice_tbody">
                     <tr>
                         <td class="text-right td_detail_table">
@@ -73,10 +73,10 @@
                 <td id="detail_invoice_date">Issue Date</td>
                 <td id="detail_company">Company Name</td>
                 <td id="detail_vat">VAT</td>
-                <td class="text-right" id="detail_base">Base</td>
+                <td id="detail_base" class="text-right">Base</td>
                 <td id="detail_tax">Tax</td>
-                <td class="text-right" id="detail_fee">Fee</td>
-                <td class="text-right" id="detail_total">Total</td>
+                <td id="detail_fee" class="text-right">Fee</td>
+                <td id="detail_total" class="text-right">Total</td>
             </tr>
         </thead>
     </template>
@@ -95,7 +95,7 @@
             </span>
         </td>
         <td id="data_invoice_date">
-            <span t-esc="o._format_date(l.invoice_date)" />
+            <span t-out="o._format_date(l.invoice_date)" />
         </td>
         <td id="data_company">
             <t t-set="res_model" t-value="'res.partner'" />
@@ -121,7 +121,7 @@
                     <td id="data_tax_invoice_date" />
                     <td id="data_tax_company" />
                     <td id="data_tax_vat" />
-                    <td class="text-right" id="data_tax_base_amount_first">
+                    <td id="data_tax_base_amount_first" class="text-right">
                         <span
                             t-field="tax.base_amount"
                             t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'
@@ -130,13 +130,13 @@
                     <td id="data_tax_name_first">
                         <span t-field="tax.tax_id.name" />
                     </td>
-                    <td class="text-right" id="data_tax_amount_first">
+                    <td id="data_tax_amount_first" class="text-right">
                         <span
                             t-field="tax.tax_amount"
                             t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'
                         />
                     </td>
-                    <td class="text-right" id="data_tax_total_amount">
+                    <td id="data_tax_total_amount" class="text-right">
                         <span
                             t-field="tax.total_amount"
                             t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'
@@ -145,7 +145,7 @@
                 </tr>
             </t>
             <t t-if="number_taxes == 0">
-                <td class="text-right" id="data_tax_base_amount_first">
+                <td id="data_tax_base_amount_first" class="text-right">
                     <span
                         t-field="tax.base_amount"
                         t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'
@@ -154,13 +154,13 @@
                 <td id="data_tax_name_first">
                     <span t-field="tax.tax_id.name" />
                 </td>
-                <td class="text-right" id="data_tax_amount_first">
+                <td id="data_tax_amount_first" class="text-right">
                     <span
                         t-field="tax.tax_amount"
                         t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'
                     />
                 </td>
-                <td class="text-right" id="data_tax_total_amount">
+                <td id="data_tax_total_amount" class="text-right">
                     <span
                         t-field="tax.total_amount"
                         t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'
@@ -177,10 +177,10 @@
                 <td id="summary_invoice_date" />
                 <td id="summary_company" />
                 <td id="summary_vat" />
-                <td class="text-right" id="summary_base">Base</td>
+                <td id="summary_base" class="text-right">Base</td>
                 <td id="summary_tax">Tax</td>
-                <td class="text-right" id="summary_fee">Fee</td>
-                <td class="text-right" id="summary_total">Total</td>
+                <td id="summary_fee" class="text-right">Fee</td>
+                <td id="summary_total" class="text-right">Total</td>
             </tr>
         </thead>
     </template>
@@ -189,7 +189,7 @@
         <td id="data_summary_invoice_date" />
         <td id="data_summary_invoice_company" />
         <td id="data_summary_invoice_vat" />
-        <td class="text-right" id="data_summary_base_amount">
+        <td id="data_summary_base_amount" class="text-right">
             <span
                 t-field="s.base_amount"
                 t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'
@@ -198,13 +198,13 @@
         <td id="data_summary_tax_name">
             <span t-field="s.tax_id.name" />
         </td>
-        <td class="text-right" id="data_summary_tax_amount">
+        <td id="data_summary_tax_amount" class="text-right">
             <span
                 t-field="s.tax_amount"
                 t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'
             />
         </td>
-        <td class="text-right" id="data_summary_tax_total_amount">
+        <td id="data_summary_tax_total_amount" class="text-right">
             <span
                 t-field="s.total_amount"
                 t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'
@@ -218,20 +218,20 @@
         <td id="total_summary_vat">
             <strong>Total</strong>
         </td>
-        <td class="text-right" id="total_summary_base_amount">
+        <td id="total_summary_base_amount" class="text-right">
             <span
                 t-field="s.base_amount"
                 t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'
             />
         </td>
         <td id="data_summary_tax_name" />
-        <td class="text-right" id="total_summary_tax_amount">
+        <td id="total_summary_tax_amount" class="text-right">
             <span
                 t-field="s.tax_amount"
                 t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'
             />
         </td>
-        <td class="text-right" id="data_summary_tax_total_amount">
+        <td id="data_summary_tax_total_amount" class="text-right">
             <span
                 t-field="s.total_amount"
                 t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'

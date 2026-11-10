@@ -449,10 +449,12 @@ class L10nEsVatBook(models.Model):
                         accounts.update({tax: account for tax in line_taxes})
                 # Filter in all possible data using sets for improving performance
                 lines = moves.filtered(
-                    lambda line: line.tax_ids & taxes
-                    or (
-                        line.tax_line_id in taxes
-                        and accounts.get(line.tax_line_id) != line.account_id
+                    lambda line: (
+                        line.tax_ids & taxes
+                        or (
+                            line.tax_line_id in taxes
+                            and accounts.get(line.tax_line_id) != line.account_id
+                        )
                     )
                 )
                 if map_lines:

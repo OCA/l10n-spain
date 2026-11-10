@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <template id="report_vat_book_invoices_received_document">
         <div class="page">
@@ -13,7 +13,7 @@
 }
             </style>
             <div class="row">
-                <div class="col-12 text-center" id="title">
+                <div id="title" class="col-12 text-center">
                     <h3>BOOK REGISTER OF INVOICES RECEIVED</h3>
                 </div>
             </div>
@@ -22,13 +22,13 @@
                 <t t-call="l10n_es_vat_book.vat_book_contact" />
             </div>
             <div class="row">
-                <div class="col-12 mt32" id="title_invoices_received">
+                <div id="title_invoices_received" class="col-12 mt32">
                     <h4>Received Invoices</h4>
                 </div>
             </div>
             <div class="row">
-                <div class="col-12" id="detail_div">
-                    <table class="table table-sm" id="detail_table">
+                <div id="detail_div" class="col-12">
+                    <table id="detail_table" class="table table-sm">
                         <t t-call="l10n_es_vat_book.vat_book_invoices_head" />
                         <tbody>
                             <tr t-foreach="o.received_line_ids" t-as="l">
@@ -39,15 +39,15 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-12 mt32" id="title_rectification_invoices_received">
+                <div id="title_rectification_invoices_received" class="col-12 mt32">
                     <h4>Received Refund Invoices</h4>
                 </div>
             </div>
             <div class="row">
-                <div class="col-12" id="rectification_invoices_received_detail_div">
+                <div id="rectification_invoices_received_detail_div" class="col-12">
                     <table
-                        class="table table-sm"
                         id="rectification_invoices_received_detail_table"
+                        class="table table-sm"
                     >
                         <t t-call="l10n_es_vat_book.vat_book_invoices_head" />
                         <tbody>
@@ -59,13 +59,13 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-12 mt32" id="title_summary_invoices">
+                <div id="title_summary_invoices" class="col-12 mt32">
                     <h4>Summary</h4>
                 </div>
             </div>
             <div class="row">
-                <div class="col-12" id="div_summary_invoices">
-                    <table class="table table-sm" id="table_summary_invoices">
+                <div id="div_summary_invoices" class="col-12">
+                    <table id="table_summary_invoices" class="table table-sm">
                         <t t-call="l10n_es_vat_book.vat_book_taxes_head" />
                         <tbody>
                             <tr t-foreach="o.received_tax_summary_ids" t-as="s">
