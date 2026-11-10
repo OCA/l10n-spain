@@ -4,9 +4,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 
-from odoo import Command, api, fields, models
-
-from .prorate_taxes import PRORATE_TAXES
+from odoo import api, fields, models
 
 
 class AccountTax(models.Model):
@@ -30,25 +28,45 @@ class AccountTax(models.Model):
         string="Company with VAT prorate",
     )
 
-    @api.depends("company_id.with_vat_prorate")
+    @api.model
+    def _get_vat_prorate_tax_types(self):
+        """Odoo core tax types (``l10n_es_type``) of the deductible input VAT."""
+        return [*self._l10n_es_get_sujeto_tax_types(), "dua"]
+
+    def _is_vat_prorate_tax(self):
+        self.ensure_one()
+        return (
+            self.type_tax_use == "purchase"
+            and self.amount_type == "percent"
+            and self.amount > 0
+            and self.l10n_es_type in self._get_vat_prorate_tax_types()
+        )
+
+    @api.depends(
+        "company_id.with_vat_prorate",
+        "type_tax_use",
+        "amount_type",
+        "amount",
+        "l10n_es_type",
+        "invoice_repartition_line_ids.factor_percent",
+        "invoice_repartition_line_ids.account_id",
+    )
     def _compute_with_vat_prorate(self):
         for tax in self:
-            with_vat_prorate = False
-            prorate_account_ids = []
-            if tax.company_with_vat_prorate and tax.get_external_id().get(tax.id):
-                xml_id = (
-                    tax.get_external_id()
-                    .get(tax.id)
-                    .split(f"account.{tax.company_id.id}_")[-1]
-                )
-                if xml_id in PRORATE_TAXES:
-                    with_vat_prorate = True
-                    if PRORATE_TAXES.get(xml_id).get("prorate_account_template_ids"):
-                        prorate_taxes = tax.company_id._get_prorate_accounts()
-                        prorate_account_ids = [Command.clear()]
-                        for account_from_tmpl_id in prorate_taxes.get(xml_id).get(
-                            "prorate_account_ids"
-                        ):
-                            prorate_account_ids.append((4, account_from_tmpl_id))
+            with_vat_prorate = (
+                tax.company_with_vat_prorate and tax._is_vat_prorate_tax()
+            )
+            tax_lines = tax.invoice_repartition_line_ids.filtered(
+                lambda line: line.repartition_type == "tax"
+            )
+            # A self-assessed tax (reverse charge, intra-community) has a negative
+            # line for the output VAT: only the deductible side is prorated
+            if with_vat_prorate and tax_lines.filtered(
+                lambda line: line.factor_percent < 0
+            ):
+                tax.prorate_account_ids = tax_lines.filtered(
+                    lambda line: line.factor_percent > 0
+                ).account_id
+            else:
+                tax.prorate_account_ids = False
             tax.with_vat_prorate = with_vat_prorate
-            tax.prorate_account_ids = prorate_account_ids

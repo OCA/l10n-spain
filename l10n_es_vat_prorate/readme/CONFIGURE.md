@@ -6,7 +6,10 @@ Para configurar la prorrata general:
 - Defina el porcentaje de prorrata (se aplica por fechas).
 
 Los impuestos de las facturas de proveedor se dividirán según la
-prorrata activa.
+prorrata activa. Se prorratean los impuestos de compra de IVA deducible
+según el tipo de impuesto que Odoo core asigna a cada impuesto español
+(sujeto, sujeto ISP, agricultura y DUA). Se puede cambiar en cada
+impuesto con el campo "Con prorrata de IVA".
 
 
 Para configurar la prorrata especial:

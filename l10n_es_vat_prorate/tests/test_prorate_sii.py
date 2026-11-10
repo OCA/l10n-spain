@@ -17,9 +17,10 @@ class TestSIIVatProrate(TestL10nEsAeatSiiBase):
     def setUpClass(cls):
         try:
             super().setUpClass()
-        except Exception:
+        except Exception:  # noqa: BLE001 (the optional module may not be installed)
             cls.skipTest(cls, "l10n_es_aeat_sii_oca seems not installed")
-        cls.company.write(
+        # Company data are set by an administrator
+        cls.company.sudo().write(
             {
                 "with_vat_prorate": True,
                 "vat_prorate_ids": [
