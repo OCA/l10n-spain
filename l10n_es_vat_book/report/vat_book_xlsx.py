@@ -2,8 +2,7 @@
 # Copyright 2026 Tecnativa - Eduardo Ezerouali
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo import fields, models
-from odoo.tools import ormcache
+from odoo import api, fields, models
 
 
 def excel_col_number(col_name):
@@ -22,7 +21,7 @@ class VatNumberXlsx(models.AbstractModel):
     def format_boe_date(self, date):
         return fields.Datetime.to_datetime(date)
 
-    @ormcache("self.env")
+    @api.ormcache("self.env")
     def _get_undeductible_taxes(self, book):
         map_line = self.env.ref("l10n_es_vat_book.aeat_vat_book_map_line_p_iva_nd")
         return map_line.get_taxes_for_company(book.company_id)

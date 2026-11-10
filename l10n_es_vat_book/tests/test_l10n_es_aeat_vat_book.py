@@ -3,6 +3,7 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0
 
 import logging
+from typing import ClassVar
 
 from odoo import fields
 
@@ -15,11 +16,11 @@ _logger = logging.getLogger("aeat.vat.book")
 
 class TestL10nEsAeatVatBookBase(TestL10nEsAeatModBase):
     debug = False
-    taxes_sale = {
+    taxes_sale: ClassVar[dict] = {
         # tax code: (base, tax_amount)
         "S_IVA21S": (1500, 315),
     }
-    taxes_purchase = {
+    taxes_purchase: ClassVar[dict] = {
         # tax code: (base, tax_amount)
         "P_IVA21_SC": (230, 48.3),
         "P_IVA0_ND": (100, 21),
@@ -37,8 +38,7 @@ class TestL10nEsAeatVatBook(TestL10nEsAeatVatBookBase):
         self.customer.write(
             {
                 "vat": False,
-                "aeat_identification_type": "06",
-                "aeat_identification": "ABC123456",
+                "l10n_es_other_id": "ABC123456",
             }
         )
         # Purchase invoices
@@ -50,12 +50,13 @@ class TestL10nEsAeatVatBook(TestL10nEsAeatVatBookBase):
         tax = self.company._get_taxes_from_xmlids(["account_tax_template_p_iva21_sc"])
         tax.active = False
         # Create model
-        self.company.vat = "ES12345678Z"
+        # Company data are set by an administrator
+        self.company.sudo().vat = "ES12345678Z"
         vat_book = self.env["l10n.es.vat.book"].create(
             {
                 "name": "Test VAT Book",
                 "company_id": self.company.id,
-                "company_vat": "1234567890",
+                "company_vat": "123456789",
                 "contact_name": "Test owner",
                 "statement_type": "N",
                 "support_type": "T",

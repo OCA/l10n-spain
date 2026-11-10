@@ -39,14 +39,14 @@
                     name="export_xlsx"
                     string="Export draft"
                     type="object"
-                    icon="fa-file-excel-o"
+                    icon="download"
                     invisible="state in ('draft', 'done')"
                 />
                 <button
                     name="export_xlsx"
                     string="Export BOE"
                     type="object"
-                    icon="fa-file-excel-o"
+                    icon="download"
                     invisible="state != 'done'"
                 />
             </header>

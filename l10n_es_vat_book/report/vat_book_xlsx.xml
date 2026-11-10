@@ -5,7 +5,6 @@
         <field name="model">l10n.es.vat.book</field>
         <field name="report_type">xlsx</field>
         <field name="report_name">l10n_es_vat_book.l10n_es_vat_book_xlsx</field>
-        <field name="report_file">l10n_es_vat_book.l10n_es_vat_book</field>
         <field name="print_report_name">object.get_report_file_name()</field>
         <field name="binding_type">report</field>
     </record>

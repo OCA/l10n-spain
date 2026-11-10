@@ -38,8 +38,6 @@ class L10nEsVatBookLine(models.Model):
 
     vat_book_id = fields.Many2one(comodel_name="l10n.es.vat.book", string="Vat Book id")
 
-    move_id = fields.Many2one(comodel_name="account.move", string="Invoice")
-
     move_id = fields.Many2one(comodel_name="account.move", string="Journal Entry")
     tax_line_ids = fields.One2many(
         comodel_name="l10n.es.vat.book.line.tax",

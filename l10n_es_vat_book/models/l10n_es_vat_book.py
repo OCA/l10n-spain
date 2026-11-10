@@ -11,7 +11,6 @@ import re
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
-from odoo.tools import ormcache
 
 
 class L10nEsVatBook(models.Model):
@@ -21,7 +20,7 @@ class L10nEsVatBook(models.Model):
     _aeat_number = "LIVA"
     _period_yearly = True
 
-    number = fields.Char(default="vat_book", readonly=True)
+    number = fields.Char(default="vat_book", size=8, readonly=True)
 
     line_ids = fields.One2many(
         comodel_name="l10n.es.vat.book.line",
@@ -71,14 +70,12 @@ class L10nEsVatBook(models.Model):
 
     tax_summary_ids = fields.One2many(
         comodel_name="l10n.es.vat.book.tax.summary",
-        string="Tax Summary",
         inverse_name="vat_book_id",
         readonly=True,
     )
 
     issued_tax_summary_ids = fields.One2many(
         comodel_name="l10n.es.vat.book.tax.summary",
-        string="Issued Tax Summary",
         inverse_name="vat_book_id",
         domain=[("book_type", "=", "issued")],
         readonly=True,
@@ -86,7 +83,6 @@ class L10nEsVatBook(models.Model):
 
     received_tax_summary_ids = fields.One2many(
         comodel_name="l10n.es.vat.book.tax.summary",
-        string="Received Tax Summary",
         inverse_name="vat_book_id",
         domain=[("book_type", "=", "received")],
         readonly=True,
@@ -94,14 +90,12 @@ class L10nEsVatBook(models.Model):
 
     summary_ids = fields.One2many(
         comodel_name="l10n.es.vat.book.summary",
-        string="Summary",
         inverse_name="vat_book_id",
         readonly=True,
     )
 
     issued_summary_ids = fields.One2many(
         comodel_name="l10n.es.vat.book.summary",
-        string="Issued Summary",
         inverse_name="vat_book_id",
         domain=[("book_type", "=", "issued")],
         readonly=True,
@@ -109,7 +103,6 @@ class L10nEsVatBook(models.Model):
 
     received_summary_ids = fields.One2many(
         comodel_name="l10n.es.vat.book.summary",
-        string="Received Summary",
         inverse_name="vat_book_id",
         domain=[("book_type", "=", "received")],
         readonly=True,
@@ -332,7 +325,7 @@ class L10nEsVatBook(models.Model):
             self._account_move_line_domain(taxes=taxes, account=account)
         )
 
-    @ormcache("self.id")
+    @api.ormcache("self.id")
     def get_special_taxes_dic(self):
         domain = [("special_tax_group", "!=", False)]
         if self.tax_agency_ids:
