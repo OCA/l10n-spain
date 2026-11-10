@@ -1,6 +1,6 @@
 [project]
 name = "odoo-addons-oca-l10n-spain"
-version = "18.0.20261012.0"
+version = "18.0.20261110.0"
 dependencies = [
     "odoo-addon-account_promissory_note_caixabank==18.0.*",
     "odoo-addon-delivery_dhl_parcel==18.0.*",
@@ -21,6 +21,7 @@ dependencies = [
     "odoo-addon-l10n_es_aeat_mod303==18.0.*",
     "odoo-addon-l10n_es_aeat_mod303_oss==18.0.*",
     "odoo-addon-l10n_es_aeat_mod303_vat_prorate==18.0.*",
+    "odoo-addon-l10n_es_aeat_mod322==18.0.*",
     "odoo-addon-l10n_es_aeat_mod347==18.0.*",
     "odoo-addon-l10n_es_aeat_mod349==18.0.*",
     "odoo-addon-l10n_es_aeat_mod369==18.0.*",
