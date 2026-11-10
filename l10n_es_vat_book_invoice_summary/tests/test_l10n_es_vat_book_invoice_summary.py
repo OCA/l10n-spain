@@ -2,8 +2,10 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0
 
 import logging
+from io import BytesIO
+from typing import ClassVar
 
-from xlrd import open_workbook
+from openpyxl import load_workbook
 
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
     TestL10nEsAeatModBase,
@@ -14,7 +16,7 @@ _logger = logging.getLogger("aeat.vat.book.invoice.summary")
 
 class TestL10nEsVatBookInvoiceSummary(TestL10nEsAeatModBase):
     debug = False
-    taxes_sale = {
+    taxes_sale: ClassVar[dict] = {
         # tax code: (base, tax_amount)
         "S_IVA21S": (1500, 315),
     }
@@ -26,12 +28,13 @@ class TestL10nEsVatBookInvoiceSummary(TestL10nEsAeatModBase):
         sale.sii_invoice_summary_start = "SALE-START"
         sale.sii_invoice_summary_end = "SALE-END"
         # Create vat boo + calculate
-        self.company.vat = "ES12345678Z"
+        # Company data are set by an administrator
+        self.company.sudo().vat = "ES12345678Z"
         vat_book = self.env["l10n.es.vat.book"].create(
             {
                 "name": "Test VAT Book",
                 "company_id": self.company.id,
-                "company_vat": "1234567890",
+                "company_vat": "123456789",
                 "contact_name": "Test owner",
                 "statement_type": "N",
                 "support_type": "T",
@@ -46,7 +49,9 @@ class TestL10nEsVatBookInvoiceSummary(TestL10nEsAeatModBase):
         # Export to XLSX + check specific values
         report_name = "l10n_es_vat_book.l10n_es_vat_book_xlsx"
         report_xlsx = self.env["ir.actions.report"]._render(report_name, vat_book.ids)
-        wb = open_workbook(file_contents=report_xlsx[0])
-        sheet = wb.sheet_by_index(0)
-        self.assertEqual(sheet.cell(7, 3).value, "SALE-START")
-        self.assertEqual(sheet.cell(7, 4).value, "SALE-END")
+        # xlrd 2 no longer reads xlsx: the workbook is read with openpyxl,
+        # whose rows and columns start at one
+        wb = load_workbook(BytesIO(report_xlsx[0]))
+        sheet = wb.worksheets[0]
+        self.assertEqual(sheet.cell(8, 4).value, "SALE-START")
+        self.assertEqual(sheet.cell(8, 5).value, "SALE-END")
