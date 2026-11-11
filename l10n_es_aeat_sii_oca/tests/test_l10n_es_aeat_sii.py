@@ -18,6 +18,7 @@ from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_certificate import (
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
     TestL10nEsAeatModBase,
 )
+from odoo.addons.l10n_es_aeat_sii_oca.hooks import post_init_hook
 
 
 class TestL10nEsAeatSiiBase(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase):
@@ -682,6 +683,31 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
         self.assertIn("Contraparte", sii_info)
         manual_refund = self._create_invoice("out_refund")
         self.assertEqual(manual_refund.l10n_es_invoice_type, "R1")
+
+    def test_install_on_a_company_with_its_chart(self):
+        """Installing the module gives the SII data of the chart template to the
+        fiscal positions and taxes that a company already has."""
+        fiscal_position = self.env.ref(f"account.{self.company.id}_fp_irpf19a")
+        export_tax = self.company._get_taxes_from_xmlids(
+            ["account_tax_template_s_iva_e"]
+        )
+        igic_tax = self.company._get_taxes_from_xmlids(
+            ["account_tax_template_igic_sop_7_s"]
+        )
+        # The values without this module
+        fiscal_position.write(
+            {"sii_regime_code_sale": False, "sii_regime_code_purchase": False}
+        )
+        export_tax.l10n_es_regime_code = "02_sale"
+        igic_tax.l10n_es_applicability = False
+        # The install runs as superuser, on every company
+        post_init_hook(self.env(su=True))
+        self.assertRecordValues(
+            fiscal_position,
+            [{"sii_regime_code_sale": "11", "sii_regime_code_purchase": "12_purchase"}],
+        )
+        self.assertFalse(export_tax.l10n_es_regime_code)
+        self.assertEqual(igic_tax.l10n_es_applicability, "03")
 
     def test_operation_date(self):
         """The delivery date of Odoo core is the operation date of the SII when
