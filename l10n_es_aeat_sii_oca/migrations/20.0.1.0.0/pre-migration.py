@@ -16,3 +16,13 @@ def migrate(env, version):
             "ALTER TABLE account_move ADD COLUMN l10n_es_regime_code_additional2 "
             "VARCHAR",
         )
+    # The marks of art. 7.2/7.3 and 6.1.d RD 1619/2012 were never sent: the
+    # invoices already registered keep their registration without them.
+    for column in (
+        "sii_qualified_simplified_invoice",
+        "sii_unidentified_recipient_invoice",
+    ):
+        if not openupgrade.column_exists(env.cr, "account_move", column):
+            openupgrade.logged_query(
+                env.cr, f"ALTER TABLE account_move ADD COLUMN {column} BOOLEAN"
+            )

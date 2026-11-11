@@ -570,6 +570,19 @@ def _migrate_invoice_type(env):
     )
 
 
+def _compute_draft_invoice_marks(env):
+    """The pre-migration leaves the marks of art. 7.2/7.3 and 6.1.d empty;
+    the invoices still in draft get them as new ones do."""
+    moves = env["account.move"].search(
+        [
+            ("state", "=", "draft"),
+            ("move_type", "in", ["out_invoice", "out_refund", "in_invoice"]),
+            ("company_id.sii_enabled", "=", True),
+        ]
+    )
+    moves._compute_sii_invoice_marks()
+
+
 @openupgrade.migrate()
 def migrate(env, version):
     _migrate_tax_data(env)
@@ -579,3 +592,4 @@ def migrate(env, version):
     _migrate_fiscal_position_keys(env)
     _log_product_exempt_causes(env)
     _migrate_invoice_type(env)
+    _compute_draft_invoice_marks(env)

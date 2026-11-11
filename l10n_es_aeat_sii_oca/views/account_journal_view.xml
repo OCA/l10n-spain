@@ -15,6 +15,10 @@
                     name="sii_enabled"
                     invisible="not company_sii_enabled or type not in ['sale', 'purchase']"
                 />
+                <field
+                    name="sii_simplified_invoices"
+                    invisible="not company_sii_enabled or type != 'sale'"
+                />
             </xpath>
         </field>
     </record>
