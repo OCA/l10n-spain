@@ -452,3 +452,32 @@ class TestL10nEsAtcSiiOca(TestL10nEsAeatSiiBase):
         sale = self._canary_invoice([self._igic("igic_cmino")])
         self.assertEqual(sale.l10n_es_regime_code, "17_igic_sale")
         self.assertFalse(sale.sii_art25_required)
+
+    def test_group_of_entities_cost_tax_base(self):
+        """The invoices of the advanced level of the group of entities regime
+        (key 06) need their cost tax base (error 1233), with the sign of their
+        quotas (error 1234), and only them (error 1301)."""
+        self.company.tax_agency_id = self.agency_canarias
+        invoice = self._canary_invoice([self.igic])
+        invoice.l10n_es_regime_code = "06"
+        self.assertTrue(invoice.sii_atc)
+        with self.assertRaises(UserError):
+            invoice._aeat_check_exceptions()
+        invoice.sii_cost_tax_base = 80
+        invoice._aeat_check_exceptions()
+        sii_dict = invoice._get_aeat_invoice_dict()["FacturaExpedida"]
+        self.assertEqual(sii_dict["ClaveRegimenEspecialOTrascendencia"], "06")
+        self.assertEqual(sii_dict["BaseImponibleACoste"], 80.0)
+        refund = self._canary_invoice([self.igic], move_type="out_refund")
+        refund.write({"l10n_es_regime_code": "06", "sii_cost_tax_base": 80})
+        sii_dict = refund._get_aeat_invoice_dict()["FacturaExpedida"]
+        self.assertEqual(sii_dict["BaseImponibleACoste"], -80.0)
+        invoice.l10n_es_regime_code = "01"
+        sii_dict = invoice._get_aeat_invoice_dict()["FacturaExpedida"]
+        self.assertNotIn("BaseImponibleACoste", sii_dict)
+        # The AEAT does not get it
+        self.company.tax_agency_id = self.agency_spain
+        invoice.l10n_es_regime_code = "06"
+        self.assertFalse(invoice.sii_atc)
+        sii_dict = invoice._get_aeat_invoice_dict()["FacturaExpedida"]
+        self.assertNotIn("BaseImponibleACoste", sii_dict)

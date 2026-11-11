@@ -35,6 +35,9 @@ ATC_BASE_ONLY_PURCHASE_CODES = {"08", "16", "17"}
 # DatosArticulo25 block (errors 2028 and 2031), and its maximum of details
 ATC_ART25_CODES = {"sale": "19_igic_sale", "purchase": "17_igic_purchase"}
 ATC_ART25_MAX_DETAILS = 3
+# Key of the advanced level of the group of entities regime, whose invoices
+# need their cost tax base (error 1233)
+ATC_COST_TAX_BASE_CODE = "06"
 
 
 class AccountMove(models.Model):
@@ -51,6 +54,24 @@ class AccountMove(models.Model):
         help="The invoice has the key of the operations exempt by art. 25 of "
         "Law 19/1994, which the SII of the Canary tax agency wants detailed.",
     )
+
+    sii_atc = fields.Boolean(
+        compute="_compute_sii_atc",
+        help="The invoice is reported to the SII of the Canary tax agency.",
+    )
+    sii_cost_tax_base = fields.Monetary(
+        string="Cost tax base",
+        currency_field="company_currency_id",
+        copy=False,
+        help="Tax base at cost of the invoices of the advanced level of the "
+        "group of entities regime (key 06), on which the IGIC quota is "
+        "computed.",
+    )
+
+    @api.depends("company_id.tax_agency_id", "journal_id.tax_agency_id")
+    def _compute_sii_atc(self):
+        for move in self:
+            move.sii_atc = move.is_invoice() and move._is_atc_sii_agency()
 
     @api.depends(
         "move_type",
@@ -83,18 +104,33 @@ class AccountMove(models.Model):
 
     def _aeat_check_exceptions(self):
         res = super()._aeat_check_exceptions()
-        if (
-            self._is_atc_sii_agency()
-            and self.sii_art25_required
-            and not self.sii_art25_detail_ids
-        ):
+        if not self._is_atc_sii_agency():
+            return res
+        if self.sii_art25_required and not self.sii_art25_detail_ids:
             raise UserError(
                 self.env._(
                     "The operations exempt by art. 25 of Law 19/1994 need their "
                     "details (type of good and document) in the SII tab."
                 )
             )
+        if (
+            ATC_COST_TAX_BASE_CODE in self._get_sii_regime_codes()
+            and not self.sii_cost_tax_base
+        ):
+            raise UserError(
+                self.env._(
+                    "The invoices of the advanced level of the group of entities "
+                    "regime (key 06) need their cost tax base in the SII tab."
+                )
+            )
         return res
+
+    def _add_sii_cost_tax_base(self, invoice_dict):
+        """BaseImponibleACoste of the invoice, only with the key 06 (errors 1233
+        and 1301), with the sign of the quotas (error 1234)."""
+        if ATC_COST_TAX_BASE_CODE in self._get_sii_regime_codes():
+            sign = -1 if self.move_type in ("out_refund", "in_refund") else 1
+            invoice_dict["BaseImponibleACoste"] = sign * self.sii_cost_tax_base
 
     def _add_sii_art25_details(self, invoice_dict):
         """DatosArticulo25 of the invoice, only with the key of the art. 25
@@ -143,6 +179,7 @@ class AccountMove(models.Model):
             inv_dict = self._sii_atc_replace_tax_keys(inv_dict)
             if not cancel:
                 self._add_sii_art25_details(inv_dict["FacturaExpedida"])
+                self._add_sii_cost_tax_base(inv_dict["FacturaExpedida"])
         return inv_dict
 
     def _get_aeat_invoice_dict_in(self, cancel=False):
@@ -151,12 +188,16 @@ class AccountMove(models.Model):
             inv_dict = self._sii_atc_replace_tax_keys(inv_dict)
             if not cancel:
                 self._add_sii_art25_details(inv_dict["FacturaRecibida"])
+                self._add_sii_cost_tax_base(inv_dict["FacturaRecibida"])
         return inv_dict
 
     def _get_aeat_invoice_dict(self):
         inv_dict = super()._get_aeat_invoice_dict()
         # The ATC keys are not in the rounding of l10n_es_aeat_sii_oca
-        round_by_keys(inv_dict, ["CuotaRecargoMinorista", "CargaImpositivaImplicita"])
+        round_by_keys(
+            inv_dict,
+            ["CuotaRecargoMinorista", "CargaImpositivaImplicita", "BaseImponibleACoste"],
+        )
         return inv_dict
 
     def _is_atc_implicit_tax(self, tax):
