@@ -57,4 +57,5 @@
         "security/ir.access.csv",
     ],
     "images": ["static/description/SII_1.jpg"],
+    "post_init_hook": "post_init_hook",
 }
