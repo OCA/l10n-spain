@@ -392,6 +392,28 @@ def _set_fiscal_position_identification_type(env):
         )
 
 
+def _apply_tax_template_fixes(env):
+    """Give the Spanish data that the chart template override fixes (see
+    `_get_es_common_account_tax_sii`) to the taxes not used in invoices; the
+    used ones keep what was sent."""
+    template_data = env["account.chart.template"]._get_es_common_account_tax_sii()
+    env.cr.execute(
+        """
+        SELECT DISTINCT account_tax_id FROM account_move_line_account_tax_rel
+        """
+    )
+    used = {row[0] for row in env.cr.fetchall()}
+    for company in env["res.company"].search([]):
+        if not (company.chart_template or "").startswith("es_"):
+            continue
+        for xml_id, vals in template_data.items():
+            if "l10n_es_applicability" in vals:
+                continue  # IGIC, see _set_igic_applicability
+            tax = env.ref(f"account.{company.id}_{xml_id}", raise_if_not_found=False)
+            if tax and tax.id not in used:
+                tax.write(vals)
+
+
 def _migrate_move_keys(env):
     """The registration keys of the invoices go to the core regime code fields,
     so the posted ones keep what was sent."""
@@ -608,6 +630,7 @@ def migrate(env, version):
     _migrate_tax_data(env)
     _clear_export_code_of_services(env)
     _set_igic_applicability(env)
+    _apply_tax_template_fixes(env)
     _migrate_move_keys(env)
     _migrate_fiscal_position_keys(env)
     _set_fiscal_position_identification_type(env)
