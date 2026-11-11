@@ -11,6 +11,7 @@ from datetime import timedelta
 
 from odoo import exceptions, fields
 from odoo.fields import Domain
+from odoo.tests import freeze_time
 from odoo.tools.misc import file_path
 
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_certificate import (
@@ -1042,6 +1043,25 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
         self.assertEqual(wizard.moves_to_send, 1)
         invoice.send_sii_now()
         self.assertLess(invoice.sii_send_date, future_send_date)
+
+    def test_fixed_send_time(self):
+        """The fixed sending time is the one of the user's timezone, and the
+        documents validated after it wait for the next day."""
+        self.company.send_mode = "fixed"
+        cases = [
+            # (sending time, expected send date in UTC); in Madrid it is 10:30
+            (10.0, "2026-03-11 09:00:00"),
+            (22.5, "2026-03-10 21:30:00"),
+            (0.25, "2026-03-10 23:15:00"),
+        ]
+        for sent_time, expected in cases:
+            with self.subTest(sent_time=sent_time), freeze_time("2026-03-10 09:30:00"):
+                self.company.sent_time = sent_time
+                invoice = self._create_invoice("out_invoice")
+                invoice.with_context(tz="Europe/Madrid").action_post()
+                self.assertEqual(
+                    invoice.sii_send_date, fields.Datetime.to_datetime(expected)
+                )
 
     def test_start_date(self):
         self.company.sii_start_date = "2018-01-01"
