@@ -217,6 +217,8 @@ class TestL10nEsAtcSiiOca(TestL10nEsAeatSiiBase):
             ],
         )
         self.assertNotIn("TipoRecargoEquivalencia", collect_keys(sii_dict))
+        # The retail trade is exempt and does not deduct (error 1333)
+        self.assertEqual(sii_dict["CuotaDeducible"], 0.0)
 
     def test_igic_export(self):
         """An IGIC export goes with the key 02 and the exemption of art. 11 of
@@ -251,3 +253,56 @@ class TestL10nEsAtcSiiOca(TestL10nEsAeatSiiBase):
                 }
             },
         )
+
+    def test_purchase_to_a_retail_trader(self):
+        """A purchase to a retail trader deducts its implicit IGIC with the key
+        15: the ATC wants the nominal rate, which is the only kind it admits,
+        and the implicit tax burden instead of a quota (ATC FAQ 8.2)."""
+        self.company.tax_agency_id = self.agency_canarias
+        invoice = self._canary_invoice(
+            [self._igic("igic_sop_7_cmino")], move_type="in_invoice"
+        )
+        self.assertEqual(invoice.l10n_es_regime_code, "15_igic_purchase")
+        sii_dict = invoice._get_aeat_invoice_dict()["FacturaRecibida"]
+        self.assertEqual(sii_dict["ClaveRegimenEspecialOTrascendencia"], "15")
+        self.assertEqual(
+            sii_dict["DesgloseFactura"]["DesgloseIGIC"]["DetalleIGIC"],
+            [
+                {
+                    "TipoImpositivo": "7.0",
+                    "BaseImponible": 100.0,
+                    "CargaImpositivaImplicita": 4.9,
+                }
+            ],
+        )
+        self.assertEqual(sii_dict["CuotaDeducible"], 4.9)
+
+    def test_exempt_purchase(self):
+        """An exempt purchase goes with its base alone, without the 0 % rate
+        that the ATC keeps for the subject operations (ATC FAQ 8.3)."""
+        self.company.tax_agency_id = self.agency_canarias
+        exempt = self._igic("igic_p_ex")
+        invoice = self._canary_invoice([exempt, exempt], move_type="in_invoice")
+        sii_dict = invoice._get_aeat_invoice_dict()["FacturaRecibida"]
+        self.assertEqual(
+            sii_dict["DesgloseFactura"]["DesgloseIGIC"]["DetalleIGIC"],
+            [{"BaseImponible": 200.0}],
+        )
+        self.assertEqual(sii_dict["CuotaDeducible"], 0.0)
+
+    def test_purchase_to_a_small_business(self):
+        """With the key 16 of the small businesses alone, the ATC rejects any
+        quota (errors 1325 and 1328), even when the invoice was booked with a
+        subject tax."""
+        self.company.tax_agency_id = self.agency_canarias
+        invoice = self._canary_invoice(
+            [self._igic("igic_sop_0")], move_type="in_invoice"
+        )
+        invoice.l10n_es_regime_code = "16_igic_purchase"
+        sii_dict = invoice._get_aeat_invoice_dict()["FacturaRecibida"]
+        self.assertEqual(sii_dict["ClaveRegimenEspecialOTrascendencia"], "16")
+        self.assertEqual(
+            sii_dict["DesgloseFactura"]["DesgloseIGIC"]["DetalleIGIC"],
+            [{"BaseImponible": 100.0}],
+        )
+        self.assertEqual(sii_dict["CuotaDeducible"], 0.0)

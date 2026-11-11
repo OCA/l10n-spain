@@ -29,6 +29,12 @@ def igic_tax_data():
             }
             for rate in ("0", "03", "05", "07", "095", "15", "20")
         },
+        # Purchases to retail traders, at the 70 % of the IGIC rate: their
+        # implicit tax burden is deducted with the key 15 (ATC FAQ 8.2)
+        **{
+            f"igic_sop_{rate}_cmino": {"l10n_es_regime_code": "15_igic_purchase"}
+            for rate in IGIC_RATES[1:]
+        },
         # Investment goods (the imported ones already have the flag)
         **{
             f"igic_sop_{rate}_inv": {"l10n_es_bien_inversion": True}
