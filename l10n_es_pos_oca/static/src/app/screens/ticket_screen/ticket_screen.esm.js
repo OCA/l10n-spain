@@ -1,0 +1,28 @@
+/* Copyright 2016 David Gómez Quilón <david.gomez@aselcis.com>
+   Copyright 2018-19 Tecnativa - David Vidal
+   Copyright 2024 (APSL-Nagarro) - Antoni Marroig
+   Copyright 2025 Alia Technologies - César Parguiñas
+   License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+*/
+
+import {TicketScreen} from "@point_of_sale/app/screens/ticket_screen/ticket_screen";
+import {_t} from "@web/core/l10n/translation";
+import {patch} from "@web/core/utils/patch";
+
+patch(TicketScreen.prototype, {
+    /**
+     * Gets the search fields including simplified invoice.
+     * @override
+     * @returns {*}
+     * @private
+     */
+    _getSearchFields() {
+        const fields = super._getSearchFields();
+        fields.SIMPLIFIED_INVOICE = {
+            repr: (order) => order.get_l10n_es_unique_id() || "",
+            displayName: _t("Simplified Invoice"),
+            modelFields: ["l10n_es_unique_id"],
+        };
+        return fields;
+    },
+});
