@@ -56,6 +56,16 @@
                             required="sii_enabled and move_type in ['out_refund','in_refund']"
                             invisible="move_type not in ['out_refund','in_refund']"
                         />
+                        <field
+                            name="sii_qualified_simplified_invoice"
+                            invisible="l10n_es_invoice_type not in ['F1', 'R1', 'R2', 'R3', 'R4']"
+                            readonly="state == 'posted'"
+                        />
+                        <field
+                            name="sii_unidentified_recipient_invoice"
+                            invisible="move_type not in ['out_invoice', 'out_refund'] or l10n_es_invoice_type not in ['F2', 'R5']"
+                            readonly="state == 'posted'"
+                        />
                         <label
                             for="sii_send_date"
                             string="Send date"

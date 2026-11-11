@@ -686,8 +686,7 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
 
     def test_supplier_invoice_type(self):
         """Purchase documents send the type chosen on the bill: a customs
-        complementary settlement (LC) or an accounting receipt (F6). Received
-        simplified invoices are not supported."""
+        complementary settlement (LC) or an accounting receipt (F6)."""
         self._activate_certificate(self.certificate_password)
         for invoice_type in ("LC", "F6"):
             with self.subTest(invoice_type=invoice_type):
@@ -700,10 +699,145 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
                 self.assertEqual(
                     sii_info["FacturaRecibida"]["TipoFactura"], invoice_type
                 )
-        bill = self._create_invoice("in_invoice")
-        bill.write({"ref": "SUP-F2", "l10n_es_invoice_type": "F2"})
+
+    def _invoice_with_taxes(self, partner, move_type, price, tax_xmlids, **vals):
+        taxes = self.company._get_taxes_from_xmlids(
+            [f"account_tax_template_{xmlid}" for xmlid in tax_xmlids]
+        )
+        return self.env["account.move"].create(
+            {
+                "partner_id": partner.id,
+                "invoice_date": "2020-01-01",
+                "move_type": move_type,
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.product.id,
+                            "account_id": self.account_expense.id,
+                            "name": "Test line",
+                            "price_unit": price,
+                            "quantity": 1,
+                            "tax_ids": [(6, 0, taxes.ids)],
+                        },
+                    )
+                ],
+                **vals,
+            }
+        )
+
+    def test_qualified_simplified_invoice(self):
+        """A shop issues its simplified invoices from their own journal (art.
+        7.1.a RD 1619/2012). The one a business customer asks with its VAT
+        number is a qualified simplified invoice: an F1 with counterpart and
+        the mark of art. 7.2/7.3, also on its credit note. A walk-in customer
+        gets a plain simplified invoice."""
+        self._activate_certificate(self.certificate_password)
+        journal = self.env["account.journal"].create(
+            {
+                "name": "Simplified invoices",
+                "code": "TCK",
+                "type": "sale",
+                "company_id": self.company.id,
+                "sii_simplified_invoices": True,
+            }
+        )
+        invoice = self._invoice_with_taxes(
+            self.partner, "out_invoice", 100, ["s_iva21b"], journal_id=journal.id
+        )
+        self.assertEqual(invoice.l10n_es_invoice_type, "F1")
+        self.assertTrue(invoice.sii_qualified_simplified_invoice)
+        invoice.action_post()
+        sii_info = invoice._get_aeat_invoice_dict()["FacturaExpedida"]
+        self.assertEqual(sii_info["TipoFactura"], "F1")
+        self.assertEqual(sii_info["FacturaSimplificadaArticulos7.2_7.3"], "S")
+        self.assertEqual(sii_info["Contraparte"]["NIF"], "F35999705")
+        refund = self._reverse(invoice)
+        self.assertEqual(refund.l10n_es_invoice_type, "R1")
+        self.assertTrue(refund.sii_qualified_simplified_invoice)
+        refund.action_post()
+        sii_info = refund._get_aeat_invoice_dict()["FacturaExpedida"]
+        self.assertEqual(sii_info["FacturaSimplificadaArticulos7.2_7.3"], "S")
+        walk_in = self.env["res.partner"].create(
+            {"name": "Walk-in customer", "country_id": self.env.ref("base.es").id}
+        )
+        invoice = self._invoice_with_taxes(
+            walk_in, "out_invoice", 100, ["s_iva21b"], journal_id=journal.id
+        )
+        self.assertEqual(invoice.l10n_es_invoice_type, "F2")
+        self.assertFalse(invoice.sii_qualified_simplified_invoice)
+        self.assertFalse(invoice.sii_unidentified_recipient_invoice)
+        invoice.action_post()
+        sii_info = invoice._get_aeat_invoice_dict()["FacturaExpedida"]
+        self.assertNotIn("FacturaSimplificadaArticulos7.2_7.3", sii_info)
+        self.assertNotIn("FacturaSinIdentifDestinatarioAritculo6.1.d", sii_info)
+
+    def test_unidentified_recipient_invoice(self):
+        """A full invoice to a French consumer without VAT number for a sale
+        not located in Spain: art. 6.1.d RD 1619/2012 does not require the
+        recipient's VAT number, so it goes as F2 with its mark and without the
+        3,000 euros limit of simplified invoices, and so does its credit note
+        (R5). A Spanish customer without identification above that limit can't
+        get a simplified invoice."""
+        self._activate_certificate(self.certificate_password)
+        consumer = self.env["res.partner"].create(
+            {"name": "French consumer", "country_id": self.env.ref("base.fr").id}
+        )
+        invoice = self._invoice_with_taxes(
+            consumer, "out_invoice", 5000, ["s_iva_ns_b"]
+        )
+        self.assertEqual(invoice.l10n_es_invoice_type, "F2")
+        self.assertTrue(invoice.sii_unidentified_recipient_invoice)
+        invoice.action_post()
+        sii_info = invoice._get_aeat_invoice_dict()["FacturaExpedida"]
+        self.assertEqual(sii_info["TipoFactura"], "F2")
+        self.assertEqual(sii_info["FacturaSinIdentifDestinatarioAritculo6.1.d"], "S")
+        self.assertNotIn("Contraparte", sii_info)
+        refund = self._reverse(invoice)
+        self.assertEqual(refund.l10n_es_invoice_type, "R5")
+        self.assertTrue(refund.sii_unidentified_recipient_invoice)
+        customer = self.env["res.partner"].create(
+            {"name": "Unidentified customer", "country_id": self.env.ref("base.es").id}
+        )
+        invoice = self._invoice_with_taxes(customer, "out_invoice", 5000, ["s_iva21b"])
+        self.assertEqual(invoice.l10n_es_invoice_type, "F2")
+        self.assertFalse(invoice.sii_unidentified_recipient_invoice)
+        with self.assertRaises(exceptions.UserError):
+            invoice.action_post()
+
+    def test_received_simplified_invoice(self):
+        """A ticket received from a supplier is a simplified invoice (F2) that
+        gives no right to deduct VAT, so it is registered with non deductible
+        taxes and the supplier as counterpart. When it carries the company's
+        VAT number it is a qualified one: an F1 the user marks, which deducts
+        the VAT."""
+        self._activate_certificate(self.certificate_password)
+        bill = self._invoice_with_taxes(
+            self.partner, "in_invoice", 100, ["p_iva21_bc"], ref="TCK-1"
+        )
+        bill.l10n_es_invoice_type = "F2"
         with self.assertRaises(exceptions.UserError):
             bill.action_post()
+        bill = self._invoice_with_taxes(
+            self.partner, "in_invoice", 100, ["p_iva0_nd"], ref="TCK-2"
+        )
+        bill.l10n_es_invoice_type = "F2"
+        bill.action_post()
+        sii_info = bill._get_aeat_invoice_dict()["FacturaRecibida"]
+        self.assertEqual(sii_info["TipoFactura"], "F2")
+        self.assertEqual(sii_info["CuotaDeducible"], 0)
+        self.assertEqual(sii_info["Contraparte"]["NIF"], "F35999705")
+        bill = self._invoice_with_taxes(
+            self.partner, "in_invoice", 100, ["p_iva21_bc"], ref="TCK-3"
+        )
+        self.assertFalse(bill.sii_qualified_simplified_invoice)
+        bill.sii_qualified_simplified_invoice = True
+        bill.action_post()
+        sii_info = bill._get_aeat_invoice_dict()["FacturaRecibida"]
+        self.assertEqual(sii_info["TipoFactura"], "F1")
+        self.assertEqual(sii_info["FacturaSimplificadaArticulos7.2_7.3"], "S")
+        self.assertEqual(sii_info["CuotaDeducible"], 21)
 
     def test_aeat_check_exceptions_case_supplier_on_post(self):
         """Check sii exceptions when posting supplier bills"""

@@ -23,6 +23,12 @@ from odoo.fields import Domain
 from odoo.modules.registry import Registry
 
 SII_VALID_INVOICE_STATES = ["posted"]
+# Types allowed with the marks of art. 7.2/7.3 and of art. 6.1.d RD 1619/2012
+# (AEAT errors 2022 and 2023; F3 is not a type of Odoo core)
+SII_QUALIFIED_SIMPLIFIED_TYPES = ("F1", "R1", "R2", "R3", "R4")
+SII_UNIDENTIFIED_RECIPIENT_TYPES = ("F2", "R5")
+# AEAT limit of simplified invoices (art. 4.2 RD 1619/2012, validation 20)
+SII_SIMPLIFIED_INVOICE_LIMIT = 3000
 _logger = logging.getLogger(__name__)
 
 
@@ -72,6 +78,31 @@ class AccountMove(models.Model):
         copy=False,
     )
     sii_dua_invoice = fields.Boolean(compute="_compute_dua_invoice")
+    sii_qualified_simplified_invoice = fields.Boolean(
+        string="Qualified simplified invoice",
+        compute="_compute_sii_invoice_marks",
+        store=True,
+        readonly=False,
+        copy=False,
+        help="Simplified invoice that identifies the recipient, as art. 7.2 and "
+        "7.3 RD 1619/2012 allow when the recipient asks for it (F1 or R1-R4). "
+        "Set on the customer invoices of a simplified invoices journal; on a "
+        "vendor bill, check it when the supplier issued a simplified invoice "
+        "with your company's VAT number.",
+    )
+    sii_unidentified_recipient_invoice = fields.Boolean(
+        string="Invoice without recipient identification (art. 6.1.d)",
+        compute="_compute_sii_invoice_marks",
+        store=True,
+        readonly=False,
+        copy=False,
+        help="Full invoice without the recipient's VAT number, which art. 6.1.d "
+        "RD 1619/2012 only requires for intra-community deliveries, reverse "
+        "charge and operations located in Spain (F2 or R5). Set on the "
+        "simplified type invoices of a full invoices journal whose taxes are all "
+        "not subject by location rules, such as distance sales to consumers of "
+        "other member states. Unlike simplified invoices, it has no amount limit.",
+    )
 
     @api.depends("move_type")
     def _compute_sii_refund_type(self):
@@ -106,6 +137,52 @@ class AccountMove(models.Model):
             ):
                 move.l10n_es_invoice_type = "R1"
         return res
+
+    @api.depends(
+        "move_type",
+        "partner_id",
+        "l10n_es_invoice_type",
+        "journal_id.sii_simplified_invoices",
+        "commercial_partner_id.aeat_simplified_invoice",
+        "invoice_line_ids.tax_ids.l10n_es_type",
+    )
+    def _compute_sii_invoice_marks(self):
+        """Simplified invoices go in their own series (art. 7.1.a RD
+        1619/2012), so the journal tells them from the full ones: an invoice of
+        a simplified series that identifies the customer is a qualified one; a
+        full invoice without identification is only valid where art. 6.1.d does
+        not require the customer's VAT number, an operation not located in
+        Spain. Only the recipient of a vendor bill knows whether the supplier
+        issued a qualified simplified invoice."""
+        simplified_partner = self.env.ref(
+            "l10n_es.partner_simplified", raise_if_not_found=False
+        )
+        for move in self:
+            if move.state == "posted":
+                continue
+            invoice_type = move.l10n_es_invoice_type
+            if not move.is_sale_document():
+                move.sii_qualified_simplified_invoice = (
+                    move.sii_qualified_simplified_invoice
+                    and invoice_type in SII_QUALIFIED_SIMPLIFIED_TYPES
+                )
+                move.sii_unidentified_recipient_invoice = False
+                continue
+            simplified_series = move.journal_id.sii_simplified_invoices
+            move.sii_qualified_simplified_invoice = (
+                simplified_series and invoice_type in SII_QUALIFIED_SIMPLIFIED_TYPES
+            )
+            taxes = move.invoice_line_ids.tax_ids.flatten_taxes_hierarchy().filtered(
+                lambda tax: tax.l10n_es_type != "ignore"
+            )
+            move.sii_unidentified_recipient_invoice = bool(
+                not simplified_series
+                and invoice_type in SII_UNIDENTIFIED_RECIPIENT_TYPES
+                and taxes
+                and all(tax.l10n_es_type == "no_sujeto_loc" for tax in taxes)
+                and not move.commercial_partner_id.aeat_simplified_invoice
+                and move.partner_id != simplified_partner
+            )
 
     @api.depends(
         "fiscal_position_id.sii_regime_code_sale",
@@ -369,25 +446,85 @@ class AccountMove(models.Model):
         return self.move_type
 
     def _is_aeat_simplified_invoice(self):
-        """Documents without an identified recipient: simplified invoices (F2),
-        their refunds (R5) and summaries of them (F4). The AEAT rejects the
-        counterpart on exactly these types; a simplified invoice that
-        identifies the recipient (art. 7.2 and 7.3 RD 1619/2012) goes as F1 or
-        R1-R4."""
+        """Issued documents without an identified recipient: simplified
+        invoices (F2), their refunds (R5) and summaries of them (F4). The AEAT
+        rejects the counterpart on exactly these types; a simplified invoice
+        that identifies the recipient (art. 7.2 and 7.3 RD 1619/2012) goes as F1
+        or R1-R4. A received F2 or F4 always identifies its issuer."""
         self.ensure_one()
-        return self.l10n_es_invoice_type in ("F2", "F4", "R5")
+        return self.is_sale_document() and self.l10n_es_invoice_type in (
+            "F2",
+            "F4",
+            "R5",
+        )
 
     def _aeat_check_exceptions(self):
         res = super()._aeat_check_exceptions()
         if self.is_invoice() and not self.l10n_es_invoice_type:
             raise UserError(self.env._("The invoice type is required."))
-        if self.move_type[:2] == "in" and self._is_aeat_simplified_invoice():
-            error_msg = self.env._("You can't make a supplier simplified invoice.")
-            raise UserError(error_msg)
+        self._sii_check_invoice_type()
         if not self.ref and self.move_type in ["in_invoice", "in_refund"]:
             error_msg = self.env._("The supplier number invoice is required")
             raise UserError(error_msg)
         return res
+
+    def _sii_check_invoice_type(self):
+        """What the AEAT would reject because of the invoice type and its marks
+        (errors 2022 and 2023, validations of simplified invoices)."""
+        invoice_type = self.l10n_es_invoice_type
+        if (
+            self.sii_qualified_simplified_invoice
+            and invoice_type not in SII_QUALIFIED_SIMPLIFIED_TYPES
+        ):
+            raise UserError(
+                self.env._(
+                    "A qualified simplified invoice (art. 7.2 and 7.3 RD "
+                    "1619/2012) identifies the recipient: its type must be F1 or "
+                    "R1-R4."
+                )
+            )
+        if (
+            self.sii_unidentified_recipient_invoice
+            and invoice_type not in SII_UNIDENTIFIED_RECIPIENT_TYPES
+        ):
+            raise UserError(
+                self.env._(
+                    "An invoice without recipient identification (art. 6.1.d RD "
+                    "1619/2012) must be of type F2 or R5."
+                )
+            )
+        limited_types = ("F2", "R5") if self.is_purchase_document() else ("F2",)
+        if (
+            invoice_type in limited_types
+            and not self.sii_unidentified_recipient_invoice
+            and self.company_currency_id.compare_amounts(
+                abs(self.amount_total_signed), SII_SIMPLIFIED_INVOICE_LIMIT
+            )
+            > 0
+        ):
+            raise UserError(
+                self.env._(
+                    "A simplified invoice cannot exceed %(limit)s euros (art. 4 "
+                    "RD 1619/2012): it must be a full invoice, with the "
+                    "recipient identified, or, for an operation not located in "
+                    "Spain, an invoice without recipient identification (art. "
+                    "6.1.d).",
+                    limit=SII_SIMPLIFIED_INVOICE_LIMIT,
+                )
+            )
+        if (
+            self.move_type == "in_invoice"
+            and invoice_type == "F2"
+            and self._get_sii_in_taxes()[1]
+        ):
+            raise UserError(
+                self.env._(
+                    "A simplified invoice received (F2) does not give the right "
+                    "to deduct VAT (art. 97 LIVA): use non deductible taxes or, if "
+                    "it carries your company's VAT number, register it as a full "
+                    "invoice (F1) marked as qualified simplified invoice."
+                )
+            )
 
     def _get_sii_invoice_type(self):
         self.ensure_one()
@@ -407,6 +544,10 @@ class AccountMove(models.Model):
                 }
             }
         exp_dict = inv_dict["FacturaExpedida"]
+        if self.sii_qualified_simplified_invoice:
+            exp_dict["FacturaSimplificadaArticulos7.2_7.3"] = "S"
+        if self.sii_unidentified_recipient_invoice:
+            exp_dict["FacturaSinIdentifDestinatarioAritculo6.1.d"] = "S"
         if self.move_type == "out_refund":
             exp_dict["TipoRectificativa"] = self.sii_refund_type
             if self.sii_refund_type == "S":
@@ -484,6 +625,8 @@ class AccountMove(models.Model):
                 )
             if self.sii_macrodata:
                 inv_dict["FacturaRecibida"].update(Macrodato="S")
+            if self.sii_qualified_simplified_invoice:
+                inv_dict["FacturaRecibida"]["FacturaSimplificadaArticulos7.2_7.3"] = "S"
             for index, regime_code in enumerate(regime_codes[1:], start=1):
                 inv_dict["FacturaRecibida"][
                     f"ClaveRegimenEspecialOTrascendenciaAdicional{index}"
@@ -799,6 +942,10 @@ class AccountMove(models.Model):
                     "l10n_es_invoice_type",
                     "R5" if move._is_aeat_simplified_invoice() else "R1",
                 )
+            if move.sii_qualified_simplified_invoice:
+                # A qualified simplified invoice is rectified by another one
+                # (FAQ 2.50 of the SII: R1-R4 with the mark)
+                default_values.setdefault("sii_qualified_simplified_invoice", True)
             if move.sii_enabled:
                 extra_dict = {}
                 sii_refund_type = self.env.context.get("sii_refund_type", False)

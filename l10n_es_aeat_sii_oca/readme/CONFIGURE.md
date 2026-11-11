@@ -35,6 +35,19 @@ la rectificativa de una factura completa es por defecto R1 (art. 80 Uno y
 Dos LIVA) en lugar de R4. Las facturas F2, F4 y R5 se envían sin
 contraparte.
 
+Las facturas simplificadas deben ir en su propia serie (art. 7.1.a RD
+1619/2012): en el diario de ventas de esa serie se marca "Facturas
+simplificadas". Las de ese diario que identifican al cliente se envían como
+simplificadas cualificadas (F1 o R1-R4 con la marca de los art. 7.2 y 7.3), y
+las que no, como simplificadas (F2 o R5). Una factura completa sin NIF del
+destinatario (F2 o R5 fuera de un diario de simplificadas) cuyos impuestos son
+todos no sujetos por reglas de localización, como las ventas a distancia a
+consumidores de otros estados miembros, se envía con la marca del art. 6.1.d,
+que no tiene el límite de 3.000 euros de las simplificadas. En una factura de
+proveedor, la marca de simplificada cualificada la pone el usuario cuando el
+ticket lleva el NIF de la compañía; una simplificada recibida sin él (F2) no da
+derecho a deducir el IVA y se registra con impuestos no deducibles.
+
 El parámetro del sistema l10n_es_aeat_sii_oca.sii_batch almacena el
 número de facturas máximo que se enviarán al SII cada vez que se realice
 un envío. El valor por defecto es 50.

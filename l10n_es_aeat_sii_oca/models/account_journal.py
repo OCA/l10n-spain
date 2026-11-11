@@ -12,6 +12,13 @@ class AccountJournal(models.Model):
         related="company_id.sii_enabled", string="Company enable SII"
     )
     sii_enabled = fields.Boolean(string="Enable SII", default=True)
+    sii_simplified_invoices = fields.Boolean(
+        string="Simplified invoices",
+        help="Series of simplified invoices (art. 7 RD 1619/2012), which must be "
+        "different from the series of full invoices. Its invoices that identify "
+        "the customer are sent to the SII as qualified simplified invoices (art. "
+        "7.2 and 7.3), and the ones that do not, as simplified invoices.",
+    )
 
     def _fill_sale_purchase_dashboard_data(self, dashboard_data):
         res = super()._fill_sale_purchase_dashboard_data(dashboard_data)
