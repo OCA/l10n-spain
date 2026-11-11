@@ -144,6 +144,19 @@ class AccountMove(models.Model):
             return True
         return False
 
+    def _get_sii_amount_not_in_total(self, tax_line, codes):
+        """The ATC checks the total of a received invoice against the bases and
+        quotas, without the implicit tax burden of the purchases to retail
+        traders (error 2045)."""
+        amount = super()._get_sii_amount_not_in_total(tax_line, codes)
+        if (
+            self.is_purchase_document()
+            and self._is_atc_sii_agency()
+            and self._is_atc_implicit_tax(tax_line["tax"])
+        ):
+            amount += tax_line["amount"]
+        return amount
+
     def _get_sii_in_taxes(self):
         """The ATC only admits a deductible quota on the purchases that can
         deduct it: not with the keys 08, 16 or 17 (errors 1328, 1329 and

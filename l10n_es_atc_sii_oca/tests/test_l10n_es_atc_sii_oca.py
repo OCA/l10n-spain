@@ -308,6 +308,9 @@ class TestL10nEsAtcSiiOca(TestL10nEsAeatSiiBase):
             ],
         )
         self.assertEqual(sii_dict["CuotaDeducible"], 4.9)
+        # The ATC checks the total without the implicit tax burden (error 2045)
+        self.assertEqual(invoice.amount_total, 104.9)
+        self.assertEqual(sii_dict["ImporteTotal"], 100.0)
 
     def test_exempt_purchase(self):
         """An exempt purchase goes with its base alone, without the 0 % rate
