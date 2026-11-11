@@ -30,3 +30,7 @@ la ayuda del campo) y tiene dos causas más, E7 (art. 110 de la Ley 4/2012) y E8
 Las operaciones exentas por el artículo 25 de la Ley 19/1994 (clave 19 en ventas y 17
 en compras) necesitan, en la pestaña SII de la factura, el detalle del tipo de bien y
 del documento en que constan (hasta tres): sin él, la factura no se puede validar.
+
+Las facturas del nivel avanzado del régimen especial del grupo de entidades (clave 06)
+necesitan su base imponible a coste, en la pestaña SII de la factura: la ATC comprueba
+que la cuota de IGIC sea la de esa base.

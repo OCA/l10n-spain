@@ -7,11 +7,18 @@
         <field name="model">account.move</field>
         <field name="inherit_id" ref="l10n_es_aeat_sii_oca.invoice_sii_form" />
         <field name="arch" type="xml">
+            <field name="sii_property_location" position="before">
+                <field
+                    name="sii_cost_tax_base"
+                    invisible="not sii_atc or '06' not in [l10n_es_regime_code, l10n_es_regime_code_additional, l10n_es_regime_code_additional2]"
+                    readonly="state == 'posted'"
+                />
+            </field>
             <group name="group_sii_information" position="after">
                 <group
                     string="Art. 25 Law 19/1994"
                     name="group_sii_art25"
-                    invisible="not sii_art25_required"
+                    invisible="not sii_atc or not sii_art25_required"
                 >
                     <field
                         name="sii_art25_detail_ids"
