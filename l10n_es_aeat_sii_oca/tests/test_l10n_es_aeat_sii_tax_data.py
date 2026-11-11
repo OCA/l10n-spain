@@ -4,6 +4,8 @@
 import json
 from unittest.mock import patch
 
+from odoo.exceptions import UserError
+
 from .test_l10n_es_aeat_sii import TestL10nEsAeatSiiBase
 from .test_sii_send_batch import FakeSiiService
 
@@ -461,9 +463,91 @@ class TestL10nEsAeatSiiTaxData(TestL10nEsAeatSiiBase):
         self.assertEqual(
             sent["DatosInmueble"],
             {
-                "DetalleInmueble": {
-                    "SituacionInmueble": "1",
-                    "ReferenciaCatastral": "9872023VH5797S0001WX",
-                }
+                "DetalleInmueble": [
+                    {
+                        "SituacionInmueble": "1",
+                        "ReferenciaCatastral": "9872023VH5797S0001WX",
+                    }
+                ]
             },
         )
+
+    def _create_real_estate(self, name, **vals):
+        return self.env["l10n.es.aeat.real_estate"].create(
+            {
+                "name": name,
+                "company_id": self.company.id,
+                "partner_id": self.company.partner_id.id,
+                "address": "Calle Mayor",
+                "city": "Madrid",
+                "zip": "28001",
+                **vals,
+            }
+        )
+
+    def _create_lease_invoice(self, real_estates):
+        invoice = self._create_sii_invoice(
+            [(self.product_service, 100, self._tax("s_iva21s"))] * len(real_estates)
+        )
+        for line, real_estate in zip(
+            invoice.invoice_line_ids, real_estates, strict=True
+        ):
+            line.l10n_es_aeat_real_estate_id = real_estate
+        invoice.l10n_es_regime_code_additional = "12_sale"
+        return invoice
+
+    def test_lease_line_real_estates(self):
+        """The real estates of the invoice lines go to the SII, with the
+        situation of its own list, instead of the property of the invoice."""
+        reference = "9872023 VH5797S 0001 WX"
+        real_estates = (
+            self._create_real_estate(
+                "Common territory",
+                reference=reference,
+                state_id=self.env.ref("base.state_es_m").id,
+            )
+            + self._create_real_estate(
+                "Basque Country",
+                reference=reference,
+                state_id=self.env.ref("base.state_es_bi").id,
+            )
+            + self._create_real_estate("Without reference")
+            + self._create_real_estate(
+                "Abroad", country_id=self.env.ref("base.fr").id, zip="75001"
+            )
+        )
+        # The customer can be given the company's real estates on the lines
+        self.assertEqual(
+            self.env["l10n.es.aeat.real_estate"].search(
+                [("id", "in", real_estates.ids), ("owned_by_company", "=", True)]
+            ),
+            real_estates,
+        )
+        invoice = self._create_lease_invoice(real_estates + real_estates[:1])
+        self.assertEqual(invoice.sii_real_estate_ids, real_estates)
+        invoice.action_post()
+        sent = self._send_to_sii(invoice)["FacturaExpedida"]
+        self.assertEqual(
+            sent["DatosInmueble"]["DetalleInmueble"],
+            [
+                {
+                    "SituacionInmueble": "1",
+                    "ReferenciaCatastral": "9872023VH5797S0001WX",
+                },
+                {
+                    "SituacionInmueble": "2",
+                    "ReferenciaCatastral": "9872023VH5797S0001WX",
+                },
+                {"SituacionInmueble": "3"},
+                {"SituacionInmueble": "4"},
+            ],
+        )
+
+    def test_lease_too_many_real_estates(self):
+        """The SII takes at most 15 real estates on an invoice."""
+        real_estates = self.env["l10n.es.aeat.real_estate"].concat(
+            self._create_real_estate(f"Premises {i}") for i in range(16)
+        )
+        invoice = self._create_lease_invoice(real_estates)
+        with self.assertRaisesRegex(UserError, "at most 15 real estates"):
+            invoice.action_post()

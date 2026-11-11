@@ -28,6 +28,9 @@ SII_QUALIFIED_SIMPLIFIED_TYPES = ("F1", "R1", "R2", "R3", "R4")
 SII_UNIDENTIFIED_RECIPIENT_TYPES = ("F2", "R5")
 # AEAT limit of simplified invoices (art. 4.2 RD 1619/2012, validation 20)
 SII_SIMPLIFIED_INVOICE_LIMIT = 3000
+# `DetalleInmueble` entries of an issued invoice (SII XSD); more go to the book
+# RegistroLRInmueblesAdicionales, not supported
+SII_MAX_REAL_ESTATES = 15
 _logger = logging.getLogger(__name__)
 
 
@@ -77,6 +80,13 @@ class AccountMove(models.Model):
         copy=False,
     )
     sii_property_required = fields.Boolean(compute="_compute_sii_property_required")
+    sii_real_estate_ids = fields.Many2many(
+        comodel_name="l10n.es.aeat.real_estate",
+        string="Real estates",
+        compute="_compute_sii_real_estate_ids",
+        help="Real estates of the invoice lines, sent to the SII instead of the "
+        "real property given on the invoice.",
+    )
     sii_dua_invoice = fields.Boolean(compute="_compute_dua_invoice")
     sii_qualified_simplified_invoice = fields.Boolean(
         string="Qualified simplified invoice",
@@ -275,6 +285,28 @@ class AccountMove(models.Model):
                     invoice.l10n_es_regime_code_additional2,
                 }
             )
+
+    @api.depends("invoice_line_ids.l10n_es_aeat_real_estate_id")
+    def _compute_sii_real_estate_ids(self):
+        for invoice in self:
+            invoice.sii_real_estate_ids = (
+                invoice.invoice_line_ids.l10n_es_aeat_real_estate_id
+            )
+
+    def _get_sii_property_details(self):
+        """`DetalleInmueble` of the SII: the real estates of the lines or, when
+        they have none, the real property given on the invoice."""
+        self.ensure_one()
+        if self.sii_real_estate_ids:
+            return [
+                estate._get_sii_property_detail() for estate in self.sii_real_estate_ids
+            ]
+        return [
+            {
+                "SituacionInmueble": self.sii_property_location,
+                "ReferenciaCatastral": self.sii_property_cadastrial_code or "",
+            }
+        ]
 
     @api.depends("amount_total")
     def _compute_macrodata(self):
@@ -498,6 +530,18 @@ class AccountMove(models.Model):
         if self.is_invoice() and not self.l10n_es_invoice_type:
             raise UserError(self.env._("The invoice type is required."))
         self._sii_check_invoice_type()
+        if (
+            self.sii_property_required
+            and len(self.sii_real_estate_ids) > SII_MAX_REAL_ESTATES
+        ):
+            raise UserError(
+                self.env._(
+                    "The SII accepts at most %(max)s real estates per invoice "
+                    "(the rest go in a separate book that is not supported): "
+                    "split the invoice.",
+                    max=SII_MAX_REAL_ESTATES,
+                )
+            )
         if not self.ref and self.move_type in ["in_invoice", "in_refund"]:
             error_msg = self.env._("The supplier number invoice is required")
             raise UserError(error_msg)
@@ -573,10 +617,7 @@ class AccountMove(models.Model):
             inv_dict["FacturaExpedida"]["EmitidaPorTercerosODestinatario"] = "S"
         if self.sii_property_required:
             inv_dict["FacturaExpedida"]["DatosInmueble"] = {
-                "DetalleInmueble": {
-                    "SituacionInmueble": self.sii_property_location,
-                    "ReferenciaCatastral": (self.sii_property_cadastrial_code or ""),
-                }
+                "DetalleInmueble": self._get_sii_property_details()
             }
         exp_dict = inv_dict["FacturaExpedida"]
         self._add_sii_operation_date(exp_dict)

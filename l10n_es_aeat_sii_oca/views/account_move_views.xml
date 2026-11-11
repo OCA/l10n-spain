@@ -93,16 +93,22 @@
                         <field name="sii_enabled" invisible="1" />
                         <field name="sii_property_required" invisible="1" />
                         <field
+                            name="sii_real_estate_ids"
+                            widget="many2many_tags"
+                            groups="l10n_es_aeat.group_use_aeat_real_estates"
+                            invisible="not sii_property_required or not sii_real_estate_ids"
+                        />
+                        <field
                             name="sii_property_location"
                             groups="account.group_account_invoice"
-                            invisible="not sii_property_required"
-                            required="sii_property_required"
+                            invisible="not sii_property_required or sii_real_estate_ids"
+                            required="sii_property_required and not sii_real_estate_ids"
                         />
                         <field
                             name="sii_property_cadastrial_code"
                             groups="account.group_account_invoice"
-                            invisible="not sii_property_required"
-                            required="sii_property_required and sii_property_location in ['1', '2']"
+                            invisible="not sii_property_required or sii_real_estate_ids"
+                            required="sii_property_required and not sii_real_estate_ids and sii_property_location in ['1', '2']"
                         />
                     </group>
                     <group
