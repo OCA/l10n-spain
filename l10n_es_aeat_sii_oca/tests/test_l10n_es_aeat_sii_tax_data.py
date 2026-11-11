@@ -439,3 +439,31 @@ class TestL10nEsAeatSiiTaxData(TestL10nEsAeatSiiBase):
         self.assertEqual(
             list(sent["DesgloseFactura"]), ["InversionSujetoPasivo"], "p_iva0_isc"
         )
+
+    def test_lease_additional_key_property(self):
+        """The real property goes with a lease of business premises also when
+        its key (12 or 13) is an additional one."""
+        invoice = self._create_sii_invoice(
+            [(self.product_service, 1000, self._tax("s_iva21s"))]
+        )
+        self.assertFalse(invoice.sii_property_required)
+        invoice.write(
+            {
+                "l10n_es_regime_code_additional": "12_sale",
+                "sii_property_location": "1",
+                "sii_property_cadastrial_code": "9872023VH5797S0001WX",
+            }
+        )
+        self.assertTrue(invoice.sii_property_required)
+        invoice.action_post()
+        sent = self._send_to_sii(invoice)["FacturaExpedida"]
+        self.assertEqual(sent["ClaveRegimenEspecialOTrascendenciaAdicional1"], "12")
+        self.assertEqual(
+            sent["DatosInmueble"],
+            {
+                "DetalleInmueble": {
+                    "SituacionInmueble": "1",
+                    "ReferenciaCatastral": "9872023VH5797S0001WX",
+                }
+            },
+        )

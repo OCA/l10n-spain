@@ -91,17 +91,18 @@
                             invisible="state != 'cancel' or aeat_state not in ['sent', 'sent_w_errors', 'sent_modified']"
                         />
                         <field name="sii_enabled" invisible="1" />
+                        <field name="sii_property_required" invisible="1" />
                         <field
                             name="sii_property_location"
                             groups="account.group_account_invoice"
-                            invisible="l10n_es_regime_code not in ['12_sale', '13_sale'] or move_type not in ['out_invoice', 'out_refund']"
-                            required="l10n_es_regime_code in ['12_sale', '13_sale'] and move_type in ['out_invoice', 'out_refund']"
+                            invisible="not sii_property_required"
+                            required="sii_property_required"
                         />
                         <field
                             name="sii_property_cadastrial_code"
                             groups="account.group_account_invoice"
-                            invisible="l10n_es_regime_code not in ['12_sale', '13_sale'] or move_type not in ['out_invoice', 'out_refund']"
-                            required="l10n_es_regime_code in ['12_sale', '13_sale'] and sii_property_location in ['1', '2'] and move_type in ['out_invoice', 'out_refund']"
+                            invisible="not sii_property_required"
+                            required="sii_property_required and sii_property_location in ['1', '2']"
                         />
                     </group>
                     <group
