@@ -668,7 +668,9 @@ class SiiMixin(models.AbstractModel):
                     "IDOtro": {
                         "CodigoPais": country_code,
                         "IDType": identifier_type,
-                        "ID": full_eu_vat,
+                        # Only a VAT number carries the country prefix, not a
+                        # passport or another identification document
+                        "ID": full_eu_vat if identifier_type == "02" else identifier,
                     },
                 }
         elif gen_type == 2:

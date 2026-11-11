@@ -347,6 +347,29 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
             },
         )
 
+    def test_national_customer_identification_document(self):
+        """A foreign customer of a national sale identified by a passport is
+        sent with the passport number as it is: only a VAT number takes the
+        country prefix."""
+        self._activate_certificate(self.certificate_password)
+        customer = self.env["res.partner"].create(
+            {
+                "name": "Tourist with passport",
+                "country_id": self.env.ref("base.fr").id,
+                "l10n_es_passport": "PASS1234",
+            }
+        )
+        invoice = self.invoice.copy({"partner_id": customer.id})
+        invoice.action_post()
+        sii_info = invoice._get_aeat_invoice_dict()
+        self.assertEqual(
+            sii_info["FacturaExpedida"]["Contraparte"],
+            {
+                "NombreRazon": "Tourist with passport",
+                "IDOtro": {"CodigoPais": "FR", "IDType": "03", "ID": "PASS1234"},
+            },
+        )
+
     def test_simplified_no_breakdown(self):
         partner = self.env["res.partner"].create(
             {
