@@ -7,3 +7,4 @@
   (<https://processcontrol.es>)
 - [Tecnativa](https://www.tecnativa.com):
   - Víctor Martínez
+  - Carlos Dauden

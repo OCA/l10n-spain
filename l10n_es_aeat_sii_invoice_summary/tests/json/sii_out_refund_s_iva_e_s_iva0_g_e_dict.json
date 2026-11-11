@@ -14,6 +14,7 @@
   "FacturaExpedida": {
     "TipoFactura": "F4",
     "ClaveRegimenEspecialOTrascendencia": "01",
+    "ClaveRegimenEspecialOTrascendenciaAdicional1": "02",
     "DescripcionOperacion": "/",
     "TipoDesglose": {
       "DesgloseFactura": {
@@ -25,7 +26,7 @@
             "DetalleExenta": [
               {
                 "BaseImponible": -200.0,
-                "CausaExencion": "E5"
+                "CausaExencion": "E2"
               }
             ]
           }
