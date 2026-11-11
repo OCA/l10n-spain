@@ -4,6 +4,7 @@
 from odoo.addons.l10n_es_aeat_sii_oca.tests.test_l10n_es_aeat_sii import (
     TestL10nEsAeatSiiBase,
 )
+from odoo.addons.l10n_es_atc_sii_oca.hooks import post_init_hook
 
 
 def collect_keys(value, found=None):
@@ -95,6 +96,37 @@ class TestL10nEsAtcSiiOca(TestL10nEsAeatSiiBase):
         self.assertTrue(self.igic_investment.l10n_es_bien_inversion)
         # IGIC taxes that the core leaves without applicability
         self.assertEqual(self._tax("igic_sop_7_s").l10n_es_applicability, "03")
+
+    def test_install_on_a_company_with_its_chart(self):
+        """Installing the module gives the IGIC data to the taxes that a
+        company already has, which the chart template did not create with it,
+        even when they are used."""
+        import_tax = self._igic("igic_sop_i_7")
+        export_tax = self._igic("igic_ex_0")
+        self._canary_invoice([import_tax], move_type="in_invoice")
+        self.assertTrue(import_tax.is_used)
+        # The core values of the chart template
+        import_tax.l10n_es_type = "sujeto"
+        export_tax.write(
+            {
+                "l10n_es_type": "sujeto",
+                "l10n_es_exempt_reason": False,
+                "l10n_es_regime_code": False,
+            }
+        )
+        # The install runs as superuser, on every company
+        post_init_hook(self.env(su=True))
+        self.assertEqual(import_tax.l10n_es_type, "dua")
+        self.assertRecordValues(
+            export_tax,
+            [
+                {
+                    "l10n_es_type": "exento",
+                    "l10n_es_exempt_reason": "E2",
+                    "l10n_es_regime_code": "02_sale",
+                }
+            ],
+        )
 
     def test_atc_header_declares_its_own_sii_version(self):
         """The ATC still runs version 1.0 of the SII, the AEAT does not."""
