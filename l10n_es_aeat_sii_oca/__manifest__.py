@@ -43,7 +43,10 @@
         "account_invoice_refund_link",
         "l10n_es_aeat",
     ],
+    # The core module also sends the invoices to the SII: twice with both
+    "excludes": ["l10n_es_edi_sii"],
     "data": [
+        "security/ir.access.csv",
         "data/ir_config_parameter_data.xml",
         "data/ir_cron.xml",
         "data/aeat_sii_tax_agency_data.xml",
@@ -54,7 +57,6 @@
         "views/account_fiscal_position_view.xml",
         "views/aeat_tax_agency_view.xml",
         "views/account_journal_view.xml",
-        "security/ir.access.csv",
     ],
     "images": ["static/description/SII_1.jpg"],
     "post_init_hook": "post_init_hook",
