@@ -150,7 +150,6 @@ class TestL10nEsAeatSiiSummary(TestL10nEsAeatSiiBase):
             self._create_and_test_invoice_sii_dict(
                 inv_type, lines, extra_vals, "l10n_es_aeat_sii_invoice_summary"
             )
-        return
 
     def test_get_invoice_data_summary(self):
         mapping = [
@@ -255,7 +254,6 @@ class TestL10nEsAeatSiiSummary(TestL10nEsAeatSiiBase):
             self._create_and_test_invoice_sii_dict(
                 inv_type, lines, extra_vals, "l10n_es_aeat_sii_invoice_summary"
             )
-        return
 
     def _compare_sii_dict(
         self, json_file, inv_type, lines, extra_vals=None, module=None
