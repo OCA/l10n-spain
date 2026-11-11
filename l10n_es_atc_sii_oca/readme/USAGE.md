@@ -15,4 +15,8 @@ y a la AEAT solo los de IVA. El desglose sale de los datos españoles de cada im
 (tipo, alcance y bien de inversión), como en `l10n_es_aeat_sii_oca`.
 
 Las claves de registro de las compras con IGIC (15, 16 y 17) se pueden indicar en los
-impuestos de compra de IGIC o en la factura.
+impuestos de compra de IGIC o en la factura. Los impuestos de la plantilla contable ya
+traen las de algunas operaciones: la exportación (02, exenta por el art. 11 de la Ley
+20/1991), la venta de comerciante minorista (17, exenta por el art. 50 de la Ley
+4/2012) y el recargo minorista de las importaciones (15). Las importaciones con IGIC se
+comunican como DUA (F5).
