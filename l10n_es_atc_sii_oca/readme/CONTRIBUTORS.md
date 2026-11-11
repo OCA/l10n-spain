@@ -6,3 +6,4 @@
   - Sergio Teruel
 - [APSL-Nagarro](https://www.apsl.tech):
   - Vicent Cubells \<<vcubells@apsl.net>\>
+  - Miquel Pascual \<<miquel.pascual@nagarro.com>\>
