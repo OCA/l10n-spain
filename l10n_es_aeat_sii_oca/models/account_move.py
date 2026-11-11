@@ -76,6 +76,7 @@ class AccountMove(models.Model):
         string="Real property cadastrial code",
         copy=False,
     )
+    sii_property_required = fields.Boolean(compute="_compute_sii_property_required")
     sii_dua_invoice = fields.Boolean(compute="_compute_dua_invoice")
     sii_qualified_simplified_invoice = fields.Boolean(
         string="Qualified simplified invoice",
@@ -252,6 +253,28 @@ class AccountMove(models.Model):
             if code
         ]
         return codes or [self.company_id._get_sii_default_regime_code()]
+
+    @api.depends(
+        "move_type",
+        "l10n_es_regime_code",
+        "l10n_es_regime_code_additional",
+        "l10n_es_regime_code_additional2",
+    )
+    def _compute_sii_property_required(self):
+        """Leases of business premises (keys 12 and 13) need the data of the
+        real property, also when the key is an additional one."""
+        for invoice in self:
+            invoice.sii_property_required = invoice.move_type in (
+                "out_invoice",
+                "out_refund",
+            ) and bool(
+                {"12_sale", "13_sale"}
+                & {
+                    invoice.l10n_es_regime_code,
+                    invoice.l10n_es_regime_code_additional,
+                    invoice.l10n_es_regime_code_additional2,
+                }
+            )
 
     @api.depends("amount_total")
     def _compute_macrodata(self):
@@ -548,7 +571,7 @@ class AccountMove(models.Model):
             return inv_dict
         if self.thirdparty_invoice:
             inv_dict["FacturaExpedida"]["EmitidaPorTercerosODestinatario"] = "S"
-        if self._get_sii_regime_codes()[0] in ["12", "13"]:
+        if self.sii_property_required:
             inv_dict["FacturaExpedida"]["DatosInmueble"] = {
                 "DetalleInmueble": {
                     "SituacionInmueble": self.sii_property_location,
