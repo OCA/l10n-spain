@@ -550,14 +550,6 @@ class AccountMove(models.Model):
             exp_dict["FacturaSinIdentifDestinatarioAritculo6.1.d"] = "S"
         if self.move_type == "out_refund":
             exp_dict["TipoRectificativa"] = self.sii_refund_type
-            if self.sii_refund_type == "S":
-                origin = self.refund_invoice_id
-                exp_dict["ImporteRectificacion"] = {
-                    "BaseRectificada": abs(origin.amount_untaxed_signed),
-                    "CuotaRectificada": abs(
-                        origin.amount_total_signed - origin.amount_untaxed_signed
-                    ),
-                }
         return inv_dict
 
     def _get_document_date(self):
@@ -634,16 +626,7 @@ class AccountMove(models.Model):
             # Uso condicional de IDOtro/NIF
             inv_dict["FacturaRecibida"]["Contraparte"].update(ident)
             if self.move_type == "in_refund":
-                rec_dict = inv_dict["FacturaRecibida"]
-                rec_dict["TipoRectificativa"] = self.sii_refund_type
-                if self.sii_refund_type == "S":
-                    refund_tax_amount = self.refund_invoice_id._get_sii_in_taxes()[1]
-                    rec_dict["ImporteRectificacion"] = {
-                        "BaseRectificada": abs(
-                            self.refund_invoice_id.amount_untaxed_signed
-                        ),
-                        "CuotaRectificada": refund_tax_amount,
-                    }
+                inv_dict["FacturaRecibida"]["TipoRectificativa"] = self.sii_refund_type
 
             if self.sii_dua_invoice:
                 inv_dict["FacturaRecibida"].pop("FechaOperacion", None)

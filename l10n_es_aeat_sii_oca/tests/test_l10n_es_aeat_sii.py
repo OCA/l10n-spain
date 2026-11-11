@@ -168,7 +168,6 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
         super().setUpClass()
         cls.invoice.action_post()
         cls.invoice.name = "INV001"
-        cls.invoice.refund_invoice_ids = cls.invoice.copy()
         cls.user = cls.env["res.users"].create(
             {
                 "name": "Test user",
