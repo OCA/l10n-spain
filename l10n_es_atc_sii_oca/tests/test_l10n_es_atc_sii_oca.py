@@ -1,6 +1,8 @@
 # Copyright 2026 Tecnativa - Carlos Dauden
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
+from odoo.exceptions import ValidationError
+
 from odoo.addons.l10n_es_aeat_sii_oca.tests.test_l10n_es_aeat_sii import (
     TestL10nEsAeatSiiBase,
 )
@@ -285,6 +287,21 @@ class TestL10nEsAtcSiiOca(TestL10nEsAeatSiiBase):
                 }
             },
         )
+
+    def test_igic_only_exemption_cause(self):
+        """The ATC has two exemption causes that the AEAT has not, E7 and E8,
+        which only an IGIC tax can have."""
+        self.company.tax_agency_id = self.agency_canarias
+        exempt = self._igic("igic_re_ex")
+        exempt.l10n_es_exempt_reason = "E7"
+        invoice = self._canary_invoice([exempt])
+        sii_dict = invoice._get_aeat_invoice_dict()["FacturaExpedida"]
+        self.assertEqual(
+            sii_dict["TipoDesglose"]["DesgloseFactura"]["Sujeta"]["Exenta"],
+            {"DetalleExenta": [{"BaseImponible": 100.0, "CausaExencion": "E7"}]},
+        )
+        with self.assertRaises(ValidationError):
+            self._tax("s_iva0").l10n_es_exempt_reason = "E8"
 
     def test_purchase_to_a_retail_trader(self):
         """A purchase to a retail trader deducts its implicit IGIC with the key

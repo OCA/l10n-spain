@@ -20,3 +20,9 @@ traen las de algunas operaciones: la exportación (02, exenta por el art. 11 de 
 20/1991), la venta de comerciante minorista (17, exenta por el art. 50 de la Ley
 4/2012) y el recargo minorista de las importaciones (15). Las importaciones con IGIC se
 comunican como DUA (F5).
+
+Salvo el de exportación y el de venta de comerciante minorista, los impuestos exentos
+de IGIC de la plantilla contable no tienen causa de exención: hay que indicar la de
+cada uno que se use. La ATC da a los códigos otro significado que la AEAT (lo explica
+la ayuda del campo) y tiene dos causas más, E7 (art. 110 de la Ley 4/2012) y E8
+(otras), que solo pueden tener los impuestos de IGIC.
