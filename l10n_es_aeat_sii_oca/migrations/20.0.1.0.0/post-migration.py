@@ -471,6 +471,105 @@ def _log_product_exempt_causes(env):
         )
 
 
+def _migrate_invoice_type(env):
+    """The SII invoice type is now the core `l10n_es_invoice_type`, which the
+    `l10n_es` migration fills from the core simplified flag (F2/R5 or F1/R4).
+    The SII invoices get the type this module used to send instead: the one
+    the AEAT holds when the invoice was sent, else the rule of the previous
+    version (customs complementary settlement, accounting receipt, specific
+    refund type, customer marked for simplified invoices, R1 for the other
+    customer refunds). Most invoices sent years ago keep no content, so the
+    rule must give what was sent: this module never sent a vendor bill as
+    F2, and it sent REAGYP bills as F1 (F6 only for the ones not sent yet).
+    The DUA bills keep the F5 of the `l10n_es` migration, as sent."""
+    cr = env.cr
+    if not openupgrade.column_exists(cr, "account_move", "l10n_es_invoice_type"):
+        return
+    column = {
+        name: openupgrade.column_exists(cr, "account_move", name)
+        for name in (
+            "sii_lc_operation",
+            "sii_is_accounting_receipt",
+            "sii_refund_specific_invoice_type",
+        )
+    }
+    lc = "move.sii_lc_operation" if column["sii_lc_operation"] else "FALSE"
+    receipt = (
+        "move.sii_is_accounting_receipt"
+        if column["sii_is_accounting_receipt"]
+        else "FALSE"
+    )
+    specific = (
+        "move.sii_refund_specific_invoice_type"
+        if column["sii_refund_specific_invoice_type"]
+        else "NULL"
+    )
+    openupgrade.logged_query(
+        cr,
+        f"""
+        UPDATE account_move move
+           SET l10n_es_invoice_type = CASE
+                   WHEN {lc} THEN 'LC'
+                   WHEN move.move_type = 'in_invoice' AND {receipt} THEN 'F6'
+                   WHEN move.move_type = 'in_invoice'
+                       AND (
+                           move.l10n_es_invoice_type = 'F2'
+                           OR (
+                               move.l10n_es_invoice_type = 'F6'
+                               AND move.aeat_state != 'not_sent'
+                           )
+                       )
+                       THEN 'F1'
+                   WHEN move.move_type = 'in_invoice'
+                       THEN move.l10n_es_invoice_type
+                   WHEN move.move_type = 'in_refund'
+                       THEN COALESCE({specific}, 'R4')
+                   WHEN move.move_type = 'out_invoice'
+                       THEN CASE WHEN partner.aeat_simplified_invoice
+                                 THEN 'F2' ELSE 'F1' END
+                   ELSE COALESCE(
+                       {specific},
+                       CASE WHEN partner.aeat_simplified_invoice
+                            THEN 'R5' ELSE 'R1' END
+                   )
+               END
+          FROM res_partner partner, res_company company
+         WHERE partner.id = move.commercial_partner_id
+           AND company.id = move.company_id
+           AND company.sii_enabled
+           AND move.move_type IN
+               ('out_invoice', 'out_refund', 'in_invoice', 'in_refund')
+        """,
+    )
+    # What the AEAT holds wins: a modification or a cancellation must keep it.
+    # The content is read with a pattern, not as JSON, as old records may hold
+    # a Python representation of the dictionary.
+    openupgrade.logged_query(
+        cr,
+        """
+        UPDATE account_move move
+           SET l10n_es_invoice_type = sent.invoice_type
+          FROM (
+              SELECT id,
+                     substring(
+                         aeat_content_sent
+                         FROM '[''"]TipoFactura[''"]: *[''"]([A-Z][A-Z0-9])[''"]'
+                     ) AS invoice_type
+                FROM account_move
+               WHERE aeat_content_sent IS NOT NULL
+                 AND move_type IN
+                     ('out_invoice', 'out_refund', 'in_invoice', 'in_refund')
+          ) sent
+         WHERE sent.id = move.id
+           AND sent.invoice_type IN (
+               'F1', 'F2', 'F4', 'F5', 'F6', 'LC',
+               'R1', 'R2', 'R3', 'R4', 'R5'
+           )
+           AND move.l10n_es_invoice_type IS DISTINCT FROM sent.invoice_type
+        """,
+    )
+
+
 @openupgrade.migrate()
 def migrate(env, version):
     _migrate_tax_data(env)
@@ -479,3 +578,4 @@ def migrate(env, version):
     _migrate_move_keys(env)
     _migrate_fiscal_position_keys(env)
     _log_product_exempt_causes(env)
+    _migrate_invoice_type(env)
