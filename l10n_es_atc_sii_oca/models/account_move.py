@@ -2,7 +2,8 @@
 # Copyright 2025 Tecnativa - Sergio Teruel
 import logging
 
-from odoo import api, models
+from odoo import api, fields, models
+from odoo.exceptions import UserError, ValidationError
 
 from odoo.addons.l10n_es_aeat.models.aeat_mixin import round_by_keys
 
@@ -30,10 +31,78 @@ ATC_IMPLICIT_TAX_SHARE = 0.7
 # Purchase keys whose details only admit the base when they are the only key
 # (IPSI/VAT, small businesses, art. 25 of Law 19/1994: error 1325)
 ATC_BASE_ONLY_PURCHASE_CODES = {"08", "16", "17"}
+# Keys of the operations exempt by art. 25 of Law 19/1994, which need the
+# DatosArticulo25 block (errors 2028 and 2031), and its maximum of details
+ATC_ART25_CODES = {"sale": "19_igic_sale", "purchase": "17_igic_purchase"}
+ATC_ART25_MAX_DETAILS = 3
 
 
 class AccountMove(models.Model):
     _inherit = "account.move"
+
+    sii_art25_detail_ids = fields.One2many(
+        comodel_name="l10n.es.atc.sii.art25.detail",
+        inverse_name="move_id",
+        string="Art. 25 Law 19/1994 details",
+        copy=True,
+    )
+    sii_art25_required = fields.Boolean(
+        compute="_compute_sii_art25_required",
+        help="The invoice has the key of the operations exempt by art. 25 of "
+        "Law 19/1994, which the SII of the Canary tax agency wants detailed.",
+    )
+
+    @api.depends(
+        "move_type",
+        "l10n_es_regime_code",
+        "l10n_es_regime_code_additional",
+        "l10n_es_regime_code_additional2",
+    )
+    def _compute_sii_art25_required(self):
+        for move in self:
+            code = ATC_ART25_CODES.get(
+                "sale" if move.is_sale_document() else "purchase"
+            )
+            move.sii_art25_required = move.is_invoice() and code in (
+                move.l10n_es_regime_code,
+                move.l10n_es_regime_code_additional,
+                move.l10n_es_regime_code_additional2,
+            )
+
+    @api.constrains("sii_art25_detail_ids")
+    def _check_sii_art25_detail_ids(self):
+        for move in self:
+            if len(move.sii_art25_detail_ids) > ATC_ART25_MAX_DETAILS:
+                raise ValidationError(
+                    self.env._(
+                        "The SII of the Canary tax agency admits up to %(max)s "
+                        "art. 25 details per invoice.",
+                        max=ATC_ART25_MAX_DETAILS,
+                    )
+                )
+
+    def _aeat_check_exceptions(self):
+        res = super()._aeat_check_exceptions()
+        if (
+            self._is_atc_sii_agency()
+            and self.sii_art25_required
+            and not self.sii_art25_detail_ids
+        ):
+            raise UserError(
+                self.env._(
+                    "The operations exempt by art. 25 of Law 19/1994 need their "
+                    "details (type of good and document) in the SII tab."
+                )
+            )
+        return res
+
+    def _add_sii_art25_details(self, invoice_dict):
+        """DatosArticulo25 of the invoice, only with the key of the art. 25
+        operations (errors 2028 and 2031)."""
+        if self.sii_art25_required and self.sii_art25_detail_ids:
+            invoice_dict["DatosArticulo25"] = {
+                "DetalleArticulo25": self.sii_art25_detail_ids._get_sii_dict()
+            }
 
     def _is_atc_sii_agency(self):
         """Whether the document is reported to the SII of the Canary tax agency."""
@@ -72,12 +141,16 @@ class AccountMove(models.Model):
         inv_dict = super()._get_aeat_invoice_dict_out(cancel=cancel)
         if self._is_atc_sii_agency():
             inv_dict = self._sii_atc_replace_tax_keys(inv_dict)
+            if not cancel:
+                self._add_sii_art25_details(inv_dict["FacturaExpedida"])
         return inv_dict
 
     def _get_aeat_invoice_dict_in(self, cancel=False):
         inv_dict = super()._get_aeat_invoice_dict_in(cancel=cancel)
         if self._is_atc_sii_agency():
             inv_dict = self._sii_atc_replace_tax_keys(inv_dict)
+            if not cancel:
+                self._add_sii_art25_details(inv_dict["FacturaRecibida"])
         return inv_dict
 
     def _get_aeat_invoice_dict(self):

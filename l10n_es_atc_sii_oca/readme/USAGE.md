@@ -26,3 +26,7 @@ de IGIC de la plantilla contable no tienen causa de exención: hay que indicar l
 cada uno que se use. La ATC da a los códigos otro significado que la AEAT (lo explica
 la ayuda del campo) y tiene dos causas más, E7 (art. 110 de la Ley 4/2012) y E8
 (otras), que solo pueden tener los impuestos de IGIC.
+
+Las operaciones exentas por el artículo 25 de la Ley 19/1994 (clave 19 en ventas y 17
+en compras) necesitan, en la pestaña SII de la factura, el detalle del tipo de bien y
+del documento en que constan (hasta tres): sin él, la factura no se puede validar.
