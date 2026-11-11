@@ -189,14 +189,22 @@ class TestL10nEsAtcSiiOca(TestL10nEsAeatSiiBase):
             {"ImportePorArticulos9_Otros": 100.0},
         )
 
-    def test_import_surcharge_is_the_retail_surcharge(self):
-        """The IGIC import surcharge of the retail traders is reported by its
-        amount, as the ATC schema has no equivalence surcharge."""
+    def test_retail_trader_import(self):
+        """An IGIC import is a customs declaration (F5) of the company, and the
+        import surcharge, only paid by the retail traders, gives their key 15
+        and is reported by its amount, as the ATC schema has no equivalence
+        surcharge."""
         self.company.tax_agency_id = self.agency_canarias
         invoice = self._canary_invoice(
             [self._igic("igic_sop_i_7", "igic_p_re07")], move_type="in_invoice"
         )
+        self.assertEqual(invoice.l10n_es_invoice_type, "F5")
+        self.assertEqual(invoice.l10n_es_regime_code, "15_igic_purchase")
         sii_dict = invoice._get_aeat_invoice_dict()["FacturaRecibida"]
+        self.assertEqual(sii_dict["TipoFactura"], "F5")
+        self.assertEqual(sii_dict["ClaveRegimenEspecialOTrascendencia"], "15")
+        self.assertEqual(sii_dict["Contraparte"]["NIF"], "U2687761C")
+        self.assertNotIn("ImporteTotal", sii_dict)
         self.assertEqual(
             sii_dict["DesgloseFactura"]["DesgloseIGIC"]["DetalleIGIC"],
             [
@@ -209,3 +217,37 @@ class TestL10nEsAtcSiiOca(TestL10nEsAeatSiiBase):
             ],
         )
         self.assertNotIn("TipoRecargoEquivalencia", collect_keys(sii_dict))
+
+    def test_igic_export(self):
+        """An IGIC export goes with the key 02 and the exemption of art. 11 of
+        Law 20/1991 (E2), which the ATC rejects with the key 01 alone (1295)."""
+        self.company.tax_agency_id = self.agency_canarias
+        invoice = self._canary_invoice([self._igic("igic_ex_0")])
+        self.assertEqual(invoice.l10n_es_regime_code, "02_sale")
+        sii_dict = invoice._get_aeat_invoice_dict()["FacturaExpedida"]
+        self.assertEqual(sii_dict["ClaveRegimenEspecialOTrascendencia"], "02")
+        self.assertEqual(
+            sii_dict["TipoDesglose"]["DesgloseFactura"]["Sujeta"],
+            {
+                "Exenta": {
+                    "DetalleExenta": [{"BaseImponible": 100.0, "CausaExencion": "E2"}]
+                }
+            },
+        )
+
+    def test_retail_trader_sale(self):
+        """A sale of a retail trader goes with its key 17 as exempt by art. 50 of
+        Law 4/2012 (E1), as the ATC FAQ 8.1 says."""
+        self.company.tax_agency_id = self.agency_canarias
+        invoice = self._canary_invoice([self._igic("igic_cmino")])
+        self.assertEqual(invoice.l10n_es_regime_code, "17_igic_sale")
+        sii_dict = invoice._get_aeat_invoice_dict()["FacturaExpedida"]
+        self.assertEqual(sii_dict["ClaveRegimenEspecialOTrascendencia"], "17")
+        self.assertEqual(
+            sii_dict["TipoDesglose"]["DesgloseFactura"]["Sujeta"],
+            {
+                "Exenta": {
+                    "DetalleExenta": [{"BaseImponible": 100.0, "CausaExencion": "E1"}]
+                }
+            },
+        )

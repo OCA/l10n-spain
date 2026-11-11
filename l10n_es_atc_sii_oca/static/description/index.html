@@ -415,15 +415,25 @@ las retenciones, y a la AEAT solo los de IVA. El desglose sale de los
 datos españoles de cada impuesto (tipo, alcance y bien de inversión),
 como en <tt class="docutils literal">l10n_es_aeat_sii_oca</tt>.</p>
 <p>Las claves de registro de las compras con IGIC (15, 16 y 17) se pueden
-indicar en los impuestos de compra de IGIC o en la factura.</p>
+indicar en los impuestos de compra de IGIC o en la factura. Los
+impuestos de la plantilla contable ya traen las de algunas operaciones:
+la exportación (02, exenta por el art. 11 de la Ley 20/1991), la venta
+de comerciante minorista (17, exenta por el art. 50 de la Ley 4/2012) y
+el recargo minorista de las importaciones (15). Las importaciones con
+IGIC se comunican como DUA (F5).</p>
 </div>
 <div class="section" id="known-issues-roadmap">
 <h2><a class="toc-backref" href="#toc-entry-2">Known issues / Roadmap</a></h2>
 <ul class="simple">
-<li>Los impuestos exentos de IGIC de la plantilla contable no tienen causa
-de exención: las facturas se envían con la causa del tipo de operación
-(E5 intracomunitaria, E2 exportación) o sin ninguna. Hay que indicar
-la causa de cada impuesto exento que se use.</li>
+<li>Salvo el de exportación (E2) y el de venta de comerciante minorista
+(E1), los impuestos exentos de IGIC de la plantilla contable no tienen
+causa de exención: las facturas se envían con la causa del tipo de
+operación (E5 intracomunitaria, E2 exportación) o sin ninguna. Hay que
+indicar la causa de cada impuesto exento que se use, teniendo en
+cuenta que la ATC da a los códigos otro significado que la AEAT: E6 es
+la exención de la Zona Especial Canaria (art. 47 de la Ley 19/1994),
+no “Otros”. Las causas E7 (art. 110 de la Ley 4/2012) y E8 (otras) de
+la ATC no están entre las de Odoo core.</li>
 <li>Los impuestos de IGIC de la plantilla contable que el mapeo SII de la
 agencia tributaria canaria no incluía (comerciantes minoristas, no
 sujetos, exportaciones) reciben ahora el desglose de su tipo, mientras
