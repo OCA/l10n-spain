@@ -17,19 +17,59 @@ class TestL10nEsAeatSiiSummary(TestL10nEsAeatSiiBase):
         cls.invoice.sii_invoice_summary_start = True
         cls.invoice.sii_invoice_summary_end = True
 
-    def test_aeat_check_exceptions_case_supplier_summary(self):
-        invoice = self.env["account.move"].create(
+    def _received_summary(self, price):
+        """Bill that sums up the small invoices a supplier sent on one day
+        (art. 64.5 RD 1624/1992), from the first to the last number."""
+        taxes = self.company._get_taxes_from_xmlids(["account_tax_template_p_iva21_bc"])
+        return self.env["account.move"].create(
             {
                 "partner_id": self.partner.id,
-                "invoice_date": "2018-02-01",
+                "invoice_date": "2020-01-01",
                 "move_type": "in_invoice",
+                "ref": "G-101",
                 "is_invoice_summary": True,
-                "sii_invoice_summary_start": 1,
-                "sii_invoice_summary_end": 10,
+                "sii_invoice_summary_start": "G-101",
+                "sii_invoice_summary_end": "G-109",
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.product.id,
+                            "account_id": self.account_expense.id,
+                            "name": "Fuel tickets",
+                            "price_unit": price,
+                            "quantity": 1,
+                            "tax_ids": [(6, 0, taxes.ids)],
+                        },
+                    )
+                ],
             }
         )
+
+    def test_received_summary_flow(self):
+        """A summary of received invoices is an F4 identified by the range of
+        the supplier's numbers, with the supplier as counterpart and its
+        deductible VAT, also when it is cancelled. Above 6,000 euros without
+        VAT it is not allowed."""
+        summary = self._received_summary(1000)
+        self.assertEqual(summary.l10n_es_invoice_type, "F4")
+        summary.action_post()
+        sii_info = summary._get_aeat_invoice_dict()
+        self.assertEqual(sii_info["IDFactura"]["NumSerieFacturaEmisor"], "G-101")
+        self.assertEqual(
+            sii_info["IDFactura"]["NumSerieFacturaEmisorResumenFin"], "G-109"
+        )
+        self.assertEqual(sii_info["FacturaRecibida"]["TipoFactura"], "F4")
+        self.assertEqual(sii_info["FacturaRecibida"]["CuotaDeducible"], 210)
+        self.assertEqual(sii_info["FacturaRecibida"]["Contraparte"]["NIF"], "F35999705")
+        cancel_info = summary._get_cancel_sii_invoice_dict()
+        self.assertEqual(
+            cancel_info["IDFactura"]["NumSerieFacturaEmisorResumenFin"], "G-109"
+        )
+        summary = self._received_summary(6500)
         with self.assertRaises(exceptions.UserError):
-            invoice._aeat_check_exceptions()
+            summary.action_post()
 
     def test_aeat_check_exceptions_case_summary_vat(self):
         partner = self.env["res.partner"].create({"name": "Test partner"})

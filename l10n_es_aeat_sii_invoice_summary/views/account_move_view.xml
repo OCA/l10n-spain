@@ -11,20 +11,20 @@
             <field name="sii_description" position="before">
                 <field
                     name="is_invoice_summary"
-                    invisible="move_type not in ('out_invoice','out_refund')"
+                    invisible="move_type not in ('out_invoice','out_refund','in_invoice')"
                     readonly="state != 'draft'"
                 />
                 <field
                     name="sii_invoice_summary_start"
                     string="First Invoice"
-                    invisible="move_type not in ('out_invoice','out_refund') or not is_invoice_summary"
+                    invisible="move_type not in ('out_invoice','out_refund','in_invoice') or not is_invoice_summary"
                     required="is_invoice_summary"
                     readonly="state != 'draft'"
                 />
                 <field
                     name="sii_invoice_summary_end"
                     string="Last Invoice"
-                    invisible="move_type not in ('out_invoice','out_refund') or not is_invoice_summary"
+                    invisible="move_type not in ('out_invoice','out_refund','in_invoice') or not is_invoice_summary"
                     required="is_invoice_summary"
                     readonly="state != 'draft'"
                 />

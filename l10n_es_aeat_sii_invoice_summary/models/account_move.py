@@ -4,6 +4,9 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from odoo import api, exceptions, fields, models
 
+# Limit of a summary of received invoices (art. 64.5 RD 1624/1992), untaxed
+RECEIVED_SUMMARY_LIMIT = 6000
+
 
 class AccountMove(models.Model):
     _inherit = "account.move"
@@ -15,9 +18,15 @@ class AccountMove(models.Model):
     def _get_invoice_summary_type(self):
         """Invoice type of a summary of simplified invoices: F4 for a range of
         them, F2 when it covers a single one and R5 for a summary of their
-        credit notes, which the AEAT does not accept as a range."""
+        credit notes, which the AEAT does not accept as a range. A summary of
+        invoices received from a supplier (art. 64.5 RD 1624/1992) is an F4
+        when it covers a range, and keeps its own type otherwise."""
         self.ensure_one()
-        if not self.is_invoice_summary or not self.is_sale_document():
+        if not self.is_invoice_summary or self.move_type not in (
+            "out_invoice",
+            "out_refund",
+            "in_invoice",
+        ):
             return False
         if self.move_type == "out_refund":
             return "R5"
@@ -26,7 +35,7 @@ class AccountMove(models.Model):
             and self.sii_invoice_summary_start != self.sii_invoice_summary_end
         ):
             return "F4"
-        return "F2"
+        return "F2" if self.move_type == "out_invoice" else False
 
     @api.depends(
         "is_invoice_summary", "sii_invoice_summary_start", "sii_invoice_summary_end"
@@ -67,11 +76,39 @@ class AccountMove(models.Model):
             exp_dict.pop("ImporteRectificacion", None)
         return inv_dict
 
+    def _get_aeat_invoice_dict_in(self, cancel=False):
+        """A summary of received invoices is identified by the range of the
+        supplier's invoice numbers, also when it is cancelled."""
+        inv_dict = super()._get_aeat_invoice_dict_in(cancel=cancel)
+        if self.l10n_es_invoice_type == "F4":
+            inv_dict["IDFactura"]["NumSerieFacturaEmisor"] = (
+                self.sii_invoice_summary_start
+            )
+            inv_dict["IDFactura"]["NumSerieFacturaEmisorResumenFin"] = (
+                self.sii_invoice_summary_end
+            )
+        return inv_dict
+
     def _aeat_check_exceptions(self):
         res = super()._aeat_check_exceptions()
-        if self.is_invoice_summary and self.is_purchase_document():
+        if self.is_invoice_summary and self.move_type == "in_refund":
             raise exceptions.UserError(
-                self.env._("You can't make a supplier summary invoice.")
+                self.env._("A supplier credit note can't be a summary invoice.")
+            )
+        if (
+            self.l10n_es_invoice_type == "F4"
+            and self.is_purchase_document()
+            and self.company_currency_id.compare_amounts(
+                abs(self.amount_untaxed_signed), RECEIVED_SUMMARY_LIMIT
+            )
+            > 0
+        ):
+            raise exceptions.UserError(
+                self.env._(
+                    "A summary of received invoices (art. 64.5 RD 1624/1992) "
+                    "cannot exceed %(limit)s euros without VAT.",
+                    limit=RECEIVED_SUMMARY_LIMIT,
+                )
             )
         if self.l10n_es_invoice_type == "F4" and not (
             self.is_invoice_summary
