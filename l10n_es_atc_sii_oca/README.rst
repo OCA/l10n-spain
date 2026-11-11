@@ -74,33 +74,50 @@ de comerciante minorista (17, exenta por el art. 50 de la Ley 4/2012) y
 el recargo minorista de las importaciones (15). Las importaciones con
 IGIC se comunican como DUA (F5).
 
+Salvo el de exportación y el de venta de comerciante minorista, los
+impuestos exentos de IGIC de la plantilla contable no tienen causa de
+exención: hay que indicar la de cada uno que se use. La ATC da a los
+códigos otro significado que la AEAT (lo explica la ayuda del campo) y
+tiene dos causas más, E7 (art. 110 de la Ley 4/2012) y E8 (otras), que
+solo pueden tener los impuestos de IGIC.
+
+Las operaciones exentas por el artículo 25 de la Ley 19/1994 (clave 19
+en ventas y 17 en compras) necesitan, en la pestaña SII de la factura,
+el detalle del tipo de bien y del documento en que constan (hasta tres):
+sin él, la factura no se puede validar.
+
+Las facturas del nivel avanzado del régimen especial del grupo de
+entidades (clave 06) necesitan su base imponible a coste, en la pestaña
+SII de la factura: la ATC comprueba que la cuota de IGIC sea la de esa
+base.
+
+Los impuestos del Arbitrio sobre Importaciones y Entregas de Mercancías
+(AIEM), que la plantilla contable no trae, se marcan con la casilla
+AIEM: su cuota se envía aparte del desglose de IGIC.
+
+En las certificaciones de obra para administraciones públicas (clave
+14), la ATC exige la fecha de operación, posterior a la de la factura:
+es la fecha de entrega de la factura.
+
 Known issues / Roadmap
 ======================
 
-- Salvo el de exportación (E2) y el de venta de comerciante minorista
-  (E1), los impuestos exentos de IGIC de la plantilla contable no tienen
-  causa de exención: las facturas se envían con la causa del tipo de
-  operación (E5 intracomunitaria, E2 exportación) o sin ninguna. Hay que
-  indicar la causa de cada impuesto exento que se use, teniendo en
-  cuenta que la ATC da a los códigos otro significado que la AEAT: E6 es
-  la exención de la Zona Especial Canaria (art. 47 de la Ley 19/1994),
-  no "Otros". Las causas E7 (art. 110 de la Ley 4/2012) y E8 (otras) de
-  la ATC no están entre las de Odoo core.
+- Las causas de exención E1 a E6 muestran el artículo de la AEAT, aunque
+  en los impuestos de IGIC tienen el significado de la ATC, que explica
+  la ayuda del campo (E6 es la exención de la Zona Especial Canaria, no
+  "Otros").
 - Los impuestos de IGIC de la plantilla contable que el mapeo SII de la
   agencia tributaria canaria no incluía (comerciantes minoristas, no
   sujetos, exportaciones) reciben ahora el desglose de su tipo, mientras
   que antes no se comunicaban.
-- No se envían todavía los datos que la ATC pide en algunas claves u
-  operaciones: el bloque ``DatosArticulo25`` de las claves 17 de compras
-  y 19 de ventas (errores 2028 y 2031, sin él la ATC rechaza la
-  factura), la ``FechaOperacion`` de las certificaciones de obra para
-  administraciones públicas (clave 14), la ``BaseImponibleACoste`` del
-  régimen de grupos de entidades (clave 06), la cuota del AIEM
-  (``CuotaAIEM``), las facturas F3 de sustitución de simplificadas y los
-  cobros y pagos del criterio de caja.
-- En las compras a comerciantes minoristas, el importe total incluye la
-  carga impositiva implícita, que la ATC no suma al comprobarlo: la
-  factura se acepta con el error 2045.
+- Cada detalle del artículo 25 admite un solo documento, aunque la ATC
+  acepta dos.
+- No se envían todavía:
+
+  - Las facturas F3 de sustitución de simplificadas: Odoo core no tiene
+    ese tipo de factura.
+  - Los cobros y pagos del criterio de caja, que van por otros servicios
+    web, como en ``l10n_es_aeat_sii_oca``.
 
 Bug Tracker
 ===========

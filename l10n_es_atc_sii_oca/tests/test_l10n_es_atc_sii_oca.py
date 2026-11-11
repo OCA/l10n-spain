@@ -481,3 +481,39 @@ class TestL10nEsAtcSiiOca(TestL10nEsAeatSiiBase):
         self.assertFalse(invoice.sii_atc)
         sii_dict = invoice._get_aeat_invoice_dict()["FacturaExpedida"]
         self.assertNotIn("BaseImponibleACoste", sii_dict)
+
+    def test_aiem_quota(self):
+        """The AIEM quota goes apart from the IGIC breakdown, and in the total
+        that the ATC checks (ATC FAQ 3.25 and 4.31)."""
+        self.company.tax_agency_id = self.agency_canarias
+        aiem = self.env["account.tax"].create(
+            {
+                "name": "Test AIEM 5%",
+                "amount": 5,
+                "type_tax_use": "sale",
+                "l10n_es_atc_aiem": True,
+                "company_id": self.company.id,
+            }
+        )
+        invoice = self._canary_invoice([self.igic | aiem])
+        sii_dict = invoice._get_aeat_invoice_dict()["FacturaExpedida"]
+        self.assertEqual(sii_dict["OperacionSujetaAIEM"], {"CuotaAIEM": 5.0})
+        self.assertEqual(
+            sii_dict["TipoDesglose"]["DesgloseFactura"]["Sujeta"]["NoExenta"][
+                "DesgloseIGIC"
+            ]["DetalleIGIC"],
+            [
+                {
+                    "TipoImpositivo": "7.0",
+                    "BaseImponible": 100.0,
+                    "CuotaRepercutida": 7.0,
+                }
+            ],
+        )
+        self.assertEqual(sii_dict["ImporteTotal"], 112.0)
+        refund = self._canary_invoice([self.igic | aiem], move_type="out_refund")
+        sii_dict = refund._get_aeat_invoice_dict()["FacturaExpedida"]
+        self.assertEqual(sii_dict["OperacionSujetaAIEM"], {"CuotaAIEM": -5.0})
+        # Without AIEM taxes, there is no block
+        sii_dict = self._canary_invoice([self.igic])._get_aeat_invoice_dict()
+        self.assertNotIn("OperacionSujetaAIEM", sii_dict["FacturaExpedida"])
