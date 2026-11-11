@@ -18,3 +18,5 @@
   - Luis J. Salvatierra
 - Batista10:
   - Ivan Vilata i Balaguer
+- RemontiaLabs:
+  - Daniel Cejudo Echeverry
