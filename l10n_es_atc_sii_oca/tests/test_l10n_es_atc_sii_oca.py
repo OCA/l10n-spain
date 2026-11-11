@@ -50,6 +50,15 @@ class TestL10nEsAtcSiiOca(TestL10nEsAeatSiiBase):
     def _tax(cls, xml_id):
         return cls.company._get_taxes_from_xmlids([f"account_tax_template_{xml_id}"])
 
+    @classmethod
+    def _igic(cls, *xml_ids):
+        """IGIC taxes of the chart, which are archived in a mainland company."""
+        taxes = cls.env["account.tax"]
+        for xml_id in xml_ids:
+            taxes |= cls._tax(xml_id)
+        taxes.active = True
+        return taxes
+
     def _canary_invoice(self, taxes_list, partner=None, move_type="out_invoice"):
         return self.env["account.move"].create(
             {
@@ -168,3 +177,35 @@ class TestL10nEsAtcSiiOca(TestL10nEsAeatSiiBase):
         self.assertEqual(invoice._get_sii_identifier()["IDOtro"]["IDType"], "04")
         self.company.tax_agency_id = self.agency_spain
         self.assertEqual(invoice._get_sii_identifier()["IDOtro"]["IDType"], "02")
+
+    def test_not_subject_igic_is_reported_by_article_9(self):
+        """The ATC schema has no articles 7 and 14 of the VAT law: a not subject
+        IGIC operation goes as article 9 of Law 20/1991."""
+        self.company.tax_agency_id = self.agency_canarias
+        invoice = self._canary_invoice([self._igic("s_igic_ns")])
+        sii_dict = invoice._get_aeat_invoice_dict()["FacturaExpedida"]
+        self.assertEqual(
+            sii_dict["TipoDesglose"]["DesgloseFactura"]["NoSujeta"],
+            {"ImportePorArticulos9_Otros": 100.0},
+        )
+
+    def test_import_surcharge_is_the_retail_surcharge(self):
+        """The IGIC import surcharge of the retail traders is reported by its
+        amount, as the ATC schema has no equivalence surcharge."""
+        self.company.tax_agency_id = self.agency_canarias
+        invoice = self._canary_invoice(
+            [self._igic("igic_sop_i_7", "igic_p_re07")], move_type="in_invoice"
+        )
+        sii_dict = invoice._get_aeat_invoice_dict()["FacturaRecibida"]
+        self.assertEqual(
+            sii_dict["DesgloseFactura"]["DesgloseIGIC"]["DetalleIGIC"],
+            [
+                {
+                    "TipoImpositivo": "7.0",
+                    "BaseImponible": 100.0,
+                    "CuotaSoportada": 7.0,
+                    "CuotaRecargoMinorista": 0.7,
+                }
+            ],
+        )
+        self.assertNotIn("TipoRecargoEquivalencia", collect_keys(sii_dict))
