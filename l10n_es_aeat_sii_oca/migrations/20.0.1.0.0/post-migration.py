@@ -372,6 +372,26 @@ def _set_igic_applicability(env):
     )
 
 
+def _set_fiscal_position_identification_type(env):
+    """The operation type (intra-community or export) of the fiscal positions
+    of the chart of accounts came from their Spanish name; it is now a field of
+    the fiscal position, given by the chart template to new companies."""
+    for name, ident in (
+        ("Régimen Intracomunitario", "2"),
+        ("Régimen Extracomunitario", "3"),
+    ):
+        openupgrade.logged_query(
+            env.cr,
+            """
+            UPDATE account_fiscal_position
+               SET sii_partner_identification_type = %s
+             WHERE sii_partner_identification_type IS NULL
+               AND %s IN (name->>'es_ES', name->>'en_US')
+            """,
+            (ident, name),
+        )
+
+
 def _migrate_move_keys(env):
     """The registration keys of the invoices go to the core regime code fields,
     so the posted ones keep what was sent."""
@@ -590,6 +610,7 @@ def migrate(env, version):
     _set_igic_applicability(env)
     _migrate_move_keys(env)
     _migrate_fiscal_position_keys(env)
+    _set_fiscal_position_identification_type(env)
     _log_product_exempt_causes(env)
     _migrate_invoice_type(env)
     _compute_draft_invoice_marks(env)
