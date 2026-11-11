@@ -144,14 +144,7 @@ class SiiMixin(models.AbstractModel):
     def _get_sii_fiscal_position_gen_type(self, fiscal_position):
         """Return 1 (national), 2 (intra-community) or 3 (export) for a fiscal
         position."""
-        partner_ident = fiscal_position.sii_partner_identification_type
-        if partner_ident:
-            return int(partner_ident)
-        if fiscal_position.name == "Régimen Intracomunitario":
-            return 2
-        if fiscal_position.name == "Régimen Extracomunitario":
-            return 3
-        return 1
+        return int(fiscal_position.sii_partner_identification_type or 1)
 
     def _is_sii_self_assessed_tax(self, tax):
         """Purchase tax self-assessed on an intra-community or foreign operation,

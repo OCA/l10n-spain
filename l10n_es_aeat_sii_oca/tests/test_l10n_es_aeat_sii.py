@@ -156,9 +156,7 @@ class TestL10nEsAeatSiiBase(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase
             }
         )
         cls.fp_intra = cls.env.ref(f"account.{cls.company.id}_fp_intra")
-        cls.fp_intra.sii_partner_identification_type = "2"
         cls.fp_extra = cls.env.ref(f"account.{cls.company.id}_fp_extra")
-        cls.fp_extra.sii_partner_identification_type = "3"
 
 
 class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
@@ -222,7 +220,6 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
             }
         )
         fp_extra = self.browse_ref(f"account.{self.company.id}_fp_extra")
-        fp_extra.sii_partner_identification_type = "3"
         invoice = self.invoice.copy(
             {"partner_id": eu_customer.id, "fiscal_position_id": fp_extra.id}
         )
