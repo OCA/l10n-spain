@@ -544,6 +544,7 @@ class AccountMove(models.Model):
                 }
             }
         exp_dict = inv_dict["FacturaExpedida"]
+        self._add_sii_operation_date(exp_dict)
         if self.sii_qualified_simplified_invoice:
             exp_dict["FacturaSimplificadaArticulos7.2_7.3"] = "S"
         if self.sii_unidentified_recipient_invoice:
@@ -551,6 +552,15 @@ class AccountMove(models.Model):
         if self.move_type == "out_refund":
             exp_dict["TipoRectificativa"] = self.sii_refund_type
         return inv_dict
+
+    def _add_sii_operation_date(self, invoice_dict):
+        """FechaOperacion of the invoices whose operation date, the delivery
+        date of Odoo core, is not the invoice one, as the SII of Odoo core
+        does (required by the key 14 of the public administrations works)."""
+        if self.delivery_date and self.delivery_date != self.invoice_date:
+            invoice_dict["FechaOperacion"] = self._change_date_format(
+                self.delivery_date
+            )
 
     def _get_document_date(self):
         return self.invoice_date
@@ -625,6 +635,7 @@ class AccountMove(models.Model):
                 ] = regime_code
             # Uso condicional de IDOtro/NIF
             inv_dict["FacturaRecibida"]["Contraparte"].update(ident)
+            self._add_sii_operation_date(inv_dict["FacturaRecibida"])
             if self.move_type == "in_refund":
                 inv_dict["FacturaRecibida"]["TipoRectificativa"] = self.sii_refund_type
 
