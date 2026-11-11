@@ -84,6 +84,14 @@ de entidades, arrendamiento de local de negocio, importación sin
 DUA...): pasa a ser la clave principal y las de los impuestos, las
 adicionales.
 
+El tipo de factura que se comunica es el campo de Odoo de la factura
+(F1, F2, LC, F5, F6, R1-R5...), que el usuario puede cambiar. Además de
+las reglas de Odoo, los clientes marcados con "Facturas simplificadas en
+AEAT" reciben siempre facturas simplificadas (F2) y rectificativas R5, y
+la rectificativa de una factura completa es por defecto R1 (art. 80 Uno
+y Dos LIVA) en lugar de R4. Las facturas F2, F4 y R5 se envían sin
+contraparte.
+
 El parámetro del sistema l10n_es_aeat_sii_oca.sii_batch almacena el
 número de facturas máximo que se enviarán al SII cada vez que se realice
 un envío. El valor por defecto es 50.

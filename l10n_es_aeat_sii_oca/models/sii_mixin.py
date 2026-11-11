@@ -387,12 +387,6 @@ class SiiMixin(models.AbstractModel):
         self.ensure_one()
         return self._get_sii_fiscal_position_gen_type(self.fiscal_position_id)
 
-    def _is_aeat_simplified_invoice(self):
-        """Inheritable method to allow control when an
-        invoice are simplified or normal"""
-        partner = self._aeat_get_partner()
-        return partner.aeat_simplified_invoice
-
     def _aeat_check_exceptions(self):
         """Inheritable method for exceptions control when sending SII invoices."""
         res = super()._aeat_check_exceptions()
