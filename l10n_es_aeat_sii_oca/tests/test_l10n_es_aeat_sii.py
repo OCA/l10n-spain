@@ -683,6 +683,23 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
         manual_refund = self._create_invoice("out_refund")
         self.assertEqual(manual_refund.l10n_es_invoice_type, "R1")
 
+    def test_operation_date(self):
+        """The delivery date of Odoo core is the operation date of the SII when
+        it is not the invoice one, as in the SII of Odoo core."""
+        self._activate_certificate(self.certificate_password)
+        for move_type, key in (
+            ("out_invoice", "FacturaExpedida"),
+            ("in_invoice", "FacturaRecibida"),
+        ):
+            with self.subTest(move_type=move_type):
+                invoice = self._create_invoice(move_type)
+                invoice.write({"ref": "SUP-OD", "delivery_date": invoice.invoice_date})
+                sii_info = invoice._get_aeat_invoice_dict()[key]
+                self.assertNotIn("FechaOperacion", sii_info)
+                invoice.delivery_date = "2018-01-15"
+                sii_info = invoice._get_aeat_invoice_dict()[key]
+                self.assertEqual(sii_info["FechaOperacion"], "15-01-2018")
+
     def test_supplier_invoice_type(self):
         """Purchase documents send the type chosen on the bill: a customs
         complementary settlement (LC) or an accounting receipt (F6)."""
