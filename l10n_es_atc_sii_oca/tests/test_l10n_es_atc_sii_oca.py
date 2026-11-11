@@ -1,7 +1,8 @@
 # Copyright 2026 Tecnativa - Carlos Dauden
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo.exceptions import ValidationError
+from odoo import Command
+from odoo.exceptions import UserError, ValidationError
 
 from odoo.addons.l10n_es_aeat_sii_oca.tests.test_l10n_es_aeat_sii import (
     TestL10nEsAeatSiiBase,
@@ -358,3 +359,96 @@ class TestL10nEsAtcSiiOca(TestL10nEsAeatSiiBase):
             [{"BaseImponible": 100.0}],
         )
         self.assertEqual(sii_dict["CuotaDeducible"], 0.0)
+
+    def test_art25_sale(self):
+        """A sale exempt by art. 25 of Law 19/1994 (key 19, E5) needs the
+        details of the good and its document, which the ATC rejects without
+        (error 2031), as the FAQ 7.1 example of a building sold by deed."""
+        self.company.tax_agency_id = self.agency_canarias
+        exempt = self._igic("igic_re_ex")
+        exempt.l10n_es_exempt_reason = "E5"
+        invoice = self._canary_invoice([exempt])
+        invoice.l10n_es_regime_code = "19_igic_sale"
+        self.assertTrue(invoice.sii_art25_required)
+        with self.assertRaises(UserError):
+            invoice._aeat_check_exceptions()
+        with self.assertRaises(ValidationError):
+            invoice.sii_art25_detail_ids = [
+                Command.create({"asset_type": "01", "document_type": "01"})
+            ]
+        invoice.sii_art25_detail_ids = [
+            Command.create(
+                {
+                    "asset_type": "01",
+                    "document_type": "01",
+                    "protocol_number": "1234",
+                    "notary_name": "Test Notary",
+                }
+            ),
+            Command.create({"asset_type": "02", "advance_payment": True}),
+        ]
+        invoice._aeat_check_exceptions()
+        sii_dict = invoice._get_aeat_invoice_dict()["FacturaExpedida"]
+        self.assertEqual(sii_dict["ClaveRegimenEspecialOTrascendencia"], "19")
+        self.assertEqual(
+            sii_dict["DatosArticulo25"],
+            {
+                "DetalleArticulo25": [
+                    {
+                        "PagoAnticipadoArt25": "N",
+                        "TipoBienArt25": "01",
+                        "IDDocumentoArt25": [
+                            {
+                                "TipoDocumArt25": "01",
+                                "NumeroProtocolo": "1234",
+                                "ApellidosNombreNotario": "Test Notary",
+                            }
+                        ],
+                    },
+                    {"PagoAnticipadoArt25": "S", "TipoBienArt25": "02"},
+                ]
+            },
+        )
+        # Only the key 19 admits the block (error 2031)
+        invoice.l10n_es_regime_code = "01_sale"
+        self.assertFalse(invoice.sii_art25_required)
+        sii_dict = invoice._get_aeat_invoice_dict()["FacturaExpedida"]
+        self.assertNotIn("DatosArticulo25", sii_dict)
+        with self.assertRaises(ValidationError):
+            invoice.sii_art25_detail_ids = [
+                Command.create({"asset_type": "02"}) for _index in range(2)
+            ]
+
+    def test_art25_purchase(self):
+        """A purchase exempt by art. 25 of Law 19/1994 goes with the key 17
+        and the details of the good (error 2028), the key that the sales give
+        to the retail traders."""
+        self.company.tax_agency_id = self.agency_canarias
+        invoice = self._canary_invoice(
+            [self._igic("igic_p_ex")], move_type="in_invoice"
+        )
+        invoice.write(
+            {
+                "l10n_es_regime_code": "17_igic_purchase",
+                "sii_art25_detail_ids": [
+                    Command.create({"asset_type": "03", "document_type": "02"})
+                ],
+            }
+        )
+        sii_dict = invoice._get_aeat_invoice_dict()["FacturaRecibida"]
+        self.assertEqual(sii_dict["ClaveRegimenEspecialOTrascendencia"], "17")
+        self.assertEqual(
+            sii_dict["DatosArticulo25"]["DetalleArticulo25"],
+            [
+                {
+                    "PagoAnticipadoArt25": "N",
+                    "TipoBienArt25": "03",
+                    "IDDocumentoArt25": [{"TipoDocumArt25": "02"}],
+                }
+            ],
+        )
+        self.assertEqual(sii_dict["CuotaDeducible"], 0.0)
+        # The key 17 of a sale is the one of the retail traders
+        sale = self._canary_invoice([self._igic("igic_cmino")])
+        self.assertEqual(sale.l10n_es_regime_code, "17_igic_sale")
+        self.assertFalse(sale.sii_art25_required)
