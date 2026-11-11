@@ -22,6 +22,7 @@
         "security/ir.access.csv",
         "data/aeat_sii_tax_agency_data.xml",
         "views/account_move_views.xml",
+        "views/account_tax_views.xml",
     ],
     "images": ["static/description/icon.png"],
     "post_init_hook": "post_init_hook",

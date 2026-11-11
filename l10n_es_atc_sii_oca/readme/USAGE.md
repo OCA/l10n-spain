@@ -34,3 +34,11 @@ del documento en que constan (hasta tres): sin él, la factura no se puede valid
 Las facturas del nivel avanzado del régimen especial del grupo de entidades (clave 06)
 necesitan su base imponible a coste, en la pestaña SII de la factura: la ATC comprueba
 que la cuota de IGIC sea la de esa base.
+
+Los impuestos del Arbitrio sobre Importaciones y Entregas de Mercancías (AIEM), que la
+plantilla contable no trae, se marcan con la casilla AIEM: su cuota se envía aparte
+del desglose de IGIC.
+
+En las certificaciones de obra para administraciones públicas (clave 14), la ATC
+exige la fecha de operación, posterior a la de la factura: es la fecha de entrega de
+la factura.

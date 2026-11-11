@@ -125,6 +125,19 @@ class AccountMove(models.Model):
             )
         return res
 
+    def _add_sii_aiem_quota(self, invoice_dict):
+        """OperacionSujetaAIEM of the invoices with AIEM taxes, with a zero quota
+        when they are exempt (ATC FAQ 3.25 and 4.31)."""
+        aiem_lines = [
+            tax_line
+            for tax_line in self._get_aeat_tax_info().values()
+            if tax_line["tax"].l10n_es_atc_aiem
+        ]
+        if aiem_lines:
+            invoice_dict["OperacionSujetaAIEM"] = {
+                "CuotaAIEM": sum(tax_line["amount"] for tax_line in aiem_lines)
+            }
+
     def _add_sii_cost_tax_base(self, invoice_dict):
         """BaseImponibleACoste of the invoice, only with the key 06 (errors 1233
         and 1301), with the sign of the quotas (error 1234)."""
@@ -180,6 +193,7 @@ class AccountMove(models.Model):
             if not cancel:
                 self._add_sii_art25_details(inv_dict["FacturaExpedida"])
                 self._add_sii_cost_tax_base(inv_dict["FacturaExpedida"])
+                self._add_sii_aiem_quota(inv_dict["FacturaExpedida"])
         return inv_dict
 
     def _get_aeat_invoice_dict_in(self, cancel=False):
@@ -189,6 +203,7 @@ class AccountMove(models.Model):
             if not cancel:
                 self._add_sii_art25_details(inv_dict["FacturaRecibida"])
                 self._add_sii_cost_tax_base(inv_dict["FacturaRecibida"])
+                self._add_sii_aiem_quota(inv_dict["FacturaRecibida"])
         return inv_dict
 
     def _get_aeat_invoice_dict(self):
@@ -196,7 +211,12 @@ class AccountMove(models.Model):
         # The ATC keys are not in the rounding of l10n_es_aeat_sii_oca
         round_by_keys(
             inv_dict,
-            ["CuotaRecargoMinorista", "CargaImpositivaImplicita", "BaseImponibleACoste"],
+            [
+                "CuotaRecargoMinorista",
+                "CargaImpositivaImplicita",
+                "BaseImponibleACoste",
+                "CuotaAIEM",
+            ],
         )
         return inv_dict
 
@@ -292,8 +312,10 @@ class AccountMove(models.Model):
 
     def _is_sii_reported_tax(self, tax):
         """The SII of the Canary tax agency is for the IGIC: it gets the IGIC
-        taxes and the withholdings, not the VAT ones."""
+        taxes and the withholdings, not the VAT ones, and the AIEM ones apart."""
         if self._is_atc_sii_agency():
+            if tax.l10n_es_atc_aiem:
+                return False
             return tax.l10n_es_applicability == "03" or (
                 not tax.l10n_es_applicability and tax.l10n_es_type == "retencion"
             )

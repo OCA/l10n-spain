@@ -33,6 +33,13 @@ class AccountTax(models.Model):
         "Special Zone), E7 art. 110 Law 4/2012 and E8 others.",
     )
 
+    l10n_es_atc_aiem = fields.Boolean(
+        string="AIEM",
+        help="The tax is the Canary Islands tax on imports and deliveries of "
+        "goods (AIEM), whose quota the SII of the Canary tax agency gets apart "
+        "from the IGIC breakdown.",
+    )
+
     @api.constrains("l10n_es_exempt_reason", "l10n_es_applicability")
     def _check_l10n_es_atc_exempt_reason(self):
         for tax in self:
