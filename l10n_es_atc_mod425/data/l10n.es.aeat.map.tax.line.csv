@@ -1,0 +1,27 @@
+id,field_number,field_type,inverse,map_parent_id:id,move_type,name,sum_type,account_xmlid_ids/id,tax_xmlid_ids/id
+atc_mod425_map_line_01,1,base,False,atc_mod425_map,regular,Régimen ordinario - Base imponible 0%,both,,igic_r_0
+atc_mod425_map_line_03,3,amount,False,atc_mod425_map,regular,Régimen ordinario - Cuota 0%,both,,igic_r_0
+atc_mod425_map_line_04,4,base,False,atc_mod425_map,regular,Régimen ordinario - Base imponible 3%,both,,igic_r_3
+atc_mod425_map_line_06,6,amount,False,atc_mod425_map,regular,Régimen ordinario - Cuota 3%,both,,igic_r_3
+atc_mod425_map_line_07,7,base,False,atc_mod425_map,regular,Régimen ordinario - Base imponible 7%,both,,igic_r_7
+atc_mod425_map_line_09,9,amount,False,atc_mod425_map,regular,Régimen ordinario - Cuota 7%,both,,igic_r_7
+atc_mod425_map_line_10,10,base,False,atc_mod425_map,regular,"Régimen ordinario - Base imponible 9,5%",both,,igic_r_9_5
+atc_mod425_map_line_12,12,amount,False,atc_mod425_map,regular,"Régimen ordinario - Cuota 9,5%",both,,igic_r_9_5
+atc_mod425_map_line_13,13,base,False,atc_mod425_map,regular,Régimen ordinario - Base imponible 15%,both,,igic_r_15
+atc_mod425_map_line_15,15,amount,False,atc_mod425_map,regular,Régimen ordinario - Cuota 15%,both,,igic_r_15
+atc_mod425_map_line_16,16,base,False,atc_mod425_map,regular,Régimen ordinario - Base imponible 20%,both,,igic_r_20
+atc_mod425_map_line_18,18,amount,False,atc_mod425_map,regular,Régimen ordinario - Cuota 20%,both,,igic_r_20
+atc_mod425_map_line_70_sale,70,base,False,atc_mod425_map,refund,Modificación bases y cuotas - Base imponible (Ventas),both,,"igic_r_0,igic_r_3,igic_r_7,igic_r_9_5,igic_r_15,igic_r_20"
+atc_mod425_map_line_70_purchase,70,base,True,atc_mod425_map,refund,Modificación bases y cuotas - Base imponible (Compras),both,,"igic_sop_0,igic_sop_3,igic_sop_7,igic_sop_9_5,igic_sop_15,igic_sop_20,igic_sop_0_inv,igic_sop_3_inv,igic_sop_7_inv,igic_sop_9_5_inv,igic_sop_15_inv,igic_sop_20_inv"
+atc_mod425_map_line_71_sale,71,amount,False,atc_mod425_map,refund,Modificación bases y cuotas - Cuota (Ventas),both,common_canary_4777,"igic_r_0,igic_r_3,igic_r_7,igic_r_9_5,igic_r_15,igic_r_20"
+atc_mod425_map_line_71_purchase,71,amount,True,atc_mod425_map,refund,Modificación bases y cuotas - Cuota (Compras),both,common_canary_4727,"igic_sop_0,igic_sop_3,igic_sop_7,igic_sop_9_5,igic_sop_15,igic_sop_20,igic_sop_0_inv,igic_sop_3_inv,igic_sop_7_inv,igic_sop_9_5_inv,igic_sop_15_inv,igic_sop_20_inv"
+atc_mod425_map_line_80,80,base,True,atc_mod425_map,regular,IGIC deducible en operaciones interiores bienes y servicios corrientes - Base,both,,"igic_sop_3,igic_sop_7,igic_sop_9_5,igic_sop_15,igic_sop_20,igic_ISP0,igic_ISP3,igic_ISP7,igic_ISP95,igic_ISP15,igic_ISP20,igic_p_re0,igic_p_re03,igic_p_re07,igic_p_re095,igic_p_re15,igic_p_re20"
+atc_mod425_map_line_81,81,amount,True,atc_mod425_map,regular,IGIC deducible en operaciones interiores bienes y servicios corrientes - Cuota,both,common_canary_4727,"igic_sop_3,igic_sop_7,igic_sop_9_5,igic_sop_15,igic_sop_20,igic_ISP3,igic_ISP7,igic_ISP95,igic_ISP15,igic_ISP20,igic_p_re03,igic_p_re07,igic_p_re095,igic_p_re15,igic_p_re20"
+atc_mod425_map_line_82,82,base,True,atc_mod425_map,regular,IGIC deducible en operaciones interiores bienes de inversión - Base,both,,"igic_sop_0_inv,igic_sop_3_inv,igic_sop_7_inv,igic_sop_9_5_inv,igic_sop_15_inv,igic_sop_20_inv"
+atc_mod425_map_line_83,83,amount,True,atc_mod425_map,regular,IGIC deducible en operaciones interiores bienes de inversión - Cuota,both,,"igic_sop_0_inv,igic_sop_3_inv,igic_sop_7_inv,igic_sop_9_5_inv,igic_sop_15_inv,igic_sop_20_inv"
+atc_mod425_map_line_84,84,base,True,atc_mod425_map,regular,IGIC deducible por importaciones de bienes corrientes - Base,both,,"igic_sop_i_0,igic_sop_i_3,igic_sop_i_7,igic_sop_i_9_5,igic_sop_i_15,igic_sop_i_20"
+atc_mod425_map_line_85,85,amount,True,atc_mod425_map,regular,IGIC deducible por importaciones de bienes corrientes - Cuota,both,,"igic_sop_i_0,igic_sop_i_3,igic_sop_i_7,igic_sop_i_9_5,igic_sop_i_15,igic_sop_i_20"
+atc_mod425_map_line_86,86,base,True,atc_mod425_map,regular,IGIC deducible por importaciones de bienes de inversión - Base,both,,"igic_sop_i_0_inv,igic_sop_i_3_inv,igic_sop_i_7_inv,igic_sop_i_9_5_inv,igic_sop_i_15_inv,igic_sop_i_20_inv"
+atc_mod425_map_line_87,87,amount,True,atc_mod425_map,regular,IGIC deducible por importaciones de bienes de inversión - Cuota,both,,"igic_sop_i_0_inv,igic_sop_i_3_inv,igic_sop_i_7_inv,igic_sop_i_9_5_inv,igic_sop_i_15_inv,igic_sop_i_20_inv"
+atc_mod425_map_line_88,88,base,True,atc_mod425_map,refund,Rectificación de deducciones - Base,both,,"igic_sop_0,igic_sop_3,igic_sop_7,igic_sop_9_5,igic_sop_15,igic_sop_20,igic_sop_0_inv,igic_sop_3_inv,igic_sop_7_inv,igic_sop_9_5_inv,igic_sop_15_inv,igic_sop_20_inv"
+atc_mod425_map_line_89,89,amount,True,atc_mod425_map,refund,Rectificación de deducciones - Cuota,both,common_canary_4727,"igic_sop_0,igic_sop_3,igic_sop_7,igic_sop_9_5,igic_sop_15,igic_sop_20,igic_sop_0_inv,igic_sop_3_inv,igic_sop_7_inv,igic_sop_9_5_inv,igic_sop_15_inv,igic_sop_20_inv"
