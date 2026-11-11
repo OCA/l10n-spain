@@ -90,9 +90,14 @@ class TestVerifactuInvoice(TestVerifactuCommon):
         if company is None:
             company = self.company
 
-        self.env["verifactu.invoice.entry"].search(
+        entries = self.env["verifactu.invoice.entry"].search(
             [("company_id", "=", company.id)]
-        ).unlink()
+        )
+        lines = entries.mapped("response_line_ids")
+        responses = lines.mapped("entry_response_id")
+        lines.with_context(verifactu_force_unlink=True).unlink()
+        responses.with_context(verifactu_force_unlink=True).unlink()
+        entries.with_context(verifactu_force_unlink=True).unlink()
 
     def _assert_chain_entry_properties(
         self,

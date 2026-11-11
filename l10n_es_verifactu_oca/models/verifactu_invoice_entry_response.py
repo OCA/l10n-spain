@@ -1,6 +1,10 @@
 # Copyright 2025 ForgeFlow S.L.
+# Copyright 2026 César Andrés Sánchez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from odoo import _, fields, models
+from odoo.exceptions import UserError
+
+from odoo.addons.base.models.ir_model import MODULE_UNINSTALL_FLAG
 
 
 class VerifactuInvoiceEntryResponse(models.Model):
@@ -114,3 +118,21 @@ class VerifactuInvoiceEntryResponse(models.Model):
             if act.state != "done":
                 act.action_done()
         return True
+
+    def unlink(self):
+        """Avoid cascading away response lines of sealed invoice entries."""
+        self.check_access("unlink")
+        if not self.env.context.get(
+            "verifactu_force_unlink"
+        ) and not self.env.context.get(MODULE_UNINSTALL_FLAG):
+            sealed = self.mapped("response_line_ids").filtered(
+                lambda r: r.entry_id and r.entry_id._is_verifactu_sealed()
+            )
+            if sealed:
+                raise UserError(
+                    _(
+                        "You cannot delete VERI*FACTU responses that contain "
+                        "lines linked to sealed invoice entries."
+                    )
+                )
+        return super().unlink()
