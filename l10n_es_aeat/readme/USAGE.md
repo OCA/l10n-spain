@@ -28,3 +28,8 @@ En las líneas se pueden elegir los inmuebles del contacto de la factura
 compañía (como el local que alquila al cliente). La referencia catastral se valida
 con los dígitos de control de la Dirección General del Catastro, salvo
 en País Vasco, Navarra y en el extranjero, que tienen otro formato.
+
+Para los modelos 180 y 347 hay que indicar el código INE del municipio
+(las dos cifras de la provincia y las tres del municipio, que se pueden
+consultar en el Instituto Nacional de Estadística). El campo Municipio
+solo hace falta si la ciudad es una localidad de otro municipio.
