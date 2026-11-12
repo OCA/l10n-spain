@@ -1,0 +1,530 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_es_deca_oca
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-29 09:47+0000\n"
+"PO-Revision-Date: 2026-10-29 09:47+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_es_deca_oca
+#. odoo-python
+#: code:addons/l10n_es_deca_oca/models/ir_attachment.py:0
+msgid "DeCA file provenance can only be set on generation."
+msgstr "L'origen del fitxer DeCA només es pot establir en generar-lo."
+
+#. module: l10n_es_deca_oca
+#. odoo-python
+#: code:addons/l10n_es_deca_oca/models/ir_attachment.py:0
+msgid "Invalid generated DeCA file provenance."
+msgstr "Origen no vàlid del fitxer DeCA generat."
+
+#. module: l10n_es_deca_oca
+#. odoo-python
+#: code:addons/l10n_es_deca_oca/models/ir_attachment.py:0
+msgid "Issued DeCA files cannot be changed."
+msgstr "Els fitxers DeCA emesos no es poden modificar."
+
+#. module: l10n_es_deca_oca
+#. odoo-python
+#: code:addons/l10n_es_deca_oca/models/ir_attachment.py:0
+msgid "Issued DeCA files cannot be deleted while their transfer exists."
+msgstr ""
+"Els fitxers DeCA emesos no es poden eliminar mentre existeixi la seva "
+"transferència."
+
+#. module: l10n_es_deca_oca
+#. odoo-python
+#: code:addons/l10n_es_deca_oca/models/ir_attachment.py:0
+msgid "Only DeCA generation can set file provenance."
+msgstr "Només la generació del DeCA pot establir l'origen del fitxer."
+
+#. module: l10n_es_deca_oca
+#. odoo-python
+#: code:addons/l10n_es_deca_oca/models/stock_move.py:0
+msgid ""
+"The effective product weight unit is invalid. Configure an existing weight"
+" unit before generating a DeCA."
+msgstr ""
+"La unitat de pes efectiva de producte no és vàlida. Configureu una unitat "
+"de pes existent abans de generar un DeCA."
+
+#. module: l10n_es_deca_oca
+#. odoo-python
+#: code:addons/l10n_es_deca_oca/models/stock_picking.py:0
+msgid ""
+"A positive DeCA weight is too small to display in kg with six decimal "
+"places. Review the cargo before generating the document."
+msgstr ""
+"Un pes positiu del DeCA és massa petit per mostrar-se en kg amb sis "
+"decimals. Reviseu la càrrega abans de generar el document."
+
+#. module: l10n_es_deca_oca
+#. odoo-python
+#: code:addons/l10n_es_deca_oca/models/stock_picking.py:0
+msgid "Carrier NIF (VAT)"
+msgstr "NIF (IVA) del transportista"
+
+#. module: l10n_es_deca_oca
+#. odoo-python
+#: code:addons/l10n_es_deca_oca/models/stock_picking.py:0
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_stock_picking__carrier_contact_id
+msgid "Carrier contact"
+msgstr "Contacte del transportista"
+
+#. module: l10n_es_deca_oca
+#. odoo-python
+#: code:addons/l10n_es_deca_oca/models/stock_picking.py:0
+msgid "Consignee NIF (VAT)"
+msgstr "NIF (IVA) del destinatari"
+
+#. module: l10n_es_deca_oca
+#. odoo-python
+#: code:addons/l10n_es_deca_oca/models/stock_picking.py:0
+msgid "DeCA generation data cannot be changed manually."
+msgstr "Les dades de generació del DeCA no es poden modificar manualment."
+
+#. module: l10n_es_deca_oca
+#. odoo-python
+#: code:addons/l10n_es_deca_oca/models/stock_picking.py:0
+msgid "DeCA generation data cannot be set manually."
+msgstr "Les dades de generació del DeCA no es poden establir manualment."
+
+#. module: l10n_es_deca_oca
+#. odoo-python
+#: code:addons/l10n_es_deca_oca/models/stock_picking.py:0
+msgid "DeCA is only available for outgoing or enabled incoming transfers."
+msgstr ""
+"El DeCA només està disponible per a transferències de sortida o d'entrada "
+"habilitades."
+
+#. module: l10n_es_deca_oca
+#. odoo-python
+#: code:addons/l10n_es_deca_oca/models/stock_picking.py:0
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_stock_picking__tractor_license_plate
+msgid "Main vehicle or tractor licence plate"
+msgstr "Matrícula del vehicle principal o tractora"
+
+#. module: l10n_es_deca_oca
+#. odoo-python
+#: code:addons/l10n_es_deca_oca/models/stock_picking.py:0
+msgid "Only inventory users can generate or share a DeCA."
+msgstr "Només els usuaris d'inventari poden generar o compartir un DeCA."
+
+#. module: l10n_es_deca_oca
+#. odoo-python
+#: code:addons/l10n_es_deca_oca/models/stock_picking.py:0
+msgid "Sender NIF (VAT)"
+msgstr "NIF (IVA) del remitent"
+
+#. module: l10n_es_deca_oca
+#. odoo-python
+#: code:addons/l10n_es_deca_oca/models/stock_picking.py:0
+msgid ""
+"The following data is missing for the DeCA report for picking %(picking)s:\n"
+"%(missing)s"
+msgstr ""
+"Falten les dades següents per a l'informe DeCA de l'albarà %(picking)s:\n"
+"%(missing)s"
+
+#. module: l10n_es_deca_oca
+#. odoo-python
+#: code:addons/l10n_es_deca_oca/models/stock_picking.py:0
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
+msgid "Weight"
+msgstr "Pes"
+
+#. module: l10n_es_deca_oca
+#: model:ir.actions.report,name:l10n_es_deca_oca.action_report_deca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.view_picking_form_inherit_l10n_es_deca_oca
+msgid "DeCA"
+msgstr "DeCA"
+
+#. module: l10n_es_deca_oca
+#: model:ir.actions.report,print_report_name:l10n_es_deca_oca.action_report_deca
+msgid "'DeCA - %s' % (object.name)"
+msgstr "'DeCA - %s' % (object.name)"
+
+#. module: l10n_es_deca_oca
+#: model:ir.actions.server,name:l10n_es_deca_oca.model_stock_picking_get_share_url_action_server
+msgid "Stock picking get share url"
+msgstr "Obtenir URL per compartir de l'albarà"
+
+#. module: l10n_es_deca_oca
+#: model:ir.model,name:l10n_es_deca_oca.model_ir_actions_report
+msgid "Report Action"
+msgstr "Acció d'informe"
+
+#. module: l10n_es_deca_oca
+#: model:ir.model,name:l10n_es_deca_oca.model_ir_attachment
+msgid "Attachment"
+msgstr "Adjunt"
+
+#. module: l10n_es_deca_oca
+#: model:ir.model,name:l10n_es_deca_oca.model_stock_move
+msgid "Stock Move"
+msgstr "Moviment d'estoc"
+
+#. module: l10n_es_deca_oca
+#: model:ir.model,name:l10n_es_deca_oca.model_stock_picking
+msgid "Transfer"
+msgstr "Transferència"
+
+#. module: l10n_es_deca_oca
+#: model:ir.model,name:l10n_es_deca_oca.model_stock_picking_type
+msgid "Picking Type"
+msgstr "Tipus d'albarà"
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.constraint,message:l10n_es_deca_oca.constraint_ir_attachment_deca_source_version_unique
+msgid "A DeCA version already exists for this transfer."
+msgstr "Ja existeix una versió del DeCA per a aquesta transferència."
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_ir_attachment__deca_content_hash
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_product_document__deca_content_hash
+msgid "Deca Content Hash"
+msgstr "Hash de contingut del DeCA"
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_ir_attachment__deca_source_id
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_product_document__deca_source_id
+msgid "DeCA source"
+msgstr "Origen del DeCA"
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_ir_attachment__deca_version
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_product_document__deca_version
+msgid "Deca Version"
+msgstr "Versió del DeCA"
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_stock_move__deca_weight
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_stock_picking__deca_weight
+msgid "Deca Weight"
+msgstr "Pes del DeCA"
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_stock_picking__deca_access_token
+msgid "Security access token to share url"
+msgstr "Token d'accés de seguretat per compartir la URL"
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_stock_picking__deca_attachment_id
+msgid "Current DeCA file"
+msgstr "Fitxer actual del DeCA"
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_stock_picking__deca_content_hash
+msgid "DeCA Content Hash"
+msgstr "Hash de contingut del DeCA"
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_stock_picking__deca_first_version_date
+msgid "DeCA First Version Date"
+msgstr "Data de la primera versió del DeCA"
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_stock_picking__deca_version
+msgid "DeCA Version"
+msgstr "Versió del DeCA"
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_stock_picking__l10n_es_show_deca
+msgid "L10N Es Show Deca"
+msgstr "Mostrar DeCA (L10N ES)"
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_stock_picking__special_authorization
+msgid "Special traffic authorisations"
+msgstr "Autoritzacions especials de trànsit"
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_stock_picking__special_authorization_history
+msgid "Special authorisation history"
+msgstr "Historial d'autoritzacions especials"
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_stock_picking__tractor_license_plate_history
+msgid "Tractor licence plate history"
+msgstr "Historial de matrícules de tractora"
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_stock_picking__trailer_license_plate
+msgid "Trailer or semi-trailer licence plate"
+msgstr "Matrícula del remolc o semiremolc"
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_stock_picking__trailer_license_plate_history
+msgid "Trailer licence plate history"
+msgstr "Historial de matrícules de remolc"
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_stock_picking_type__l10n_es_deca_enabled
+msgid "Enable DeCA"
+msgstr "Habilitar DeCA"
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,help:l10n_es_deca_oca.field_stock_move__deca_weight
+msgid ""
+"Cargo weight: actual quantity when nonzero, otherwise planned quantity. "
+"Mass units convert to kg; other products use their weight in Odoo's "
+"effective weight unit, converted to kg without rounding. An invalid "
+"effective unit sets derived weights to zero and blocks DeCA. After "
+"changing that setting, existing DeCA weights need recomputation."
+msgstr ""
+"Pes de la càrrega: quantitat realitzada si no és zero; en cas contrari, "
+"quantitat prevista. Les unitats de massa es converteixen a kg; els altres "
+"productes fan servir el seu pes en la unitat de pes efectiva d'Odoo, "
+"convertit a kg sense arrodoniment. Una unitat efectiva no vàlida posa a "
+"zero els pesos derivats i bloqueja el DeCA. Després de canviar aquest "
+"ajust, cal recalcular els pesos del DeCA existents."
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,help:l10n_es_deca_oca.field_stock_picking__carrier_contact_id
+msgid ""
+"Carrier contact whose name, VAT and address are printed on the DeCA. Use a"
+" shared contact or one belonging to the transfer company."
+msgstr ""
+"Contacte del transportista el nom, NIF i adreça del qual s'imprimeixen al "
+"DeCA. Feu servir un contacte compartit o un que pertanyi a l'empresa de la"
+" transferència."
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,help:l10n_es_deca_oca.field_stock_picking__deca_access_token
+msgid ""
+"Bearer credential for the current DeCA PDF. Anyone with its URL can "
+"download the document."
+msgstr ""
+"Credencial al portador del PDF actual del DeCA. Qualsevol persona amb la "
+"seva URL pot descarregar el document."
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,help:l10n_es_deca_oca.field_stock_picking__deca_attachment_id
+msgid ""
+"Latest generated version. Earlier versions remain attached to the "
+"transfer."
+msgstr ""
+"Darrera versió generada. Les versions anteriors continuen adjuntes a la "
+"transferència."
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,help:l10n_es_deca_oca.field_stock_picking__deca_first_version_date
+msgid ""
+"First PDF generation timestamp used in file metadata, not the printed "
+"issue date."
+msgstr ""
+"Marca de temps de la primera generació del PDF utilitzada a les metadades "
+"del fitxer, no la data d'emissió impresa."
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,help:l10n_es_deca_oca.field_stock_picking__deca_version
+msgid ""
+"Increases when a printed value changes and a new PDF is generated; "
+"unchanged valid documents reuse the current file."
+msgstr ""
+"Augmenta quan canvia un valor imprès i es genera un nou PDF; els documents"
+" vàlids sense canvis reutilitzen el fitxer actual."
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,help:l10n_es_deca_oca.field_stock_picking__deca_weight
+msgid ""
+"Total cargo weight in kg, excluding cancelled moves. Uses actual quantity "
+"when nonzero, otherwise planned quantity. Product weights are converted "
+"from the effective weight unit to kg. Up to six decimal places are shown; "
+"positive weights too small to display block issuance."
+msgstr ""
+"Pes total de la càrrega en kg, excloent els moviments cancel·lats. "
+"Utilitza la quantitat realitzada si no és zero; en cas contrari, la "
+"quantitat prevista. Els pesos de producte es converteixen des de la unitat"
+" de pes efectiva a kg. Es mostren fins a sis decimals; els pesos positius "
+"massa petits per mostrar-se bloquegen l'emissió."
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,help:l10n_es_deca_oca.field_stock_picking__special_authorization
+msgid ""
+"Traffic authorisations printed on the DeCA. Changes after completion "
+"retain previous values in the printed history."
+msgstr ""
+"Autoritzacions de trànsit impreses al DeCA. Els canvis posteriors a la "
+"finalització conserven els valors anteriors a l'historial imprès."
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,help:l10n_es_deca_oca.field_stock_picking__special_authorization_history
+msgid ""
+"Previous nonempty authorisations changed after completion, printed struck "
+"through on subsequent versions."
+msgstr ""
+"Autoritzacions anteriors no buides modificades després de la finalització;"
+" s'imprimeixen ratllades en les versions posteriors."
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,help:l10n_es_deca_oca.field_stock_picking__tractor_license_plate
+#: model:ir.model.fields,help:l10n_es_deca_oca.field_stock_picking__trailer_license_plate
+msgid ""
+"Current licence plate printed on the DeCA. Changes after completion retain"
+" the previous value in the printed history."
+msgstr ""
+"Matrícula actual impresa al DeCA. Els canvis posteriors a la finalització "
+"conserven el valor anterior a l'historial imprès."
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,help:l10n_es_deca_oca.field_stock_picking__tractor_license_plate_history
+msgid ""
+"Previous nonempty tractor plates changed after completion, printed struck "
+"through on subsequent versions."
+msgstr ""
+"Matrícules de tractora anteriors no buides modificades després de la "
+"finalització; s'imprimeixen ratllades en les versions posteriors."
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,help:l10n_es_deca_oca.field_stock_picking__trailer_license_plate_history
+msgid ""
+"Previous nonempty trailer plates changed after completion, printed struck "
+"through on subsequent versions."
+msgstr ""
+"Matrícules de remolc anteriors no buides modificades després de la "
+"finalització; s'imprimeixen ratllades en les versions posteriors."
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,help:l10n_es_deca_oca.field_stock_picking_type__l10n_es_deca_enabled
+msgid ""
+"Shows DeCA controls and allows printing for incoming shipments. Outgoing "
+"shipments always allow DeCA; internal transfers do not."
+msgstr ""
+"Mostra els controls del DeCA i permet imprimir-lo en les recepcions. Els "
+"enviaments de sortida sempre permeten DeCA; les transferències internes "
+"no."
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
+msgid ""
+"<br/>\n"
+"                                    <span>NIF: </span>"
+msgstr ""
+"<br/>\n"
+"                                    <span>NIF: </span>"
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
+msgid "<strong class=\"fw-bold\">Carrier:</strong>"
+msgstr "<strong class=\"fw-bold\">Transportista:</strong>"
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
+msgid "<strong class=\"fw-bold\">Consignee / Place of delivery:</strong>"
+msgstr "<strong class=\"fw-bold\">Destinatari / Lloc de lliurament:</strong>"
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
+msgid "<strong class=\"fw-bold\">Date of loading:</strong>"
+msgstr "<strong class=\"fw-bold\">Data de càrrega:</strong>"
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
+msgid "<strong class=\"fw-bold\">Place and date of issue:</strong>"
+msgstr "<strong class=\"fw-bold\">Lloc i data d'emissió:</strong>"
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
+msgid "<strong class=\"fw-bold\">Sender / Place of loading:</strong>"
+msgstr "<strong class=\"fw-bold\">Remitent / Lloc de càrrega:</strong>"
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
+msgid "Document for electronic Control of Administration (DeCA)"
+msgstr "Document de Control Administratiu electrònic (DeCA)"
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
+msgid "Product"
+msgstr "Producte"
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
+msgid "Quantity"
+msgstr "Quantitat"
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
+msgid "Special Authorizations:"
+msgstr "Autoritzacions especials:"
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
+msgid ""
+"This carriage is governed by Law 15/2009 of 11 November, on the contract "
+"for the land carriage of goods, and by any other applicable Spanish "
+"legislation."
+msgstr ""
+"Aquest transport es regeix per la Llei 15/2009, d'11 de novembre, del "
+"contracte de transport terrestre de mercaderies, i per qualsevol altra "
+"legislació espanyola aplicable."
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
+msgid "Tractor licence plate:"
+msgstr "Matrícula de la tractora:"
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
+msgid "Trailer licence plate:"
+msgstr "Matrícula del remolc:"
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
+msgid "Unit"
+msgstr "Unitat"
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
+msgid "kg"
+msgstr "kg"
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.view_picking_form_inherit_l10n_es_deca_oca
+msgid ""
+"Anyone with this link can download the DeCA. Printing or opening a valid "
+"link generates a new version when printed data changes."
+msgstr ""
+"Qualsevol persona amb aquest enllaç pot descarregar el DeCA. En imprimir o"
+" obrir un enllaç vàlid es genera una nova versió quan canvien les dades "
+"impreses."
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.view_picking_form_inherit_l10n_es_deca_oca
+msgid ""
+"Open the bearer link to the current PDF. Anyone with this link can "
+"download it."
+msgstr ""
+"Obre l'enllaç al portador del PDF actual. Qualsevol persona amb aquest "
+"enllaç pot descarregar-lo."
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.view_picking_form_inherit_l10n_es_deca_oca
+msgid "Print DeCA"
+msgstr "Imprimir DeCA"
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.view_picking_form_inherit_l10n_es_deca_oca
+msgid ""
+"Printing or opening a valid share link generates the current DeCA.\n"
+"                        Changed printed data creates a new version; previous files remain attached.\n"
+"                        Anyone with the share link can download the current document."
+msgstr ""
+"En imprimir o obrir un enllaç per compartir vàlid es genera el DeCA actual.\n"
+"                        Si canvien les dades impreses es crea una nova versió; els fitxers anteriors continuen adjunts.\n"
+"                        Qualsevol persona amb l'enllaç per compartir pot descarregar el document actual."
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.view_picking_form_inherit_l10n_es_deca_oca
+msgid "Share DeCA"
+msgstr "Compartir DeCA"

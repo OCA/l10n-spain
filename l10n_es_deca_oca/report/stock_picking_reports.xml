@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Acysos S.L.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <!-- Main-addon printing, including ordinary multi-record selection. -->
+    <record id="action_report_deca" model="ir.actions.report">
+        <field name="name">DeCA</field>
+        <field name="model">stock.picking</field>
+        <field name="groups_id" eval="[(4, ref('stock.group_stock_user'))]" />
+        <field name="domain">[('l10n_es_show_deca', '=', True)]</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">l10n_es_deca_oca.report_deca</field>
+        <field name="print_report_name">'DeCA - %s' % (object.name)</field>
+    </record>
+</odoo>
