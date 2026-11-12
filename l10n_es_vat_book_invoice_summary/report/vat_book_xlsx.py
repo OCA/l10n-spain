@@ -15,6 +15,6 @@ class VatNumberXlsx(models.AbstractModel):
             sheet, row, line, tax_line, with_total, draft_export
         )
         if line.move_id.is_invoice_summary:
-            sheet.write("D" + str(row), line.move_id.sii_invoice_summary_start)
-            sheet.write("E" + str(row), line.move_id.sii_invoice_summary_end)
+            sheet.write("L" + str(row), line.move_id.sii_invoice_summary_start)
+            sheet.write("M" + str(row), line.move_id.sii_invoice_summary_end)
         return res
