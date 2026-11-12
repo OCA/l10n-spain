@@ -4,3 +4,7 @@ access_l10n_es_aeat_mod592_report_manager,AEAT 592 Model: Report - Account Manag
 l10n_es_aeat_mod592_report_rule,AEAT Mod 592,l10n.es.aeat.mod592.report,,crud,"[('company_id', 'in', [False] + company_ids)]"
 access_l10n_es_aeat_mod592_partner_record_manufacturer,AEAT 592 Manufacturer,l10n.es.aeat.mod592.report.line.manufacturer,account.group_account_manager,crud,
 access_l10n_es_aeat_mod592_partner_record_acquirer,AEAT 592 Acquirer,l10n.es.aeat.mod592.report.line.acquirer,account.group_account_manager,crud,
+access_l10n_es_aeat_mod592_partner_record_manufacturer_user,AEAT 592 Manufacturer - Account User,l10n.es.aeat.mod592.report.line.manufacturer,account.group_account_user,r,
+access_l10n_es_aeat_mod592_partner_record_acquirer_user,AEAT 592 Acquirer - Account User,l10n.es.aeat.mod592.report.line.acquirer,account.group_account_user,r,
+l10n_es_aeat_mod592_line_manufacturer_rule,AEAT Mod 592 Manufacturer lines,l10n.es.aeat.mod592.report.line.manufacturer,,crud,"[('report_id.company_id', 'in', [False] + company_ids)]"
+l10n_es_aeat_mod592_line_acquirer_rule,AEAT Mod 592 Acquirer lines,l10n.es.aeat.mod592.report.line.acquirer,,crud,"[('report_id.company_id', 'in', [False] + company_ids)]"

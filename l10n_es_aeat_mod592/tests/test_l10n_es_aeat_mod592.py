@@ -444,3 +444,24 @@ class TestL10nEsAeatMod592(TestL10nEsAeatModBase):
         self.assertTrue(self.model592.show_error_acquirer)
         with self.assertRaises(UserError):
             self.model592.button_confirm()
+
+    @freeze_time("2024-01-01", tick=True)
+    def test_account_user_opens_report(self):
+        """A user of the accounting group without management rights opens the
+        report with its lines"""
+        self.account_user.sudo().group_ids += self.env.ref(
+            "l10n_es_aeat_mod592.group_mod592_acquirer"
+        )
+        self.picking.action_confirm()
+        self.picking.button_validate()
+        self.model592.calculate()
+        report = Form(self.model592.with_user(self.account_user))
+        self.assertEqual(report.num_lines_acquirer, 2)
+        self.assertEqual(report.total_weight_acquirer, 45)
+        action = self.model592.with_user(
+            self.account_user
+        ).view_action_mod592_report_line_acquirer()
+        lines = self.env[action["res_model"]].with_user(self.account_user)
+        self.assertEqual(
+            lines.search(action["domain"]).mapped("entry_number"), ["A001", "A002"]
+        )
