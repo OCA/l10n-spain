@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="product_template_form_sii_atc_view" model="ir.ui.view">
+        <field name="name">product.template.form.inherit.sii.atc</field>
+        <field name="model">product.template</field>
+        <field
+            name="inherit_id"
+            ref="l10n_es_aeat_sii_oca.product_template_form_sii_view"
+        />
+        <field name="arch" type="xml">
+            <field name="sii_exempt_cause" position="after">
+                <field
+                    name="sii_art25_tipo_bien"
+                    invisible="sii_exempt_cause != 'E5'"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>
