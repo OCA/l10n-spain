@@ -97,6 +97,10 @@ Known issues / Roadmap
   quant para contemplar todos los casos de la ley.
 - No se contempla el tratamiento de Canarias: Si el producto es
   adquirido en Canarias con destino a la Península, debe tributar.
+- Solo se declaran como destrucción (concepto 3) los desechos lanzados
+  desde un albarán con contacto. Los desechos hechos desde Inventario,
+  desde un movimiento o desde un lote no tienen albarán ni justificante
+  y no se buscan.
 
 Bug Tracker
 ===========
