@@ -427,6 +427,57 @@ class CommonTest(TestL10nEsAeatCertificateBase, TestL10nEsAeatModBase):
                 active_model="account.move",
             ).create_facturae_file()
 
+    def test_refund_user_language(self):
+        """The descriptions of the refund reason and the correction method are
+        the values of the Facturae schema whatever the language of the user"""
+        # The administrator installs the language
+        self.env["res.lang"].sudo()._activate_lang("ca_ES")
+        self.env["ir.module.module"].sudo()._load_module_terms(
+            ["l10n_es_facturae"], ["ca_ES"], overwrite=True
+        )
+        self.move.partner_id.lang = "ca_ES"
+        self._activate_certificate(self.certificate_password)
+        self.move.action_post()
+        self.move.name = "2999/99999"
+        reversal = (
+            self.env["account.move.reversal"]
+            .with_context(
+                lang="ca_ES", active_ids=self.move.ids, active_model=self.move._name
+            )
+            .create(
+                {
+                    "refund_reason": "01",
+                    "reason": "Description motive",
+                    "journal_id": self.move.journal_id.id,
+                }
+            )
+        )
+        refund_result = reversal.reverse_moves()
+        refund_inv = self.env["account.move"].browse(refund_result["res_id"])
+        refund_inv.action_post()
+        refund_inv.name = "2998/99999"
+        wizard = (
+            self.env["create.facturae"]
+            .with_context(
+                lang="ca_ES", active_ids=refund_inv.ids, active_model="account.move"
+            )
+            .create({})
+        )
+        wizard.create_facturae_file()
+        facturae = etree.fromstring(wizard.facturae.content)
+        self.assertEqual(
+            facturae.xpath("//ReasonDescription")[0].text, "Número de la factura"
+        )
+        self.assertEqual(
+            facturae.xpath("//CorrectionMethodDescription")[0].text,
+            dict(
+                self.env["account.move"]
+                .with_context(lang=None)
+                ._fields["correction_method"]
+                .selection
+            )[refund_inv.correction_method],
+        )
+
     def test_refund_amounts_file_generation(self):
         self._activate_certificate(self.certificate_password)
         self._check_amounts(self.refund_move, *self.refund_check_amount)
