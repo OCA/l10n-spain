@@ -9,10 +9,19 @@ Para introducir datos válidos para el modelo:
 
 El modelo 123 suma también las retenciones "Retenciones IRPF 24%
 (Rendimientos del capital)" y "Retenciones IRPF 19% Consejeros y
-administradores (Compra consejero de sociedad)".
-Odoo core etiqueta esas dos retenciones para su informe de impuestos del
-modelo 111, así que en ese informe aparecen también; el modelo 111 de
-OCA no las incluye.
+administradores (Compra consejero de sociedad)". El modelo 111 de OCA
+no las incluye.
+
+La retención del 24 % sobre rendimientos del capital es la de la cesión
+del derecho de explotación de la imagen fuera de una actividad
+económica, que se declara en el modelo 123 (resumen anual 193, clave C).
+Odoo core etiqueta este impuesto para su propio informe del modelo 111
+(casillas [08] y [09]): quien presente el modelo 111 con el informe de
+Odoo core debe dejarlo fuera de ese modelo.
+
+Odoo core etiqueta también la retención de consejeros y administradores
+(compra consejero de sociedad) para su informe del modelo 111 (casillas
+[02] y [03]).
 
 Para crear una declaración del modelo:
 
