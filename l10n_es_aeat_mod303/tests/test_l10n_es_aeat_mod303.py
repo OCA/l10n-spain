@@ -1087,6 +1087,32 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
         page_03 = self._get_page(self._export_boe(report), "03000")
         self.assertEqual(page_03[79:96], b"00000000000060000")
 
+    def test_model_303_oss_annual_summary_box_126(self):
+        """The last period of a taxpayer exonerated of the annual summary (model 390)
+        sums the one-stop shop sales of the whole year in box 126 (page 04, position
+        200 of the AEAT record design DR303e26v101), and in the total volume [88].
+        """
+        consumer, product = self._oss_setup()
+        invoice = self._oss_invoice(consumer, product, 1000, "2026-01-15")
+        self._oss_partial_refund(invoice, 400, "2026-02-15")
+        self._oss_invoice(consumer, product, 500, "2026-11-15")
+        report_1t = self._create_303(2026, "1T", exonerated_390="1")
+        report_1t.button_calculate()
+        self.assertAlmostEqual(self._box(report_1t, 123), 600)
+        self.assertAlmostEqual(self._box(report_1t, 126), 0)
+        report_4t = self._create_303(2026, "4T", exonerated_390="2")
+        report_4t.button_calculate()
+        self.assertAlmostEqual(self._box(report_4t, 126), 0)
+        report_4t.exonerated_390 = "1"
+        report_4t.button_calculate()
+        self.assertAlmostEqual(self._box(report_4t, 123), 500)
+        self.assertAlmostEqual(self._box(report_4t, 126), 1100)
+        self.assertAlmostEqual(report_4t.casilla_88, 1100)
+        self.assertAlmostEqual(report_4t.total_devengado, 0)
+        page_04 = self._get_page(self._export_boe(report_4t), "04000")
+        self.assertEqual(page_04[199:216], b"00000000000110000")
+        self.assertEqual(page_04[369:386], b"00000000000110000")
+
     def test_model_303_2024_10_map(self):
         """Boxes of the map in force since 2024-10, with the rates it added."""
         self._get_taxes("S_IVA2B,S_IVA5B,S_IVA7-5B,S_REQ1").active = True

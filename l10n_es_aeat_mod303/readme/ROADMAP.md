@@ -50,5 +50,4 @@
   la opción de cuenta tributaria (tipos de resultado "G" y "V").
 
 - Las casillas \[124\] y \[127\] (operaciones sujetas y acogidas a los
-  regímenes especiales de ventanilla única) y \[126\] (resumen anual de
-  la casilla \[123\]) no se rellenan.
+  regímenes especiales de ventanilla única) no se rellenan.

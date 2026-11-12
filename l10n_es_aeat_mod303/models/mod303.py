@@ -582,10 +582,12 @@ class L10nEsAeatMod303Report(models.Model):
             )
 
     def _get_tax_lines(self, date_start, date_end, map_line):
-        """Don't populate results for fields 79-99 for reports different from
-        last of the year one or when not exonerated of presenting model 390.
+        """Don't populate results for fields 79-99, 125 and 126 for reports different
+        from last of the year one or when not exonerated of presenting model 390.
         """
-        if (79 <= map_line.field_number <= 99 or map_line.field_number == 125) and (
+        if (
+            79 <= map_line.field_number <= 99 or map_line.field_number in (125, 126)
+        ) and (
             self.exonerated_390 == "2"
             or not self.has_operation_volume
             or self.period_type not in ("4T", "12")
@@ -603,7 +605,7 @@ class L10nEsAeatMod303Report(models.Model):
         the complete check for not bringing results is done on
         `_get_tax_lines`.
         """
-        if 79 <= map_line.field_number <= 99 or map_line.field_number == 125:
+        if 79 <= map_line.field_number <= 99 or map_line.field_number in (125, 126):
             date_start = date_start.replace(day=1, month=1)
             date_end = date_end.replace(day=31, month=12)
         return super()._get_move_line_domain(
