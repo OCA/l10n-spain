@@ -178,32 +178,43 @@ class L10nEsAeatMod303Report(models.Model):
             lines.append(line_vals)
         return lines
 
-    def _get_vat_prorate_taxed_taxes(self):
-        """Sale taxes whose base gives the right to deduct, from the tax type that
-        Odoo core sets on every Spanish tax (``l10n_es_type``)."""
+    def _get_vat_prorate_sale_taxes(self, domain):
         Tax = self.env["account.tax"].with_context(active_test=False)
         return Tax.search(
             Domain.AND(
                 [
                     Domain("company_id", "child_of", self.company_id.root_id.id),
                     Domain("type_tax_use", "=", "sale"),
+                    domain,
+                ]
+            )
+        )
+
+    def _get_vat_prorate_taxed_taxes(self):
+        """Sale taxes whose base gives the right to deduct (art. 94.Uno LIVA), from
+        the tax type and the exempt reason that Odoo core sets on every Spanish tax:
+        subject operations, the exempt ones of arts. 21 to 25 (E2 to E5) and the
+        ones not subject by location rules."""
+        Tax = self.env["account.tax"]
+        return self._get_vat_prorate_sale_taxes(
+            Domain.OR(
+                [
                     Domain("l10n_es_type", "in", Tax._l10n_es_get_sujeto_tax_types()),
+                    Domain("l10n_es_type", "=", "exento")
+                    & Domain("l10n_es_exempt_reason", "in", ["E2", "E3", "E4", "E5"]),
+                    Domain("l10n_es_type", "=", "no_sujeto_loc"),
                 ]
             )
         )
 
     def _get_vat_prorate_exempt_taxes(self):
-        return self.company_id._get_taxes_from_xmlids(
-            [
-                f"account_tax_template_{xmlid}"
-                for xmlid in (
-                    "s_iva0",
-                    "s_iva0_art22",
-                    "s_iva0_art23",
-                    "s_iva0_nsd",
-                    "s_iva0_ns",
-                )
-            ]
+        """Sale taxes whose base doesn't give the right to deduct but counts in the
+        denominator (art. 104.Dos.2.º LIVA): the exempt ones of art. 20 (E1) and the
+        other exemptions (E6). Operations not subject by art. 7 are left out of both
+        terms (art. 104.Tres.5.º)."""
+        return self._get_vat_prorate_sale_taxes(
+            Domain("l10n_es_type", "=", "exento")
+            & Domain("l10n_es_exempt_reason", "in", ["E1", "E6"])
         )
 
     def _get_vat_prorate_base(self, taxes, date_from, date_to):

@@ -305,8 +305,48 @@ class TestL10nEsAeatMod303VatProrate(TestL10nEsAeatMod303Base):
             },
         )
         self.model303.button_compute()
-        self.assertEqual(self.model303.vat_prorate_percent, 67)
+        # The exempt operations of art. 22 give the right to deduct (art. 94.Uno.1.º
+        # c) LIVA), so they count in both terms
+        self.assertEqual(self.model303.vat_prorate_percent, 100)
         self.assertEqual(self.model303.casilla_44, 0)
+
+    def test_button_compute_exports_and_art_20(self):
+        """Art. 104.Dos LIVA: exports, intra-community deliveries and operations
+        not subject by location rules give the right to deduct; exempt operations of
+        art. 20 only count in the denominator; operations not subject by art. 7 and
+        the ones outside the declaration count in none."""
+        self._set_general_prorate("2024-01-01", 10)
+        lines = []
+        for desc, price in (
+            ("S_IVA21B", 200),
+            # Export (E2)
+            ("S_IVA0_G_E", 100),
+            # Intra-community delivery (E5)
+            ("S_IVA0_G_I", 100),
+            # Not subject by location rules
+            ("S_IVA_NS", 100),
+            # Exempt by art. 20 (E1)
+            ("S_IVA0_NSD", 100),
+            # Not subject by art. 7
+            ("S_IVA0_BC", 100),
+            # One-stop shop, outside the declaration
+            ("OSS_S_IVA_NS", 100),
+        ):
+            lines.append(
+                Command.create(
+                    {
+                        "name": f"Venta {price}€ {desc}",
+                        "account_id": self.accounts["700000"].id,
+                        "price_unit": price,
+                        "quantity": 1,
+                        "tax_ids": [Command.link(t.id) for t in self._get_taxes(desc)],
+                    }
+                )
+            )
+        self._invoice_sale_create("2024-01-01", {"invoice_line_ids": lines})
+        self.model303.button_compute()
+        # 500 with the right to deduct of 600: 83.3, rounded up (art. 104.Dos)
+        self.assertEqual(self.model303.vat_prorate_percent, 84)
 
     def test_button_compute_all_taxed_rates(self):
         """Every sale tax that Odoo core types as subject counts as taxed, whatever
