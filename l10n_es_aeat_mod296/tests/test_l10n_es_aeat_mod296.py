@@ -256,3 +256,58 @@ class TestL10nEsAeatMod296Base(TestL10nEsAeatModBase):
         self.assertEqual(line.subclave, "2")
         self.assertEqual(line.porcentaje_retencion, 10)
         self.assertEqual(line.nif_pais_residencia, "US123456789")
+
+    def _create_report(self):
+        return self.env["l10n.es.aeat.mod296.report"].create(
+            {
+                "company_id": self.company.id,
+                "company_vat": "123456789",
+                "contact_name": "Test owner",
+                "contact_phone": "911234455",
+                "year": 2025,
+                "period_type": "0A",
+                "date_start": "2025-01-01",
+                "date_end": "2025-12-31",
+            }
+        )
+
+    def _export_boe(self, report):
+        """Export the report through its 'Export to BOE' button."""
+        wizard = (
+            self.env["l10n.es.aeat.report.export_to_boe"]
+            .with_context(active_id=report.id, active_model=report._name)
+            .create({})
+        )
+        wizard.action_get_file()
+        return wizard.data.content.decode("iso-8859-1")
+
+    def test_model_296_exempt(self):
+        """An income exempt by treaty is declared with subkey 04, a 0 % rate,
+        no withholding and its base (DR 296 2024, positions 102-133)."""
+        self._purchase_invoice(
+            "2025-05-01", [("l10n_es.account_tax_template_p_irpfnrue0p", 3000)]
+        )
+        model296 = self._create_report()
+        model296.button_calculate()
+        self.assertEqual(model296.casilla_01, 1)
+        self.assertEqual(model296.casilla_02, 3000)
+        self.assertEqual(model296.casilla_03, 0)
+        line = model296.lines296
+        self.assertEqual(len(line), 1)
+        self.assertEqual(line.partner_id, self.supplier)
+        self.assertEqual(line.base_retenciones_ingresos, 3000)
+        self.assertEqual(line.retenciones_ingresos, 0)
+        self.assertEqual(line.porcentaje_retencion, 0)
+        self.assertEqual(line.subclave, "4")
+        # An internal exemption is set by hand and kept on recalculation
+        line.subclave = "3"
+        model296.button_recalculate()
+        self.assertEqual(model296.lines296.subclave, "3")
+        model296.lines296.subclave = "4"
+        content = self._export_boe(model296)
+        self.assertEqual(len(content), 1000)
+        perceptor = content[500:]
+        self.assertEqual(perceptor[101:103], "04")  # 102-103 Subclave
+        self.assertEqual(perceptor[103:116], " 000000300000")  # 104-116 Base
+        self.assertEqual(perceptor[116:120], "0000")  # 117-120 % retención
+        self.assertEqual(perceptor[120:133], "0" * 13)  # 121-133 Retenciones

@@ -62,7 +62,7 @@ class L10nEsAeatMod296Report(models.Model):
             ["partner_id"],
             ["credit:sum", "debit:sum"],
         ):
-            partner_groups[group[0].id]["cuota"] = {
+            partner_groups.setdefault(group[0].id, {})["cuota"] = {
                 "credit": group[1],
                 "debit": group[2],
             }
@@ -108,9 +108,13 @@ class L10nEsAeatMod296Report(models.Model):
         return res
 
     def _prepare_mod296_line(self, partner_id, data, move_lines):
-        base = data["base"]["debit"] - data["base"]["credit"]
-        cuota = data["cuota"]["credit"] - data["cuota"]["debit"]
-        return {
+        no_amounts = {"credit": 0.0, "debit": 0.0}
+        base_data = data.get("base", no_amounts)
+        # Incomes exempt by treaty or by internal rule have no withholding
+        cuota_data = data.get("cuota", no_amounts)
+        base = base_data["debit"] - base_data["credit"]
+        cuota = cuota_data["credit"] - cuota_data["debit"]
+        vals = {
             "partner_id": partner_id,
             "move_line_ids": move_lines,
             "base_retenciones_ingresos": base,
@@ -119,6 +123,12 @@ class L10nEsAeatMod296Report(models.Model):
                 move_lines, base, cuota
             ),
         }
+        if not move_lines.tax_line_id:
+            # Only exempt incomes: "04 - Exemption by application of a
+            # Convention", the exemption of the exempt withholding taxes. The
+            # user changes it to "03" for an internal exemption.
+            vals["subclave"] = "4"
+        return vals
 
     def _get_mod296_line_percentage(self, move_lines, base, cuota):
         """Withholding rate of the perceptor: the rate of its withholding tax, or
@@ -381,10 +391,8 @@ class L10nEsAeatMod296ReportLine(models.Model):
             "pais_residencia_fiscal",
         ]
         values = self._convert_to_write({fname: self[fname] for fname in fnames})
-        if not values["porcentaje_retencion"]:
-            # Not set yet: the calculation fills it in
-            del values["porcentaje_retencion"]
-        return values
+        # Data not set yet: the calculation fills it in or leaves it empty
+        return {fname: value for fname, value in values.items() if value}
 
     @api.depends("fecha_devengo")
     def _compute_get_fecha_devengo_export(self):
