@@ -352,9 +352,7 @@ class L10nEsAtcReport(models.AbstractModel):
         """
         resultado_path = dir_paths["resultado_path"]
         file_path = os.path.join(resultado_path, file_name)
-        if self.env.context.get("test_l10n_es_atc_report") or not os.path.exists(
-            file_path
-        ):
+        if not os.path.exists(file_path):
             raise UserError(
                 self.env._(
                     "Declaracion no generada. Revisa si el XML es válido y "
