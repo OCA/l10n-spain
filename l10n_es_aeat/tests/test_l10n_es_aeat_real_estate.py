@@ -370,3 +370,84 @@ class TestL10nEsAeatRealEstate(TestL10nEsAeatModBase):
                 expected,
                 partner.name,
             )
+
+    def test_municipality_code(self):
+        """The INE municipality code has 5 digits, the first two of the province
+        of the zip, and it is not checked abroad."""
+        estate = self.env["l10n.es.aeat.real_estate"].create(
+            {**self._base_vals(), "municipality_code": "28079"}
+        )
+        self.assertEqual(estate.municipality_code, "28079")
+        for code in ("2807", "2807A", "08019"):
+            with self.assertRaises(ValidationError), self.cr.savepoint():
+                estate.municipality_code = code
+        abroad = self.env["l10n.es.aeat.real_estate"].create(
+            {
+                **self._base_vals("Abroad"),
+                "country_id": self.env.ref("base.fr").id,
+                "zip": "75001",
+                "municipality_code": "751",
+            }
+        )
+        self.assertEqual(abroad.municipality_code, "751")
+
+    def test_aeat_location(self):
+        """The models 180 and 347 give the locality only when it is not the
+        municipality, and the province as the numeric code of the INE."""
+        estate = self.env["l10n.es.aeat.real_estate"].create(
+            {
+                **self._base_vals(),
+                "state_id": self.env.ref("base.state_es_m").id,
+                "municipality_code": "28079",
+            }
+        )
+        self.assertEqual(
+            estate._get_aeat_location(),
+            {
+                "locality": "",
+                "municipality": "Madrid",
+                "municipality_code": "28079",
+                "province_code": "28",
+                "zip": "28001",
+            },
+        )
+        estate.write({"city": "Aravaca", "zip": "28023", "municipality": "Madrid"})
+        location = estate._get_aeat_location()
+        self.assertEqual(location["locality"], "Aravaca")
+        self.assertEqual(location["municipality"], "Madrid")
+        estate.municipality_code = False
+        self.assertEqual(estate._get_aeat_location()["province_code"], "28")
+        estate.country_id = self.env.ref("base.fr")
+        self.assertEqual(estate._get_aeat_location()["province_code"], "")
+
+    def test_sii_347_situation(self):
+        """The SII and the model 347 join the Basque Country and Navarre, give 3
+        without reference and 4 abroad."""
+        Estate = self.env["l10n.es.aeat.real_estate"]
+        foral_reference = "201001000123400001"
+        cases = (
+            ("base.state_es_m", self.references[1], "1"),
+            ("base.state_es_bi", foral_reference, "2"),
+            ("base.state_es_na", foral_reference, "2"),
+            ("base.state_es_m", False, "3"),
+        )
+        for state_xmlid, reference, situation in cases:
+            estate = Estate.create(
+                {
+                    **self._base_vals(state_xmlid),
+                    "state_id": self.env.ref(state_xmlid).id,
+                    "reference": reference,
+                }
+            )
+            self.assertEqual(estate._get_sii_347_situation(), situation, state_xmlid)
+        abroad = Estate.create(
+            {
+                **self._base_vals("Abroad"),
+                "country_id": self.env.ref("base.fr").id,
+                "reference": "FR-75056-000AB-0123",
+            }
+        )
+        self.assertEqual(abroad._get_sii_347_situation(), "4")
+        # A situation of the model 180 set by hand is kept
+        estate.real_estate_situation = "3"
+        self.assertEqual(estate._get_sii_347_situation(), "2")
