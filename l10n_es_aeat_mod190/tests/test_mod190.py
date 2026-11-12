@@ -441,3 +441,21 @@ class TestL10nEsAeatMod190Base(TestL10nEsAeatModBase):
         _declarant, perceptor = self._export_boe(model190)
         self.assertEqual(perceptor[80:107], b" 00000001000000000000015000")
         self.assertEqual(perceptor[254:281], b" " + b"0" * 26)
+
+    def test_mod190_export_boe_in_kind(self):
+        """An in-kind perception is declared once, as not derived from work
+        incapacity (positions 108-134), and the in-kind work incapacity fields
+        (282-295) stay empty. The total of box [02] matches the records."""
+        self._complete_perceptor(self.supplier)
+        self._create_purchase_move(
+            self.supplier,
+            "2025-01-10",
+            [("P_IRPF21TE", 1000), ("P_IRPF21TDIT", 500)],
+        )
+        model190 = self._create_report(2025)
+        model190.button_calculate()
+        declarant, perceptor = self._export_boe(model190)
+        self.assertEqual(declarant[144:160], b" 000000000150000")
+        self.assertEqual(perceptor[107:134], b" 00000001000000000000015000")
+        self.assertEqual(perceptor[254:281], b" 00000000500000000000007500")
+        self.assertEqual(perceptor[281:295], b" " + b"0" * 13)
