@@ -7,6 +7,7 @@ import logging
 from io import StringIO
 
 from freezegun import freeze_time
+from openpyxl import load_workbook
 
 from odoo import fields
 from odoo.exceptions import UserError
@@ -17,13 +18,6 @@ from odoo.tools.misc import file_path
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
     TestL10nEsAeatModBase,
 )
-
-_logger = logging.getLogger(__name__)
-
-try:
-    from openpyxl import load_workbook
-except ImportError:
-    _logger.debug("Can not import openpyxl`.")
 
 _logger = logging.getLogger("aeat.592")
 
@@ -179,8 +173,10 @@ class TestL10nEsAeatMod592(TestL10nEsAeatModBase):
         self.assertEqual(acquirer_line_b.fiscal_acquirer, "B")
         self.assertFalse(acquirer_line_b.entries_ok)
         self.assertTrue(self.model592.show_error_acquirer)
-        # Without VAT + Recalculate
-        self.customer.vat = "12345678Z"
+        # With the VAT of the customer of another State + Recalculate
+        self.customer.write(
+            {"country_id": self.env.ref("base.de").id, "vat": "DE123456788"}
+        )
         self.model592.button_recalculate()
         self.assertEqual(self.model592.acquirer_line_ids, acquirer_lines)
         self.assertTrue(acquirer_line_a.entries_ok)
@@ -192,30 +188,9 @@ class TestL10nEsAeatMod592(TestL10nEsAeatModBase):
         res = self.model592.view_action_mod592_report_line_acquirer()
         items = self.env[res["res_model"]].search(res["domain"])
         self.assertEqual(acquirer_lines, items)
-        # Although it is not correct, add stock_move_c as a manufacturer to test
-        # the whole process
-        self.product_c.write(
-            {
-                "is_plastic_tax": True,
-                "tax_plastic_type": "manufacturer",
-                "plastic_tax_weight": 2,
-                "plastic_weight_non_recyclable": 1,
-                "plastic_type_key": "C",
-                "plastic_tax_regime_acquirer": "C",
-            }
-        )
-        self.model592.manufacturer_line_ids = [
-            Command.create({"stock_move_id": sm_c.id})
-        ]
-        self.assertEqual(self.model592.total_manufacturer_entries, 1)
-        self.assertEqual(self.model592.total_weight_manufacturer, 6)  # 6 = 2 * 3
-        self.assertEqual(
-            self.model592.total_weight_manufacturer_non_reclyclable, 3
-        )  # 3 = 1 * 3
-        self.assertEqual(self.model592.total_amount_manufacturer, 3)  # 3 = 3 * 1
-        self.assertNotIn(sm_a, self.model592.manufacturer_line_ids.stock_move_id)
-        self.assertNotIn(sm_b, self.model592.manufacturer_line_ids.stock_move_id)
-        self.assertIn(sm_c, self.model592.manufacturer_line_ids.stock_move_id)
+        # No manufacturer move is searched yet (see ROADMAP)
+        self.assertFalse(self.model592.manufacturer_line_ids)
+        self.assertEqual(self.model592.total_manufacturer_entries, 0)
         res = self.model592.view_action_mod592_report_line_manufacturer()
         items = self.env[res["res_model"]].search(res["domain"])
         self.assertEqual(self.model592.manufacturer_line_ids, items)
@@ -244,9 +219,7 @@ class TestL10nEsAeatMod592(TestL10nEsAeatModBase):
         csv_lines_manufacturer = list(
             csv.DictReader(str_io, delimiter=";", quoting=csv.QUOTE_ALL)
         )
-        csv_line_1_manufacturer = list(csv_lines_manufacturer[0].values())
-        self.assertIn("M001", csv_line_1_manufacturer)
-        self.assertIn(self.picking.name, csv_line_1_manufacturer)
+        self.assertFalse(csv_lines_manufacturer)
         # export_xlsx_acquirer
         xlsx_res = self.model592.export_xlsx_acquirer()
         res = self.report_obj._render(xlsx_res["report_name"], self.model592.ids, {})
@@ -261,7 +234,7 @@ class TestL10nEsAeatMod592(TestL10nEsAeatModBase):
         file = io.BytesIO(res[0])
         wb = load_workbook(file)
         sheet = wb.active
-        self.assertEqual(sheet.cell(2, 1).value, "M001")
+        self.assertFalse(sheet.cell(2, 1).value)
         # report_l10n_es_mod592_pdf
         res = self.env["ir.actions.report"]._render_qweb_text(
             "l10n_es_aeat_mod592.report_l10n_es_mod592_pdf", self.model592.ids
@@ -269,7 +242,6 @@ class TestL10nEsAeatMod592(TestL10nEsAeatModBase):
         res_text = str(res[0])
         self.assertRegex(res_text, "A001")
         self.assertRegex(res_text, "A002")
-        self.assertRegex(res_text, "M001")
         self.assertRegex(res_text, self.picking.name)
 
     def _validate_picking(self, picking_type, partner, lines):
@@ -447,6 +419,19 @@ class TestL10nEsAeatMod592(TestL10nEsAeatModBase):
         with self.assertRaises(UserError):
             self.model592.button_confirm()
 
+    def test_plastic_document_type_identifiers(self):
+        """The document type follows the identifiers of the contact"""
+        partner = self.env["res.partner"].create(
+            {"name": "Test ES person", "country_id": self.env.ref("base.es").id}
+        )
+        partner.l10n_es_passport = "AB1234567"
+        self.assertEqual(partner.plastic_document_type, "3")
+        partner.write({"l10n_es_passport": False, "vat": "12345678Z"})
+        self.assertEqual(partner.plastic_document_type, "1")
+        partner.write({"country_id": self.env.ref("base.fr").id, "vat": False})
+        partner.vat = "FR23334175221"
+        self.assertEqual(partner.plastic_document_type, "2")
+
     @freeze_time("2024-01-01", tick=True)
     def test_account_user_opens_report(self):
         """A user of the accounting group without management rights opens the
@@ -467,6 +452,25 @@ class TestL10nEsAeatMod592(TestL10nEsAeatModBase):
         self.assertEqual(
             lines.search(action["domain"]).mapped("entry_number"), ["A001", "A002"]
         )
+
+    def test_template_plastic_info_to_variant(self):
+        """The plastic info written in a template with one variant goes to it"""
+        template = self.env["product.template"].create({"name": "Test template"})
+        template.write(
+            {
+                "is_plastic_tax": True,
+                "tax_plastic_type": "acquirer",
+                "plastic_type_key": "A",
+                "plastic_tax_weight": 4,
+                "plastic_weight_non_recyclable": 2,
+                "plastic_tax_regime_acquirer": "A",
+            }
+        )
+        variant = template.product_variant_ids
+        self.assertTrue(variant.is_plastic_tax)
+        self.assertEqual(variant.plastic_tax_weight, 4)
+        self.assertEqual(variant.plastic_weight_non_recyclable, 2)
+        self.assertEqual(variant.plastic_tax_regime_acquirer, "A")
 
     def test_migration_recomputes_document_type(self):
         """The migration to 20.0 computes again the stored document type"""
