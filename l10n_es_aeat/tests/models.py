@@ -8,3 +8,10 @@ class L10nEsAeatTestReport(models.Model):
     _inherit = "l10n.es.aeat.report"
     _description = "L10nEsAeatTestReport"
     _aeat_number = "999"
+
+
+class L10nEsAeatTestTaxMappingReport(models.Model):
+    _name = "l10n.es.aeat.mod998.report"
+    _inherit = "l10n.es.aeat.report.tax.mapping"
+    _description = "L10nEsAeatTestTaxMappingReport"
+    _aeat_number = "998"

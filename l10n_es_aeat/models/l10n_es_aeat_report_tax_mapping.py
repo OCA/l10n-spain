@@ -112,17 +112,20 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
                 "in",
                 ["receivable_refund", "payable_refund"],
             )
+        # The private part of the tax of a bill line with a deductible percentage
+        # goes to a 'non_deductible_tax' line, which takes the taxes of its account
+        # but is not a base: the base is the deductible part, as the
+        # 'non_deductible_product' line leaves it and the tax tags declare it.
+        base_domain = Domain("tax_ids", "in", taxes.ids) & Domain(
+            "display_type", "!=", "non_deductible_tax"
+        )
+        amount_domain = Domain("tax_line_id", "in", taxes.ids)
         if map_line.field_type == "base":
-            move_line_domain &= Domain("tax_ids", "in", taxes.ids)
+            move_line_domain &= base_domain
         elif map_line.field_type == "amount":
-            move_line_domain &= Domain("tax_line_id", "in", taxes.ids)
+            move_line_domain &= amount_domain
         else:  # map_line.field_type == 'both'
-            move_line_domain &= Domain.OR(
-                [
-                    ("tax_line_id", "in", taxes.ids),
-                    ("tax_ids", "in", taxes.ids),
-                ]
-            )
+            move_line_domain &= amount_domain | base_domain
         if map_line.account_xmlid_ids:
             accounts = map_line.get_accounts_for_company(self.company_id)
             move_line_domain &= Domain("account_id", "in", accounts.ids)
