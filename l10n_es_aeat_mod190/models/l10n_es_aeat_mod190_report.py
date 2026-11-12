@@ -632,13 +632,12 @@ class L10nEsAeatMod190ReportLine(models.Model):
             )
 
     # Calculo campos SIN incapacidad
-    @api.depends("report_id", "report_id.tax_line_ids", "discapacidad")
+    @api.depends("report_id", "report_id.tax_line_ids")
     def _compute_percepciones(self):
         tax_data = defaultdict(lambda: defaultdict(dict))
         domain = Domain.TRUE
         if len(self.partner_id) == 1:
-            # This should only happen when we are making a small update on
-            # 'discapacidad'
+            # Only the move lines of that partner are needed
             domain = Domain("partner_id", "=", self.partner_id.id)
         for report in self.report_id:
             if report.tax_line_ids:
@@ -662,7 +661,6 @@ class L10nEsAeatMod190ReportLine(models.Model):
                 == item.partner_id.aeat_perception_subkey_id
             ):
                 keys.append((item.partner_id.id, False, False))
-            incapacidad = item.discapacidad and item.discapacidad != "0"
             percepciones_dinerarias = -sum(
                 tax_data[item.report_id.id]["11"].get(key, 0) for key in keys
             ) - sum(tax_data[item.report_id.id]["15"].get(key, 0) for key in keys)
@@ -675,31 +673,26 @@ class L10nEsAeatMod190ReportLine(models.Model):
             ingresos_a_cuenta_efectuados = sum(
                 tax_data[item.report_id.id]["14"].get(key, 0) for key in keys
             )
-            percepciones_dinerarias_incap = (
-                incapacidad and percepciones_dinerarias
-            ) - sum(tax_data[item.report_id.id]["18"].get(key, 0) for key in keys)
-            retenciones_dinerarias_incap = (
-                incapacidad and retenciones_dinerarias
-            ) + sum(tax_data[item.report_id.id]["19"].get(key, 0) for key in keys)
+            # Perceptions derived from work incapacity come only from their own
+            # withholding taxes (lines 18 and 19), not from the disability
+            # degree of the perceptor
+            percepciones_dinerarias_incap = -sum(
+                tax_data[item.report_id.id]["18"].get(key, 0) for key in keys
+            )
+            retenciones_dinerarias_incap = sum(
+                tax_data[item.report_id.id]["19"].get(key, 0) for key in keys
+            )
 
-            item.percepciones_dinerarias = not incapacidad and percepciones_dinerarias
+            item.percepciones_dinerarias = percepciones_dinerarias
             item.percepciones_dinerarias_incap = percepciones_dinerarias_incap
-            item.retenciones_dinerarias = not incapacidad and retenciones_dinerarias
+            item.retenciones_dinerarias = retenciones_dinerarias
             item.retenciones_dinerarias_incap = retenciones_dinerarias_incap
-            item.percepciones_en_especie = not incapacidad and percepciones_en_especie
-            item.percepciones_en_especie_incap = incapacidad and percepciones_en_especie
-            item.ingresos_a_cuenta_efectuados = (
-                not incapacidad and ingresos_a_cuenta_efectuados
-            )
-            item.ingresos_a_cuenta_efectuados_incap = (
-                incapacidad and ingresos_a_cuenta_efectuados
-            )
-            item.ingresos_a_cuenta_repercutidos = (
-                not incapacidad and ingresos_a_cuenta_efectuados
-            )
-            item.ingresos_a_cuenta_repercutidos_incap = (
-                incapacidad and ingresos_a_cuenta_efectuados
-            )
+            item.percepciones_en_especie = percepciones_en_especie
+            item.percepciones_en_especie_incap = 0
+            item.ingresos_a_cuenta_efectuados = ingresos_a_cuenta_efectuados
+            item.ingresos_a_cuenta_efectuados_incap = 0
+            item.ingresos_a_cuenta_repercutidos = ingresos_a_cuenta_efectuados
+            item.ingresos_a_cuenta_repercutidos_incap = 0
             item.gastos_deducibles = sum(
                 tax_data[item.report_id.id]["17"].get(key, 0) for key in keys
             )

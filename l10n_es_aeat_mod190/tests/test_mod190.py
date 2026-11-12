@@ -162,10 +162,10 @@ class TestL10nEsAeatMod190Base(TestL10nEsAeatModBase):
         supplier_record = model190.partner_record_ids.filtered(
             lambda r: r.partner_id == self.supplier
         )
-        self.assertEqual(supplier_record.percepciones_dinerarias, 0)
-        self.assertEqual(supplier_record.retenciones_dinerarias, 0)
-        self.assertEqual(supplier_record.percepciones_dinerarias_incap, 4700)
-        self.assertEqual(supplier_record.retenciones_dinerarias_incap, 768)
+        self.assertEqual(supplier_record.percepciones_dinerarias, 3200)
+        self.assertEqual(supplier_record.retenciones_dinerarias, 543)
+        self.assertEqual(supplier_record.percepciones_dinerarias_incap, 1500)
+        self.assertEqual(supplier_record.retenciones_dinerarias_incap, 225)
         self.assertEqual(supplier_record.gastos_deducibles, -100)
         self.assertEqual(2, supplier_record.ad_required)
         self.assertEqual(2, self.supplier.ad_required)
@@ -398,10 +398,10 @@ class TestL10nEsAeatMod190Base(TestL10nEsAeatModBase):
             ),
             (
                 b"21902025123456789C2259530J         PERCEPTOR UNO            "
-                b"               48A00 00000000000000000000000000 000000000000"
+                b"               48A00 00000003200000000000054300 000000000000"
                 b"0000000000000000000000000000000020000         10000000000000"
                 b"000000000001000000000000000000000000000000000000000000000000"
-                b"00000000000000 00000004700000000000076800 000000000000000000"
+                b"00000000000000 00000001500000000000022500 000000000000000000"
                 b"000000000000000000000000000000000000000000000000000000000000"
                 b"0000000000000000000000000000000000                          "
                 b"                                                            "
@@ -427,3 +427,17 @@ class TestL10nEsAeatMod190Base(TestL10nEsAeatModBase):
         declarant, perceptor = self._export_boe(model190)
         self.assertEqual(declarant[144:160], b"N000000000020000")
         self.assertEqual(perceptor[80:94], b"N0000000020000")
+
+    def test_mod190_export_boe_disability(self):
+        """The disability degree of a perceptor is personal data of the
+        record: its salary stays a perception not derived from work incapacity
+        (positions 82-107), and the work incapacity fields (255-281) stay
+        empty."""
+        self._complete_perceptor(self.supplier)
+        self._create_purchase_move(self.supplier, "2025-01-10", [("P_IRPF21T", 1000)])
+        model190 = self._create_report(2025)
+        model190.button_calculate()
+        self.assertEqual(model190.partner_record_ids.discapacidad, "1")
+        _declarant, perceptor = self._export_boe(model190)
+        self.assertEqual(perceptor[80:107], b" 00000001000000000000015000")
+        self.assertEqual(perceptor[254:281], b" " + b"0" * 26)
