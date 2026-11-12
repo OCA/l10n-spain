@@ -10,61 +10,51 @@ from odoo import api, fields, models
 
 class ResPartner(models.Model):
     _inherit = "res.partner"
-    _rec_names_search = ("complete_name", "email", "ref", "vat", "comercial")
 
     comercial = fields.Char("Trade name", size=128, index="trigram")
 
-    @api.depends("comercial")
-    @api.depends_context("no_display_commercial")
-    def _compute_display_name(self):
-        super(
-            ResPartner,
-            self.with_context(
-                display_commercial=not self.env.context.get(
-                    "no_display_commercial", False
-                )
-            ),
-        )._compute_display_name()
+    @property
+    def _rec_names_search(self):
+        """Search by trade name as well, keeping the search fields of the
+        inherited models"""
+        names = super()._rec_names_search
+        if "comercial" in names:
+            return names
+        return [*names, "comercial"]
+
+    def _get_name_with_commercial(self, name):
+        """Name formatted with the trade name pattern, unless the context hides
+        the trade name"""
+        if not self.comercial or self.env.context.get("no_display_commercial"):
+            return name
         name_pattern = (
             self.env["ir.config_parameter"]
             .sudo()
             .get_str("l10n_es_partner.name_pattern", default="")
         )
         if not name_pattern:
-            return
-        for partner in self:
-            if partner.comercial and partner.env.context.get("formatted_display_name"):
-                partner.display_name = name_pattern % {
-                    "name": partner.display_name,
-                    "comercial_name": partner.comercial,
-                }
+            return name
+        return name_pattern % {"name": name, "comercial_name": self.comercial}
 
     def _get_complete_name(self):
-        name = super()._get_complete_name()
-        if self.env.context.get("display_commercial") and self.comercial:
-            name_pattern = (
-                self.env["ir.config_parameter"]
-                .sudo()
-                .get_str("l10n_es_partner.name_pattern", default="")
-            )
-            if name_pattern:
-                name = name_pattern % {
-                    "name": name,
-                    "comercial_name": self.comercial,
-                }
-        return name
+        return self._get_name_with_commercial(super()._get_complete_name())
 
     @api.depends("comercial")
     def _compute_complete_name(self):
-        # We are enforcing the new context,
-        # because complete name field will remove the context
-        res = super()._compute_complete_name()
-        for partner in self:
-            partner.complete_name = partner.with_context(
-                display_commercial=not self.env.context.get(
-                    "no_display_commercial", False
+        # Odoo core computes it without context, so the stored name, which sorts
+        # the contacts and is shown in their list, always has the trade name
+        return super()._compute_complete_name()
+
+    @api.depends("comercial")
+    @api.depends_context("no_display_commercial")
+    def _compute_display_name(self):
+        res = super()._compute_display_name()
+        # The formatted name of Odoo core is not built from the complete name
+        if self.env.context.get("formatted_display_name"):
+            for partner in self:
+                partner.display_name = partner._get_name_with_commercial(
+                    partner.display_name
                 )
-            )._get_complete_name()
         return res
 
     @api.model
