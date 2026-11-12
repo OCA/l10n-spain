@@ -18,6 +18,7 @@ from freezegun import freeze_time
 from lxml import etree
 
 from odoo.exceptions import UserError
+from odoo.fields import Command
 from odoo.tests import Form, tagged
 
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
@@ -328,6 +329,14 @@ class TestL10nEsAtcMod425Base(TestL10nEsAeatModBase):
                 + (150)
                 # account_tax_template_igic_sop_20_inv
                 + (160)
+                # account_tax_template_igic_ISP0 to igic_ISP20
+                + (340 + 350 + 360 + 370 + 380 + 390)
+                # account_tax_template_igic_sop_i_3 to igic_sop_i_20
+                + (220 + 230 + 240 + 250 + 260)
+                # account_tax_template_igic_sop_i_3_inv to igic_sop_i_20_inv
+                + (280 + 290 + 310 + 320 + 330)
+                # account_tax_template_igic_p_re0 to igic_p_re20
+                + (410 + 420 + 430 + 440 + 450 + 460)
             )
         ),
         # Rectificación de deducciones - Cuota
@@ -358,6 +367,14 @@ class TestL10nEsAtcMod425Base(TestL10nEsAeatModBase):
                 + (22.5)
                 # account_tax_template_igic_sop_20_inv
                 + (32)
+                # account_tax_template_igic_ISP3 to igic_ISP20
+                + (10.5 + 25.2 + 35.15 + 57 + 78)
+                # account_tax_template_igic_sop_i_3 to igic_sop_i_20
+                + (6.6 + 16.1 + 22.8 + 37.5 + 52)
+                # account_tax_template_igic_sop_i_3_inv to igic_sop_i_20_inv
+                + (8.4 + 20.3 + 29.45 + 48 + 66)
+                # account_tax_template_igic_p_re0 to igic_p_re20
+                + (0 + 1.26 + 3.01 + 4.18 + 6.75 + 9.2)
             )
         ),
     }
@@ -560,14 +577,14 @@ class TestL10nEsAeatMod425(TestL10nEsAtcMod425Base):
         _logger.debug("Checking results")
         self.assertAlmostEqual(self.model425.casilla_74, 24600, 2)
         self.assertAlmostEqual(self.model425.casilla_79, 2505.60, 2)
-        self.assertAlmostEqual(self.model425.casilla_94, 2339.30, 2)
-        self.assertAlmostEqual(self.model425.casilla_95, 166.30, 2)
+        self.assertAlmostEqual(self.model425.casilla_94, 1801.90, 2)
+        self.assertAlmostEqual(self.model425.casilla_95, 703.70, 2)
         self.assertAlmostEqual(self.model425.casilla_120, 24600, 2)
-        self.assertAlmostEqual(self.model425.casilla_115, 166.30, 2)
+        self.assertAlmostEqual(self.model425.casilla_115, 703.70, 2)
         # Manual boxes entered after the calculation
         self.model425.casilla_90 = 10
-        self.assertAlmostEqual(self.model425.casilla_113, 156.30, 2)
-        self.assertAlmostEqual(self.model425.casilla_115, 156.30, 2)
+        self.assertAlmostEqual(self.model425.casilla_113, 693.70, 2)
+        self.assertAlmostEqual(self.model425.casilla_115, 693.70, 2)
         self.model425.casilla_72 = 100
         self.assertAlmostEqual(self.model425.casilla_74, 24500, 2)
         self.assertAlmostEqual(self.model425.casilla_120, 24500, 2)
@@ -585,7 +602,7 @@ class TestL10nEsAeatMod425(TestL10nEsAtcMod425Base):
     def test_model_425_declaration_dec(self):
         """The telematic file is the XML of the declaration run through the ATC
         program: accrued base 24600 (TBA 2460000) and quota 2505.60, deductible
-        2339.30 and result 166.30, in cents.
+        1801.90 and result 703.70, in cents.
         """
         self.model425.button_calculate()
         self._check_tax_lines()
@@ -645,11 +662,11 @@ class TestL10nEsAeatMod425(TestL10nEsAtcMod425Base):
         self.assertEqual(mbc_node[0].attrib["CUO"], "-125280")
         igi_ded_node = dec_node.xpath("//REG//DED")
         self.assertEqual(len(igi_ded_node), 1)
-        self.assertEqual(igi_ded_node[0].attrib["TOT"], "233930")
+        self.assertEqual(igi_ded_node[0].attrib["TOT"], "180190")
         liq_node = dec_node.xpath("//LIQ")
         self.assertEqual(len(liq_node), 1)
-        self.assertEqual(liq_node[0].attrib["SUT"], "16630")
-        self.assertEqual(liq_node[0].attrib["RLI"], "16630")
+        self.assertEqual(liq_node[0].attrib["SUT"], "70370")
+        self.assertEqual(liq_node[0].attrib["RLI"], "70370")
         res_node = dec_node.xpath("//OPE")
         self.assertEqual(len(res_node), 1)
         self.assertEqual(res_node[0].attrib["TOT"], "2460000")
@@ -664,3 +681,88 @@ class TestL10nEsAeatMod425(TestL10nEsAtcMod425Base):
             self.model425.action_generar_mod425()
         self.assertEqual(runs[0]["S"], "B")
         self.assertEqual(self._generated_files().name, "modelo425.pdf")
+
+
+@tagged("post_install", "-at_install")
+class TestL10nEsAtcMod425Map(TestL10nEsAtcMod425Base):
+    """The map follows the tags of the model 420 boxes that Odoo core puts on
+    the IGIC taxes, so a tax that Odoo core adds or moves is caught here. The
+    annual summary keeps the boxes 1 to 18 of the 420 and renumbers the rest."""
+
+    # 420 box: 425 box. The reverse charge output IGIC (19, 20) is entered by
+    # hand in the boxes 75 and 76
+    boxes = {  # noqa: RUF012
+        **{box: box for box in range(1, 19)},
+        19: False,
+        20: False,
+        21: 70,
+        22: 71,
+        **{box: box + 54 for box in range(26, 36)},
+    }
+
+    def test_map_follows_the_core_tags(self):
+        self.model425.button_calculate()
+        map_lines = self.model425.tax_line_ids.map_line_id
+        taxes = (
+            self.env["account.tax"]
+            .with_context(active_test=False)
+            .search([("company_id", "=", self.company.id)])
+        )
+        missing = []
+        for tax in taxes:
+            for document, repartition in (
+                ("regular", tax.invoice_repartition_line_ids),
+                ("refund", tax.refund_repartition_line_ids),
+            ):
+                for tag in repartition.tag_ids:
+                    box = re.search(r"mod420\[(\d+)\]", tag.name)
+                    if not box:
+                        continue
+                    box = self.boxes[int(box[1])]
+                    if box and not map_lines.filtered(
+                        lambda line, box=box, document=document, tax=tax: (
+                            line.field_number == box
+                            and line.move_type in (document, "all")
+                            and tax in line.get_taxes_for_company(self.company)
+                        )
+                    ):
+                        missing.append(f"{tax.name} {document} [{box}]")
+        self.assertFalse(missing)
+
+    def test_model_425_reduced_rate_5(self):
+        """Sales and purchases at the 5 % reduced rate are in the summary."""
+        for xmlid, create in (
+            ("igic_r_5", self._invoice_sale_create),
+            ("igic_sop_5", self._invoice_purchase_create),
+        ):
+            create(
+                "2025-02-10",
+                {
+                    "invoice_line_ids": [
+                        Command.create(
+                            {
+                                "name": xmlid,
+                                "account_id": self.accounts[
+                                    "700000" if xmlid.startswith("igic_r") else "600000"
+                                ].id,
+                                "price_unit": 1000,
+                                "tax_ids": self._get_taxes(
+                                    f"l10n_es.account_tax_template_{xmlid}"
+                                ).ids,
+                            }
+                        )
+                    ]
+                },
+            )
+        self.model425.button_calculate()
+        boxes = {
+            box: sum(
+                self.model425.tax_line_ids.filtered(
+                    lambda x, box=box: x.field_number == box
+                ).mapped("amount")
+            )
+            for box in (4, 6, 80, 81)
+        }
+        self.assertEqual(boxes, {4: 1000, 6: 50, 80: 1000, 81: 50})
+        self.assertAlmostEqual(self.model425.casilla_74, 1000, 2)
+        self.assertAlmostEqual(self.model425.casilla_79, 50, 2)
