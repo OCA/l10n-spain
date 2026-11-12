@@ -112,7 +112,8 @@ class TestL10nEsAtcMod425Base(TestL10nEsAeatModBase):
         "16": (3 * 2800) - 3 * 280,  # account_tax_template_igic_r_20
         # IGIC Tipo especial - Cuota 20%
         "18": (3 * 560) - 3 * 56,  # account_tax_template_igic_r_20
-        # Modificación bases y cuotas - Base imponible (Ventas + Compras)
+        # Modificación bases y cuotas - Base imponible (Ventas). Supplier
+        # refunds go to [88] and must not be accrued here
         "70": (
             (-1)
             * (
@@ -122,21 +123,10 @@ class TestL10nEsAtcMod425Base(TestL10nEsAeatModBase):
                 + (2400 - 240)  # account_tax_template_igic_r_9_5
                 + (2600 - 260)  # account_tax_template_igic_r_15
                 + (2800 - 280)  # account_tax_template_igic_r_20
-                + (200)  # account_tax_template_igic_sop_0
-                + (300 - 30)  # account_tax_template_igic_sop_3
-                + (400 - 40)  # account_tax_template_igic_sop_7
-                + (500 - 50)  # account_tax_template_igic_sop_9_5
-                + (600 - 60)  # account_tax_template_igic_sop_15
-                + (700 - 70)  # account_tax_template_igic_sop_20
-                + (110)  # account_tax_template_igic_sop_0_inv
-                + (120)  # account_tax_template_igic_sop_3_inv
-                + (130)  # account_tax_template_igic_sop_7_inv
-                + (140)  # account_tax_template_igic_sop_9_5_inv
-                + (150)  # account_tax_template_igic_sop_15_inv
-                + (160)
-            )  # account_tax_template_igic_sop_20_inv
+            )
         ),
-        # Modificación bases y cuotas - Cuota (Ventas + Compras)
+        # Modificación bases y cuotas - Cuota (Ventas). Supplier refunds go
+        # to [89] and must not be accrued here
         "71": (
             (-1)
             * (
@@ -146,19 +136,7 @@ class TestL10nEsAtcMod425Base(TestL10nEsAeatModBase):
                 + (228 - 22.8)  # account_tax_template_igic_r_9_5
                 + (390 - 39)  # account_tax_template_igic_r_15
                 + (560 - 56)  # account_tax_template_igic_r_20
-                + (0)  # account_tax_template_igic_sop_0
-                + (9 - 0.9)  # account_tax_template_igic_sop_3
-                + (28 - 2.8)  # account_tax_template_igic_sop_7
-                + (47.5 - 4.75)  # account_tax_template_igic_sop_9_5
-                + (90 - 9)  # account_tax_template_igic_sop_15
-                + (140 - 14)  # account_tax_template_igic_sop_20
-                + (0)  # account_tax_template_igic_sop_0_inv
-                + (3.6)  # account_tax_template_igic_sop_3_inv
-                + (9.1)  # account_tax_template_igic_sop_7_inv
-                + (13.3)  # account_tax_template_igic_sop_9_5_inv
-                + (22.5)  # account_tax_template_igic_sop_15_inv
-                + (32)
-            )  # account_tax_template_igic_sop_20_inv
+            )
         ),
         # IGIC deducible en operaciones interiores bienes y servicios corrientes - Base
         "80": (
@@ -508,11 +486,11 @@ class TestL10nEsAeatMod425(TestL10nEsAtcMod425Base):
         self._check_tax_lines()
         # Check result
         _logger.debug("Checking results")
-        self.assertAlmostEqual(self.model425.casilla_74, 21340, 2)
-        self.assertAlmostEqual(self.model425.casilla_79, 2142.05, 2)
+        self.assertAlmostEqual(self.model425.casilla_74, 24600, 2)
+        self.assertAlmostEqual(self.model425.casilla_79, 2505.60, 2)
         self.assertAlmostEqual(self.model425.casilla_94, 2339.30, 2)
-        self.assertAlmostEqual(self.model425.casilla_95, -197.25, 2)
-        self.assertAlmostEqual(self.model425.casilla_120, 21340, 2)
+        self.assertAlmostEqual(self.model425.casilla_95, 166.30, 2)
+        self.assertAlmostEqual(self.model425.casilla_120, 24600, 2)
         self.model425.button_confirm()
         self.assertEqual(self.model425.state, "done")
         self.model425.button_unpost()
@@ -572,17 +550,22 @@ class TestL10nEsAeatMod425(TestL10nEsAtcMod425Base):
         self.assertEqual(otp_node.attrib["PAI"], "ES")
         igi_dev_node = dec_node.xpath("//REG//DEV")
         self.assertEqual(len(igi_dev_node), 1)
-        self.assertEqual(igi_dev_node[0].attrib["TBA"], "2134000")
+        self.assertEqual(igi_dev_node[0].attrib["TBA"], "2460000")
+        self.assertEqual(igi_dev_node[0].attrib["TCU"], "250560")
+        mbc_node = igi_dev_node[0].xpath("MBC")
+        self.assertEqual(len(mbc_node), 1)
+        self.assertEqual(mbc_node[0].attrib["BAS"], "-1230000")
+        self.assertEqual(mbc_node[0].attrib["CUO"], "-125280")
         igi_ded_node = dec_node.xpath("//REG//DED")
         self.assertEqual(len(igi_ded_node), 1)
         self.assertEqual(igi_ded_node[0].attrib["TOT"], "233930")
         liq_node = dec_node.xpath("//LIQ")
         self.assertEqual(len(liq_node), 1)
-        self.assertEqual(liq_node[0].attrib["SUT"], "-19725")
-        self.assertEqual(liq_node[0].attrib["RLI"], "-19725")
+        self.assertEqual(liq_node[0].attrib["SUT"], "16630")
+        self.assertEqual(liq_node[0].attrib["RLI"], "16630")
         res_node = dec_node.xpath("//OPE")
         self.assertEqual(len(res_node), 1)
-        self.assertEqual(res_node[0].attrib["TOT"], "2134000")
+        self.assertEqual(res_node[0].attrib["TOT"], "2460000")
 
     @freeze_time("2025-01-01")
     def test_model_425_declaration_pdf(self):
