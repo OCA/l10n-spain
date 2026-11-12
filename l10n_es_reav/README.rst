@@ -82,6 +82,15 @@ deducible REAV* en las compras. Los impuestos REAV solo se aplican con
 esta posición fiscal: puestos directamente en un producto, desaparecen
 de las facturas con la posición fiscal nacional.
 
+Las operaciones de la agencia que quedan fuera del régimen especial
+siguen el régimen general (artículo 146 de la Ley del IVA): la posición
+fiscal REAV mantiene los impuestos de las compras de bienes de
+inversión, con su deducción normal, y los de las entregas exentas de la
+propia agencia. Solo las compras para el viaje pierden la deducción: los
+gastos generales de la agencia también siguen el régimen general, así
+que la posición fiscal REAV se asigna solo a los proveedores de
+servicios para el viaje.
+
 En una base de datos que viene de la versión 18.0, donde se ponían los
 impuestos REAV en los productos, la migración avisa en el registro de
 los productos que los tienen. En ellos hay que poner los impuestos de

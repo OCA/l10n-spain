@@ -96,6 +96,36 @@ class TestL10nEsReav(AccountTestInvoicingCommon):
         for line in bill.invoice_line_ids:
             self.assertEqual(line.tax_ids, self.tax_p_reav)
 
+    def test_reav_keeps_taxes_outside_the_regime(self):
+        """The investment goods of the agency and its own exempt supplies are
+        outside the REAV (art. 146 LIVA): the REAV position keeps their taxes,
+        and the domestic position of the chart too."""
+        ChartTemplate = self.env["account.chart.template"]
+        ChartTemplate.ref("account_tax_template_s_iva0_art23").active = True
+        taxes = {
+            "s_iva0_nsd": "p_iva21_bi",
+            "s_iva0_art23": "p_iva10_bi",
+        }
+        products = self.env["product.product"]
+        for sale_tax, purchase_tax in taxes.items():
+            products |= self._product_with_taxes(sale_tax, purchase_tax)
+        products.standard_price = 1000
+        invoice = self.init_invoice(
+            "out_invoice", partner=self.partner_a, products=products
+        )
+        bill = self.init_invoice(
+            "in_invoice", partner=self.partner_a, products=products
+        )
+        domestic = ChartTemplate.ref("l10n_es_domestic_fiscal_position")
+        for move, xmlids in ((invoice, taxes.keys()), (bill, taxes.values())):
+            self.assertEqual(move.fiscal_position_id, self.fp_reav)
+            for line, xmlid in zip(move.invoice_line_ids, xmlids, strict=True):
+                tax = ChartTemplate.ref(f"account_tax_template_{xmlid}")
+                self.assertEqual(line.tax_ids, tax)
+                self.assertIn(domestic, tax.fiscal_position_ids)
+        # The investment goods keep their deductible VAT: 21 % and 10 % of 1000
+        self.assertAlmostEqual(bill.amount_tax, 310)
+
     def test_reav_tax_without_reav_position(self):
         """A REAV tax put on a product only applies with the REAV position"""
         product = self.product_a.copy({"taxes_id": [(6, 0, self.tax_s_reav.ids)]})
@@ -118,8 +148,9 @@ class TestL10nEsReav(AccountTestInvoicingCommon):
 
     def test_migration(self):
         """The migration from 18.0 fills the regime code and the applicability
-        of the REAV taxes without changing a value already set, and warns about
-        the products with REAV taxes"""
+        of the REAV taxes without changing a value already set, gives the REAV
+        position the taxes it keeps, and warns about the products with REAV
+        taxes"""
         self.env.cr.execute(
             """UPDATE account_tax SET l10n_es_regime_code = NULL,
                l10n_es_applicability = NULL WHERE id = %s""",
@@ -132,10 +163,16 @@ class TestL10nEsReav(AccountTestInvoicingCommon):
         product = self.product_a.copy(
             {"name": "Old REAV product", "taxes_id": [(6, 0, self.tax_s_reav.ids)]}
         )
+        kept_tax = self.env["account.chart.template"].ref(
+            "account_tax_template_p_iva21_bi"
+        )
+        kept_tax.fiscal_position_ids -= self.fp_reav
+        self.env.flush_all()
         with self.assertLogs("odoo.addons.l10n_es_reav", "WARNING") as logs:
             self._run_migration()
         self.assertIn(product.display_name, logs.output[0])
-        (self.tax_s_reav | self.tax_p_reav).invalidate_recordset()
+        (self.tax_s_reav | self.tax_p_reav | kept_tax).invalidate_recordset()
+        self.assertIn(self.fp_reav, kept_tax.fiscal_position_ids)
         self.assertEqual(self.tax_s_reav.l10n_es_regime_code, "05")
         self.assertEqual(self.tax_s_reav.l10n_es_applicability, "01")
         self.assertEqual(self.tax_p_reav.l10n_es_regime_code, "01")

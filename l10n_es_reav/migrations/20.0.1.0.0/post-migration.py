@@ -4,6 +4,8 @@ import logging
 
 from openupgradelib import openupgrade
 
+from odoo.addons.l10n_es_reav.models.account_chart_template import REAV_KEPT_TAXES
+
 _logger = logging.getLogger(__name__)
 
 
@@ -26,7 +28,34 @@ def migrate(env, version):
            )
         """,
     )
+    _link_kept_taxes(env)
     _warn_products_with_reav_taxes(env)
+
+
+def _link_kept_taxes(env):
+    """The REAV fiscal position keeps the taxes outside the special regime, as
+    the chart template does: in 18.0 a tax that a fiscal position didn't map
+    stayed on the invoice, since 19.0 it is removed unless the position is one
+    of the fiscal positions of the tax."""
+    openupgrade.logged_query(
+        env.cr,
+        """
+        INSERT INTO account_fiscal_position_account_tax_rel
+            (account_fiscal_position_id, account_tax_id)
+        SELECT fp_imd.res_id, tax_imd.res_id
+          FROM ir_model_data fp_imd
+          JOIN ir_model_data tax_imd
+            ON tax_imd.module = 'account' AND tax_imd.model = 'account.tax'
+           AND SUBSTRING(tax_imd.name FROM '^([0-9]+)_')
+               = SUBSTRING(fp_imd.name FROM '^([0-9]+)_')
+           AND SUBSTRING(tax_imd.name FROM '^[0-9]+_(.*)$') IN %s
+         WHERE fp_imd.module = 'account'
+           AND fp_imd.model = 'account.fiscal.position'
+           AND SUBSTRING(fp_imd.name FROM '^[0-9]+_(.*)$') = 'fp_reav'
+        ON CONFLICT DO NOTHING
+        """,
+        [REAV_KEPT_TAXES],
+    )
 
 
 def _warn_products_with_reav_taxes(env):
