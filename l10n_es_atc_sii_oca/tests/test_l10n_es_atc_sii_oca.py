@@ -24,9 +24,8 @@ def collect_keys(value, found=None):
 
 
 class TestL10nEsAtcSiiOca(TestL10nEsAeatSiiBase):
-    # The SII settings of the companies are set by an administrator
-    _test_user_groups = (*TestL10nEsAeatSiiBase._test_user_groups, "base.group_system")
-
+    # The tests run as the accountant of the base class; only the tax agency
+    # of the company, a setting of an administrator, is written with sudo
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -133,17 +132,17 @@ class TestL10nEsAtcSiiOca(TestL10nEsAeatSiiBase):
 
     def test_atc_header_declares_its_own_sii_version(self):
         """The ATC still runs version 1.0 of the SII, the AEAT does not."""
-        self.company.tax_agency_id = self.agency_canarias
+        self.company.sudo().tax_agency_id = self.agency_canarias
         invoice = self._canary_invoice([self.igic])
         self.assertEqual(invoice._get_aeat_header()["IDVersionSii"], "1.0")
-        self.company.tax_agency_id = self.agency_spain
+        self.company.sudo().tax_agency_id = self.agency_spain
         self.assertNotEqual(invoice._get_aeat_header()["IDVersionSii"], "1.0")
 
     def test_each_agency_gets_its_own_taxes(self):
         """The ATC gets the IGIC breakdown, with the IGIC key names, and the
         AEAT the VAT one."""
         invoice = self._canary_invoice([self.igic, self.vat])
-        self.company.tax_agency_id = self.agency_canarias
+        self.company.sudo().tax_agency_id = self.agency_canarias
         sii_dict = invoice._get_aeat_invoice_dict_out()["FacturaExpedida"]
         self.assertEqual(
             sii_dict["TipoDesglose"]["DesgloseFactura"]["Sujeta"]["NoExenta"],
@@ -161,7 +160,7 @@ class TestL10nEsAtcSiiOca(TestL10nEsAeatSiiBase):
             },
         )
         self.assertNotIn("DesgloseIVA", collect_keys(sii_dict))
-        self.company.tax_agency_id = self.agency_spain
+        self.company.sudo().tax_agency_id = self.agency_spain
         sii_dict = invoice._get_aeat_invoice_dict_out()["FacturaExpedida"]
         self.assertEqual(
             sii_dict["TipoDesglose"]["DesgloseFactura"]["Sujeta"]["NoExenta"][
@@ -188,7 +187,7 @@ class TestL10nEsAtcSiiOca(TestL10nEsAeatSiiBase):
             "15_igic_purchase",
             self.igic.l10n_es_available_regime_codes.split(","),
         )
-        self.company.tax_agency_id = self.agency_canarias
+        self.company.sudo().tax_agency_id = self.agency_canarias
         invoice = self._canary_invoice([self.igic_investment], move_type="in_invoice")
         invoice.l10n_es_regime_code = "15_igic_purchase"
         sii_dict = invoice._get_aeat_invoice_dict_in()["FacturaRecibida"]
@@ -207,16 +206,16 @@ class TestL10nEsAtcSiiOca(TestL10nEsAeatSiiBase):
 
     def test_a_foreign_vat_is_an_official_document_for_the_atc(self):
         """IDType 02 is rejected with error 1103: the ATC only takes 04."""
-        self.company.tax_agency_id = self.agency_canarias
+        self.company.sudo().tax_agency_id = self.agency_canarias
         invoice = self._canary_invoice([self.igic], partner=self.foreign_partner)
         self.assertEqual(invoice._get_sii_identifier()["IDOtro"]["IDType"], "04")
-        self.company.tax_agency_id = self.agency_spain
+        self.company.sudo().tax_agency_id = self.agency_spain
         self.assertEqual(invoice._get_sii_identifier()["IDOtro"]["IDType"], "02")
 
     def test_not_subject_igic_is_reported_by_article_9(self):
         """The ATC schema has no articles 7 and 14 of the VAT law: a not subject
         IGIC operation goes as article 9 of Law 20/1991."""
-        self.company.tax_agency_id = self.agency_canarias
+        self.company.sudo().tax_agency_id = self.agency_canarias
         invoice = self._canary_invoice([self._igic("s_igic_ns")])
         sii_dict = invoice._get_aeat_invoice_dict()["FacturaExpedida"]
         self.assertEqual(
@@ -229,7 +228,7 @@ class TestL10nEsAtcSiiOca(TestL10nEsAeatSiiBase):
         import surcharge, only paid by the retail traders, gives their key 15
         and is reported by its amount, as the ATC schema has no equivalence
         surcharge."""
-        self.company.tax_agency_id = self.agency_canarias
+        self.company.sudo().tax_agency_id = self.agency_canarias
         invoice = self._canary_invoice(
             [self._igic("igic_sop_i_7", "igic_p_re07")], move_type="in_invoice"
         )
@@ -258,7 +257,7 @@ class TestL10nEsAtcSiiOca(TestL10nEsAeatSiiBase):
     def test_igic_export(self):
         """An IGIC export goes with the key 02 and the exemption of art. 11 of
         Law 20/1991 (E2), which the ATC rejects with the key 01 alone (1295)."""
-        self.company.tax_agency_id = self.agency_canarias
+        self.company.sudo().tax_agency_id = self.agency_canarias
         invoice = self._canary_invoice([self._igic("igic_ex_0")])
         self.assertEqual(invoice.l10n_es_regime_code, "02_sale")
         sii_dict = invoice._get_aeat_invoice_dict()["FacturaExpedida"]
@@ -275,7 +274,7 @@ class TestL10nEsAtcSiiOca(TestL10nEsAeatSiiBase):
     def test_retail_trader_sale(self):
         """A sale of a retail trader goes with its key 17 as exempt by art. 50 of
         Law 4/2012 (E1), as the ATC FAQ 8.1 says."""
-        self.company.tax_agency_id = self.agency_canarias
+        self.company.sudo().tax_agency_id = self.agency_canarias
         invoice = self._canary_invoice([self._igic("igic_cmino")])
         self.assertEqual(invoice.l10n_es_regime_code, "17_igic_sale")
         sii_dict = invoice._get_aeat_invoice_dict()["FacturaExpedida"]
@@ -292,7 +291,7 @@ class TestL10nEsAtcSiiOca(TestL10nEsAeatSiiBase):
     def test_igic_only_exemption_cause(self):
         """The ATC has two exemption causes that the AEAT has not, E7 and E8,
         which only an IGIC tax can have."""
-        self.company.tax_agency_id = self.agency_canarias
+        self.company.sudo().tax_agency_id = self.agency_canarias
         exempt = self._igic("igic_re_ex")
         exempt.l10n_es_exempt_reason = "E7"
         invoice = self._canary_invoice([exempt])
@@ -308,7 +307,7 @@ class TestL10nEsAtcSiiOca(TestL10nEsAeatSiiBase):
         """A purchase to a retail trader deducts its implicit IGIC with the key
         15: the ATC wants the nominal rate, which is the only kind it admits,
         and the implicit tax burden instead of a quota (ATC FAQ 8.2)."""
-        self.company.tax_agency_id = self.agency_canarias
+        self.company.sudo().tax_agency_id = self.agency_canarias
         invoice = self._canary_invoice(
             [self._igic("igic_sop_7_cmino")], move_type="in_invoice"
         )
@@ -333,7 +332,7 @@ class TestL10nEsAtcSiiOca(TestL10nEsAeatSiiBase):
     def test_exempt_purchase(self):
         """An exempt purchase goes with its base alone, without the 0 % rate
         that the ATC keeps for the subject operations (ATC FAQ 8.3)."""
-        self.company.tax_agency_id = self.agency_canarias
+        self.company.sudo().tax_agency_id = self.agency_canarias
         exempt = self._igic("igic_p_ex")
         invoice = self._canary_invoice([exempt, exempt], move_type="in_invoice")
         sii_dict = invoice._get_aeat_invoice_dict()["FacturaRecibida"]
@@ -347,7 +346,7 @@ class TestL10nEsAtcSiiOca(TestL10nEsAeatSiiBase):
         """With the key 16 of the small businesses alone, the ATC rejects any
         quota (errors 1325 and 1328), even when the invoice was booked with a
         subject tax."""
-        self.company.tax_agency_id = self.agency_canarias
+        self.company.sudo().tax_agency_id = self.agency_canarias
         invoice = self._canary_invoice(
             [self._igic("igic_sop_0")], move_type="in_invoice"
         )
@@ -364,7 +363,7 @@ class TestL10nEsAtcSiiOca(TestL10nEsAeatSiiBase):
         """A sale exempt by art. 25 of Law 19/1994 (key 19, E5) needs the
         details of the good and its document, which the ATC rejects without
         (error 2031), as the FAQ 7.1 example of a building sold by deed."""
-        self.company.tax_agency_id = self.agency_canarias
+        self.company.sudo().tax_agency_id = self.agency_canarias
         exempt = self._igic("igic_re_ex")
         exempt.l10n_es_exempt_reason = "E5"
         invoice = self._canary_invoice([exempt])
@@ -423,7 +422,7 @@ class TestL10nEsAtcSiiOca(TestL10nEsAeatSiiBase):
         """A purchase exempt by art. 25 of Law 19/1994 goes with the key 17
         and the details of the good (error 2028), the key that the sales give
         to the retail traders."""
-        self.company.tax_agency_id = self.agency_canarias
+        self.company.sudo().tax_agency_id = self.agency_canarias
         invoice = self._canary_invoice(
             [self._igic("igic_p_ex")], move_type="in_invoice"
         )
@@ -457,7 +456,7 @@ class TestL10nEsAtcSiiOca(TestL10nEsAeatSiiBase):
         """The invoices of the advanced level of the group of entities regime
         (key 06) need their cost tax base (error 1233), with the sign of their
         quotas (error 1234), and only them (error 1301)."""
-        self.company.tax_agency_id = self.agency_canarias
+        self.company.sudo().tax_agency_id = self.agency_canarias
         invoice = self._canary_invoice([self.igic])
         invoice.l10n_es_regime_code = "06"
         self.assertTrue(invoice.sii_atc)
@@ -476,7 +475,7 @@ class TestL10nEsAtcSiiOca(TestL10nEsAeatSiiBase):
         sii_dict = invoice._get_aeat_invoice_dict()["FacturaExpedida"]
         self.assertNotIn("BaseImponibleACoste", sii_dict)
         # The AEAT does not get it
-        self.company.tax_agency_id = self.agency_spain
+        self.company.sudo().tax_agency_id = self.agency_spain
         invoice.l10n_es_regime_code = "06"
         self.assertFalse(invoice.sii_atc)
         sii_dict = invoice._get_aeat_invoice_dict()["FacturaExpedida"]
@@ -485,7 +484,7 @@ class TestL10nEsAtcSiiOca(TestL10nEsAeatSiiBase):
     def test_aiem_quota(self):
         """The AIEM quota goes apart from the IGIC breakdown, and in the total
         that the ATC checks (ATC FAQ 3.25 and 4.31)."""
-        self.company.tax_agency_id = self.agency_canarias
+        self.company.sudo().tax_agency_id = self.agency_canarias
         aiem = self.env["account.tax"].create(
             {
                 "name": "Test AIEM 5%",
