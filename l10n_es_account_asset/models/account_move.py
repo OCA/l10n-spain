@@ -14,7 +14,8 @@ class AccountMove(models.Model):
         res = super()._prepare_asset_vals(aml)
         main_vals = aml.move_id._get_aeat_tax_info()
         amount = aml.balance
-        for tax in aml.tax_ids:
+        # The tax info is given by child tax for a group of taxes
+        for tax in aml.tax_ids.flatten_taxes_hierarchy():
             tax_vals = main_vals[tax]
             vals = {}
             aml._process_aeat_tax_base_info(vals, tax, 1)

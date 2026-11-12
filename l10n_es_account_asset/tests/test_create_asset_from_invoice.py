@@ -54,8 +54,45 @@ class TestCreateAssetFromInvoice(TestL10nEsAeatModBase):
         }
         cls.invoice = cls.env["account.move"].create(invoice_vals)
 
+    def _post_bill(self, lines, move_type="in_invoice", currency=None):
+        """Post a vendor bill with one asset line per (price, tax) given"""
+        line_vals = []
+        for price_unit, tax_xmlid in lines:
+            tax = self.env.ref(
+                f"account.{self.company.id}_account_tax_template_{tax_xmlid}"
+            )
+            line_vals.append(
+                Command.create(
+                    {
+                        "product_id": self.product.id,
+                        "name": "Test line",
+                        "price_unit": price_unit,
+                        "account_id": self.profile.account_asset_id.id,
+                        "asset_profile_id": self.profile.id,
+                        "quantity": 1,
+                        "tax_ids": [Command.set(tax.ids)],
+                    }
+                )
+            )
+        bill = self.env["account.move"].create(
+            {
+                "partner_id": self.partner.id,
+                "invoice_date": "2025-11-01",
+                "move_type": move_type,
+                "currency_id": (currency or self.company.currency_id).id,
+                "invoice_line_ids": line_vals,
+            }
+        )
+        bill.action_post()
+        return bill.invoice_line_ids.asset_id
+
     def test_create_asset_from_invoice_non_deductible(self):
         self.invoice.action_post()
         lines = self.invoice.invoice_line_ids
         self.assertEqual(lines[0].asset_id.purchase_value, 65.62)  # 54.23 * 1.21
         self.assertEqual(lines[1].asset_id.purchase_value, 138.75)  # 114.67 * 1.21
+
+    def test_group_of_taxes(self):
+        """An import of goods with the group of taxes of the DUA"""
+        asset = self._post_bill([(100, "p_iva21_ibc_group")])
+        self.assertEqual(asset.purchase_value, 100)
