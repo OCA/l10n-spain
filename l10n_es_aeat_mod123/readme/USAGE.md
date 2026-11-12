@@ -23,6 +23,15 @@ Odoo core etiqueta también la retención de consejeros y administradores
 (compra consejero de sociedad) para su informe del modelo 111 (casillas
 [02] y [03]).
 
+Las facturas rectificativas de proveedor con retenciones del modelo 123 restan su
+base y su retención en el periodo en que se contabilizan, como en el
+modelo 111 de OCA. La rectificación de una renta declarada en un periodo
+ya presentado se regulariza rectificando la autoliquidación de ese
+periodo: las casillas del modelo no admiten importes negativos, y la
+autoliquidación complementaria solo procede cuando resulta una cantidad
+mayor a ingresar; si resulta menor, se solicita la rectificación de la
+autoliquidación (artículos 120.3 y 221.4 de la Ley General Tributaria).
+
 Para crear una declaración del modelo:
 
 1.  Ir a *Facturación \> Declaraciones \> AEAT \> Modelo 123*.

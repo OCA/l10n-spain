@@ -53,6 +53,27 @@ class TestL10nEsAeatMod123(TestL10nEsAeatModBase):
             },
         )
 
+    def _refund(self, invoice, date, price):
+        """Credit note of the bill from its 'Credit Note' button, with the
+        refunded amount set on its line before posting it."""
+        invoice = invoice.with_user(self.billing_user)
+        action = invoice.action_reverse()
+        with Form(
+            self.env[action["res_model"]]
+            .with_user(self.billing_user)
+            .with_context(active_model="account.move", active_ids=invoice.ids)
+        ) as reversal_form:
+            reversal_form.date = date
+        action = reversal_form.record.refund_moves()
+        refund = self.env["account.move"].browse(action["res_id"])
+        with (
+            Form(refund.with_user(self.billing_user)) as refund_form,
+            refund_form.invoice_line_ids.edit(0) as line_form,
+        ):
+            line_form.price_unit = price
+        refund.with_user(self.billing_user).action_post()
+        return refund
+
     def _create_report(self, year, **values):
         """Fill in the report form as the user does and press 'Calculate'."""
         with Form(
@@ -120,6 +141,24 @@ class TestL10nEsAeatMod123(TestL10nEsAeatModBase):
             report_form.casilla_07 = 50
         self.assertEqual(model123.casilla_08, 159.0)
         self.assertEqual(model123.amount_result, 159.0)
+
+    def test_model_123_refund(self):
+        """A credit note of a bill with withholding subtracts its base and its
+        withholding in the period, with both record designs."""
+        for year, boxes in ((2017, ("2", "3")), (2024, ("5", "8"))):
+            with self.subTest(year=year):
+                invoice = self._purchase_invoice(
+                    f"{year}-01-10",
+                    self.supplier,
+                    [("account_tax_template_p_rp19", 1000)],
+                )
+                refund = self._refund(invoice, f"{year}-02-15", 400)
+                self.assertEqual(refund.move_type, "in_refund")
+                model123 = self._create_report(year)
+                self._check_tax_lines(
+                    model123, {boxes[0]: 1000 - 400, boxes[1]: 190 - 76}
+                )
+                self.assertEqual(model123.amount_result, 114.0)
 
     def test_model_123_2024(self):
         # Dividends and the other incomes of capital of the first supplier, and
