@@ -497,3 +497,24 @@ class TestL10nEsAeatMod190Base(TestL10nEsAeatModBase):
             line.with_user(readonly_user), view="account.view_move_line_form"
         )
         self.assertEqual(line_form.aeat_perception_key_id, line.aeat_perception_key_id)
+
+    def test_mod190_export_boe_2017_design(self):
+        """A 2024 report is exported with the 2017-2024 record design: records
+        of 500 characters and the declarant boxes in their positions."""
+        self._create_purchase_move(self.customer, "2024-01-10", [("P_IRPF15", 100)])
+        model190 = self._create_report(2024)
+        model190.button_calculate()
+        self.assertEqual(
+            model190.export_config_id,
+            self.env.ref("l10n_es_aeat_mod190.aeat_mod190_main_export_config"),
+        )
+        declarant, perceptor = self._export_boe(model190)
+        self.assertEqual(len(declarant), 500)
+        self.assertEqual(len(perceptor), 500)
+        self.assertEqual(declarant[:17], b"11902024123456789")
+        # [01] perceptors (136-144), [02] amount with sign (145-160) and
+        # [03] withholdings (161-175)
+        self.assertEqual(
+            declarant[135:175], b"000000001 000000000010000000000000001500"
+        )
+        self.assertEqual(perceptor[:17], b"21902024123456789")
