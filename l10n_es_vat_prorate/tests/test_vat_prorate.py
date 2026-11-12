@@ -5,10 +5,12 @@
 
 from datetime import date
 
+from freezegun import freeze_time
 from psycopg2 import IntegrityError, errors
 
 from odoo import Command, exceptions
 from odoo.modules.module import load_script
+from odoo.tests import Form
 from odoo.tests.common import tagged
 from odoo.tools import mute_logger
 
@@ -103,12 +105,23 @@ class TestVatProrate(AccountTestInvoicingCommon):
         )
         self.assertEqual(6, len(invoice.line_ids))
         self.assertEqual(3, len(invoice.line_ids.filtered(lambda r: r.tax_line_id)))
-        # Deal with analytics
-        invoice.line_ids[0].analytic_distribution = {self.analytic_account.id: 100}
-        self.assertEqual(4, len(invoice.line_ids))
+        # Deal with analytics: the prorate line of the expense takes its analytic
+        self.env.user.sudo().group_ids += self.env.ref(
+            "analytic.group_analytic_accounting"
+        )
+        with (
+            Form(invoice) as invoice_form,
+            invoice_form.invoice_line_ids.edit(0) as line_form,
+        ):
+            line_form.analytic_distribution = {self.analytic_account.id: 100}
+        self.assertEqual(6, len(invoice.line_ids))
         self.assertEqual(
             1,
-            len(invoice.line_ids.filtered(lambda r: r.analytic_distribution)),
+            len(
+                invoice.line_ids.filtered(
+                    lambda r: r.tax_line_id and r.analytic_distribution
+                )
+            ),
         )
 
     def test_prorate_tax_with_prorate_account(self):
@@ -358,6 +371,151 @@ class TestVatProrate(AccountTestInvoicingCommon):
                     for price, tax, account in lines
                 ],
             }
+        )
+
+    def _tax_lines(self, move):
+        return move.line_ids.filtered("tax_line_id").sorted(
+            lambda line: (line.vat_prorate, line.account_id.code, line.balance)
+        )
+
+    def test_prorate_default_date(self):
+        with freeze_time("2030-02-03"):
+            prorate_form = Form(self.env["res.company.vat.prorate"])
+            self.assertEqual(prorate_form.date, date(2030, 2, 3))
+
+    def test_prorate_company_deletion(self):
+        company = self.env["res.company"].sudo().create({"name": "Prorate company"})
+        prorate = self.env["res.company.vat.prorate"].create(
+            {"company_id": company.id, "date": date(2020, 1, 1), "vat_prorate": 50}
+        )
+        company.unlink()
+        self.assertFalse(prorate.exists())
+
+    def test_prorate_amounts(self):
+        """Prorate of 20 %: the tax account keeps the deductible 20 % and the rest
+        goes to the account of each expense line."""
+        expense = self.company_data["default_account_expense"]
+        other_expense = self.copy_account(expense)
+        tax = self._tax("p_iva21_bc")
+        account_472 = tax.invoice_repartition_line_ids.account_id
+        invoice = self._create_bill(
+            [(100, tax, expense), (200, tax, other_expense), (300, tax, expense)]
+        )
+        self.assertRecordValues(
+            self._tax_lines(invoice),
+            [
+                # 21 % of 600 = 126, 20 % deductible
+                {"account_id": account_472.id, "balance": 25.2, "vat_prorate": False},
+                {"account_id": expense.id, "balance": 67.2, "vat_prorate": True},
+                {"account_id": other_expense.id, "balance": 33.6, "vat_prorate": True},
+            ],
+        )
+        self.assertAlmostEqual(invoice.amount_total, 726)
+        # Refund: same split with the opposite sign
+        refund = self._create_bill([(100, tax, expense)], move_type="in_refund")
+        self.assertRecordValues(
+            self._tax_lines(refund),
+            [
+                {"account_id": account_472.id, "balance": -4.2, "vat_prorate": False},
+                {"account_id": expense.id, "balance": -16.8, "vat_prorate": True},
+            ],
+        )
+
+    def test_prorate_self_assessed_tax_amounts(self):
+        """Intra-community acquisition: only the deductible side is prorated, the
+        output VAT is kept whole."""
+        tax = self._tax("p_iva21_ic_bc")
+        expense = self.company_data["default_account_expense"]
+        invoice = self._create_bill([(100, tax, expense)])
+        account_472, account_477 = (
+            tax.invoice_repartition_line_ids.filtered(
+                lambda line: line.factor_percent > 0 and line.account_id
+            ).account_id,
+            tax.invoice_repartition_line_ids.filtered(
+                lambda line: line.factor_percent < 0
+            ).account_id,
+        )
+        self.assertRecordValues(
+            invoice.line_ids.filtered("tax_line_id").sorted("balance"),
+            [
+                {"account_id": account_477.id, "balance": -21, "vat_prorate": False},
+                {"account_id": account_472.id, "balance": 4.2, "vat_prorate": False},
+                {"account_id": expense.id, "balance": 16.8, "vat_prorate": True},
+            ],
+        )
+
+    def test_prorate_aeat_tax_info(self):
+        """The deductible quota declared to the AEAT (SII, VAT book) is the
+        prorated one, while the quota is the whole one."""
+        tax = self._tax("p_iva21_bc")
+        tax_ic = self._tax("p_iva21_ic_bc")
+        invoice = self._create_bill([(100, tax, None), (200, tax_ic, None)])
+        invoice.action_post()
+        tax_info = invoice._get_aeat_tax_info()
+        self.assertAlmostEqual(tax_info[tax]["base"], 100)
+        self.assertAlmostEqual(tax_info[tax]["amount"], 21)
+        self.assertAlmostEqual(tax_info[tax]["deductible_amount"], 4.2)
+        self.assertAlmostEqual(tax_info[tax_ic]["base"], 200)
+        self.assertAlmostEqual(tax_info[tax_ic]["amount"], 42)
+        self.assertAlmostEqual(tax_info[tax_ic]["deductible_amount"], 8.4)
+
+    def test_prorate_tax_type_rule_taxes(self):
+        """Taxes selected by their type (7.5 %, 5 % investment goods, imports) are
+        prorated in the invoices."""
+        expense = self.company_data["default_account_expense"]
+        for name, amount in (
+            ("p_iva7-5_bc", 7.5),
+            ("p_iva5_bi", 5),
+            ("p_iva21_ibc", 21),
+        ):
+            tax = self._tax(name)
+            tax.active = True
+            invoice = self._create_bill([(1000, tax, expense)])
+            account_472 = tax.invoice_repartition_line_ids.account_id
+            self.assertRecordValues(
+                self._tax_lines(invoice),
+                [
+                    {"account_id": account_472.id, "balance": 2 * amount},
+                    {"account_id": expense.id, "balance": 8 * amount},
+                ],
+            )
+
+    def test_prorate_refund_previous_year(self):
+        """A refund dated in a later year takes the prorate of its invoice."""
+        tax = self._tax("p_iva21_bc")
+        expense = self.company_data["default_account_expense"]
+        # Prorate of 2000: 10 %
+        invoice = self._create_bill([(100, tax, expense)], invoice_date="2000-06-01")
+        invoice.action_post()
+        wizard = (
+            self.env["account.move.reversal"]
+            .with_context(active_ids=invoice.ids, active_model="account.move")
+            .create({"journal_id": invoice.journal_id.id, "date": date(2001, 2, 1)})
+        )
+        wizard.reverse_moves()
+        refund = wizard.new_move_ids
+        self.assertEqual(refund.date, date(2001, 2, 1))
+        self.assertEqual(refund.prorate_id.vat_prorate, 10)
+        self.assertRecordValues(
+            self._tax_lines(refund),
+            [
+                {"balance": -2.1, "vat_prorate": False},
+                {"balance": -18.9, "vat_prorate": True},
+            ],
+        )
+
+    def test_prorate_reset_to_draft(self):
+        tax = self._tax("p_iva21_bc")
+        invoice = self._create_bill([(100, tax, None)])
+        invoice.action_post()
+        invoice.button_draft()
+        invoice.action_post()
+        self.assertRecordValues(
+            self._tax_lines(invoice),
+            [
+                {"balance": 4.2, "vat_prorate": False},
+                {"balance": 16.8, "vat_prorate": True},
+            ],
         )
 
     def test_no_prorate_in_journal_entry(self):
