@@ -929,3 +929,34 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
         # 4T 2025: 283.5 accrued - 21 - 141 deductible
         self.assertAlmostEqual(report.total_deducir, 162)
         self.assertAlmostEqual(report.casilla_46, 121.5)
+
+    def test_model_303_boe_2026(self):
+        """BOE file of 2026 with the result boxes of the new layout. Positions are
+        the ones of the AEAT record design DR303e26v101 (pages 01 and 03).
+        """
+        self.patch(type(self), "taxes_sale", {"S_IVA21B": (1000, 210)})
+        self._invoice_sale_create("2026-01-15")
+        report = self._create_303(2026, "1T")
+        report.button_calculate()
+        with Form(report) as report_form:
+            report_form.casilla_108 = 100
+            report_form.casilla_109 = 50
+            report_form.deduct_payment_petrol_delivery = True
+            report_form.casilla_112 = 30
+        content = self._export_boe(report)
+        page_01 = self._get_page(content, "01000")
+        # Tipo de declaración
+        self.assertEqual(page_01[12:13], b"I")
+        page_03 = self._get_page(content, "03000")
+        # [108], [69], [109], [112] and [71]
+        self.assertEqual(page_03[322:339], b"00000000000010000")
+        self.assertEqual(page_03[339:356], b"00000000000031000")
+        self.assertEqual(page_03[373:390], b"00000000000005000")
+        self.assertEqual(page_03[390:407], b"00000000000003000")
+        self.assertEqual(page_03[407:424], b"00000000000033000")
+        # Payment with the tax current account
+        with Form(report) as report_form:
+            report_form.use_aeat_account = True
+        self.assertEqual(report.result_type, "G")
+        page_01 = self._get_page(self._export_boe(report), "01000")
+        self.assertEqual(page_01[12:13], b"G")
