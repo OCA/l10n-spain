@@ -408,24 +408,28 @@ informado con el impuesto nacional adecuado.</li>
 </div>
 <div class="section" id="usage">
 <h2><a class="toc-backref" href="#toc-entry-2">Usage</a></h2>
-<p>Para crear un modelo, por ejemplo de un trimestre del año:</p>
+<p>Para crear la declaración anual:</p>
 <ol class="arabic simple">
-<li>Ir a Contabilidad &gt; Informe &gt; Informes legales &gt; Declaraciones AEAT &gt;
-Modelo 296</li>
-<li>Pulsar en el botón “Crear”</li>
-<li>Seleccionar el ejercicio fiscal y el tipo de período, los periodos
-incluidos se calculan automáticamente</li>
-<li>Seleccionar el tipo de declaración</li>
-<li>Rellenar el teléfono, necesario para la exportacion BOE</li>
-<li>Guardar y pulsar en el botón “Calcular”</li>
+<li>Ir a <em>Facturación &gt; Declaraciones &gt; AEAT &gt; Modelo 296</em>.</li>
+<li>Pulsar en el botón “Nuevo”.</li>
+<li>Seleccionar el ejercicio fiscal. El periodo es siempre anual y sus
+fechas se calculan automáticamente.</li>
+<li>Rellenar el teléfono, necesario para la exportación BOE.</li>
+<li>Guardar y pulsar en el botón “Calcular”. Se crea una línea por
+perceptor con su base, sus retenciones y el porcentaje de retención
+de su impuesto.</li>
 <li>Rellenar (si es necesario) aquellos campos que Odoo no calcula
 automáticamente:<ul>
-<li>Retenciones ingresadas: Casilla [04]</li>
+<li>Retenciones ingresadas: casilla [04].</li>
+<li>En cada línea de perceptor: persona física o jurídica, naturaleza,
+fecha de devengo, clave, subclave y el resto de datos del registro
+de perceptor. Estos datos se conservan al pulsar “Recalcular”.</li>
 </ul>
 </li>
-<li>Cuando los valores sean los correctos, pulsar en el botón “Confirmar”</li>
+<li>Cuando los valores sean los correctos, pulsar en el botón
+“Confirmar”.</li>
 <li>Podemos exportar en formato BOE para presentarlo telemáticamente en
-el portal de la AEAT</li>
+el portal de la AEAT.</li>
 </ol>
 </div>
 <div class="section" id="bug-tracker">
