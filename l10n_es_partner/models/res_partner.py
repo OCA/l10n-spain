@@ -10,9 +10,17 @@ from odoo import api, fields, models
 
 class ResPartner(models.Model):
     _inherit = "res.partner"
-    _rec_names_search = ("complete_name", "email", "ref", "vat", "comercial")
 
     comercial = fields.Char("Trade name", size=128, index="trigram")
+
+    @property
+    def _rec_names_search(self):
+        """Search by trade name as well, keeping the search fields of the
+        inherited models"""
+        names = super()._rec_names_search
+        if "comercial" in names:
+            return names
+        return [*names, "comercial"]
 
     @api.depends("comercial")
     @api.depends_context("no_display_commercial")
