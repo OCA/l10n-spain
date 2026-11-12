@@ -60,8 +60,7 @@ Usage
 
 Para crear un modelo:
 
-1. Ir a Contabilidad > Informe > Informes legales > Declaraciones AEAT >
-   Modelo 216.
+1. Ir a *Facturación > Declaraciones > AEAT > Modelo 216*.
 2. Pulsar en el botón "Crear".
 3. Seleccionar el año y el tipo de período. Las fechas incluidas se
    calculan automáticamente.
