@@ -33,3 +33,9 @@ heredarán la función \_compute_error_count para indicar cuantas líneas
 con errores hay en el informe. Si el valor es 0, no se mostrará ningún
 aviso; si el valor es mayor a 0, se mostrará un aviso en la parte
 superior de la vista formulario del informe.
+
+Para gestionar los inmuebles (menú y campo "Inmueble" en las líneas de
+las facturas) hay que dar a los usuarios el permiso "Use AEAT Real
+Estates" (en modo desarrollador, en "Permisos extra" del usuario). Es
+independiente del de gestor de la AEAT: quien solo indica el inmueble
+en las facturas no necesita gestionar las declaraciones.

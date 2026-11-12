@@ -1,10 +1,13 @@
 # Copyright 2025 Netkia - Carlos Sainz-Pardo
+# Copyright 2026 Tecnativa - Carlos Dauden
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
 
 import logging
 
 from odoo.exceptions import ValidationError
+from odoo.tools.safe_eval import safe_eval
 
+from ..models.aeat_address_types import AEAT_ADDRESS_TYPES
 from .test_l10n_es_aeat_mod_base import TestL10nEsAeatModBase
 
 _logger = logging.getLogger("aeat")
@@ -206,3 +209,158 @@ class TestL10nEsAeatRealEstate(TestL10nEsAeatModBase):
         # Al cambiar el NIF del partner se recalcula
         partner.vat = "ES00000001R"
         self.assertEqual(rec.representative_vat, "ES00000001R")
+
+    def test_reference_outside_the_dgc_cadastre(self):
+        """The Basque Country, Navarre and the foreign countries have their own
+        cadastral references, without the control characters of the DGC."""
+        foral_reference = "201001000123400001"
+        for state_xmlid in ("base.state_es_na", "base.state_es_bi"):
+            estate = self.env["l10n.es.aeat.real_estate"].create(
+                {
+                    **self._base_vals(state_xmlid),
+                    "reference": foral_reference,
+                    "state_id": self.env.ref(state_xmlid).id,
+                }
+            )
+            self.assertEqual(estate.reference, foral_reference)
+        abroad = self.env["l10n.es.aeat.real_estate"].create(
+            {
+                **self._base_vals("Abroad"),
+                "reference": "FR-75056-000AB-0123",
+                "country_id": self.env.ref("base.fr").id,
+            }
+        )
+        self.assertTrue(abroad.reference)
+        # Moved to the territory of the DGC, the reference is checked again
+        with self.assertRaises(ValidationError):
+            estate.state_id = self.env.ref("base.state_es_m")
+
+    def test_address_types(self):
+        """One name per street type, kept out of the translations because the
+        names are already given in the co-official languages."""
+        keys = [key for key, _name in AEAT_ADDRESS_TYPES]
+        self.assertEqual(len(keys), len(set(keys)))
+        field = self.env["ir.model.fields"]._get(
+            "l10n.es.aeat.real_estate", "address_type"
+        )
+        self.assertFalse(field.selection_ids)
+        estate = self.env["l10n.es.aeat.real_estate"].create(
+            {**self._base_vals(), "address_type": "APDRO"}
+        )
+        self.assertEqual(estate.address_type, "APDRO")
+
+    def test_real_estates_of_the_invoice_lines(self):
+        """The lines offer the real estates of the partner of the invoice and
+        the ones of the company, like the premises it leases to a customer."""
+        company_estate = self.env["l10n.es.aeat.real_estate"].create(
+            {
+                **self._base_vals("Leased premises"),
+                "company_id": self.company.id,
+                "partner_id": self.company.partner_id.id,
+            }
+        )
+        supplier_estate = self.env["l10n.es.aeat.real_estate"].create(
+            {**self._base_vals("Rented office"), "company_id": self.company.id}
+        )
+        self.assertTrue(company_estate.owned_by_company)
+        self.assertFalse(supplier_estate.owned_by_company)
+        domain = (
+            self.env["account.move.line"]._fields["l10n_es_aeat_real_estate_id"].domain
+        )
+        estates = company_estate | supplier_estate
+        for partner, expected in (
+            (self.customer, company_estate),
+            (self.supplier, estates),
+        ):
+            self.assertEqual(
+                self.env["l10n.es.aeat.real_estate"].search(
+                    safe_eval(
+                        domain,
+                        {"company_id": self.company.id, "partner_id": partner.id},
+                    )
+                    + [("id", "in", estates.ids)]
+                ),
+                expected,
+                partner.name,
+            )
+
+    def test_municipality_code(self):
+        """The INE municipality code has 5 digits, the first two of the province
+        of the zip, and it is not checked abroad."""
+        estate = self.env["l10n.es.aeat.real_estate"].create(
+            {**self._base_vals(), "municipality_code": "28079"}
+        )
+        self.assertEqual(estate.municipality_code, "28079")
+        for code in ("2807", "2807A", "08019"):
+            with self.assertRaises(ValidationError), self.cr.savepoint():
+                estate.municipality_code = code
+        abroad = self.env["l10n.es.aeat.real_estate"].create(
+            {
+                **self._base_vals("Abroad"),
+                "country_id": self.env.ref("base.fr").id,
+                "zip": "75001",
+                "municipality_code": "751",
+            }
+        )
+        self.assertEqual(abroad.municipality_code, "751")
+
+    def test_aeat_location(self):
+        """The models 180 and 347 give the locality only when it is not the
+        municipality, and the province as the numeric code of the INE."""
+        estate = self.env["l10n.es.aeat.real_estate"].create(
+            {
+                **self._base_vals(),
+                "state_id": self.env.ref("base.state_es_m").id,
+                "municipality_code": "28079",
+            }
+        )
+        self.assertEqual(
+            estate._get_aeat_location(),
+            {
+                "locality": "",
+                "municipality": "Madrid",
+                "municipality_code": "28079",
+                "province_code": "28",
+                "zip": "28001",
+            },
+        )
+        estate.write({"city": "Aravaca", "zip": "28023", "municipality": "Madrid"})
+        location = estate._get_aeat_location()
+        self.assertEqual(location["locality"], "Aravaca")
+        self.assertEqual(location["municipality"], "Madrid")
+        estate.municipality_code = False
+        self.assertEqual(estate._get_aeat_location()["province_code"], "28")
+        estate.country_id = self.env.ref("base.fr")
+        self.assertEqual(estate._get_aeat_location()["province_code"], "")
+
+    def test_sii_347_situation(self):
+        """The SII and the model 347 join the Basque Country and Navarre, give 3
+        without reference and 4 abroad."""
+        Estate = self.env["l10n.es.aeat.real_estate"]
+        foral_reference = "201001000123400001"
+        cases = (
+            ("base.state_es_m", self.references[1], "1"),
+            ("base.state_es_bi", foral_reference, "2"),
+            ("base.state_es_na", foral_reference, "2"),
+            ("base.state_es_m", False, "3"),
+        )
+        for state_xmlid, reference, situation in cases:
+            estate = Estate.create(
+                {
+                    **self._base_vals(state_xmlid),
+                    "state_id": self.env.ref(state_xmlid).id,
+                    "reference": reference,
+                }
+            )
+            self.assertEqual(estate._get_sii_347_situation(), situation, state_xmlid)
+        abroad = Estate.create(
+            {
+                **self._base_vals("Abroad"),
+                "country_id": self.env.ref("base.fr").id,
+                "reference": "FR-75056-000AB-0123",
+            }
+        )
+        self.assertEqual(abroad._get_sii_347_situation(), "4")
+        # A situation of the model 180 set by hand is kept
+        estate.real_estate_situation = "3"
+        self.assertEqual(estate._get_sii_347_situation(), "2")
