@@ -8,6 +8,7 @@ import json
 import logging
 
 from deepdiff import DeepDiff
+from deepdiff.helper import notpresent
 from zeep.helpers import serialize_object
 
 from odoo import Command, fields, models
@@ -68,38 +69,54 @@ class SiiMixin(models.AbstractModel):
         sii_values = json.loads(json.dumps(serialize_object(sii_values)))
         dp = self.env["decimal.precision"].precision_get("Account")
         res = []
-        diff = DeepDiff(odoo_values, sii_values)
-        differences = diff.get("type_changes", {})
-        differences.update(diff.get("values_changed", {}))
-        for label, value in list(differences.items()):
-            sii_value = value["new_value"]
-            odoo_value = value["old_value"]
-            label = label.split("['")[-1].replace("']", "")
-            if sii_value is not None:
+        diff = DeepDiff(odoo_values, sii_values, view="tree")
+        # A key that the AEAT doesn't return counts as an empty value, which isn't
+        # compared, but an item of more or less in a list (e.g. a tax line) does
+        levels = [
+            level
+            for report_type in (
+                "type_changes",
+                "values_changed",
+                "dictionary_item_added",
+                "iterable_item_added",
+                "iterable_item_removed",
+            )
+            for level in diff.get(report_type, [])
+        ]
+        for level in levels:
+            odoo_value = "" if level.t1 is notpresent else level.t1
+            sii_value = "" if level.t2 is notpresent else level.t2
+            if sii_value is None:
+                continue
+            label = level.path().split("['")[-1].replace("']", "")
+            different = sii_value != odoo_value
+            # We made an explicit case for TipoImpositivo because we get
+            # always 2 numbers as strings, one with decimal point separator
+            # and another without
+            if label == "TipoImpositivo" and odoo_value != "":
+                odoo_value = float(odoo_value)
+            if isinstance(odoo_value, float | int) and sii_value != "":
+                sii_value = float(sii_value)
+                different = (
+                    float_compare(odoo_value, sii_value, precision_digits=dp) != 0
+                )
+            elif isinstance(odoo_value, str) and isinstance(sii_value, str):
+                sii_value = sii_value.strip()
+                odoo_value = odoo_value.strip()
                 different = sii_value != odoo_value
-                # We made an explicit case for TipoImpositivo because we get
-                # always 2 numbers as strings, one with decimal point separator
-                # and another without
-                if label == "TipoImpositivo":
-                    odoo_value = float(odoo_value)
-                if isinstance(odoo_value, float | int):
-                    sii_value = float(sii_value)
-                    different = (
-                        float_compare(odoo_value, sii_value, precision_digits=dp) != 0
-                    )
-                elif isinstance(odoo_value, str):
-                    sii_value = sii_value.strip()
-                    odoo_value = odoo_value.strip()
-                    different = sii_value != odoo_value
-                if different:
-                    res.append(
-                        {
-                            "sii_field": label,
-                            "sii_return_field_value": sii_value,
-                            "sii_sent_field_value": odoo_value,
-                        }
-                    )
+            if different:
+                res.append(
+                    {
+                        "sii_field": label,
+                        "sii_return_field_value": self._get_diff_text(sii_value),
+                        "sii_sent_field_value": self._get_diff_text(odoo_value),
+                    }
+                )
         return res
+
+    def _get_diff_text(self, value):
+        """A whole line of more or less is shown as JSON."""
+        return json.dumps(value) if isinstance(value, dict | list) else value
 
     def _get_diffs_values(self, sii_values):
         self.ensure_one()

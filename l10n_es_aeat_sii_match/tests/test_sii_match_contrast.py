@@ -1,6 +1,7 @@
 # Copyright 2026 Tecnativa - Carlos Dauden
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 import copy
+import json
 from unittest.mock import patch
 
 from odoo import Command
@@ -264,3 +265,34 @@ class TestSiiMatchContrast(TestL10nEsAeatSiiBase):
         self.assertEqual(report.number_records, 1)
         self.assertEqual(report.number_records_sii, 1)
         self.assertFalse(other_invoice.sii_contrast_state)
+
+    def test_contrast_extra_tax_line(self):
+        invoice = self._create_invoice("out_invoice")
+        invoice.invoice_line_ids.tax_ids = self.tax_21
+        invoice.action_post()
+        service = FakeSiiMatchService()
+        self._send(invoice, service)
+        tax_lines = self._find_key(service.registered[0], "DetalleIVA")
+        extra_line = dict(tax_lines[0], TipoImpositivo=10.0)
+        tax_lines.append(extra_line)
+        self._contrast(invoice, service)
+        self.assertEqual(invoice.sii_contrast_state, "partially")
+        difference = invoice.sii_match_difference_ids
+        self.assertEqual(difference.sii_field, "DetalleIVA[1]")
+        self.assertEqual(
+            json.loads(difference.sii_return_field_value)["TipoImpositivo"], 10.0
+        )
+        self.assertFalse(difference.sii_sent_field_value)
+
+    def _find_key(self, values, key):
+        """Value of the first occurrence of a key in a nested SII dict."""
+        if isinstance(values, dict):
+            if key in values:
+                return values[key]
+            values = list(values.values())
+        if isinstance(values, list):
+            for value in values:
+                found = self._find_key(value, key)
+                if found is not None:
+                    return found
+        return None
