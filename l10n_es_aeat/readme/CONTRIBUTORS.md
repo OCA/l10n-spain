@@ -1,11 +1,13 @@
 - Pexego (<http://www.pexego.es>)
 - Ignacio Ibeas, Acysos (<http://www.acysos.com>)
-- Pedro M. Baeza \<<pedro.baeza@tecnativa.com>\>
+- [Tecnativa](https://www.tecnativa.com):
+  - Pedro M. Baeza
+  - Antonio Espinosa
+  - Carlos Dauden
 - Santi Argüeso \<<santi@comunitea.com>\>
 - cubells \<<info@obertix.net>\>
 - AvanzOSC (<http://www.avanzosc.es>)
 - Ainara Galdona
-- Antonio Espinosa \<<antonio.espinosa@tecnativa.com>\>
 - Juan Vicente Pascual \<<jvpascual@puntsistemes.es>\>
 - Abraham Anes \<<abraham@studio73.es>\>
 - Diagram Software S.L.
