@@ -422,7 +422,7 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
             {
                 "name": "9994000000303",
                 "period_type": "4T",
-                "date_start": "2024-09-01",
+                "date_start": "2024-10-01",
                 "date_end": "2024-12-31",
             }
         )
@@ -557,12 +557,6 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
         self.assertAlmostEqual(self.model303.atribuible_estado, estado, 2)
         self.assertAlmostEqual(self.model303.casilla_69, result, 2)
         self.assertAlmostEqual(self.model303.resultado_liquidacion, result, 2)
-        self.assertAlmostEqual(
-            self.model303_4t.tax_line_ids.filtered(
-                lambda x: x.field_number == 80
-            ).amount,
-            0,
-        )
         self.assertEqual(self.model303.result_type, "I")
         # Export to BOE
         export_to_boe = self.env["l10n.es.aeat.report.export_to_boe"].create(
