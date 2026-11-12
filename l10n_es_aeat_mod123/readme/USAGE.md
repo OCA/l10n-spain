@@ -7,10 +7,8 @@ Para introducir datos válidos para el modelo:
     dividendos con el impuesto "Retenciones 19% (dividendos)".
 3.  Validarla.
 
-El modelo 123 suma también las retenciones "Retenciones IRPF 24%
-(Rendimientos del capital)" y "Retenciones IRPF 19% Consejeros y
-administradores (Compra consejero de sociedad)". El modelo 111 de OCA
-no las incluye.
+El modelo 123 suma también la retención "Retenciones IRPF 24%
+(Rendimientos del capital)". El modelo 111 de OCA no la incluye.
 
 La retención del 24 % sobre rendimientos del capital es la de la cesión
 del derecho de explotación de la imagen fuera de una actividad
@@ -19,9 +17,10 @@ Odoo core etiqueta este impuesto para su propio informe del modelo 111
 (casillas [08] y [09]): quien presente el modelo 111 con el informe de
 Odoo core debe dejarlo fuera de ese modelo.
 
-Odoo core etiqueta también la retención de consejeros y administradores
-(compra consejero de sociedad) para su informe del modelo 111 (casillas
-[02] y [03]).
+La retención "Retenciones IRPF 19% Consejeros y administradores (Compra
+consejero de sociedad)" no se incluye en el modelo 123: es un rendimiento
+del trabajo (artículo 101.2 de la Ley del IRPF), que se declara en el
+modelo 111 (casillas [01] a [03]) y en el resumen anual 190 (clave E).
 
 Las facturas rectificativas de proveedor con retenciones del modelo 123 restan su
 base y su retención en el periodo en que se contabilizan, como en el

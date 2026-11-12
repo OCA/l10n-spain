@@ -182,7 +182,9 @@ class TestL10nEsAeatMod123(TestL10nEsAeatModBase):
 
     def test_model_123_2024(self):
         # Dividends and the other incomes of capital of the first supplier, and
-        # interests of a second supplier, so that each box gets its own amount
+        # interests of a second supplier, so that each box gets its own amount.
+        # The withholding of a company director is work income (model 111): it
+        # is not in this model.
         self._purchase_invoice(
             "2024-01-10",
             self.supplier,
@@ -214,31 +216,31 @@ class TestL10nEsAeatMod123(TestL10nEsAeatModBase):
         )
         self._check_tax_lines(
             model123,
-            {"4": 1000 + 500, "5": 2000 + 100, "7": 190 + 120, "8": 380 + 19},
+            {"4": 1000 + 500, "5": 100, "7": 190 + 120, "8": 19},
         )
         _logger.debug("Checking results")
         self.assertEqual(model123.casilla_01_2024, 1)
-        self.assertEqual(model123.casilla_02_2024, 2)
-        self.assertEqual(model123.casilla_03_2024, 3)
+        self.assertEqual(model123.casilla_02_2024, 1)
+        self.assertEqual(model123.casilla_03_2024, 2)
         self.assertEqual(model123.casilla_04_2024, 1500.0)
-        self.assertEqual(model123.casilla_05_2024, 2100.0)
-        self.assertEqual(model123.casilla_06_2024, 3600.0)
+        self.assertEqual(model123.casilla_05_2024, 100.0)
+        self.assertEqual(model123.casilla_06_2024, 1600.0)
         self.assertEqual(model123.casilla_07_2024, 310.0)
-        self.assertEqual(model123.casilla_08_2024, 399.0)
-        self.assertEqual(model123.casilla_09_2024, 709.0)
+        self.assertEqual(model123.casilla_08_2024, 19.0)
+        self.assertEqual(model123.casilla_09_2024, 329.0)
         self.assertEqual(model123.casilla_10_2024, 0)
-        self.assertEqual(model123.casilla_12_2024, 709.0)
-        self.assertEqual(model123.casilla_14_2024, 709.0)
-        self.assertEqual(model123.amount_result, 709.0)
+        self.assertEqual(model123.casilla_12_2024, 329.0)
+        self.assertEqual(model123.casilla_14_2024, 329.0)
+        self.assertEqual(model123.amount_result, 329.0)
         # Boxes the user fills in by hand once calculated
         with Form(model123, view=self.form_view) as report_form:
             report_form.casilla_11_2024 = 180
-        self.assertEqual(model123.casilla_12_2024, 889.0)
-        self.assertEqual(model123.amount_result, 889.0)
+        self.assertEqual(model123.casilla_12_2024, 509.0)
+        self.assertEqual(model123.amount_result, 509.0)
         with Form(model123, view=self.form_view) as report_form:
             report_form.casilla_13_2024 = 240
-        self.assertEqual(model123.casilla_14_2024, 649.0)
-        self.assertEqual(model123.amount_result, 649.0)
+        self.assertEqual(model123.casilla_14_2024, 269.0)
+        self.assertEqual(model123.amount_result, 269.0)
         # Export to BOE, compared with the AEAT record design of model 123
         # (DR123e24.xls, sede.agenciatributaria.gob.es, sheets "DR 12300" and
         # "DR 12301")
@@ -275,19 +277,19 @@ class TestL10nEsAeatMod123(TestL10nEsAeatModBase):
                 "2024",  # 103-106 Ejercicio
                 "1T",  # 107-108 Periodo
                 "000000000000001",  # 109-123 [01]
-                "000000000000002",  # 124-138 [02]
-                "000000000000003",  # 139-153 [03]
+                "000000000000001",  # 124-138 [02]
+                "000000000000002",  # 139-153 [03]
                 "00000000000150000",  # 154-170 [04]
-                "00000000000210000",  # 171-187 [05]
-                "00000000000360000",  # 188-204 [06]
+                "00000000000010000",  # 171-187 [05]
+                "00000000000160000",  # 188-204 [06]
                 "00000000000031000",  # 205-221 [07]
-                "00000000000039900",  # 222-238 [08]
-                "00000000000070900",  # 239-255 [09]
+                "00000000000001900",  # 222-238 [08]
+                "00000000000032900",  # 239-255 [09]
                 "00000000000000000",  # 256-272 [10]
                 "00000000000018000",  # 273-289 [11]
-                "00000000000088900",  # 290-306 [12]
+                "00000000000050900",  # 290-306 [12]
                 "00000000000024000",  # 307-323 [13]
-                "00000000000064900",  # 324-340 [14]
+                "00000000000026900",  # 324-340 [14]
                 "X",  # 341 Declaración complementaria
                 "1230000000001",  # 342-354 Justificante de la declaración anterior
                 "ES9121000418450200051332".ljust(34),  # 355-388 IBAN
