@@ -210,6 +210,14 @@ class L10nEsAtcMod415PartnerRecord(models.Model):
     def button_print(self):
         return self.env.ref("l10n_es_atc_mod415.415_partner").report_action(self)
 
+    def get_confirm_url(self):
+        self.ensure_one()
+        return self._notify_get_action_link("controller", controller="/mod415/accept")
+
+    def get_reject_url(self):
+        self.ensure_one()
+        return self._notify_get_action_link("controller", controller="/mod415/reject")
+
 
 class L10nEsAtcMod415RealStateRecord(models.Model):
     _inherit = "l10n.es.aeat.mod347.real_estate_record"

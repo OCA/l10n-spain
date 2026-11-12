@@ -9,8 +9,9 @@
 
 import logging
 from unittest.mock import patch
+from urllib.parse import urlsplit
 
-from odoo.tests import Form, tagged
+from odoo.tests import Form, HttpCase, tagged
 
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
     TestL10nEsAeatModBase,
@@ -19,8 +20,7 @@ from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
 _logger = logging.getLogger("atc")
 
 
-@tagged("post_install", "-at_install")
-class TestL10nEsAtcMod415(TestL10nEsAeatModBase):
+class TestL10nEsAtcMod415Base(TestL10nEsAeatModBase):
     # The chart is the one of the base: 20.0 merged the Canary templates into
     # es_common, so es_pymes already carries the IGIC taxes this declaration
     # reads. Odoo core ships them archived and activates them (archiving the
@@ -37,10 +37,8 @@ class TestL10nEsAtcMod415(TestL10nEsAeatModBase):
         return res
 
     @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
-        # Create model
-        cls.model415 = cls.env["l10n.es.atc.mod415.report"].create(
+    def _model415_create(cls):
+        return cls.env["l10n.es.atc.mod415.report"].create(
             {
                 "name": "9990000000415",
                 "company_id": cls.company.id,
@@ -54,6 +52,15 @@ class TestL10nEsAtcMod415(TestL10nEsAeatModBase):
                 "date_end": "2019-12-31",
             }
         )
+
+
+@tagged("post_install", "-at_install")
+class TestL10nEsAtcMod415(TestL10nEsAtcMod415Base):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        # Create model
+        cls.model415 = cls._model415_create()
         cls.customer_2 = cls.customer.copy(
             {"name": "Test customer 2", "vat": "ES12345678Z"}
         )
@@ -251,3 +258,33 @@ class TestL10nEsAtcMod415(TestL10nEsAeatModBase):
             )
             self.assertEqual(record.operation_key, key, partner.name)
             self.assertAlmostEqual(record.amount, amount, 2, partner.name)
+
+
+class TestL10nEsAtcMod415Answer(TestL10nEsAtcMod415Base, HttpCase):
+    taxes_purchase = {  # noqa: RUF012
+        "account_tax_template_igic_sop_7": (4000, 280),
+    }
+
+    def _open_link(self, url):
+        # The partner opens the link without logging in: the public session
+        # tells the server which database it is for
+        self.authenticate(None, None)
+        parts = urlsplit(url)
+        return self.url_open(f"{parts.path}?{parts.query}")
+
+    def test_partner_answers_the_415_data(self):
+        """The buttons of the email sent to a partner confirm or reject its
+        415 record."""
+        model415 = self._model415_create()
+        self._invoice_purchase_create("2019-02-01")
+        model415.button_calculate()
+        record = model415.partner_record_ids
+        self.assertEqual(record.partner_id, self.supplier)
+        response = self._open_link(record.get_confirm_url())
+        self.assertEqual(response.status_code, 200)
+        self.assertIn("Modelo 415", response.text)
+        record.invalidate_recordset()
+        self.assertEqual(record.state, "confirmed")
+        self._open_link(record.get_reject_url())
+        record.invalidate_recordset()
+        self.assertEqual(record.state, "exception")
