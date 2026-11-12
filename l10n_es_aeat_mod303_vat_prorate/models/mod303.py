@@ -157,7 +157,7 @@ class L10nEsAeatMod303Report(models.Model):
             map_line.field_number in {29, 31, 33, 35, 37, 39, 41, 42}
             and self.company_id.with_vat_prorate
         ):
-            res += [("vat_prorate", "=", False)]
+            res &= Domain("vat_prorate", "=", False)
         return res
 
     def _prepare_regularization_extra_move_lines(self):
