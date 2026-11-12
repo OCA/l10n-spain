@@ -329,3 +329,19 @@ class TestVatProrate(AccountTestInvoicingCommon):
             set(invoice.line_ids.filtered("vat_prorate").mapped("account_id").ids),
             {test_account.id},
         )
+
+    def _tax(self, name):
+        return self.env.ref(
+            f"account.{self.env.company.id}_account_tax_template_{name}"
+        )
+
+    def test_prorate_mark_kept_on_tax_edition(self):
+        """The mark set by the user in a tax survives the edition of its accounts."""
+        tax = self._tax("p_iva21_bc")
+        self.assertTrue(tax.with_vat_prorate)
+        tax.with_vat_prorate = False
+        tax_line = tax.invoice_repartition_line_ids.filtered(
+            lambda line: line.repartition_type == "tax"
+        )
+        tax_line.account_id = self.copy_account(tax_line.account_id)
+        self.assertFalse(tax.with_vat_prorate)

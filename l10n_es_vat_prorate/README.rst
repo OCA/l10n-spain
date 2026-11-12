@@ -53,7 +53,10 @@ Los impuestos de las facturas de proveedor se dividirán según la
 prorrata activa. Se prorratean los impuestos de compra de IVA deducible
 según el tipo de impuesto que Odoo core asigna a cada impuesto español
 (sujeto, sujeto ISP, agricultura y DUA). Se puede cambiar en cada
-impuesto con el campo "Con prorrata de IVA".
+impuesto con el campo "Con prorrata de IVA". La marca se vuelve a
+calcular si se cambia el tipo de impuesto, su uso o si la compañía
+activa o desactiva la prorrata, pero no al editar otros datos del
+impuesto.
 
 Para configurar la prorrata especial:
 

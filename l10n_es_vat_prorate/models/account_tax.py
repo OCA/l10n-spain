@@ -18,7 +18,7 @@ class AccountTax(models.Model):
     )
     prorate_account_ids = fields.Many2many(
         "account.account",
-        compute="_compute_with_vat_prorate",
+        compute="_compute_prorate_account_ids",
         store=True,
         readonly=True,
         help="Accounts to apply the recompute",
@@ -42,26 +42,29 @@ class AccountTax(models.Model):
             and self.l10n_es_type in self._get_vat_prorate_tax_types()
         )
 
+    @api.depends("company_id.with_vat_prorate", "type_tax_use", "l10n_es_type")
+    def _compute_with_vat_prorate(self):
+        """Only what defines the kind of tax recomputes the mark, so that the one
+        set by the user in a tax survives the edition of its other fields.
+        """
+        for tax in self:
+            tax.with_vat_prorate = (
+                tax.company_with_vat_prorate and tax._is_vat_prorate_tax()
+            )
+
     @api.depends(
-        "company_id.with_vat_prorate",
-        "type_tax_use",
-        "amount_type",
-        "amount",
-        "l10n_es_type",
+        "with_vat_prorate",
         "invoice_repartition_line_ids.factor_percent",
         "invoice_repartition_line_ids.account_id",
     )
-    def _compute_with_vat_prorate(self):
+    def _compute_prorate_account_ids(self):
         for tax in self:
-            with_vat_prorate = (
-                tax.company_with_vat_prorate and tax._is_vat_prorate_tax()
-            )
             tax_lines = tax.invoice_repartition_line_ids.filtered(
                 lambda line: line.repartition_type == "tax"
             )
             # A self-assessed tax (reverse charge, intra-community) has a negative
             # line for the output VAT: only the deductible side is prorated
-            if with_vat_prorate and tax_lines.filtered(
+            if tax.with_vat_prorate and tax_lines.filtered(
                 lambda line: line.factor_percent < 0
             ):
                 tax.prorate_account_ids = tax_lines.filtered(
@@ -69,4 +72,3 @@ class AccountTax(models.Model):
                 ).account_id
             else:
                 tax.prorate_account_ids = False
-            tax.with_vat_prorate = with_vat_prorate
