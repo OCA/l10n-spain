@@ -109,3 +109,15 @@ class TestL10nEsVatBookXlsx(TestL10nEsAeatVatBookBase):
         self.assertEqual(issued[f"AG{row21}"].value, 5.2)
         self.assertEqual(issued[f"AH{row21}"].value, 52)
         self.assertIsNone(issued[f"Z{row21}"].value)
+
+    def test_xlsx_not_deductible_by_tax_type(self):
+        """A tax typed as not deductible has no deductible quota in the book."""
+        tax = self._get_taxes("P_IVA21_BC").copy()
+        tax.l10n_es_type = "no_deducible"
+        self._purchase_create("2017-01-20", tax, 100)
+        vat_book = self._create_vat_book()
+        vat_book.button_calculate()
+        _issued, received = self._export_xlsx(vat_book)
+        row = self._rows(received, "AA")[100]
+        self.assertEqual(received[f"AC{row}"].value, 21)
+        self.assertIsNone(received[f"AD{row}"].value)

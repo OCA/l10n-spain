@@ -32,6 +32,14 @@ class VatNumberXlsx(models.AbstractModel):
             self._get_undeductible_tax_ids(book.company_id.id)
         )
 
+    def _is_undeductible_tax(self, tax, book):
+        """Not deductible VAT: the map of the book, or the Odoo core tax type for
+        the taxes that are not in it."""
+        return (
+            tax in self._get_undeductible_taxes(book)
+            or tax.l10n_es_type == "no_deducible"
+        )
+
     def _get_vat_book_map_lines(self, book_type):
         return self.env["aeat.vat.book.map.line"].search(
             [
@@ -420,7 +428,7 @@ class VatNumberXlsx(models.AbstractModel):
         sheet.write("AA" + str(row), tax_line.base_amount)
         sheet.write("AB" + str(row), tax_line.tax_id.amount)
         sheet.write("AC" + str(row), tax_line.tax_amount)
-        if tax_line.tax_id not in self._get_undeductible_taxes(line.vat_book_id):
+        if not self._is_undeductible_tax(tax_line.tax_id, line.vat_book_id):
             sheet.write("AD" + str(row), tax_line.deductible_amount)
         if tax_line.special_tax_id:
             map_vals = line.vat_book_id.get_special_taxes_dic()[
