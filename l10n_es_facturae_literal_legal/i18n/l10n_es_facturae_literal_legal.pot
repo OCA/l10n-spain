@@ -1,0 +1,121 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_es_facturae_literal_legal
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_es_facturae_literal_legal
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae_literal_legal.view_move_form_inherit_facturae_special_payment
+msgid "Characters Used"
+msgstr ""
+
+#. module: l10n_es_facturae_literal_legal
+#: model:ir.model.fields,field_description:l10n_es_facturae_literal_legal.field_l10n_es_facturae_literal_legal__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: l10n_es_facturae_literal_legal
+#: model:ir.model.fields,field_description:l10n_es_facturae_literal_legal.field_l10n_es_facturae_literal_legal__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: l10n_es_facturae_literal_legal
+#: model:ir.model.fields,field_description:l10n_es_facturae_literal_legal.field_l10n_es_facturae_literal_legal__description
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae_literal_legal.view_move_form_inherit_facturae_special_payment
+msgid "Description"
+msgstr ""
+
+#. module: l10n_es_facturae_literal_legal
+#: model:ir.model.fields,field_description:l10n_es_facturae_literal_legal.field_l10n_es_facturae_literal_legal__description_length
+msgid "Description Length"
+msgstr ""
+
+#. module: l10n_es_facturae_literal_legal
+#: model:ir.model.fields,field_description:l10n_es_facturae_literal_legal.field_l10n_es_facturae_literal_legal__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: l10n_es_facturae_literal_legal
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae_literal_legal.view_move_form_inherit_facturae_special_payment
+msgid "Enter the legal literal..."
+msgstr ""
+
+#. module: l10n_es_facturae_literal_legal
+#: model:ir.model,name:l10n_es_facturae_literal_legal.model_l10n_es_facturae_literal_legal
+msgid "Facturae Literal Legal"
+msgstr ""
+
+#. module: l10n_es_facturae_literal_legal
+#: model:ir.model.fields,field_description:l10n_es_facturae_literal_legal.field_l10n_es_facturae_literal_legal__id
+msgid "ID"
+msgstr ""
+
+#. module: l10n_es_facturae_literal_legal
+#: model:ir.model,name:l10n_es_facturae_literal_legal.model_account_move
+msgid "Journal Entry"
+msgstr ""
+
+#. module: l10n_es_facturae_literal_legal
+#: model:ir.model.fields,field_description:l10n_es_facturae_literal_legal.field_l10n_es_facturae_literal_legal__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: l10n_es_facturae_literal_legal
+#: model:ir.model.fields,field_description:l10n_es_facturae_literal_legal.field_l10n_es_facturae_literal_legal__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: l10n_es_facturae_literal_legal
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae_literal_legal.view_move_form_inherit_facturae_special_payment
+msgid "Legal Literal"
+msgstr ""
+
+#. module: l10n_es_facturae_literal_legal
+#: model:ir.model.fields,field_description:l10n_es_facturae_literal_legal.field_account_bank_statement_line__literal_legal_ids
+#: model:ir.model.fields,field_description:l10n_es_facturae_literal_legal.field_account_move__literal_legal_ids
+#: model:ir.model.fields,field_description:l10n_es_facturae_literal_legal.field_account_payment__literal_legal_ids
+msgid "Literal Legal"
+msgstr ""
+
+#. module: l10n_es_facturae_literal_legal
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae_literal_legal.view_move_form_inherit_facturae_special_payment
+msgid "Literal Legals"
+msgstr ""
+
+#. module: l10n_es_facturae_literal_legal
+#. odoo-python
+#: code:addons/l10n_es_facturae_literal_legal/models/account_move.py:0
+#, python-format
+msgid "Literal legal description cannot be longer than 250 characters"
+msgstr ""
+
+#. module: l10n_es_facturae_literal_legal
+#: model:ir.model.fields,field_description:l10n_es_facturae_literal_legal.field_l10n_es_facturae_literal_legal__move_id
+msgid "Move"
+msgstr ""
+
+#. module: l10n_es_facturae_literal_legal
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae_literal_legal.view_move_form_inherit_facturae_special_payment
+msgid "Notes"
+msgstr ""
+
+#. module: l10n_es_facturae_literal_legal
+#: model:ir.model.fields,field_description:l10n_es_facturae_literal_legal.field_l10n_es_facturae_literal_legal__sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: l10n_es_facturae_literal_legal
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae_literal_legal.view_move_form_inherit_facturae_special_payment
+msgid ""
+"⚠ The description cannot be longer than <b>250 characters</b> per legal reference.\n"
+"                            If you enter a longer text, it will be <b>automatically split</b> into multiple legal references of 250 characters each."
+msgstr ""
