@@ -679,6 +679,37 @@ class TestL10nEsAeatMod390Map2024(TestL10nEsAeatMod390Base):
         self.assertAlmostEqual(model390.casilla_34, 0, 2)
         self.assertAlmostEqual(model390.casilla_47, 0, 2)
 
+    def test_model_390_2025_export_temporary_rates(self):
+        """The 2025 export writes the boxes of the temporary rates that the map
+        computes, so the file adds up to its totals."""
+        self.patch(type(self), "taxes_purchase", {"P_IVA5_IC_BI": (2000, 100)})
+        self._invoice_purchase_create("2025-03-01")
+        model390 = self._create_390(2025)
+        model390.button_calculate()
+        self.assertEqual(
+            model390.export_config_id,
+            self.env.ref("l10n_es_aeat_mod390.aeat_mod390_2025_main_export_config"),
+        )
+        export_to_boe = self.env["l10n.es.aeat.report.export_to_boe"].create(
+            {"name": "test_export_to_boe.txt"}
+        )
+        expected = {
+            # box: (amount, export line)
+            718: (2000, "sub02_export_line_70"),
+            719: (100, "sub02_export_line_71"),
+            738: (2000, "sub04_export_line_10"),
+            739: (100, "sub04_export_line_11"),
+        }
+        for box, (amount, export_line) in expected.items():
+            self.assertAlmostEqual(self._box(model390, box), amount, 2, box)
+            line = self.env.ref(f"l10n_es_aeat_mod390.aeat_mod390_2025_{export_line}")
+            self.assertTrue(
+                export_to_boe._export_line_process(model390, line).endswith(
+                    f"{round(amount * 100):016d}".encode()
+                ),
+                box,
+            )
+
 
 class TestL10nEsAeatMod390Using303(TestL10nEsAeatMod390Base):
     """Boxes [85] and [662] from the 303 reports of the year."""
