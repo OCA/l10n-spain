@@ -21,9 +21,9 @@ from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
 
 
 class CommonTest(TestL10nEsAeatCertificateBase, TestL10nEsAeatModBase):
-    # The accounting manager who also maintains the customers; the company
-    # settings are changed as an administrator (sudo)
-    _test_user_groups = TestL10nEsAeatModBase._test_user_groups
+    # Activating the certificate writes the company: the test user needs the
+    # settings group, as in the certificate tests
+    _test_user_groups = TestL10nEsAeatCertificateBase._test_user_groups
 
     @classmethod
     def setUpClass(cls):
