@@ -364,6 +364,12 @@ class TestL10nEsAtcmod417Base(TestL10nEsAeatModBase):
                 + 370  # account_tax_template_igic_ISP95,
                 + 380  # account_tax_template_igic_ISP15,
                 + 390  # account_tax_template_igic_ISP20,
+                # account_tax_template_igic_sop_i_3 to igic_sop_i_20
+                + (220 + 230 + 240 + 250 + 260)
+                # account_tax_template_igic_sop_i_3_inv to igic_sop_i_20_inv
+                + (280 + 290 + 310 + 320 + 330)
+                # account_tax_template_igic_p_re0 to igic_p_re20
+                + (410 + 420 + 430 + 440 + 450 + 460)
             )
         ),
         # Rectificación de deducciones - Cuota
@@ -400,6 +406,12 @@ class TestL10nEsAtcmod417Base(TestL10nEsAeatModBase):
                 + 35.15  # account_tax_template_igic_ISP95,
                 + 57  # account_tax_template_igic_ISP15,
                 + 78  # account_tax_template_igic_ISP20,
+                # account_tax_template_igic_sop_i_3 to igic_sop_i_20
+                + (6.6 + 16.1 + 22.8 + 37.5 + 52)
+                # account_tax_template_igic_sop_i_3_inv to igic_sop_i_20_inv
+                + (8.4 + 20.3 + 29.45 + 48 + 66)
+                # account_tax_template_igic_p_re0 to igic_p_re20
+                + (0 + 1.26 + 3.01 + 4.18 + 6.75 + 9.2)
             )
         ),
     }
@@ -696,15 +708,15 @@ class TestL10nEsAeatmod417(TestL10nEsAtcmod417Base):
         self.assertEqual(igi_dev_node[0].attrib["TOT"], "291730")
         igi_ded_node = dec_node.xpath("//IGI_DED")
         self.assertEqual(len(igi_ded_node), 1)
-        self.assertEqual(igi_ded_node[0].attrib["TOT"], "213345")
+        self.assertEqual(igi_ded_node[0].attrib["TOT"], "180190")
         liq_node = dec_node.xpath("//LIQ")
         self.assertEqual(len(liq_node), 1)
-        self.assertEqual(liq_node[0].attrib["DIF"], "78385")
-        self.assertEqual(liq_node[0].attrib["RLI"], "78385")
+        self.assertEqual(liq_node[0].attrib["DIF"], "111540")
+        self.assertEqual(liq_node[0].attrib["RLI"], "111540")
         res_node = dec_node.xpath("//RES")
         self.assertEqual(len(res_node), 1)
         self.assertEqual(res_node[0].attrib["TIP"], "I")
-        self.assertEqual(res_node[0].attrib["IMP"], "78385")
+        self.assertEqual(res_node[0].attrib["IMP"], "111540")
         self.assertEqual(res_node[0].attrib["FPA"], "5")
         self.assertFalse(res_node[0].attrib.get("IBAN"))
 
@@ -735,3 +747,85 @@ class TestL10nEsAeatmod417(TestL10nEsAtcmod417Base):
             self.model417.action_generar_mod417()
         self.assertEqual(runs[0]["S"], "B")
         self.assertEqual(self._generated_files().name, "modelo417.pdf")
+
+
+@tagged("post_install", "-at_install")
+class TestL10nEsAtcMod417CoreTaxes(TestL10nEsAtcmod417Base):
+    """IGIC taxes of the Odoo core chart that the model did not include before."""
+
+    taxes_sale: ClassVar[dict] = {}
+    taxes_purchase: ClassVar[dict] = {
+        "l10n_es.account_tax_template_igic_sop_3_s": (1000, 30),
+        "l10n_es.account_tax_template_igic_ISP5": (1100, 55),
+        "l10n_es.account_tax_template_igic_p_re05": (1200, 6),
+        "l10n_es.account_tax_template_igic_sop_i_5": (1300, 65),
+        "l10n_es.account_tax_template_igic_sop_i_5_inv": (1400, 70),
+    }
+
+    def test_model_417_core_taxes(self):
+        purchase = self._invoice_purchase_create("2026-01-10")
+        self._invoice_refund(purchase, "2026-01-20")
+        self.model417.button_calculate()
+        expected = {
+            "19": 1100,  # reverse charge (output IGIC)
+            "20": 55,
+            "21": -1100,  # its refund, in the modification boxes
+            "22": -55,
+            "26": 1000 + 1100 + 1200,  # domestic goods and services
+            "27": 30 + 55 + 6,
+            "30": 1300,  # imports of goods
+            "31": 65,
+            "32": 1400,  # imports of investment goods
+            "33": 70,
+            # The refund rectifies the deductions of all of them
+            "34": -(1000 + 1100 + 1200 + 1300 + 1400),
+            "35": -(30 + 55 + 6 + 65 + 70),
+        }
+        for field, amount in expected.items():
+            lines = self.model417.tax_line_ids.filtered(
+                lambda x, field=field: x.field_number == int(field)
+            )
+            self.assertAlmostEqual(sum(lines.mapped("amount")), amount, 2, field)
+
+
+@tagged("post_install", "-at_install")
+class TestL10nEsAtcMod417Map(TestL10nEsAtcmod417Base):
+    """The map follows the tags of the model 420 boxes that Odoo core puts on
+    the IGIC taxes (the 417 has the same boxes), so a tax that Odoo core adds or
+    moves is caught here."""
+
+    # Odoo core takes the refunds of reverse charge purchases to the boxes of
+    # the invoices (19, 20) with the opposite sign; the map of this module takes
+    # them to the modification boxes (21, 22) instead
+    refund_boxes = {19: 21, 20: 22}  # noqa: RUF012
+
+    def test_map_follows_the_core_tags(self):
+        self.model417.button_calculate()
+        map_lines = self.model417.tax_line_ids.map_line_id
+        taxes = (
+            self.env["account.tax"]
+            .with_context(active_test=False)
+            .search([("company_id", "=", self.company.id)])
+        )
+        missing = []
+        for tax in taxes:
+            for document, repartition in (
+                ("regular", tax.invoice_repartition_line_ids),
+                ("refund", tax.refund_repartition_line_ids),
+            ):
+                for tag in repartition.tag_ids:
+                    box = re.search(r"mod420\[(\d+)\]", tag.name)
+                    if not box:
+                        continue
+                    box = int(box[1])
+                    if document == "refund":
+                        box = self.refund_boxes.get(box, box)
+                    if not map_lines.filtered(
+                        lambda line, box=box, document=document, tax=tax: (
+                            line.field_number == box
+                            and line.move_type in (document, "all")
+                            and tax in line.get_taxes_for_company(self.company)
+                        )
+                    ):
+                        missing.append(f"{tax.name} {document} [{box}]")
+        self.assertFalse(missing)
