@@ -8,6 +8,37 @@ from odoo.addons.l10n_es_reav.models.account_chart_template import REAV_KEPT_TAX
 
 _logger = logging.getLogger(__name__)
 
+# Taxes of the Odoo core chart that the REAV taxes replace since 20.0.1.0.0 and
+# not in 18.0, by the xmlid of the REAV tax
+REAV_NEW_ORIGINAL_TAXES = {
+    "account_tax_template_p_reav0": (
+        "account_tax_template_p_iva0_s_bc",
+        "account_tax_template_p_iva0_s_sc",
+        "account_tax_template_p_iva2_bc",
+        "account_tax_template_p_iva2_sc",
+        "account_tax_template_p_iva5_bc",
+        "account_tax_template_p_iva5_sc",
+        "account_tax_template_p_iva7-5_bc",
+        "account_tax_template_p_iva7-5_sc",
+        "account_tax_template_p_iva0_nd",
+        "account_tax_template_p_iva10_nd",
+        "account_tax_template_p_iva4_nd",
+        "account_tax_template_p_iva2_nd",
+        "account_tax_template_p_iva5_nd",
+        "account_tax_template_p_iva7-5_nd",
+    ),
+    "account_tax_template_s_reav0": (
+        "account_tax_template_s_iva0b",
+        "account_tax_template_s_iva0s",
+        "account_tax_template_s_iva2b",
+        "account_tax_template_s_iva2s",
+        "account_tax_template_s_iva5b",
+        "account_tax_template_s_iva5s",
+        "account_tax_template_s_iva7-5b",
+        "account_tax_template_s_iva7-5s",
+    ),
+}
+
 
 @openupgrade.migrate()
 def migrate(env, version):
@@ -44,6 +75,7 @@ def migrate(env, version):
         """,
     )
     _link_kept_taxes(env)
+    _link_new_original_taxes(env)
     _warn_products_with_reav_taxes(env)
 
 
@@ -70,6 +102,38 @@ def _link_kept_taxes(env):
         ON CONFLICT DO NOTHING
         """,
         [REAV_KEPT_TAXES],
+    )
+
+
+def _link_new_original_taxes(env):
+    """The REAV taxes replace the VAT of every rate, as the chart template does.
+    OpenUpgrade only converts the replacements of 18.0 and a chart reload only
+    adds replacements towards new taxes, so without them the REAV position
+    removes those taxes from the invoices since 19.0 (`map_tax`)."""
+    pairs = [
+        (dest, src)
+        for dest, sources in REAV_NEW_ORIGINAL_TAXES.items()
+        for src in sources
+    ]
+    openupgrade.logged_query(
+        env.cr,
+        """
+        INSERT INTO account_tax_alternatives (dest_tax_id, src_tax_id)
+        SELECT dest_tax.id, src_tax.id
+          FROM unnest(%s::varchar[], %s::varchar[]) AS pair(dest, src)
+          JOIN ir_model_data dest_imd
+            ON dest_imd.module = 'account' AND dest_imd.model = 'account.tax'
+           AND SUBSTRING(dest_imd.name FROM '^[0-9]+_(.*)$') = pair.dest
+          JOIN account_tax dest_tax ON dest_tax.id = dest_imd.res_id
+          JOIN ir_model_data src_imd
+            ON src_imd.module = 'account' AND src_imd.model = 'account.tax'
+           AND SUBSTRING(src_imd.name FROM '^([0-9]+)_')
+               = SUBSTRING(dest_imd.name FROM '^([0-9]+)_')
+           AND SUBSTRING(src_imd.name FROM '^[0-9]+_(.*)$') = pair.src
+          JOIN account_tax src_tax ON src_tax.id = src_imd.res_id
+        ON CONFLICT DO NOTHING
+        """,
+        [[dest for dest, _src in pairs], [src for _dest, src in pairs]],
     )
 
 

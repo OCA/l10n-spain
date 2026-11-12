@@ -153,7 +153,8 @@ class TestL10nEsReav(AccountTestInvoicingCommon):
         """The migration from 18.0 fills the regime code and the applicability
         of the REAV taxes without changing a value already set, makes the REAV
         purchase tax not deductible, gives the REAV position the taxes it
-        keeps, and warns about the products with REAV taxes"""
+        keeps, makes the REAV taxes replace the VAT of every rate, and warns
+        about the products with REAV taxes"""
         self.env.cr.execute(
             """UPDATE account_tax SET l10n_es_regime_code = NULL,
                l10n_es_applicability = NULL WHERE id = %s""",
@@ -171,6 +172,36 @@ class TestL10nEsReav(AccountTestInvoicingCommon):
             "account_tax_template_p_iva21_bi"
         )
         kept_tax.fiscal_position_ids -= self.fp_reav
+        # In 18.0 the REAV taxes only replaced the 0 % (purchases), 4, 10 and
+        # 21 % VAT, the migration of OpenUpgrade keeps only those
+        reav_taxes = (self.tax_s_reav | self.tax_p_reav).with_context(active_test=False)
+        original_taxes = {tax: tax.original_tax_ids for tax in reav_taxes}
+        ChartTemplate = self.env["account.chart.template"]
+        taxes_18 = self.env["account.tax"]
+        for xmlid in (
+            "s_iva4b",
+            "s_iva4s",
+            "s_iva10b",
+            "s_iva10s",
+            "s_iva21b",
+            "s_iva21s",
+            "p_iva0_bc",
+            "p_iva4_bc",
+            "p_iva4_sc",
+            "p_iva10_bc",
+            "p_iva10_sc",
+            "p_iva21_bc",
+            "p_iva21_sc",
+        ):
+            taxes_18 |= ChartTemplate.ref(f"account_tax_template_{xmlid}")
+        for tax in reav_taxes:
+            # The copies of the default taxes made by the test common keep
+            # their replacements, they are not from the chart
+            chart_taxes = tax.original_tax_ids.filtered(
+                lambda original: original.get_external_id()[original.id]
+            )
+            tax.original_tax_ids -= chart_taxes - taxes_18
+        product_nd = self._product_with_taxes("s_iva0b", "p_iva10_nd")
         self.env.flush_all()
         with self.assertLogs("odoo.addons.l10n_es_reav", "WARNING") as logs:
             self._run_migration()
@@ -181,3 +212,14 @@ class TestL10nEsReav(AccountTestInvoicingCommon):
         self.assertEqual(self.tax_s_reav.l10n_es_applicability, "01")
         self.assertEqual(self.tax_p_reav.l10n_es_regime_code, "01")
         self.assertEqual(self.tax_p_reav.l10n_es_type, "no_deducible")
+        reav_taxes.invalidate_recordset()
+        for tax in reav_taxes:
+            self.assertEqual(tax.original_tax_ids, original_taxes[tax])
+        invoice = self.init_invoice(
+            "out_invoice", partner=self.partner_a, products=product_nd
+        )
+        self.assertEqual(invoice.invoice_line_ids.tax_ids, self.tax_s_reav)
+        bill = self.init_invoice(
+            "in_invoice", partner=self.partner_a, products=product_nd
+        )
+        self.assertEqual(bill.invoice_line_ids.tax_ids, self.tax_p_reav)
