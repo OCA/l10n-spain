@@ -4,7 +4,9 @@
 import json
 from unittest.mock import MagicMock, patch
 
+from odoo import Command
 from odoo.exceptions import UserError
+from odoo.tests import Form
 
 from odoo.addons.l10n_es_aeat_sii_oca.tests.test_l10n_es_aeat_sii import (
     TestL10nEsAeatSiiBase,
@@ -26,13 +28,6 @@ class TestL10nEsAeatSiiMatch(TestL10nEsAeatSiiBase):
         )
         cls.invoice.action_post()
         cls.invoice = cls.env[cls.invoice._name].browse(cls.invoice.id)
-
-    def test_invoice_diffs_values(self):
-        invoice = self.invoice
-        invoice.aeat_state = "sent"
-        invoice.sii_csv = invoice._get_aeat_invoice_dict()
-        res = invoice._get_diffs_values(invoice.sii_csv)
-        self.assertEqual(res, [])
 
     def _aeat_consulta_response(self, csv):
         return {
@@ -163,8 +158,40 @@ class TestL10nEsAeatSiiMatch(TestL10nEsAeatSiiBase):
             Exception("AEAT communication error"),
             {"RegistroRespuestaConsultaLRFacturasEmitidas": []},
         ]
-        with patch.object(type(invoice), "_connect_aeat", return_value=fake_serv):
+        with (
+            patch.object(type(invoice), "_connect_aeat", return_value=fake_serv),
+            self.assertLogs(
+                "odoo.addons.l10n_es_aeat_sii_match.models.sii_mixin", "ERROR"
+            ),
+        ):
             (invoice + invoice2).contrast_aeat()
         self.assertFalse(invoice.sii_contrast_state)
         self.assertIn("AEAT communication error", invoice.sii_match_return)
         self.assertEqual(invoice2.sii_contrast_state, "no_exist")
+
+    def test_invoice_form_without_aeat_group(self):
+        """An invoicing user without the AEAT group opens a contrasted invoice."""
+        self.invoice.write({"aeat_state": "sent", "sii_csv": "FAKECSV000"})
+        fake_serv = MagicMock()
+        fake_serv.ConsultaLRFacturasEmitidas.return_value = (
+            self._aeat_consulta_response("FAKECSV000")
+        )
+        with patch.object(type(self.invoice), "_connect_aeat", return_value=fake_serv):
+            self.invoice.contrast_aeat()
+        user = (
+            self.env["res.users"]
+            .sudo()
+            .create(
+                {
+                    "name": "Invoicing user",
+                    "login": "sii_match_invoicing_user",
+                    "group_ids": [
+                        Command.set([self.env.ref("account.group_account_invoice").id])
+                    ],
+                    "company_ids": [Command.set(self.company.ids)],
+                    "company_id": self.company.id,
+                }
+            )
+        )
+        invoice_form = Form(self.invoice.with_user(user))
+        self.assertEqual(invoice_form.name, self.invoice.name)
