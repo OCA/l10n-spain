@@ -39,24 +39,47 @@ class AccountTax(models.Model):
         if operator != "in":
             return NotImplemented
         tags = self._l10n_es_aeat_349_tags()
-        domain = Domain(
-            "invoice_repartition_line_ids.tag_ids",
-            "in",
-            [tag_id for tag_id, key in tags.items() if key in value],
+        tag_ids = [tag_id for tag_id, key in tags.items() if key in value]
+        own_tag = Domain("invoice_repartition_line_ids.tag_ids", "in", tag_ids)
+        no_own_tag = ~Domain("invoice_repartition_line_ids.tag_ids", "in", list(tags))
+        # A tax without a 349 tag takes the key of its AEAT equivalent tax
+        domain = own_tag | (
+            no_own_tag
+            & Domain(
+                "aeat_equivalent_tax_id.invoice_repartition_line_ids.tag_ids",
+                "in",
+                tag_ids,
+            )
         )
         if False in value:
-            domain |= ~Domain("invoice_repartition_line_ids.tag_ids", "in", list(tags))
+            domain |= no_own_tag & (
+                Domain("aeat_equivalent_tax_id", "=", False)
+                | ~Domain(
+                    "aeat_equivalent_tax_id.invoice_repartition_line_ids.tag_ids",
+                    "in",
+                    list(tags),
+                )
+            )
         return domain
 
-    @api.depends("invoice_repartition_line_ids.tag_ids")
+    @api.depends(
+        "invoice_repartition_line_ids.tag_ids",
+        "aeat_equivalent_tax_id.invoice_repartition_line_ids.tag_ids",
+    )
     def _compute_l10n_es_aeat_349_operation_key(self):
         tags = self._l10n_es_aeat_349_tags()
-        for tax in self:
-            tax.l10n_es_aeat_349_operation_key = next(
+
+        def tag_key(tax):
+            return next(
                 (
                     tags[tag.id]
                     for tag in tax.invoice_repartition_line_ids.tag_ids
                     if tag.id in tags
                 ),
                 False,
+            )
+
+        for tax in self:
+            tax.l10n_es_aeat_349_operation_key = tag_key(tax) or tag_key(
+                tax.aeat_equivalent_tax_id
             )
