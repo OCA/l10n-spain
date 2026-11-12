@@ -8,6 +8,7 @@
     "author": "Tecnativa, Spanish Localization Team, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "license": "AGPL-3",
+    "maintainers": ["carlosdauden"],
     "depends": ["l10n_es", "l10n_es_aeat"],
     "data": [
         "data/l10n.es.aeat.map.tax.line.tax.csv",
