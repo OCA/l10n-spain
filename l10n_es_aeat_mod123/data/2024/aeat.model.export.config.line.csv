@@ -25,7 +25,7 @@
 "aeat_mod123_2024_sub01_export_line_24","aeat_mod123_2024_sub01_export_config",24,"Liquidación(3). Resultado a ingresar ( [12] - [13] ) [14]","float",17,2,"right",1,,,"${object.casilla_14_2024}",,,
 "aeat_mod123_2024_sub01_export_line_25","aeat_mod123_2024_sub01_export_config",25,"Declaración complementaria","boolean",1,,"left",," ","X","${object.statement_type == 'C'}",,,
 "aeat_mod123_2024_sub01_export_line_26","aeat_mod123_2024_sub01_export_config",26,"Número de justificante de la declaración anterior","string",13,,"left",,,,"${object.previous_number if object.statement_type == 'C' else ''}",,,
-"aeat_mod123_2024_sub01_export_line_27","aeat_mod123_2024_sub01_export_config",27,"Domiciliación IBAN","string",34,,"left",,,,"${object.partner_bank_id and object.partner_bank_id.account_number and object.partner_bank_id.account_number.replace("" "", """") or """"}",,,
+"aeat_mod123_2024_sub01_export_line_27","aeat_mod123_2024_sub01_export_config",27,"Domiciliación IBAN","string",34,,"left",,,,"${object.partner_bank_id.sanitized_account_number or ''}",,,
 "aeat_mod123_2024_sub01_export_line_28","aeat_mod123_2024_sub01_export_config",28,"Reservado AEAT","string",200,,"left",,,,,,,
 "aeat_mod123_2024_sub01_export_line_29","aeat_mod123_2024_sub01_export_config",29,"Indicador de fin de registro","string",12,,"left",,,,,"</T12301000>",,
 "aeat_mod123_2024_main_export_line_01","aeat_mod123_2024_main_export_config",1,"Constante: <T","string",2,,"left",,,,,"<T",,
