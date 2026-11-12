@@ -336,6 +336,30 @@ class TestVatProrate(AccountTestInvoicingCommon):
             f"account.{self.env.company.id}_account_tax_template_{name}"
         )
 
+    def _create_bill(self, lines, move_type="in_invoice", invoice_date="2019-01-01"):
+        """Vendor bill with one line per (price, tax, account) given."""
+        return self.env["account.move"].create(
+            {
+                "move_type": move_type,
+                "partner_id": self.partner_a.id,
+                "invoice_date": invoice_date,
+                "date": invoice_date,
+                "invoice_line_ids": [
+                    Command.create(
+                        {
+                            "name": f"Line {price}",
+                            "price_unit": price,
+                            "tax_ids": [Command.set(tax.ids)],
+                            "account_id": (
+                                account or self.company_data["default_account_expense"]
+                            ).id,
+                        }
+                    )
+                    for price, tax, account in lines
+                ],
+            }
+        )
+
     def test_no_prorate_in_journal_entry(self):
         """Writing a journal entry with a purchase tax doesn't add prorate lines."""
         tax = self._tax("p_iva21_bc")
@@ -381,6 +405,12 @@ class TestVatProrate(AccountTestInvoicingCommon):
         )
         tax_line.account_id = self.copy_account(tax_line.account_id)
         self.assertFalse(tax.with_vat_prorate)
+
+    def test_prorate_with_non_deductible_percentage(self):
+        tax = self._tax("p_iva21_bc")
+        invoice = self._create_bill([(100, tax, None)])
+        with self.assertRaises(exceptions.ValidationError):
+            invoice.invoice_line_ids.deductible_percentage = 0.5
 
     def test_migration_marks_new_taxes_only(self):
         """The 20.0 migration marks the taxes that the tax type adds, not the ones of

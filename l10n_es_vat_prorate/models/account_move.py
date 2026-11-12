@@ -4,7 +4,8 @@
 
 
 from odoo import Command, api, fields, models
-from odoo.tools import float_round
+from odoo.exceptions import ValidationError
+from odoo.tools import float_compare, float_round
 
 
 class AccountMove(models.Model):
@@ -280,6 +281,26 @@ class AccountMoveLine(models.Model):
                 rec.move_id.prorate_id.type == "general"
                 or rec.move_id.prorate_id.special_vat_prorate_default
             )
+
+    @api.constrains("deductible_percentage", "with_vat_prorate", "tax_ids")
+    def _check_deductible_percentage_vat_prorate(self):
+        """The prorate is computed on the whole tax amount of the line, so it can't
+        be combined with the non deductible part that Odoo core takes out of it.
+        """
+        for line in self:
+            if (
+                line.move_id.prorate_id
+                and line.with_vat_prorate
+                and line.tax_ids.filtered("with_vat_prorate")
+                and float_compare(line.deductible_percentage, 1, precision_digits=4)
+            ):
+                raise ValidationError(
+                    self.env._(
+                        "The line '%(line)s' has a VAT prorate, so it can't have a "
+                        "non deductible percentage.",
+                        line=line.display_name,
+                    )
+                )
 
     def _process_aeat_tax_fee_info(self, res, tax, sign):
         result = super()._process_aeat_tax_fee_info(res, tax, sign)
