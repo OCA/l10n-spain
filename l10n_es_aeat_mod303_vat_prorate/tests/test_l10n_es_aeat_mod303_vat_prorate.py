@@ -389,3 +389,124 @@ class TestL10nEsAeatMod303VatProrate(TestL10nEsAeatMod303Base):
         self.assertAlmostEqual(self._box(self.model303, 31), 189)
         self.assertAlmostEqual(self._box(self.model303, 42), 108)
         self.assertAlmostEqual(self.model303.total_deducir, 297)
+
+    def test_button_compute_with_refund(self):
+        """A refunded sale is taken out of the base of the definitive prorate."""
+        self._set_general_prorate("2024-01-01", 10)
+
+        def sale_lines(*lines):
+            return {
+                "invoice_line_ids": [
+                    Command.create(
+                        {
+                            "name": f"Venta {price}€ {desc}",
+                            "account_id": self.accounts["700000"].id,
+                            "price_unit": price,
+                            "quantity": 1,
+                            "tax_ids": [
+                                Command.link(t.id) for t in self._get_taxes(desc)
+                            ],
+                        }
+                    )
+                    for desc, price in lines
+                ]
+            }
+
+        self._invoice_sale_create(
+            "2024-01-01", sale_lines(("S_IVA21B", 200), ("S_IVA0", 100))
+        )
+        sale = self._invoice_sale_create("2024-02-01", sale_lines(("S_IVA21B", 200)))
+        self._invoice_refund(sale, "2024-03-01")
+        self.model303.button_compute()
+        # 200 taxed (400 - 200 refunded) of 300
+        self.assertEqual(self.model303.vat_prorate_percent, 67)
+        # Partial refund
+        sale = self._invoice_sale_create("2024-02-02", sale_lines(("S_IVA21B", 200)))
+        refund = self._invoice_refund(sale, "2024-03-02")
+        refund.button_draft()
+        refund.write(
+            {
+                "invoice_line_ids": [
+                    Command.update(refund.invoice_line_ids.id, {"price_unit": 100})
+                ]
+            }
+        )
+        refund.action_post()
+        self.model303.button_compute()
+        # 300 taxed (600 - 300 refunded) of 400
+        self.assertEqual(self.model303.vat_prorate_percent, 75)
+
+    def test_model_303_prorate_analytic_account(self):
+        self._set_general_prorate("2024-01-01", 90)
+        self._invoice_sale_create("2024-11-01")
+        self._invoice_purchase_create("2024-11-01")
+        # Analytic plans are configured by an analytic accounting manager
+        analytic_plan = (
+            self.env["account.analytic.plan"].sudo().create({"name": "Prorate"})
+        )
+        analytic_account = (
+            self.env["account.analytic.account"]
+            .sudo()
+            .create({"name": "Prorate", "plan_id": analytic_plan.id})
+        )
+        self.model303_4t.write(
+            {
+                "vat_prorate_percent": 89,
+                "prorate_analytic_account_id": analytic_account.id,
+            }
+        )
+        self.model303_4t.button_calculate()
+        # 94.5 deductible at 90 %, 1 % less
+        self.assertAlmostEqual(self.model303_4t.casilla_44, -1.05)
+        self.model303_4t.button_post()
+        regularization_line = self.model303_4t.move_id.line_ids.filtered(
+            lambda line: line.account_id == self.model303_4t.prorate_account_id
+        )
+        self.assertRecordValues(
+            regularization_line,
+            [
+                {
+                    "debit": 1.05,
+                    "analytic_distribution": {str(analytic_account.id): 100},
+                }
+            ],
+        )
+
+    def test_model_303_prorate_boe_2026(self):
+        """Box [44] at its position of the 2026 layout: page 01, position 985 of the
+        AEAT record design DR303e26v101."""
+        self._set_general_prorate("2026-01-01", 90)
+        self._invoice_sale_create("2026-11-01")
+        self._invoice_purchase_create("2026-11-01")
+        report = self.env["l10n.es.aeat.mod303.report"].create(
+            {
+                "name": "9994000002026",
+                "company_id": self.company.id,
+                "company_vat": "123456789",
+                "contact_name": "Test owner",
+                "statement_type": "N",
+                "support_type": "T",
+                "contact_phone": "911234455",
+                "year": 2026,
+                "period_type": "4T",
+                "date_start": "2026-10-01",
+                "date_end": "2026-12-31",
+                "journal_id": self.journal_misc.id,
+            }
+        )
+        report.vat_prorate_percent = 89
+        report.button_calculate()
+        self.assertAlmostEqual(report.casilla_44, -1.05)
+        self.assertEqual(
+            report.export_config_id,
+            self.env.ref("l10n_es_aeat_mod303.aeat_mod303_2026_02_main_export_config"),
+        )
+        wizard = (
+            self.env["l10n.es.aeat.report.export_to_boe"]
+            .with_context(active_id=report.id, active_model=report._name)
+            .create({})
+        )
+        wizard.action_get_file()
+        content = wizard.data.content
+        page_01 = content[content.index(b"<T30301000>") :]
+        self.assertEqual(page_01[984:1001], b"N0000000000000105")
