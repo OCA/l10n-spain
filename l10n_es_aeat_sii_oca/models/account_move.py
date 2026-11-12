@@ -755,6 +755,7 @@ class AccountMove(models.Model):
     @api.model
     def _send_to_sii_valid(self):
         remaining_documents = self.env["account.move"]
+        now = fields.Datetime.now()
         documents = all_documents = self.search(
             [
                 ("state", "in", self._get_valid_document_states()),
@@ -763,7 +764,7 @@ class AccountMove(models.Model):
                     "not in",
                     ["sent", "cancelled"],
                 ),
-                ("sii_send_date", "<=", fields.Datetime.now()),
+                ("sii_send_date", "<=", now),
             ]
         )
         if not documents:
@@ -771,7 +772,13 @@ class AccountMove(models.Model):
         batch = self._get_sii_batch()
         documents = all_documents[:batch]
         remaining_documents = all_documents - documents
-        documents.confirm_one_document(with_commit=True)
+        # To cover the use case where this is called from the send_sii_now() method and
+        # we do not want a new cursor if there is only one document to send and it has
+        # the same date as now
+        with_commit = (
+            False if len(documents) == 1 and documents.sii_send_date == now else True
+        )
+        documents.confirm_one_document(with_commit=with_commit)
         return remaining_documents
 
     @api.model
