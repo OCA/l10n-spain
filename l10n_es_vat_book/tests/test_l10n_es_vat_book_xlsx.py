@@ -6,7 +6,7 @@ from typing import ClassVar
 
 from openpyxl import load_workbook
 
-from odoo.fields import Command
+from odoo.fields import Command, Datetime
 
 from .test_l10n_es_aeat_vat_book import TestL10nEsAeatVatBookBase
 
@@ -94,6 +94,28 @@ class TestL10nEsVatBookXlsx(TestL10nEsAeatVatBookBase):
             if sheet[f"A{row}"].value
         }
 
+    def test_xlsx_issued(self):
+        self._invoice_sale_create("2017-01-13")
+        vat_book = self._create_vat_book()
+        vat_book.button_calculate()
+        vat_book.button_confirm()
+        issued, _received = self._export_xlsx(vat_book)
+        rows = self._rows(issued, "W")
+        self.assertEqual(len(rows), 2)
+        row21, row10 = rows[21], rows[10]
+        # Total of the invoice only in its first row
+        self.assertEqual(issued[f"U{min(rows.values())}"].value, 1812)
+        self.assertIsNone(issued[f"U{max(rows.values())}"].value)
+        self.assertEqual(issued[f"V{row21}"].value, 1000)
+        self.assertEqual(issued[f"X{row21}"].value, 210)
+        # The surcharge goes in the row of its VAT
+        self.assertEqual(issued[f"Y{row21}"].value, 5.2)
+        self.assertEqual(issued[f"Z{row21}"].value, 52)
+        self.assertEqual(issued[f"V{row10}"].value, 500)
+        self.assertEqual(issued[f"X{row10}"].value, 50)
+        self.assertIsNone(issued[f"Y{row10}"].value)
+        self.assertEqual(issued[f"P{row21}"].value, "12345678Z")
+
     def test_xlsx_surcharge_columns_follow_map(self):
         """The columns of the special taxes are read from the editable map."""
         self._invoice_sale_create("2017-01-13")
@@ -109,6 +131,38 @@ class TestL10nEsVatBookXlsx(TestL10nEsAeatVatBookBase):
         self.assertEqual(issued[f"AG{row21}"].value, 5.2)
         self.assertEqual(issued[f"AH{row21}"].value, 52)
         self.assertIsNone(issued[f"Z{row21}"].value)
+
+    def test_xlsx_received(self):
+        # Accounting date in the next month
+        self._purchase_create("2017-01-20", "P_IVA21_BC", 100, date="2017-02-03")
+        self._purchase_create("2017-01-21", "P_IVA0_ND", 200, date="2017-01-21")
+        # Reverse charge: the -21 % line of the 477 account stays out
+        self._purchase_create("2017-01-22", "P_IVA21_ISP", 300)
+        self._purchase_create("2017-01-23", "P_IVA21_SP_IN", 400)
+        vat_book = self._create_vat_book()
+        vat_book.button_calculate()
+        vat_book.button_confirm()
+        _issued, received = self._export_xlsx(vat_book)
+        rows = self._rows(received, "AA")
+        self.assertEqual(len(rows), 4)
+        row_bc, row_nd, row_isp, row_sp = (rows[base] for base in (100, 200, 300, 400))
+        self.assertEqual(
+            received[f"J{row_bc}"].value, Datetime.to_datetime("2017-02-03")
+        )
+        self.assertEqual(received[f"Y{row_bc}"].value, "02")
+        self.assertEqual(received[f"AC{row_bc}"].value, 21)
+        self.assertEqual(received[f"AD{row_bc}"].value, 21)
+        self.assertIsNone(received[f"J{row_nd}"].value)
+        self.assertEqual(received[f"Y{row_nd}"].value, "01")
+        self.assertEqual(received[f"AC{row_nd}"].value, 42)
+        self.assertIsNone(received[f"AD{row_nd}"].value)
+        for row, total, amount in ((row_isp, 363, 63), (row_sp, 484, 84)):
+            self.assertEqual(received[f"Z{row}"].value, total)
+            self.assertEqual(received[f"AC{row}"].value, amount)
+            self.assertEqual(received[f"AD{row}"].value, amount)
+        vat_book.vat_settlement_period = "quarterly"
+        _issued, received = self._export_xlsx(vat_book)
+        self.assertEqual(received[f"Y{row_bc}"].value, "1T")
 
     def test_xlsx_not_deductible_by_tax_type(self):
         """A tax typed as not deductible has no deductible quota in the book."""
