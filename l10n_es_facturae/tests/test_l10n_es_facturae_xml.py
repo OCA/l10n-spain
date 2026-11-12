@@ -1,12 +1,15 @@
 # Copyright 2026 Tecnativa - Carlos Dauden
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
+import importlib.util
+
 from freezegun import freeze_time
 from lxml import etree
 
 from odoo.fields import Command
 from odoo.tests import Form
 from odoo.tools import file_open
+from odoo.tools.misc import file_path
 
 from .common import CommonTest
 
@@ -122,3 +125,24 @@ class TestL10nEsFacturaeXml(CommonTest):
             etree.tostring(etree.fromstring(content), pretty_print=True).decode(),
             etree.tostring(expected, pretty_print=True).decode(),
         )
+
+    def test_migration_fills_missing_codes(self):
+        """The migration to 20.0 gives a code to the chart taxes without one and
+        keeps the codes already set"""
+        chart = self.env["account.chart.template"].with_company(self.company)
+        tax_0 = chart.ref("account_tax_template_s_iva0b")
+        tax_21 = chart.ref("account_tax_template_s_iva21b")
+        (tax_0 | tax_21).sudo().facturae_code = False
+        tax_irpf = chart.ref("account_tax_template_s_irpf24_rdc")
+        tax_irpf.sudo().facturae_code = "05"
+        script = file_path("l10n_es_facturae/migrations/20.0.1.0.0/post-migration.py")
+        spec = importlib.util.spec_from_file_location("post_migration", script)
+        post_migration = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(post_migration)
+        # Without the frame of the Odoo migration manager that its decorator
+        # inspects, and as superuser like the decorator
+        post_migration.migrate.__wrapped__(self.env(su=True), "19.0.1.0.0")
+        self.env.invalidate_all()
+        self.assertEqual(tax_0.facturae_code, "01")
+        self.assertEqual(tax_21.facturae_code, "01")
+        self.assertEqual(tax_irpf.facturae_code, "05")

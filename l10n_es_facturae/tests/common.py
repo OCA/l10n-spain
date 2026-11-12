@@ -346,6 +346,22 @@ class CommonTest(TestL10nEsAeatCertificateBase, TestL10nEsAeatModBase):
             ),
         )
 
+    def test_facturae_chart_taxes(self):
+        """The taxes of the Spanish chart that had no Facturae code: an invoice
+        subject to VAT at 0 % with a withholding passes the schema"""
+        chart = self.env["account.chart.template"].with_company(self.company)
+        self.move_line.tax_ids = chart.ref("account_tax_template_s_iva0b") | chart.ref(
+            "account_tax_template_s_irpf24_rdc"
+        )
+        self.move.action_post()
+        self._activate_certificate(self.certificate_password)
+        self.move.name = "2999/99999"
+        facturae = self._create_facturae_file(self.move)
+        self.assertEqual(facturae.xpath("//TaxesOutputs/Tax/TaxTypeCode")[0].text, "01")
+        self.assertEqual(
+            facturae.xpath("//TaxesWithheld/Tax/TaxTypeCode")[0].text, "04"
+        )
+
     def test_bank(self):
         self.bank.bank_bic = "CAIXESBB"
         with self.assertRaises(exceptions.ValidationError):

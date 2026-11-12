@@ -44,7 +44,7 @@
         "views/account_move_view.xml",
         "views/account_journal_view.xml",
     ],
-    "external_dependencies": {"python": ["pycountry", "xmlsig"]},
+    "external_dependencies": {"python": ["openupgradelib", "pycountry", "xmlsig"]},
     "post_init_hook": "post_init_hook",
     "installable": True,
     "maintainers": ["etobella"],
