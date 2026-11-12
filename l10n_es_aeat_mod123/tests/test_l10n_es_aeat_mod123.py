@@ -108,6 +108,19 @@ class TestL10nEsAeatMod123(TestL10nEsAeatModBase):
         self.assertTrue(content.startswith("<T123020171T0000><AUX>"))
         self.assertTrue(content.endswith("</T123020171T0000>\r\n"))
 
+    def test_model_123_before_2024_complementary(self):
+        """A complementary declaration deducts the result of the previous one
+        (box [07]) from the total of withholdings (box [06])."""
+        self._invoice_purchase_create("2017-01-01")
+        model123 = self._create_report(
+            2017, statement_type="C", previous_number="1230000000001"
+        )
+        self.assertEqual(model123.casilla_06, 209.0)
+        with Form(model123, view=self.form_view) as report_form:
+            report_form.casilla_07 = 50
+        self.assertEqual(model123.casilla_08, 159.0)
+        self.assertEqual(model123.amount_result, 159.0)
+
     def test_model_123_2024(self):
         # Dividends and the other incomes of capital of the first supplier, and
         # interests of a second supplier, so that each box gets its own amount

@@ -152,7 +152,7 @@ class L10nEsAeatMod123Report(models.Model):
     @api.depends("casilla_06", "casilla_07")
     def _compute_casilla08(self):
         for report in self:
-            report.casilla_08 = report.casilla_06 + report.casilla_07
+            report.casilla_08 = report.casilla_06 - report.casilla_07
 
     @api.depends("casilla_01_2024", "casilla_02_2024")
     def _compute_casilla_03_2024(self):
