@@ -49,8 +49,6 @@
 - No se ha comprobado en producción la funcionalidad de comunicaciones usando
   la opción de cuenta tributaria (tipos de resultado "G" y "V").
 
-- La casilla \[123\] (operaciones acogidas a la ventanilla única) solo
-  recoge los impuestos genéricos del plan de Odoo core `oss_s_iva_ns` y
-  `oss_s_iva_ns_b`. Los impuestos por país que crea `l10n_eu_oss` llevan
-  la etiqueta `mod303[123]`, pero no tienen identificador del plan y el
-  mapa no los recoge.
+- Las casillas \[124\] y \[127\] (operaciones sujetas y acogidas a los
+  regímenes especiales de ventanilla única) y \[126\] (resumen anual de
+  la casilla \[123\]) no se rellenan.

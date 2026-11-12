@@ -1001,6 +1001,92 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
         page_03 = self._get_page(self._export_boe(report), "03000")
         self.assertEqual(page_03[79:96], b"00000000000150000")
 
+    def _oss_setup(self):
+        """Map the one-stop shop taxes with the button of the accounting settings
+        and return a consumer in France and a product with the Spanish 21% VAT.
+        """
+        if "l10n_eu_oss" not in self.env["ir.module.module"]._installed():
+            self.skipTest("Odoo core module l10n_eu_oss is not installed")
+        # As the administrator, who is the one allowed to open the settings
+        settings = (
+            self.env["res.config.settings"].sudo().with_company(self.company).create({})
+        )
+        settings.action_eu_oss_tax_mapping()
+        consumer = self.env["res.partner"].create(
+            {
+                "name": "French consumer",
+                "country_id": self.env.ref("base.fr").id,
+                "property_account_receivable_id": self.accounts["430000"].id,
+            }
+        )
+        product = (
+            self.env["product.product"]
+            .sudo()
+            .create(
+                {
+                    "name": "Product sold in the one-stop shop",
+                    "taxes_id": [(6, 0, self._get_taxes("S_IVA21B").ids)],
+                    "property_account_income_id": self.accounts["700000"].id,
+                }
+            )
+        )
+        return consumer, product
+
+    def _oss_invoice(self, partner, product, price, invoice_date):
+        move_form = Form(
+            self.env["account.move"]
+            .with_user(self.billing_user)
+            .with_context(default_move_type="out_invoice")
+        )
+        move_form.partner_id = partner
+        move_form.invoice_date = invoice_date
+        with move_form.invoice_line_ids.new() as line_form:
+            line_form.product_id = product
+            line_form.price_unit = price
+        invoice = move_form.save()
+        invoice.action_post()
+        return invoice
+
+    def _oss_partial_refund(self, invoice, price, refund_date):
+        reversal_form = Form(
+            self.env["account.move.reversal"]
+            .with_user(self.billing_user)
+            .with_context(active_model="account.move", active_ids=invoice.ids)
+        )
+        reversal_form.date = refund_date
+        reversal_form.reason = "Partial refund"
+        action = reversal_form.save().refund_moves()
+        refund = self.env["account.move"].browse(action["res_id"])
+        with Form(refund.with_user(self.billing_user)) as refund_form:
+            refund_form.invoice_date = refund_date
+            with refund_form.invoice_line_ids.edit(0) as line_form:
+                line_form.price_unit = price
+        refund.action_post()
+        return refund
+
+    def test_model_303_oss_country_taxes_box_123(self):
+        """The per country taxes that Odoo creates for the one-stop shop have no
+        chart template identifier, but they carry the tag of the box 123 of the Odoo
+        tax report, so the sales invoiced with them and their refunds go to box 123
+        (page 03, position 80 of the AEAT record design DR303e26v101) and to no other
+        box.
+        """
+        consumer, product = self._oss_setup()
+        invoice = self._oss_invoice(consumer, product, 1000, "2026-01-15")
+        oss_tax = invoice.invoice_line_ids.tax_ids
+        self.assertIn("OSS", invoice.fiscal_position_id.name)
+        self.assertEqual(oss_tax.amount, 20)
+        self.assertEqual(oss_tax.country_id, self.env.ref("base.es"))
+        self._oss_partial_refund(invoice, 400, "2026-02-15")
+        report = self._create_303(2026, "1T")
+        report.button_calculate()
+        self.assertEqual(report.valued_tax_line_ids.mapped("field_number"), [123])
+        self.assertAlmostEqual(self._box(report, 123), 600)
+        self.assertAlmostEqual(report.total_devengado, 0)
+        self.assertAlmostEqual(report.resultado_liquidacion, 0)
+        page_03 = self._get_page(self._export_boe(report), "03000")
+        self.assertEqual(page_03[79:96], b"00000000000060000")
+
     def test_model_303_2024_10_map(self):
         """Boxes of the map in force since 2024-10, with the rates it added."""
         self._get_taxes("S_IVA2B,S_IVA5B,S_IVA7-5B,S_REQ1").active = True
