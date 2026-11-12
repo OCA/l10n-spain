@@ -3,7 +3,7 @@ id,export_config_id:id,"sequence","name","export_type","size","decimal_size","al
 "aeat_mod296_sub01_export_line_02","aeat_mod296_sub01_export_config",2,"Identificación: modelo","string",3,0,"left",,"N"," "," ","X",,"296",,,
 "aeat_mod296_sub01_export_line_03","aeat_mod296_sub01_export_config",3,"Identificación: ejercicio","string",4,0,"left",,"N"," "," ","X","${object.mod296_id.year}",,,,
 "aeat_mod296_sub01_export_line_04","aeat_mod296_sub01_export_config",4,"Identificación: nif declarante","string",9,0,"left",,"N"," "," ","X","${object.mod296_id.company_vat}",,,,
-"aeat_mod296_sub01_export_line_05","aeat_mod296_sub01_export_config",5,"Identificación: nif perceptor","string",9,0,"left",,"N"," "," ","X","${object.partner_id.vat}",,,,
+"aeat_mod296_sub01_export_line_05","aeat_mod296_sub01_export_config",5,"Identificación: nif perceptor","string",9,0,"left",,"N"," "," ","X","${object.nif_perceptor}",,,,
 "aeat_mod296_sub01_export_line_06","aeat_mod296_sub01_export_config",6,"Identificación: nif representante legal","string",9,0,"left",,"N"," "," ","X",,,,,
 "aeat_mod296_sub01_export_line_07","aeat_mod296_sub01_export_config",7,"F/J","string",1,0,"left",,"N"," "," ","X","${object.fisica_juridica}",,,,
 "aeat_mod296_sub01_export_line_08","aeat_mod296_sub01_export_config",8,"Apellidos y nombre, razón social o denominación del perceptor","string",40,0,"left",,"N"," "," ","X","${object.partner_id.name}",,,,

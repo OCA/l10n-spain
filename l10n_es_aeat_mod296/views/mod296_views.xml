@@ -93,6 +93,7 @@
                 <group string="Common data in all recipients" colspan="2" col="2">
                     <group colspan="2" col="2">
                         <field name="partner_id" />
+                        <field name="nif_perceptor" />
                     </group>
                     <group colspan="2" col="4">
                         <field name="fisica_juridica" />

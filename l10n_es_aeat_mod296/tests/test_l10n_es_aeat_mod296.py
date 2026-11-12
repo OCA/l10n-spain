@@ -207,11 +207,12 @@ class TestL10nEsAeatMod296Base(TestL10nEsAeatModBase):
         self.assertEqual(len(expected_perceptor), 500)
         self.assertEqual(perceptor, expected_perceptor)
 
-    def _purchase_invoice(self, date, lines):
+    def _purchase_invoice(self, date, lines, partner=None):
         """Post a vendor bill of the supplier with one line per (tax, price)."""
         return self._invoice_purchase_create(
             date,
             extra_vals={
+                "partner_id": (partner or self.supplier).id,
                 "invoice_line_ids": [
                     Command.create(
                         {
@@ -355,3 +356,42 @@ class TestL10nEsAeatMod296Base(TestL10nEsAeatModBase):
             self.assertEqual(record[103:116], base)  # 104-116 Base
             self.assertEqual(record[116:120], rate)  # 117-120 % retención
             self.assertEqual(record[120:133], withholding)  # 121-133 Retenciones
+
+    def test_model_296_perceptor_tax_ids(self):
+        """A foreign tax id goes to "NIF en el país de residencia fiscal"
+        (DR 296 2024, positions 433-452) and only a Spanish NIF to "NIF del
+        perceptor" (positions 18-26), with the country of residence at
+        positions 498-499."""
+        self.supplier.write(
+            {"vat": "DE123456788", "country_id": self.env.ref("base.de").id}
+        )
+        spanish_nif_partner = self.env["res.partner"].create(
+            {
+                "name": "Non-resident with Spanish NIF",
+                "vat": "ESB12345674",
+                "country_id": self.env.ref("base.fr").id,
+            }
+        )
+        tax = "l10n_es.account_tax_template_p_irpfnrue19p"
+        self._purchase_invoice("2025-07-01", [(tax, 1000)])
+        self._purchase_invoice("2025-07-02", [(tax, 2000)], partner=spanish_nif_partner)
+        model296 = self._create_report()
+        model296.button_calculate()
+        foreign, spanish = model296.lines296
+        self.assertEqual(foreign.partner_id, self.supplier)
+        self.assertFalse(foreign.nif_perceptor)
+        self.assertEqual(foreign.nif_pais_residencia, "123456788")
+        self.assertEqual(foreign.pais_residencia_fiscal, self.env.ref("base.de"))
+        self.assertEqual(spanish.partner_id, spanish_nif_partner)
+        self.assertEqual(spanish.nif_perceptor, "B12345674")
+        self.assertFalse(spanish.nif_pais_residencia)
+        self.assertEqual(spanish.pais_residencia_fiscal, self.env.ref("base.fr"))
+        content = self._export_boe(model296)
+        self.assertEqual(len(content), 1500)
+        for record, nif, foreign_nif, country in (
+            (content[500:1000], " " * 9, "123456788".ljust(20), "DE"),
+            (content[1000:], "B12345674", " " * 20, "FR"),
+        ):
+            self.assertEqual(record[17:26], nif)  # 18-26 NIF del perceptor
+            self.assertEqual(record[432:452], foreign_nif)  # 433-452
+            self.assertEqual(record[497:499], country)  # 498-499

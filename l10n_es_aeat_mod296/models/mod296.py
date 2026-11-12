@@ -113,6 +113,14 @@ class L10nEsAeatMod296Report(models.Model):
             "retenciones_ingresos": -sum(move_lines_cuota.mapped("balance")),
             "porcentaje_retencion": rate,
         }
+        partner = self.env["res.partner"].browse(partner_id)
+        if partner:
+            # A foreign tax id goes to "NIF en el país de residencia fiscal",
+            # not to the Spanish NIF of the perceptor
+            country_code, _id_type, identifier = partner._parse_aeat_vat_info()
+            if partner.vat and country_code != "ES":
+                vals["nif_pais_residencia"] = identifier
+            vals["pais_residencia_fiscal"] = partner.country_id.id
         if not rate:
             # Income exempt by treaty or by internal rule, without withholding:
             # "04 - Exemption by application of a Convention", the exemption
@@ -334,6 +342,11 @@ class L10nEsAeatMod296ReportLine(models.Model):
     )
     zip = fields.Char(string="Postal Code", size=10)
     pais = fields.Many2one(comodel_name="res.country", string="Country")
+    nif_perceptor = fields.Char(
+        string="Spanish NIF",
+        compute="_compute_nif_perceptor",
+        help="NIF assigned in Spain to the perceptor, if any",
+    )
     nif_pais_residencia = fields.Char(string="Nif in the country of residence", size=20)
     fecha_nacimiento = fields.Date(string="Date of birth")
     ciudad_nacimiento = fields.Char(string="Birth city", size=35)
@@ -376,6 +389,18 @@ class L10nEsAeatMod296ReportLine(models.Model):
         values = self._convert_to_write({fname: self[fname] for fname in fnames})
         # Data not set yet: the calculation fills it in or leaves it empty
         return {fname: value for fname, value in values.items() if value}
+
+    @api.depends("partner_id.vat", "partner_id.country_id")
+    def _compute_nif_perceptor(self):
+        for line in self:
+            nif = ""
+            if line.partner_id:
+                country_code, _id_type, identifier = (
+                    line.partner_id._parse_aeat_vat_info()
+                )
+                if country_code == "ES":
+                    nif = identifier
+            line.nif_perceptor = nif
 
     @api.depends("fecha_devengo")
     def _compute_get_fecha_devengo_export(self):
