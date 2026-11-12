@@ -21,10 +21,24 @@ class VatNumberXlsx(models.AbstractModel):
     def format_boe_date(self, date):
         return fields.Datetime.to_datetime(date)
 
-    @api.ormcache("self.env")
-    def _get_undeductible_taxes(self, book):
+    @api.ormcache("company_id")
+    def _get_undeductible_tax_ids(self, company_id):
         map_line = self.env.ref("l10n_es_vat_book.aeat_vat_book_map_line_p_iva_nd")
-        return map_line.get_taxes_for_company(book.company_id)
+        company = self.env["res.company"].browse(company_id)
+        return tuple(map_line.get_taxes_for_company(company).ids)
+
+    def _get_undeductible_taxes(self, book):
+        return self.env["account.tax"].browse(
+            self._get_undeductible_tax_ids(book.company_id.id)
+        )
+
+    def _is_undeductible_tax(self, tax, book):
+        """Not deductible VAT: the map of the book, or the Odoo core tax type for
+        the taxes that are not in it."""
+        return (
+            tax in self._get_undeductible_taxes(book)
+            or tax.l10n_es_type == "no_deducible"
+        )
 
     def _get_vat_book_map_lines(self, book_type):
         return self.env["aeat.vat.book.map.line"].search(
@@ -414,7 +428,7 @@ class VatNumberXlsx(models.AbstractModel):
         sheet.write("AA" + str(row), tax_line.base_amount)
         sheet.write("AB" + str(row), tax_line.tax_id.amount)
         sheet.write("AC" + str(row), tax_line.tax_amount)
-        if tax_line.tax_id not in self._get_undeductible_taxes(line.vat_book_id):
+        if not self._is_undeductible_tax(tax_line.tax_id, line.vat_book_id):
             sheet.write("AD" + str(row), tax_line.deductible_amount)
         if tax_line.special_tax_id:
             map_vals = line.vat_book_id.get_special_taxes_dic()[

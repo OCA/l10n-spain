@@ -77,6 +77,11 @@ class TestL10nEsAeatVatBook(TestL10nEsAeatVatBookBase):
         for line in vat_book.rectification_issued_line_ids:
             self.assertNotEqual(line.exception_text, self.env._("Without VAT"))
         # Check issued invoices
+        self.assertEqual(len(vat_book.issued_line_ids), 1)
+        self.assertEqual(len(vat_book.issued_line_ids.tax_line_ids), 1)
+        self.assertEqual(len(vat_book.rectification_issued_line_ids), 1)
+        self.assertEqual(len(vat_book.rectification_issued_line_ids.tax_line_ids), 1)
+        self.assertEqual(len(vat_book.issued_tax_summary_ids), 1)
         for line in vat_book.issued_line_ids:
             self.assertEqual(fields.Date.to_string(line.invoice_date), "2017-01-13")
             self.assertEqual(line.partner_id, self.customer)
@@ -209,8 +214,10 @@ class TestL10nEsAeatVatBookCoreTaxes(TestL10nEsAeatVatBookBase):
             (vat_book.issued_tax_summary_ids, self.taxes_sale),
             (vat_book.received_tax_summary_ids, self.taxes_purchase),
         ):
-            for code, (base, _amount) in taxes.items():
+            self.assertEqual(len(summaries), len(taxes))
+            for code, (base, amount) in taxes.items():
                 summary = summaries.filtered(
                     lambda x, code=code: x.tax_id == self._get_taxes(code)
                 )
                 self.assertAlmostEqual(summary.base_amount, base, 2, code)
+                self.assertAlmostEqual(summary.tax_amount, amount, 2, code)
