@@ -3,7 +3,15 @@
 
 
 import logging
+import os
+import re
+import shutil
+import subprocess
+import zipfile
+from contextlib import contextmanager
+from io import BytesIO
 from typing import ClassVar
+from unittest.mock import patch
 
 import requests
 from freezegun import freeze_time
@@ -15,6 +23,7 @@ from odoo.tests import Form, tagged
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
     TestL10nEsAeatModBase,
 )
+from odoo.addons.l10n_es_atc.models import l10n_es_atc_report
 
 _logger = logging.getLogger("atc.425")
 
@@ -24,68 +33,71 @@ class TestL10nEsAtcMod425Base(TestL10nEsAeatModBase):
     # Set 'debug' attribute to True to easy debug this test
     # Do not forget to include '--log-handler aeat:DEBUG' in Odoo command line
     debug = False
+    # The keys carry the module of the chart template that defines the taxes:
+    # without one, `_get_taxes` takes a key with capitals (igic_ISP7) for an
+    # old tax code and looks for another XML-ID
     taxes_sale: ClassVar[dict] = {
         # tax code: (base, tax_amount)
-        "l10n_es_igic.account_tax_template_igic_r_3": (2000, 60),
-        "l10n_es_igic.account_tax_template_igic_r_3//neg": (-200, -6),
-        "l10n_es_igic.account_tax_template_igic_r_7": (2200, 154),
-        "l10n_es_igic.account_tax_template_igic_r_7//neg": (-220, -15.4),
-        "l10n_es_igic.account_tax_template_igic_r_9_5": (2400, 228),
-        "l10n_es_igic.account_tax_template_igic_r_9_5//neg": (-240, -22.8),
-        "l10n_es_igic.account_tax_template_igic_r_15": (2600, 390),
-        "l10n_es_igic.account_tax_template_igic_r_15//neg": (-260, -39),
-        "l10n_es_igic.account_tax_template_igic_r_20": (2800, 560),
-        "l10n_es_igic.account_tax_template_igic_r_20//neg": (-280, -56),
-        "l10n_es_igic.account_tax_template_igic_r_0": (1500, 0),
-        "l10n_es_igic.account_tax_template_igic_s_ISP0": (1600, 0),
-        "l10n_es_igic.account_tax_template_igic_ex_0": (1700, 0),
-        "l10n_es_igic.account_tax_template_igic_re_ex": (1800, 0),
-        "l10n_es_igic.account_tax_template_igic_cmino": (1900, 0),
+        "l10n_es.account_tax_template_igic_r_3": (2000, 60),
+        "l10n_es.account_tax_template_igic_r_3//neg": (-200, -6),
+        "l10n_es.account_tax_template_igic_r_7": (2200, 154),
+        "l10n_es.account_tax_template_igic_r_7//neg": (-220, -15.4),
+        "l10n_es.account_tax_template_igic_r_9_5": (2400, 228),
+        "l10n_es.account_tax_template_igic_r_9_5//neg": (-240, -22.8),
+        "l10n_es.account_tax_template_igic_r_15": (2600, 390),
+        "l10n_es.account_tax_template_igic_r_15//neg": (-260, -39),
+        "l10n_es.account_tax_template_igic_r_20": (2800, 560),
+        "l10n_es.account_tax_template_igic_r_20//neg": (-280, -56),
+        "l10n_es.account_tax_template_igic_r_0": (1500, 0),
+        "l10n_es.account_tax_template_igic_s_ISP0": (1600, 0),
+        "l10n_es.account_tax_template_igic_ex_0": (1700, 0),
+        "l10n_es.account_tax_template_igic_re_ex": (1800, 0),
+        "l10n_es.account_tax_template_igic_cmino": (1900, 0),
     }
     taxes_purchase: ClassVar[dict] = {
         # tax code: (base, tax_amount)
-        "l10n_es_igic.account_tax_template_igic_p_ex": (100, 0),
-        "l10n_es_igic.account_tax_template_igic_sop_0": (200, 0),
-        "l10n_es_igic.account_tax_template_igic_sop_3": (300, 9),
-        "l10n_es_igic.account_tax_template_igic_sop_3//neg": (-30, -0.9),
-        "l10n_es_igic.account_tax_template_igic_sop_7": (400, 28),
-        "l10n_es_igic.account_tax_template_igic_sop_7//neg": (-40, -2.8),
-        "l10n_es_igic.account_tax_template_igic_sop_9_5": (500, 47.5),
-        "l10n_es_igic.account_tax_template_igic_sop_9_5//neg": (-50, -4.75),
-        "l10n_es_igic.account_tax_template_igic_sop_15": (600, 90),
-        "l10n_es_igic.account_tax_template_igic_sop_15//neg": (-60, -9),
-        "l10n_es_igic.account_tax_template_igic_sop_20": (700, 140),
-        "l10n_es_igic.account_tax_template_igic_sop_20//neg": (-70, -14),
-        "l10n_es_igic.account_tax_template_igic_sop_0_inv": (110, 0),
-        "l10n_es_igic.account_tax_template_igic_sop_3_inv": (120, 3.6),
-        "l10n_es_igic.account_tax_template_igic_sop_7_inv": (130, 9.1),
-        "l10n_es_igic.account_tax_template_igic_sop_9_5_inv": (140, 13.3),
-        "l10n_es_igic.account_tax_template_igic_sop_15_inv": (150, 22.5),
-        "l10n_es_igic.account_tax_template_igic_sop_20_inv": (160, 32),
-        "l10n_es_igic.account_tax_template_igic_sop_i_0": (210, 0),
-        "l10n_es_igic.account_tax_template_igic_sop_i_3": (220, 6.6),
-        "l10n_es_igic.account_tax_template_igic_sop_i_7": (230, 16.1),
-        "l10n_es_igic.account_tax_template_igic_sop_i_9_5": (240, 22.8),
-        "l10n_es_igic.account_tax_template_igic_sop_i_15": (250, 37.5),
-        "l10n_es_igic.account_tax_template_igic_sop_i_20": (260, 52),
-        "l10n_es_igic.account_tax_template_igic_sop_i_0_inv": (270, 0),
-        "l10n_es_igic.account_tax_template_igic_sop_i_3_inv": (280, 8.4),
-        "l10n_es_igic.account_tax_template_igic_sop_i_7_inv": (290, 20.3),
-        "l10n_es_igic.account_tax_template_igic_sop_i_9_5_inv": (310, 29.45),
-        "l10n_es_igic.account_tax_template_igic_sop_i_15_inv": (320, 48),
-        "l10n_es_igic.account_tax_template_igic_sop_i_20_inv": (330, 66),
-        "l10n_es_igic.account_tax_template_igic_ISP0": (340, 0),
-        "l10n_es_igic.account_tax_template_igic_ISP3": (350, 0),
-        "l10n_es_igic.account_tax_template_igic_ISP7": (360, 0),
-        "l10n_es_igic.account_tax_template_igic_ISP95": (370, 0),
-        "l10n_es_igic.account_tax_template_igic_ISP15": (380, 0),
-        "l10n_es_igic.account_tax_template_igic_ISP20": (390, 0),
-        "l10n_es_igic.account_tax_template_igic_p_re0": (410, 0),
-        "l10n_es_igic.account_tax_template_igic_p_re03": (420, 1.26),
-        "l10n_es_igic.account_tax_template_igic_p_re07": (430, 3.01),
-        "l10n_es_igic.account_tax_template_igic_p_re095": (440, 4.18),
-        "l10n_es_igic.account_tax_template_igic_p_re15": (450, 6.75),
-        "l10n_es_igic.account_tax_template_igic_p_re20": (460, 9.2),
+        "l10n_es.account_tax_template_igic_p_ex": (100, 0),
+        "l10n_es.account_tax_template_igic_sop_0": (200, 0),
+        "l10n_es.account_tax_template_igic_sop_3": (300, 9),
+        "l10n_es.account_tax_template_igic_sop_3//neg": (-30, -0.9),
+        "l10n_es.account_tax_template_igic_sop_7": (400, 28),
+        "l10n_es.account_tax_template_igic_sop_7//neg": (-40, -2.8),
+        "l10n_es.account_tax_template_igic_sop_9_5": (500, 47.5),
+        "l10n_es.account_tax_template_igic_sop_9_5//neg": (-50, -4.75),
+        "l10n_es.account_tax_template_igic_sop_15": (600, 90),
+        "l10n_es.account_tax_template_igic_sop_15//neg": (-60, -9),
+        "l10n_es.account_tax_template_igic_sop_20": (700, 140),
+        "l10n_es.account_tax_template_igic_sop_20//neg": (-70, -14),
+        "l10n_es.account_tax_template_igic_sop_0_inv": (110, 0),
+        "l10n_es.account_tax_template_igic_sop_3_inv": (120, 3.6),
+        "l10n_es.account_tax_template_igic_sop_7_inv": (130, 9.1),
+        "l10n_es.account_tax_template_igic_sop_9_5_inv": (140, 13.3),
+        "l10n_es.account_tax_template_igic_sop_15_inv": (150, 22.5),
+        "l10n_es.account_tax_template_igic_sop_20_inv": (160, 32),
+        "l10n_es.account_tax_template_igic_sop_i_0": (210, 0),
+        "l10n_es.account_tax_template_igic_sop_i_3": (220, 6.6),
+        "l10n_es.account_tax_template_igic_sop_i_7": (230, 16.1),
+        "l10n_es.account_tax_template_igic_sop_i_9_5": (240, 22.8),
+        "l10n_es.account_tax_template_igic_sop_i_15": (250, 37.5),
+        "l10n_es.account_tax_template_igic_sop_i_20": (260, 52),
+        "l10n_es.account_tax_template_igic_sop_i_0_inv": (270, 0),
+        "l10n_es.account_tax_template_igic_sop_i_3_inv": (280, 8.4),
+        "l10n_es.account_tax_template_igic_sop_i_7_inv": (290, 20.3),
+        "l10n_es.account_tax_template_igic_sop_i_9_5_inv": (310, 29.45),
+        "l10n_es.account_tax_template_igic_sop_i_15_inv": (320, 48),
+        "l10n_es.account_tax_template_igic_sop_i_20_inv": (330, 66),
+        "l10n_es.account_tax_template_igic_ISP0": (340, 0),
+        "l10n_es.account_tax_template_igic_ISP3": (350, 0),
+        "l10n_es.account_tax_template_igic_ISP7": (360, 0),
+        "l10n_es.account_tax_template_igic_ISP95": (370, 0),
+        "l10n_es.account_tax_template_igic_ISP15": (380, 0),
+        "l10n_es.account_tax_template_igic_ISP20": (390, 0),
+        "l10n_es.account_tax_template_igic_p_re0": (410, 0),
+        "l10n_es.account_tax_template_igic_p_re03": (420, 1.26),
+        "l10n_es.account_tax_template_igic_p_re07": (430, 3.01),
+        "l10n_es.account_tax_template_igic_p_re095": (440, 4.18),
+        "l10n_es.account_tax_template_igic_p_re15": (450, 6.75),
+        "l10n_es.account_tax_template_igic_p_re20": (460, 9.2),
     }
     taxes_result: ClassVar[dict] = {
         # IGIC Tipo cero - Base imponible 0%
@@ -352,7 +364,33 @@ class TestL10nEsAtcMod425Base(TestL10nEsAeatModBase):
 
     # The chart is the one of the base: 20.0 merged the Canary templates into
     # es_common, so es_pymes already carries the IGIC taxes this declaration
-    # reads and there is nothing left to override.
+    # reads. Odoo core ships them archived and activates them (archiving the
+    # IVA ones) when the company gets a Canary province, as a Canary user does.
+    @classmethod
+    def _chart_of_accounts_create(cls):
+        res = super()._chart_of_accounts_create()
+        cls.company.sudo().write(
+            {
+                "country_id": cls.env.ref("base.es").id,
+                "state_id": cls.env.ref("base.state_es_gc").id,
+            }
+        )
+        return res
+
+    # The fixtures put taxes of every regime on the same invoice, which no
+    # fiscal position of a Canary company allows (each one keeps only its own
+    # taxes): the invoices are entered without one.
+    @classmethod
+    def _invoice_sale_create(cls, dt, extra_vals=None):
+        return super()._invoice_sale_create(
+            dt, dict(extra_vals or {}, fiscal_position_id=False)
+        )
+
+    @classmethod
+    def _invoice_purchase_create(cls, dt, extra_vals=None):
+        return super()._invoice_purchase_create(
+            dt, dict(extra_vals or {}, fiscal_position_id=False)
+        )
 
     @classmethod
     def setUpClass(cls):
@@ -360,7 +398,7 @@ class TestL10nEsAtcMod425Base(TestL10nEsAeatModBase):
         # Create model
         cls.model425 = cls.env["l10n.es.atc.mod425.report"].create(
             {
-                "name": "9990000000420",
+                "name": "9990000000425",
                 "company_id": cls.company.id,
                 "company_vat": "123456789",
                 "contact_name": "Test owner",
@@ -370,7 +408,7 @@ class TestL10nEsAtcMod425Base(TestL10nEsAeatModBase):
                 "year": 2025,
                 "period_type": "0A",
                 "date_start": "2025-01-01",
-                "date_end": "2025-03-31",
+                "date_end": "2025-12-31",
                 "journal_id": cls.journal_misc.id,
             }
         )
@@ -399,11 +437,50 @@ class TestL10nEsAtcMod425Base(TestL10nEsAeatModBase):
             )
         )
 
+    @contextmanager
+    def _atc_program(self):
+        """Replace only the externals of the file generation: the download of
+        the ATC program and the java process. The fake program writes the XML it
+        receives as the declaration file, so the tests read what the ATC gets.
+        Yields the arguments of each run and the jar java was given.
+        """
+        zip_content = BytesIO()
+        with zipfile.ZipFile(zip_content, "w") as zip_file:
+            zip_file.writestr("M425/lib/pa-mod425.jar", b"ATC program")
+        response = requests.Response()
+        response.status_code = 200
+        response._content = zip_content.getvalue()
+        runs = []
+
+        def java(cmd, **kwargs):
+            run = dict(re.findall(r'/([A-Z]):"([^"]*)"', cmd))
+            with open(re.search(r"-cp (\S+)", cmd)[1], "rb") as jar_file:
+                run["jar"] = jar_file.read()
+            runs.append(run)
+            extension = "dec" if run["S"] == "T" else "pdf"
+            shutil.copy(run["E"], os.path.join(run["T"], f"{run['P']}.{extension}"))
+            return subprocess.CompletedProcess(cmd, 0, "", "")
+
+        externals = l10n_es_atc_report
+        with (
+            patch.object(externals.requests, "head", return_value=response),
+            patch.object(externals.requests, "get", return_value=response),
+            patch.object(externals.subprocess, "run", side_effect=java),
+        ):
+            yield runs
+
+    def _generated_files(self):
+        return self.env["ir.attachment"].search(
+            [
+                ("res_model", "=", self.model425._name),
+                ("res_id", "=", self.model425.id),
+            ]
+        )
+
 
 class TestL10nEsAeatMod425(TestL10nEsAtcMod425Base):
     @classmethod
     def setUpClass(cls):
-        cls._super_send = requests.Session.send
         super().setUpClass()
         # Purchase invoices
         cls._invoice_purchase_create("2025-01-01")
@@ -415,11 +492,6 @@ class TestL10nEsAeatMod425(TestL10nEsAtcMod425Base):
         cls._invoice_sale_create("2025-01-12")
         sale = cls._invoice_sale_create("2025-01-13")
         cls._invoice_refund(sale, "2025-01-14")
-
-    @classmethod
-    def _request_handler(cls, s, r, /, **kw):
-        """Don't block external requests."""
-        return cls._super_send(s, r, **kw)
 
     def _check_tax_lines(self):
         for field, result in iter(self.taxes_result.items()):
@@ -477,7 +549,7 @@ class TestL10nEsAeatMod425(TestL10nEsAtcMod425Base):
             company_form.zip_id = self.palmas_zip
 
     def test_model_425(self):
-        _logger.debug("Calculate ATC 425 1T 2025")
+        _logger.debug("Calculate ATC 425 0A 2025")
         self.model425.button_calculate()
         self.assertEqual(self.model425.state, "calculated")
         # Fill manual fields
@@ -509,28 +581,35 @@ class TestL10nEsAeatMod425(TestL10nEsAtcMod425Base):
         self.model425.button_cancel()
         self.assertEqual(self.model425.state, "cancelled")
 
-    @freeze_time("2025-01-01")
-    def test_model_425_declaration_xml(self):
-        """
-        Test the generation of the .xml file
-        Devengado (DEV) = 275960
-        Deducible (DED) = 233930
-        Resultado (TIP) = I
-        Resultado (IMP) = 42030
-        Resultado (FPA) = 5
+    @freeze_time("2026-01-15")
+    def test_model_425_declaration_dec(self):
+        """The telematic file is the XML of the declaration run through the ATC
+        program: accrued base 24600 (TBA 2460000) and quota 2505.60, deductible
+        2339.30 and result 166.30, in cents.
         """
         self.model425.button_calculate()
         self._check_tax_lines()
+        # check configuration
+        with self.assertRaisesRegex(UserError, r".*The company .* has no street.*"):
+            self.model425.action_generar_mod425()
+        with self.assertRaisesRegex(UserError, r".*Please set the code in the city.*"):
+            self.model425.action_generar_mod425()
+        with self.assertRaisesRegex(
+            UserError, r".*Please set the Public Way in the company.*"
+        ):
+            self.model425.action_generar_mod425()
         self._set_f425_fields()
-        report_name = "l10n_es_atc_mod425.mod425_report_xml"
-        xml_data = self.env["ir.actions.report"]._render_qweb_xml(
-            report_name, self.model425.ids
-        )[0]
-        # Parse the XML data and check the values
-        doc = etree.XML(xml_data)
-        dec_node = doc.xpath("//DEC")
-        self.assertEqual(len(dec_node), 1)
-        dec_node = dec_node[0]
+        self.assertEqual(self.model425.output_type, "T")
+        with self._atc_program() as runs:
+            action = self.model425.action_generar_mod425()
+        self.assertEqual(runs[0]["S"], "T")
+        self.assertEqual(runs[0]["jar"], b"ATC program")
+        generated = self._generated_files()
+        self.assertEqual(generated.name, "modelo425.dec")
+        self.assertEqual(action["type"], "ir.actions.act_url")
+        self.assertEqual(action["url"], f"/web/content/{generated.id}?download=true")
+        dec_node = etree.fromstring(generated.raw.content)
+        self.assertEqual(dec_node.tag, "DEC")
         self.assertEqual(dec_node.attrib["MOD"], "425")
         self.assertEqual(dec_node.attrib["ANY"], "2025")
         self.assertEqual(dec_node.attrib["PER"], "0A")
@@ -575,64 +654,13 @@ class TestL10nEsAeatMod425(TestL10nEsAtcMod425Base):
         self.assertEqual(len(res_node), 1)
         self.assertEqual(res_node[0].attrib["TOT"], "2460000")
 
-    @freeze_time("2025-01-01")
+    @freeze_time("2026-01-15")
     def test_model_425_declaration_pdf(self):
-        """
-        Test the generation of the .pdf file
-        set the output_type to B (Borrador)
-        set the payment_type to 1 - Efectivo
-        """
+        """A draft is a PDF made by the same program with output type B."""
         self.model425.button_calculate()
-        self._check_tax_lines()
-        # check configuration
-        with self.assertRaisesRegex(UserError, r".*The company .* has no street.*"):
-            self.model425.action_generar_mod425()
-        with self.assertRaisesRegex(UserError, r".*Please set the code in the city.*"):
-            self.model425.action_generar_mod425()
-        with self.assertRaisesRegex(
-            UserError, r".*Please set the Public Way in the company.*"
-        ):
-            self.model425.action_generar_mod425()
         self._set_f425_fields()
         self.model425.output_type = "B"
-        # In oca-ci, we have an issue: https://github.com/OCA/oca-ci/issues/94
-        # Read the ROADMAP for more information.
-        # Therefore, we always expect an error.
-        # TODO: Remove the next line once the issue is fixed.
-        with self.assertRaisesRegex(
-            UserError, r".*Declaracion no generada. Revisa si el XML es válido.*"
-        ):
-            self.model425.with_context(
-                test_l10n_es_atc_report=True
-            ).action_generar_mod425()
-
-    @freeze_time("2025-01-01")
-    def test_model_425_declaration_dec(self):
-        """
-        Test the generation of the .dec file
-        set the output_type to T (Telematic)
-        set the payment_type to 5 - Pago telemático
-        """
-        self.model425.button_calculate()
-        self._check_tax_lines()
-        # check configuration
-        with self.assertRaisesRegex(UserError, r".*The company .* has no street.*"):
+        with self._atc_program() as runs:
             self.model425.action_generar_mod425()
-        with self.assertRaisesRegex(UserError, r".*Please set the code in the city.*"):
-            self.model425.action_generar_mod425()
-        with self.assertRaisesRegex(
-            UserError, r".*Please set the Public Way in the company.*"
-        ):
-            self.model425.action_generar_mod425()
-        self._set_f425_fields()
-        self.model425.output_type = "T"
-        # In oca-ci, we have an issue: https://github.com/OCA/oca-ci/issues/94
-        # Read the ROADMAP for more information.
-        # Therefore, we always expect an error.
-        # TODO: Remove the next line once the issue is fixed.
-        with self.assertRaisesRegex(
-            UserError, r".*Declaracion no generada. Revisa si el XML es válido.*"
-        ):
-            self.model425.with_context(
-                test_l10n_es_atc_report=True
-            ).action_generar_mod425()
+        self.assertEqual(runs[0]["S"], "B")
+        self.assertEqual(self._generated_files().name, "modelo425.pdf")
