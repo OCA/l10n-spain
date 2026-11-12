@@ -5,3 +5,4 @@ from . import test_l10n_es_aeat_real_estate
 from . import test_l10n_es_aeat_report
 from . import test_l10n_es_aeat_export_config
 from . import test_l10n_es_aeat_taxinfo
+from . import test_l10n_es_aeat_report_tax_mapping
