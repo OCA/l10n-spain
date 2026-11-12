@@ -21,5 +21,6 @@
         "views/mod296_views.xml",
         "security/ir.access.csv",
     ],
+    "maintainers": ["carlosdauden"],
     "installable": True,
 }
