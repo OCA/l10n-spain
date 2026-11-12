@@ -76,6 +76,50 @@ class TestL10nEsAeatMod303VatProrate(TestL10nEsAeatMod303Base):
             self.model303_4t.move_id.line_ids.filtered(lambda x: x.debit == 2.1)
         )
 
+    def test_model_303_with_prorate_non_deductible_line(self):
+        """Fuel of a car used 50 % in the activity (art. 95 LIVA) with a prorate of
+        80 %: [29] has the prorate of the quota left deductible (art. 104.Uno
+        LIVA), 21 x 0.5 x 0.8 = 8.4 per bill, and [44] regularizes it."""
+        self.company.sudo().write(
+            {
+                "with_vat_prorate": True,
+                "vat_prorate_ids": [
+                    Command.create({"date": "2024-01-01", "vat_prorate": 80}),
+                ],
+            }
+        )
+        fuel_line = {
+            "invoice_line_ids": [
+                Command.create(
+                    {
+                        "name": "Fuel",
+                        "account_id": self.accounts["600000"].id,
+                        "price_unit": 100,
+                        "quantity": 1,
+                        "deductible_percentage": 0.5,
+                        "tax_ids": [
+                            Command.set(self._get_taxes("P_IVA21_BC").ids),
+                        ],
+                    },
+                ),
+            ]
+        }
+        self._invoice_sale_create("2024-01-01")
+        self._invoice_purchase_create("2024-01-01", fuel_line)
+        self.model303.button_calculate()
+        self.assertEqual(
+            self.model303.tax_line_ids.filtered(lambda x: x.field_number == 29).amount,
+            8.4,
+        )
+        self.assertEqual(self.model303.total_deducir, 8.4)
+        self._invoice_sale_create("2024-11-01")
+        self._invoice_purchase_create("2024-11-01", fuel_line)
+        self.model303_4t.vat_prorate_percent = 90
+        self.model303_4t.button_calculate()
+        # 10.5 x 10 % of the 1T and of the 4T
+        self.assertEqual(self.model303_4t.casilla_44, 2.1)
+        self.assertEqual(self.model303_4t.total_deducir, 10.5)
+
     def test_model_303_with_special_prorate_default(self):
         # Set vat prorate configuration for company
         # Company data are set by an administrator
