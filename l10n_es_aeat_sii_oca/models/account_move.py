@@ -352,6 +352,7 @@ class AccountMove(models.Model):
                     )
                 }
             )
+        self._adapt_sii_export_registration_keys(inv_dict["FacturaExpedida"])
         if self.sii_registration_key.code in ["12", "13"]:
             inv_dict["FacturaExpedida"]["DatosInmueble"] = {
                 "DetalleInmueble": {

@@ -6,6 +6,7 @@
 # Copyright 2026 Tecnativa - Sergio Teruel
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 import json
+from itertools import zip_longest
 
 from unidecode import unidecode
 from zeep.exceptions import Fault, ValidationError
@@ -30,6 +31,11 @@ SII_DATE_FORMAT = "%d-%m-%Y"
 SII_MAX_RECORDS_PER_REQUEST = 10000
 # Cursor cache key for memoizing the taxes map while sending documents
 SII_TAXES_MAP_CACHE = "l10n_es_aeat_sii_oca.taxes_map"
+SII_REGISTRATION_KEY_FIELDS = (
+    "ClaveRegimenEspecialOTrascendencia",
+    "ClaveRegimenEspecialOTrascendenciaAdicional1",
+    "ClaveRegimenEspecialOTrascendenciaAdicional2",
+)
 
 
 class SiiMixin(models.AbstractModel):
@@ -807,6 +813,70 @@ class SiiMixin(models.AbstractModel):
                 # Uso condicional de IDOtro/NIF
                 exp_dict["Contraparte"].update(self._get_sii_identifier())
         return inv_dict
+
+    @api.model
+    def _get_sii_breakdown_blocks(self, tipo_desglose):
+        """Get the blocks of an issued document breakdown that hold the
+        Sujeta and NoSujeta operations.
+
+        :param tipo_desglose: TipoDesglose dictionary of the issued document.
+        :return: List of dictionaries.
+        """
+        if "DesgloseFactura" in tipo_desglose:
+            return [tipo_desglose["DesgloseFactura"]]
+        type_breakdown = tipo_desglose.get("DesgloseTipoOperacion", {})
+        return [
+            type_breakdown[key]
+            for key in ("Entrega", "PrestacionServicios")
+            if key in type_breakdown
+        ]
+
+    def _adapt_sii_export_registration_keys(self, exp_dict):
+        """Combine the registration keys 01 and 02 as the breakdown requires.
+
+        The AEAT rejects:
+
+        * the key 02 as the only one when there are operations that are not
+          exempt (error 1252).
+        * a combination including the key 02 without any exempt operation
+          (error 1253).
+        * the key 01 as the only one with the exemption causes E2 or E3
+          (error 1301).
+
+        This happens, for example, when an export of goods (exempt by article
+        21 LIVA) is invoiced together with a service not subject by location
+        rules, which must be sent with the key 01 and the additional key 02.
+        Combinations with any other key are not modified.
+
+        :param exp_dict: FacturaExpedida dictionary, modified in place.
+        """
+        keys = {
+            exp_dict[key] for key in SII_REGISTRATION_KEY_FIELDS if exp_dict.get(key)
+        }
+        if not keys or not keys <= {"01", "02"}:
+            return
+        has_exempt = has_export_exempt = has_other = False
+        for block in self._get_sii_breakdown_blocks(exp_dict.get("TipoDesglose", {})):
+            subject = block.get("Sujeta", {})
+            exempt_details = subject.get("Exenta", {}).get("DetalleExenta", [])
+            has_exempt |= bool(exempt_details)
+            has_export_exempt |= any(
+                detail.get("CausaExencion") in ("E2", "E3") for detail in exempt_details
+            )
+            has_other |= bool(subject.get("NoExenta") or block.get("NoSujeta"))
+        if keys == {"02"} and has_other:
+            new_keys = ["01", "02"] if has_exempt else ["01"]
+        elif keys == {"01"} and has_export_exempt:
+            new_keys = ["01", "02"] if has_other else ["02"]
+        elif keys == {"01", "02"}:
+            new_keys = ["01", "02"] if has_exempt else ["01"]
+        else:
+            return
+        for key, code in zip_longest(SII_REGISTRATION_KEY_FIELDS, new_keys):
+            if code:
+                exp_dict[key] = code
+            else:
+                exp_dict.pop(key, None)
 
     def _get_aeat_invoice_dict_in(self, cancel=False):
         """Build dict with data to send to AEAT WS for invoice types:
