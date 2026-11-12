@@ -473,7 +473,7 @@ class L10nEsAeatMod390Report(models.Model):
                             644,
                             711,
                             678,
-                            46,
+                            646,
                             648,  # Criterio de caja - no incluido aún
                             713,
                             680,

@@ -5,6 +5,7 @@ from collections import OrderedDict
 from typing import ClassVar
 
 from odoo import exceptions
+from odoo.tests import Form
 
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
     TestL10nEsAeatModBase,
@@ -585,3 +586,56 @@ class TestL10nEsAeatMod390Rate5(TestL10nEsAeatMod390Base):
                 ),
                 box,
             )
+
+
+class TestL10nEsAeatMod390Map2024(TestL10nEsAeatMod390Base):
+    """Boxes of the map in force since 2024 and their export."""
+
+    taxes_sale: ClassVar[dict] = {}
+    taxes_purchase: ClassVar[dict] = {}
+
+    def _create_390(self, year):
+        return self.env["l10n.es.aeat.mod390.report"].create(
+            {
+                "name": f"99900000{year}0",
+                "company_id": self.company.id,
+                "company_vat": "123456789",
+                "contact_name": "Test owner",
+                "statement_type": "N",
+                "support_type": "T",
+                "contact_phone": "911234455",
+                "year": year,
+                "period_type": "0A",
+                "date_start": f"{year}-01-01",
+                "date_end": f"{year}-12-31",
+                "journal_id": self.journal_misc.id,
+            }
+        )
+
+    def _box(self, report, box):
+        return sum(
+            report.tax_line_ids.filtered(lambda x: x.field_number == box).mapped(
+                "amount"
+            )
+        )
+
+    def test_model_390_bankruptcy_refund(self):
+        """A refund of a debtor in bankruptcy goes to boxes 31/32 and 45/46, and the
+        surcharge of box 46 is counted only once, in [47]."""
+        self.patch(type(self), "taxes_sale", {"S_IVA21B,S_REQ52": (1000, 262)})
+        invoice = self._invoice_sale_create("2024-03-01")
+        refund = invoice.with_user(self.billing_user)._reverse_moves(
+            [{"date": "2024-06-01", "invoice_date": "2024-06-01"}]
+        )
+        with Form(refund) as refund_form:
+            refund_form.is_bankrupcy_uncollectible_debt = True
+        refund.action_post()
+        model390 = self._create_390(2024)
+        model390.button_calculate()
+        self.assertAlmostEqual(self._box(model390, 6), 210, 2)
+        self.assertAlmostEqual(self._box(model390, 32), -210, 2)
+        self.assertAlmostEqual(self._box(model390, 30), 0, 2)
+        self.assertAlmostEqual(self._box(model390, 46), -52, 2)
+        self.assertAlmostEqual(self._box(model390, 44), 0, 2)
+        self.assertAlmostEqual(model390.casilla_34, 0, 2)
+        self.assertAlmostEqual(model390.casilla_47, 0, 2)
