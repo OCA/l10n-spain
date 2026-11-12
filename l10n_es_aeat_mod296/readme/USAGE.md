@@ -6,8 +6,10 @@ Para crear la declaración anual:
     fechas se calculan automáticamente.
 4.  Rellenar el teléfono, necesario para la exportación BOE.
 5.  Guardar y pulsar en el botón "Calcular". Se crea una línea por
-    perceptor con su base, sus retenciones y el porcentaje de retención
-    de su impuesto.
+    perceptor y porcentaje de retención con su base y sus retenciones.
+    Las rentas exentas por convenio (retenciones al 0 %) van en una línea
+    con porcentaje 0, sin retención y con subclave 04, que se cambia a 03
+    si la exención es interna.
 6.  Rellenar (si es necesario) aquellos campos que Odoo no calcula
     automáticamente:
     - Retenciones ingresadas: casilla \[04\].

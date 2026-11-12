@@ -416,8 +416,10 @@ informado con el impuesto nacional adecuado.</li>
 fechas se calculan automáticamente.</li>
 <li>Rellenar el teléfono, necesario para la exportación BOE.</li>
 <li>Guardar y pulsar en el botón “Calcular”. Se crea una línea por
-perceptor con su base, sus retenciones y el porcentaje de retención
-de su impuesto.</li>
+perceptor y porcentaje de retención con su base y sus retenciones.
+Las rentas exentas por convenio (retenciones al 0 %) van en una línea
+con porcentaje 0, sin retención y con subclave 04, que se cambia a 03
+si la exención es interna.</li>
 <li>Rellenar (si es necesario) aquellos campos que Odoo no calcula
 automáticamente:<ul>
 <li>Retenciones ingresadas: casilla [04].</li>

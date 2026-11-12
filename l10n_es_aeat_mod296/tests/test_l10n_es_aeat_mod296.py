@@ -68,14 +68,28 @@ class TestL10nEsAeatMod296Base(TestL10nEsAeatModBase):
         self.model296.button_calculate()
         self.assertEqual(self.model296.casilla_02, self.taxes_result["2"])
         self.assertEqual(self.model296.casilla_03, self.taxes_result["3"])
-        self.assertEqual(len(self.model296.lines296), 1)
-        # The line keeps the base and retention move lines of its partner
+        # One line per perceptor and withholding rate, each with the base and
+        # withholding move lines of its tax
+        lines = self.model296.lines296
+        self.assertEqual(lines.mapped("porcentaje_retencion"), [19, 24])
         tax_move_lines = self.model296.tax_line_ids.filtered(
             lambda x: x.field_number in (2, 3)
         ).move_line_ids
-        line = self.model296.lines296
-        self.assertEqual(line.move_line_ids, tax_move_lines)
-        self.assertEqual(line.partner_id, tax_move_lines.partner_id)
+        self.assertEqual(lines.move_line_ids, tax_move_lines)
+        self.assertEqual(lines.partner_id, self.supplier)
+        line = lines[0]
+        tax19 = self._get_taxes("l10n_es.account_tax_template_p_irpfnrue19p")
+        self.assertEqual(
+            line.move_line_ids,
+            tax_move_lines.filtered(
+                lambda x: x.tax_line_id == tax19 or tax19 in x.tax_ids
+            ),
+        )
+        self.assertEqual(line.base_retenciones_ingresos, 4000)
+        self.assertEqual(line.retenciones_ingresos, 760)
+        self.assertEqual(lines[1].base_retenciones_ingresos, 2000)
+        self.assertEqual(lines[1].retenciones_ingresos, 480)
+        self.assertEqual(self.model296.casilla_01, 2)
         # Data the user fills in by hand on the report and on the line
         self.model296.casilla_04 = 1240
         line.write(
@@ -85,7 +99,6 @@ class TestL10nEsAeatMod296Base(TestL10nEsAeatModBase):
                 "naturaleza": "D",
                 "clave": "2",
                 "subclave": "1",
-                "porcentaje_retencion": 19,
                 "mediador": True,
                 "codigo": "2",
                 "codigo_emisor": "ES0000012345",
@@ -111,10 +124,10 @@ class TestL10nEsAeatMod296Base(TestL10nEsAeatModBase):
         )
         wizard.action_get_file()
         content = wizard.data.content.decode("iso-8859-1")
-        # One declarant record and one perceptor record of 500 positions each
-        # (AEAT record design of model 296, DR 2024)
-        self.assertEqual(len(content), 1000)
-        declarant, perceptor = content[:500], content[500:]
+        # One declarant record and two perceptor records of 500 positions
+        # each (AEAT record design of model 296, DR 2024)
+        self.assertEqual(len(content), 1500)
+        declarant, perceptor = content[:500], content[500:1000]
         expected_declarant = "".join(
             [
                 "1",  # 1 Tipo de registro
@@ -128,7 +141,7 @@ class TestL10nEsAeatMod296Base(TestL10nEsAeatModBase):
                 "2960000000001",  # 108-120 Número identificativo
                 "  ",  # 121-122 Complementaria / sustitutiva
                 "0" * 13,  # 123-135 Declaración anterior
-                "000000001",  # 136-144 [01] Número de perceptores
+                "000000002",  # 136-144 [01] Número de perceptores
                 " 00000000600000",  # 145-159 [02] Base: signo y 12+2
                 "000000000124000",  # 160-174 [03] Retenciones: 13+2
                 "000000000124000",  # 175-189 [04] Ingresados: 13+2
@@ -156,9 +169,9 @@ class TestL10nEsAeatMod296Base(TestL10nEsAeatModBase):
                 "D",  # 99 Naturaleza
                 "02",  # 100-101 Clave
                 "01",  # 102-103 Subclave
-                " 000000600000",  # 104-116 Base: signo y 10+2
+                " 000000400000",  # 104-116 Base: signo y 10+2
                 "1900",  # 117-120 % retención: 2+2
-                "0000000124000",  # 121-133 Retenciones: 11+2
+                "0000000076000",  # 121-133 Retenciones: 11+2
                 "1",  # 134 Perceptor mediador residente en España
                 "2",  # 135 Código: ISIN
                 "ES0000012345",  # 136-147 Código emisor
@@ -311,3 +324,34 @@ class TestL10nEsAeatMod296Base(TestL10nEsAeatModBase):
         self.assertEqual(perceptor[103:116], " 000000300000")  # 104-116 Base
         self.assertEqual(perceptor[116:120], "0000")  # 117-120 % retención
         self.assertEqual(perceptor[120:133], "0" * 13)  # 121-133 Retenciones
+
+    def test_model_296_rates(self):
+        """A perceptor withheld at two rates gets one record per rate, whose
+        withholding is its base by its rate (DR 296 2024, positions 104-133),
+        and counts once per record in [01] (positions 136-144)."""
+        self._purchase_invoice(
+            "2025-06-01",
+            [
+                ("l10n_es.account_tax_template_p_irpfnrnue24p", 1000),
+                ("l10n_es.account_tax_template_p_irpfnrue19p", 2000),
+            ],
+        )
+        model296 = self._create_report()
+        model296.button_calculate()
+        lines = model296.lines296
+        self.assertEqual(len(lines), 2)
+        self.assertEqual(lines.partner_id, self.supplier)
+        self.assertEqual(lines.mapped("porcentaje_retencion"), [19, 24])
+        self.assertEqual(lines.mapped("base_retenciones_ingresos"), [2000, 1000])
+        self.assertEqual(lines.mapped("retenciones_ingresos"), [380, 240])
+        self.assertEqual(model296.casilla_01, 2)
+        content = self._export_boe(model296)
+        self.assertEqual(len(content), 1500)
+        self.assertEqual(content[135:144], "000000002")  # 136-144 [01]
+        for record, base, rate, withholding in (
+            (content[500:1000], " 000000200000", "1900", "0000000038000"),
+            (content[1000:], " 000000100000", "2400", "0000000024000"),
+        ):
+            self.assertEqual(record[103:116], base)  # 104-116 Base
+            self.assertEqual(record[116:120], rate)  # 117-120 % retención
+            self.assertEqual(record[120:133], withholding)  # 121-133 Retenciones

@@ -5,7 +5,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
-from odoo.fields import Domain
+from odoo.fields import Command
 
 
 class L10nEsAeatMod296Report(models.Model):
@@ -47,96 +47,79 @@ class L10nEsAeatMod296Report(models.Model):
         string="Lines",
     )
 
-    def partner_group(self, move_lines_base_ids, move_lines_cuota_ids):
-        partner_groups = {}
-        for group in self.env["account.move.line"]._read_group(
-            Domain("id", "in", move_lines_base_ids),
-            ["partner_id"],
-            ["credit:sum", "debit:sum"],
-        ):
-            partner_groups[group[0].id] = {
-                "base": {"credit": group[1], "debit": group[2]}
-            }
-        for group in self.env["account.move.line"]._read_group(
-            Domain("id", "in", move_lines_cuota_ids),
-            ["partner_id"],
-            ["credit:sum", "debit:sum"],
-        ):
-            partner_groups.setdefault(group[0].id, {})["cuota"] = {
-                "credit": group[1],
-                "debit": group[2],
-            }
-        return partner_groups
+    def _get_withholding_rate(self, move_line, taxes):
+        """Withholding rate of a base or withholding move line: the rate of its
+        tax among the given withholding taxes."""
+        tax = move_line.tax_line_id or (move_line.tax_ids & taxes)[:1]
+        return abs(tax.amount)
 
     def calculate(self):
         res = super().calculate()
         for report in self:
-            # Data the user entered on the lines is kept for the same perceptor
-            manual_values = {
-                line.partner_id.id: line._get_manual_values()
-                for line in reversed(report.lines296)
-            }
-            report.lines296.unlink()
-            line_lst = []
             tax_lines_number_2 = report.tax_line_ids.filtered(
                 lambda x: x.field_number == 2
             )
             tax_lines_number_3 = report.tax_line_ids.filtered(
                 lambda x: x.field_number == 3
             )
-            move_lines_base = tax_lines_number_2.mapped("move_line_ids")
-            move_lines_cuota = tax_lines_number_3.mapped("move_line_ids")
-            partner_groups = self.partner_group(
-                move_lines_base.ids, move_lines_cuota.ids
+            map_lines = (tax_lines_number_2 + tax_lines_number_3).map_line_id
+            taxes = report.company_id._get_taxes_from_xmlids(
+                map_lines.tax_xmlid_ids.mapped("name")
             )
-            lines_by_partner = (move_lines_base + move_lines_cuota).grouped(
-                lambda x: x.partner_id.id
-            )
-            for partner_id in partner_groups:
-                data = self._prepare_mod296_line(
-                    partner_id,
-                    partner_groups[partner_id],
-                    lines_by_partner[partner_id],
+            # Data the user entered on the lines is kept for the same perceptor
+            # and withholding rate
+            manual_values = {
+                (
+                    line.partner_id.id,
+                    report._get_withholding_rate(line.move_line_ids[:1], taxes),
+                ): line._get_manual_values()
+                for line in reversed(report.lines296)
+            }
+            report.lines296.unlink()
+            move_lines_base = tax_lines_number_2.move_line_ids
+            move_lines_cuota = tax_lines_number_3.move_line_ids
+            # One perceptor record per perceptor and withholding rate: the
+            # record has a single rate and its withholding is base x rate
+            groups = (move_lines_base | move_lines_cuota).grouped(
+                lambda x, report=report, taxes=taxes: (
+                    x.partner_id.id,
+                    report._get_withholding_rate(x, taxes),
                 )
-                data.update(manual_values.get(partner_id, {}))
-                line_lst.append((0, 0, data))
+            )
+            line_lst = []
+            for key in sorted(groups, key=lambda k: (k[0] or 0, k[1])):
+                partner_id, rate = key
+                data = report._prepare_mod296_line(
+                    partner_id,
+                    rate,
+                    groups[key] & move_lines_base,
+                    groups[key] & move_lines_cuota,
+                )
+                data.update(manual_values.get(key, {}))
+                line_lst.append(Command.create(data))
             report.lines296 = line_lst
             report.lines296.onchange_partner()
-            report.casilla_01 = len(partner_groups)
+            # A perceptor counts once per record (DR 296, positions 136-144)
+            report.casilla_01 = len(report.lines296)
             report.casilla_02 = sum(tax_lines_number_2.mapped("amount"))
             report.casilla_03 = sum(tax_lines_number_3.mapped("amount"))
         return res
 
-    def _prepare_mod296_line(self, partner_id, data, move_lines):
-        no_amounts = {"credit": 0.0, "debit": 0.0}
-        base_data = data.get("base", no_amounts)
-        # Incomes exempt by treaty or by internal rule have no withholding
-        cuota_data = data.get("cuota", no_amounts)
-        base = base_data["debit"] - base_data["credit"]
-        cuota = cuota_data["credit"] - cuota_data["debit"]
+    def _prepare_mod296_line(self, partner_id, rate, move_lines_base, move_lines_cuota):
         vals = {
             "partner_id": partner_id,
-            "move_line_ids": move_lines,
-            "base_retenciones_ingresos": base,
-            "retenciones_ingresos": cuota,
-            "porcentaje_retencion": self._get_mod296_line_percentage(
-                move_lines, base, cuota
-            ),
+            "move_line_ids": move_lines_base | move_lines_cuota,
+            "base_retenciones_ingresos": sum(move_lines_base.mapped("balance")),
+            "retenciones_ingresos": -sum(move_lines_cuota.mapped("balance")),
+            "porcentaje_retencion": rate,
         }
-        if not move_lines.tax_line_id:
-            # Only exempt incomes: "04 - Exemption by application of a
-            # Convention", the exemption of the exempt withholding taxes. The
-            # user changes it to "03" for an internal exemption.
+        if not rate:
+            # Income exempt by treaty or by internal rule, without withholding:
+            # "04 - Exemption by application of a Convention", the exemption
+            # of the exempt withholding taxes. The user changes it to "03" for
+            # an internal exemption.
             vals["subclave"] = "4"
         return vals
-
-    def _get_mod296_line_percentage(self, move_lines, base, cuota):
-        """Withholding rate of the perceptor: the rate of its withholding tax, or
-        the effective rate when its income has been withheld at several rates."""
-        rates = set(move_lines.tax_line_id.mapped(lambda tax: abs(tax.amount)))
-        if len(rates) == 1:
-            return rates.pop()
-        return round(100 * cuota / base, 2) if base else 0.0
 
 
 class L10nEsAeatMod296ReportLine(models.Model):
