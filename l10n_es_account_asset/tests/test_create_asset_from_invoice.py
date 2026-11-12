@@ -53,6 +53,17 @@ class TestCreateAssetFromInvoice(TestL10nEsAeatModBase):
             "invoice_line_ids": [Command.create(line_vals), Command.create(line_vals2)],
         }
         cls.invoice = cls.env["account.move"].create(invoice_vals)
+        # A currency rounded to units
+        cls.jpy = cls.env.ref("base.JPY")
+        cls.jpy.active = True
+        cls.env["res.currency.rate"].create(
+            {
+                "name": "2025-11-01",
+                "rate": 150,
+                "currency_id": cls.jpy.id,
+                "company_id": cls.company.id,
+            }
+        )
 
     def _post_bill(self, lines, move_type="in_invoice", currency=None):
         """Post a vendor bill with one asset line per (price, tax) given"""
@@ -96,3 +107,9 @@ class TestCreateAssetFromInvoice(TestL10nEsAeatModBase):
         """An import of goods with the group of taxes of the DUA"""
         asset = self._post_bill([(100, "p_iva21_ibc_group")])
         self.assertEqual(asset.purchase_value, 100)
+
+    def test_foreign_currency_non_deductible(self):
+        """The value is in the currency of the company, rounded with it"""
+        asset = self._post_bill([(10000, "p_iva0_nd")], currency=self.jpy)
+        # 10000 / 150 = 66.67 plus 2100 / 150 = 14.00
+        self.assertEqual(asset.purchase_value, 80.67)

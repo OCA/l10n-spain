@@ -23,5 +23,5 @@ class AccountMove(models.Model):
                 ratio = vals[tax]["base"] / tax_vals["base"]
                 diff = tax_vals["amount"] - tax_vals["deductible_amount"]
                 amount += diff * ratio
-        res["purchase_value"] = self.currency_id.round(amount)
+        res["purchase_value"] = aml.company_currency_id.round(amount)
         return res
