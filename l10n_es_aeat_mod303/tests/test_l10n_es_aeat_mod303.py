@@ -889,3 +889,25 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
         self.assertAlmostEqual(report.casilla_69, -390)
         self.assertAlmostEqual(report.resultado_liquidacion, -370)
         self.assertEqual(report.result_type, "C")
+
+    def test_model_303_exempt_with_deduction_right(self):
+        """Exemptions of arts. 22 to 24 LIVA give right to deduct (art. 94.Uno.1.b
+        LIVA): they go to [60] and to the annual [94], not to [83].
+        """
+        self._get_taxes("S_IVA0_ART22,S_IVA0_ART23").active = True
+        self.patch(
+            type(self),
+            "taxes_sale",
+            {"S_IVA0_ART22": (1000, 0), "S_IVA0_ART23": (500, 0)},
+        )
+        # 2023 map
+        self._invoice_sale_create("2024-02-01")
+        self.model303.button_calculate()
+        self.assertAlmostEqual(self._box(self.model303, 60), 2 * 4600 + 1500)
+        # 2024-10 map, last period of a taxpayer exonerated of the 390
+        self._invoice_sale_create("2025-11-01")
+        report = self._create_303(2025, "4T", exonerated_390="1")
+        report.button_calculate()
+        self.assertAlmostEqual(self._box(report, 60), 1500)
+        self.assertAlmostEqual(self._box(report, 94), 1500)
+        self.assertAlmostEqual(self._box(report, 83), 0)
