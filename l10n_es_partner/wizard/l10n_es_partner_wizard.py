@@ -106,7 +106,10 @@ class L10nEsPartnerImportWizard(models.TransientModel):
                     return
                 csv_to_process = csv_in_file.name
             except Exception:
-                _logger.warning("Error al descargar. Usando fichero local de respaldo.")
+                # The Bank of Spain forbids the download on certain conditions, as
+                # from the CI, where a warning would make the tests fail
+                log = _logger.info if tools.config["test_enable"] else _logger.warning
+                log("Error al descargar. Usando fichero local de respaldo.")
                 csv_to_process = tools.file_path(
                     "l10n_es_partner/gen_src/REGBANESP_CONESTAB_A.csv"
                 )
