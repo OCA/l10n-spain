@@ -7,9 +7,16 @@ Para introducir datos válidos para el modelo:
     dividendos con el impuesto "Retenciones 19% (dividendos)".
 3.  Validarla.
 
+El modelo 123 suma también las retenciones "Retenciones IRPF 24%
+(Rendimientos del capital)" y "Retenciones IRPF 19% Consejeros y
+administradores (Compra consejero de sociedad)".
+Odoo core etiqueta esas dos retenciones para su informe de impuestos del
+modelo 111, así que en ese informe aparecen también; el modelo 111 de
+OCA no las incluye.
+
 Para crear una declaración del modelo:
 
-1.  Ir a *Facturación \> Informes AEAT \> Modelo 123*.
+1.  Ir a *Facturación \> Declaraciones \> AEAT \> Modelo 123*.
 2.  Pulsar en el botón "Crear".
 3.  Seleccionar el ejercicio fiscal y el tipo de período. Los periodos
     incluidos se calculan automáticamente.
