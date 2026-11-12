@@ -409,3 +409,38 @@ class TestL10nEsAeatMod592(TestL10nEsAeatModBase):
         self.assertEqual(line.product_id, self.product_a)
         self.assertEqual(line.entry_number, "A001")
         self.assertEqual(self.model592.total_weight_acquirer, 30)
+
+    @freeze_time("2024-01-01", tick=True)
+    def test_line_without_concept(self):
+        """A delivery address abroad of a Spanish customer without NIF is
+        searched as a shipping outside Spain, but the concept is taken from the
+        customer: the line has no concept and the report can't be confirmed"""
+        customer_es = self.env["res.partner"].create(
+            {
+                "name": "Test ES customer",
+                "country_id": self.env.ref("base.es").id,
+            }
+        )
+        address_pt = self.env["res.partner"].create(
+            {
+                "name": "Test PT warehouse",
+                "type": "delivery",
+                "parent_id": customer_es.id,
+                "country_id": self.env.ref("base.pt").id,
+            }
+        )
+        self.assertEqual(customer_es.plastic_document_type, "1")
+        self.assertNotEqual(address_pt.plastic_document_type, "1")
+        warehouse = self.env["stock.warehouse"].search(
+            [("company_id", "=", self.company.id)], limit=1
+        )
+        self._validate_picking(
+            warehouse.out_type_id, address_pt, [(self.product_a, 2, False)]
+        )
+        self.model592.calculate()
+        line = self.model592.acquirer_line_ids
+        self.assertFalse(line.concept)
+        self.assertIn("Without concept", line.error_text)
+        self.assertTrue(self.model592.show_error_acquirer)
+        with self.assertRaises(UserError):
+            self.model592.button_confirm()
