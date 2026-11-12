@@ -33,10 +33,22 @@ class AccountMove(models.Model):
             item.thirdparty_invoice = item.journal_id.thirdparty_invoice
 
     def _get_aeat_tax_info(self):
+        """Base, quota and deductible quota of each tax of the invoice.
+
+        Base and quota are the ones of the invoice as issued. Odoo core takes
+        the non deductible part of a vendor bill line (``deductible_percentage``,
+        arts. 95 and 96 LIVA) out of the base and the tax lines into its own
+        lines: that part of the quota counts in the quota, not in the deductible
+        quota.
+        """
         self.ensure_one()
         res = {}
         sign = -1 if self.move_type[:3] == "out" else 1
         for line in self.line_ids:
+            if line.display_type in ("non_deductible_product", "non_deductible_tax"):
+                # The private part, added below to the quota of each tax. The
+                # private quota line gets the taxes of its account.
+                continue
             for tax in line.tax_ids:
                 line._process_aeat_tax_base_info(res, tax, sign)
             if line.tax_line_id:
@@ -52,7 +64,25 @@ class AccountMove(models.Model):
                     # taxes with more than one "tax" repartition line must be discarded
                     continue
                 line._process_aeat_tax_fee_info(res, tax, sign)
+        self._process_aeat_non_deductible_tax_info(res, sign)
         return res
+
+    def _process_aeat_non_deductible_tax_info(self, res, sign):
+        """Add to the quota of each tax its non deductible part, which Odoo core
+        books on a single line for all the taxes, computed per tax as Odoo core
+        computes that line."""
+        if "non_deductible_product" not in self.line_ids.mapped("display_type"):
+            return
+        base_lines = self._get_rounded_base_and_tax_lines()[0]
+        for base_line in base_lines:
+            if base_line["special_type"] != "non_deductible":
+                continue
+            for tax_data in base_line["tax_details"]["taxes_data"]:
+                tax = tax_data["tax"]
+                res.setdefault(
+                    tax, {"tax": tax, "base": 0, "amount": 0, "deductible_amount": 0}
+                )
+                res[tax]["amount"] -= base_line["sign"] * tax_data["tax_amount"] * sign
 
 
 class AccountMoveLine(models.Model):
