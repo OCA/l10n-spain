@@ -154,7 +154,7 @@ class L10nEsAeatMod303Report(models.Model):
         """Restrict the deductible taxes to the lines that are not prorate ones."""
         res = super()._get_move_line_domain(date_start, date_end, map_line)
         if (
-            map_line.field_number in {29, 33, 35, 37, 39, 41}
+            map_line.field_number in {29, 31, 33, 35, 37, 39, 41, 42}
             and self.company_id.with_vat_prorate
         ):
             res += [("vat_prorate", "=", False)]

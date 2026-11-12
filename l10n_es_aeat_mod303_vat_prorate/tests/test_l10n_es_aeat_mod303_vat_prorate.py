@@ -341,3 +341,51 @@ class TestL10nEsAeatMod303VatProrate(TestL10nEsAeatMod303Base):
         self.model303.button_compute()
         # 300 taxed of 400
         self.assertEqual(self.model303.vat_prorate_percent, 75)
+
+    def _set_general_prorate(self, date, percent):
+        # Company data are set by an administrator
+        self.company.sudo().write(
+            {
+                "with_vat_prorate": True,
+                "vat_prorate_ids": [
+                    Command.create({"date": date, "vat_prorate": percent})
+                ],
+            }
+        )
+
+    def _purchase_lines(self, *lines):
+        return {
+            "invoice_line_ids": [
+                Command.create(
+                    {
+                        "name": f"Compra {price}€ {desc}",
+                        "account_id": self.accounts["600000"].id,
+                        "price_unit": price,
+                        "quantity": 1,
+                        "tax_ids": [Command.link(t.id) for t in self._get_taxes(desc)],
+                    }
+                )
+                for desc, price in lines
+            ]
+        }
+
+    def _box(self, report, number):
+        return sum(
+            report.tax_line_ids.filtered(lambda x: x.field_number == number).mapped(
+                "amount"
+            )
+        )
+
+    def test_model_303_prorate_deductible_boxes(self):
+        """The non deductible part of the prorate is left out of the deductible
+        boxes of investment goods [31] and of the REAGYP compensations [42]."""
+        self._set_general_prorate("2024-01-01", 90)
+        self._invoice_purchase_create(
+            "2024-01-01",
+            self._purchase_lines(("P_IVA21_BI", 1000), ("P_IVA12_AGR", 1000)),
+        )
+        self.model303.button_calculate()
+        self.assertAlmostEqual(self._box(self.model303, 30), 1000)
+        self.assertAlmostEqual(self._box(self.model303, 31), 189)
+        self.assertAlmostEqual(self._box(self.model303, 42), 108)
+        self.assertAlmostEqual(self.model303.total_deducir, 297)
