@@ -8,6 +8,7 @@
 ##############################################################################
 
 import logging
+from unittest.mock import patch
 
 from odoo.tests import Form, tagged
 
@@ -197,3 +198,56 @@ class TestL10nEsAtcMod415(TestL10nEsAeatModBase):
                 )
             )
         )
+
+    def test_model_415_igic_taxes_of_odoo_core(self):
+        """Every IGIC tax of Odoo core counts in the key of its side: purchases
+        in A and sales in B, each invoice entered with the fiscal position the
+        tax belongs to, as the user picks the tax."""
+        taxes_by_key = {
+            "A": (
+                "igic_sop_5",
+                "igic_sop_5_inv",
+                "igic_sop_i_5",
+                "igic_sop_i_5_inv",
+                "igic_ISP5",
+                "igic_p_re05",
+                "igic_p_ex",
+                "igic_sop_0_s",
+                "igic_sop_7_s",
+                "igic_sop_20_s",
+                "igic_sop_cmino",
+                "igic_sop_7_cmino",
+                "igic_sop_20_cmino",
+                "p_igic_ns",
+            ),
+            "B": ("igic_r_5", "s_igic_ns"),
+        }
+        expected = {}
+        for key, xmlids in taxes_by_key.items():
+            for xmlid in xmlids:
+                # With the module of the template: without it, `_get_taxes`
+                # takes a key with capitals (igic_ISP5) for an old tax code
+                tax_key = f"l10n_es.account_tax_template_{xmlid}"
+                tax = self._get_taxes(tax_key)
+                self.assertTrue(tax, xmlid)
+                partner = self.customer.copy({"name": f"Partner {xmlid}"})
+                vals = {
+                    "partner_id": partner.id,
+                    "fiscal_position_id": tax.fiscal_position_ids[:1].id,
+                }
+                if key == "A":
+                    with patch.object(
+                        type(self), "taxes_purchase", {tax_key: (4000, 0)}
+                    ):
+                        invoice = self._invoice_purchase_create("2019-05-01", vals)
+                else:
+                    with patch.object(type(self), "taxes_sale", {tax_key: (4000, 0)}):
+                        invoice = self._invoice_sale_create("2019-05-01", vals)
+                expected[partner] = (key, invoice.amount_total)
+        self.model415.button_calculate()
+        for partner, (key, amount) in expected.items():
+            record = self.model415.partner_record_ids.filtered(
+                lambda x, partner=partner: x.partner_id == partner
+            )
+            self.assertEqual(record.operation_key, key, partner.name)
+            self.assertAlmostEqual(record.amount, amount, 2, partner.name)
