@@ -92,6 +92,23 @@ class TestPartnerSearchAndDisplay(L10nEsPartnerCommon):
             "Empresa de prueba",
         )
 
+    def test_04_stored_name_keeps_commercial_name_when_hidden(self):
+        """Renaming a company from a flow that hides the trade name doesn't
+        remove it from the stored name, which sorts the contacts and is shown
+        in their list"""
+        self.env["ir.config_parameter"].sudo().set_str(
+            "l10n_es_partner.name_pattern", "%(comercial_name)s (%(name)s)"
+        )
+        legal_partner = self.partner.with_context(no_display_commercial=True)
+        legal_partner.name = "Empresa renombrada"
+        self.assertEqual(legal_partner.display_name, "Empresa renombrada")
+        self.assertEqual(
+            self.partner.complete_name, "Nombre comercial (Empresa renombrada)"
+        )
+        self.assertEqual(
+            self.partner.display_name, "Nombre comercial (Empresa renombrada)"
+        )
+
 
 class TestPartnerCommercialFieldSync(L10nEsPartnerCommon):
     def test_01_commercial_name_is_copied_to_child_contacts(self) -> None:
