@@ -1,6 +1,9 @@
 # Copyright 2026 Juan Carlos Oñate - Tecnativa <juancarlos.onate@tecnativa.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+import importlib.util
+
 from odoo.tests import tagged
+from odoo.tools.misc import file_path
 
 from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 
@@ -101,3 +104,38 @@ class TestL10nEsReav(AccountTestInvoicingCommon):
         )
         self.assertNotEqual(invoice.fiscal_position_id, self.fp_reav)
         self.assertFalse(invoice.invoice_line_ids.tax_ids)
+
+    def _run_migration(self):
+        script = file_path("l10n_es_reav/migrations/20.0.1.0.0/post-migration.py")
+        spec = importlib.util.spec_from_file_location(
+            "odoo.addons.l10n_es_reav.migrations.post_migration", script
+        )
+        post_migration = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(post_migration)
+        # Without the frame of the Odoo migration manager that its decorator
+        # inspects
+        post_migration.migrate.__wrapped__(self.env, "18.0.1.0.0")
+
+    def test_migration(self):
+        """The migration from 18.0 fills the regime code and the applicability
+        of the REAV taxes without changing a value already set, and warns about
+        the products with REAV taxes"""
+        self.env.cr.execute(
+            """UPDATE account_tax SET l10n_es_regime_code = NULL,
+               l10n_es_applicability = NULL WHERE id = %s""",
+            [self.tax_s_reav.id],
+        )
+        self.env.cr.execute(
+            "UPDATE account_tax SET l10n_es_regime_code = '01' WHERE id = %s",
+            [self.tax_p_reav.id],
+        )
+        product = self.product_a.copy(
+            {"name": "Old REAV product", "taxes_id": [(6, 0, self.tax_s_reav.ids)]}
+        )
+        with self.assertLogs("odoo.addons.l10n_es_reav", "WARNING") as logs:
+            self._run_migration()
+        self.assertIn(product.display_name, logs.output[0])
+        (self.tax_s_reav | self.tax_p_reav).invalidate_recordset()
+        self.assertEqual(self.tax_s_reav.l10n_es_regime_code, "05")
+        self.assertEqual(self.tax_s_reav.l10n_es_applicability, "01")
+        self.assertEqual(self.tax_p_reav.l10n_es_regime_code, "01")
