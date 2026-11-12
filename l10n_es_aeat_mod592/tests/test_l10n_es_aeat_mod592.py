@@ -135,7 +135,12 @@ class TestL10nEsAeatMod592(TestL10nEsAeatModBase):
         self.assertEqual(
             self.model592.total_weight_acquirer_non_reclyclable, 27
         )  # 27 = 18 + 9
-        self.assertEqual(self.model592.total_amount_acquirer, 27)
+        # Shipping outside Spain is a deduction (concept 2), not a quota
+        self.assertEqual(self.model592.plastic_quantity, 0)
+        self.assertEqual(self.model592.plastic_tax_base, 0)
+        self.assertEqual(self.model592.plastic_quota, 0)
+        self.assertEqual(self.model592.plastic_deduction, 27)  # 27 * 1
+        self.assertEqual(self.model592.plastic_result, -27)
         sm_a = self.picking.move_ids.filtered(lambda x: x.product_id == self.product_a)
         sm_b = self.picking.move_ids.filtered(lambda x: x.product_id == self.product_b)
         sm_c = self.picking.move_ids.filtered(lambda x: x.product_id == self.product_c)
@@ -363,6 +368,67 @@ class TestL10nEsAeatMod592(TestL10nEsAeatModBase):
                 "",
             ],
         )
+
+    @freeze_time("2024-03-15")
+    def test_liquidation_acquirer(self):
+        """The intra-community acquisitions make the quota and the shipping
+        outside Spain, the scrap and the return to the supplier are deducted
+        from it"""
+        supplier = self.env["res.partner"].create(
+            {
+                "name": "Test FR supplier",
+                "country_id": self.env.ref("base.fr").id,
+                "vat": "FR23334175221",
+            }
+        )
+        customer = self.env["res.partner"].create(
+            {
+                "name": "Test DE customer",
+                "country_id": self.env.ref("base.de").id,
+                "vat": "DE123456788",
+            }
+        )
+        self.product_a.is_storable = True
+        warehouse = self.env["stock.warehouse"].search(
+            [("company_id", "=", self.company.id)], limit=1
+        )
+        receipt = self._validate_picking(
+            warehouse.in_type_id, supplier, [(self.product_a, 10, False)]
+        )
+        self._scrap(receipt, self.product_a, 1)
+        self._return(receipt, 2)
+        self._validate_picking(
+            warehouse.out_type_id, customer, [(self.product_a, 3, False)]
+        )
+        report = self.env["l10n.es.aeat.mod592.report"].create(
+            {
+                "name": "9990000000391",
+                "company_id": self.company.id,
+                "company_vat": "123456789",
+                "contact_name": "Test owner",
+                "statement_type": "N",
+                "support_type": "T",
+                "contact_phone": "911234455",
+                "year": 2024,
+                "period_type": "1T",
+                "date_start": "2024-01-01",
+                "date_end": "2024-03-31",
+            }
+        )
+        report.calculate()
+        self.assertEqual(
+            report.acquirer_line_ids.mapped("concept"), ["1", "3", "4", "2"]
+        )
+        self.assertEqual(report.amount_plastic_tax, 0.45)
+        self.assertEqual(report.plastic_quantity, 100)  # 10 * 10
+        self.assertEqual(report.plastic_tax_base, 60)  # 10 * 6
+        self.assertEqual(report.plastic_quota, 27)  # 60 * 0.45
+        # (1 + 2 + 3) * 6 = 36 kg * 0.45
+        self.assertEqual(report.plastic_deduction, 16.2)
+        self.assertAlmostEqual(report.plastic_result, 10.8)  # 27 - 16.2
+        # The book keeps every entry
+        self.assertEqual(report.total_weight_acquirer, 160)
+        self.assertEqual(report.total_weight_acquirer_non_reclyclable, 96)
 
     @freeze_time("2024-01-01", tick=True)
     def test_recalculate_removes_lines(self):

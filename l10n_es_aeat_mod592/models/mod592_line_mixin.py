@@ -10,6 +10,10 @@ class L10nEsAeatmod592LineMixin(models.AbstractModel):
     _name = "l10n.es.aeat.mod592.report.line.mixin"
     _description = "AEAT 592 report line Mixin"
     _rec_name = "entry_number"
+    # Concepts whose entries accrue the tax (quota) and concepts whose entries
+    # give the right to the deduction of art. 80 of Law 7/2022
+    _quota_concepts = ()
+    _deduction_concepts = ()
 
     report_id = fields.Many2one(
         comodel_name="l10n.es.aeat.mod592.report", string="Mod592 Report"

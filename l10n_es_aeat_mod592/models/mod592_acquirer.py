@@ -11,6 +11,9 @@ class L10nEsAeatmod592LineAcquirer(models.Model):
     _description = "AEAT 592 Acquirer report"
     _name = "l10n.es.aeat.mod592.report.line.acquirer"
     _inherit = "l10n.es.aeat.mod592.report.line.mixin"
+    # Intra-community acquisition; deductions of art. 80.1 a), b) and c)
+    _quota_concepts = ("1",)
+    _deduction_concepts = ("2", "3", "4")
 
     concept = fields.Selection(
         selection=[

@@ -9,6 +9,7 @@ import re
 from odoo import api, fields, models
 from odoo.exceptions import UserError
 from odoo.fields import Command, Domain
+from odoo.tools import float_round
 
 
 class L10nEsAeatmod592Report(models.Model):
@@ -57,11 +58,6 @@ class L10nEsAeatmod592Report(models.Model):
         compute="_compute_total_weight_acquirer_non_reclyclable",
         string="Total weight acquirer non reclyclable",
     )
-    total_amount_acquirer = fields.Float(
-        compute="_compute_total_amount_acquirer",
-        string="Total amount acquirer",
-        digits="Product Price",
-    )
     # MANUFACTURER TOTALS
     total_manufacturer_entries = fields.Integer(
         compute="_compute_total_manufacturer_entries",
@@ -78,11 +74,46 @@ class L10nEsAeatmod592Report(models.Model):
         string="Total weight manufacturer non reclyclable",
         store=True,
     )
-    total_amount_manufacturer = fields.Float(
-        compute="_compute_total_amount_manufacturer",
-        string="Total amount manufacturer",
+    # LIQUIDATION (boxes of the self-assessment form)
+    plastic_quantity = fields.Float(
+        string="Quantity (1)",
+        compute="_compute_liquidation",
         store=True,
-        digits="Product Price",
+        digits=(16, 3),
+        help="Kilograms of plastic of the entries that accrue the tax: the "
+        "intra-community acquisitions (concept 1 of the acquirer) and the "
+        "deliveries in Spain (concept 4 of the manufacturer).",
+    )
+    plastic_tax_base = fields.Float(
+        string="Tax base (2)",
+        compute="_compute_liquidation",
+        store=True,
+        digits=(16, 3),
+        help="Kilograms of non recycled plastic of the quantity (1).",
+    )
+    plastic_quota = fields.Monetary(
+        string="Full quota (4)",
+        compute="_compute_liquidation",
+        store=True,
+        help="Tax base (2) by the tax rate (3).",
+    )
+    plastic_deduction = fields.Monetary(
+        string="Deduction (5)",
+        compute="_compute_liquidation",
+        store=True,
+        help="Tax paid for the non recycled plastic of the entries that give "
+        "the right to the deduction of art. 80 of Law 7/2022: shipping outside "
+        "Spain, inadequacy or destruction and return for destruction or "
+        "reincorporation (concepts 2, 3 and 4 of the acquirer) and the return "
+        "of manufactured products (concept 3 of the manufacturer).",
+    )
+    plastic_result = fields.Monetary(
+        string="Result (7/8/9)",
+        compute="_compute_liquidation",
+        store=True,
+        help="Full quota (4) minus the deduction (5): to pay when positive, to "
+        "compensate in later periods or to refund in the last period of the "
+        "year when negative.",
     )
     # Only for smart Buttons, Can not use total_manufacturer_entries_records
     # if appears twice in the same view
@@ -117,16 +148,6 @@ class L10nEsAeatmod592Report(models.Model):
                 item.mapped("acquirer_line_ids.no_recycling_kgs")
             )
 
-    @api.depends(
-        "acquirer_line_ids", "acquirer_line_ids.no_recycling_kgs", "amount_plastic_tax"
-    )
-    def _compute_total_amount_acquirer(self):
-        for item in self:
-            total = 0
-            for line in item.acquirer_line_ids:
-                total += line.no_recycling_kgs * item.amount_plastic_tax
-            item.total_amount_acquirer = total
-
     @api.depends("manufacturer_line_ids")
     def _compute_total_manufacturer_entries(self):
         for item in self:
@@ -147,16 +168,39 @@ class L10nEsAeatmod592Report(models.Model):
             )
 
     @api.depends(
-        "manufacturer_line_ids",
+        "acquirer_line_ids.concept",
+        "acquirer_line_ids.kgs",
+        "acquirer_line_ids.no_recycling_kgs",
+        "manufacturer_line_ids.concept",
+        "manufacturer_line_ids.kgs",
         "manufacturer_line_ids.no_recycling_kgs",
         "amount_plastic_tax",
+        "currency_id",
     )
-    def _compute_total_amount_manufacturer(self):
-        for item in self:
-            total = 0
-            for line in item.manufacturer_line_ids:
-                total += line.no_recycling_kgs * item.amount_plastic_tax
-            item.total_amount_manufacturer = total
+    def _compute_liquidation(self):
+        """Boxes of the form: the entries of the concepts that accrue the tax
+        make the quota, and the ones that give the right to a deduction
+        subtract the tax paid for them."""
+        for report in self:
+            quantity = tax_base = deduction_base = 0.0
+            for lines in (report.acquirer_line_ids, report.manufacturer_line_ids):
+                for line in lines:
+                    if line.concept in lines._quota_concepts:
+                        quantity += line.kgs
+                        tax_base += line.no_recycling_kgs
+                    elif line.concept in lines._deduction_concepts:
+                        deduction_base += line.no_recycling_kgs
+            # Kilograms with three decimals and amounts with two, rounded half up
+            tax_base = float_round(tax_base, precision_digits=3)
+            deduction_base = float_round(deduction_base, precision_digits=3)
+            currency = report.currency_id
+            quota = currency.round(tax_base * report.amount_plastic_tax)
+            deduction = currency.round(deduction_base * report.amount_plastic_tax)
+            report.plastic_quantity = float_round(quantity, precision_digits=3)
+            report.plastic_tax_base = tax_base
+            report.plastic_quota = quota
+            report.plastic_deduction = deduction
+            report.plastic_result = quota - deduction
 
     @api.depends("total_acquirer_entries")
     def _compute_num_lines_acquirer(self):

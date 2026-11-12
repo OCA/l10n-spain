@@ -13,6 +13,10 @@ class L10nEsAeatmod592LineManufacturer(models.Model):
     _description = "AEAT 592 Manufacturer report"
     _name = "l10n.es.aeat.mod592.report.line.manufacturer"
     _inherit = "l10n.es.aeat.mod592.report.line.mixin"
+    # Deliveries in Spain (art. 74.1, the ones sent outside Spain are not
+    # subject by art. 73 b) and get no concept 4); deduction of art. 80.2
+    _quota_concepts = ("4",)
+    _deduction_concepts = ("3",)
 
     concept = fields.Selection(
         selection=[

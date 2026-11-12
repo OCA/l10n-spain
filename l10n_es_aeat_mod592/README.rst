@@ -85,6 +85,15 @@ el usuario.
 Se calcularán líneas de adquirientes o fabricación si está definido a
 nivel de compañía (pestaña AEAT).
 
+La pestaña General muestra la liquidación con las casillas del modelo:
+cantidad (1) y base imponible (2) de las adquisiciones intracomunitarias
+(concepto 1 del adquirente) o de las entregas en España del fabricante
+(concepto 4), tipo impositivo (3), cuota íntegra (4), deducción (5) por
+los conceptos 2, 3 y 4 del adquirente o el concepto 3 del fabricante
+(artículo 80 de la Ley 7/2022) y resultado (7/8/9). Las entregas del
+fabricante fuera de España no están sujetas (artículo 73.b) y no entran
+en la base.
+
 Known issues / Roadmap
 ======================
 
@@ -101,6 +110,9 @@ Known issues / Roadmap
   desde un albarán con contacto. Los desechos hechos desde Inventario,
   desde un movimiento o desde un lote no tienen albarán ni justificante
   y no se buscan.
+- La compensación (casilla 6) de cuotas negativas de periodos anteriores
+  no se calcula: el resultado es la cuota íntegra menos la deducción, y
+  la compensación se resta al presentar el modelo.
 
 Bug Tracker
 ===========

@@ -11,3 +11,6 @@
   un albarán con contacto. Los desechos hechos desde Inventario, desde un
   movimiento o desde un lote no tienen albarán ni justificante y no se
   buscan.
+- La compensación (casilla 6) de cuotas negativas de periodos anteriores no
+  se calcula: el resultado es la cuota íntegra menos la deducción, y la
+  compensación se resta al presentar el modelo.

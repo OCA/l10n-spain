@@ -36,6 +36,8 @@
                     optional="hide"
                     string="Total weight (Manufacturer)"
                 />
+                <field name="currency_id" column_invisible="1" />
+                <field name="plastic_result" optional="show" />
             </field>
         </field>
     </record>
@@ -132,8 +134,21 @@
             <group name="group_declaration" position="after">
                 <notebook colspan="4">
                     <page string="General">
-                        <group string="Generic">
-                            <field name="amount_plastic_tax" col="2" />
+                        <group string="Liquidation" name="group_liquidation">
+                            <group>
+                                <field name="plastic_quantity" />
+                                <field name="plastic_tax_base" />
+                                <field
+                                    name="amount_plastic_tax"
+                                    string="Tax rate (3)"
+                                />
+                            </group>
+                            <group>
+                                <field name="currency_id" invisible="1" />
+                                <field name="plastic_quota" />
+                                <field name="plastic_deduction" />
+                                <field name="plastic_result" />
+                            </group>
                         </group>
                         <group>
                             <group
@@ -153,10 +168,6 @@
                                     name="total_weight_manufacturer_non_reclyclable"
                                     string="Total weight (non reclyclable)"
                                 />
-                                <field
-                                    name="total_amount_manufacturer"
-                                    string="Total amount"
-                                />
                             </group>
                             <group
                                 string="Acquirer Result"
@@ -174,10 +185,6 @@
                                 <field
                                     name="total_weight_acquirer_non_reclyclable"
                                     string="Total weight (non reclyclable)"
-                                />
-                                <field
-                                    name="total_amount_acquirer"
-                                    string="Total amount"
                                 />
                             </group>
                         </group>
