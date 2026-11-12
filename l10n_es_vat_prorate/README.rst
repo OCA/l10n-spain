@@ -52,11 +52,12 @@ Para configurar la prorrata general:
 Los impuestos de las facturas de proveedor se dividirán según la
 prorrata activa. Se prorratean los impuestos de compra de IVA deducible
 según el tipo de impuesto que Odoo core asigna a cada impuesto español
-(sujeto, sujeto ISP, agricultura y DUA). Se puede cambiar en cada
-impuesto con el campo "Con prorrata de IVA". La marca se vuelve a
-calcular si se cambia el tipo de impuesto, su uso o si la compañía
-activa o desactiva la prorrata, pero no al editar otros datos del
-impuesto.
+(sujeto, sujeto ISP, agricultura y DUA). No se prorratea el IGIC
+(impuestos con aplicabilidad IGIC), porque el modelo 303 solo declara
+IVA. Se puede cambiar en cada impuesto con el campo "Con prorrata de
+IVA". La marca se vuelve a calcular si se cambia el tipo de impuesto, su
+aplicabilidad, su uso o si la compañía activa o desactiva la prorrata,
+pero no al editar otros datos del impuesto.
 
 Para configurar la prorrata especial:
 

@@ -149,6 +149,10 @@ class TestVatProrate(AccountTestInvoicingCommon):
             self.assertFalse(tax(name).prorate_account_ids, name)
         for name in ("p_iva10_nd", "p_irpf19", "s_iva21b", "p_iva0_bc"):
             self.assertFalse(tax(name).with_vat_prorate, name)
+        # IGIC is not VAT
+        for name in ("igic_sop_7", "igic_ISP7"):
+            self.assertEqual(tax(name).l10n_es_applicability, "03", name)
+            self.assertFalse(tax(name).with_vat_prorate, name)
         # Self-assessed taxes: only the deductible account is prorated
         for name in ("p_iva7-5_ic_bc", "p_iva21_sp_in", "p_iva21_isp"):
             self.assertTrue(tax(name).with_vat_prorate, name)

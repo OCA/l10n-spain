@@ -34,15 +34,23 @@ class AccountTax(models.Model):
         return [*self._l10n_es_get_sujeto_tax_types(), "dua"]
 
     def _is_vat_prorate_tax(self):
+        """Deductible input VAT. IGIC is left out: model 303 only declares VAT, and
+        the IGIC prorate is computed on the operations of the Canary Islands."""
         self.ensure_one()
         return (
             self.type_tax_use == "purchase"
             and self.amount_type == "percent"
             and self.amount > 0
             and self.l10n_es_type in self._get_vat_prorate_tax_types()
+            and self.l10n_es_applicability != "03"
         )
 
-    @api.depends("company_id.with_vat_prorate", "type_tax_use", "l10n_es_type")
+    @api.depends(
+        "company_id.with_vat_prorate",
+        "type_tax_use",
+        "l10n_es_type",
+        "l10n_es_applicability",
+    )
     def _compute_with_vat_prorate(self):
         """Only what defines the kind of tax recomputes the mark, so that the one
         set by the user in a tax survives the edition of its other fields.
