@@ -954,3 +954,114 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
         self.assertEqual(report.result_type, "G")
         page_01 = self._get_page(self._export_boe(report), "01000")
         self.assertEqual(page_01[12:13], b"G")
+
+    def test_model_303_2024_10_map(self):
+        """Boxes of the map in force since 2024-10, with the rates it added."""
+        self._get_taxes("S_IVA2B,S_IVA5B,S_IVA7-5B,S_REQ1").active = True
+        self.patch(
+            type(self),
+            "taxes_sale",
+            {
+                "S_IVA0B": (100, 0),
+                "S_IVA2B": (200, 4),
+                "S_IVA4B": (300, 12),
+                "S_IVA5B": (400, 20),
+                "S_IVA7-5B": (500, 37.5),
+                "S_IVA10B": (600, 60),
+                "S_IVA21B": (700, 147),
+                "S_REQ1": (800, 8),
+                "S_REQ05": (900, 4.5),
+                "S_REQ014": (1000, 14),
+                "S_REQ52": (1100, 57.2),
+                "S_IVA0_G_I": (1200, 0),
+                "S_IVA0_G_E": (1300, 0),
+                "S_IVA_E": (1400, 0),
+                "S_IVA0_ISP": (1500, 0),
+            },
+        )
+        self._invoice_sale_create("2026-02-01")
+        self.patch(
+            type(self),
+            "taxes_purchase",
+            {
+                "P_IVA21_BC": (100, 21),
+                "P_IVA21_BI": (200, 42),
+                "P_IVA21_IBC": (300, 63),
+                "P_IVA21_IBI": (400, 84),
+                "P_IVA21_IC_BC": (500, 105),
+                "P_IVA21_IC_BI": (600, 126),
+                "P_IVA21_SP_EX": (700, 147),
+            },
+        )
+        self._invoice_purchase_create("2026-02-01")
+        # Refunded invoices: regular boxes for the invoice, [14]/[15] and
+        # [40]/[41] for the refund
+        self.patch(
+            type(self), "taxes_sale", {"S_IVA21B": (50, 10.5), "S_IVA5B": (40, 2)}
+        )
+        sale = self._invoice_sale_create("2026-02-02")
+        self._invoice_refund(sale, "2026-02-03")
+        self.patch(type(self), "taxes_purchase", {"P_IVA21_BC": (1000, 210)})
+        purchase = self._invoice_purchase_create("2026-02-02")
+        self._invoice_refund(purchase, "2026-02-03")
+        report = self._create_303(2026, "1T")
+        report.button_calculate()
+        expected = {
+            150: 100,
+            152: 0,
+            165: 200,
+            167: 4,
+            1: 300,
+            3: 12,
+            153: 400 + 500 + 40,
+            155: 20 + 37.5 + 2,
+            4: 600,
+            6: 60,
+            7: 700 + 50,
+            9: 147 + 10.5,
+            10: 500 + 600,
+            11: 105 + 126,
+            12: 700,
+            13: 147,
+            14: -(50 + 40),
+            15: -(10.5 + 2),
+            16: 800,
+            18: 8,
+            168: 900,
+            170: 4.5,
+            19: 1000,
+            21: 14,
+            22: 1100,
+            24: 57.2,
+            25: 0,
+            26: 0,
+            28: 100 + 700 + 1000,
+            29: 21 + 147 + 210,
+            30: 200,
+            31: 42,
+            32: 300,
+            33: 63,
+            34: 400,
+            35: 84,
+            36: 500,
+            37: 105,
+            38: 600,
+            39: 126,
+            40: -1000,
+            41: -210,
+            42: 0,
+            59: 1200,
+            60: 1300,
+            120: 1400,
+            122: 1500,
+        }
+        for box, amount in expected.items():
+            self.assertAlmostEqual(
+                self._box(report, box), amount, 2, f"Incorrect result in box {box}"
+            )
+        # [27] = [152] + [167] + [03] + [155] + [06] + [09] + [11] + [13] + [15]
+        # + [158] + [170] + [18] + [21] + [24] + [26]
+        self.assertAlmostEqual(report.total_devengado, 742.2, 2)
+        # [45] = [29] + [31] + [33] + [35] + [37] + [39] + [41] + [42] + [43] + [44]
+        self.assertAlmostEqual(report.total_deducir, 588, 2)
+        self.assertAlmostEqual(report.casilla_46, 154.2, 2)
