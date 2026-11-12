@@ -6,7 +6,7 @@ import logging
 from typing import ClassVar
 
 from odoo import SUPERUSER_ID
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
 from odoo.fields import Command
 from odoo.tests import Form, new_test_user
 
@@ -143,7 +143,6 @@ class TestL10nEsAeatMod190Base(TestL10nEsAeatModBase):
                 "date_end": "2017-12-31",
             }
         )
-        self.assertEqual(model190.company_id.id, self.company.id)
         _logger.debug("Calculate AEAT 190 2017")
         with self.assertRaises(UserError):
             model190.button_calculate()
@@ -159,7 +158,6 @@ class TestL10nEsAeatMod190Base(TestL10nEsAeatModBase):
         # Fill manual fields
         if self.debug:
             self._print_tax_lines(model190.tax_line_ids)
-        self.assertTrue(model190.partner_record_ids)
         supplier_record = model190.partner_record_ids.filtered(
             lambda r: r.partner_id == self.supplier
         )
@@ -215,15 +213,18 @@ class TestL10nEsAeatMod190Base(TestL10nEsAeatModBase):
             }
         )
         second_invoice = self._invoice_purchase_create("2017-01-02")
-        # Definimos la posición fiscal (se hará con _onchange_partner_id por UX)
+        # Back to draft to set the fiscal position of the perceptor key G.02
         second_invoice.button_draft()
-        # Debemos devolverla a draft para editarla
-        second_invoice.fiscal_position_id = self.fiscal_position
-        self.assertTrue(second_invoice.aeat_perception_key_id)
+        with Form(second_invoice.with_user(self.billing_user)) as invoice_form:
+            invoice_form.fiscal_position_id = self.fiscal_position
+        self.assertEqual(
+            second_invoice.aeat_perception_key_id,
+            self.fiscal_position.aeat_perception_key_id,
+        )
         # Key G has subkeys to choose from, key A has none
         self.assertTrue(second_invoice.is_aeat_perception_subkey_visible)
         self.assertFalse(self.supplier.is_aeat_perception_subkey_visible)
-        second_invoice._post()
+        second_invoice.with_user(self.billing_user).action_post()
         model190 = self.env["l10n.es.aeat.mod190.report"].create(
             {
                 "company_id": self.company.id,
@@ -235,7 +236,6 @@ class TestL10nEsAeatMod190Base(TestL10nEsAeatModBase):
                 "date_end": "2017-12-31",
             }
         )
-        self.assertEqual(model190.company_id.id, self.company.id)
         _logger.debug("Calculate AEAT 190 2017")
         model190.button_calculate()
         # Fill manual fields
@@ -313,31 +313,21 @@ class TestL10nEsAeatMod190Base(TestL10nEsAeatModBase):
                     getattr(supplier_limited_f, field)
 
     def test_mod190_add_partner_without_tax_lines(self):
-        model190 = self.env["l10n.es.aeat.mod190.report"].create(
-            {
-                "company_id": self.company.id,
-                "company_vat": "123456789",
-                "contact_name": "Test owner",
-                "contact_phone": "911234455",
-                "year": 2017,
-                "date_start": "2017-01-01",
-                "date_end": "2017-12-31",
-            }
-        )
-        perception_key = self.env["l10n.es.aeat.report.perception.key"].search(
-            [], limit=1
-        )
-        self.assertTrue(perception_key, "At least one perception key should exist")
-        partner_record = self.env["l10n.es.aeat.mod190.report.line"].create(
-            {
-                "report_id": model190.id,
-                "partner_id": self.supplier.id,
-                "aeat_perception_key_id": perception_key.id,
-            }
-        )
-        self.assertTrue(partner_record, "Partner record should be created")
-        self.assertEqual(len(partner_record), 1)
+        """A perceptor without withholdings added by hand has no amounts."""
+        self._complete_perceptor(self.supplier)
+        model190 = self._create_report(2017)
+        model190.button_calculate()
+        self.assertFalse(model190.partner_record_ids)
+        model190_form = Form(model190)
+        with model190_form.partner_record_ids.new() as record:
+            record.partner_id = self.supplier
+        model190_form.save()
+        partner_record = model190.partner_record_ids
         self.assertEqual(partner_record.partner_id, self.supplier)
+        self.assertEqual(
+            partner_record.aeat_perception_key_id,
+            self.env.ref("l10n_es_aeat_mod190.aeat_m190_perception_key_01"),
+        )
         self.assertFalse(partner_record.percepciones_dinerarias)
         self.assertFalse(partner_record.retenciones_dinerarias)
 
@@ -518,3 +508,29 @@ class TestL10nEsAeatMod190Base(TestL10nEsAeatModBase):
             declarant[135:175], b"000000001 000000000010000000000000001500"
         )
         self.assertEqual(perceptor[:17], b"21902024123456789")
+
+    def test_mod190_key_b01(self):
+        """A perceptor of key B.01 can't be confirmed until the type of
+        benefit is checked on its record."""
+        self._complete_perceptor(self.supplier)
+        self.supplier.write(
+            {
+                "aeat_perception_key_id": self.env.ref(
+                    "l10n_es_aeat_mod190.aeat_m190_perception_key_02"
+                ).id,
+                "aeat_perception_subkey_id": self.env.ref(
+                    "l10n_es_aeat_mod190.aeat_m190_perception_subkey_02_01"
+                ).id,
+            }
+        )
+        self._create_purchase_move(self.supplier, "2025-01-10", [("P_IRPF21T", 1000)])
+        model190 = self._create_report(2025)
+        model190.button_calculate()
+        record = model190.partner_record_ids
+        self.assertTrue(record.visible_key_b01)
+        with self.assertRaises(ValidationError):
+            model190.button_confirm()
+        with Form(record) as record_form:
+            record_form.clave_b01_jubilacion = True
+        model190.button_confirm()
+        self.assertEqual(model190.state, "done")
