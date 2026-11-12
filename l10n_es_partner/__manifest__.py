@@ -7,7 +7,7 @@
 
 {
     "name": "Adaptación de los clientes y proveedores para España",
-    "version": "20.0.1.0.0",
+    "version": "20.0.1.1.0",
     "author": "ZikZak,Acysos,Tecnativa,Studio73,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "category": "Localisation/Europe",
