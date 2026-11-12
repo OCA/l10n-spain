@@ -4,10 +4,13 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 from odoo import fields
-from odoo.tests import common
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestL10nEsAccountAsset(common.TransactionCase):
+class TestL10nEsAccountAsset(BaseCommon):
+    _test_user_groups = ("base.group_user", "account.group_account_manager")
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -71,7 +74,7 @@ class TestL10nEsAccountAsset(common.TransactionCase):
             4372.6,
             "First depreciation amount is not correct.",
         )
-        lines = self.asset.depreciation_line_ids[2:-2].filtered(
+        lines = self.asset.depreciation_line_ids[2:-1].filtered(
             lambda x: x.amount != 6000
         )
         self.assertFalse(lines, "The amount of lines is not correct.")
@@ -90,10 +93,10 @@ class TestL10nEsAccountAsset(common.TransactionCase):
             }
         )
         self.asset.compute_depreciation_board()
-        self.assertGreater(
-            self.asset.depreciation_line_ids[-1:].amount,
-            0,
-            "Last depreciation amount is not correct.",
+        # 47 days of 2017, a whole 2018 and the rest
+        self.assertEqual(
+            self.asset.depreciation_line_ids[1:].mapped("amount"),
+            [2704.11, 21000, 6295.89],
         )
 
     def test_percentage_asset_from_years_profile_without_prorata(self):

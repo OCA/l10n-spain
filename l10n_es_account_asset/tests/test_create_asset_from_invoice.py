@@ -103,10 +103,26 @@ class TestCreateAssetFromInvoice(TestL10nEsAeatModBase):
         self.assertEqual(lines[0].asset_id.purchase_value, 65.62)  # 54.23 * 1.21
         self.assertEqual(lines[1].asset_id.purchase_value, 138.75)  # 114.67 * 1.21
 
+    def test_non_deductible_other_rate(self):
+        """Any non deductible VAT of the chart, not only the 21 %, is added"""
+        asset = self._post_bill([(200, "p_iva10_nd")])
+        self.assertEqual(asset.purchase_value, 220)
+
+    def test_deductible_and_non_deductible_lines(self):
+        """The deductible VAT of a line doesn't change the value of its asset,
+        nor the non deductible VAT of another line"""
+        assets = self._post_bill([(100, "p_iva21_bc"), (200, "p_iva0_nd")])
+        self.assertEqual(assets.mapped("purchase_value"), [100, 242])
+
     def test_group_of_taxes(self):
         """An import of goods with the group of taxes of the DUA"""
         asset = self._post_bill([(100, "p_iva21_ibc_group")])
         self.assertEqual(asset.purchase_value, 100)
+
+    def test_refund_non_deductible(self):
+        """A vendor credit note gives the value with its sign"""
+        asset = self._post_bill([(100, "p_iva0_nd")], move_type="in_refund")
+        self.assertEqual(asset.purchase_value, -121)
 
     def test_foreign_currency_non_deductible(self):
         """The value is in the currency of the company, rounded with it"""
