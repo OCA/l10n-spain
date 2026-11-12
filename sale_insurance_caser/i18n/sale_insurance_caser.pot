@@ -149,6 +149,12 @@ msgid "Caser Insurance Price Range"
 msgstr ""
 
 #. module: sale_insurance_caser
+#: model:ir.model.fields,field_description:sale_insurance_caser.field_res_config_settings__caser_product_categ_id
+#: model_terms:ir.ui.view,arch_db:sale_insurance_caser.view_sale_config_settings_form
+msgid "Caser Insurance Product Category"
+msgstr ""
+
+#. module: sale_insurance_caser
 #: model:ir.model.fields,field_description:sale_insurance_caser.field_sale_order__caser_insurance_state
 #: model_terms:ir.ui.view,arch_db:sale_insurance_caser.view_sales_order_filter_caser
 msgid "Caser Insurance State"
@@ -223,6 +229,20 @@ msgstr ""
 #. odoo-python
 #: code:addons/sale_insurance_caser/models/caser_price_range.py:0
 msgid "Caser tarification error: %s"
+msgstr ""
+
+#. module: sale_insurance_caser
+#: model:ir.model.fields,help:sale_insurance_caser.field_res_config_settings__caser_product_categ_id
+msgid ""
+"Category of the insurance products created from the price ranges. Set its "
+"income account to book the insurance on it."
+msgstr ""
+
+#. module: sale_insurance_caser
+#: model_terms:ir.ui.view,arch_db:sale_insurance_caser.view_sale_config_settings_form
+msgid ""
+"Category of the insurance products. Its income account is used in the "
+"invoices."
 msgstr ""
 
 #. module: sale_insurance_caser
