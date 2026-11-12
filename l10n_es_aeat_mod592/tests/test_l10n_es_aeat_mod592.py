@@ -1,6 +1,7 @@
 # Copyright 2024-2025 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 import csv
+import importlib.util
 import io
 import logging
 from io import StringIO
@@ -11,6 +12,7 @@ from odoo import fields
 from odoo.exceptions import UserError
 from odoo.fields import Command
 from odoo.tests import Form
+from odoo.tools.misc import file_path
 
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
     TestL10nEsAeatModBase,
@@ -465,3 +467,33 @@ class TestL10nEsAeatMod592(TestL10nEsAeatModBase):
         self.assertEqual(
             lines.search(action["domain"]).mapped("entry_number"), ["A001", "A002"]
         )
+
+    def test_migration_recomputes_document_type(self):
+        """The migration to 20.0 computes again the stored document type"""
+        partner = self.env["res.partner"].create(
+            {
+                "name": "Test FR supplier",
+                "country_id": self.env.ref("base.fr").id,
+                "vat": "FR23334175221",
+            }
+        )
+        self.assertEqual(partner.plastic_document_type, "2")
+        self.env.flush_all()
+        # As computed in 19.0 from the identifiers moved by l10n_es_aeat
+        self.env.cr.execute(
+            "UPDATE res_partner SET plastic_document_type = '3' WHERE id = %s",
+            [partner.id],
+        )
+        partner.invalidate_recordset(["plastic_document_type"])
+        self.assertEqual(partner.plastic_document_type, "3")
+        script = file_path(
+            "l10n_es_aeat_mod592/migrations/20.0.1.0.0/post-migration.py"
+        )
+        spec = importlib.util.spec_from_file_location("post_migration", script)
+        post_migration = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(post_migration)
+        # Without the frame of the Odoo migration manager that its decorator
+        # inspects
+        post_migration.migrate.__wrapped__(self.env, "19.0.1.0.0")
+        partner.invalidate_recordset(["plastic_document_type"])
+        self.assertEqual(partner.plastic_document_type, "2")
