@@ -26,9 +26,9 @@ class L10nEsAeatMod216Report(models.Model):
         help="Income subject to retention - Amount of retentions",
     )
     casilla_04_pre_2024 = fields.Integer(
-        string="[04] # Recipients",
+        string="[04] # Incomes",
         readonly=False,
-        help="Income not subject to retention - Number of recipients",
+        help="Income not subject to retention - Number of incomes",
     )
     casilla_05_pre_2024 = fields.Monetary(
         string="[05] Base amount",
@@ -228,8 +228,13 @@ class L10nEsAeatMod216Report(models.Model):
     def calculate(self):
         """Calculate the report."""
         res = super().calculate()
+        for report in self.filtered_domain([("year", "<", 2024)]):
+            # Incomes exempt by treaty or by internal rule: not subject
+            tax_lines = report.tax_line_ids.filtered(lambda r: r.field_number == 5)
+            report.casilla_04_pre_2024 = self._get_number_of_incomes(tax_lines)
+            report.casilla_05_pre_2024 = sum(tax_lines.mapped("amount"))
         for report in self.filtered_domain([("year", ">=", 2024)]):
-            field_numbers = [9, 12]
+            field_numbers = [9, 12, 18]
             tax_lines = {}
             for field_number in field_numbers:
                 tax_lines[str(field_number)] = report.tax_line_ids.filtered(
@@ -241,4 +246,6 @@ class L10nEsAeatMod216Report(models.Model):
             report.casilla_06 = self._get_number_of_incomes(
                 tax_lines["9"] + tax_lines["12"]
             )
+            # Incomes exempt by treaty or by internal rule: not subject
+            report.casilla_15 = self._get_number_of_incomes(tax_lines["18"])
         return res

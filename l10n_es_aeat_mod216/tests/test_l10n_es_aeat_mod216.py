@@ -26,9 +26,11 @@ class TestL10nEsAeatMod216Base(TestL10nEsAeatModBase):
     }
     taxes_result: ClassVar[dict] = {
         # Rentas sometidas a retención - Base
-        "2": 12000,
+        "2": 6000,  # (2 * 1000) + (2 * 2000)
         # Rentas sometidas a retención - Retenciones
-        "3": 1240,  # (2 * 240) + (2 * 380) + (2 * 0)
+        "3": 1240,  # (2 * 240) + (2 * 380)
+        # Rentas no sometidas a retención (exentas por convenio) - Base
+        "5": 6000,  # 2 * 3000
     }
 
     @classmethod
@@ -93,6 +95,9 @@ class TestL10nEsAeatMod216Base(TestL10nEsAeatModBase):
             self.model216.export_config_id,
             self.env.ref("l10n_es_aeat_mod216.aeat_mod216_main_export_config"),
         )
+        # Incomes exempt by treaty: not subject to withholding
+        self.assertEqual(self.model216.casilla_04_pre_2024, 3)
+        self.assertEqual(self.model216.casilla_05_pre_2024, 6000)
         # Fill manual fields: Resultados a ingresar anteriores
         with Form(self.model216, view=self.form_view) as report_form:
             report_form.casilla_06_pre_2024 = 145
@@ -116,9 +121,11 @@ class TestL10nEsAeatMod216Base(TestL10nEsAeatModBase):
     def test_model_216_2024(self):
         self.taxes_result = {
             # Resto de rentas sometidas a retención - Base
-            "9": 12000,
+            "9": 6000,  # (2 * 1000) + (2 * 2000)
             # Resto de rentas sometidas a retención - Retenciones
-            "12": 1240,  # (2 * 240) + (2 * 380) + (2 * 0)
+            "12": 1240,  # (2 * 240) + (2 * 380)
+            # Resto de rentas no sometidas a retención (exentas por convenio)
+            "18": 6000,  # 2 * 3000
         }
         # Purchase invoices
         self._invoice_purchase_create("2024-01-01")
@@ -136,6 +143,9 @@ class TestL10nEsAeatMod216Base(TestL10nEsAeatModBase):
             self.model216.export_config_id,
             self.env.ref("l10n_es_aeat_mod216.aeat_mod216_2024_main_export_config"),
         )
+        # Incomes exempt by treaty: not subject to withholding
+        self.assertEqual(self.model216.casilla_15, 3)
+        self.assertEqual(self.model216.casilla_18, 6000)
         # Fill manual fields in the form of the calculated report
         with Form(self.model216, view=self.form_view) as report_form:
             # Num. rentas dividendos sometidas
@@ -146,12 +156,8 @@ class TestL10nEsAeatMod216Base(TestL10nEsAeatModBase):
             report_form.casilla_11 = 38
             # Num. rentas dividendos no sometidas
             report_form.casilla_14 = 1
-            # Num. rentas resto rentas no sometidas
-            report_form.casilla_15 = 3
             # Base dividendos rentas no sometidas
             report_form.casilla_17 = 180
-            # Base resto rentas no sometidas
-            report_form.casilla_18 = 125
             # Resultados a ingresar anteriores
             report_form.casilla_20 = 145
         self._check_tax_lines(self.model216)
@@ -168,7 +174,7 @@ class TestL10nEsAeatMod216Base(TestL10nEsAeatModBase):
         self.assertEqual(round(self.model216.casilla_12, 2), round(retenciones, 2))
         self.assertEqual(round(self.model216.casilla_13, 2), round(retenciones + 38, 2))
         self.assertEqual(self.model216.casilla_16, 4)
-        self.assertEqual(round(self.model216.casilla_19, 2), 305)
+        self.assertEqual(round(self.model216.casilla_19, 2), 6180)
         self.assertEqual(round(self.model216.casilla_21, 2), round(result, 2))
         # Export to BOE, compared with the AEAT record design of model 216
         # (216e2024.xlsx, sede.agenciatributaria.gob.es, sheets "Pág. 0" and
@@ -209,8 +215,8 @@ class TestL10nEsAeatMod216Base(TestL10nEsAeatModBase):
                 "00000000000000003",  # 126-142 [06]
                 "00000000000000005",  # 143-159 [07]
                 "00000000000020000",  # 160-176 [08]
-                "00000000001200000",  # 177-193 [09]
-                "00000000001220000",  # 194-210 [10]
+                "00000000000600000",  # 177-193 [09]
+                "00000000000620000",  # 194-210 [10]
                 "00000000000003800",  # 211-227 [11]
                 "00000000000124000",  # 228-244 [12]
                 "00000000000127800",  # 245-261 [13]
@@ -218,8 +224,8 @@ class TestL10nEsAeatMod216Base(TestL10nEsAeatModBase):
                 "00000000000000003",  # 279-295 [15]
                 "00000000000000004",  # 296-312 [16]
                 "00000000000018000",  # 313-329 [17]
-                "00000000000012500",  # 330-346 [18]
-                "00000000000030500",  # 347-363 [19]
+                "00000000000600000",  # 330-346 [18]
+                "00000000000618000",  # 347-363 [19]
                 "00000000000014500",  # 364-380 [20]
                 "00000000000113300",  # 381-397 [21]
                 "ES9121000418450200051332".ljust(34),  # 398-431 IBAN
