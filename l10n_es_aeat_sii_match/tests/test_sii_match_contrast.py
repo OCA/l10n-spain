@@ -3,6 +3,7 @@
 import copy
 from unittest.mock import patch
 
+from odoo import Command
 from odoo.tests import Form
 
 from odoo.addons.l10n_es_aeat_sii_oca.tests.test_l10n_es_aeat_sii import (
@@ -195,3 +196,71 @@ class TestSiiMatchContrast(TestL10nEsAeatSiiBase):
         report = self._calculate_report(FakeSiiMatchService())
         self.assertEqual(report.number_records_odoo, 1)
         self.assertEqual(report.result_ids.invoice_id, invoice.id)
+
+    def test_report_invoices_sent_together(self):
+        invoices = self._create_posted_invoice() + self._create_posted_invoice()
+        service = FakeSiiMatchService()
+        self._send(invoices, service)
+        self.assertEqual(len(set(invoices.mapped("sii_csv"))), 1)
+        report = self._calculate_report(service)
+        self.assertEqual(report.number_records_both, 2)
+        self.assertEqual(report.number_records_correct, 2)
+        self.assertEqual(set(invoices.mapped("sii_contrast_state")), {"correct"})
+
+    def test_report_other_company_same_number(self):
+        other_company = (
+            self.env["res.company"]
+            .sudo()
+            .create(
+                {"name": "Other company", "currency_id": self.company.currency_id.id}
+            )
+        )
+        self.env["account.chart.template"].sudo()._load(
+            template_code="es_pymes", company=other_company, install_demo=False
+        )
+        self.env.user.sudo().company_ids = [Command.link(other_company.id)]
+        # The user works with both companies selected
+        self.env = self.env(
+            context=dict(
+                self.env.context,
+                allowed_company_ids=[self.company.id, other_company.id],
+            )
+        )
+        other_invoice = (
+            self.env["account.move"]
+            .with_company(other_company)
+            .create(
+                {
+                    "move_type": "out_invoice",
+                    "partner_id": self.partner.id,
+                    "invoice_date": "2018-02-01",
+                    "invoice_line_ids": [
+                        Command.create(
+                            {"name": "Test line", "price_unit": 100, "quantity": 1}
+                        )
+                    ],
+                }
+            )
+        )
+        other_invoice.action_post()
+        # An invoice of this company with the same number registered in the
+        # AEAT from another software
+        service = FakeSiiMatchService()
+        service.registered.append(
+            {
+                "IDFactura": {
+                    "IDEmisorFactura": {"NIF": "U2687761C"},
+                    "NumSerieFacturaEmisor": other_invoice.name,
+                    "FechaExpedicionFacturaEmisor": "01-02-2018",
+                },
+                "PeriodoLiquidacion": {"Ejercicio": "2018", "Periodo": "02"},
+                "DatosFacturaEmitida": {"ImporteTotal": 121.0},
+                "DatosPresentacion": {"CSV": "CSV-OTHER-SOFTWARE"},
+                "EstadoFactura": {"EstadoRegistro": "Correcta", "EstadoCuadre": "2"},
+            }
+        )
+        report = self._calculate_report(service)
+        self.assertEqual(report.company_id, self.company)
+        self.assertEqual(report.number_records, 1)
+        self.assertEqual(report.number_records_sii, 1)
+        self.assertFalse(other_invoice.sii_contrast_state)

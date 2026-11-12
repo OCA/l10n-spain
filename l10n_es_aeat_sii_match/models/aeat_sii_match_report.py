@@ -142,8 +142,12 @@ class SiiMatchReport(models.Model):
             invoice = json.loads(json.dumps(serialize_object(invoice)))
             csv = invoice["DatosPresentacion"]["CSV"]
             invoice_state = invoice["EstadoFactura"]["EstadoRegistro"]
-            odoo_invoice = self.env["account.move"].search([("sii_csv", "=", csv)])
-            if odoo_invoice:
+            odoo_invoice = self.env["account.move"].search(
+                [("sii_csv", "=", csv), ("company_id", "=", self.company_id.id)]
+            )
+            # The invoices sent in the same request can share its CSV, so they
+            # are matched by number
+            if len(odoo_invoice) == 1:
                 matched_invoices[odoo_invoice] = invoice
             elif invoice_state != "Anulada":
                 left_invoices.append(invoice)
@@ -160,6 +164,7 @@ class SiiMatchReport(models.Model):
                         ("name", "=", name),
                         ("thirdparty_number", "=", name),
                         ("move_type", "in", ["out_invoice", "out_refund"]),
+                        ("company_id", "=", self.company_id.id),
                     ],
                     limit=1,
                 )
@@ -174,12 +179,13 @@ class SiiMatchReport(models.Model):
                         ("ref", "=", name),
                         ("invoice_date", "=", invoice_date),
                         ("move_type", "in", ["in_invoice", "in_refund"]),
+                        ("company_id", "=", self.company_id.id),
                     ],
                 )
                 if len(odoo_invoice) > 1:
                     vat = invoice["IDFactura"]["IDEmisorFactura"].get("NIF", "NO_VALID")
                     for rec in odoo_invoice:
-                        if vat in rec.partner_id.vat:
+                        if vat in (rec.partner_id.vat or ""):
                             odoo_invoice = rec
                             break
                     else:
