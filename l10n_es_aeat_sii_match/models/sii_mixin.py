@@ -137,13 +137,15 @@ class SiiMixin(models.AbstractModel):
                 if inv_dict["EstadoFactura"]
                 else False
             )
-        if match_state:
+        # The match state is the counterpart contrast, which the AEAT also
+        # gives for the records that aren't in Odoo
+        if inv_dict and self:
             inv_location = "both"
             contrast_state = "correct"
         elif self:
             inv_location = "odoo"
             contrast_state = "no_exist"
-        elif inv_dict:
+        else:
             inv_location = "sii"
             contrast_state = "no_exist"
         diffs = self._get_diffs_values(inv_dict) if (inv_dict and self) else []
@@ -155,7 +157,7 @@ class SiiMixin(models.AbstractModel):
         vals = {
             "invoice": name,
             "invoice_id": self.id,
-            "model": self._name if self else False,
+            "model": self._name,
             "csv": csv,
             "invoice_location": inv_location,
             "sii_contrast_state": contrast_state,

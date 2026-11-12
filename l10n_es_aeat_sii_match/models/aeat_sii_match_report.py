@@ -440,8 +440,9 @@ class SiiMatchResult(models.Model):
         ondelete="cascade",
     )
     invoice = fields.Char()
+    # Empty for the records that are only in the AEAT
     invoice_id = fields.Many2oneReference(
-        string="Document", model_field="model", readonly=True, index=True, required=True
+        string="Document", model_field="model", readonly=True, index=True
     )
     # the default keeps the retro-compatibility
     model = fields.Char(default="account.move", required=True)

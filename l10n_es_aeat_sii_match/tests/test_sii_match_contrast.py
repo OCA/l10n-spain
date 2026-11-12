@@ -3,6 +3,8 @@
 import copy
 from unittest.mock import patch
 
+from odoo.tests import Form
+
 from odoo.addons.l10n_es_aeat_sii_oca.tests.test_l10n_es_aeat_sii import (
     TestL10nEsAeatSiiBase,
 )
@@ -116,6 +118,18 @@ class TestSiiMatchContrast(TestL10nEsAeatSiiBase):
         with self._patch_aeat(service):
             invoices.contrast_aeat()
 
+    def _calculate_report(self, service, invoice_type="out", period_type="02"):
+        with Form(self.env["l10n.es.aeat.sii.match.report"]) as report_form:
+            report_form.name = "Test match"
+            report_form.fiscalyear = 2018
+            report_form.period_type = period_type
+            report_form.invoice_type = invoice_type
+        report = report_form.save()
+        with self._patch_aeat(service):
+            report.button_calculate()
+        self.assertEqual(report.state, "calculated")
+        return report
+
     def test_contrast_correct(self):
         invoice = self._create_posted_invoice()
         service = FakeSiiMatchService()
@@ -149,3 +163,29 @@ class TestSiiMatchContrast(TestL10nEsAeatSiiBase):
         query = service.queries[0]["IDFactura"]
         self.assertEqual(query["NumSerieFacturaEmisor"], "SUP-001")
         self.assertEqual(query["IDEmisorFactura"]["NIF"], "F35999705")
+
+    def test_report(self):
+        sent_invoice = self._create_posted_invoice()
+        service = FakeSiiMatchService()
+        self._send(sent_invoice, service)
+        not_sent_invoice = self._create_posted_invoice()
+        aeat_only = copy.deepcopy(service.registered[0])
+        aeat_only["IDFactura"]["NumSerieFacturaEmisor"] = "OTHER/2018/0001"
+        aeat_only["DatosPresentacion"]["CSV"] = "CSV-OTHER"
+        service.registered.append(aeat_only)
+        report = self._calculate_report(service)
+        self.assertEqual(report.number_records, 3)
+        self.assertEqual(report.number_records_both, 1)
+        self.assertEqual(report.number_records_sii, 1)
+        self.assertEqual(report.number_records_odoo, 1)
+        self.assertEqual(report.number_records_correct, 1)
+        self.assertEqual(report.number_records_no_exist, 2)
+        self.assertEqual(sent_invoice.sii_contrast_state, "correct")
+        self.assertEqual(
+            sorted(report.result_ids.mapped("invoice"), key=str),
+            sorted([False, "OTHER/2018/0001"], key=str),
+        )
+        not_in_aeat = report.result_ids.filtered(
+            lambda result: result.invoice_location == "odoo"
+        )
+        self.assertEqual(not_in_aeat.invoice_id, not_sent_invoice.id)
