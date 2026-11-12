@@ -189,3 +189,9 @@ class TestSiiMatchContrast(TestL10nEsAeatSiiBase):
             lambda result: result.invoice_location == "odoo"
         )
         self.assertEqual(not_in_aeat.invoice_id, not_sent_invoice.id)
+
+    def test_report_last_day_of_period(self):
+        invoice = self._create_posted_invoice(invoice_date="2018-02-28")
+        report = self._calculate_report(FakeSiiMatchService())
+        self.assertEqual(report.number_records_odoo, 1)
+        self.assertEqual(report.result_ids.invoice_id, invoice.id)

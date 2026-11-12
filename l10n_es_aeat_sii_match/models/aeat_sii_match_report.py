@@ -228,7 +228,7 @@ class SiiMatchReport(models.Model):
             [
                 ("id", "not in", prev_move_ids),
                 ("date", ">=", date_start),
-                ("date", "<", date_end),
+                ("date", "<=", date_end),
                 ("company_id", "=", self.company_id.id),
                 ("move_type", "in", inv_types),
                 ("sii_enabled", "=", True),
@@ -337,10 +337,9 @@ class SiiMatchReport(models.Model):
                 elif sii_match_report.invoice_type == "in":
                     res = serv.ConsultaLRFacturasRecibidas(header, inv_dict)
                     res_line = res["RegistroRespuestaConsultaLRFacturasRecibidas"]
-                if res_line:
-                    (diffs, summary) = sii_match_report._get_match_result_values(
-                        res_line
-                    )
+                (diffs, summary) = sii_match_report._get_match_result_values(
+                    res_line or []
+                )
                 match_vals.update(
                     {
                         "number_records": summary.get("total", 0),
