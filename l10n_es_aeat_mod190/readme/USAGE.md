@@ -10,9 +10,13 @@ Para crear un modelo, por ejemplo de un año:
 7.  Rellenar aquellos campos que Odoo no calcula automáticamente:
     - Información relacionada con datos sensibles del perceptor solo en
       las claves A, B.01, B.03, B.04, B.99, C, E.01 y E.02
-8.  Cuando los valores sean los correctos, pulsar en el botón
+8.  Para mantener a mano los registros de perceptores, marcar "Registros
+    manuales": al recalcular se conservan los registros añadidos,
+    modificados o eliminados a mano, solo se actualizan sus importes
+    desde la contabilidad, y los totales son la suma de los registros.
+9.  Cuando los valores sean los correctos, pulsar en el botón
     "Confirmar".
-9.  Podemos exportar en formato BOE para presentarlo telemáticamente en
+10. Podemos exportar en formato BOE para presentarlo telemáticamente en
     el portal de la AEAT
 
 PENDIENTE: - La información relativa a los perceptores, se ha añadido en

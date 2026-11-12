@@ -331,6 +331,44 @@ class TestL10nEsAeatMod190Base(TestL10nEsAeatModBase):
         self.assertFalse(partner_record.percepciones_dinerarias)
         self.assertFalse(partner_record.retenciones_dinerarias)
 
+    def test_mod190_manual_records(self):
+        """With "Manual records", recalculating keeps the perceptor records
+        the user added or edited by hand, refreshes their amounts from the
+        accounting and totals the boxes from them."""
+        self._complete_perceptor(self.supplier)
+        self._create_purchase_move(self.supplier, "2025-01-10", [("P_IRPF21T", 1000)])
+        model190 = self._create_report(2025)
+        model190.button_calculate()
+        supplier_record = model190.partner_record_ids
+        self.assertEqual(supplier_record.partner_id, self.supplier)
+        # The user keeps the records by hand: edits the calculated one and
+        # adds a perceptor without invoices
+        with Form(model190) as model190_form:
+            model190_form.registro_manual = True
+            with model190_form.partner_record_ids.edit(0) as record_form:
+                record_form.reduccion_aplicable = 2000
+            with model190_form.partner_record_ids.new() as record_form:
+                record_form.partner_id = self.customer
+        records = model190.partner_record_ids
+        customer_record = records - supplier_record
+        self.assertEqual(customer_record.partner_id, self.customer)
+        self._create_purchase_move(self.supplier, "2025-02-10", [("P_IRPF21T", 500)])
+        model190.button_recalculate()
+        self.assertEqual(model190.partner_record_ids, records)
+        self.assertEqual(supplier_record.reduccion_aplicable, 2000)
+        self.assertEqual(supplier_record.percepciones_dinerarias, 1500)
+        self.assertEqual(supplier_record.retenciones_dinerarias, 225)
+        self.assertEqual(
+            customer_record.aeat_perception_subkey_id,
+            self.customer.aeat_perception_subkey_id,
+        )
+        self.assertFalse(customer_record.percepciones_dinerarias)
+        self.assertEqual(model190.casilla_01, 2)
+        self.assertEqual(model190.casilla_02, 1500)
+        self.assertEqual(model190.casilla_03, 225)
+        model190.button_confirm()
+        self.assertEqual(model190.state, "done")
+
     def test_mod190_export_boe(self):
         """The BOE file of the 2025 record design, from the report form."""
         for partner in self.supplier | self.customer:

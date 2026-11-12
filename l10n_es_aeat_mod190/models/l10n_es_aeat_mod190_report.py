@@ -45,6 +45,10 @@ class L10nEsAeatMod190Report(models.Model):
     registro_manual = fields.Boolean(
         string="Manual records",
         default=False,
+        help="The perceptor records are kept as the user leaves them: "
+        "recalculating doesn't replace the records added, edited or removed by "
+        "hand, it only refreshes their amounts, and the totals are the sum of "
+        "the records.",
     )
 
     @api.depends("partner_record_ids")
@@ -127,9 +131,10 @@ class L10nEsAeatMod190Report(models.Model):
 
     def calculate(self):
         res = super().calculate()
-        manual_records = self.filtered(lambda x: x.registro_manual)
-        manual_records.partner_record_ids.unlink()
-        for report in self - manual_records:
+        # With manual records the perceptor records are the ones the user keeps
+        # (added, edited or removed by hand): recalculating doesn't replace
+        # them, it only refreshes their amounts from the new tax lines
+        for report in self.filtered(lambda x: not x.registro_manual):
             tax_lines = report.tax_line_ids.filtered(
                 lambda x, report=report: (
                     x.field_number in (11, 12, 13, 14, 15, 16, 17, 18, 19)
