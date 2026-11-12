@@ -121,6 +121,17 @@
                 <field name="partner_id" />
                 <field name="representative_vat" />
                 <field name="state_id" />
+                <separator />
+                <filter
+                    name="owned_by_company"
+                    string="Owned by the company"
+                    domain="[('owned_by_company', '=', True)]"
+                />
+                <filter
+                    name="owned_by_others"
+                    string="Owned by others"
+                    domain="[('owned_by_company', '=', False)]"
+                />
                 <group>
                     <filter
                         name="flt_partners"
