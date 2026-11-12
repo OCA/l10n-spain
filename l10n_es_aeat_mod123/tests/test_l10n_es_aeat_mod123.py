@@ -96,10 +96,16 @@ class TestL10nEsAeatMod123(TestL10nEsAeatModBase):
         self._invoice_purchase_create("2017-01-02")
         self._invoice_purchase_create("2017-01-03")
         model123 = self._create_report(2017)
+        self.assertEqual(
+            model123.export_config_id,
+            self.env.ref("l10n_es_aeat_mod123.aeat_mod123_main_export_config"),
+        )
         self._check_tax_lines(model123, self.taxes_result)
         self.assertEqual(model123.casilla_01, 1)
         self.assertEqual(model123.casilla_08, 627.0)
         self.assertEqual(model123.amount_result, 627.0)
+        content = self._export_boe(model123)
+        self.assertTrue(content.startswith("<T123020171T0000><AUX>"))
 
     def test_model_123_2024(self):
         # Dividends and the other incomes of capital of the first supplier, and
