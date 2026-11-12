@@ -2,9 +2,13 @@
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0
 
 import logging
+from datetime import date
 from typing import ClassVar
 
+from dateutil.relativedelta import relativedelta
+
 from odoo import exceptions
+from odoo.tests import Form
 
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
     TestL10nEsAeatModBase,
@@ -456,6 +460,50 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
         cls._invoice_sale_create("2025-10-01")
         cls._invoice_purchase_create("2025-10-01")
 
+    def _create_303(self, year, period_type, **extra_vals):
+        last_month = {"1T": 3, "2T": 6, "3T": 9, "4T": 12}[period_type]
+        report = self.env["l10n.es.aeat.mod303.report"].create(
+            {
+                "name": f"303{year}{period_type}0000",
+                "company_id": self.company.id,
+                "company_vat": "123456789",
+                "contact_name": "Test owner",
+                "statement_type": "N",
+                "support_type": "T",
+                "contact_phone": "911234455",
+                "year": year,
+                "period_type": period_type,
+                "date_start": date(year, last_month - 2, 1),
+                "date_end": date(year, last_month, 1) + relativedelta(day=31),
+                "journal_id": self.journal_misc.id,
+                **extra_vals,
+            }
+        )
+        return report
+
+    def _export_boe(self, report):
+        wizard = (
+            self.env["l10n.es.aeat.report.export_to_boe"]
+            .with_context(active_id=report.id, active_model=report._name)
+            .create({})
+        )
+        wizard.action_get_file()
+        return wizard.data.content
+
+    def _get_page(self, content, page):
+        """Return the given page of the BOE file, so that the offsets of its fields
+        are the positions of the record design minus one.
+        """
+        start = content.index(b"<T303" + page.encode() + b">")
+        return content[start:]
+
+    def _box(self, report, number):
+        return sum(
+            report.tax_line_ids.filtered(lambda x: x.field_number == number).mapped(
+                "amount"
+            )
+        )
+
     def _check_tax_lines(self):
         for field, result in iter(self.taxes_result.items()):
             _logger.debug(f"Checking tax line: {field}")
@@ -754,3 +802,67 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
                 },
             ],
         )
+
+    def test_model_303_bank_account_country(self):
+        """The SEPA mark and the refund bank data come from the IBAN country, not
+        from the country of the account holder.
+        """
+        self.company.sudo().country_id = self.env.ref("base.es")
+        es_account = self.env["res.partner.bank"].create(
+            {
+                "partner_id": self.company.partner_id.id,
+                "account_number": "ES66 2100 0418 4012 3456 7891",
+                "bank_name": "Spanish bank",
+            }
+        )
+        de_account = self.env["res.partner.bank"].create(
+            {
+                "partner_id": self.company.partner_id.id,
+                "account_number": "DE89 3704 0044 0532 0130 00",
+                "bank_name": "German bank",
+                "bank_bic": "COBADEFFXXX",
+                "street": "Bankstrasse 1",
+                "city": "Berlin",
+            }
+        )
+        # Holder's country by default, so it doesn't say where the bank is
+        self.assertEqual(de_account.country_id, self.env.ref("base.es"))
+        # 4T 2025: 283.5 accrued - 21 deductible = 262.5 to pay
+        report = self._create_303(2025, "4T")
+        report.button_calculate()
+        self.assertAlmostEqual(report.resultado_liquidacion, 262.5)
+        self.assertEqual(report.result_type, "I")
+        with Form(report) as report_form:
+            report_form.partner_bank_id = es_account
+        self.assertEqual(report.marca_sepa, "1")
+        self.assertEqual(report.result_type, "U")
+        page = self._get_page(self._export_boe(report), "DID00")
+        self.assertEqual(page[22:56], b"ES6621000418401234567891".ljust(34))
+        self.assertEqual(page[193:194], b"0")
+        # A purchase turns it into a refund: 262.5 - 420 = -157.5
+        self.patch(type(self), "taxes_purchase", {"P_IVA21_BC": (2000, 420)})
+        self._invoice_purchase_create("2025-12-01")
+        report.button_calculate()
+        self.assertAlmostEqual(report.resultado_liquidacion, -157.5)
+        self.assertEqual(report.result_type, "C")
+        with Form(report) as report_form:
+            report_form.return_last_period = True
+        self.assertEqual(report.result_type, "D")
+        page = self._get_page(self._export_boe(report), "DID00")
+        self.assertEqual(page[22:56], b"ES6621000418401234567891".ljust(34))
+        self.assertEqual(page[56:126], b" " * 70)
+        self.assertEqual(page[193:194], b"1")
+        # Refund to a German bank: SEPA account abroad, with the bank data
+        with Form(report) as report_form:
+            report_form.partner_bank_id = de_account
+        self.assertEqual(report.partner_bank_country_id, self.env.ref("base.de"))
+        self.assertEqual(report.marca_sepa, "2")
+        self.assertEqual(report.result_type, "X")
+        page = self._get_page(self._export_boe(report), "DID00")
+        self.assertEqual(page[11:22], b"COBADEFFXXX")
+        self.assertEqual(page[22:56], b"DE89370400440532013000".ljust(34))
+        self.assertEqual(page[56:126], b"GERMAN BANK".ljust(70))
+        self.assertEqual(page[126:161], b"BANKSTRASSE 1".ljust(35))
+        self.assertEqual(page[161:191], b"BERLIN".ljust(30))
+        self.assertEqual(page[191:193], b"DE")
+        self.assertEqual(page[193:194], b"2")

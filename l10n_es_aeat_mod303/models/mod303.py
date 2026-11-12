@@ -265,6 +265,12 @@ class L10nEsAeatMod303Report(models.Model):
         ],
         compute="_compute_marca_sepa",
     )
+    partner_bank_country_id = fields.Many2one(
+        comodel_name="res.country",
+        string="Bank country",
+        compute="_compute_partner_bank_country_id",
+        help="Country of the bank of the account, taken from the IBAN prefix",
+    )
     casilla_108 = fields.Monetary(
         string="[108] Devoluciones acordadas por la Agencia Tributaria",
         help="Rectificativa - Exclusivamente para determinados supuestos "
@@ -296,22 +302,40 @@ class L10nEsAeatMod303Report(models.Model):
             )
         return super()._get_export_config(date)
 
-    @api.depends("partner_bank_id", "use_aeat_account")
+    @api.depends(
+        "partner_bank_id.account_type",
+        "partner_bank_id.sanitized_account_number",
+        "partner_bank_id.country_id",
+    )
+    def _compute_partner_bank_country_id(self):
+        """The country of the bank is the one of the IBAN prefix. The country of the
+        bank account is only a fallback, as it defaults to the holder's one.
+        """
+        for record in self:
+            bank_account = record.partner_bank_id
+            country = bank_account.country_id
+            if bank_account.account_type == "iban":
+                country = (
+                    self.env["res.country"].search(
+                        [("code", "=", bank_account.sanitized_account_number[:2])],
+                        limit=1,
+                    )
+                    or country
+                )
+            record.partner_bank_country_id = country
+
+    @api.depends("partner_bank_country_id", "use_aeat_account")
     def _compute_marca_sepa(self):
         for record in self:
-            if record.use_aeat_account:
+            country = record.partner_bank_country_id
+            if record.use_aeat_account or not country:
                 record.marca_sepa = "0"
-            elif record.partner_bank_id.country_id == self.env.ref("base.es"):
+            elif country == self.env.ref("base.es"):
                 record.marca_sepa = "1"
-            elif (
-                record.partner_bank_id.country_id
-                in self.env.ref("base.europe").country_ids
-            ):
+            elif country in self.env.ref("base.europe").country_ids:
                 record.marca_sepa = "2"
-            elif record.partner_bank_id.country_id:
-                record.marca_sepa = "3"
             else:
-                record.marca_sepa = "0"
+                record.marca_sepa = "3"
 
     @api.depends("company_id", "result_type")
     def _compute_counterpart_account_id(self):
