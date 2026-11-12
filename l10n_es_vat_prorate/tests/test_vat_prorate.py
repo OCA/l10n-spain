@@ -336,6 +336,41 @@ class TestVatProrate(AccountTestInvoicingCommon):
             f"account.{self.env.company.id}_account_tax_template_{name}"
         )
 
+    def test_no_prorate_in_journal_entry(self):
+        """Writing a journal entry with a purchase tax doesn't add prorate lines."""
+        tax = self._tax("p_iva21_bc")
+        expense = self.company_data["default_account_expense"]
+        entry = self.env["account.move"].create(
+            {
+                "move_type": "entry",
+                "date": "2019-01-01",
+                "line_ids": [
+                    Command.create(
+                        {
+                            "name": "Expense",
+                            "account_id": expense.id,
+                            "balance": 100,
+                            "tax_ids": [Command.set(tax.ids)],
+                        }
+                    ),
+                    Command.create(
+                        {
+                            "name": "Counterpart",
+                            "account_id": self.company_data[
+                                "default_account_payable"
+                            ].id,
+                            "balance": -121,
+                        }
+                    ),
+                ],
+            }
+        )
+        lines = entry.line_ids
+        self.assertEqual(len(lines.filtered("tax_line_id")), 1)
+        entry.date = "2019-01-02"
+        self.assertEqual(entry.line_ids, lines)
+        self.assertFalse(entry.line_ids.filtered("vat_prorate"))
+
     def test_prorate_mark_kept_on_tax_edition(self):
         """The mark set by the user in a tax survives the edition of its accounts."""
         tax = self._tax("p_iva21_bc")

@@ -227,28 +227,24 @@ class AccountMove(models.Model):
 
     def write(self, vals):
         res = super().write(vals)
+        if self.env.context.get("skip_vat_prorate") or not (
+            vals.get("line_ids")
+            or "invoice_line_ids" in vals
+            or any(
+                key in vals
+                for key in [
+                    "partner_id",
+                    "currency_id",
+                    "invoice_currency_rate",
+                    "prorate_id",
+                    "date",
+                    "invoice_date",
+                ]
+            )
+        ):
+            return res
         for move in self:
-            if (
-                move.move_type in ["in_invoice", "in_refund"]
-                and not self.env.context.get("skip_vat_prorate", False)
-                and move.state == "draft"
-                and (
-                    "line_ds" in vals
-                    and len(vals["line_ids"])
-                    or "invoice_line_ids" in vals
-                )
-                or any(
-                    key in vals
-                    for key in [
-                        "partner_id",
-                        "currency_id",
-                        "invoice_currency_rate",
-                        "prorate_id",
-                        "date",
-                        "invoice_date",
-                    ]
-                )
-            ):
+            if move.move_type in ["in_invoice", "in_refund"] and move.state == "draft":
                 move._apply_vat_prorate()
         return res
 
