@@ -137,6 +137,7 @@ msgid "Bank Account"
 msgstr ""
 
 #. module: l10n_es_bank
+#: model:ir.model.fields,field_description:l10n_es_bank.field_account_setup_bank_manual_config__l10n_es_bank_code
 #: model:ir.model.fields,field_description:l10n_es_bank.field_res_partner_bank__l10n_es_bank_code
 #: model_terms:ir.ui.view,arch_db:l10n_es_bank.view_partner_bank_search
 msgid "Bank Entity Code"
@@ -163,6 +164,7 @@ msgid "Spanish bank entity code on bank accounts, taken from the IBAN"
 msgstr ""
 
 #. module: l10n_es_bank
+#: model:ir.model.fields,help:l10n_es_bank.field_account_setup_bank_manual_config__l10n_es_bank_code
 #: model:ir.model.fields,help:l10n_es_bank.field_res_partner_bank__l10n_es_bank_code
 msgid "Spanish bank entity code, taken from a valid Spanish IBAN."
 msgstr ""
