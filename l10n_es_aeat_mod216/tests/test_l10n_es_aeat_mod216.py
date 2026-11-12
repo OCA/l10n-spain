@@ -101,7 +101,8 @@ class TestL10nEsAeatMod216Base(TestL10nEsAeatModBase):
         _logger.debug("Checking results")
         retenciones = self.taxes_result.get("3", 0.0)
         result = retenciones - 145
-        self.assertEqual(self.model216.casilla_01_pre_2024, 1)
+        # Three incomes of the same perceptor; the refund is not an income
+        self.assertEqual(self.model216.casilla_01_pre_2024, 3)
         self.assertEqual(
             round(self.model216.casilla_03_pre_2024, 2), round(retenciones, 2)
         )
@@ -159,8 +160,9 @@ class TestL10nEsAeatMod216Base(TestL10nEsAeatModBase):
         base = self.taxes_result.get("9", 0.0)
         retenciones = self.taxes_result.get("12", 0.0)
         result = retenciones + 38 - 145
-        self.assertEqual(self.model216.casilla_06, 1)
-        self.assertEqual(self.model216.casilla_07, 3)
+        # Three incomes of the same perceptor; the refund is not an income
+        self.assertEqual(self.model216.casilla_06, 3)
+        self.assertEqual(self.model216.casilla_07, 5)
         self.assertEqual(round(self.model216.casilla_09, 2), round(base, 2))
         self.assertEqual(round(self.model216.casilla_10, 2), round(base + 200, 2))
         self.assertEqual(round(self.model216.casilla_12, 2), round(retenciones, 2))
@@ -204,8 +206,8 @@ class TestL10nEsAeatMod216Base(TestL10nEsAeatModBase):
                 "2024",  # 103-106 Ejercicio
                 "1T",  # 107-108 Periodo
                 "00000000000000002",  # 109-125 [05]
-                "00000000000000001",  # 126-142 [06]
-                "00000000000000003",  # 143-159 [07]
+                "00000000000000003",  # 126-142 [06]
+                "00000000000000005",  # 143-159 [07]
                 "00000000000020000",  # 160-176 [08]
                 "00000000001200000",  # 177-193 [09]
                 "00000000001220000",  # 194-210 [10]

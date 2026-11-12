@@ -14,10 +14,10 @@ class L10nEsAeatMod216Report(models.Model):
     _aeat_number = "216"
 
     casilla_01_pre_2024 = fields.Integer(
-        string="[01] # Recipients",
+        string="[01] # Incomes",
         readonly=True,
         compute="_compute_casilla_01_pre_2024",
-        help="Income subject to retention - Number of recipients",
+        help="Income subject to retention - Number of incomes",
     )
     casilla_03_pre_2024 = fields.Monetary(
         string="[03] Amount of retentions",
@@ -164,16 +164,23 @@ class L10nEsAeatMod216Report(models.Model):
         required=True,
     )
 
-    @api.depends("tax_line_ids", "tax_line_ids.move_line_ids.partner_id")
+    @api.model
+    def _get_number_of_incomes(self, tax_lines):
+        """Number of incomes ("número de rentas") of the given tax lines: the
+        invoices or entries with those taxes. A refund corrects the base of an
+        income, but it is not another income.
+        """
+        moves = tax_lines.move_line_ids.move_id
+        return len(moves.filtered(lambda move: not move.is_refund()))
+
+    @api.depends("tax_line_ids", "tax_line_ids.move_line_ids.move_id")
     def _compute_casilla_01_pre_2024(self):
         casillas = (2, 3)
         for report in self:
             tax_lines = report.tax_line_ids.filtered(
                 lambda x: x.field_number in casillas
             )
-            report.casilla_01_pre_2024 = len(
-                tax_lines.mapped("move_line_ids").mapped("partner_id")
-            )
+            report.casilla_01_pre_2024 = self._get_number_of_incomes(tax_lines)
 
     @api.depends("tax_line_ids", "tax_line_ids.amount")
     def _compute_casilla_03_pre_2024(self):
@@ -231,9 +238,7 @@ class L10nEsAeatMod216Report(models.Model):
                 report[f"casilla_{field_number:0>2}"] = tax_lines[
                     str(field_number)
                 ].amount
-            report.casilla_06 = len(
-                (tax_lines["9"] + tax_lines["12"])
-                .mapped("move_line_ids")
-                .mapped("partner_id")
+            report.casilla_06 = self._get_number_of_incomes(
+                tax_lines["9"] + tax_lines["12"]
             )
         return res
