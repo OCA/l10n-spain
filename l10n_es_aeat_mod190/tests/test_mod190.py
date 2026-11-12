@@ -56,7 +56,7 @@ class TestL10nEsAeatMod190Base(TestL10nEsAeatModBase):
                     "l10n_es_aeat_mod190.aeat_m190_perception_key_07"
                 ).id,
                 "aeat_perception_subkey_id": cls.env.ref(
-                    "l10n_es_aeat_mod190.aeat_m190_perception_subkey_08_01"
+                    "l10n_es_aeat_mod190.aeat_m190_perception_subkey_07_01"
                 ).id,
                 "vat": "ESA12345674",
                 "country_id": cls.env.ref("base.es").id,
@@ -71,7 +71,7 @@ class TestL10nEsAeatMod190Base(TestL10nEsAeatModBase):
                     "l10n_es_aeat_mod190.aeat_m190_perception_key_07"
                 ).id,
                 "aeat_perception_subkey_id": cls.env.ref(
-                    "l10n_es_aeat_mod190.aeat_m190_perception_subkey_08_02"
+                    "l10n_es_aeat_mod190.aeat_m190_perception_subkey_07_02"
                 ).id,
             }
         )
@@ -191,6 +191,14 @@ class TestL10nEsAeatMod190Base(TestL10nEsAeatModBase):
         model190_form.save()
         record_new = model190.partner_record_ids - records
         self.assertEqual(record_new.partner_vat, "C2259530J")
+        # Key and subkey of the perceptor (G.01)
+        self.assertEqual(
+            record_new.aeat_perception_key_id, self.customer.aeat_perception_key_id
+        )
+        self.assertEqual(
+            record_new.aeat_perception_subkey_id,
+            self.customer.aeat_perception_subkey_id,
+        )
         model190.write({"registro_manual": True})
         model190.button_recalculate()
         model190.button_confirm()

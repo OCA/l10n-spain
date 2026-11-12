@@ -720,12 +720,13 @@ class L10nEsAeatMod190ReportLine(models.Model):
             # Cargamos valores establecidos en el tercero.
             self.aeat_perception_key_id = self.partner_id.aeat_perception_key_id
             self.aeat_perception_subkey_id = self.partner_id.aeat_perception_subkey_id
-            if self.aeat_perception_key_id:
-                self.aeat_perception_subkey_id = False
 
     @api.onchange("aeat_perception_key_id")
     def onchange_aeat_perception_key_id(self):
-        if self.aeat_perception_key_id:
+        if (
+            self.aeat_perception_subkey_id.aeat_perception_key_id
+            != self.aeat_perception_key_id
+        ):
             self.aeat_perception_subkey_id = False
 
     def _check_b01(self):
