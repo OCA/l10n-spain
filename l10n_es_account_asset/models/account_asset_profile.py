@@ -12,7 +12,7 @@ class AccountAssetProfile(models.Model):
 
     METHOD_PERIOD_MAPPING: ClassVar[dict] = {
         "month": 1,
-        "quarter": 4,
+        "quarter": 3,
         "year": 12,
     }
 

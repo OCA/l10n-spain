@@ -137,6 +137,31 @@ class TestL10nEsAccountAsset(common.TransactionCase):
         self.assertEqual(asset.method_time, "percentage")
         self.assertEqual(asset.annual_percentage, 20)
 
+    def test_quarterly_percentage(self):
+        """A quarter is 3 months: 20 % a year is 5 % a quarter, in both ways"""
+        profile = self.profile.copy(
+            {
+                "name": "Test asset category quarterly percentage",
+                "method_time": "percentage",
+                "method_period": "quarter",
+                "annual_percentage": 20,
+            }
+        )
+        self.assertEqual(profile.method_percentage, 5)
+        profile.method_percentage = 10
+        self.assertEqual(profile.annual_percentage, 40)
+        self.asset.method_period = "quarter"
+        self.assertEqual(self.asset.method_percentage, 5)
+        self.asset.method_percentage = 10
+        self.assertEqual(self.asset.annual_percentage, 40)
+        self.asset.method_percentage = 5
+        self.assertEqual(self.asset.annual_percentage, 20)
+        self.asset.compute_depreciation_board()
+        lines = self.asset.depreciation_line_ids[1:]
+        # 5 years of 4 quarters of 30000 * 5 %
+        self.assertEqual(len(lines), 20)
+        self.assertEqual(set(lines.mapped("amount")), {1500})
+
     def test_asset_other_method(self):
         """Test for regression detected using other time methods."""
         self.asset.method_time = "year"
