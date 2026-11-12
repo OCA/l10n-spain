@@ -6,6 +6,8 @@ import requests
 
 from odoo.tests import common
 
+from odoo.addons.base.models.res_partner import ResPartner as BaseResPartner
+
 
 class TestL10nEsPartner(common.TransactionCase):
     @classmethod
@@ -55,6 +57,24 @@ class TestL10nEsPartner(common.TransactionCase):
                 partner_obj.name_search("comercial", operator="not ilike"),
             ),
         )
+
+    def test_search_view_commercial(self):
+        """The name filter of the contacts search view finds the trade name"""
+        partner_obj = self.env["res.partner"]
+        self.assertIn(
+            self.partner, partner_obj.search([("display_name", "ilike", "comercial")])
+        )
+        self.assertNotIn(
+            self.partner,
+            partner_obj.search([("display_name", "not ilike", "comercial")]),
+        )
+
+    def test_search_commercial_keeps_base_search_fields(self):
+        """Searching by trade name does not alter the search fields of the base
+        model, shared by every database served by the same process, also by
+        those without this module installed"""
+        self.env["res.partner"].name_search("comercial")
+        self.assertNotIn("comercial", BaseResPartner._rec_names_search)
 
     def test_import_banks(self):
         # Then import banks

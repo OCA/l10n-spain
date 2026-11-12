@@ -72,12 +72,11 @@ class ResPartner(models.Model):
         res += ["comercial"]
         return res
 
-    @api.model
-    @api.readonly
-    def name_search(self, name="", domain=None, operator="ilike", limit=100):
-        # Inject the field comercial in _rec_names_search if not exists
-        if "comercial" not in self._rec_names_search:
-            self._rec_names_search.append("comercial")
-        return super().name_search(
-            name=name, domain=domain, operator=operator, limit=limit
-        )
+    @property
+    def _rec_names_search(self):
+        """Search by trade name as well, both in name searches and in the name
+        filter of the search view, without altering the list of the base model"""
+        names = super()._rec_names_search
+        if "comercial" in names:
+            return names
+        return [*names, "comercial"]
