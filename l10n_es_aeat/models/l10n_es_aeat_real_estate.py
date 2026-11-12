@@ -1,12 +1,17 @@
 # Copyright 2025 Netkia - Carlos Sainz-Pardo
+# Copyright 2026 Tecnativa - Carlos Dauden
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import re
 
 from odoo import api, fields, models
 from odoo.exceptions import ValidationError
+from odoo.tools import SQL
 
 from .aeat_address_types import AEAT_ADDRESS_TYPES
+
+# Provinces with their own cadastre: Basque Country and Navarre
+FORAL_STATE_CODES = ("BI", "NA", "SS", "VI")
 
 
 class L10nEsAeatRealEstate(models.Model):
@@ -26,6 +31,13 @@ class L10nEsAeatRealEstate(models.Model):
         required=True,
         help="Partner that owns this real estate",
     )
+    owned_by_company = fields.Boolean(
+        compute="_compute_owned_by_company",
+        compute_sql="_compute_sql_owned_by_company",
+        compute_sudo=True,
+        help="The owner of the real estate is its company, as the premises it "
+        "leases to the partner of an invoice.",
+    )
     representative_vat = fields.Char(
         string="L.R. VAT number",
         size=32,
@@ -39,7 +51,7 @@ class L10nEsAeatRealEstate(models.Model):
         size=25,
     )
     address_type = fields.Selection(
-        selection=AEAT_ADDRESS_TYPES,
+        selection="_selection_address_type",
         help="Valid AEAT Address type",
         default="CALLE",
         required=True,
@@ -104,11 +116,23 @@ class L10nEsAeatRealEstate(models.Model):
         store=True,
     )
     real_estate_situation = fields.Selection(
-        [("1", "01"), ("2", "02"), ("3", "03"), ("4", "04")],
+        [
+            ("1", "01 - Spain except Basque Country and Navarre, with reference"),
+            ("2", "02 - Basque Country, with cadastral reference"),
+            ("3", "03 - Navarre, with cadastral reference"),
+            ("4", "04 - Without cadastral reference"),
+        ],
         compute="_compute_real_estate_situation",
         store=True,
         readonly=False,
+        help="Situation of the real estate in the list of the model 180.",
     )
+
+    @api.model
+    def _selection_address_type(self):
+        # Their names are already given in the co-official languages: a method
+        # keeps these hundreds of terms out of the translations
+        return AEAT_ADDRESS_TYPES
 
     @api.depends("reference", "state_id")
     def _compute_real_estate_situation(self):
@@ -123,6 +147,15 @@ class L10nEsAeatRealEstate(models.Model):
                         rec.real_estate_situation = "2"
                     elif code == "NA":
                         rec.real_estate_situation = "3"
+
+    @api.depends("partner_id", "company_id.partner_id")
+    def _compute_owned_by_company(self):
+        for rec in self:
+            rec.owned_by_company = rec.partner_id == rec.company_id.partner_id
+
+    def _compute_sql_owned_by_company(self, table):
+        # The same comparison in SQL, so searching the field gives what it shows
+        return SQL("%s = %s", table.partner_id, table.company_id.partner_id)
 
     @api.depends("partner_id.vat")
     def _compute_representative_vat(self):
@@ -139,11 +172,20 @@ class L10nEsAeatRealEstate(models.Model):
             record.check_ok = not bool(errors)
             record.error_text = bool(errors) and ", ".join(errors)
 
-    @api.constrains("reference")
+    def _has_dgc_reference(self):
+        """The cadastral reference is given by the Spanish General Directorate
+        of the Cadastre (DGC), with its control characters, except in the
+        provinces with their own cadastre and abroad."""
+        self.ensure_one()
+        return (
+            not self.country_id or self.country_id.code == "ES"
+        ) and self.state_id.code not in FORAL_STATE_CODES
+
+    @api.constrains("reference", "country_id", "state_id")
     def _check_reference(self):
         for record in self:
             ref = record.reference
-            if not ref:
+            if not ref or not record._has_dgc_reference():
                 continue
 
             ref = self._normalize_reference(ref)

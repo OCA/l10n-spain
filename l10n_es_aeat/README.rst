@@ -34,23 +34,23 @@ AEAT Base
 
 Módulo base para declaraciones de la AEAT, que incluye:
 
--  Campos base para todo los modelos AEAT.
--  Vista base para todos los modelos.
--  Crea una secuencia automática para los registros diferenciando por
-   modelo.
--  Exportación del BOE. Define una exportación básica, con los
-   diferentes registros del fichero.
--  Generación del registro del declarante con los campos genéricos de
-   los modelos.
--  Motor de exportación paramétrica basado en una configuración que
-   puede ser introducida por datos XML o por interfaz.
--  Visor de archivos BOE asociados a la configuración de exportación.
--  Motor de cálculo de importes por impuestos.
--  Generador del asiento de regularización con cargo a un proveedor
-   "Agencia Estatal de Administración Tributaria" creado al efecto.
--  Certificado para las declaraciones de la AEAT
--  Webservice AEAT SOAP
--  Gestión de Inmuebles.
+- Campos base para todo los modelos AEAT.
+- Vista base para todos los modelos.
+- Crea una secuencia automática para los registros diferenciando por
+  modelo.
+- Exportación del BOE. Define una exportación básica, con los diferentes
+  registros del fichero.
+- Generación del registro del declarante con los campos genéricos de los
+  modelos.
+- Motor de exportación paramétrica basado en una configuración que puede
+  ser introducida por datos XML o por interfaz.
+- Visor de archivos BOE asociados a la configuración de exportación.
+- Motor de cálculo de importes por impuestos.
+- Generador del asiento de regularización con cargo a un proveedor
+  "Agencia Estatal de Administración Tributaria" creado al efecto.
+- Certificado para las declaraciones de la AEAT
+- Webservice AEAT SOAP
+- Gestión de Inmuebles.
 
 **Table of contents**
 
@@ -102,6 +102,12 @@ con errores hay en el informe. Si el valor es 0, no se mostrará ningún
 aviso; si el valor es mayor a 0, se mostrará un aviso en la parte
 superior de la vista formulario del informe.
 
+Para gestionar los inmuebles (menú y campo "Inmueble" en las líneas de
+las facturas) hay que dar a los usuarios el permiso "Use AEAT Real
+Estates" (en modo desarrollador, en "Permisos extra" del usuario). Es
+independiente del de gestor de la AEAT: quien solo indica el inmueble en
+las facturas no necesita gestionar las declaraciones.
+
 Usage
 =====
 
@@ -131,6 +137,13 @@ Para gestionar inmuebles, hay que:
 3. Ya se podrá añadir un inmueble en el campo Inmueble de las lineas de
    factura.
 
+En las líneas se pueden elegir los inmuebles del contacto de la factura
+(como el arrendador de una factura recibida) y los de la propia compañía
+(como el local que alquila al cliente). La referencia catastral se
+valida con los dígitos de control de la Dirección General del Catastro,
+salvo en País Vasco, Navarra y en el extranjero, que tienen otro
+formato.
+
 Identificación de clientes para la AEAT
 ---------------------------------------
 
@@ -159,16 +172,15 @@ el documento personal.
 Known issues / Roadmap
 ======================
 
--  La configuración de exportación a BOE no se filtran ni se
-   auto-selecciona por fechas de validez.
--  Las partes específicas de las Diputaciones Forales no están
-   incluidas.
--  Las futuras migraciones de ``l10n_es_aeat_mod592``,
-   ``l10n_es_aeat_sii_oca`` y ``l10n_es_vat_book`` deben adaptar sus
-   referencias a los campos retirados de identificación AEAT.
-   ``l10n_es_vat_book`` también debe revisar que los contactos
-   extranjeros sin VAT ni documento real ya no se consideran
-   identificados para AEAT.
+- La configuración de exportación a BOE no se filtran ni se
+  auto-selecciona por fechas de validez.
+- Las partes específicas de las Diputaciones Forales no están incluidas.
+- Las futuras migraciones de ``l10n_es_aeat_mod592``,
+  ``l10n_es_aeat_sii_oca`` y ``l10n_es_vat_book`` deben adaptar sus
+  referencias a los campos retirados de identificación AEAT.
+  ``l10n_es_vat_book`` también debe revisar que los contactos
+  extranjeros sin VAT ni documento real ya no se consideran
+  identificados para AEAT.
 
 Bug Tracker
 ===========
@@ -194,28 +206,32 @@ Authors
 Contributors
 ------------
 
--  Pexego (http://www.pexego.es)
--  Ignacio Ibeas, Acysos (http://www.acysos.com)
--  Pedro M. Baeza <pedro.baeza@tecnativa.com>
--  Santi Argüeso <santi@comunitea.com>
--  cubells <info@obertix.net>
--  AvanzOSC (http://www.avanzosc.es)
--  Ainara Galdona
--  Antonio Espinosa <antonio.espinosa@tecnativa.com>
--  Juan Vicente Pascual <jvpascual@puntsistemes.es>
--  Abraham Anes <abraham@studio73.es>
--  Diagram Software S.L.
--  Miquel Raïch <miquel.raich@forgeflow.com>
--  Iván Antón <ozono@ozonomultimedia.com>
--  Digital5 S.L.
--  Valentin Vinagre <valentin.vinagre@sygel.es>
--  Manuel Regidor <manuel.regidor@sygel.es>
--  Jairo Llopis (https://www.moduon.team)
--  `Studio73 <https://www.studio73.es>`__:
+- Pexego (http://www.pexego.es)
+- Ignacio Ibeas, Acysos (http://www.acysos.com)
+- `Tecnativa <https://www.tecnativa.com>`__:
 
-   -  Pablo Cortés
+  - Pedro M. Baeza
+  - Antonio Espinosa
+  - Carlos Dauden
 
--  Carlos Sainz-Pardo (https://www.netkia.es)
+- Santi Argüeso <santi@comunitea.com>
+- cubells <info@obertix.net>
+- AvanzOSC (http://www.avanzosc.es)
+- Ainara Galdona
+- Juan Vicente Pascual <jvpascual@puntsistemes.es>
+- Abraham Anes <abraham@studio73.es>
+- Diagram Software S.L.
+- Miquel Raïch <miquel.raich@forgeflow.com>
+- Iván Antón <ozono@ozonomultimedia.com>
+- Digital5 S.L.
+- Valentin Vinagre <valentin.vinagre@sygel.es>
+- Manuel Regidor <manuel.regidor@sygel.es>
+- Jairo Llopis (https://www.moduon.team)
+- `Studio73 <https://www.studio73.es>`__:
+
+  - Pablo Cortés
+
+- Carlos Sainz-Pardo (https://www.netkia.es)
 
 Maintainers
 -----------

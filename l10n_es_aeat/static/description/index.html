@@ -381,12 +381,12 @@ ul.auto-toc {
 <li>Vista base para todos los modelos.</li>
 <li>Crea una secuencia automática para los registros diferenciando por
 modelo.</li>
-<li>Exportación del BOE. Define una exportación básica, con los
-diferentes registros del fichero.</li>
-<li>Generación del registro del declarante con los campos genéricos de
-los modelos.</li>
-<li>Motor de exportación paramétrica basado en una configuración que
-puede ser introducida por datos XML o por interfaz.</li>
+<li>Exportación del BOE. Define una exportación básica, con los diferentes
+registros del fichero.</li>
+<li>Generación del registro del declarante con los campos genéricos de los
+modelos.</li>
+<li>Motor de exportación paramétrica basado en una configuración que puede
+ser introducida por datos XML o por interfaz.</li>
 <li>Visor de archivos BOE asociados a la configuración de exportación.</li>
 <li>Motor de cálculo de importes por impuestos.</li>
 <li>Generador del asiento de regularización con cargo a un proveedor
@@ -452,6 +452,11 @@ heredarán la función _compute_error_count para indicar cuantas líneas
 con errores hay en el informe. Si el valor es 0, no se mostrará ningún
 aviso; si el valor es mayor a 0, se mostrará un aviso en la parte
 superior de la vista formulario del informe.</p>
+<p>Para gestionar los inmuebles (menú y campo “Inmueble” en las líneas de
+las facturas) hay que dar a los usuarios el permiso “Use AEAT Real
+Estates” (en modo desarrollador, en “Permisos extra” del usuario). Es
+independiente del de gestor de la AEAT: quien solo indica el inmueble en
+las facturas no necesita gestionar las declaraciones.</p>
 </div>
 <div class="section" id="usage">
 <h2><a class="toc-backref" href="#toc-entry-3">Usage</a></h2>
@@ -481,6 +486,12 @@ p12</li>
 <li>Ya se podrá añadir un inmueble en el campo Inmueble de las lineas de
 factura.</li>
 </ol>
+<p>En las líneas se pueden elegir los inmuebles del contacto de la factura
+(como el arrendador de una factura recibida) y los de la propia compañía
+(como el local que alquila al cliente). La referencia catastral se
+valida con los dígitos de control de la Dirección General del Catastro,
+salvo en País Vasco, Navarra y en el extranjero, que tienen otro
+formato.</p>
 <div class="section" id="identificacion-de-clientes-para-la-aeat">
 <h3><a class="toc-backref" href="#toc-entry-4">Identificación de clientes para la AEAT</a></h3>
 <p>Introduzca los documentos en el apartado nativo <strong>Identificadores
@@ -508,8 +519,7 @@ el documento personal.</p>
 <ul class="simple">
 <li>La configuración de exportación a BOE no se filtran ni se
 auto-selecciona por fechas de validez.</li>
-<li>Las partes específicas de las Diputaciones Forales no están
-incluidas.</li>
+<li>Las partes específicas de las Diputaciones Forales no están incluidas.</li>
 <li>Las futuras migraciones de <tt class="docutils literal">l10n_es_aeat_mod592</tt>,
 <tt class="docutils literal">l10n_es_aeat_sii_oca</tt> y <tt class="docutils literal">l10n_es_vat_book</tt> deben adaptar sus
 referencias a los campos retirados de identificación AEAT.
@@ -542,12 +552,16 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <ul class="simple">
 <li>Pexego (<a class="reference external" href="http://www.pexego.es">http://www.pexego.es</a>)</li>
 <li>Ignacio Ibeas, Acysos (<a class="reference external" href="http://www.acysos.com">http://www.acysos.com</a>)</li>
-<li>Pedro M. Baeza &lt;<a class="reference external" href="mailto:pedro.baeza&#64;tecnativa.com">pedro.baeza&#64;tecnativa.com</a>&gt;</li>
+<li><a class="reference external" href="https://www.tecnativa.com">Tecnativa</a>:<ul>
+<li>Pedro M. Baeza</li>
+<li>Antonio Espinosa</li>
+<li>Carlos Dauden</li>
+</ul>
+</li>
 <li>Santi Argüeso &lt;<a class="reference external" href="mailto:santi&#64;comunitea.com">santi&#64;comunitea.com</a>&gt;</li>
 <li>cubells &lt;<a class="reference external" href="mailto:info&#64;obertix.net">info&#64;obertix.net</a>&gt;</li>
 <li>AvanzOSC (<a class="reference external" href="http://www.avanzosc.es">http://www.avanzosc.es</a>)</li>
 <li>Ainara Galdona</li>
-<li>Antonio Espinosa &lt;<a class="reference external" href="mailto:antonio.espinosa&#64;tecnativa.com">antonio.espinosa&#64;tecnativa.com</a>&gt;</li>
 <li>Juan Vicente Pascual &lt;<a class="reference external" href="mailto:jvpascual&#64;puntsistemes.es">jvpascual&#64;puntsistemes.es</a>&gt;</li>
 <li>Abraham Anes &lt;<a class="reference external" href="mailto:abraham&#64;studio73.es">abraham&#64;studio73.es</a>&gt;</li>
 <li>Diagram Software S.L.</li>

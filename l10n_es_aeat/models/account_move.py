@@ -92,7 +92,9 @@ class AccountMoveLine(models.Model):
         comodel_name="l10n.es.aeat.real_estate",
         string="Real Estate",
         help="Real Estate related to this move line",
-        domain="[('company_id', '=', company_id), ('partner_id', '=', partner_id)]",
+        # The landlord of a received invoice or the company leasing its premises
+        domain="[('company_id', '=', company_id), '|', "
+        "('partner_id', '=', partner_id), ('owned_by_company', '=', True)]",
     )
 
     def _process_aeat_tax_base_info(self, res, tax, sign):

@@ -22,7 +22,6 @@
             <field name="partner_id" position="after">
                 <field
                     name="l10n_es_aeat_real_estate_id"
-                    string="Inmueble"
                     optional="hide"
                     groups="l10n_es_aeat.group_use_aeat_real_estates"
                 />
