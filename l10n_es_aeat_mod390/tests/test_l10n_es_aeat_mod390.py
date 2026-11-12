@@ -775,3 +775,39 @@ class TestL10nEsAeatMod390Using303(TestL10nEsAeatMod390Base):
         self.model390_2023.button_calculate()
         # 210 applied from the 1000 of previous years: the 105 of 2T stay pending
         self.assertAlmostEqual(self.model390_2023.casilla_662, 105, 2)
+
+    def _quarterly_303(self, potential_first_period, sales, purchases):
+        """Calculate the four quarterly 303 of 2023, with a sale (S_IVA21B) and a
+        purchase (P_IVA21_BC) of the given bases in each quarter, and the 390."""
+        reports = self.env["l10n.es.aeat.mod303.report"]
+        for quarter, (sale, purchase) in enumerate(zip(sales, purchases, strict=True)):
+            month = quarter * 3 + 1
+            if sale:
+                self.patch(type(self), "taxes_sale", {"S_IVA21B": (sale, 0)})
+                self._invoice_sale_create(f"2023-{month:02d}-10")
+            if purchase:
+                self.patch(type(self), "taxes_purchase", {"P_IVA21_BC": (purchase, 0)})
+                self._invoice_purchase_create(f"2023-{month:02d}-10")
+            report = self._create_303(2023, f"{quarter + 1}T", month, month + 2)
+            if not quarter:
+                report.potential_cuota_compensar = potential_first_period
+            report.button_calculate()
+            reports |= report
+        self.model390_2023.button_calculate()
+        return reports
+
+    def test_model_390_using_303_662_previous_years_used_up_in_the_year(self):
+        """FIFO: 300 from previous years, 210 applied in 1T and 126 in 3T: 90 of the
+        126 use up what was left of previous years and 36 come from the 105 generated
+        in 2T, so 69 of them stay pending."""
+        reports = self._quarterly_303(300, (1000, 0, 600, 0), (0, 500, 0, 0))
+        self.assertEqual(reports.mapped("cuota_compensar"), [210, 0, 126, 0])
+        self.assertAlmostEqual(self.model390_2023.casilla_662, 69, 2)
+
+    def test_model_390_using_303_662_this_year_partly_applied(self):
+        """FIFO: 100 from previous years, nothing applied in 1T, 105 generated in 2T
+        and 157.5 applied in 3T: 100 come from previous years and 57.5 from this
+        year, so 47.5 stay pending."""
+        reports = self._quarterly_303(100, (0, 0, 750, 0), (0, 500, 0, 0))
+        self.assertEqual(reports.mapped("cuota_compensar"), [0, 0, 157.5, 0])
+        self.assertAlmostEqual(self.model390_2023.casilla_662, 47.5, 2)

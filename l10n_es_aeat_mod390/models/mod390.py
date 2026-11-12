@@ -780,13 +780,15 @@ class L10nEsAeatMod390Report(models.Model):
 
     @api.model
     def _calculate_casilla_662(self, reports_303):
-        """Box 662 will be the difference between this year's compensation and what was
-        applied this year that does not come from previous years.
-        - Amount to compensate this year is the sum of the result in 303 reports to
-          compensate this year except the last period
-        - Amount applied this year is the sum of the 78 in 303 reports except the first
-          period.
-        - Compensation previous year is the box 78 of the first period of the year.
+        """Box 662: compensations generated this year that are still pending at the
+        end of it. What is applied is taken first from the oldest compensations
+        (FIFO):
+        - Compensation of previous years is the box 110 of the first period.
+        - The first period can only apply compensations of previous years (its 78).
+        - What is applied after the first period takes first what is left of the
+          previous years, and the rest comes from the compensations of this year.
+        - Compensations of this year are the results to compensate of every period
+          but the last one, whose result goes to box 97.
         """
         last_period = reports_303.filtered(lambda r: r.period_type in {"4T", "12"})
         if last_period and last_period[0].result_type in {"D", "V", "X"}:
@@ -794,13 +796,19 @@ class L10nEsAeatMod390Report(models.Model):
             # recibe de vuelta, por lo que no queda nada pendiente de compensar para
             # años siguientes (casilla 662 = 0).
             return 0.0
-        # Cuotas aplicadas este año
-        applied_this_year = sum(
-            reports_303.filtered_domain(
-                Domain("period_type", "not in", ("1T", "01"))
-            ).mapped("cuota_compensar")
+        first_period = reports_303.filtered_domain(
+            Domain("period_type", "in", ("1T", "01"))
         )
-        # Compensaciones de este año
+        # Compensaciones de años anteriores y lo aplicado de ellas en el 1.er periodo
+        compensation_previous_years = sum(
+            first_period.mapped("potential_cuota_compensar")
+        )
+        applied_first_period = sum(first_period.mapped("cuota_compensar"))
+        # Cuotas aplicadas después del primer periodo
+        applied_after_first_period = sum(
+            (reports_303 - first_period).mapped("cuota_compensar")
+        )
+        # Compensaciones generadas este año
         compensation_this_year = abs(
             sum(
                 reports_303.filtered_domain(
@@ -813,27 +821,14 @@ class L10nEsAeatMod390Report(models.Model):
                 ).mapped("resultado_liquidacion")
             )
         )
-        # Compensaciones de años anteriores
-        compensation_previous_years = reports_303.filtered_domain(
-            Domain("period_type", "in", ("1T", "01"))
-        ).potential_cuota_compensar
-        # Si lo aplicado este año es menor que compensaciones de años anteriores
-        # significa que no se ha aplicado todo de años anteriores, por lo que
-        # no hay que tenerlo en cuenta para la 662.
-        if applied_this_year < compensation_previous_years:
-            pending_previous_years = compensation_previous_years - applied_this_year
-            compensation_previous_years = 0
-            # Si la diferencia entre compensaciones del año anterior y lo aplicado
-            # este año es mayor a las compensaciones del año, significa que el total
-            # de lo compensado este año no se ha aplicado porque todavía queda por
-            # aplicar de años anteriores.
-            if pending_previous_years > compensation_this_year:
-                applied_this_year = 0
-        # La casilla 662 será la diferencia entre las compensaciones de este año y lo
-        # aplicado este año que no provenga de años anteriores
-        return max(
-            compensation_this_year - applied_this_year - compensation_previous_years, 0
+        # Lo aplicado después del primer periodo sale antes de lo que quede de años
+        # anteriores; el exceso sale de las compensaciones de este año
+        applied_from_this_year = max(
+            applied_after_first_period
+            - (compensation_previous_years - applied_first_period),
+            0,
         )
+        return max(compensation_this_year - applied_from_this_year, 0)
 
     def calculate(self):
         res = super().calculate()
