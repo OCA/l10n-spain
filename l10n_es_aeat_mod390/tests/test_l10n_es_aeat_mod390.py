@@ -644,6 +644,20 @@ class TestL10nEsAeatMod390Map2024(TestL10nEsAeatMod390Base):
                 self.assertAlmostEqual(self._box(model390, 634), 210, 2)
         self.assertAlmostEqual(self._box(model390, 739), 100, 2)
 
+    def test_model_390_reagyp_compensations(self):
+        """Livestock and fishing compensations (10.5 %) go to boxes 60 and 61."""
+        self._get_taxes("P_IVA105_GAN").active = True
+        self.patch(
+            type(self),
+            "taxes_purchase",
+            {"P_IVA12_AGR": (1000, 120), "P_IVA105_GAN": (2000, 210)},
+        )
+        self._invoice_purchase_create("2024-03-01")
+        model390 = self._create_390(2024)
+        model390.button_calculate()
+        self.assertAlmostEqual(self._box(model390, 60), 3000, 2)
+        self.assertAlmostEqual(self._box(model390, 61), 330, 2)
+
     def test_model_390_bankruptcy_refund(self):
         """A refund of a debtor in bankruptcy goes to boxes 31/32 and 45/46, and the
         surcharge of box 46 is counted only once, in [47]."""
