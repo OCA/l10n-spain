@@ -106,6 +106,7 @@ class TestL10nEsAeatMod123(TestL10nEsAeatModBase):
         self.assertEqual(model123.amount_result, 627.0)
         content = self._export_boe(model123)
         self.assertTrue(content.startswith("<T123020171T0000><AUX>"))
+        self.assertTrue(content.endswith("</T123020171T0000>\r\n"))
 
     def test_model_123_2024(self):
         # Dividends and the other incomes of capital of the first supplier, and
@@ -224,3 +225,4 @@ class TestL10nEsAeatMod123(TestL10nEsAeatModBase):
         )
         self.assertEqual(len(expected_page), 600)
         self.assertEqual(content[328:928], expected_page)
+        self.assertEqual(content[928:], "</T123020241T0000>\r\n")
