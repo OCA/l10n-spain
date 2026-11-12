@@ -739,6 +739,32 @@ class TestL10nEsAeatMod420(TestL10nEsAtcMod420Base):
         )
 
     @freeze_time("2026-04-01")
+    def test_model_420_declaration_manual_boxes(self):
+        """The boxes 42 to 44 entered after calculating change the result and
+        its type in the file: here, an amount to carry forward."""
+        self.model420.button_calculate()
+        self._set_f420_fields()
+        # The result the form shows after calculating
+        self.assertEqual(self.model420.result_type, "I")
+        self.model420.write(
+            {"regularizacion_cuotas": 150, "cuotas_compensar": 20, "a_deducir": 1300}
+        )
+        self.assertEqual(self.model420.result_type, "C")
+        with self._atc_program():
+            self.model420.action_generar_mod420()
+        dec_node = etree.fromstring(self._generated_files().raw.content)
+        liq_node = dec_node.xpath("//LIQ")[0]
+        self.assertEqual(liq_node.attrib["DIF"], "111540")
+        self.assertEqual(liq_node.attrib["RCU"], "15000")
+        self.assertEqual(liq_node.attrib["CPA"], "2000")
+        self.assertEqual(liq_node.attrib["DAC"], "130000")
+        # 1115.40 + 150 - 20 - 1300
+        self.assertEqual(liq_node.attrib["RLI"], "-5460")
+        res_node = dec_node.xpath("//RES")[0]
+        self.assertEqual(res_node.attrib["TIP"], "C")
+        self.assertEqual(res_node.attrib["IMP"], "5460")
+
+    @freeze_time("2026-04-01")
     def test_model_420_declaration_pdf(self):
         """A draft is a PDF made by the same program with output type B."""
         self.model420.button_calculate()
