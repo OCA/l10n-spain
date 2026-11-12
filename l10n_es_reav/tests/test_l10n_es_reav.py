@@ -92,3 +92,12 @@ class TestL10nEsReav(AccountTestInvoicingCommon):
         )
         for line in bill.invoice_line_ids:
             self.assertEqual(line.tax_ids, self.tax_p_reav)
+
+    def test_reav_tax_without_reav_position(self):
+        """A REAV tax put on a product only applies with the REAV position"""
+        product = self.product_a.copy({"taxes_id": [(6, 0, self.tax_s_reav.ids)]})
+        invoice = self.init_invoice(
+            "out_invoice", partner=self.partner_b, products=product
+        )
+        self.assertNotEqual(invoice.fiscal_position_id, self.fp_reav)
+        self.assertFalse(invoice.invoice_line_ids.tax_ids)
