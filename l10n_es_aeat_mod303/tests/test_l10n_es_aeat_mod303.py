@@ -866,3 +866,26 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
         self.assertEqual(page[161:191], b"BERLIN".ljust(30))
         self.assertEqual(page[191:193], b"DE")
         self.assertEqual(page[193:194], b"2")
+
+    def test_model_303_manual_result_boxes(self):
+        """Boxes [108], [109] and [112] typed after calculating change the result."""
+        self.patch(type(self), "taxes_sale", {"S_IVA21B": (1000, 210)})
+        self._invoice_sale_create("2026-01-15")
+        report = self._create_303(2026, "1T")
+        report.button_calculate()
+        self.assertAlmostEqual(report.casilla_69, 210)
+        self.assertAlmostEqual(report.resultado_liquidacion, 210)
+        with Form(report) as report_form:
+            report_form.casilla_108 = 100
+            report_form.casilla_109 = 50
+            report_form.deduct_payment_petrol_delivery = True
+            report_form.casilla_112 = 30
+        # [69] = [66] + [108]; [71] = [69] - [70] + [109] - [112]
+        self.assertAlmostEqual(report.casilla_69, 310)
+        self.assertAlmostEqual(report.resultado_liquidacion, 330)
+        self.assertEqual(report.result_type, "I")
+        with Form(report) as report_form:
+            report_form.casilla_108 = -600
+        self.assertAlmostEqual(report.casilla_69, -390)
+        self.assertAlmostEqual(report.resultado_liquidacion, -370)
+        self.assertEqual(report.result_type, "C")

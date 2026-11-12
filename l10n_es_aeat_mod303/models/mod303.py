@@ -414,7 +414,11 @@ class L10nEsAeatMod303Report(models.Model):
             )
 
     @api.depends(
-        "atribuible_estado", "cuota_compensar", "regularizacion_anual", "casilla_77"
+        "atribuible_estado",
+        "cuota_compensar",
+        "regularizacion_anual",
+        "casilla_77",
+        "casilla_108",
     )
     def _compute_casilla_69(self):
         for report in self:
@@ -426,7 +430,7 @@ class L10nEsAeatMod303Report(models.Model):
                 + report.casilla_108
             )
 
-    @api.depends("casilla_69", "previous_result")
+    @api.depends("casilla_69", "previous_result", "casilla_109", "casilla_112")
     def _compute_resultado_liquidacion(self):
         for report in self:
             report.resultado_liquidacion = report.currency_id.round(
