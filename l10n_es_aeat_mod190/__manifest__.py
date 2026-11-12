@@ -9,6 +9,7 @@
     "Vunkers IT Experts, SLU",
     "website": "https://github.com/OCA/l10n-spain",
     "license": "AGPL-3",
+    "maintainers": ["carlosdauden"],
     "depends": ["l10n_es", "l10n_es_aeat"],
     "data": [
         # 2017
