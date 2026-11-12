@@ -861,6 +861,32 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
         self.assertEqual(page[191:193], b"DE")
         self.assertEqual(page[193:194], b"2")
 
+    def test_model_303_bank_account_sepa_zone(self):
+        """A refund to an account of the SEPA zone outside the European Union (here
+        Switzerland) is "Unión Europea SEPA" (2), not "Resto Países" (3).
+        """
+        ch_account = self.env["res.partner.bank"].create(
+            {
+                "partner_id": self.company.partner_id.id,
+                "account_number": "CH93 0076 2011 6238 5295 7",
+                "bank_name": "Swiss bank",
+                "bank_bic": "UBSWCHZH80A",
+            }
+        )
+        self.patch(type(self), "taxes_purchase", {"P_IVA21_BC": (2000, 420)})
+        self._invoice_purchase_create("2025-12-01")
+        report = self._create_303(2025, "4T")
+        report.button_calculate()
+        with Form(report) as report_form:
+            report_form.return_last_period = True
+            report_form.partner_bank_id = ch_account
+        self.assertEqual(report.partner_bank_country_id, self.env.ref("base.ch"))
+        self.assertEqual(report.marca_sepa, "2")
+        self.assertEqual(report.result_type, "X")
+        page = self._get_page(self._export_boe(report), "DID00")
+        self.assertEqual(page[191:193], b"CH")
+        self.assertEqual(page[193:194], b"2")
+
     def test_model_303_manual_result_boxes(self):
         """Boxes [108], [109] and [112] typed after calculating change the result."""
         self.patch(type(self), "taxes_sale", {"S_IVA21B": (1000, 210)})

@@ -332,7 +332,7 @@ class L10nEsAeatMod303Report(models.Model):
                 record.marca_sepa = "0"
             elif country == self.env.ref("base.es"):
                 record.marca_sepa = "1"
-            elif country in self.env.ref("base.europe").country_ids:
+            elif country in self.env.ref("base.sepa_zone").country_ids:
                 record.marca_sepa = "2"
             else:
                 record.marca_sepa = "3"
