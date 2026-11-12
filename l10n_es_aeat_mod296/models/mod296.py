@@ -71,6 +71,11 @@ class L10nEsAeatMod296Report(models.Model):
     def calculate(self):
         res = super().calculate()
         for report in self:
+            # Data the user entered on the lines is kept for the same perceptor
+            manual_values = {
+                line.partner_id.id: line._get_manual_values()
+                for line in reversed(report.lines296)
+            }
             report.lines296.unlink()
             line_lst = []
             tax_lines_number_2 = report.tax_line_ids.filtered(
@@ -93,6 +98,7 @@ class L10nEsAeatMod296Report(models.Model):
                     partner_groups[partner_id],
                     lines_by_partner[partner_id],
                 )
+                data.update(manual_values.get(partner_id, {}))
                 line_lst.append((0, 0, data))
             report.lines296 = line_lst
             report.lines296.onchange_partner()
@@ -102,12 +108,25 @@ class L10nEsAeatMod296Report(models.Model):
         return res
 
     def _prepare_mod296_line(self, partner_id, data, move_lines):
+        base = data["base"]["debit"] - data["base"]["credit"]
+        cuota = data["cuota"]["credit"] - data["cuota"]["debit"]
         return {
             "partner_id": partner_id,
             "move_line_ids": move_lines,
-            "base_retenciones_ingresos": data["base"]["debit"] - data["base"]["credit"],
-            "retenciones_ingresos": data["cuota"]["credit"] - data["cuota"]["debit"],
+            "base_retenciones_ingresos": base,
+            "retenciones_ingresos": cuota,
+            "porcentaje_retencion": self._get_mod296_line_percentage(
+                move_lines, base, cuota
+            ),
         }
+
+    def _get_mod296_line_percentage(self, move_lines, base, cuota):
+        """Withholding rate of the perceptor: the rate of its withholding tax, or
+        the effective rate when its income has been withheld at several rates."""
+        rates = set(move_lines.tax_line_id.mapped(lambda tax: abs(tax.amount)))
+        if len(rates) == 1:
+            return rates.pop()
+        return round(100 * cuota / base, 2) if base else 0.0
 
 
 class L10nEsAeatMod296ReportLine(models.Model):
@@ -337,6 +356,35 @@ class L10nEsAeatMod296ReportLine(models.Model):
     fecha_nacimiento_export = fields.Char(
         string="Date of birth export", compute="_compute_get_fecha_nacimiento_export"
     )
+
+    def _get_manual_values(self):
+        """Values of the line that the report calculation doesn't fill in."""
+        self.ensure_one()
+        fnames = [
+            "porcentaje_retencion",
+            "fisica_juridica",
+            "naturaleza",
+            "fecha_devengo",
+            "clave",
+            "subclave",
+            "mediador",
+            "codigo",
+            "codigo_emisor",
+            "pago",
+            "tipo_codigo",
+            "cuenta_valores",
+            "pendiente",
+            "nif_pais_residencia",
+            "fecha_nacimiento",
+            "ciudad_nacimiento",
+            "pais_nacimiento",
+            "pais_residencia_fiscal",
+        ]
+        values = self._convert_to_write({fname: self[fname] for fname in fnames})
+        if not values["porcentaje_retencion"]:
+            # Not set yet: the calculation fills it in
+            del values["porcentaje_retencion"]
+        return values
 
     @api.depends("fecha_devengo")
     def _compute_get_fecha_devengo_export(self):

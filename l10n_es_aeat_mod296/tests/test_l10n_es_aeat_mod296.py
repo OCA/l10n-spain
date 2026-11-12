@@ -7,6 +7,8 @@
 import logging
 from typing import ClassVar
 
+from odoo.fields import Command
+
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
     TestL10nEsAeatModBase,
 )
@@ -191,3 +193,66 @@ class TestL10nEsAeatMod296Base(TestL10nEsAeatModBase):
         )
         self.assertEqual(len(expected_perceptor), 500)
         self.assertEqual(perceptor, expected_perceptor)
+
+    def _purchase_invoice(self, date, lines):
+        """Post a vendor bill of the supplier with one line per (tax, price)."""
+        return self._invoice_purchase_create(
+            date,
+            extra_vals={
+                "invoice_line_ids": [
+                    Command.create(
+                        {
+                            "name": f"Test for tax {tax}",
+                            "account_id": self.accounts["600000"].id,
+                            "price_unit": price,
+                            "quantity": 1,
+                            "tax_ids": [Command.set(self._get_taxes(tax).ids)],
+                        }
+                    )
+                    for tax, price in lines
+                ],
+            },
+        )
+
+    def test_model_296_recalculate(self):
+        """The withholding rate comes from the tax of the perceptor, and the
+        data entered on its line is kept when the report is recalculated."""
+        tax = "l10n_es.account_tax_template_p_irpfnrnue24p"
+        self._purchase_invoice("2025-03-01", [(tax, 1000)])
+        model296 = self.env["l10n.es.aeat.mod296.report"].create(
+            {
+                "company_id": self.company.id,
+                "company_vat": "123456789",
+                "contact_name": "Test owner",
+                "contact_phone": "911234455",
+                "year": 2025,
+                "period_type": "0A",
+                "date_start": "2025-01-01",
+                "date_end": "2025-12-31",
+            }
+        )
+        model296.button_calculate()
+        line = model296.lines296
+        self.assertEqual(line.porcentaje_retencion, 24)
+        self.assertEqual(line.base_retenciones_ingresos, 1000)
+        line.write(
+            {
+                "fisica_juridica": "J",
+                "clave": "2",
+                "subclave": "2",
+                "porcentaje_retencion": 10,
+                "nif_pais_residencia": "US123456789",
+            }
+        )
+        # A new bill of the perceptor arrives and the report is recalculated
+        self._purchase_invoice("2025-04-01", [(tax, 500)])
+        model296.button_recalculate()
+        line = model296.lines296
+        self.assertEqual(len(line), 1)
+        self.assertEqual(line.base_retenciones_ingresos, 1500)
+        self.assertEqual(line.retenciones_ingresos, 360)
+        self.assertEqual(line.fisica_juridica, "J")
+        self.assertEqual(line.clave, "2")
+        self.assertEqual(line.subclave, "2")
+        self.assertEqual(line.porcentaje_retencion, 10)
+        self.assertEqual(line.nif_pais_residencia, "US123456789")
