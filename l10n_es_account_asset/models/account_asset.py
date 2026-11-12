@@ -105,6 +105,14 @@ class AccountAssetAsset(models.Model):
             line_dates.append(line_date)
         return line_dates
 
+    def _write_simulated_method_time(self, method_time):
+        """Switch the time method for simulating the percentage one as the
+        years one, keeping the prorata of the asset, that is computed from the
+        time method and would take the one of the profile meanwhile."""
+        self.with_context(asset_validate_from_write=True).write(
+            {"method_time": method_time, "prorata": self.prorata}
+        )
+
     def _compute_depreciation_amount_per_fiscal_year(
         self, table, line_dates, depreciation_start_date, depreciation_stop_date
     ):
@@ -112,7 +120,7 @@ class AccountAssetAsset(models.Model):
         is_changed = self.method_time == "percentage"
         asset = self
         if is_changed:
-            self.with_context(asset_validate_from_write=True).method_time = "year"
+            self._write_simulated_method_time("year")
             asset = self.with_context(use_percentage=True)
         table = super(
             AccountAssetAsset, asset
@@ -123,7 +131,7 @@ class AccountAssetAsset(models.Model):
             depreciation_stop_date,
         )
         if is_changed:
-            self.with_context(asset_validate_from_write=True).method_time = "percentage"
+            self._write_simulated_method_time("percentage")
         return table
 
     def _compute_depreciation_table_lines(
@@ -133,7 +141,7 @@ class AccountAssetAsset(models.Model):
         is_changed = self.method_time == "percentage"
         asset = self
         if is_changed:
-            self.with_context(asset_validate_from_write=True).method_time = "year"
+            self._write_simulated_method_time("year")
             asset = self.with_context(use_percentage=True)
         ret_val = super(AccountAssetAsset, asset)._compute_depreciation_table_lines(
             table,
@@ -142,7 +150,7 @@ class AccountAssetAsset(models.Model):
             line_dates,
         )
         if is_changed:
-            self.with_context(asset_validate_from_write=True).method_time = "percentage"
+            self._write_simulated_method_time("percentage")
         return ret_val
 
     def _get_amount_linear(

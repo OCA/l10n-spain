@@ -96,6 +96,28 @@ class TestL10nEsAccountAsset(common.TransactionCase):
             "Last depreciation amount is not correct.",
         )
 
+    def test_percentage_asset_from_years_profile_without_prorata(self):
+        """The percentage method is always prorated, even when the asset comes
+        from a profile by years without prorata"""
+        self.profile.write({"method_time": "year", "prorata": False})
+        asset = self.asset_model.create(
+            {
+                "name": "Test Asset years profile",
+                "profile_id": self.profile.id,
+                "date_start": "2015-04-10",
+                "purchase_value": 30000,
+            }
+        )
+        self.assertFalse(asset.prorata)
+        asset.write({"method_time": "percentage", "annual_percentage": 20})
+        self.assertTrue(asset.prorata)
+        asset.compute_depreciation_board()
+        self.assertTrue(asset.prorata)
+        lines = asset.depreciation_line_ids[1:]
+        self.assertEqual(lines[0].amount, 4372.6)
+        self.assertEqual(set(lines[1:-1].mapped("amount")), {6000})
+        self.assertEqual(lines[-1].amount, 1627.4)
+
     def test_asset_other_percentage(self):
         """Test for regression detected for annual percentage lower than 20."""
         self.asset.annual_percentage = 10
