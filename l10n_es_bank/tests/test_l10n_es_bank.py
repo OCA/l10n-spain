@@ -30,9 +30,11 @@ class TestL10nEsBank(BaseCommon):
             self.assertEqual(account_form.l10n_es_bank_code, "2100")
         account = account_form.record
         self.assertEqual(account.l10n_es_bank_code, "2100")
+        # Distinct numbers once normalized: with account installed the number is
+        # stored formatted, and a partner cannot have the same account twice
         for account_number, code in (
             ("es9101820000000000000000", "0182"),
-            ("_ES9121000418450200051332", "2100"),
+            ("_ES7921000813610123456789", "2100"),
         ):
             self.assertEqual(
                 self._create_account(account_number).l10n_es_bank_code,
