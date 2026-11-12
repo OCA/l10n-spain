@@ -62,20 +62,11 @@ class ResPartner(models.Model):
         res += ["comercial"]
         return res
 
-    @api.model
-    def name_search(self, name="", args=None, operator="ilike", limit=100):
-        # Inject the field comercial in _rec_names_search if not exists
-        if "comercial" not in self._rec_names_search:
-            self._rec_names_search.append("comercial")
-        return super().name_search(name=name, args=args, operator=operator, limit=limit)
-
-    @api.model
-    def get_views(self, views, options=None):
-        res = super().get_views(views, options)
-        # Inject the commercial field into the domain when searching by complete_name
-        if "search" in res["views"]:
-            res["views"]["search"]["arch"] = res["views"]["search"]["arch"].replace(
-                "'|', ('complete_name', 'ilike', self)",
-                "'|','|',('complete_name','ilike',self),('comercial','ilike',self)",
-            )
-        return res
+    @property
+    def _rec_names_search(self):
+        """Search by trade name as well, both in name searches and in the name
+        filter of the search view, without altering the list of the base model"""
+        names = super()._rec_names_search
+        if "comercial" in names:
+            return names
+        return [*names, "comercial"]
