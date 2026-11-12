@@ -453,6 +453,11 @@ la ayuda del campo (E6 es la exención de la Zona Especial Canaria, no
 agencia tributaria canaria no incluía (comerciantes minoristas, no
 sujetos, exportaciones) reciben ahora el desglose de su tipo, mientras
 que antes no se comunicaban.</li>
+<li>Odoo core define el impuesto <tt class="docutils literal">igic_sop_5_inv</tt> (IGIC 5 % bienes de
+inversión) con un 3 %: las compras con él van a la ATC con
+<tt class="docutils literal">TipoImpositivo</tt> 3 y la cuota del 3 %. Este módulo no lo corrige;
+hay que revisar el porcentaje del impuesto en la compañía hasta que se
+arregle en Odoo core.</li>
 <li>Cada detalle del artículo 25 admite un solo documento, aunque la ATC
 acepta dos.</li>
 <li>No se envían todavía:<ul>

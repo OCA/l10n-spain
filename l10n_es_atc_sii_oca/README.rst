@@ -110,6 +110,11 @@ Known issues / Roadmap
   agencia tributaria canaria no incluía (comerciantes minoristas, no
   sujetos, exportaciones) reciben ahora el desglose de su tipo, mientras
   que antes no se comunicaban.
+- Odoo core define el impuesto ``igic_sop_5_inv`` (IGIC 5 % bienes de
+  inversión) con un 3 %: las compras con él van a la ATC con
+  ``TipoImpositivo`` 3 y la cuota del 3 %. Este módulo no lo corrige;
+  hay que revisar el porcentaje del impuesto en la compañía hasta que se
+  arregle en Odoo core.
 - Cada detalle del artículo 25 admite un solo documento, aunque la ATC
   acepta dos.
 - No se envían todavía:
