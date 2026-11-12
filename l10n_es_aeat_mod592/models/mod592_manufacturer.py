@@ -62,9 +62,6 @@ class L10nEsAeatmod592LineManufacturer(models.Model):
             # Manufacturer
             elif dest_loc_usage == "production":
                 concept = "2"
-            # Initial Existence
-            elif dest_loc_usage == "production" and is_scrap:
-                concept = "3"
             # Sales to spanish customers
             elif dest_loc_usage == "customer" and doc_type == "1":
                 concept = "4"
