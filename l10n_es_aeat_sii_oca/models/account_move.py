@@ -512,7 +512,7 @@ class AccountMove(models.Model):
     def _get_mapping_key(self):
         return self.move_type
 
-    def _is_aeat_simplified_invoice(self):
+    def _is_aeat_unidentified_document(self):
         """Issued documents without an identified recipient: simplified
         invoices (F2), their refunds (R5) and summaries of them (F4). The AEAT
         rejects the counterpart on exactly these types; a simplified invoice
@@ -974,7 +974,7 @@ class AccountMove(models.Model):
                 # cause, and the refund of a summary (F4) is simplified too
                 default_values.setdefault(
                     "l10n_es_invoice_type",
-                    "R5" if move._is_aeat_simplified_invoice() else "R1",
+                    "R5" if move._is_aeat_unidentified_document() else "R1",
                 )
             if move.sii_qualified_simplified_invoice:
                 # A qualified simplified invoice is rectified by another one
