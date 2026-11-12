@@ -8,6 +8,7 @@ from datetime import date
 from psycopg2 import IntegrityError, errors
 
 from odoo import Command, exceptions
+from odoo.modules.module import load_script
 from odoo.tests.common import tagged
 from odoo.tools import mute_logger
 
@@ -345,3 +346,21 @@ class TestVatProrate(AccountTestInvoicingCommon):
         )
         tax_line.account_id = self.copy_account(tax_line.account_id)
         self.assertFalse(tax.with_vat_prorate)
+
+    def test_migration_marks_new_taxes_only(self):
+        """The 20.0 migration marks the taxes that the tax type adds, not the ones of
+        the 19.0 list that the user unmarked."""
+        try:
+            import openupgradelib  # noqa: F401
+        except ImportError:
+            self.skipTest("openupgradelib is not installed")
+        unmarked_by_user = self._tax("p_iva21_bc")
+        new_tax = self._tax("p_iva7-5_bc")
+        (unmarked_by_user | new_tax).with_vat_prorate = False
+        script = load_script(
+            "l10n_es_vat_prorate/migrations/20.0.1.0.0/post-migration.py",
+            "l10n_es_vat_prorate_post_migration",
+        )
+        script.migrate.__wrapped__(self.env, "19.0.1.0.0")
+        self.assertFalse(unmarked_by_user.with_vat_prorate)
+        self.assertTrue(new_tax.with_vat_prorate)
