@@ -331,7 +331,7 @@ class L10nEsVatBook(models.Model):
             self._account_move_line_domain(taxes=taxes, account=account)
         )
 
-    @api.ormcache("self.id")
+    @api.ormcache("self.company_id.id", "tuple(self.tax_agency_ids.ids)")
     def get_special_taxes_dic(self):
         domain = [("special_tax_group", "!=", False)]
         if self.tax_agency_ids:

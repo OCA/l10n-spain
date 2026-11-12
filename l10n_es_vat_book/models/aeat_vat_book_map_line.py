@@ -7,6 +7,8 @@ from odoo import fields, models
 class AeatVatBookMapLines(models.Model):
     _name = "aeat.vat.book.map.line"
     _description = "AEAT Vat Book Map Line"
+    # The special taxes of the books are cached from these lines
+    _clear_cache_name = "default"
 
     def _selection_special_tax_group(self):
         return self.env["l10n.es.vat.book.line.tax"].fields_get(

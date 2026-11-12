@@ -21,10 +21,16 @@ class VatNumberXlsx(models.AbstractModel):
     def format_boe_date(self, date):
         return fields.Datetime.to_datetime(date)
 
-    @api.ormcache("self.env")
-    def _get_undeductible_taxes(self, book):
+    @api.ormcache("company_id")
+    def _get_undeductible_tax_ids(self, company_id):
         map_line = self.env.ref("l10n_es_vat_book.aeat_vat_book_map_line_p_iva_nd")
-        return map_line.get_taxes_for_company(book.company_id)
+        company = self.env["res.company"].browse(company_id)
+        return tuple(map_line.get_taxes_for_company(company).ids)
+
+    def _get_undeductible_taxes(self, book):
+        return self.env["account.tax"].browse(
+            self._get_undeductible_tax_ids(book.company_id.id)
+        )
 
     def _get_vat_book_map_lines(self, book_type):
         return self.env["aeat.vat.book.map.line"].search(
