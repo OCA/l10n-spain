@@ -317,6 +317,7 @@ class Mod349(models.Model):
         :param: taxes: Taxes to look for in move lines.
         """
         return [
+            ("company_id", "child_of", self.company_id.id),
             ("parent_state", "=", "posted"),
             ("date", ">=", self.date_start),
             ("date", "<=", self.date_end),
@@ -332,7 +333,8 @@ class Mod349(models.Model):
             .with_context(active_test=False)
             .search(
                 [
-                    ("company_id", "child_of", self.company_id.root_id.id),
+                    # The taxes the company can use: its own and its parents' ones
+                    ("company_id", "parent_of", self.company_id.id),
                     ("l10n_es_aeat_349_operation_key", "!=", False),
                 ]
             )

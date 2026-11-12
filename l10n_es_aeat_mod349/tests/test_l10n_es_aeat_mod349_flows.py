@@ -81,3 +81,40 @@ class TestL10nEsAeatMod349Flows(TestL10nEsAeatModBase):
         report.button_calculate()
         self.assertEqual(report.partner_record_ids.operation_key, "E")
         self.assertEqual(report.partner_record_ids.total_operation_amount, 1000)
+
+    def test_branch(self):
+        """The 349 of a branch only declares its own operations."""
+        branch = (
+            self.env["res.company"]
+            .sudo()
+            .create(
+                {
+                    "name": "Branch",
+                    "parent_id": self.company.id,
+                    "country_id": self.env.ref("base.es").id,
+                }
+            )
+        )
+        self.env.user.sudo().company_ids |= branch
+        self.account_manager.sudo().company_ids |= branch
+        self.billing_user.sudo().company_ids |= branch
+        # Accounting setup of the customer in the branch, done by an administrator
+        self.customer.with_company(
+            branch
+        ).sudo().property_account_receivable_id = self.accounts["430000"]
+        tax = self._get_taxes("S_IVA0_G_I")
+        self._sale("2025-01-10", tax, 1000)
+        self._sale("2025-01-11", tax, 300, company_id=branch.id)
+        report = self._create_report(
+            "01", "2025-01-01", "2025-01-31", company_id=branch.id
+        )
+        report.with_context(
+            allowed_company_ids=(branch | self.company).ids
+        ).button_calculate()
+        self.assertEqual(report.partner_record_ids.total_operation_amount, 300)
+        # The 349 of the main company keeps the operations of its branches
+        report_main = self._create_report("01", "2025-01-01", "2025-01-31")
+        report_main.with_context(
+            allowed_company_ids=(self.company | branch).ids
+        ).button_calculate()
+        self.assertEqual(report_main.partner_record_ids.total_operation_amount, 1300)
