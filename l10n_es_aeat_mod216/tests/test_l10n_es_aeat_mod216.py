@@ -5,6 +5,8 @@
 import logging
 from typing import ClassVar
 
+from odoo.tests import Form
+
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
     TestL10nEsAeatModBase,
 )
@@ -123,27 +125,27 @@ class TestL10nEsAeatMod216Base(TestL10nEsAeatModBase):
         # Calculate
         _logger.debug("Calculate AEAT 216 1T 2024")
         self.model216.button_calculate()
-        # Fill manual fields
-        self.model216.write(
-            {
-                # Num. rentas dividendos sometidas
-                "casilla_05": 2,
-                # Base rentas dividendos sometidas
-                "casilla_08": 200,
-                # Retenciones rentas dividendos sometidas
-                "casilla_11": 38,
-                # Num. rentas dividendos no sometidas
-                "casilla_14": 1,
-                # Num. rentas resto rentas no sometidas
-                "casilla_15": 3,
-                # Base dividendos rentas no sometidas
-                "casilla_17": 180,
-                # Base resto rentas no sometidas
-                "casilla_18": 125,
-                # Resultados a ingresar anteriores
-                "casilla_20": 145,
-            }
-        )
+        # Fill manual fields in the form of the calculated report
+        with Form(
+            self.model216,
+            view="l10n_es_aeat_mod216.view_l10n_es_aeat_mod216_report_form",
+        ) as report_form:
+            # Num. rentas dividendos sometidas
+            report_form.casilla_05 = 2
+            # Base rentas dividendos sometidas
+            report_form.casilla_08 = 200
+            # Retenciones rentas dividendos sometidas
+            report_form.casilla_11 = 38
+            # Num. rentas dividendos no sometidas
+            report_form.casilla_14 = 1
+            # Num. rentas resto rentas no sometidas
+            report_form.casilla_15 = 3
+            # Base dividendos rentas no sometidas
+            report_form.casilla_17 = 180
+            # Base resto rentas no sometidas
+            report_form.casilla_18 = 125
+            # Resultados a ingresar anteriores
+            report_form.casilla_20 = 145
         # Check tax lines
         for box, result in self.taxes_result.items():
             _logger.debug("Checking tax line: %s", box)

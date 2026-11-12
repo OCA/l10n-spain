@@ -72,7 +72,7 @@
                 <group
                     string="I. Rentas sometidas a retención/ingreso a cuenta"
                     col="3"
-                    invisible="state == 'draft' or year &lt;= 2024"
+                    invisible="state == 'draft' or year &lt; 2024"
                 >
                     <group
                         string="Dividendos y otras rentas de participación en fondos propios de entidades"
@@ -95,7 +95,7 @@
                 <group
                     string="II. Rentas no sometidas a retención/ingreso a cuenta"
                     col="3"
-                    invisible="state == 'draft' or year &lt;= 2024"
+                    invisible="state == 'draft' or year &lt; 2024"
                 >
                     <group
                         string="Dividendos y otras rentas de participación en fondos propios de entidades"
@@ -115,7 +115,7 @@
                 <group
                     string="Resultados"
                     col="2"
-                    invisible="state == 'draft' or year &lt;= 2024"
+                    invisible="state == 'draft' or year &lt; 2024"
                 >
                     <group>
                         <field name="casilla_20" readonly="state != 'calculated'" />
