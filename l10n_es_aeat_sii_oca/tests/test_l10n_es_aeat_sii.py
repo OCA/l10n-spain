@@ -979,17 +979,25 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
                 ],
             }
         )
-        self.assertFalse(invoice.sii_enabled)
-        self.assertFalse(
-            self.env["account.move"].search(
-                [("id", "=", invoice.id), ("sii_enabled", "=", True)]
-            )
+        dua_tax = self.company._get_taxes_from_xmlids(
+            ["account_tax_template_p_dua_exempt"]
         )
-        self.assertTrue(
-            self.env["account.move"].search(
-                [("id", "=", invoice.id), ("sii_enabled", "=", False)]
-            )
-        )
+        # Duplicating a tax keeps the original one as its AEAT equivalent
+        dua_tax_copy = dua_tax.copy()
+        for tax in dua_tax + dua_tax_copy:
+            with self.subTest(tax=tax.name):
+                invoice.invoice_line_ids.tax_ids = tax
+                self.assertFalse(invoice.sii_enabled)
+                self.assertFalse(
+                    self.env["account.move"].search(
+                        [("id", "=", invoice.id), ("sii_enabled", "=", True)]
+                    )
+                )
+                self.assertTrue(
+                    self.env["account.move"].search(
+                        [("id", "=", invoice.id), ("sii_enabled", "=", False)]
+                    )
+                )
 
     def test_send_sii_wizard(self):
         invoice = self._create_invoice("out_invoice")
