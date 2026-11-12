@@ -686,3 +686,25 @@ class TestL10nEsAeatMod390Using303(TestL10nEsAeatMod390Base):
         self.assertAlmostEqual(report_02.cuota_compensar, 205, 2)
         self.model390_2023.button_calculate()
         self.assertAlmostEqual(self.model390_2023.casilla_85, 100, 2)
+
+    def test_model_390_using_303_662_pending_previous_years(self):
+        """When what is applied in the year doesn't use up the compensation pending
+        from previous years, what is generated in the year stays pending in [662]."""
+        self.patch(type(self), "taxes_purchase", {"P_IVA21_BC": (500, 105)})
+        self.patch(type(self), "taxes_sale", {"S_IVA21B": (1000, 210)})
+        self._invoice_purchase_create("2023-04-10")
+        self._invoice_sale_create("2023-07-10")
+        report_1t = self._create_303(2023, "1T", 1, 3)
+        report_1t.potential_cuota_compensar = 1000
+        report_1t.button_calculate()
+        report_2t = self._create_303(2023, "2T", 4, 6)
+        report_2t.button_calculate()
+        self.assertEqual(report_2t.result_type, "C")
+        report_3t = self._create_303(2023, "3T", 7, 9)
+        report_3t.button_calculate()
+        self.assertAlmostEqual(report_3t.cuota_compensar, 210, 2)
+        report_4t = self._create_303(2023, "4T", 10, 12)
+        report_4t.button_calculate()
+        self.model390_2023.button_calculate()
+        # 210 applied from the 1000 of previous years: the 105 of 2T stay pending
+        self.assertAlmostEqual(self.model390_2023.casilla_662, 105, 2)

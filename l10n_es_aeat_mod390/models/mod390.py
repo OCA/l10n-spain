@@ -821,12 +821,13 @@ class L10nEsAeatMod390Report(models.Model):
         # significa que no se ha aplicado todo de años anteriores, por lo que
         # no hay que tenerlo en cuenta para la 662.
         if applied_this_year < compensation_previous_years:
+            pending_previous_years = compensation_previous_years - applied_this_year
             compensation_previous_years = 0
             # Si la diferencia entre compensaciones del año anterior y lo aplicado
             # este año es mayor a las compensaciones del año, significa que el total
             # de lo compensado este año no se ha aplicado porque todavía queda por
             # aplicar de años anteriores.
-            if compensation_previous_years - applied_this_year > compensation_this_year:
+            if pending_previous_years > compensation_this_year:
                 applied_this_year = 0
         # La casilla 662 será la diferencia entre las compensaciones de este año y lo
         # aplicado este año que no provenga de años anteriores
