@@ -981,6 +981,26 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
         page_01 = self._get_page(self._export_boe(report), "01000")
         self.assertEqual(page_01[12:13], b"G")
 
+    def test_model_303_oss_box_123(self):
+        """Sales not subject by location rules and declared in the one-stop shop go
+        to box 123 (page 03, position 80 of the AEAT record design DR303e26v101), not
+        to the accrued VAT.
+        """
+        self.patch(
+            type(self),
+            "taxes_sale",
+            {"OSS_S_IVA_NS": (1000, 0), "OSS_S_IVA_NS_B": (500, 0)},
+        )
+        sale = self._invoice_sale_create("2026-01-15")
+        self._invoice_refund(sale, "2026-02-15")
+        self._invoice_sale_create("2026-03-15")
+        report = self._create_303(2026, "1T")
+        report.button_calculate()
+        self.assertAlmostEqual(self._box(report, 123), 1500)
+        self.assertAlmostEqual(report.total_devengado, 0)
+        page_03 = self._get_page(self._export_boe(report), "03000")
+        self.assertEqual(page_03[79:96], b"00000000000150000")
+
     def test_model_303_2024_10_map(self):
         """Boxes of the map in force since 2024-10, with the rates it added."""
         self._get_taxes("S_IVA2B,S_IVA5B,S_IVA7-5B,S_REQ1").active = True
