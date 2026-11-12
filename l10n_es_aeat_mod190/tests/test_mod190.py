@@ -75,6 +75,59 @@ class TestL10nEsAeatMod190Base(TestL10nEsAeatModBase):
             }
         )
 
+    def _complete_perceptor(self, partner):
+        partner.write(
+            {
+                "vat": "ESC2259530J",
+                "country_id": self.browse_ref("base.es").id,
+                "state_id": self.browse_ref("base.state_es_bi").id,
+            }
+        )
+
+    def _create_purchase_move(self, partner, date, lines, move_type="in_invoice"):
+        """Supplier invoice or refund entered from its form, with one line for
+        each (tax code, price) pair, and posted."""
+        move_form = Form(
+            self.env["account.move"]
+            .with_user(self.billing_user)
+            .with_context(default_move_type=move_type)
+        )
+        move_form.partner_id = partner
+        move_form.invoice_date = date
+        for tax_code, price in lines:
+            with move_form.invoice_line_ids.new() as line_form:
+                line_form.name = f"Test for tax {tax_code}"
+                line_form.price_unit = price
+                line_form.tax_ids.clear()
+                line_form.tax_ids.add(self._get_taxes(tax_code))
+        move = move_form.save()
+        move.action_post()
+        return move
+
+    def _create_report(self, year):
+        return self.env["l10n.es.aeat.mod190.report"].create(
+            {
+                "name": "1900000000001",
+                "company_id": self.company.id,
+                "company_vat": "123456789",
+                "contact_name": "Test owner",
+                "contact_phone": "911234455",
+                "year": year,
+                "date_start": f"{year}-01-01",
+                "date_end": f"{year}-12-31",
+            }
+        )
+
+    def _export_boe(self, report):
+        """Records of the BOE file exported from the report form."""
+        wizard = (
+            self.env["l10n.es.aeat.report.export_to_boe"]
+            .with_context(active_id=report.id, active_model=report._name)
+            .create({})
+        )
+        wizard.action_get_file()
+        return wizard.data.content.split(b"\r\n")[:-1]
+
     def test_mod190(self):
         self._invoice_purchase_create("2017-01-01", {"partner_id": self.supplier.id})
         self._invoice_purchase_create("2017-01-02", {"partner_id": self.customer.id})
@@ -324,7 +377,7 @@ class TestL10nEsAeatMod190Base(TestL10nEsAeatModBase):
             (
                 b"11902025123456789SPANISH TEST COMPANY                    T91"
                 b"1234455TEST OWNER                              1900000000001"
-                b"  0000000000000000000002N000000000940000000000000153600OWNER"
+                b"  0000000000000000000002 000000000940000000000000153600OWNER"
                 b"@EXAMPLE.COM                                                "
                 b"                                                            "
                 b"                                                            "
@@ -356,3 +409,21 @@ class TestL10nEsAeatMod190Base(TestL10nEsAeatModBase):
             ),
         ]
         self.assertEqual(content, b"".join(record + b"\r\n" for record in expected))
+
+    def test_mod190_export_boe_sign(self):
+        """The total of box [02] is signed only when it is negative: a space
+        while it is positive and "N" once a refund larger than the invoice
+        makes it negative (DR190, type 1 record, position 145)."""
+        self._create_purchase_move(self.customer, "2025-01-10", [("P_IRPF15", 100)])
+        model190 = self._create_report(2025)
+        model190.button_calculate()
+        declarant, perceptor = self._export_boe(model190)
+        self.assertEqual(declarant[144:160], b" 000000000010000")
+        self.assertEqual(perceptor[80:94], b" 0000000010000")
+        self._create_purchase_move(
+            self.customer, "2025-02-10", [("P_IRPF15", 300)], move_type="in_refund"
+        )
+        model190.button_recalculate()
+        declarant, perceptor = self._export_boe(model190)
+        self.assertEqual(declarant[144:160], b"N000000000020000")
+        self.assertEqual(perceptor[80:94], b"N0000000020000")
