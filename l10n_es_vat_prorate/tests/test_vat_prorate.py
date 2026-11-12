@@ -568,11 +568,153 @@ class TestVatProrate(AccountTestInvoicingCommon):
         tax_line.account_id = self.copy_account(tax_line.account_id)
         self.assertFalse(tax.with_vat_prorate)
 
-    def test_prorate_with_non_deductible_percentage(self):
-        tax = self._tax("p_iva21_bc")
-        invoice = self._create_bill([(100, tax, None)])
-        with self.assertRaises(exceptions.ValidationError):
-            invoice.invoice_line_ids.deductible_percentage = 0.5
+    def _create_deductible_bill(self, lines, prorate_type="general"):
+        """Vendor bill of 2020 (prorate of 80 %) entered through the form, with one
+        line per (price, deductible percentage, prorated) given, all with 21 % VAT.
+        """
+        self.env.company.vat_prorate_ids = [
+            Command.create(
+                {
+                    "date": date(2020, 1, 1),
+                    "vat_prorate": 80,
+                    "type": prorate_type,
+                    "special_vat_prorate_default": True,
+                }
+            )
+        ]
+        bill_form = Form(
+            self.env["account.move"].with_context(default_move_type="in_invoice")
+        )
+        bill_form.partner_id = self.partner_a
+        bill_form.invoice_date = date(2020, 3, 1)
+        for price, deductible_percentage, with_vat_prorate in lines:
+            with bill_form.invoice_line_ids.new() as line_form:
+                line_form.name = "Fuel"
+                line_form.price_unit = price
+                line_form.tax_ids.clear()
+                line_form.tax_ids.add(self._tax("p_iva21_bc"))
+                line_form.deductible_percentage = deductible_percentage
+                if prorate_type == "special":
+                    line_form.with_vat_prorate = with_vat_prorate
+        return bill_form.save()
+
+    def _assert_deductible_lines(self, move, expected):
+        """Check the journal items of the move by kind, and that it is balanced."""
+        expense = self.company_data["default_account_expense"]
+        account_472 = self._tax("p_iva21_bc").invoice_repartition_line_ids.account_id
+        payable = self.company_data["default_account_payable"]
+        # Private part: account for non deductible amounts of the journal
+        private = move.journal_id.non_deductible_account_id
+        accounts = {
+            "expense": expense,
+            "472": account_472,
+            "payable": payable,
+            "private": private,
+        }
+        self.assertRecordValues(
+            move.line_ids.sorted(
+                lambda line: (line.display_type, line.vat_prorate, line.balance)
+            ),
+            [
+                {
+                    "display_type": display_type,
+                    "account_id": accounts[account].id,
+                    "balance": balance,
+                    "vat_prorate": vat_prorate,
+                }
+                for display_type, account, balance, vat_prorate in expected
+            ],
+        )
+        self.assertAlmostEqual(sum(move.line_ids.mapped("balance")), 0)
+
+    def test_prorate_on_deductible_part(self):
+        """Car fuel used 50 % in the activity (art. 95 LIVA) with a general prorate of
+        80 %: the prorate applies on the quota left deductible by the non deductible
+        percentage (art. 104.Uno LIVA). 21 x 0.5 x 0.8 = 8.40 deductible; 10.50 of
+        private part (Odoo core) and 2.10 of prorate not deductible."""
+        bill = self._create_deductible_bill([(100, 0.5, True)])
+        bill.action_post()
+        self._assert_deductible_lines(
+            bill,
+            [
+                ("non_deductible_product", "expense", -50, False),
+                ("non_deductible_product_total", "private", 50, False),
+                ("non_deductible_tax", "private", 10.5, False),
+                ("payment_term", "payable", -121, False),
+                ("product", "expense", 100, False),
+                ("tax", "472", 8.4, False),
+                ("tax", "expense", 2.1, True),
+            ],
+        )
+        tax_info = bill._get_aeat_tax_info()[self._tax("p_iva21_bc")]
+        self.assertAlmostEqual(tax_info["amount"], 10.5)
+        self.assertAlmostEqual(tax_info["deductible_amount"], 8.4)
+
+    def test_prorate_on_deductible_part_refund(self):
+        """The refund of the bill reverses the same split."""
+        bill = self._create_deductible_bill([(100, 0.5, True)])
+        bill.action_post()
+        wizard = (
+            self.env["account.move.reversal"]
+            .with_context(active_ids=bill.ids, active_model="account.move")
+            .create({"journal_id": bill.journal_id.id, "date": date(2020, 4, 1)})
+        )
+        wizard.reverse_moves()
+        refund = wizard.new_move_ids
+        self.assertEqual(refund.move_type, "in_refund")
+        self._assert_deductible_lines(
+            refund,
+            [
+                ("non_deductible_product", "expense", 50, False),
+                ("non_deductible_product_total", "private", -50, False),
+                ("non_deductible_tax", "private", -10.5, False),
+                ("payment_term", "payable", 121, False),
+                ("product", "expense", -100, False),
+                ("tax", "472", -8.4, False),
+                ("tax", "expense", -2.1, True),
+            ],
+        )
+
+    def test_special_prorate_on_deductible_part(self):
+        """Special prorate: the prorated line and the one fully deductible both
+        start from their deductible quota."""
+        bill = self._create_deductible_bill(
+            [(100, 0.5, True), (200, 0.5, False)], prorate_type="special"
+        )
+        bill.action_post()
+        # Prorated line: 10.50 x 0.8 = 8.40; other line: 21 deductible
+        self._assert_deductible_lines(
+            bill,
+            [
+                ("non_deductible_product", "expense", -100, False),
+                ("non_deductible_product", "expense", -50, False),
+                ("non_deductible_product_total", "private", 150, False),
+                ("non_deductible_tax", "private", 31.5, False),
+                ("payment_term", "payable", -363, False),
+                ("product", "expense", 100, False),
+                ("product", "expense", 200, False),
+                ("tax", "472", 29.4, False),
+                ("tax", "expense", 2.1, True),
+            ],
+        )
+        # Without prorated lines the tax line keeps the whole deductible quota
+        bill.button_draft()
+        with Form(bill) as bill_form, bill_form.invoice_line_ids.edit(0) as line_form:
+            line_form.with_vat_prorate = False
+        bill.action_post()
+        self._assert_deductible_lines(
+            bill,
+            [
+                ("non_deductible_product", "expense", -100, False),
+                ("non_deductible_product", "expense", -50, False),
+                ("non_deductible_product_total", "private", 150, False),
+                ("non_deductible_tax", "private", 31.5, False),
+                ("payment_term", "payable", -363, False),
+                ("product", "expense", 100, False),
+                ("product", "expense", 200, False),
+                ("tax", "472", 31.5, False),
+            ],
+        )
 
     def test_migration_marks_new_taxes_only(self):
         """The 20.0 migration marks the taxes that the tax type adds, not the ones of

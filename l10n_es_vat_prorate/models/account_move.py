@@ -4,7 +4,6 @@
 
 
 from odoo import Command, api, fields, models
-from odoo.exceptions import ValidationError
 from odoo.tools import float_compare, float_round
 
 
@@ -61,9 +60,10 @@ class AccountMove(models.Model):
             analytic_distribution = invoice_line.analytic_distribution
             # It's need to group by tax_id, analytic_distribution and account_id
             uniq_line_key = f"{analytic_distribution}|{account_id}"
+            deductible_balance = invoice_line._get_vat_prorate_deductible_balance()
             for tax in invoice_line.tax_ids.filtered(lambda t: t.with_vat_prorate):
                 tax_total = float_round(
-                    invoice_line.balance * tax.amount / 100, precision_rounding=prec
+                    deductible_balance * tax.amount / 100, precision_rounding=prec
                 )
                 prorate_total = float_round(
                     tax_total * prorate, precision_rounding=prec
@@ -121,22 +121,13 @@ class AccountMove(models.Model):
             [("with_vat_prorate", "=", False)]
         ):
             prec = invoice_line.move_id.currency_id.rounding
+            deductible_balance = invoice_line._get_vat_prorate_deductible_balance()
             for tax in invoice_line.tax_ids.filtered(lambda t: t.with_vat_prorate):
-                if tax.id in taxes_with_prorate:
-                    taxes_with_prorate[tax.id]["tax_total"] += float_round(
-                        invoice_line.balance * tax.amount / 100, precision_rounding=prec
-                    )
-                else:
-                    taxes_with_prorate.update(
-                        {
-                            tax.id: {
-                                "tax_total": float_round(
-                                    invoice_line.balance * tax.amount / 100,
-                                    precision_rounding=prec,
-                                )
-                            }
-                        }
-                    )
+                tax_total = float_round(
+                    deductible_balance * tax.amount / 100, precision_rounding=prec
+                )
+                taxes_with_prorate.setdefault(tax.id, {"tax_total": 0})
+                taxes_with_prorate[tax.id]["tax_total"] += tax_total
         return taxes_with_prorate
 
     def _get_lines_with_tax_prorate(self):
@@ -282,25 +273,20 @@ class AccountMoveLine(models.Model):
                 or rec.move_id.prorate_id.special_vat_prorate_default
             )
 
-    @api.constrains("deductible_percentage", "with_vat_prorate", "tax_ids")
-    def _check_deductible_percentage_vat_prorate(self):
-        """The prorate is computed on the whole tax amount of the line, so it can't
-        be combined with the non deductible part that Odoo core takes out of it.
+    def _get_vat_prorate_deductible_balance(self):
+        """Part of the balance of the invoice line whose tax can be deducted.
+
+        Odoo core takes the non deductible part of the line
+        (``deductible_percentage``, arts. 95 and 96 LIVA) out of its tax amount
+        into its own lines, rounded as done here. The prorate applies only on the
+        quota left (art. 104.Uno LIVA).
         """
-        for line in self:
-            if (
-                line.move_id.prorate_id
-                and line.with_vat_prorate
-                and line.tax_ids.filtered("with_vat_prorate")
-                and float_compare(line.deductible_percentage, 1, precision_digits=4)
-            ):
-                raise ValidationError(
-                    self.env._(
-                        "The line '%(line)s' has a VAT prorate, so it can't have a "
-                        "non deductible percentage.",
-                        line=line.display_name,
-                    )
-                )
+        self.ensure_one()
+        if not float_compare(self.deductible_percentage, 1, precision_digits=4):
+            return self.balance
+        return self.balance - self.company_currency_id.round(
+            self.balance * (1 - self.deductible_percentage)
+        )
 
     def _process_aeat_tax_fee_info(self, res, tax, sign):
         result = super()._process_aeat_tax_fee_info(res, tax, sign)

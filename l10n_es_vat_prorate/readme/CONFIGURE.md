@@ -15,6 +15,12 @@ IVA". La marca se vuelve a calcular si se cambia el tipo de impuesto, su
 aplicabilidad, su uso o si la compañía activa o desactiva la prorrata,
 pero no al editar otros datos del impuesto.
 
+Si una línea de factura tiene un porcentaje de deducibilidad menor del
+100 % (columna "Profesional" de Odoo core, por ejemplo el combustible de
+un vehículo afectado al 50 %, art. 95 LIVA), Odoo core lleva la parte no
+deducible de la cuota a la parte privada y la prorrata se aplica sobre la
+cuota que queda deducible (art. 104.Uno LIVA).
+
 
 Para configurar la prorrata especial:
 
