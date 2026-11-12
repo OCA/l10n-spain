@@ -198,7 +198,10 @@ class AccountMove(models.Model):
                 )
             )
         for tax_id, tax_val in taxes_with_prorate.items():
-            tax_line = tax_lines.filtered_domain([("tax_line_id", "=", tax_id)])
+            # The deductible side only: a self-assessed tax has its output VAT too
+            tax_line = tax_lines.filtered_domain(
+                [("tax_line_id", "=", tax_id), ("account_type", "=", "asset_current")]
+            )
             line_to_update["line_ids"].append(
                 Command.update(
                     tax_line.id,

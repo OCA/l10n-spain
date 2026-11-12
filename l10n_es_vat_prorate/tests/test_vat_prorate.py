@@ -448,6 +448,32 @@ class TestVatProrate(AccountTestInvoicingCommon):
             ],
         )
 
+    def test_special_prorate_self_assessed_tax_not_prorated(self):
+        """Special prorate with an intra-community acquisition line left out of the
+        prorate: the deductible side keeps the whole quota and the output VAT is
+        kept as it is."""
+        self.env.company.vat_prorate_ids[0].write(
+            {"type": "special", "special_vat_prorate_default": False}
+        )
+        tax = self._tax("p_iva21_ic_bc")
+        invoice = self._create_bill([(100, tax, None)])
+        invoice.action_post()
+        account_472, account_477 = (
+            tax.invoice_repartition_line_ids.filtered(
+                lambda line: line.factor_percent > 0 and line.account_id
+            ).account_id,
+            tax.invoice_repartition_line_ids.filtered(
+                lambda line: line.factor_percent < 0
+            ).account_id,
+        )
+        self.assertRecordValues(
+            invoice.line_ids.filtered("tax_line_id").sorted("balance"),
+            [
+                {"account_id": account_477.id, "balance": -21, "vat_prorate": False},
+                {"account_id": account_472.id, "balance": 21, "vat_prorate": False},
+            ],
+        )
+
     def test_prorate_aeat_tax_info(self):
         """The deductible quota declared to the AEAT (SII, VAT book) is the
         prorated one, while the quota is the whole one."""
