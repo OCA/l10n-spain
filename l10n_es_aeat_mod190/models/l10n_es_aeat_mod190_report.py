@@ -693,7 +693,7 @@ class L10nEsAeatMod190ReportLine(models.Model):
             item.ingresos_a_cuenta_efectuados_incap = 0
             item.ingresos_a_cuenta_repercutidos = ingresos_a_cuenta_efectuados
             item.ingresos_a_cuenta_repercutidos_incap = 0
-            item.gastos_deducibles = sum(
+            item.gastos_deducibles = -sum(
                 tax_data[item.report_id.id]["17"].get(key, 0) for key in keys
             )
 

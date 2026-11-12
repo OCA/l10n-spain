@@ -167,7 +167,7 @@ class TestL10nEsAeatMod190Base(TestL10nEsAeatModBase):
         self.assertEqual(supplier_record.retenciones_dinerarias, 543)
         self.assertEqual(supplier_record.percepciones_dinerarias_incap, 1500)
         self.assertEqual(supplier_record.retenciones_dinerarias_incap, 225)
-        self.assertEqual(supplier_record.gastos_deducibles, -100)
+        self.assertEqual(supplier_record.gastos_deducibles, 100)
         self.assertEqual(2, supplier_record.ad_required)
         self.assertEqual(2, self.supplier.ad_required)
         self.customer.write(
