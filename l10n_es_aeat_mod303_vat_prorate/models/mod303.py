@@ -116,8 +116,9 @@ class L10nEsAeatMod303Report(models.Model):
         company_prorate = self.prorate_id.vat_prorate
         theoretical_prorate = 100 - company_prorate
         diff_perc = self.vat_prorate_percent - company_prorate
+        # Refunds take their prorate out (credit), as the bills put it (debit)
         theoretical_result = sum(
-            self.env["account.move.line"].search(domain).mapped("debit")
+            self.env["account.move.line"].search(domain).mapped("balance")
         )
         result = theoretical_result * diff_perc / theoretical_prorate
 

@@ -113,6 +113,34 @@ class TestL10nEsAeatMod303VatProrate(TestL10nEsAeatMod303Base):
         self.assertEqual(self.model303_4t.resultado_liquidacion, 94.5)
         self.assertEqual(self.model303_4t.casilla_44, 21)
 
+    def test_model_303_with_special_prorate_refund(self):
+        """A refunded bill takes its prorate out of the regularization."""
+        self.company.sudo().write(
+            {
+                "with_vat_prorate": True,
+                "vat_prorate_ids": [
+                    Command.create(
+                        {
+                            "date": "2024-01-01",
+                            "vat_prorate": 90,
+                            "type": "special",
+                            "special_vat_prorate_default": True,
+                        },
+                    ),
+                ],
+            }
+        )
+        self._invoice_sale_create("2024-01-01")
+        bill = self._invoice_purchase_create("2024-01-01")
+        self._invoice_refund(bill, "2024-02-01")
+        self._invoice_sale_create("2024-11-01")
+        self._invoice_purchase_create("2024-11-01")
+        self.model303_4t.button_calculate()
+        # Prorate lines of the year: 10.5 - 10.5 + 10.5; definitive 100 %:
+        # 10.5 x 10 / 10
+        self.assertEqual(self.model303_4t.casilla_44, 10.5)
+        self.assertEqual(self.model303_4t.total_deducir, 105)
+
     def test_model_303_with_special_prorate_manual(self):
         # Set vat prorate configuration for company
         # Company data are set by an administrator
