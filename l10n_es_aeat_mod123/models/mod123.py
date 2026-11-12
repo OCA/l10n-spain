@@ -50,14 +50,14 @@ class L10nEsAeatMod123Report(models.Model):
     casilla_01_2024 = fields.Integer(
         string="[01] Número de rentas. Dividendos y otras rentas de participación "
         "en fondos propios de entidades",
-        help="Casilla [01] Número de Rentas. Dividendos y otras rentas de "
-        "participación en fondos propios de entidades. Totales de número de"
-        " perceptores (se contará por números de NIF).",
+        help="Casilla [01] Número de rentas. Dividendos y otras rentas de "
+        "participación en fondos propios de entidades: facturas o asientos con "
+        "retención del periodo.",
     )
     casilla_02_2024 = fields.Integer(
         string="[02] Número de Rentas. Resto de rentas",
-        help="Número de rentas. Resto de rentas. Totales de número de perceptores "
-        "(se contará por números de NIF).",
+        help="Casilla [02] Número de rentas. Resto de rentas: facturas o asientos "
+        "con retención del periodo.",
     )
     casilla_03_2024 = fields.Integer(
         string="[03] Número de Rentas. Totales",
@@ -187,6 +187,15 @@ class L10nEsAeatMod123Report(models.Model):
             else:
                 report.amount_result = report.casilla_14_2024
 
+    @api.model
+    def _get_number_of_incomes(self, tax_lines):
+        """Number of incomes ("número de rentas") of the given tax lines: the
+        invoices or entries with those taxes. A refund corrects the base of an
+        income, but it is not another income.
+        """
+        moves = tax_lines.move_line_ids.move_id
+        return len(moves.filtered(lambda move: not move.is_refund()))
+
     def calculate(self):
         pred = super().calculate()
         if self.year < 2024:
@@ -208,10 +217,10 @@ class L10nEsAeatMod123Report(models.Model):
                 self[f"casilla_{field_number:0>2}_2024"] = tax_lines[
                     str(field_number)
                 ].amount
-            self.casilla_01_2024 = len(
-                (tax_lines["4"] + tax_lines["7"]).mapped("move_line_ids.partner_id")
+            self.casilla_01_2024 = self._get_number_of_incomes(
+                tax_lines["4"] + tax_lines["7"]
             )
-            self.casilla_02_2024 = len(
-                (tax_lines["5"] + tax_lines["8"]).mapped("move_line_ids.partner_id")
+            self.casilla_02_2024 = self._get_number_of_incomes(
+                tax_lines["5"] + tax_lines["8"]
             )
         return pred

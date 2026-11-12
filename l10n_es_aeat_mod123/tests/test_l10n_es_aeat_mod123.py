@@ -160,6 +160,26 @@ class TestL10nEsAeatMod123(TestL10nEsAeatModBase):
                 )
                 self.assertEqual(model123.amount_result, 114.0)
 
+    def test_model_123_2024_number_of_incomes(self):
+        """Boxes [01] and [02] count the incomes (bills with withholding) of
+        the period, not the perceptors; a credit note is not another income."""
+        for date in ("2024-01-10", "2024-02-10"):
+            self._purchase_invoice(
+                date, self.supplier, [("l10n_es.account_tax_template_p_rrD19", 1000)]
+            )
+        interest = self._purchase_invoice(
+            "2024-01-15", self.supplier2, [("account_tax_template_p_rp19", 100)]
+        )
+        self._purchase_invoice(
+            "2024-02-15", self.supplier2, [("account_tax_template_p_rp19", 200)]
+        )
+        self._refund(interest, "2024-03-01", 50)
+        model123 = self._create_report(2024)
+        self._check_tax_lines(model123, {"4": 2000, "5": 100 + 200 - 50})
+        self.assertEqual(model123.casilla_01_2024, 2)
+        self.assertEqual(model123.casilla_02_2024, 2)
+        self.assertEqual(model123.casilla_03_2024, 4)
+
     def test_model_123_2024(self):
         # Dividends and the other incomes of capital of the first supplier, and
         # interests of a second supplier, so that each box gets its own amount
