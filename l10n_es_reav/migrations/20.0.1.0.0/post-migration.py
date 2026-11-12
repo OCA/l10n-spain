@@ -28,6 +28,21 @@ def migrate(env, version):
            )
         """,
     )
+    # The purchase tax of the REAV is not deductible (art. 146 LIVA): the SII
+    # sends it as such (key 05, deductible quota 0). Only the default type of
+    # the field is replaced, not one chosen by the user.
+    openupgrade.logged_query(
+        env.cr,
+        """
+        UPDATE account_tax tax
+           SET l10n_es_type = 'no_deducible'
+          FROM ir_model_data imd
+         WHERE imd.module = 'account' AND imd.model = 'account.tax'
+           AND imd.res_id = tax.id
+           AND SUBSTRING(imd.name FROM '^[0-9]+_(.*)$') = 'account_tax_template_p_reav0'
+           AND COALESCE(tax.l10n_es_type, 'sujeto') = 'sujeto'
+        """,
+    )
     _link_kept_taxes(env)
     _warn_products_with_reav_taxes(env)
 

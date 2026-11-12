@@ -97,7 +97,9 @@ los productos que los tienen. En ellos hay que poner los impuestos de
 IVA general y, en los contactos, la posición fiscal REAV.
 
 Los impuestos REAV llevan la clave de régimen 05 (agencias de viajes),
-que pasa a las facturas para el SII y VERI*FACTU.
+que pasa a las facturas para el SII y VERI*FACTU. El impuesto de compra
+REAV es de tipo no deducible: el SII envía esas compras con cuota
+deducible 0.
 
 Bug Tracker
 ===========

@@ -38,10 +38,13 @@ class TestL10nEsReav(AccountTestInvoicingCommon):
 
     def test_reav_taxes_are_vat(self):
         """The REAV taxes are VAT ones (VERI*FACTU tax 01), with the travel
-        agencies regime code."""
+        agencies regime code. The VAT of the purchases for the trip is not
+        deductible (art. 146 LIVA)."""
         for tax in self.tax_p_reav | self.tax_s_reav:
             self.assertEqual(tax.l10n_es_applicability, "01")
             self.assertEqual(tax.l10n_es_regime_code, "05")
+        self.assertEqual(self.tax_p_reav.l10n_es_type, "no_deducible")
+        self.assertEqual(self.tax_s_reav.l10n_es_type, "sujeto")
 
     def test_only_the_reav_fiscal_position(self):
         """The module adds only the REAV fiscal position, without country, so it
@@ -148,16 +151,17 @@ class TestL10nEsReav(AccountTestInvoicingCommon):
 
     def test_migration(self):
         """The migration from 18.0 fills the regime code and the applicability
-        of the REAV taxes without changing a value already set, gives the REAV
-        position the taxes it keeps, and warns about the products with REAV
-        taxes"""
+        of the REAV taxes without changing a value already set, makes the REAV
+        purchase tax not deductible, gives the REAV position the taxes it
+        keeps, and warns about the products with REAV taxes"""
         self.env.cr.execute(
             """UPDATE account_tax SET l10n_es_regime_code = NULL,
                l10n_es_applicability = NULL WHERE id = %s""",
             [self.tax_s_reav.id],
         )
         self.env.cr.execute(
-            "UPDATE account_tax SET l10n_es_regime_code = '01' WHERE id = %s",
+            """UPDATE account_tax SET l10n_es_regime_code = '01',
+               l10n_es_type = 'sujeto' WHERE id = %s""",
             [self.tax_p_reav.id],
         )
         product = self.product_a.copy(
@@ -176,3 +180,4 @@ class TestL10nEsReav(AccountTestInvoicingCommon):
         self.assertEqual(self.tax_s_reav.l10n_es_regime_code, "05")
         self.assertEqual(self.tax_s_reav.l10n_es_applicability, "01")
         self.assertEqual(self.tax_p_reav.l10n_es_regime_code, "01")
+        self.assertEqual(self.tax_p_reav.l10n_es_type, "no_deducible")
