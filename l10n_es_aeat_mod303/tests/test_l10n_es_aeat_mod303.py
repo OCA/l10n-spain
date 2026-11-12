@@ -911,3 +911,21 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
         self.assertAlmostEqual(self._box(report, 60), 1500)
         self.assertAlmostEqual(self._box(report, 94), 1500)
         self.assertAlmostEqual(self._box(report, 83), 0)
+
+    def test_model_303_reagyp_compensations(self):
+        """Compensations paid under the special regime of agriculture (12%) and of
+        livestock and fishing (10.5%) are deductible in [42].
+        """
+        self._get_taxes("P_IVA12_AGR,P_IVA105_GAN").active = True
+        self.patch(
+            type(self),
+            "taxes_purchase",
+            {"P_IVA12_AGR": (1000, 120), "P_IVA105_GAN": (200, 21)},
+        )
+        self._invoice_purchase_create("2025-11-01")
+        report = self._create_303(2025, "4T")
+        report.button_calculate()
+        self.assertAlmostEqual(self._box(report, 42), 141)
+        # 4T 2025: 283.5 accrued - 21 - 141 deductible
+        self.assertAlmostEqual(report.total_deducir, 162)
+        self.assertAlmostEqual(report.casilla_46, 121.5)
