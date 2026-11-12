@@ -263,6 +263,25 @@ class L10nEsVatBook(models.Model):
         sign = -1
         if vat_book_line["line_type"] in ["received", "rectification_received"]:
             sign = 1
+        if move_line.display_type == "non_deductible_tax":
+            # Private part of the taxes of the bill, booked as an expense with the
+            # taxes of its account: its quota is taken per tax from the
+            # 'non_deductible_product' lines below, and it is not a base.
+            return
+        if move_line.display_type == "non_deductible_product":
+            # Private part of a bill line with a deductible percentage: the book
+            # keeps the base of the invoice as received and adds the private part
+            # of the quota, which is not deductible, to the quota of each tax.
+            for child_tax, amount in self._get_non_deductible_tax_amounts(move_line):
+                if child_tax not in implied_taxes:
+                    continue
+                key = self.get_book_line_tax_key(move_line, child_tax)
+                value = tax_lines.setdefault(
+                    key, default_dict | {"tax_id": child_tax.id}
+                )
+                value["tax_amount"] += amount * sign
+                value["move_line_ids"].append((4, move_line.id))
+            return
         if move_line.tax_line_id:
             res = {}
             move_line._process_aeat_tax_fee_info(res, move_line.tax_line_id, sign)
@@ -290,6 +309,23 @@ class L10nEsVatBook(models.Model):
                 value["base_move_line_ids"].append((4, move_line.id))
                 # For later matching special taxes
                 value["other_tax_ids"] = (move_line.tax_ids - tax).ids
+
+    @api.model
+    def _get_non_deductible_tax_amounts(self, move_line):
+        """Private part of the quota of each tax of a 'non_deductible_product' line,
+        as a balance, computed as Odoo core does for its 'non_deductible_tax' line.
+        """
+        move = move_line.move_id
+        account_tax = self.env["account.tax"]
+        base_line = move._prepare_non_deductible_base_line_for_taxes_computation(
+            move_line
+        )
+        account_tax._add_tax_details_in_base_line(base_line, move.company_id)
+        account_tax._round_base_lines_tax_details([base_line], move.company_id)
+        return [
+            (tax_data["tax"], -base_line["sign"] * tax_data["tax_amount"])
+            for tax_data in base_line["tax_details"]["taxes_data"]
+        ]
 
     def _clear_old_data(self):
         """

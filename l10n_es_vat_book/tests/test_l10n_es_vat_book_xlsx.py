@@ -7,6 +7,7 @@ from typing import ClassVar
 from openpyxl import load_workbook
 
 from odoo.fields import Command, Datetime
+from odoo.tests import Form
 
 from .test_l10n_es_aeat_vat_book import TestL10nEsAeatVatBookBase
 
@@ -175,3 +176,54 @@ class TestL10nEsVatBookXlsx(TestL10nEsAeatVatBookBase):
         row = self._rows(received, "AA")[100]
         self.assertEqual(received[f"AC{row}"].value, 21)
         self.assertIsNone(received[f"AD{row}"].value)
+
+    def test_xlsx_received_deductible_percentage(self):
+        """A bill line of 100 + 21 % VAT with a deductible percentage of 50 %
+        (art. 95 LIVA) is booked as the invoice was received: base 100 and quota
+        21 (art. 64.4 RIVA), with a deductible quota of 10.50. The lines Odoo core
+        adds for the private part are not another base nor lose the quota.
+        """
+        bill_form = Form(
+            self.env["account.move"]
+            .with_user(self.billing_user)
+            .with_context(default_move_type="in_invoice")
+        )
+        bill_form.partner_id = self.supplier
+        bill_form.invoice_date = "2017-01-20"
+        bill_form.journal_id = self.journal_purchase
+        with bill_form.invoice_line_ids.new() as line_form:
+            line_form.name = "Mixed use car"
+            line_form.price_unit = 100
+            line_form.tax_ids.clear()
+            line_form.tax_ids.add(self._get_taxes("P_IVA21_BC"))
+            line_form.deductible_percentage = 0.5
+        bill = bill_form.save()
+        bill.action_post()
+        vat_book = self._create_vat_book()
+        vat_book.button_calculate()
+        book_line = vat_book.received_line_ids
+        self.assertEqual(book_line.move_id, bill)
+        self.assertAlmostEqual(book_line.base_amount, 100, 2)
+        self.assertAlmostEqual(book_line.total_amount, 121, 2)
+        tax_line = book_line.tax_line_ids
+        self.assertEqual(tax_line.tax_id, self._get_taxes("P_IVA21_BC"))
+        self.assertAlmostEqual(tax_line.base_amount, 100, 2)
+        self.assertAlmostEqual(tax_line.tax_amount, 21, 2)
+        self.assertAlmostEqual(tax_line.deductible_amount, 10.5, 2)
+        summary = vat_book.received_tax_summary_ids
+        self.assertAlmostEqual(summary.base_amount, 100, 2)
+        self.assertAlmostEqual(summary.tax_amount, 21, 2)
+        _issued, received = self._export_xlsx(vat_book)
+        rows = self._rows(received, "AA")
+        self.assertEqual(list(rows), [100])
+        row = rows[100]
+        self.assertEqual(received[f"Z{row}"].value, 121)
+        self.assertEqual(received[f"AC{row}"].value, 21)
+        self.assertEqual(received[f"AD{row}"].value, 10.5)
+        # Its credit note is booked with the same amounts, as a rectification
+        self._invoice_refund(bill, "2017-01-25")
+        vat_book.button_calculate()
+        tax_line = vat_book.rectification_received_line_ids.tax_line_ids
+        self.assertAlmostEqual(tax_line.base_amount, -100, 2)
+        self.assertAlmostEqual(tax_line.tax_amount, -21, 2)
+        self.assertAlmostEqual(tax_line.deductible_amount, -10.5, 2)
