@@ -22,3 +22,9 @@ Para gestionar inmuebles, hay que:
 1.  Entrar en *Facturación \> Configuración \> AEAT \> Inmuebles*
 2.  Crear uno nuevo, rellenando los datos del formulario.
 3.  Ya se podrá añadir un inmueble en el campo Inmueble de las lineas de factura.
+
+En las líneas se pueden elegir los inmuebles del contacto de la factura
+(como el arrendador de una factura recibida) y los de la propia
+compañía (como el local que alquila al cliente). La referencia catastral se valida
+con los dígitos de control de la Dirección General del Catastro, salvo
+en País Vasco, Navarra y en el extranjero, que tienen otro formato.
