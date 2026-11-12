@@ -229,7 +229,14 @@ class L10nEsAtcReport(models.AbstractModel):
         resultado_path = dir_paths["resultado_path"]
         servicio_path = dir_paths["servicio_path"]
         jar_attachment = self._get_or_download_atc_jar(jar_filename)
-        jar_path = jar_attachment._full_path(jar_attachment.store_fname)
+        if jar_attachment.store_fname:
+            jar_path = jar_attachment._full_path(jar_attachment.store_fname)
+        else:
+            # With the attachments stored in the database there is no file to
+            # hand to java: write the jar next to the declaration files
+            jar_path = os.path.join(os.path.dirname(xml_path), jar_filename)
+            with open(jar_path, "wb") as jar_file:
+                jar_file.write(jar_attachment.raw.content)
         cmd = [
             "java ",
             java_param,
