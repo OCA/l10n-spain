@@ -23,7 +23,7 @@
         "views/mod216_view.xml",
         "security/ir.access.csv",
     ],
-    "maintainers": ["pedrobaeza"],
+    "maintainers": ["pedrobaeza", "carlosdauden"],
     "development_status": "Mature",
     "installable": True,
 }

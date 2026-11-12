@@ -153,10 +153,13 @@ promote its widespread use.
 .. |maintainer-pedrobaeza| image:: https://github.com/pedrobaeza.png?size=40px
     :target: https://github.com/pedrobaeza
     :alt: pedrobaeza
+.. |maintainer-carlosdauden| image:: https://github.com/carlosdauden.png?size=40px
+    :target: https://github.com/carlosdauden
+    :alt: carlosdauden
 
-Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
+Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-pedrobaeza| 
+|maintainer-pedrobaeza| |maintainer-carlosdauden| 
 
 This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/20.0/l10n_es_aeat_mod216>`_ project on GitHub.
 
