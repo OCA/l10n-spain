@@ -9,8 +9,9 @@ from odoo.addons.base.tests.common import BaseCommon
 class TestL10nEsAeatSiiChart(BaseCommon):
     def test_new_company_sii_chart_data(self):
         """A company created with the Spanish chart gets the forced SII keys of
-        the business premises lease fiscal positions, and no export key on the
-        services to non-EU customers."""
+        the business premises lease fiscal positions, the operation type of the
+        intra-community and export ones, and no export key on the services to
+        non-EU customers."""
         company = (
             self.env["res.company"]
             .sudo()
@@ -26,6 +27,13 @@ class TestL10nEsAeatSiiChart(BaseCommon):
         self.assertFalse(domestic.sii_regime_code_sale)
         self.assertFalse(domestic.sii_regime_code_purchase)
         self.assertFalse(chart.ref("fp_extra").sii_regime_code_sale)
+        # The operation type of the fiscal position, whatever its name
+        self.assertFalse(domestic.sii_partner_identification_type)
+        self.assertEqual(chart.ref("fp_intra").sii_partner_identification_type, "2")
+        self.assertEqual(chart.ref("fp_extra").sii_partner_identification_type, "3")
+        self.assertEqual(
+            chart.ref("fp_extra_canary").sii_partner_identification_type, "3"
+        )
         lease = chart.ref("fp_irpf19a")
         self.assertEqual(lease.sii_regime_code_sale, "11")
         self.assertEqual(lease.sii_regime_code_purchase, "12_purchase")

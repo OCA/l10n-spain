@@ -1,7 +1,13 @@
 # Copyright 2026 Tecnativa - Carlos Dauden
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
 
+import json
+from unittest.mock import patch
+
+from odoo.exceptions import UserError
+
 from .test_l10n_es_aeat_sii import TestL10nEsAeatSiiBase
+from .test_sii_send_batch import FakeSiiService
 
 
 class TestL10nEsAeatSiiTaxData(TestL10nEsAeatSiiBase):
@@ -350,3 +356,198 @@ class TestL10nEsAeatSiiTaxData(TestL10nEsAeatSiiBase):
             self.assertEqual(invoice.amount_total, 100)
             sii_dict = invoice._get_aeat_invoice_dict()["FacturaRecibida"]
             self.assertEqual(sii_dict["ImporteTotal"], total, xml_id)
+
+    def _post_and_send_bill(self, tax, product, fiscal_position=None):
+        """Validate a vendor bill and let the cron send it, returning what was
+        sent to the AEAT."""
+        bill = self.env["account.move"].create(
+            {
+                "partner_id": self.partner.id,
+                "fiscal_position_id": fiscal_position and fiscal_position.id,
+                "invoice_date": "2020-01-01",
+                "ref": f"sup-{tax.name}",
+                "sii_account_registration_date": "2020-10-01",
+                "move_type": "in_invoice",
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": product.id,
+                            "account_id": self.account_expense.id,
+                            "name": "Test line",
+                            "price_unit": 100,
+                            "quantity": 1,
+                            "tax_ids": [(6, 0, tax.ids)],
+                        },
+                    )
+                ],
+            }
+        )
+        bill.action_post()
+        return self._send_to_sii(bill)["FacturaRecibida"]
+
+    def _send_to_sii(self, move):
+        """Send a validated document with the cron, as the user does with "Send
+        now", returning what was sent to the AEAT."""
+        move.send_sii_now()
+        with (
+            patch.object(
+                type(self.env["account.move"]),
+                "_connect_aeat",
+                lambda move, mapping_key: FakeSiiService(),
+            ),
+            self.enter_registry_test_mode(),
+        ):
+            cron = self.env.ref("l10n_es_aeat_sii_oca.invoice_send_to_sii")
+            cron.sudo().method_direct_trigger()
+        self.assertEqual(move.aeat_state, "sent")
+        return json.loads(move.aeat_content_sent)
+
+    def test_core_tax_data_fixes(self):
+        """Purchase taxes whose Spanish data in the core chart differs from what
+        the SII expects, fixed by the chart template override."""
+        # Intra-community current goods at 10 %: not an investment good, unlike
+        # the investment goods tax
+        for xml_id, investment in (("p_iva10_ic_bc", False), ("p_iva21_ic_bi", True)):
+            sent = self._post_and_send_bill(
+                self._tax(xml_id), self.product_goods, self.fp_intra
+            )
+            detail = sent["DesgloseFactura"]["DesgloseIVA"]["DetalleIVA"][0]
+            self.assertEqual("BienInversion" in detail, investment, xml_id)
+            self.assertEqual(sent["ClaveRegimenEspecialOTrascendencia"], "09")
+        # REAGYP compensation of livestock and fishing, archived in the chart
+        reagyp = self._tax("p_iva105_gan").with_context(active_test=False)
+        reagyp.active = True
+        sent = self._post_and_send_bill(reagyp, self.product_goods)
+        self.assertEqual(sent["TipoFactura"], "F6")
+        self.assertEqual(sent["ClaveRegimenEspecialOTrascendencia"], "02")
+        self.assertEqual(
+            sent["DesgloseFactura"]["DesgloseIVA"]["DetalleIVA"],
+            [
+                {
+                    "BaseImponible": 100.0,
+                    "ImporteCompensacionREAGYP": 10.5,
+                    "PorcentCompensacionREAGYP": "10.5",
+                }
+            ],
+        )
+        self.assertEqual(sent["CuotaDeducible"], 10.5)
+        self.assertEqual(sent["ImporteTotal"], 110.5)
+        # Services from outside the EU at 0 %: reverse charge
+        sent = self._post_and_send_bill(
+            self._tax("p_iva0_isc"), self.product_service, self.fp_extra
+        )
+        self.assertEqual(
+            list(sent["DesgloseFactura"]), ["InversionSujetoPasivo"], "p_iva0_isc"
+        )
+
+    def test_lease_additional_key_property(self):
+        """The real property goes with a lease of business premises also when
+        its key (12 or 13) is an additional one."""
+        invoice = self._create_sii_invoice(
+            [(self.product_service, 1000, self._tax("s_iva21s"))]
+        )
+        self.assertFalse(invoice.sii_property_required)
+        invoice.write(
+            {
+                "l10n_es_regime_code_additional": "12_sale",
+                "sii_property_location": "1",
+                "sii_property_cadastrial_code": "9872023VH5797S0001WX",
+            }
+        )
+        self.assertTrue(invoice.sii_property_required)
+        invoice.action_post()
+        sent = self._send_to_sii(invoice)["FacturaExpedida"]
+        self.assertEqual(sent["ClaveRegimenEspecialOTrascendenciaAdicional1"], "12")
+        self.assertEqual(
+            sent["DatosInmueble"],
+            {
+                "DetalleInmueble": [
+                    {
+                        "SituacionInmueble": "1",
+                        "ReferenciaCatastral": "9872023VH5797S0001WX",
+                    }
+                ]
+            },
+        )
+
+    def _create_real_estate(self, name, **vals):
+        return self.env["l10n.es.aeat.real_estate"].create(
+            {
+                "name": name,
+                "company_id": self.company.id,
+                "partner_id": self.company.partner_id.id,
+                "address": "Calle Mayor",
+                "city": "Madrid",
+                "zip": "28001",
+                **vals,
+            }
+        )
+
+    def _create_lease_invoice(self, real_estates):
+        invoice = self._create_sii_invoice(
+            [(self.product_service, 100, self._tax("s_iva21s"))] * len(real_estates)
+        )
+        for line, real_estate in zip(
+            invoice.invoice_line_ids, real_estates, strict=True
+        ):
+            line.l10n_es_aeat_real_estate_id = real_estate
+        invoice.l10n_es_regime_code_additional = "12_sale"
+        return invoice
+
+    def test_lease_line_real_estates(self):
+        """The real estates of the invoice lines go to the SII, with the
+        situation of its own list, instead of the property of the invoice."""
+        reference = "9872023 VH5797S 0001 WX"
+        real_estates = (
+            self._create_real_estate(
+                "Common territory",
+                reference=reference,
+                state_id=self.env.ref("base.state_es_m").id,
+            )
+            + self._create_real_estate(
+                "Basque Country",
+                reference=reference,
+                state_id=self.env.ref("base.state_es_bi").id,
+            )
+            + self._create_real_estate("Without reference")
+            + self._create_real_estate(
+                "Abroad", country_id=self.env.ref("base.fr").id, zip="75001"
+            )
+        )
+        # The customer can be given the company's real estates on the lines
+        self.assertEqual(
+            self.env["l10n.es.aeat.real_estate"].search(
+                [("id", "in", real_estates.ids), ("owned_by_company", "=", True)]
+            ),
+            real_estates,
+        )
+        invoice = self._create_lease_invoice(real_estates + real_estates[:1])
+        self.assertEqual(invoice.sii_real_estate_ids, real_estates)
+        invoice.action_post()
+        sent = self._send_to_sii(invoice)["FacturaExpedida"]
+        self.assertEqual(
+            sent["DatosInmueble"]["DetalleInmueble"],
+            [
+                {
+                    "SituacionInmueble": "1",
+                    "ReferenciaCatastral": "9872023VH5797S0001WX",
+                },
+                {
+                    "SituacionInmueble": "2",
+                    "ReferenciaCatastral": "9872023VH5797S0001WX",
+                },
+                {"SituacionInmueble": "3"},
+                {"SituacionInmueble": "4"},
+            ],
+        )
+
+    def test_lease_too_many_real_estates(self):
+        """The SII takes at most 15 real estates on an invoice."""
+        real_estates = self.env["l10n.es.aeat.real_estate"].concat(
+            self._create_real_estate(f"Premises {i}") for i in range(16)
+        )
+        invoice = self._create_lease_invoice(real_estates)
+        with self.assertRaisesRegex(UserError, "at most 15 real estates"):
+            invoice.action_post()

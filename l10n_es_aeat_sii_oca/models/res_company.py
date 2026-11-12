@@ -4,8 +4,7 @@
 # Copyright 2018 Javi Melendez <javimelex@gmail.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from datetime import datetime, timedelta
-from zoneinfo import ZoneInfo
+from datetime import UTC, datetime, timedelta
 
 from odoo import fields, models
 
@@ -96,18 +95,15 @@ class ResCompany(models.Model):
 
     def _get_sii_sending_time(self):
         if self.send_mode == "fixed":
-            tz = self.env.tz
-            offset = datetime.now(ZoneInfo(tz)).strftime("%z") if tz else "+00"
-            hour_diff = int(offset[:3])
-            hour, minute = divmod(self.sent_time * 60, 60)
-            hour = int(hour - hour_diff)
-            minute = int(minute)
+            # The time is the one of the user's timezone (UTC by default)
+            now = datetime.now(self.env.tz).replace(second=0, microsecond=0)
+            send_time = now.replace(hour=0, minute=0) + timedelta(
+                minutes=round(self.sent_time * 60)
+            )
+            if send_time < now:
+                send_time += timedelta(days=1)
             # Naive UTC, as the dates of the jobs
-            now = fields.Datetime.now()
-            if now.hour > hour or (now.hour == hour and now.minute > minute):
-                now += timedelta(days=1)
-            now = now.replace(hour=hour, minute=minute)
-            return now
+            return send_time.astimezone(UTC).replace(tzinfo=None)
         else:
             delay_time = (
                 0.0
