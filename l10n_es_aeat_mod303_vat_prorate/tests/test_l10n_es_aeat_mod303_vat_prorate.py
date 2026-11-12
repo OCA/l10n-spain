@@ -59,8 +59,9 @@ class TestL10nEsAeatMod303VatProrate(TestL10nEsAeatMod303Base):
         self.model303_4t.button_calculate()
         self.assertEqual(self.model303_4t.prorate_account_id.code[:4], "6341")
         self.assertEqual(self.model303_4t.total_devengado, 210)
-        self.assertEqual(self.model303_4t.total_deducir, 93.45)
-        self.assertEqual(self.model303_4t.resultado_liquidacion, 116.55)
+        # [45] = [29] + [44]: 94.5 - 2.1 (1 % of 105 in 1T and in 4T)
+        self.assertEqual(self.model303_4t.total_deducir, 92.4)
+        self.assertEqual(self.model303_4t.resultado_liquidacion, 117.6)
         self.assertEqual(self.model303_4t.casilla_44, -2.1)
         # Export to BOE and check the inclusion of field 44
         boe_wizard = self.env["l10n.es.aeat.report.export_to_boe"].create(

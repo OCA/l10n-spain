@@ -90,9 +90,9 @@ class L10nEsAeatMod303Report(models.Model):
         # Get the diff for this declaration (the last of the year)
         diff_amount = round(diff_perc * self.total_deducir / theoretical_prorate, 2)
         result += diff_amount
-        # Change the amount to deduce and set field 44
-        self.total_deducir += diff_amount
+        # Set field 44 and add it to the amount to deduce ([45] includes [44])
         self.casilla_44 = round(result, 2)
+        self.total_deducir += self.casilla_44
 
     def _special_prorate_method(self):
         self.ensure_one()
