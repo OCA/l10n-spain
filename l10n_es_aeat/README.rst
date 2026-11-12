@@ -102,6 +102,12 @@ con errores hay en el informe. Si el valor es 0, no se mostrará ningún
 aviso; si el valor es mayor a 0, se mostrará un aviso en la parte
 superior de la vista formulario del informe.
 
+Para gestionar los inmuebles (menú y campo "Inmueble" en las líneas de
+las facturas) hay que dar a los usuarios el permiso "Use AEAT Real
+Estates" (en modo desarrollador, en "Permisos extra" del usuario). Es
+independiente del de gestor de la AEAT: quien solo indica el inmueble en
+las facturas no necesita gestionar las declaraciones.
+
 Usage
 =====
 
@@ -130,6 +136,13 @@ Para gestionar inmuebles, hay que:
 2. Crear uno nuevo, rellenando los datos del formulario.
 3. Ya se podrá añadir un inmueble en el campo Inmueble de las lineas de
    factura.
+
+En las líneas se pueden elegir los inmuebles del contacto de la factura
+(como el arrendador de una factura recibida) y los de la propia compañía
+(como el local que alquila al cliente). La referencia catastral se
+valida con los dígitos de control de la Dirección General del Catastro,
+salvo en País Vasco, Navarra y en el extranjero, que tienen otro
+formato.
 
 Known issues / Roadmap
 ======================
@@ -164,12 +177,16 @@ Contributors
 
 - Pexego (http://www.pexego.es)
 - Ignacio Ibeas, Acysos (http://www.acysos.com)
-- Pedro M. Baeza <pedro.baeza@tecnativa.com>
+- `Tecnativa <https://www.tecnativa.com>`__:
+
+  - Pedro M. Baeza
+  - Antonio Espinosa
+  - Carlos Dauden
+
 - Santi Argüeso <santi@comunitea.com>
 - cubells <info@obertix.net>
 - AvanzOSC (http://www.avanzosc.es)
 - Ainara Galdona
-- Antonio Espinosa <antonio.espinosa@tecnativa.com>
 - Juan Vicente Pascual <jvpascual@puntsistemes.es>
 - Abraham Anes <abraham@studio73.es>
 - Diagram Software S.L.

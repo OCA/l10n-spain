@@ -22,7 +22,7 @@
                 <field
                     name='l10n_es_aeat_real_estate_id'
                     optional='hide'
-                    context="{'default_partner_id': partner_id}"
+                    context="{'default_partner_id': partner_id if parent.move_type in ('in_invoice', 'in_refund', 'in_receipt') else False}"
                     groups="l10n_es_aeat.group_use_aeat_real_estates"
                     column_invisible="parent.country_code != 'ES'"
                 />
@@ -39,7 +39,7 @@
                 />
                 <field
                     name='l10n_es_aeat_real_estate_id'
-                    context="{'default_partner_id': partner_id}"
+                    context="{'default_partner_id': partner_id if parent.move_type in ('in_invoice', 'in_refund', 'in_receipt') else False}"
                     groups="l10n_es_aeat.group_use_aeat_real_estates"
                     invisible="parent.country_code != 'ES'"
                 />
@@ -50,7 +50,7 @@
             >
                 <field
                     name='l10n_es_aeat_real_estate_id'
-                    context="{'default_partner_id': partner_id}"
+                    context="{'default_partner_id': partner_id if parent.move_type in ('in_invoice', 'in_refund', 'in_receipt') else False}"
                     groups="l10n_es_aeat.group_use_aeat_real_estates"
                     invisible="parent.country_code != 'ES'"
                 />
@@ -62,7 +62,6 @@
                 <field
                     name="l10n_es_aeat_real_estate_id"
                     optional='hide'
-                    domain="[('company_id', '=', company_id), ('partner_id', '=', partner_id)]"
                     groups="l10n_es_aeat.group_use_aeat_real_estates"
                     column_invisible="parent.country_code != 'ES'"
                 />
