@@ -13,7 +13,7 @@ aeat_mod190_main_export_line_11,aeat_mod190_main_export_config,11,Sustitutiva - 
 aeat_mod190_main_export_line_12,aeat_mod190_main_export_config,12,Numero identificativo de la declaración anterior,integer,13,0,right,,N,0, ,X,"${object.previous_number if object.statement_type in ('C', 'S') else ''}",,,,
 aeat_mod190_main_export_line_13,aeat_mod190_main_export_config,13,Rendimientos del trabajo y en especie - Número de perceptores [01],integer,9,0,right,,N,0, ,X,${object.casilla_01},,,,
 aeat_mod190_main_export_line_14,aeat_mod190_main_export_config,14,Rendimientos del trabajo y en especie - Importe de las percepciones [02],float,16,2,right,True,N, , ,X,${object.casilla_02},,,,
-aeat_mod190_main_export_line_15,aeat_mod190_main_export_config,15,Rendimientos del trabajo y en especie - Importe de las retenciones [03],float,15,2,right,True,N,0, ,X,${object.casilla_03},,,,
+aeat_mod190_main_export_line_15,aeat_mod190_main_export_config,15,Rendimientos del trabajo y en especie - Importe de las retenciones [03],float,15,2,right,,N,0, ,X,${object.casilla_03},,,,
 aeat_mod190_main_export_line_16,aeat_mod190_main_export_config,16,Correo electrónico,string,50,0,left,,N,0, ,X,${object.contact_email},,,,
 aeat_mod190_main_export_line_17,aeat_mod190_main_export_config,17,Reservado para la Administración. Rellenar con blancos,string,262,0,left,,N,0, ,X,,,,,
 aeat_mod190_main_export_line_18,aeat_mod190_main_export_config,18,Reservado para el sello electrónico de la AEAT (13),string,13,0,left,,N,0, ,X,,,,,

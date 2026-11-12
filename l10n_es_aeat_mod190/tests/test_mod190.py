@@ -105,10 +105,10 @@ class TestL10nEsAeatMod190Base(TestL10nEsAeatModBase):
         move.action_post()
         return move
 
-    def _create_report(self, year):
+    def _create_report(self, year, name="1900000000001"):
         return self.env["l10n.es.aeat.mod190.report"].create(
             {
-                "name": "1900000000001",
+                "name": name,
                 "company_id": self.company.id,
                 "company_vat": "123456789",
                 "contact_name": "Test owner",
@@ -412,20 +412,34 @@ class TestL10nEsAeatMod190Base(TestL10nEsAeatModBase):
     def test_mod190_export_boe_sign(self):
         """The total of box [02] is signed only when it is negative: a space
         while it is positive and "N" once a refund larger than the invoice
-        makes it negative (DR190, type 1 record, position 145)."""
-        self._create_purchase_move(self.customer, "2025-01-10", [("P_IRPF15", 100)])
-        model190 = self._create_report(2025)
-        model190.button_calculate()
-        declarant, perceptor = self._export_boe(model190)
-        self.assertEqual(declarant[144:160], b" 000000000010000")
-        self.assertEqual(perceptor[80:94], b" 0000000010000")
-        self._create_purchase_move(
-            self.customer, "2025-02-10", [("P_IRPF15", 300)], move_type="in_refund"
-        )
-        model190.button_recalculate()
-        declarant, perceptor = self._export_boe(model190)
-        self.assertEqual(declarant[144:160], b"N000000000020000")
-        self.assertEqual(perceptor[80:94], b"N0000000020000")
+        makes it negative (DR190, type 1 record, position 145). The total of
+        box [03] (positions 161-175) has no sign, as the withholdings of the
+        perceptor records (95-107), in the 2017-2024 and 2025 designs."""
+        for year in (2024, 2025):
+            with self.subTest(year=year):
+                self._create_purchase_move(
+                    self.customer, f"{year}-01-10", [("P_IRPF15", 100)]
+                )
+                model190 = self._create_report(year, name=f"190000{year}001")
+                model190.button_calculate()
+                declarant, perceptor = self._export_boe(model190)
+                self.assertEqual(declarant[144:160], b" 000000000010000")
+                self.assertEqual(declarant[160:175], b"000000000001500")
+                self.assertEqual(perceptor[80:94], b" 0000000010000")
+                self.assertEqual(perceptor[94:107], b"0000000001500")
+                self._create_purchase_move(
+                    self.customer,
+                    f"{year}-02-10",
+                    [("P_IRPF15", 300)],
+                    move_type="in_refund",
+                )
+                model190.button_recalculate()
+                declarant, perceptor = self._export_boe(model190)
+                self.assertEqual(len(declarant), 500)
+                self.assertEqual(declarant[144:160], b"N000000000020000")
+                self.assertEqual(declarant[160:175], b"000000000003000")
+                self.assertEqual(perceptor[80:94], b"N0000000020000")
+                self.assertEqual(perceptor[94:107], b"0000000003000")
 
     def test_mod190_export_boe_disability(self):
         """The disability degree of a perceptor is personal data of the
