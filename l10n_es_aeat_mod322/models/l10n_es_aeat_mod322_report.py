@@ -94,11 +94,35 @@ class L10nEsAeatMod322Report(models.Model):
         help="Fee to compensate for prior periods, in which his statement "
         "was to return and compensation back option was chosen",
     )
+    casilla_77 = fields.Float(
+        string="[77] VAT deferred (Settle by customs)",
+        default=0,
+        help="Import VAT settled by the customs and pending to be paid, "
+        "when the payment is deferred to the self-assessment",
+    )
     cuota_liquidacion = fields.Float(
         string="[68] Result",
         default=0,
         store=True,
         compute="_compute_cuota_liquidacion",
+    )
+    deduct_payment_petrol_delivery = fields.Boolean(
+        string="Deduct payment on account of fuel deliveries",
+        help="Taxpayer entitled to deduct the payment on account of deliveries "
+        "of petrol, diesel and biofuels after the completion of a warehouse "
+        "regime other than the customs one",
+    )
+    casilla_112 = fields.Float(
+        string="[112] Payment on account of fuel deliveries",
+        default=0,
+        help="Payment on account of deliveries of petrol, diesel and biofuels "
+        "after the completion of a warehouse regime other than the customs one",
+    )
+    resultado_liquidacion = fields.Float(
+        string="[70] Self-assessment result",
+        store=True,
+        compute="_compute_resultado_liquidacion",
+        help="[68] - [69] - [112]",
     )
     operaciones_ejercicio = fields.Float(
         string="[88] Operaciones realizadas en el ejercicio",
@@ -134,15 +158,35 @@ class L10nEsAeatMod322Report(models.Model):
                 )
             )
 
+    @api.constrains("casilla_77")
+    def _check_casilla_77(self):
+        if self.filtered(lambda x: x.casilla_77 < 0):
+            raise ValidationError(
+                self.env._(
+                    "The import VAT pending to be paid must be indicated as a "
+                    "positive number."
+                )
+            )
+
+    @api.constrains("casilla_112")
+    def _check_casilla_112(self):
+        if self.filtered(lambda x: x.casilla_112 < 0):
+            raise ValidationError(
+                self.env._(
+                    "The payment on account of fuel deliveries must be "
+                    "indicated as a positive number."
+                )
+            )
+
     def _compute_allow_posting(self):
         self.allow_posting = True
 
-    @api.depends("company_id", "cuota_liquidacion")
+    @api.depends("company_id", "resultado_liquidacion")
     def _compute_counterpart_account_id(self):
         for record in self:
             account_prefix = "4750"
             result = float_compare(
-                record.cuota_liquidacion,
+                record.resultado_liquidacion,
                 0,
                 precision_digits=record.currency_id.decimal_places,
             )
@@ -176,11 +220,21 @@ class L10nEsAeatMod322Report(models.Model):
                 or [0.0]
             )
 
-    @api.depends("atribuible_estado", "cuota_compensar")
+    @api.depends("atribuible_estado", "casilla_77", "cuota_compensar")
     def _compute_cuota_liquidacion(self):
         for record in self:
             record.cuota_liquidacion = record.currency_id.round(
-                record.atribuible_estado - record.cuota_compensar
+                record.atribuible_estado + record.casilla_77 - record.cuota_compensar
+            )
+
+    @api.depends("cuota_liquidacion", "deduct_payment_petrol_delivery", "casilla_112")
+    def _compute_resultado_liquidacion(self):
+        for record in self:
+            casilla_112 = (
+                record.casilla_112 if record.deduct_payment_petrol_delivery else 0.0
+            )
+            record.resultado_liquidacion = record.currency_id.round(
+                record.cuota_liquidacion - casilla_112
             )
 
     @api.depends("total_devengado", "total_deducir")
@@ -356,6 +410,9 @@ class L10nEsAeatMod322Report(models.Model):
     def _get_tax_lines(self, date_start, date_end, map_line):
         """Don't populate results for fields 79-99 for reports different from
         last of the year one or when not exonerated of presenting model 390.
+
+        From 2025 on, the transitional reduced-rate boxes (153-155 and
+        162-173) must be filled with 0.
         """
         self.ensure_one()
         if 79 <= map_line.field_number <= 99 or map_line.field_number in [
@@ -369,7 +426,7 @@ class L10nEsAeatMod322Report(models.Model):
                 or self.period_type not in ("4T", "12")
             ):
                 return self.env["account.move.line"]
-        if self.year == 2025 and (
+        if self.year >= 2025 and (
             162 <= map_line.field_number <= 173
             or map_line.field_number
             in [
