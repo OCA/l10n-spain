@@ -2,7 +2,10 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl
 
 from collections import OrderedDict
+from datetime import date
 from typing import ClassVar
+
+from dateutil.relativedelta import relativedelta
 
 from odoo import exceptions
 from odoo.tests import Form
@@ -639,3 +642,47 @@ class TestL10nEsAeatMod390Map2024(TestL10nEsAeatMod390Base):
         self.assertAlmostEqual(self._box(model390, 44), 0, 2)
         self.assertAlmostEqual(model390.casilla_34, 0, 2)
         self.assertAlmostEqual(model390.casilla_47, 0, 2)
+
+
+class TestL10nEsAeatMod390Using303(TestL10nEsAeatMod390Base):
+    """Boxes [85] and [662] from the 303 reports of the year."""
+
+    taxes_sale: ClassVar[dict] = {}
+    taxes_purchase: ClassVar[dict] = {}
+
+    def _create_303(self, year, period_type, first_month, last_month):
+        report = self.env["l10n.es.aeat.mod303.report"].create(
+            {
+                "name": f"303{year}{period_type}0000",
+                "company_id": self.company.id,
+                "company_vat": "123456789",
+                "contact_name": "Test owner",
+                "statement_type": "N",
+                "support_type": "T",
+                "contact_phone": "911234455",
+                "year": year,
+                "period_type": period_type,
+                "date_start": date(year, first_month, 1),
+                "date_end": date(year, last_month, 1) + relativedelta(day=31),
+                "journal_id": self.journal_misc.id,
+            }
+        )
+        return report
+
+    def test_model_390_using_303_monthly(self):
+        """[85] takes the compensation pending from previous years from the first
+        monthly 303, as it does from the first quarterly one."""
+        self.patch(type(self), "taxes_purchase", {"P_IVA21_BC": (500, 105)})
+        self.patch(type(self), "taxes_sale", {"S_IVA21B": (1000, 210)})
+        self._invoice_purchase_create("2023-01-10")
+        self._invoice_sale_create("2023-02-10")
+        report_01 = self._create_303(2023, "01", 1, 1)
+        # Pending from previous years
+        report_01.potential_cuota_compensar = 100
+        report_01.button_calculate()
+        report_02 = self._create_303(2023, "02", 2, 2)
+        report_02.button_calculate()
+        # 100 from previous years and 105 generated in January
+        self.assertAlmostEqual(report_02.cuota_compensar, 205, 2)
+        self.model390_2023.button_calculate()
+        self.assertAlmostEqual(self.model390_2023.casilla_85, 100, 2)

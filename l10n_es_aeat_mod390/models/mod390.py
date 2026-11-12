@@ -760,7 +760,7 @@ class L10nEsAeatMod390Report(models.Model):
     def _calculate_casilla_85(self, reports_303_this_year):
         self.ensure_one()
         report_303_first_period = reports_303_this_year.filtered(
-            lambda r: r.period_type in {"1T", "1"}
+            lambda r: r.period_type in {"1T", "01"}
         )
         # Si no hay autoliquidaciones del primer periodo del ejercicio, asumimos
         # que el total viene de ejercicios anteriores
