@@ -10,3 +10,5 @@
 - Soportar facturas de canje de facturas simplificadas por facturas
   completas. Ver <https://github.com/OCA/l10n-spain/issues/1171> para
   más información.
+- Envío de más de 15 inmuebles por factura (libro
+  RegistroLRInmueblesAdicionales).

@@ -11,6 +11,7 @@ from datetime import timedelta
 
 from odoo import exceptions, fields
 from odoo.fields import Domain
+from odoo.tests import freeze_time
 from odoo.tools.misc import file_path
 
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_certificate import (
@@ -155,9 +156,7 @@ class TestL10nEsAeatSiiBase(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase
             }
         )
         cls.fp_intra = cls.env.ref(f"account.{cls.company.id}_fp_intra")
-        cls.fp_intra.sii_partner_identification_type = "2"
         cls.fp_extra = cls.env.ref(f"account.{cls.company.id}_fp_extra")
-        cls.fp_extra.sii_partner_identification_type = "3"
 
 
 class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
@@ -221,7 +220,6 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
             }
         )
         fp_extra = self.browse_ref(f"account.{self.company.id}_fp_extra")
-        fp_extra.sii_partner_identification_type = "3"
         invoice = self.invoice.copy(
             {"partner_id": eu_customer.id, "fiscal_position_id": fp_extra.id}
         )
@@ -976,17 +974,25 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
                 ],
             }
         )
-        self.assertFalse(invoice.sii_enabled)
-        self.assertFalse(
-            self.env["account.move"].search(
-                [("id", "=", invoice.id), ("sii_enabled", "=", True)]
-            )
+        dua_tax = self.company._get_taxes_from_xmlids(
+            ["account_tax_template_p_dua_exempt"]
         )
-        self.assertTrue(
-            self.env["account.move"].search(
-                [("id", "=", invoice.id), ("sii_enabled", "=", False)]
-            )
-        )
+        # Duplicating a tax keeps the original one as its AEAT equivalent
+        dua_tax_copy = dua_tax.copy()
+        for tax in dua_tax + dua_tax_copy:
+            with self.subTest(tax=tax.name):
+                invoice.invoice_line_ids.tax_ids = tax
+                self.assertFalse(invoice.sii_enabled)
+                self.assertFalse(
+                    self.env["account.move"].search(
+                        [("id", "=", invoice.id), ("sii_enabled", "=", True)]
+                    )
+                )
+                self.assertTrue(
+                    self.env["account.move"].search(
+                        [("id", "=", invoice.id), ("sii_enabled", "=", False)]
+                    )
+                )
 
     def test_send_sii_wizard(self):
         invoice = self._create_invoice("out_invoice")
@@ -1037,6 +1043,25 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
         self.assertEqual(wizard.moves_to_send, 1)
         invoice.send_sii_now()
         self.assertLess(invoice.sii_send_date, future_send_date)
+
+    def test_fixed_send_time(self):
+        """The fixed sending time is the one of the user's timezone, and the
+        documents validated after it wait for the next day."""
+        self.company.send_mode = "fixed"
+        cases = [
+            # (sending time, expected send date in UTC); in Madrid it is 10:30
+            (10.0, "2026-03-11 09:00:00"),
+            (22.5, "2026-03-10 21:30:00"),
+            (0.25, "2026-03-10 23:15:00"),
+        ]
+        for sent_time, expected in cases:
+            with self.subTest(sent_time=sent_time), freeze_time("2026-03-10 09:30:00"):
+                self.company.sent_time = sent_time
+                invoice = self._create_invoice("out_invoice")
+                invoice.with_context(tz="Europe/Madrid").action_post()
+                self.assertEqual(
+                    invoice.sii_send_date, fields.Datetime.to_datetime(expected)
+                )
 
     def test_start_date(self):
         self.company.sii_start_date = "2018-01-01"

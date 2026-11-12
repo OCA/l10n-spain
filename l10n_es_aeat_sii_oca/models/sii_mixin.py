@@ -144,14 +144,7 @@ class SiiMixin(models.AbstractModel):
     def _get_sii_fiscal_position_gen_type(self, fiscal_position):
         """Return 1 (national), 2 (intra-community) or 3 (export) for a fiscal
         position."""
-        partner_ident = fiscal_position.sii_partner_identification_type
-        if partner_ident:
-            return int(partner_ident)
-        if fiscal_position.name == "Régimen Intracomunitario":
-            return 2
-        if fiscal_position.name == "Régimen Extracomunitario":
-            return 3
-        return 1
+        return int(fiscal_position.sii_partner_identification_type or 1)
 
     def _is_sii_self_assessed_tax(self, tax):
         """Purchase tax self-assessed on an intra-community or foreign operation,
@@ -402,12 +395,12 @@ class SiiMixin(models.AbstractModel):
             gen_type = self._get_sii_gen_type()
             partner = self._aeat_get_partner()
             country_code = self._get_aeat_country_code()
-            is_simplified_invoice = self._is_aeat_simplified_invoice()
+            is_unidentified_document = self._is_aeat_unidentified_document()
             if (
                 (gen_type != 3 or country_code == "ES")
                 and not partner.vat
                 and not partner._has_valid_aeat_identification()
-                and not is_simplified_invoice
+                and not is_unidentified_document
             ):
                 raise UserError(self.env._("The partner has not a VAT configured."))
             if not self.sii_enabled:
@@ -535,7 +528,7 @@ class SiiMixin(models.AbstractModel):
             # DesgloseTipoOperacion required for Intracommunity and
             # Export operations
             return True
-        elif sii_gen_type == 1 and not self._is_aeat_simplified_invoice():
+        elif sii_gen_type == 1 and not self._is_aeat_unidentified_document():
             identifier = self._get_sii_identifier()
             if "IDOtro" in identifier:
                 # DesgloseTipoOperacion required for national operations
@@ -717,7 +710,7 @@ class SiiMixin(models.AbstractModel):
         company = self.company_id
         fiscal_year = self._get_document_fiscal_year()
         period = self._get_document_period()
-        is_simplified_invoice = self._is_aeat_simplified_invoice()
+        is_unidentified_document = self._is_aeat_unidentified_document()
         serial_number = self._get_document_serial_number()
         inv_dict = {
             "IDFactura": {
@@ -751,8 +744,8 @@ class SiiMixin(models.AbstractModel):
             if self.sii_macrodata:
                 inv_dict["FacturaExpedida"].update(Macrodato="S")
             exp_dict = inv_dict["FacturaExpedida"]
-            if not is_simplified_invoice:
-                # Simplified invoices don't have counterpart
+            if not is_unidentified_document:
+                # Documents without an identified recipient have no counterpart
                 exp_dict["Contraparte"] = {
                     "NombreRazon": partner.name[0:120],
                 }
