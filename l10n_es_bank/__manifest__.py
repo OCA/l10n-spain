@@ -4,7 +4,7 @@
 {
     "name": "Spanish Bank Entity Code",
     "summary": "Spanish bank entity code on bank accounts, taken from the IBAN",
-    "version": "20.0.1.0.0",
+    "version": "20.0.1.0.1",
     "author": "Tecnativa,Studio73,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "category": "Localisation/Europe",

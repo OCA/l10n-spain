@@ -22,7 +22,7 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
-[l10n_es_bank](l10n_es_bank/) | 20.0.1.0.0 | <a href='https://github.com/carlosdauden'><img src='https://github.com/carlosdauden.png' width='32' height='32' style='border-radius:50%;' alt='carlosdauden'/></a> | Spanish bank entity code on bank accounts, taken from the IBAN
+[l10n_es_bank](l10n_es_bank/) | 20.0.1.0.1 | <a href='https://github.com/carlosdauden'><img src='https://github.com/carlosdauden.png' width='32' height='32' style='border-radius:50%;' alt='carlosdauden'/></a> | Spanish bank entity code on bank accounts, taken from the IBAN
 
 [//]: # (end addons)
 
