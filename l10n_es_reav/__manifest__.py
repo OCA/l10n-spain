@@ -7,7 +7,7 @@
     "category": "Localization/Account Charts",
     "website": "https://github.com/OCA/l10n-spain",
     "author": "Bilbonet, Odoo Community Association (OCA)",
-    "maintainers": ["Bilbonet"],
+    "maintainers": ["Bilbonet", "carlosdauden"],
     "license": "AGPL-3",
     "depends": ["l10n_es"],
     "external_dependencies": {"python": ["openupgradelib"]},

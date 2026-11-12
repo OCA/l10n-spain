@@ -151,10 +151,13 @@ promote its widespread use.
 .. |maintainer-Bilbonet| image:: https://github.com/Bilbonet.png?size=40px
     :target: https://github.com/Bilbonet
     :alt: Bilbonet
+.. |maintainer-carlosdauden| image:: https://github.com/carlosdauden.png?size=40px
+    :target: https://github.com/carlosdauden
+    :alt: carlosdauden
 
-Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
+Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-Bilbonet| 
+|maintainer-Bilbonet| |maintainer-carlosdauden| 
 
 This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/20.0/l10n_es_reav>`_ project on GitHub.
 
