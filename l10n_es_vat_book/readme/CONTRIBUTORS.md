@@ -1,0 +1,15 @@
+- Daniel Rodriguez \<<drl.9319@gmail.com>\>
+- Jordi Ballester (ForgeFlow) \<<jordi.ballester@forgeflow.com>\>
+- Luis M. Ontalba \<<luismaront@gmail.com>\>
+- [Tecnativa](https://www.tecnativa.com/):
+  - Pedro M. Baeza
+  - Carlos Dauden
+  - Ernesto Tejeda
+  - Eduardo Ezerouali
+- Omar Castiñeira \<<omar@comunitea.com>\>
+- Fernando La Chica \<<fernandolachica@gmail.com>\>
+- Victor Garcia \<<victor.garcia@kayuulab.com>\>
+- Luis Lafaurie \<<ldlafaurie@gmail.com>\>
+- [Moduon Team](https://www.moduon.team/):
+  - Eduardo de miguel
+  - Emilio Pascual
