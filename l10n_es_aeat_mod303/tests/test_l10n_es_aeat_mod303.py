@@ -1,0 +1,1225 @@
+# Copyright 2016-2019 Tecnativa - Pedro M. Baeza
+# License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0
+
+import logging
+from datetime import date
+from typing import ClassVar
+
+from dateutil.relativedelta import relativedelta
+
+from odoo import exceptions
+from odoo.tests import Form
+
+from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
+    TestL10nEsAeatModBase,
+)
+
+_logger = logging.getLogger("aeat.303")
+
+
+class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
+    # Set 'debug' attribute to True to easy debug this test
+    # Do not forget to include '--log-handler aeat:DEBUG' in Odoo command line
+    debug = False
+    taxes_sale: ClassVar[dict] = {
+        # tax code: (base, tax_amount)
+        "S_IVA4B": (1000, 40),
+        "S_IVA4B//neg": (-100, -4),
+        "S_IVA4S": (1100, 44),
+        "S_IVA10B": (1200, 120),
+        "S_IVA10B//neg": (-120, -12),
+        "S_IVA10S": (1300, 130),
+        "S_IVA21B": (1400, 294),
+        "S_IVA21B//neg": (-140, -29.4),
+        "S_IVA21S": (1500, 315),
+        "S_REQ05": (1700, 8.5),
+        "S_REQ014": (1800, 25.2),
+        "S_REQ52": (1900, 98.8),
+        "S_IVA0_G_E": (4600, 0),
+        "S_IVA_E": (2100, 0),
+        "S_IVA_NS": (2200, 0),
+        "S_IVA0_ISP": (2300, 0),
+        "S_IVA0_G_I": (2400, 0),
+        "S_IVA0_SP_I": (2500, 0),
+    }
+    taxes_purchase: ClassVar[dict] = {
+        # tax code: (base, tax_amount)
+        "P_IVA4_IC_BC": (100, 0),
+        "P_IVA10_IC_BC": (200, 0),
+        "P_IVA21_IC_BC": (300, 0),
+        "P_IVA4_SP_IN": (400, 0),
+        "P_IVA10_SP_IN": (500, 0),
+        "P_IVA21_SP_IN": (600, 0),
+        "P_IVA4_IC_BI": (700, 0),
+        "P_IVA10_IC_BI": (800, 0),
+        "P_IVA21_IC_BI": (900, 0),
+        "P_IVA4_SP_EX": (110, 0),
+        "P_IVA10_SP_EX": (120, 0),
+        "P_IVA21_SP_EX": (130, 0),
+        "P_IVA4_ISP": (140, 0),
+        "P_IVA10_ISP": (150, 0),
+        "P_IVA4_SC": (210, 8.4),
+        "P_IVA4_SC//neg": (-21, -0.84),
+        "P_IVA10_SC": (220, 22),
+        "P_IVA10_SC//neg": (-22, -2.2),
+        "P_IVA21_SC": (230, 48.3),
+        "P_IVA21_SC//neg": (-23, -4.83),
+        "P_IVA4_BC": (240, 9.6),
+        "P_IVA10_BC": (250, 25),
+        "P_IVA21_BC": (260, 54.6),
+        "P_REQ05": (270, 1.35),
+        "P_REQ014": (280, 3.92),
+        "P_REQ52": (290, 15.08),
+        "P_IVA4_BI": (310, 12.4),
+        "P_IVA10_BI": (320, 32),
+        "P_IVA21_BI": (330, 69.3),
+        "P_IVA4_IBC": (340, 13.6),
+        "P_IVA10_IBC": (350, 35),
+        "P_IVA21_IBC": (360, 75.6),
+        "P_IVA4_IBI": (370, 14.8),
+        "P_IVA10_IBI": (380, 38),
+        "P_IVA21_IBI": (390, 81.9),
+        # 'P_IVA12_AGR': (410, 49.2),
+    }
+    taxes_result: ClassVar[dict] = {
+        # Régimen General - Base imponible 4%
+        "1": (3 * 1000) + (3 * 1100) - 3 * 100,  # S_IVA4B, S_IVA4S
+        # Régimen General - Cuota 4%
+        "3": (3 * 40) + (3 * 44) - 3 * 4,  # S_IVA4B, S_IVA4S
+        # Régimen General - Base imponible 10%
+        "4": (3 * 1200) + (3 * 1300) - 3 * 120,  # S_IVA10B, S_IVA10S
+        # Régimen General - Cuota 10%
+        "6": (3 * 120) + (3 * 130) - 3 * 12,  # S_IVA10B, S_IVA10S
+        # Régimen General - Base imponible 21%
+        # S_IVA21B, S_IVA21S
+        "7": (3 * 1400) + (3 * 1500) - 3 * 140,
+        # Régimen General - Cuota 21%
+        # S_IVA21B, S_IVA21S
+        "9": (3 * 294) + (3 * 315) - 3 * 29.4,
+        # Adq. intracomunitarias de bienes y servicios - Base
+        "10": (
+            (3 * 100)
+            + (3 * 200)
+            + (3 * 300)
+            + (3 * 400)  # P_IVAx_IC_BC_2
+            + (3 * 500)
+            + (3 * 600)
+            + (3 * 700)  # P_IVAx_SP_IN_1
+            + (3 * 800)
+            + (3 * 900)  # P_IVAx_IC_BI_2
+        ),
+        # Adq. intracomunitarias de bienes y servicios - Cuota
+        "11": (
+            (3 * 4)
+            + (3 * 20)
+            + (3 * 63)
+            + (3 * 16)  # P_IVAx_IC_BC_2
+            + (3 * 50)
+            + (3 * 126)
+            + (3 * 28)  # P_IVAx_SP_IN_1
+            + (3 * 80)
+            + (3 * 189)  # P_IVAx_IC_BI_2
+        ),
+        # Op. inv. del suj. pasivo (excepto adq. intracom.) - Base
+        "12": (
+            (3 * 110)
+            + (3 * 120)
+            + (3 * 130)
+            + (3 * 140)  # P_IVAx_SP_EX_1
+            + (3 * 150)
+        ),
+        # Op. inv. del suj. pasivo (excepto adq. intracom.) - Cuota
+        "13": (
+            (3 * 4.4)
+            + (3 * 12)
+            + (3 * 27.3)
+            + (3 * 5.6)  # P_IVAx_SP_EX_1
+            + (3 * 15)
+        ),
+        # Modificación bases y cuotas - Base (Compras y ventas)
+        "14": (
+            (-1)
+            * (
+                1000
+                + 1100
+                - 100
+                + 1200  # S_IVA4B, S_IVA4S
+                + 1300
+                - 120
+                + 1400  # S_IVA10B, S_IVA10S
+                + 1500
+                - 140
+                + 100  # S_IVA21B,S_IVA21S
+                + 200
+                + 300
+                + 400  # P_IVAx_IC_BC_2
+                + 500
+                + 600
+                + 700  # P_IVAx_SP_IN_1
+                + 800
+                + 900
+                + 110  # P_IVAx_IC_BI_2
+                + 120
+                + 130
+                + 140  # P_IVAx_SP_EX_1
+                + 150
+            )  # P_IVAx_ISP_2
+        ),
+        # Modificación bases y cuotas - Cuota (Compras y ventas)
+        "15": (
+            (-1)
+            * (
+                40
+                + 44
+                - 4
+                + 120  # S_IVA4B, S_IVA4S
+                + 130
+                - 12
+                + 294  # S_IVA10B, S_IVA10S
+                + 315
+                - 29.4
+                + 4  # S_IVA21B, S_IVA21S
+                + 20
+                + 63
+                + 16  # P_IVAx_IC_BC_2
+                + 50
+                + 126
+                + 28  # P_IVAx_SP_IN_1
+                + 80
+                + 189
+                + 4.4  # P_IVAx_IC_BI_2
+                + 12
+                + 27.3
+                + 5.6  # P_IVAx_SP_EX_1
+                + 15
+            )
+        ),
+        # Recargo equivalencia - Base imponible 0.5%
+        "16": (3 * 1700),  # S_REQ05
+        # Recargo equivalencia - Cuota 0.5%
+        "18": (3 * 8.5),  # S_REQ05
+        # Recargo equivalencia - Base imponible 1.4%
+        "19": (3 * 1800),  # S_REQ014
+        # Recargo equivalencia - Cuota 1.4%
+        "21": (3 * 25.2),  # S_REQ014
+        # Recargo equivalencia - Base imponible 5.2%
+        "22": (3 * 1900),  # S_REQ52
+        # Recargo equivalencia - Cuota 5.2%
+        "24": (3 * 98.8),  # S_REQ52
+        # Mod. bases y cuotas del recargo de equivalencia - Base
+        "25": (-1) * (1700 + 1800 + 1900),  # S_REQ05, S_REQ014, S_REQ52
+        # Mod. bases y cuotas del recargo de equivalencia - Cuota
+        "26": (-1) * (8.5 + 25.2 + 98.8),  # S_REQ05, S_REQ014, S_REQ52
+        # Cuotas soportadas en op. int. corrientes - Base
+        "28": (
+            (3 * 110)
+            + (3 * 120)
+            + (3 * 130)
+            + (3 * 140)  # P_IVAx_SP_EX_2
+            + (3 * 150)
+            + (3 * 210)  # P_IVAx_ISP_1
+            + (3 * 220)
+            + (3 * 230)
+            + (3 * -21)
+            + (3 * -22)
+            + (3 * -23)
+            + (3 * 240)  # P_IVAx_SC
+            + (3 * 250)
+            + (3 * 260)
+            + (3 * 270)  # P_IVAx_BC
+            + (3 * 280)
+            + (3 * 290)  # P_REQ05, P_REQ014, P_REQ5.2
+        ),
+        # Cuotas soportadas en op. int. corrientes - Cuota
+        "29": (
+            (3 * 4.4)
+            + (3 * 12)
+            + (3 * 27.3)
+            + (3 * 5.6)  # P_IVAx_SP_EX_2
+            + (3 * 15)
+            + (3 * 8.4)  # P_IVAx_ISP_1
+            + (3 * 22)
+            + (3 * 48.3)
+            + (3 * -0.84)
+            + (3 * -2.2)
+            + (3 * -4.83)
+            + (3 * 9.6)  # P_IVAx_SC
+            + (3 * 25)
+            + (3 * 54.6)
+            + (3 * 1.35)  # P_IVAx_BC
+            + (3 * 3.92)
+            + (3 * 15.08)  # P_REQ05, P_REQ014  # P_REQ5.2
+        ),
+        # Cuotas soportadas en op. int. bienes de inversión - Base
+        "30": (3 * 310) + (3 * 320) + (3 * 330),  # P_IVAx_BI
+        # Cuotas soportadas en op. int. bienes de inversión - Cuota
+        "31": (3 * 12.4) + (3 * 32) + (3 * 69.3),  # P_IVAx_BI
+        # Cuotas soportadas en las imp. bienes corrientes - Base
+        "32": (3 * 340) + (3 * 350) + (3 * 360),  # P_IVAx_IBC
+        # Cuotas soportadas en las imp. bienes corrientes - Cuota
+        "33": (3 * 13.6) + (3 * 35) + (3 * 75.6),  # P_IVAx_IBC
+        # Cuotas soportadas en las imp. bienes de inversión - Base
+        "34": (3 * 370) + (3 * 380) + (3 * 390),  # P_IVAx_IBI
+        # Cuotas soportadas en las imp. bienes de inversión - Cuota
+        "35": (3 * 14.8) + (3 * 38) + (3 * 81.9),  # P_IVAx_IBI
+        # En adq. intra. de bienes y servicios corrientes - Base
+        "36": (
+            (3 * 100)
+            + (3 * 200)
+            + (3 * 300)
+            + (3 * 400)  # P_IVAx_IC_BC_1
+            + (3 * 500)
+            + (3 * 600)  # P_IVAx_SP_IN_2
+        ),
+        # En adq. intra. de bienes y servicios corrientes - Cuota
+        "37": (
+            (3 * 4)
+            + (3 * 20)
+            + (3 * 63)
+            + (3 * 16)  # P_IVAx_IC_BC_1
+            + (3 * 50)
+            + (3 * 126)  # P_IVAx_SP_IN_2
+        ),
+        # En adq. intra. de bienes de inversión - Base
+        "38": (3 * 700) + (3 * 800) + (3 * 900),  # P_IVAx_IC_BI_1
+        # En adq. intra. de bienes de inversión - Cuota
+        "39": (3 * 28) + (3 * 80) + (3 * 189),  # P_IVAx_IC_BI_1
+        # Rectificación de deducciones - Base
+        "40": (
+            (-1)
+            * (
+                270
+                + 280
+                + 290
+                + 240  # P_REQ05, P_REQ014, P_REQ5.2
+                + 250
+                + 260
+                + 210  # P_IVAx_BC
+                + 220
+                + 230
+                - 21
+                - 22
+                - 23
+                + 310  # P_IVAx_SC
+                + 320
+                + 330
+                + 340  # P_IVAx_BI
+                + 350
+                + 360
+                + 370  # P_IVAx_IBC
+                + 380
+                + 390
+                + 100  # P_IVAx_IBI
+                + 200
+                + 300
+                + 700  # P_IVAx_IC_BC_1
+                + 800
+                + 900
+                + 400  # P_IVAx_IC_BI_1
+                + 500
+                + 600
+                + 110  # P_IVAx_SP_IN_2
+                + 120
+                + 130
+                + 140  # P_IVAx_SP_EX_2
+                + 150
+            )
+        ),
+        # Rectificación de deducciones - Cuota
+        "41": (
+            (-1)
+            * (
+                1.35
+                + 3.92
+                + 15.08
+                + 9.6  # P_REQ05, P_REQ014, P_REQ5.2
+                + 25
+                + 54.6
+                + 8.4  # P_IVAx_BC
+                + 22
+                + 48.3
+                - 0.84
+                - 2.2
+                - 4.83
+                + 12.4  # P_IVAx_SC
+                + 32
+                + 69.3
+                + 13.6  # P_IVAx_BI
+                + 35
+                + 75.6
+                + 14.8  # P_IVAx_IBC
+                + 38
+                + 81.9
+                + 4  # P_IVAx_IBI
+                + 20
+                + 63
+                + 28  # P_IVAx_IC_BC_1
+                + 80
+                + 189
+                + 16  # P_IVAx_IC_BI_1
+                + 50
+                + 126
+                + 4.4  # P_IVAx_SP_IN_2
+                + 12
+                + 27.3
+                + 5.6  # P_IVAx_SP_EX_2
+                + 15
+            )
+        ),
+        # Compensaciones Rég. especial A. G. y P. - Cuota compras
+        "42": 0,
+        # Regularización bienes de inversión
+        "43": 0,
+        # Regularización por aplicación del porcentaje definitivo de prorrata
+        "44": 0,
+        # Entregas intra. de bienes y servicios - Base ventas
+        "59": (2 * 2400) + (2 * 2500),  # S_IVA0_G_I, S_IVA0_SP_I
+        # Exportaciones y operaciones asimiladas - Base ventas
+        "60": (2 * 4600),  # S_IVA0_G_E
+        # Importes de las entregas de bienes y prestaciones de servicios
+        # a las que habiéndoles sido aplicado el régimen especial del
+        # criterio de caja hubieran resultado devengadas conforme a la regla
+        # general de devengo contenida en el art. 75 LIVA - Base imponible
+        "62": 0,
+        # Importes de las entregas de bienes y prestaciones de servicios
+        # a las que habiéndoles sido aplicado el régimen especial del
+        # criterio de caja hubieran resultado devengadas conforme a la regla
+        # general de devengo contenida en el art. 75 LIVA - Cuota
+        "63": 0,
+        # Importe de las adquisiciones de bienes y servicios a las que sea
+        # de aplicación o afecte el régimen especial del criterio de caja
+        # conforme a la ley general de devengo contenida en el artículo
+        # 75 de LIVA - Base imponible
+        "74": 0,
+        # Importe de las adquisiciones de bienes y servicios a las que sea
+        # de aplicación o afecte el régimen especial del criterio de caja
+        # conforme a la ley general de devengo contenida en el artículo
+        # 75 de LIVA - Cuota
+        "75": 0,
+    }
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        # Create model
+        cls.model303 = cls.env["l10n.es.aeat.mod303.report"].create(
+            {
+                "name": "9990000000303",
+                "company_id": cls.company.id,
+                "company_vat": "123456789",
+                "contact_name": "Test owner",
+                "statement_type": "N",
+                "support_type": "T",
+                "contact_phone": "911234455",
+                "year": 2024,
+                "period_type": "1T",
+                "date_start": "2024-01-01",
+                "date_end": "2024-03-31",
+                "journal_id": cls.journal_misc.id,
+            }
+        )
+        cls.model303_4t = cls.model303.copy(
+            {
+                "name": "9994000000303",
+                "period_type": "4T",
+                "date_start": "2024-10-01",
+                "date_end": "2024-12-31",
+            }
+        )
+
+
+class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        # Purchase invoices
+        cls._invoice_purchase_create("2024-01-01")
+        cls._invoice_purchase_create("2024-01-02")
+        purchase = cls._invoice_purchase_create("2024-01-03")
+        cls._invoice_refund(purchase, "2024-01-18")
+        # Sale invoices
+        cls._invoice_sale_create("2024-01-11")
+        cls._invoice_sale_create("2024-01-12")
+        sale = cls._invoice_sale_create("2024-01-13")
+        cls._invoice_refund(sale, "2024-01-14")
+        # Invoices for testing partial compensation
+        cls.taxes_sale = {"S_IVA21B": (2000, 420)}
+        cls.taxes_purchase = {"P_IVA21_BC": (500, 105)}
+        cls._invoice_sale_create("2025-01-01")
+        cls._invoice_purchase_create("2025-01-01")
+        cls.taxes_sale = {"S_IVA21B": (100, 21)}
+        cls.taxes_purchase = {"P_IVA21_BC": (4000, 840)}
+        cls._invoice_sale_create("2025-04-01")
+        cls._invoice_purchase_create("2025-04-01")
+        cls.taxes_sale = {"S_IVA21B": (3000, 630)}
+        cls.taxes_purchase = {"P_IVA21_BC": (100, 21)}
+        cls._invoice_sale_create("2025-07-01")
+        cls._invoice_purchase_create("2025-07-01")
+        cls.taxes_sale = {"S_IVA21B": (1350, 283.50)}
+        cls.taxes_purchase = {"P_IVA21_BC": (100, 21)}
+        cls._invoice_sale_create("2025-10-01")
+        cls._invoice_purchase_create("2025-10-01")
+
+    def _create_303(self, year, period_type, **extra_vals):
+        last_month = {"1T": 3, "2T": 6, "3T": 9, "4T": 12}[period_type]
+        report = self.env["l10n.es.aeat.mod303.report"].create(
+            {
+                "name": f"303{year}{period_type}0000",
+                "company_id": self.company.id,
+                "company_vat": "123456789",
+                "contact_name": "Test owner",
+                "statement_type": "N",
+                "support_type": "T",
+                "contact_phone": "911234455",
+                "year": year,
+                "period_type": period_type,
+                "date_start": date(year, last_month - 2, 1),
+                "date_end": date(year, last_month, 1) + relativedelta(day=31),
+                "journal_id": self.journal_misc.id,
+                **extra_vals,
+            }
+        )
+        return report
+
+    def _export_boe(self, report):
+        wizard = (
+            self.env["l10n.es.aeat.report.export_to_boe"]
+            .with_context(active_id=report.id, active_model=report._name)
+            .create({})
+        )
+        wizard.action_get_file()
+        return wizard.data.content
+
+    def _get_page(self, content, page):
+        """Return the given page of the BOE file, so that the offsets of its fields
+        are the positions of the record design minus one.
+        """
+        start = content.index(b"<T303" + page.encode() + b">")
+        return content[start:]
+
+    def _box(self, report, number):
+        return sum(
+            report.tax_line_ids.filtered(lambda x: x.field_number == number).mapped(
+                "amount"
+            )
+        )
+
+    def _check_tax_lines(self):
+        for field, result in iter(self.taxes_result.items()):
+            _logger.debug(f"Checking tax line: {field}")
+            lines = self.model303.tax_line_ids.filtered(
+                lambda x, field=field: x.field_number == int(field)
+            )
+            self.assertAlmostEqual(
+                sum(lines.mapped("amount")),
+                result,
+                2,
+                f"Incorrect result in field {field}",
+            )
+
+    def test_model_303(self):
+        _logger.debug("Calculate AEAT 303 1T 2024")
+        self.model303.button_calculate()
+        # Test default counterpart.
+        self.assertEqual(
+            self.model303.counterpart_account_id.id, self.accounts["475000"].id
+        )
+        self.assertEqual(self.model303.state, "calculated")
+        # Fill manual fields
+        self.model303.write(
+            {
+                "porcentaje_atribuible_estado": 95,
+                "potential_cuota_compensar": 250,
+                "cuota_compensar": 250,
+                "casilla_77": 455,
+            }
+        )
+        self.assertAlmostEqual(self.model303.remaining_cuota_compensar, 0)
+        if self.debug:
+            self._print_tax_lines(self.model303.tax_line_ids)
+        self._check_tax_lines()
+        # Check result
+        _logger.debug("Checking results")
+        devengado = sum(
+            self.taxes_result.get(b, 0.0)
+            for b in ("3", "6", "9", "11", "13", "15", "18", "21", "24", "26")
+        )
+        deducir = sum(
+            self.taxes_result.get(b, 0.0)
+            for b in ("29", "31", "33", "35", "37", "39", "41", "42", "43", "44")
+        )
+        subtotal = round(devengado - deducir, 3)
+        estado = round(subtotal * 0.95, 3)
+        result = round(estado + 455 - 250, 3)
+        self.assertAlmostEqual(self.model303.total_devengado, devengado, 2)
+        self.assertAlmostEqual(self.model303.total_deducir, deducir, 2)
+        self.assertAlmostEqual(self.model303.casilla_46, subtotal, 2)
+        self.assertAlmostEqual(self.model303.atribuible_estado, estado, 2)
+        self.assertAlmostEqual(self.model303.casilla_69, result, 2)
+        self.assertAlmostEqual(self.model303.resultado_liquidacion, result, 2)
+        self.assertEqual(self.model303.result_type, "I")
+        # Export to BOE
+        export_to_boe = self.env["l10n.es.aeat.report.export_to_boe"].create(
+            {"name": "test_export_to_boe.txt"}
+        )
+        export_config_xml_ids = [
+            "l10n_es_aeat_mod303.aeat_mod303_2023_main_export_config",
+            "l10n_es_aeat_mod303.aeat_mod303_2024_10_main_export_config",
+            "l10n_es_aeat_mod303.aeat_mod303_2026_02_main_export_config",
+        ]
+        for xml_id in export_config_xml_ids:
+            export_config = self.env.ref(xml_id)
+            self.assertTrue(export_to_boe._export_config(self.model303, export_config))
+        with self.assertRaises(exceptions.ValidationError):
+            self.model303.cuota_compensar = -250
+        self.model303.button_post()
+        self.assertTrue(self.model303.move_id)
+        self.assertEqual(self.model303.move_id.ref, self.model303.name)
+        self.assertEqual(
+            self.model303.move_id.journal_id,
+            self.model303.journal_id,
+        )
+        self.assertEqual(
+            self.model303.move_id.line_ids.mapped("partner_id"),
+            self.env.ref("l10n_es_aeat.res_partner_aeat"),
+        )
+        codes = self.model303.move_id.mapped("line_ids.account_id.code")
+        self.assertIn("475000", codes)
+        self.assertIn("477000", codes)
+        self.assertIn("472000", codes)
+        self.model303.button_unpost()
+        self.assertFalse(self.model303.move_id)
+        self.assertEqual(self.model303.state, "cancelled")
+        self.model303.button_recover()
+        self.assertEqual(self.model303.state, "draft")
+        self.assertEqual(self.model303.calculation_date, False)
+        self.model303.button_cancel()
+        self.assertEqual(self.model303.state, "cancelled")
+        # Check 4T without exonerated
+        self.model303_4t.button_calculate()
+        self.assertAlmostEqual(
+            self.model303_4t.tax_line_ids.filtered(
+                lambda x: x.field_number == 80
+            ).amount,
+            0,
+        )
+        # Check 4T with exonerated
+        self.model303_4t.exonerated_390 = "1"
+        self.model303_4t.button_calculate()
+        self.assertAlmostEqual(
+            self.model303_4t.tax_line_ids.filtered(
+                lambda x: x.field_number == 80
+            ).amount,
+            14280.0,
+        )
+        self.assertAlmostEqual(self.model303_4t.casilla_88, 46480.0)
+        # Check change of period type
+        self.model303_4t.period_type = "1T"
+        self.assertEqual(self.model303_4t.exonerated_390, "2")
+
+    @classmethod
+    def change_taxes_negative_special_case(cls):
+        cls.taxes_sale = {
+            # tax code: (base, tax_amount)
+            "S_IVA4B": (1000, 40),
+            "S_IVA21B//neg": (-140, -29.4),
+        }
+        cls.taxes_purchase = {
+            # tax code: (base, tax_amount)
+            "P_IVA4_BC": (240, 9.6),
+            "P_IVA21_SC//neg": (-23, -4.83),
+        }
+        cls.taxes_result = {
+            # Régimen General - Base imponible 4%
+            "1": 1000,  # S_IVA4B
+            # Régimen General - Cuota 4%
+            "3": 40,  # S_IVA4B
+            # Régimen General - Base imponible 21%
+            "7": -140,  # S_IVA21B
+            # Régimen General - Cuota 21%
+            "9": -29.4,  # S_IVA21B
+            # Modificación bases y cuotas - Base (Compras y ventas)
+            "14": 0,
+            # Modificación bases y cuotas - Cuota (Compras y ventas)
+            "15": 0,
+            # Cuotas soportadas en op. int. corrientes - Base
+            "28": 240 - 23,  # P_IVA4_IC_BC, P_IVA21_SC
+            # Cuotas soportadas en op. int. corrientes - Cuota
+            "29": 9.6 - 4.83,  # P_IVA4_IC_BC, P_IVA21_SC
+        }
+
+    def test_model_303_negative_special_case(self):
+        self.change_taxes_negative_special_case()
+        # It requires a different year from the invoices of the setup
+        self._invoice_sale_create("2023-01-01")
+        self._invoice_purchase_create("2023-01-01")
+        self.model303.date_start = "2023-01-01"
+        self.model303.date_end = "2023-03-31"
+        self.model303.button_calculate()
+        self._check_tax_lines()
+
+    def test_model_303_partial_compensation(self):
+        model303_1T = self.env["l10n.es.aeat.mod303.report"].create(
+            {
+                "name": "3030000020251",
+                "company_id": self.company.id,
+                "company_vat": "123456789",
+                "contact_name": "Test owner",
+                "statement_type": "N",
+                "support_type": "T",
+                "contact_phone": "911234455",
+                "year": 2025,
+                "period_type": "1T",
+                "date_start": "2025-01-01",
+                "date_end": "2025-03-31",
+                "journal_id": self.journal_misc.id,
+            }
+        )
+        model303_1T.button_calculate()
+        model303_1T.button_confirm()
+        model303_1T.button_post()
+        # Check move lines from 303 1T 2025
+        self.assertRecordValues(
+            model303_1T.move_id.line_ids.sorted("balance"),
+            [
+                {
+                    "account_id": self.accounts["475000"].id,
+                    "debit": 0.0,
+                    "credit": 315.0,
+                },
+                {
+                    "account_id": self.accounts["472000"].id,
+                    "debit": 0.0,
+                    "credit": 105.0,
+                },
+                {
+                    "account_id": self.accounts["477000"].id,
+                    "debit": 420.0,
+                    "credit": 0.0,
+                },
+            ],
+        )
+
+        model303_2T = model303_1T.copy(
+            {
+                "name": "3030000020252",
+                "period_type": "2T",
+                "date_start": "2025-04-01",
+                "date_end": "2025-06-30",
+            }
+        )
+        model303_2T.button_calculate()
+        model303_2T.button_confirm()
+        model303_2T.button_post()
+        account_470 = self.env["account.account"].search(
+            [("company_ids", "=", self.company.id), ("code", "=", "470000")]
+        )
+        # Check move lines from 303 2T 2025
+        self.assertRecordValues(
+            model303_2T.move_id.line_ids.sorted("balance"),
+            [
+                {
+                    "account_id": self.accounts["472000"].id,
+                    "debit": 0.0,
+                    "credit": 840.0,
+                },
+                {
+                    "account_id": self.accounts["477000"].id,
+                    "debit": 21.0,
+                    "credit": 0.0,
+                },
+                {"account_id": account_470.id, "debit": 819.0, "credit": 0.0},
+            ],
+        )
+
+        model303_3T = model303_1T.copy(
+            {
+                "name": "3030000020253",
+                "period_type": "3T",
+                "date_start": "2025-07-01",
+                "date_end": "2025-09-30",
+            }
+        )
+        model303_3T.button_calculate()
+        model303_3T.potential_cuota_compensar = 819
+        model303_3T.cuota_compensar = 609
+        model303_3T.button_confirm()
+        model303_3T.button_post()
+        # Check move lines from 303 3T 2025
+        self.assertRecordValues(
+            model303_3T.move_id.line_ids.sorted("balance"),
+            [
+                {"account_id": account_470.id, "debit": 0.0, "credit": 609.0},
+                {
+                    "account_id": self.accounts["472000"].id,
+                    "debit": 0.0,
+                    "credit": 21.0,
+                },
+                {
+                    "account_id": self.accounts["477000"].id,
+                    "debit": 630.0,
+                    "credit": 0.0,
+                },
+            ],
+        )
+
+        model303_4T = model303_1T.copy(
+            {
+                "name": "3030000020254",
+                "period_type": "4T",
+                "date_start": "2025-10-01",
+                "date_end": "2025-12-31",
+            }
+        )
+        model303_4T.button_calculate()
+        model303_4T.button_confirm()
+        model303_4T.button_post()
+        # Check move lines from 303 4T 2025
+        self.assertRecordValues(
+            model303_4T.move_id.line_ids.sorted("balance"),
+            [
+                {"account_id": account_470.id, "debit": 0.0, "credit": 210.0},
+                {
+                    "account_id": self.accounts["475000"].id,
+                    "debit": 0.0,
+                    "credit": 52.5,
+                },
+                {
+                    "account_id": self.accounts["472000"].id,
+                    "debit": 0.0,
+                    "credit": 21.0,
+                },
+                {
+                    "account_id": self.accounts["477000"].id,
+                    "debit": 283.50,
+                    "credit": 0.0,
+                },
+            ],
+        )
+
+    def test_model_303_bank_account_country(self):
+        """The SEPA mark and the refund bank data come from the IBAN country, not
+        from the country of the account holder.
+        """
+        self.company.sudo().country_id = self.env.ref("base.es")
+        es_account = self.env["res.partner.bank"].create(
+            {
+                "partner_id": self.company.partner_id.id,
+                "account_number": "ES66 2100 0418 4012 3456 7891",
+                "bank_name": "Spanish bank",
+            }
+        )
+        de_account = self.env["res.partner.bank"].create(
+            {
+                "partner_id": self.company.partner_id.id,
+                "account_number": "DE89 3704 0044 0532 0130 00",
+                "bank_name": "German bank",
+                "bank_bic": "COBADEFFXXX",
+                "street": "Bankstrasse 1",
+                "city": "Berlin",
+            }
+        )
+        # Holder's country by default, so it doesn't say where the bank is
+        self.assertEqual(de_account.country_id, self.env.ref("base.es"))
+        # 4T 2025: 283.5 accrued - 21 deductible = 262.5 to pay
+        report = self._create_303(2025, "4T")
+        report.button_calculate()
+        self.assertAlmostEqual(report.resultado_liquidacion, 262.5)
+        self.assertEqual(report.result_type, "I")
+        with Form(report) as report_form:
+            report_form.partner_bank_id = es_account
+        self.assertEqual(report.marca_sepa, "1")
+        self.assertEqual(report.result_type, "U")
+        page = self._get_page(self._export_boe(report), "DID00")
+        self.assertEqual(page[22:56], b"ES6621000418401234567891".ljust(34))
+        self.assertEqual(page[193:194], b"0")
+        # A purchase turns it into a refund: 262.5 - 420 = -157.5
+        self.patch(type(self), "taxes_purchase", {"P_IVA21_BC": (2000, 420)})
+        self._invoice_purchase_create("2025-12-01")
+        report.button_calculate()
+        self.assertAlmostEqual(report.resultado_liquidacion, -157.5)
+        self.assertEqual(report.result_type, "C")
+        with Form(report) as report_form:
+            report_form.return_last_period = True
+        self.assertEqual(report.result_type, "D")
+        page = self._get_page(self._export_boe(report), "DID00")
+        self.assertEqual(page[22:56], b"ES6621000418401234567891".ljust(34))
+        self.assertEqual(page[56:126], b" " * 70)
+        self.assertEqual(page[193:194], b"1")
+        # Refund to a German bank: SEPA account abroad, with the bank data
+        with Form(report) as report_form:
+            report_form.partner_bank_id = de_account
+        self.assertEqual(report.partner_bank_country_id, self.env.ref("base.de"))
+        self.assertEqual(report.marca_sepa, "2")
+        self.assertEqual(report.result_type, "X")
+        page = self._get_page(self._export_boe(report), "DID00")
+        self.assertEqual(page[11:22], b"COBADEFFXXX")
+        self.assertEqual(page[22:56], b"DE89370400440532013000".ljust(34))
+        self.assertEqual(page[56:126], b"GERMAN BANK".ljust(70))
+        self.assertEqual(page[126:161], b"BANKSTRASSE 1".ljust(35))
+        self.assertEqual(page[161:191], b"BERLIN".ljust(30))
+        self.assertEqual(page[191:193], b"DE")
+        self.assertEqual(page[193:194], b"2")
+
+    def test_model_303_bank_account_sepa_zone(self):
+        """A refund to an account of the SEPA zone outside the European Union (here
+        Switzerland) is "Unión Europea SEPA" (2), not "Resto Países" (3).
+        """
+        ch_account = self.env["res.partner.bank"].create(
+            {
+                "partner_id": self.company.partner_id.id,
+                "account_number": "CH93 0076 2011 6238 5295 7",
+                "bank_name": "Swiss bank",
+                "bank_bic": "UBSWCHZH80A",
+            }
+        )
+        self.patch(type(self), "taxes_purchase", {"P_IVA21_BC": (2000, 420)})
+        self._invoice_purchase_create("2025-12-01")
+        report = self._create_303(2025, "4T")
+        report.button_calculate()
+        with Form(report) as report_form:
+            report_form.return_last_period = True
+            report_form.partner_bank_id = ch_account
+        self.assertEqual(report.partner_bank_country_id, self.env.ref("base.ch"))
+        self.assertEqual(report.marca_sepa, "2")
+        self.assertEqual(report.result_type, "X")
+        page = self._get_page(self._export_boe(report), "DID00")
+        self.assertEqual(page[191:193], b"CH")
+        self.assertEqual(page[193:194], b"2")
+
+    def test_model_303_manual_result_boxes(self):
+        """Boxes [108], [109] and [112] typed after calculating change the result."""
+        self.patch(type(self), "taxes_sale", {"S_IVA21B": (1000, 210)})
+        self._invoice_sale_create("2026-01-15")
+        report = self._create_303(2026, "1T")
+        report.button_calculate()
+        self.assertAlmostEqual(report.casilla_69, 210)
+        self.assertAlmostEqual(report.resultado_liquidacion, 210)
+        with Form(report) as report_form:
+            report_form.casilla_108 = 100
+            report_form.casilla_109 = 50
+            report_form.deduct_payment_petrol_delivery = True
+            report_form.casilla_112 = 30
+        # [69] = [66] + [108]; [71] = [69] - [70] + [109] - [112]
+        self.assertAlmostEqual(report.casilla_69, 310)
+        self.assertAlmostEqual(report.resultado_liquidacion, 330)
+        self.assertEqual(report.result_type, "I")
+        with Form(report) as report_form:
+            report_form.casilla_108 = -600
+        self.assertAlmostEqual(report.casilla_69, -390)
+        self.assertAlmostEqual(report.resultado_liquidacion, -370)
+        self.assertEqual(report.result_type, "C")
+
+    def test_model_303_exempt_with_deduction_right(self):
+        """Exemptions of arts. 22 to 24 LIVA give right to deduct (art. 94.Uno.1.b
+        LIVA): they go to [60] and to the annual [94], not to [83].
+        """
+        self._get_taxes("S_IVA0_ART22,S_IVA0_ART23").active = True
+        self.patch(
+            type(self),
+            "taxes_sale",
+            {"S_IVA0_ART22": (1000, 0), "S_IVA0_ART23": (500, 0)},
+        )
+        # 2023 map
+        self._invoice_sale_create("2024-02-01")
+        self.model303.button_calculate()
+        self.assertAlmostEqual(self._box(self.model303, 60), 2 * 4600 + 1500)
+        # 2024-10 map, last period of a taxpayer exonerated of the 390
+        self._invoice_sale_create("2025-11-01")
+        report = self._create_303(2025, "4T", exonerated_390="1")
+        report.button_calculate()
+        self.assertAlmostEqual(self._box(report, 60), 1500)
+        self.assertAlmostEqual(self._box(report, 94), 1500)
+        self.assertAlmostEqual(self._box(report, 83), 0)
+
+    def test_model_303_reagyp_compensations(self):
+        """Compensations paid under the special regime of agriculture (12%) and of
+        livestock and fishing (10.5%) are deductible in [42].
+        """
+        self._get_taxes("P_IVA12_AGR,P_IVA105_GAN").active = True
+        self.patch(
+            type(self),
+            "taxes_purchase",
+            {"P_IVA12_AGR": (1000, 120), "P_IVA105_GAN": (200, 21)},
+        )
+        self._invoice_purchase_create("2025-11-01")
+        report = self._create_303(2025, "4T")
+        report.button_calculate()
+        self.assertAlmostEqual(self._box(report, 42), 141)
+        # 4T 2025: 283.5 accrued - 21 - 141 deductible
+        self.assertAlmostEqual(report.total_deducir, 162)
+        self.assertAlmostEqual(report.casilla_46, 121.5)
+
+    def test_model_303_boe_2026(self):
+        """BOE file of 2026 with the result boxes of the new layout. Positions are
+        the ones of the AEAT record design DR303e26v101 (pages 01 and 03).
+        """
+        self.patch(type(self), "taxes_sale", {"S_IVA21B": (1000, 210)})
+        self._invoice_sale_create("2026-01-15")
+        report = self._create_303(2026, "1T")
+        report.button_calculate()
+        with Form(report) as report_form:
+            report_form.casilla_108 = 100
+            report_form.casilla_109 = 50
+            report_form.deduct_payment_petrol_delivery = True
+            report_form.casilla_112 = 30
+        content = self._export_boe(report)
+        page_01 = self._get_page(content, "01000")
+        # Tipo de declaración
+        self.assertEqual(page_01[12:13], b"I")
+        page_03 = self._get_page(content, "03000")
+        # [108], [69], [109], [112] and [71]
+        self.assertEqual(page_03[322:339], b"00000000000010000")
+        self.assertEqual(page_03[339:356], b"00000000000031000")
+        self.assertEqual(page_03[373:390], b"00000000000005000")
+        self.assertEqual(page_03[390:407], b"00000000000003000")
+        self.assertEqual(page_03[407:424], b"00000000000033000")
+        # Payment with the tax current account
+        with Form(report) as report_form:
+            report_form.use_aeat_account = True
+        self.assertEqual(report.result_type, "G")
+        page_01 = self._get_page(self._export_boe(report), "01000")
+        self.assertEqual(page_01[12:13], b"G")
+
+    def test_model_303_oss_box_123(self):
+        """Sales not subject by location rules and declared in the one-stop shop go
+        to box 123 (page 03, position 80 of the AEAT record design DR303e26v101), not
+        to the accrued VAT.
+        """
+        self.patch(
+            type(self),
+            "taxes_sale",
+            {"OSS_S_IVA_NS": (1000, 0), "OSS_S_IVA_NS_B": (500, 0)},
+        )
+        sale = self._invoice_sale_create("2026-01-15")
+        self._invoice_refund(sale, "2026-02-15")
+        self._invoice_sale_create("2026-03-15")
+        report = self._create_303(2026, "1T")
+        report.button_calculate()
+        self.assertAlmostEqual(self._box(report, 123), 1500)
+        self.assertAlmostEqual(report.total_devengado, 0)
+        page_03 = self._get_page(self._export_boe(report), "03000")
+        self.assertEqual(page_03[79:96], b"00000000000150000")
+
+    def _oss_setup(self):
+        """Map the one-stop shop taxes with the button of the accounting settings
+        and return a consumer in France and a product with the Spanish 21% VAT.
+        """
+        if "l10n_eu_oss" not in self.env["ir.module.module"]._installed():
+            self.skipTest("Odoo core module l10n_eu_oss is not installed")
+        # As the administrator, who is the one allowed to open the settings
+        settings = (
+            self.env["res.config.settings"].sudo().with_company(self.company).create({})
+        )
+        settings.action_eu_oss_tax_mapping()
+        consumer = self.env["res.partner"].create(
+            {
+                "name": "French consumer",
+                "country_id": self.env.ref("base.fr").id,
+                "property_account_receivable_id": self.accounts["430000"].id,
+            }
+        )
+        product = (
+            self.env["product.product"]
+            .sudo()
+            .create(
+                {
+                    "name": "Product sold in the one-stop shop",
+                    "taxes_id": [(6, 0, self._get_taxes("S_IVA21B").ids)],
+                    "property_account_income_id": self.accounts["700000"].id,
+                }
+            )
+        )
+        return consumer, product
+
+    def _oss_invoice(self, partner, product, price, invoice_date):
+        move_form = Form(
+            self.env["account.move"]
+            .with_user(self.billing_user)
+            .with_context(default_move_type="out_invoice")
+        )
+        move_form.partner_id = partner
+        move_form.invoice_date = invoice_date
+        with move_form.invoice_line_ids.new() as line_form:
+            line_form.product_id = product
+            line_form.price_unit = price
+        invoice = move_form.save()
+        invoice.action_post()
+        return invoice
+
+    def _oss_partial_refund(self, invoice, price, refund_date):
+        reversal_form = Form(
+            self.env["account.move.reversal"]
+            .with_user(self.billing_user)
+            .with_context(active_model="account.move", active_ids=invoice.ids)
+        )
+        reversal_form.date = refund_date
+        reversal_form.reason = "Partial refund"
+        action = reversal_form.save().refund_moves()
+        refund = self.env["account.move"].browse(action["res_id"])
+        with Form(refund.with_user(self.billing_user)) as refund_form:
+            refund_form.invoice_date = refund_date
+            with refund_form.invoice_line_ids.edit(0) as line_form:
+                line_form.price_unit = price
+        refund.action_post()
+        return refund
+
+    def test_model_303_oss_country_taxes_box_123(self):
+        """The per country taxes that Odoo creates for the one-stop shop have no
+        chart template identifier, but they carry the tag of the box 123 of the Odoo
+        tax report, so the sales invoiced with them and their refunds go to box 123
+        (page 03, position 80 of the AEAT record design DR303e26v101) and to no other
+        box.
+        """
+        consumer, product = self._oss_setup()
+        invoice = self._oss_invoice(consumer, product, 1000, "2026-01-15")
+        oss_tax = invoice.invoice_line_ids.tax_ids
+        self.assertIn("OSS", invoice.fiscal_position_id.name)
+        self.assertEqual(oss_tax.amount, 20)
+        self.assertEqual(oss_tax.country_id, self.env.ref("base.es"))
+        self._oss_partial_refund(invoice, 400, "2026-02-15")
+        report = self._create_303(2026, "1T")
+        report.button_calculate()
+        self.assertEqual(report.valued_tax_line_ids.mapped("field_number"), [123])
+        self.assertAlmostEqual(self._box(report, 123), 600)
+        self.assertAlmostEqual(report.total_devengado, 0)
+        self.assertAlmostEqual(report.resultado_liquidacion, 0)
+        page_03 = self._get_page(self._export_boe(report), "03000")
+        self.assertEqual(page_03[79:96], b"00000000000060000")
+
+    def test_model_303_oss_annual_summary_box_126(self):
+        """The last period of a taxpayer exonerated of the annual summary (model 390)
+        sums the one-stop shop sales of the whole year in box 126 (page 04, position
+        200 of the AEAT record design DR303e26v101), and in the total volume [88].
+        """
+        consumer, product = self._oss_setup()
+        invoice = self._oss_invoice(consumer, product, 1000, "2026-01-15")
+        self._oss_partial_refund(invoice, 400, "2026-02-15")
+        self._oss_invoice(consumer, product, 500, "2026-11-15")
+        report_1t = self._create_303(2026, "1T", exonerated_390="1")
+        report_1t.button_calculate()
+        self.assertAlmostEqual(self._box(report_1t, 123), 600)
+        self.assertAlmostEqual(self._box(report_1t, 126), 0)
+        report_4t = self._create_303(2026, "4T", exonerated_390="2")
+        report_4t.button_calculate()
+        self.assertAlmostEqual(self._box(report_4t, 126), 0)
+        report_4t.exonerated_390 = "1"
+        report_4t.button_calculate()
+        self.assertAlmostEqual(self._box(report_4t, 123), 500)
+        self.assertAlmostEqual(self._box(report_4t, 126), 1100)
+        self.assertAlmostEqual(report_4t.casilla_88, 1100)
+        self.assertAlmostEqual(report_4t.total_devengado, 0)
+        page_04 = self._get_page(self._export_boe(report_4t), "04000")
+        self.assertEqual(page_04[199:216], b"00000000000110000")
+        self.assertEqual(page_04[369:386], b"00000000000110000")
+
+    def test_model_303_2024_10_map(self):
+        """Boxes of the map in force since 2024-10, with the rates it added."""
+        self._get_taxes("S_IVA2B,S_IVA5B,S_IVA7-5B,S_REQ1").active = True
+        self.patch(
+            type(self),
+            "taxes_sale",
+            {
+                "S_IVA0B": (100, 0),
+                "S_IVA2B": (200, 4),
+                "S_IVA4B": (300, 12),
+                "S_IVA5B": (400, 20),
+                "S_IVA7-5B": (500, 37.5),
+                "S_IVA10B": (600, 60),
+                "S_IVA21B": (700, 147),
+                "S_REQ1": (800, 8),
+                "S_REQ05": (900, 4.5),
+                "S_REQ014": (1000, 14),
+                "S_REQ52": (1100, 57.2),
+                "S_IVA0_G_I": (1200, 0),
+                "S_IVA0_G_E": (1300, 0),
+                "S_IVA_E": (1400, 0),
+                "S_IVA0_ISP": (1500, 0),
+            },
+        )
+        self._invoice_sale_create("2026-02-01")
+        self.patch(
+            type(self),
+            "taxes_purchase",
+            {
+                "P_IVA21_BC": (100, 21),
+                "P_IVA21_BI": (200, 42),
+                "P_IVA21_IBC": (300, 63),
+                "P_IVA21_IBI": (400, 84),
+                "P_IVA21_IC_BC": (500, 105),
+                "P_IVA21_IC_BI": (600, 126),
+                "P_IVA21_SP_EX": (700, 147),
+            },
+        )
+        self._invoice_purchase_create("2026-02-01")
+        # Refunded invoices: regular boxes for the invoice, [14]/[15] and
+        # [40]/[41] for the refund
+        self.patch(
+            type(self), "taxes_sale", {"S_IVA21B": (50, 10.5), "S_IVA5B": (40, 2)}
+        )
+        sale = self._invoice_sale_create("2026-02-02")
+        self._invoice_refund(sale, "2026-02-03")
+        self.patch(type(self), "taxes_purchase", {"P_IVA21_BC": (1000, 210)})
+        purchase = self._invoice_purchase_create("2026-02-02")
+        self._invoice_refund(purchase, "2026-02-03")
+        report = self._create_303(2026, "1T")
+        report.button_calculate()
+        expected = {
+            150: 100,
+            152: 0,
+            165: 200,
+            167: 4,
+            1: 300,
+            3: 12,
+            153: 400 + 500 + 40,
+            155: 20 + 37.5 + 2,
+            4: 600,
+            6: 60,
+            7: 700 + 50,
+            9: 147 + 10.5,
+            10: 500 + 600,
+            11: 105 + 126,
+            12: 700,
+            13: 147,
+            14: -(50 + 40),
+            15: -(10.5 + 2),
+            16: 800,
+            18: 8,
+            168: 900,
+            170: 4.5,
+            19: 1000,
+            21: 14,
+            22: 1100,
+            24: 57.2,
+            25: 0,
+            26: 0,
+            28: 100 + 700 + 1000,
+            29: 21 + 147 + 210,
+            30: 200,
+            31: 42,
+            32: 300,
+            33: 63,
+            34: 400,
+            35: 84,
+            36: 500,
+            37: 105,
+            38: 600,
+            39: 126,
+            40: -1000,
+            41: -210,
+            42: 0,
+            59: 1200,
+            60: 1300,
+            120: 1400,
+            122: 1500,
+        }
+        for box, amount in expected.items():
+            self.assertAlmostEqual(
+                self._box(report, box), amount, 2, f"Incorrect result in box {box}"
+            )
+        # [27] = [152] + [167] + [03] + [155] + [06] + [09] + [11] + [13] + [15]
+        # + [158] + [170] + [18] + [21] + [24] + [26]
+        self.assertAlmostEqual(report.total_devengado, 742.2, 2)
+        # [45] = [29] + [31] + [33] + [35] + [37] + [39] + [41] + [42] + [43] + [44]
+        self.assertAlmostEqual(report.total_deducir, 588, 2)
+        self.assertAlmostEqual(report.casilla_46, 154.2, 2)
