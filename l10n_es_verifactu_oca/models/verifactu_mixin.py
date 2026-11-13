@@ -160,6 +160,10 @@ class VerifactuMixin(models.AbstractModel):
         https://prewww2.aeat.es/wlpl/TIKECONT/ValidarQR?nif=89890001K&numserie=12345678%26G33&fecha=01-01-2024&importe=241.4
         """  # noqa: E501
         for record in self:
+            # Same condition as the QR code: drafts may have no date yet
+            if record.state != "posted" or not record.verifactu_enabled:
+                record.verifactu_qr_url = False
+                continue
             # FIXME: Not be hard-coded
             agency = self.env.ref("l10n_es_aeat.aeat_tax_agency_spain")
             if record.company_id.verifactu_test:

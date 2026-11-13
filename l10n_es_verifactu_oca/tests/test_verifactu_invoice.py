@@ -135,6 +135,16 @@ class TestVerifactuInvoice(TestVerifactuCommon):
             "Chain entry should belong to expected company",
         )
 
+    def test_verifactu_qr_url_draft_without_date(self):
+        """The QR URL of a draft invoice without date can be read (e.g. export)"""
+        invoice = (
+            self.env["account.move"]
+            .with_company(self.company)
+            .create({"move_type": "out_invoice", "partner_id": self.partner.id})
+        )
+        self.assertFalse(invoice.invoice_date)
+        self.assertFalse(invoice.verifactu_qr_url)
+
     def test_verifactu_chain_first_invoice(self):
         """Test that the first invoice creates a chain entry."""
         self._activate_certificate(self.certificate_password)
