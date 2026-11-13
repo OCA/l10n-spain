@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="group_aeat_mod190" model="res.groups">
+        <field name="name">AEAT Model 190 (with access to sensitive data)</field>
+        <field name="privilege_id" ref="l10n_es_aeat.res_groups_privilege_aeat" />
+        <field
+            name="user_ids"
+            eval="[Command.link(ref('base.user_root')), Command.link(ref('base.user_admin'))]"
+        />
+        <field
+            name="implied_ids"
+            eval="[Command.link(ref('l10n_es_aeat.group_account_aeat'))]"
+        />
+    </record>
+</odoo>
