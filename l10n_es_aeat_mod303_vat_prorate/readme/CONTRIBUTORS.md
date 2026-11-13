@@ -1,0 +1,13 @@
+- [Tecnativa](https://www.tecnativa.com)
+  - Pedro M. Baeza
+  - Víctor Martínez
+  - Carolina Fernandez
+  - Carlos Dauden
+- [Sygel](https://www.sygel.es)
+  - Harald Panten
+  - Manuel Regidor
+  - Valentín Vinagre
+  - Alberto Martínez
+  - Ángel Rivas
+- [Moduon](https://www.moduon.team/):
+  - Andrii Kompaniiets
