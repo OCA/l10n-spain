@@ -4,6 +4,13 @@ from odoo import api, fields, models
 class PosConfig(models.Model):
     _inherit = "pos.config"
 
+    verifactu_journal_enabled = fields.Boolean(
+        related="journal_id.verifactu_enabled",
+        string="VERI*FACTU journal enabled",
+        help="The registration needs the PoS journal to have VERI*FACTU "
+        "enabled. Needed on PoS to keep the QR code out of the tickets that "
+        "the backend does not register.",
+    )
     verifactu_base_url = fields.Char(
         string="Verifactu Base URL",
         compute="_compute_verifactu_base_url",
