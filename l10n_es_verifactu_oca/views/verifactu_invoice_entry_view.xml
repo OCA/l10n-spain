@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_verifactu_invoice_entry_tree" model="ir.ui.view">
+        <field name="name">verifactu.invoice.entry.list</field>
+        <field name="model">verifactu.invoice.entry</field>
+        <field name="arch" type="xml">
+            <list create="false" edit="false" delete="false" duplicate="0">
+                <field name="create_date" />
+                <field name="verifactu_chaining_id" />
+                <field name="document_id" optional="hide" />
+                <field name="model" optional="hide" />
+                <field name="document_name" />
+                <field name="company_id" groups="base.group_multi_company" />
+                <field name="document_hash" />
+                <field name="previous_hash" />
+                <field name="entry_type" />
+                <field
+                    name="send_state"
+                    widget="badge"
+                    decoration-success="send_state == 'sent'"
+                    decoration-danger="send_state == 'not_sent'"
+                    decoration-warning="send_state in ('sent_w_errors', 'incorrect', 'cancel_incorrect', 'cancel_w_errors')"
+                    decoration-muted="send_state == 'cancel'"
+                />
+            </list>
+        </field>
+    </record>
+    <record id="view_verifactu_invoice_entry_form" model="ir.ui.view">
+        <field name="name">verifactu.invoice.entry.form</field>
+        <field name="model">verifactu.invoice.entry</field>
+        <field name="arch" type="xml">
+            <form create="false" edit="false" delete="false" duplicate="0">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="verifactu_chaining_id" />
+                            <field name="document_id" />
+                            <field name="model" />
+                            <field name="document_name" />
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                            />
+                        </group>
+                        <group>
+                            <field name="previous_invoice_entry_id" />
+                            <field name="document_hash" />
+                            <field name="create_date" />
+                            <field name="entry_type" />
+                            <field name="send_state" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="AEAT DATA">
+                            <group>
+                                <field name="aeat_json_data" widget="text" />
+                            </group>
+                        </page>
+                        <page string="Responses">
+                            <group>
+                                <field name="response_line_ids">
+                                    <list>
+                                        <field name="entry_id" column_invisible="1" />
+                                        <field name="entry_response_id" />
+                                        <field name="create_date" />
+                                        <field
+                                            name="send_state"
+                                            widget="badge"
+                                            decoration-success="send_state == 'sent'"
+                                            decoration-danger="send_state == 'not_sent'"
+                                            decoration-warning="send_state in ('sent_w_errors', 'incorrect', 'cancel_incorrect', 'cancel_w_errors')"
+                                            decoration-muted="send_state == 'cancel'"
+                                        />
+                                    </list>
+                                </field>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="view_verifactu_invoice_entry_search" model="ir.ui.view">
+        <field name="name">verifactu.invoice.entry.search</field>
+        <field name="model">verifactu.invoice.entry</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="document_id" />
+                <field name="company_id" />
+                <field name="document_hash" />
+                <filter
+                    string="Company"
+                    name="group_by_company"
+                    domain="[]"
+                    context="{'group_by': 'company_id'}"
+                />
+                <filter
+                    string="Chaining"
+                    name="group_by_chaining"
+                    domain="[]"
+                    context="{'group_by': 'verifactu_chaining_id'}"
+                />
+                <filter
+                    string="Date"
+                    name="group_by_date"
+                    domain="[]"
+                    context="{'group_by': 'create_date:month'}"
+                />
+            </search>
+        </field>
+    </record>
+    <record id="action_verifactu_invoice_entry" model="ir.actions.act_window">
+        <field name="name">VERI*FACTU invoices</field>
+        <field name="res_model">verifactu.invoice.entry</field>
+        <field name="path">verifactu-invoice-entries</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No VERI*FACTU invoice entries found!
+            </p>
+            <p>
+                Invoice entries are automatically created when invoices are validated
+                with VERI*FACTU enabled.
+            </p>
+        </field>
+    </record>
+</odoo>

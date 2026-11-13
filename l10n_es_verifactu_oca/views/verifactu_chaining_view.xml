@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--  Copyright 2024 Aures TIC - Almudena de La Puente
+    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
+<odoo>
+    <record id="verifactu_chaining_form_view" model="ir.ui.view">
+        <field name="name">verifactu.chaining.form</field>
+        <field name="model">verifactu.chaining</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name" />
+                        <field name="last_verifactu_invoice_entry_id" />
+                        <field name="sif_id" />
+                        <field name="installation_number" />
+                    </group>
+                </sheet>
+                <chatter />
+            </form>
+        </field>
+    </record>
+    <record id="verifactu_chaining_tree_view" model="ir.ui.view">
+        <field name="name">verifactu.chaining.list</field>
+        <field name="model">verifactu.chaining</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name" />
+                <field name="last_verifactu_invoice_entry_id" />
+                <field name="sif_id" />
+                <field name="installation_number" />
+            </list>
+        </field>
+    </record>
+    <record id="verifactu_chaining_action" model="ir.actions.act_window">
+        <field name="name">VERI*FACTU chainings</field>
+        <field name="path">verifactu-chainings</field>
+        <field name="res_model">verifactu.chaining</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <menuitem
+        id="verifactu_chaining_menu"
+        action="verifactu_chaining_action"
+        parent="l10n_es_aeat.menu_l10n_es_aeat_config"
+    />
+</odoo>
