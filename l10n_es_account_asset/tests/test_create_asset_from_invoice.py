@@ -2,6 +2,7 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 from odoo import Command
+from odoo.tests import Form
 
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
     TestL10nEsAeatModBase,
@@ -64,6 +65,42 @@ class TestCreateAssetFromInvoice(TestL10nEsAeatModBase):
                 "company_id": cls.company.id,
             }
         )
+        # Cars, on an account with an asset profile
+        cls.car_account = cls.env.ref(f"account.{cls.company.id}_account_common_218")
+        cls.car_profile = cls.profile.copy(
+            {"name": "Cars", "account_asset_id": cls.car_account.id}
+        )
+        cls.car_account.asset_profile_id = cls.car_profile
+
+    def _post_bill_form(self, lines):
+        """Post a vendor bill entered in its form, with one line on the cars
+        account per (price, tax, deductible percentage) given"""
+        bill_form = Form(
+            self.env["account.move"]
+            .with_user(self.account_user)
+            .with_context(default_move_type="in_invoice")
+        )
+        bill_form.partner_id = self.supplier
+        bill_form.invoice_date = "2025-11-01"
+        bill_form.journal_id = self.journal_purchase
+        for price_unit, tax_xmlid, deductible_percentage in lines:
+            with bill_form.invoice_line_ids.new() as line_form:
+                line_form.name = "Car"
+                line_form.account_id = self.car_account
+                line_form.price_unit = price_unit
+                line_form.tax_ids.clear()
+                line_form.tax_ids.add(
+                    self.env.ref(
+                        f"account.{self.company.id}_account_tax_template_{tax_xmlid}"
+                    )
+                )
+                line_form.deductible_percentage = deductible_percentage
+        bill = bill_form.save()
+        bill.action_post()
+        return bill
+
+    def _get_assets(self, move):
+        return self.env["account.asset"].search([("code", "=", move.name)])
 
     def _post_bill(self, lines, move_type="in_invoice", currency=None):
         """Post a vendor bill with one asset line per (price, tax) given"""
@@ -129,3 +166,47 @@ class TestCreateAssetFromInvoice(TestL10nEsAeatModBase):
         asset = self._post_bill([(10000, "p_iva0_nd")], currency=self.jpy)
         # 10000 / 150 = 66.67 plus 2100 / 150 = 14.00
         self.assertEqual(asset.purchase_value, 80.67)
+
+    def test_deductible_percentage(self):
+        """A car bought for 100 + 21 % of VAT, deductible at 50 % (art. 95.Tres
+        LIVA): Odoo core books the private part of the line on its own lines, on
+        the account of the line, which are not another asset. The non deductible
+        VAT is part of the value of the asset."""
+        bill = self._post_bill_form([(100, "p_iva21_bc", 0.5)])
+        asset = self._get_assets(bill)
+        self.assertEqual(asset.mapped("purchase_value"), [110.5])
+        self.assertEqual(bill.invoice_line_ids.asset_id, asset)
+
+    def test_deductible_percentage_refund(self):
+        """The credit note of the bill gives the same value with its sign"""
+        bill = self._post_bill_form([(100, "p_iva21_bc", 0.5)])
+        reversal = (
+            self.env["account.move.reversal"]
+            .with_user(self.account_user)
+            .with_context(active_model="account.move", active_ids=bill.ids)
+            .create({"journal_id": bill.journal_id.id})
+        )
+        refund = self.env["account.move"].browse(reversal.refund_moves()["res_id"])
+        refund.action_post()
+        self.assertEqual(self._get_assets(refund).mapped("purchase_value"), [-110.5])
+
+    def test_deductible_percentage_several_lines(self):
+        """Each line gets the VAT of its own private part, not the one of another
+        line with the same tax. With a non deductible tax, all its quota is in the
+        value."""
+        bill = self._post_bill_form(
+            [(100, "p_iva21_bc", 0.5), (300, "p_iva21_bc", 1), (200, "p_iva0_nd", 0.5)]
+        )
+        self.assertEqual(
+            sorted(self._get_assets(bill).mapped("purchase_value")), [110.5, 242, 300]
+        )
+
+    def test_deductible_percentage_no_vat_taxes(self):
+        """Only the VAT of the private part is in the value: not the child that
+        subtracts the base in the group of taxes of the DUA, nor a withholding"""
+        bill = self._post_bill_form(
+            [(100, "p_iva21_ibc_group", 0.5), (200, "p_irpf15", 0.5)]
+        )
+        self.assertEqual(
+            sorted(self._get_assets(bill).mapped("purchase_value")), [110.5, 200]
+        )

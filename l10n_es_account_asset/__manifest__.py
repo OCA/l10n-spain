@@ -15,5 +15,5 @@
     "data": ["views/account_asset_profile_views.xml", "views/account_asset_views.xml"],
     "installable": True,
     "development_status": "Production/Stable",
-    "maintainers": ["pedrobaeza"],
+    "maintainers": ["pedrobaeza", "carlosdauden"],
 }
