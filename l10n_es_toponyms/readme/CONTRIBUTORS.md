@@ -1,0 +1,13 @@
+- Borja López
+- Omar Castiñeira
+- Jordi Esteve
+- Ángel Moya
+- Roberto Lizana
+- Enric Tobella
+- \`Tecnativa \<<https://www.tecnativa.com>\>\`:
+  - Pedro M. Baeza
+  - Sergio Teruel
+  - João Marques
+  - Juan Carlos Oñate
+- David Gómez
+- Jose Luis Algara
