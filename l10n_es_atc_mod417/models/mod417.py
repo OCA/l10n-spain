@@ -165,7 +165,7 @@ class L10nEsAtcmod417Report(models.Model):
         for report in self:
             report.diferencia = report.total_devengado - report.total_deducir
 
-    @api.depends("total_devengado")
+    @api.depends("diferencia", "regularizacion_cuotas", "cuotas_compensar", "a_deducir")
     def _compute_resultado_autoliquidacion(self):
         for report in self:
             report.resultado_autoliquidacion = (
