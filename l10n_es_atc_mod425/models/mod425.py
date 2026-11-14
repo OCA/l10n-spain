@@ -344,7 +344,7 @@ class L10nEsAtcMod425Report(models.Model):
 
     ###############################################
 
-    @api.depends("tax_line_ids", "tax_line_ids.amount")
+    @api.depends("tax_line_ids", "tax_line_ids.amount", "casilla_72")
     def _compute_casilla_74(self):
         for report in self:
             report.casilla_74 = (
@@ -458,8 +458,8 @@ class L10nEsAtcMod425Report(models.Model):
             report.casilla_113 = report.casilla_95
 
     @api.depends(
-        "casilla_74",
         "casilla_112",
+        "casilla_113",
         "casilla_114",
         "tax_line_ids",
         "tax_line_ids.amount",

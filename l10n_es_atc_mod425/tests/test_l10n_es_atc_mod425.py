@@ -513,6 +513,14 @@ class TestL10nEsAeatMod425(TestL10nEsAtcMod425Base):
         self.assertAlmostEqual(self.model425.casilla_94, 2339.30, 2)
         self.assertAlmostEqual(self.model425.casilla_95, -197.25, 2)
         self.assertAlmostEqual(self.model425.casilla_120, 21340, 2)
+        self.assertAlmostEqual(self.model425.casilla_115, -197.25, 2)
+        # Manual boxes entered after the calculation
+        self.model425.casilla_90 = 10
+        self.assertAlmostEqual(self.model425.casilla_113, -207.25, 2)
+        self.assertAlmostEqual(self.model425.casilla_115, -207.25, 2)
+        self.model425.casilla_72 = 100
+        self.assertAlmostEqual(self.model425.casilla_74, 21240, 2)
+        self.assertAlmostEqual(self.model425.casilla_120, 21240, 2)
         self.model425.button_confirm()
         self.assertEqual(self.model425.state, "done")
         self.model425.button_unpost()
