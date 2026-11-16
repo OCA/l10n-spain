@@ -4,11 +4,19 @@
 
 import logging
 import re
-from datetime import datetime
+from datetime import UTC, datetime
 
 from odoo import api, exceptions, fields, models
 
+from odoo.addons.base.models.res_partner_bank import sanitize_account_number
+
 _logger = logging.getLogger(__name__)
+
+
+def _parse_date(value):
+    """Parse a N43 date (YYMMDD), which has no time nor timezone."""
+    return datetime.strptime(value, "%y%m%d").replace(tzinfo=UTC).date()
+
 
 try:
     import chardet
@@ -40,20 +48,6 @@ account_mapping = {
     "99": "5720%00",
 }
 
-CURRENCY_ISO4217_MAP = {
-    978: "EUR",
-    36: "AUD",
-    840: "USD",
-    826: "GBP",
-    756: "CHF",
-    752: "SEK",
-    578: "NOK",
-    554: "NZD",
-    392: "JPY",
-    208: "DKK",
-    124: "CAD",
-}
-
 
 class AccountStatementImport(models.TransientModel):
     _inherit = "account.statement.import"
@@ -64,8 +58,8 @@ class AccountStatementImport(models.TransientModel):
             "entidad": line[2:6],
             "oficina": line[6:10],
             "cuenta": line[10:20],
-            "fecha_ini": datetime.strptime(line[20:26], "%y%m%d"),
-            "fecha_fin": datetime.strptime(line[26:32], "%y%m%d"),
+            "fecha_ini": _parse_date(line[20:26]),
+            "fecha_fin": _parse_date(line[26:32]),
             "divisa": line[47:50],
             "modalidad": line[50:51],  # 1, 2 o 3
             "nombre_propietario": line[51:77],
@@ -85,8 +79,8 @@ class AccountStatementImport(models.TransientModel):
         """22 - Registro principal de movimiento (obligatorio)"""
         st_line = {
             "of_origen": line[6:10],
-            "fecha_oper": datetime.strptime(line[10:16], "%y%m%d"),
-            "fecha_valor": datetime.strptime(line[16:22], "%y%m%d"),
+            "fecha_oper": _parse_date(line[10:16]),
+            "fecha_valor": _parse_date(line[16:22]),
             "concepto_c": line[22:24],
             "concepto_p": line[24:27],
             "importe": (float(line[28:40]) + (float(line[40:42]) / 100)),
@@ -169,7 +163,7 @@ class AccountStatementImport(models.TransientModel):
         # Note: Only perform this check if the balance is defined on the file
         # record, as some banks may leave it empty (zero) on some circumstances
         # (like CaixaNova extracts for VISA credit cards).
-        if st_group["saldo_fin"] and st_group["saldo_ini"]:  # pragma: no cover
+        if st_group["saldo_fin"]:
             balance = st_group["saldo_ini"] + credit - debit
             if abs(st_group["saldo_fin"] - balance) > 0.005:
                 raise exceptions.UserError(
@@ -258,8 +252,9 @@ class AccountStatementImport(models.TransientModel):
             try:
                 data_decoded = data_file.decode(encodings.pop())
                 return self._parse(data_decoded)
-            except (UnicodeDecodeError, exceptions.ValidationError):
-                _logger.info("Something was wrong with encodings!")
+            except (ValueError, IndexError, exceptions.ValidationError):
+                # Not parseable with this encoding (or not an N43 file at all)
+                _logger.info("The file couldn't be parsed as N43.")
         return False
 
     def _get_n43_ref(self, line):
@@ -278,47 +273,53 @@ class AccountStatementImport(models.TransientModel):
         else:  # pragma: no cover
             return "{} / {}".format(line["referencia1"], line["referencia2"])
 
-    def _get_n43_partner_from_caixabank(self, conceptos):
+    def _get_n43_partner_from_caixabank(self, conceptos, domain=None):
         partner_obj = self.env["res.partner"]
         partner = partner_obj.browse()
         # Try to match from VAT included in concept complementary record #02
         if conceptos.get("02"):  # pragma: no cover
             vat = conceptos["02"][0][:2] + conceptos["02"][0][7:]
             if vat:
-                partner = partner_obj.search([("vat", "=", vat)], limit=1)
-        if not partner:
+                partner = partner_obj.search(
+                    [("vat", "=", vat)] + (domain or []), limit=1
+                )
+        if not partner and conceptos.get("01"):
             # Try to match from partner name
-            if conceptos.get("01"):
-                name = conceptos["01"][0][4:] + conceptos["01"][1]
-                if name and len(name) > 7:
-                    partner = partner_obj.search([("name", "ilike", name)], limit=1)
+            name = conceptos["01"][0][4:] + conceptos["01"][1]
+            if name and len(name) > 7:
+                partner = partner_obj.search(
+                    [("name", "ilike", name)] + (domain or []), limit=1
+                )
         return partner
 
-    def _get_n43_partner_from_santander(self, conceptos):
+    def _get_n43_partner_from_santander(self, conceptos, domain=None):
         partner_obj = self.env["res.partner"]
         partner = partner_obj.browse()
         # Try to match from VAT included in concept complementary record #01
-        if conceptos.get("01"):
-            if conceptos["01"][1]:
-                vat = conceptos["01"][1]
-                if vat:
-                    partner = partner_obj.search([("vat", "ilike", vat)], limit=1)
-        if not partner:
+        if conceptos.get("01") and conceptos["01"][1]:
+            vat = conceptos["01"][1]
+            partner = partner_obj.search(
+                [("vat", "ilike", vat)] + (domain or []), limit=1
+            )
+        if not partner and conceptos.get("01"):
             # Try to match from partner name
-            if conceptos.get("01"):
-                name = conceptos["01"][0]
-                if name and len(name) > 7:
-                    partner = partner_obj.search([("name", "ilike", name)], limit=1)
+            name = conceptos["01"][0]
+            if name and len(name) > 7:
+                partner = partner_obj.search(
+                    [("name", "ilike", name)] + (domain or []), limit=1
+                )
         return partner
 
-    def _get_n43_partner_from_sabadell(self, conceptos):
+    def _get_n43_partner_from_sabadell(self, conceptos, domain=None):
         partner_obj = self.env["res.partner"]
         partner = partner_obj.browse()
         # Try to match from partner name
         if conceptos.get("01"):
             name = conceptos["01"][1]
             if name and len(name) > 7:
-                partner = partner_obj.search([("name", "ilike", name)], limit=1)
+                partner = partner_obj.search(
+                    [("name", "ilike", name)] + (domain or []), limit=1
+                )
         return partner
 
     def _get_n43_partner(self, line, journal):
@@ -329,15 +330,16 @@ class AccountStatementImport(models.TransientModel):
             search_methods = [x[0] for x in selection if x[0] not in ("all", "none")]
         else:
             search_methods = [journal.n43_partner_search]
-        own_partner = journal.company_id.partner_id
+        # Never match the journal's own company (or a contact of it): the concept
+        # text may contain the company name (e.g. a transfer whose concept reads
+        # "Transfer <company name>"). It's excluded in the search itself, so a real
+        # partner can't be hidden behind it by the result limit.
+        domain = [("commercial_partner_id", "!=", journal.company_id.partner_id.id)]
         for search_method in search_methods:
             partner = getattr(self, f"_get_n43_partner_from_{search_method}")(
-                line["conceptos"]
+                line["conceptos"], domain=domain
             )
-            # Never match the journal's own company (or a contact of it):
-            # the concept text may contain the company name (e.g. a transfer
-            # whose concept reads "Transfer <company name>").
-            if partner and partner.commercial_partner_id != own_partner:
+            if partner:
                 return partner
         return self.env["res.partner"]
 
@@ -367,8 +369,33 @@ class AccountStatementImport(models.TransientModel):
                 result.append(data)
         return result
 
+    def _get_n43_unique_import_id(self, group, line, occurrences):
+        """Build an identifier for the line to avoid importing it twice.
+
+        N43 has no transaction identifier, so it's computed from the raw data
+        of the record. An occurrence counter is added to keep apart lines that
+        are completely identical inside the same account.
+        """
+        key = "-".join(
+            str(line[x])
+            for x in (
+                "fecha_oper",
+                "fecha_valor",
+                "concepto_c",
+                "concepto_p",
+                "importe",
+                "num_documento",
+                "referencia1",
+                "referencia2",
+            )
+        )
+        key = f"{group['cuenta']}-{key}"
+        occurrences[key] = occurrences.get(key, 0) + 1
+        return f"{key}-{occurrences[key]}"
+
     def _parse_single_file_n43(self, n43):
         transactions = []
+        occurrences = {}
         for group in n43:
             for line in group["lines"]:
                 conceptos = []
@@ -382,6 +409,9 @@ class AccountStatementImport(models.TransientModel):
                     or "/",
                     "ref": self._get_n43_ref(line),
                     "amount": line["importe"],
+                    "unique_import_id": self._get_n43_unique_import_id(
+                        group, line, occurrences
+                    ),
                     # inject raw parsed N43 dict for later use, that will be
                     # removed before passing final values to create the record
                     "n43_line": line,
@@ -394,7 +424,8 @@ class AccountStatementImport(models.TransientModel):
             "transactions": transactions,
             "balance_start": n43 and n43[0]["saldo_ini"] or 0.0,
             "balance_end_real": n43 and n43[-1]["saldo_fin"] or 0.0,
-            "creation_context": {"skip_retrieve_partner": True},
+            # Bank and branch codes to match the journal, removed afterwards
+            "n43_branch": n43[0]["entidad"] + n43[0]["oficina"],
         }
         return (
             self._get_currency_iso4217(int(n43[0]["divisa"])),
@@ -403,14 +434,42 @@ class AccountStatementImport(models.TransientModel):
         )
 
     def _get_currency_iso4217(self, iso_currency):
-        if self.env["res.currency"]._fields.get("numeric_code"):
-            # We will use the info from base_currency_iso_4217 if it is installed
-            return (
-                self.env["res.currency"]
-                .search([("numeric_code", "=", iso_currency)])
-                .name
+        currency = (
+            self.env["res.currency"]
+            .with_context(active_test=False)
+            .search([("iso_numeric", "=", iso_currency)], limit=1)
+        )
+        return currency.name
+
+    def import_single_statement(self, single_statement_data, result):
+        branch = False
+        for st_vals in single_statement_data[2]:
+            branch = st_vals.pop("n43_branch", branch)
+        return super(
+            AccountStatementImport, self.with_context(n43_branch=branch)
+        ).import_single_statement(single_statement_data, result)
+
+    @api.model
+    def _match_journal(self, account_number, currency):
+        """The N43 file only informs about the 10 digits of the account number, that
+        can be shared by accounts of different banks, so, when there are several
+        candidates, the one that also has the bank and branch codes is preferred.
+        """
+        branch = self.env.context.get("n43_branch")
+        if account_number and branch:
+            sanitized = sanitize_account_number(account_number)
+            journals = self.env["account.journal"].search(
+                [
+                    ("type", "=", "bank"),
+                    ("bank_account_id.sanitized_account_number", "ilike", sanitized),
+                ]
             )
-        return CURRENCY_ISO4217_MAP.get(iso_currency)
+            journals = journals.filtered(
+                lambda x: branch in x.bank_account_id.sanitized_account_number
+            )
+            if journals:
+                account_number = journals[0].bank_account_id.sanitized_account_number
+        return super()._match_journal(account_number, currency)
 
     def _complete_stmts_vals(self, stmts_vals, journal, account_number):
         """Match partner_id if it hasn't been deducted yet & discard excluded lines."""

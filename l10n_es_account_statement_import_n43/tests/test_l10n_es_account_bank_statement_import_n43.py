@@ -4,6 +4,7 @@
 import base64
 
 from odoo import fields
+from odoo.exceptions import UserError
 from odoo.tests import common
 from odoo.tools.misc import file_path
 
@@ -17,14 +18,14 @@ class L10nEsAccountStatementImportN43(common.TransactionCase):
         )
         cls.partner_bank = cls.env["res.partner.bank"].create(
             {
-                "acc_number": "000000000000000000000000",
+                "account_number": "000000000000000000000000",
                 "company_id": cls.env.company.id,
                 "partner_id": cls.env.company.partner_id.id,
             }
         )
         cls.partner_bank_01 = cls.env["res.partner.bank"].create(
             {
-                "acc_number": "000000000000001000000000",
+                "account_number": "000000000000001000000000",
                 "company_id": cls.env.company.id,
                 "partner_id": cls.env.company.partner_id.id,
             }
@@ -52,7 +53,8 @@ class L10nEsAccountStatementImportN43(common.TransactionCase):
             }
         )
         n43_file_path = file_path("l10n_es_account_statement_import_n43/tests/test.n43")
-        n43_file = base64.b64encode(open(n43_file_path, "rb").read())
+        with open(n43_file_path, "rb") as f:
+            n43_file = base64.b64encode(f.read()).decode()
         cls.import_wizard = (
             cls.env["account.statement.import"]
             .with_context(journal_id=cls.journal.id)
@@ -63,7 +65,8 @@ class L10nEsAccountStatementImportN43(common.TransactionCase):
         n43_file_path = file_path(
             "l10n_es_account_statement_import_n43/tests/testmulti.n43"
         )
-        n43_file = base64.b64encode(open(n43_file_path, "rb").read())
+        with open(n43_file_path, "rb") as f:
+            n43_file = base64.b64encode(f.read()).decode()
         self.import_wizard.statement_file = n43_file
         action = self.import_wizard.with_context(journal_id=False).import_file_button()
         self.assertTrue(action)
@@ -132,12 +135,9 @@ class L10nEsAccountStatementImportN43(common.TransactionCase):
         company as partner of the imported line."""
         self.env.company.partner_id.name = "Own Company N43 Test"
         n43_file_path = file_path("l10n_es_account_statement_import_n43/tests/test.n43")
-        n43_content = (
-            open(n43_file_path, "rb")
-            .read()
-            .replace(b"TEST PARTNER N43", b"OWN COMPANY N43 TEST")
-        )
-        self.import_wizard.statement_file = base64.b64encode(n43_content)
+        with open(n43_file_path, "rb") as f:
+            n43_content = f.read().replace(b"TEST PARTNER N43", b"OWN COMPANY N43 TEST")
+        self.import_wizard.statement_file = base64.b64encode(n43_content).decode()
         self.import_wizard.import_file_button()
         st_lines = self.env["account.bank.statement.line"].search(
             [("statement_id.journal_id", "=", self.journal.id)]
@@ -145,3 +145,68 @@ class L10nEsAccountStatementImportN43(common.TransactionCase):
         self.assertEqual(len(st_lines), 3)
         matched_line = st_lines.filtered(lambda line: line.ref == "000975737917")
         self.assertFalse(matched_line.partner_id)
+
+    def test_import_n43_twice(self):
+        """Importing the same file again doesn't duplicate the lines."""
+        self.import_wizard.import_file_button()
+        domain = [("statement_id.journal_id", "=", self.journal.id)]
+        st_lines = self.env["account.bank.statement.line"].search(domain)
+        self.assertEqual(len(st_lines), 3)
+        self.assertTrue(all(st_lines.mapped("unique_import_id")))
+        with self.assertRaisesRegex(UserError, "already imported"):
+            self.import_wizard.import_file_button()
+        self.assertEqual(
+            self.env["account.bank.statement.line"].search(domain), st_lines
+        )
+
+    def test_import_n43_final_balance_with_zero_initial_balance(self):
+        """The final balance is checked even if the initial one is zero."""
+        n43_file_path = file_path("l10n_es_account_statement_import_n43/tests/test.n43")
+        with open(n43_file_path, "rb") as f:
+            n43_content = f.read().replace(b"00000010196978", b"00000020196978")
+        self.import_wizard.statement_file = base64.b64encode(n43_content).decode()
+        with self.assertRaisesRegex(UserError, "Final balance amount"):
+            self.import_wizard.import_file_button()
+
+    def test_import_not_n43(self):
+        """A file that is not N43 falls to the next importer in the chain."""
+        content = b"11/05/2026;PAYMENT 101;100,00\n12/05/2026;PAYMENT 102;50,50\n"
+        self.import_wizard.statement_file = base64.b64encode(content).decode()
+        with self.assertRaisesRegex(UserError, "format is not supported"):
+            self.import_wizard.import_file_button()
+
+    def test_n43_partner_search_own_company_does_not_hide_real_partner(self):
+        """The own company is left out of the search, so it can't hide a real
+        partner that matches the same text."""
+        self.env.company.partner_id.name = "Own Company N43 Test"
+        real_partner = self.env["res.partner"].create(
+            {"name": "Own Company N43 Test SL"}
+        )
+        self.journal.n43_partner_search = "santander"
+        line = {"conceptos": {"01": ("Own Company N43 Test", "")}}
+        partner = self.import_wizard._get_n43_partner(line, self.journal)
+        self.assertEqual(partner, real_partner)
+
+    def test_import_n43_journal_matched_by_bank_and_branch(self):
+        """Accounts of different banks can share the 10 digits of the account
+        number, so the bank and branch codes are used to choose the journal."""
+        partner_bank = self.env["res.partner.bank"].create(
+            {
+                "account_number": "ES00123456780000000000",
+                "company_id": self.env.company.id,
+                "partner_id": self.env.company.partner_id.id,
+            }
+        )
+        journal = self.journal.copy(
+            {"name": "Other bank", "code": "BN43B", "bank_account_id": partner_bank.id}
+        )
+        n43_file_path = file_path("l10n_es_account_statement_import_n43/tests/test.n43")
+        with open(n43_file_path, "rb") as f:
+            n43_content = f.read().replace(b"1100000000", b"1112345678", 1)
+        self.import_wizard.statement_file = base64.b64encode(n43_content).decode()
+        # Without journal in the context, to match it from the file contents
+        self.import_wizard.with_context(journal_id=False).import_file_button()
+        st_lines = self.env["account.bank.statement.line"].search(
+            [("journal_id", "in", (self.journal + journal).ids)]
+        )
+        self.assertEqual(st_lines.journal_id, journal)
