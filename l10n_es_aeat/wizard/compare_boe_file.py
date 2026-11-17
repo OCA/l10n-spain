@@ -43,7 +43,9 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
                         {
                             "wizard_id": self.id,
                             "export_line_id": line.id,
-                            "content": data[offset : offset + line.size],
+                            "content": data[offset : offset + line.size].decode(
+                                "iso-8859-1"
+                            ),
                         }
                     ),
                 )
@@ -122,4 +124,4 @@ class L10nEsAeatReportExportToBoeLine(models.TransientModel):
                 except Exception as e:  # noqa: BLE001
                     _logger.debug(e)
             else:
-                line.content_float = sign * line.content
+                line.content_float = sign * float(content)

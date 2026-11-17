@@ -95,13 +95,13 @@ class L10nEsAeatRealEstate(models.Model):
     )
     state_id = fields.Many2one(
         comodel_name="res.country.state",
+        domain="[('country_id', '=?', country_id)]",
     )
     city = fields.Char(
         size=30,
         required=True,
     )
     zip = fields.Char(
-        size=5,
         readonly=False,
         required=True,
     )
@@ -198,12 +198,17 @@ class L10nEsAeatRealEstate(models.Model):
         for record in self:
             record.representative_vat = record.partner_id.vat
 
-    @api.depends("state_id")
+    @api.onchange("country_id")
+    def _onchange_country_id(self):
+        if self.state_id and self.state_id.country_id != self.country_id:
+            self.state_id = False
+
+    @api.depends("state_id", "country_id")
     def _compute_check_ok(self):
         self.update({"check_ok": False, "error_text": False})
         for record in self:
             errors = []
-            if not record.state_id:
+            if record._is_in_spain() and not record.state_id:
                 errors.append(self.env._("Without state"))
             record.check_ok = not bool(errors)
             record.error_text = bool(errors) and ", ".join(errors)

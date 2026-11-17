@@ -59,7 +59,7 @@ class ResPartner(models.Model):
         country_iso_code_map = {"GR": "EL"}
         return country_iso_code_map.get(code, code)
 
-    @ormcache("self.env")
+    @ormcache()
     def _get_aeat_europe_codes(self):
         europe = self.env.ref("base.europe", raise_if_not_found=False)
         if not europe:
@@ -114,6 +114,17 @@ class ResPartner(models.Model):
         elif identifier_type == "02":
             identifier = vat_number
         else:
+            vat = (self.vat or "").strip().upper()
+            if not self.has_vat or vat == "NO_DISPONIBLE":
+                for doc_type, doc in (
+                    ("03", self.l10n_es_passport),
+                    ("04", self.l10n_es_foreign_id),
+                    ("05", self.l10n_es_res_cert),
+                    ("06", self.l10n_es_other_id),
+                ):
+                    if (doc or "").strip().upper() not in ("", "NO_DISPONIBLE"):
+                        return country_code, doc_type, doc
+                return country_code, "" if country_code == "ES" else identifier_type, ""
             doc_type, doc = self._l10n_es_get_additional_identifier_type()
             if doc == "NO_DISPONIBLE" or (doc_type == "04" and doc == self.vat):
                 return (

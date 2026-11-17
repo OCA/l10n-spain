@@ -195,20 +195,44 @@ class TestL10nEsAeatExportConfig(BaseCommon):
                             "size": 3,
                             "alignment": "left",
                         },
-                    )
+                    ),
+                    (
+                        0,
+                        0,
+                        {
+                            "sequence": 2,
+                            "name": "Integer amount",
+                            "export_type": "float",
+                            "size": 9,
+                            "alignment": "right",
+                            "decimal_size": 0,
+                            "apply_sign": True,
+                            "negative_sign": "N",
+                        },
+                    ),
                 ],
             }
         )
+        boe_content = "ÑÇE" + "N00000123"
         wizard = (
             self.env["l10n.es.aeat.report.compare_boe_file"]
             .with_context(
                 active_id=export_config.id,
                 active_model=export_config._name,
             )
-            .create({"data": BinaryBytes(b"BOE", filename="boe.txt")})
+            .create(
+                {
+                    "data": BinaryBytes(
+                        boe_content.encode("iso-8859-1"), filename="boe.txt"
+                    )
+                }
+            )
         )
 
         action = wizard.button_compare_file()
 
         self.assertEqual(action["res_id"], wizard.id)
-        self.assertEqual(wizard.line_ids.content, "BOE")
+        self.assertEqual(wizard.line_ids[0].content, "ÑÇE")
+        amount_line = wizard.line_ids[1]
+        self.assertEqual(amount_line.content, "N00000123")
+        self.assertEqual(amount_line.content_float, -123.0)

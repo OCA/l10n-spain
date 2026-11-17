@@ -40,6 +40,17 @@ class TestL10nEsAeatRealEstate(TestL10nEsAeatModBase):
             "zip": "28001",
         }
 
+    def test_01_foreign_estate_without_state(self) -> None:
+        estate = self.env["l10n.es.aeat.real_estate"].create(
+            {
+                **self._base_vals(),
+                "country_id": self.env.ref("base.pt").id,
+                "zip": "1000-001",
+            }
+        )
+        self.assertTrue(estate.check_ok)
+        self.assertEqual(estate.zip, "1000-001")
+
     def test_compute_real_estate_situation(self):
         # Caso 1: Sin referencia → situación 4
         r1 = self.env["l10n.es.aeat.real_estate"].create(

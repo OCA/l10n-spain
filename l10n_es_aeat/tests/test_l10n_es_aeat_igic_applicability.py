@@ -45,7 +45,7 @@ class TestL10nEsAeatIgicApplicability(BaseCommon):
 
     def _igic_taxes(self):
         return self.env["account.tax"].concat(
-            *(self.chart.ref(xml_id) for xml_id in IGIC_TAXES)
+            self.chart.ref(xml_id) for xml_id in IGIC_TAXES
         )
 
     def test_chart_of_accounts(self):

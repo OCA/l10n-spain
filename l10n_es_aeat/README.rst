@@ -34,23 +34,23 @@ AEAT Base
 
 Módulo base para declaraciones de la AEAT, que incluye:
 
-- Campos base para todo los modelos AEAT.
-- Vista base para todos los modelos.
-- Crea una secuencia automática para los registros diferenciando por
-  modelo.
-- Exportación del BOE. Define una exportación básica, con los diferentes
-  registros del fichero.
-- Generación del registro del declarante con los campos genéricos de los
-  modelos.
-- Motor de exportación paramétrica basado en una configuración que puede
-  ser introducida por datos XML o por interfaz.
-- Visor de archivos BOE asociados a la configuración de exportación.
-- Motor de cálculo de importes por impuestos.
-- Generador del asiento de regularización con cargo a un proveedor
-  "Agencia Estatal de Administración Tributaria" creado al efecto.
-- Certificado para las declaraciones de la AEAT
-- Webservice AEAT SOAP
-- Gestión de Inmuebles.
+-  Campos base para todo los modelos AEAT.
+-  Vista base para todos los modelos.
+-  Crea una secuencia automática para los registros diferenciando por
+   modelo.
+-  Exportación del BOE. Define una exportación básica, con los
+   diferentes registros del fichero.
+-  Generación del registro del declarante con los campos genéricos de
+   los modelos.
+-  Motor de exportación paramétrica basado en una configuración que
+   puede ser introducida por datos XML o por interfaz.
+-  Visor de archivos BOE asociados a la configuración de exportación.
+-  Motor de cálculo de importes por impuestos.
+-  Generador del asiento de regularización con cargo a un proveedor
+   "Agencia Estatal de Administración Tributaria" creado al efecto.
+-  Certificado para las declaraciones de la AEAT
+-  Webservice AEAT SOAP
+-  Gestión de Inmuebles.
 
 **Table of contents**
 
@@ -106,7 +106,8 @@ Para gestionar los inmuebles (menú y campo "Inmueble" en las líneas de
 las facturas) hay que dar a los usuarios el permiso "Use AEAT Real
 Estates" (en modo desarrollador, en "Permisos extra" del usuario). Es
 independiente del de gestor de la AEAT: quien solo indica el inmueble en
-las facturas no necesita gestionar las declaraciones.
+las facturas no necesita gestionar las declaraciones. El permiso permite
+crear y editar inmuebles; el borrado queda reservado al gestor AEAT.
 
 Usage
 =====
@@ -132,7 +133,7 @@ Para importar el certificado, hay que:
 
 Para gestionar inmuebles, hay que:
 
-1. Entrar en *Facturación > Configuración > AEAT > Inmuebles*
+1. Entrar en *Facturación > Inmuebles*
 2. Crear uno nuevo, rellenando los datos del formulario.
 3. Ya se podrá añadir un inmueble en el campo Inmueble de las lineas de
    factura.
@@ -177,15 +178,16 @@ el documento personal.
 Known issues / Roadmap
 ======================
 
-- La configuración de exportación a BOE no se filtran ni se
-  auto-selecciona por fechas de validez.
-- Las partes específicas de las Diputaciones Forales no están incluidas.
-- Las futuras migraciones de ``l10n_es_aeat_mod592``,
-  ``l10n_es_aeat_sii_oca`` y ``l10n_es_vat_book`` deben adaptar sus
-  referencias a los campos retirados de identificación AEAT.
-  ``l10n_es_vat_book`` también debe revisar que los contactos
-  extranjeros sin VAT ni documento real ya no se consideran
-  identificados para AEAT.
+-  La configuración de exportación a BOE no se filtran ni se
+   auto-selecciona por fechas de validez.
+-  Las partes específicas de las Diputaciones Forales no están
+   incluidas.
+-  Las futuras migraciones de ``l10n_es_aeat_mod592``,
+   ``l10n_es_aeat_sii_oca`` y ``l10n_es_vat_book`` deben adaptar sus
+   referencias a los campos retirados de identificación AEAT.
+   ``l10n_es_vat_book`` también debe revisar que los contactos
+   extranjeros sin VAT ni documento real ya no se consideran
+   identificados para AEAT.
 
 Bug Tracker
 ===========
@@ -211,32 +213,32 @@ Authors
 Contributors
 ------------
 
-- Pexego (http://www.pexego.es)
-- Ignacio Ibeas, Acysos (http://www.acysos.com)
-- `Tecnativa <https://www.tecnativa.com>`__:
+-  Pexego (http://www.pexego.es)
+-  Ignacio Ibeas, Acysos (http://www.acysos.com)
+-  `Tecnativa <https://www.tecnativa.com>`__:
 
-  - Pedro M. Baeza
-  - Antonio Espinosa
-  - Carlos Dauden
+   -  Pedro M. Baeza
+   -  Antonio Espinosa
+   -  Carlos Dauden
 
-- Santi Argüeso <santi@comunitea.com>
-- cubells <info@obertix.net>
-- AvanzOSC (http://www.avanzosc.es)
-- Ainara Galdona
-- Juan Vicente Pascual <jvpascual@puntsistemes.es>
-- Abraham Anes <abraham@studio73.es>
-- Diagram Software S.L.
-- Miquel Raïch <miquel.raich@forgeflow.com>
-- Iván Antón <ozono@ozonomultimedia.com>
-- Digital5 S.L.
-- Valentin Vinagre <valentin.vinagre@sygel.es>
-- Manuel Regidor <manuel.regidor@sygel.es>
-- Jairo Llopis (https://www.moduon.team)
-- `Studio73 <https://www.studio73.es>`__:
+-  Santi Argüeso <santi@comunitea.com>
+-  cubells <info@obertix.net>
+-  AvanzOSC (http://www.avanzosc.es)
+-  Ainara Galdona
+-  Juan Vicente Pascual <jvpascual@puntsistemes.es>
+-  Abraham Anes <abraham@studio73.es>
+-  Diagram Software S.L.
+-  Miquel Raïch <miquel.raich@forgeflow.com>
+-  Iván Antón <ozono@ozonomultimedia.com>
+-  Digital5 S.L.
+-  Valentin Vinagre <valentin.vinagre@sygel.es>
+-  Manuel Regidor <manuel.regidor@sygel.es>
+-  Jairo Llopis (https://www.moduon.team)
+-  `Studio73 <https://www.studio73.es>`__:
 
-  - Pablo Cortés
+   -  Pablo Cortés
 
-- Carlos Sainz-Pardo (https://www.netkia.es)
+-  Carlos Sainz-Pardo (https://www.netkia.es)
 
 Maintainers
 -----------
