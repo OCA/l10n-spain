@@ -105,11 +105,7 @@ class DeliveryCarrier(models.Model):
         """Provide tracking link for the customer"""
         # International
         if picking.gls_asm_picking_ref:
-            if picking.partner_id.country_id.code == "PT":
-                base_link = GLS_TRACKING_LINKS.get("INT_PT")
-            else:
-                base_link = GLS_TRACKING_LINKS.get("INT")
-            tracking_url = base_link.format(picking.gls_asm_picking_ref)
+            tracking_url = GLS_TRACKING_LINKS["INT"].format(picking.gls_asm_picking_ref)
         else:
             tracking_url = GLS_TRACKING_LINKS.get("ASM").format(
                 picking.carrier_tracking_ref, picking.partner_id.zip
