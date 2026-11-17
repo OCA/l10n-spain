@@ -20,6 +20,7 @@ access_l10n_es_aeat_report_compare_boe_file_line,access_l10n_es_aeat_report_comp
 access_l10n_es_aeat_report_export_to_boe,access_l10n_es_aeat_report_export_to_boe,l10n.es.aeat.report.export_to_boe,l10n_es_aeat.group_account_aeat,cru,
 access_l10n_es_aeat_certificate_password,access_l10n_es_aeat_certificate_password,l10n.es.aeat.certificate.password,l10n_es_aeat.group_account_aeat,cru,
 access_l10n_es_aeat_real_estate_invoicing,access_l10n_es_aeat_real_estate_invoicing,l10n.es.aeat.real_estate,account.group_account_invoice,r,
+access_l10n_es_aeat_real_estate_user,access_l10n_es_aeat_real_estate_user,l10n.es.aeat.real_estate,l10n_es_aeat.group_use_aeat_real_estates,cru,
 access_l10n_es_aeat_real_estate,access_l10n_es_aeat_real_estate,l10n.es.aeat.real_estate,l10n_es_aeat.group_account_aeat,crud,
 l10n_es_aeat_certificate_rule,AEAT Certificate multi-company,l10n.es.aeat.certificate,,crud,"[('company_id', 'in', company_ids)]"
 rule_l10n_es_aeat_real_estate,AEAT Real Estates multi-company,l10n.es.aeat.real_estate,,crud,"[('company_id', 'in', company_ids)]"

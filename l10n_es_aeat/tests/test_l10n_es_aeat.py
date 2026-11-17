@@ -26,6 +26,23 @@ class TestL10nEsAeat(BaseCommon):
             " &'(),-./01:;ABAB_ÇÑAEIOUAEIOU   ".encode("iso-8859-1"),
         )
 
+    def test_01_placeholder_vat_with_native_identifier(self) -> None:
+        for vat in ("/", "NA", "NO_DISPONIBLE"):
+            partner = (
+                self.env["res.partner"]
+                .with_context(no_vat_validation=True)
+                .create(
+                    {
+                        "name": "Partner with alternative identifier",
+                        "country_id": self.env.ref("base.us").id,
+                        "vat": vat,
+                        "l10n_es_res_cert": "CERT123",
+                    }
+                )
+            )
+            self.assertTrue(partner._has_valid_aeat_identification())
+            self.assertEqual(partner._parse_aeat_vat_info(), ("US", "05", "CERT123"))
+
     def test_parse_vat_info_es_wo_prefix(self) -> None:
         self.partner.write(
             {"vat": "12345678Z", "country_id": self.env.ref("base.es").id}
@@ -400,3 +417,13 @@ class TestL10nEsAeat(BaseCommon):
                 allow_alternative_identification=False
             )
         )
+
+    def test_get_aeat_europe_codes_cache(self) -> None:
+        partner_model = self.env["res.partner"]
+        europe = self.env.ref("base.europe")
+        expected = [c.code for c in europe.country_ids] + ["XI"]
+        codes_env1 = partner_model._get_aeat_europe_codes()
+        codes_env2 = partner_model.with_context(lang="es_ES")._get_aeat_europe_codes()
+        self.assertEqual(codes_env1, expected)
+        self.assertIn("XI", codes_env1)
+        self.assertIs(codes_env1, codes_env2)

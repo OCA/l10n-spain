@@ -381,12 +381,12 @@ ul.auto-toc {
 <li>Vista base para todos los modelos.</li>
 <li>Crea una secuencia automática para los registros diferenciando por
 modelo.</li>
-<li>Exportación del BOE. Define una exportación básica, con los diferentes
-registros del fichero.</li>
-<li>Generación del registro del declarante con los campos genéricos de los
-modelos.</li>
-<li>Motor de exportación paramétrica basado en una configuración que puede
-ser introducida por datos XML o por interfaz.</li>
+<li>Exportación del BOE. Define una exportación básica, con los
+diferentes registros del fichero.</li>
+<li>Generación del registro del declarante con los campos genéricos de
+los modelos.</li>
+<li>Motor de exportación paramétrica basado en una configuración que
+puede ser introducida por datos XML o por interfaz.</li>
 <li>Visor de archivos BOE asociados a la configuración de exportación.</li>
 <li>Motor de cálculo de importes por impuestos.</li>
 <li>Generador del asiento de regularización con cargo a un proveedor
@@ -456,7 +456,8 @@ superior de la vista formulario del informe.</p>
 las facturas) hay que dar a los usuarios el permiso “Use AEAT Real
 Estates” (en modo desarrollador, en “Permisos extra” del usuario). Es
 independiente del de gestor de la AEAT: quien solo indica el inmueble en
-las facturas no necesita gestionar las declaraciones.</p>
+las facturas no necesita gestionar las declaraciones. El permiso permite
+crear y editar inmuebles; el borrado queda reservado al gestor AEAT.</p>
 </div>
 <div class="section" id="usage">
 <h2><a class="toc-backref" href="#toc-entry-3">Usage</a></h2>
@@ -481,7 +482,7 @@ p12</li>
 </ol>
 <p>Para gestionar inmuebles, hay que:</p>
 <ol class="arabic simple">
-<li>Entrar en <em>Facturación &gt; Configuración &gt; AEAT &gt; Inmuebles</em></li>
+<li>Entrar en <em>Facturación &gt; Inmuebles</em></li>
 <li>Crear uno nuevo, rellenando los datos del formulario.</li>
 <li>Ya se podrá añadir un inmueble en el campo Inmueble de las lineas de
 factura.</li>
@@ -523,7 +524,8 @@ el documento personal.</p>
 <ul class="simple">
 <li>La configuración de exportación a BOE no se filtran ni se
 auto-selecciona por fechas de validez.</li>
-<li>Las partes específicas de las Diputaciones Forales no están incluidas.</li>
+<li>Las partes específicas de las Diputaciones Forales no están
+incluidas.</li>
 <li>Las futuras migraciones de <tt class="docutils literal">l10n_es_aeat_mod592</tt>,
 <tt class="docutils literal">l10n_es_aeat_sii_oca</tt> y <tt class="docutils literal">l10n_es_vat_book</tt> deben adaptar sus
 referencias a los campos retirados de identificación AEAT.
