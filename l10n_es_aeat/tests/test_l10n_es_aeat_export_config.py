@@ -205,10 +205,12 @@ class TestL10nEsAeatExportConfig(BaseCommon):
                 active_id=export_config.id,
                 active_model=export_config._name,
             )
-            .create({"data": BinaryBytes(b"BOE", filename="boe.txt")})
+            .create(
+                {"data": BinaryBytes("ÑÇE".encode("iso-8859-1"), filename="boe.txt")}
+            )
         )
 
         action = wizard.button_compare_file()
 
         self.assertEqual(action["res_id"], wizard.id)
-        self.assertEqual(wizard.line_ids.content, "BOE")
+        self.assertEqual(wizard.line_ids.content, "ÑÇE")

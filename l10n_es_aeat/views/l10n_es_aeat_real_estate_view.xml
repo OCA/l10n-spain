@@ -52,6 +52,7 @@
                                 name="reference"
                                 placeholder="1234567AB1234A0001OJ"
                             />
+                            <field name="real_estate_situation" />
                         </group>
                         <separator />
                         <group string="Address" col="3">
@@ -85,6 +86,7 @@
                             </div>
                         </group>
                         <group string="City">
+                            <field name="country_id" />
                             <field name="state_id" />
                             <field name="city" />
                             <field name="zip" />
@@ -146,7 +148,7 @@
 
     <menuitem
         id="l10n_es_aeat_real_estate_menu"
-        parent="l10n_es_aeat.menu_l10n_es_aeat_config"
+        parent="account.menu_finance"
         sequence="36"
         action="l10n_es_aeat_real_estate_action"
         name="Real Estates"
