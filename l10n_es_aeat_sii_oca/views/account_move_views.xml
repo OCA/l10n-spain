@@ -26,7 +26,7 @@
                     string="Send to SII"
                     name="send_sii"
                     groups="l10n_es_aeat.group_account_aeat"
-                    invisible="not sii_enabled or state not in ['posted'] or not aeat_send_failed"
+                    invisible="not sii_enabled or state not in ['posted'] or aeat_state in ['sent','cancelled']"
                 />
                 <button
                     type="object"
