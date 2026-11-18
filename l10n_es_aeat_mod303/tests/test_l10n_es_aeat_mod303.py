@@ -605,6 +605,29 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
             "29": 9.6 - 4.83,  # P_IVA4_IC_BC, P_IVA21_SC
         }
 
+    def test_model_303_manual_result_boxes(self):
+        self.model303.button_calculate()
+        casilla_69 = self.model303.casilla_69
+        resultado = self.model303.resultado_liquidacion
+        self.model303.write(
+            {
+                "casilla_108": 50,
+                "casilla_109": 20,
+                "deduct_payment_petrol_delivery": True,
+                "casilla_112": 30,
+            }
+        )
+        self.assertAlmostEqual(self.model303.casilla_69, casilla_69 + 50, 2)
+        self.assertAlmostEqual(
+            self.model303.resultado_liquidacion, resultado + 50 + 20 - 30, 2
+        )
+        # [112] only applies while the petrol delivery deduction is checked
+        self.model303.deduct_payment_petrol_delivery = False
+        self.assertEqual(self.model303.casilla_112, 0)
+        self.assertAlmostEqual(
+            self.model303.resultado_liquidacion, resultado + 50 + 20, 2
+        )
+
     def test_model_303_negative_special_case(self):
         self.change_taxes_negative_special_case()
         # It requires a different year from the invoices of the setup

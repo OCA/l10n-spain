@@ -284,8 +284,17 @@ class L10nEsAeatMod303Report(models.Model):
         "biofuels after completion of the non-customs warehouse regime "
         "attributable to the State Administration (Sum of box 36 of all forms "
         "319 corresponding to deliveries included in this self-assessment)",
+        compute="_compute_casilla_112",
+        store=True,
+        readonly=False,
     )
     deduct_payment_petrol_delivery = fields.Boolean()
+
+    @api.depends("deduct_payment_petrol_delivery")
+    def _compute_casilla_112(self):
+        for report in self:
+            if not report.deduct_payment_petrol_delivery:
+                report.casilla_112 = 0
 
     def _get_export_config(self, date):
         # Force the configuration of 2024-10 for 2024/09, as it can't be obtained with
@@ -420,7 +429,11 @@ class L10nEsAeatMod303Report(models.Model):
             )
 
     @api.depends(
-        "atribuible_estado", "cuota_compensar", "regularizacion_anual", "casilla_77"
+        "atribuible_estado",
+        "cuota_compensar",
+        "regularizacion_anual",
+        "casilla_77",
+        "casilla_108",
     )
     def _compute_casilla_69(self):
         for report in self:
@@ -432,7 +445,7 @@ class L10nEsAeatMod303Report(models.Model):
                 + report.casilla_108
             )
 
-    @api.depends("casilla_69", "previous_result")
+    @api.depends("casilla_69", "previous_result", "casilla_109", "casilla_112")
     def _compute_resultado_liquidacion(self):
         for report in self:
             report.resultado_liquidacion = report.currency_id.round(
