@@ -40,6 +40,8 @@ class GlsAsmRequest:
         a more usable python dict. Taken form:
         https://stackoverflow.com/a/15678861
         """
+        if suds_object is None:
+            return {}
         out = {}
         for k, v in asdict(suds_object).items():
             if hasattr(v, "__keylist__"):
