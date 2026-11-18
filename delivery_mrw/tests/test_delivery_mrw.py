@@ -332,3 +332,59 @@ class TestDeliveryMRW(BaseCommon):
         view_id = self.env.ref("delivery_mrw.delivery_mrw_manifest_wizard_form").id
         self.assertEqual(action["view_id"], view_id)
         self.assertEqual(action["views"], [(view_id, "form")])
+
+    def test_21_compute_mrw_service_multiple_records(self):
+        carrier_2 = self.carrier_mrw.copy(
+            {
+                "name": "MRW 2",
+                "international_shipping": True,
+                "mrw_international_service": "DOC",
+            }
+        )
+        carriers = self.carrier_mrw | carrier_2
+        carriers._compute_mrw_service()
+        self.assertEqual(self.carrier_mrw.mrw_service, "0300")
+        self.assertEqual(carrier_2.mrw_service, "DOC")
+
+    def test_22_process_mrw_tracking_response_single_dict(self):
+        request = MRWRequest.__new__(MRWRequest)
+        response_payload = {
+            "Seguimiento": {
+                "Abonado": {
+                    "SeguimientoAbonado": {
+                        "Seguimiento": {
+                            "Estado": "00",
+                            "EstadoDescripcion": "Entregado",
+                            "FechaEntrega": "02022024",
+                            "HoraEntrega": "1200",
+                        }
+                    }
+                }
+            }
+        }
+        with mock.patch(
+            "odoo.addons.delivery_mrw.models.mrw_request.ZeepHelpers.serialize_object",
+            return_value=response_payload,
+        ):
+            states = request._process_mrw_tracking_response(response={})
+        self.assertEqual(len(states), 1)
+        self.assertEqual(states[0]["state_code"], "00")
+        self.assertEqual(states[0]["description"], "Entregado")
+
+    @mock.patch(
+        "odoo.addons.delivery_mrw.models.delivery_carrier.DeliveryCarrier.mrw_get_label",
+        return_value=False,
+    )
+    def test_23_stock_picking_get_label_returns_false_safe(self, _mock_get_label):
+        self.picking.carrier_tracking_ref = "MRW-EMPTY-LBL"
+        self.picking.delivery_type = "mrw"
+        result = self.picking.mrw_get_label()
+        self.assertFalse(result)
+
+    @mock.patch("odoo.addons.delivery_mrw.models.mrw_request.Client")
+    def test_24_mrw_request_plugins_configured(self, mock_client):
+        MRWRequest(self.carrier_mrw)
+        mock_client.assert_called_once()
+        _, kwargs = mock_client.call_args
+        self.assertIn("plugins", kwargs)
+        self.assertTrue(len(kwargs["plugins"]) > 0)

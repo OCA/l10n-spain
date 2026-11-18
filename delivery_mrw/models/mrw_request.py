@@ -38,19 +38,19 @@ class MRWRequest:
     def __init__(self, carrier):
         self.carrier = carrier
         self.api_env = "prod" if self.carrier.prod_environment else "test"
-        self.client = Client(wsdl=MRW_API_URL[self.api_env])
+        self.history = HistoryPlugin(maxlen=10)
+        self.client = Client(wsdl=MRW_API_URL[self.api_env], plugins=[self.history])
         self.username = self.carrier.mrw_username
-        self.pasword = self.carrier.mrw_password
+        self.password = self.carrier.mrw_password
         self.client_code = self.carrier.mrw_client_code
         self.department_code = self.carrier.mrw_department_code or ""
         self.franquicia_code = self.carrier.mrw_franquicia_code
         self._set_soapheaders()
-        self.history = HistoryPlugin(maxlen=10)
 
     def _set_soapheaders(self):
         credentials = self.client.get_element("ns0:AuthInfo")(
             UserName=self.username,
-            Password=self.pasword,
+            Password=self.password,
             CodigoAbonado=self.client_code,
             CodigoDepartamento=self.department_code,
             CodigoFranquicia=self.franquicia_code,
@@ -125,11 +125,17 @@ class MRWRequest:
         subscribers = json_res.get("Seguimiento", {}).get("Abonado", [])
         if not subscribers:
             return False
+        if isinstance(subscribers, dict):
+            subscribers = [subscribers]
         trackings = subscribers[0].get("SeguimientoAbonado", {}).get("Seguimiento", {})
         if not trackings:
             return False
+        if isinstance(trackings, dict):
+            trackings = [trackings]
         states = []
         for tracking in trackings:
+            if not isinstance(tracking, dict):
+                continue
             delivery_date = parse_date(
                 tracking.get("FechaEntrega", False), tracking.get("HoraEntrega", False)
             )
