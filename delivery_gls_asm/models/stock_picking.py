@@ -1,6 +1,9 @@
 # Copyright 2020 Tecnativa - David Vidal
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import fields, models
+from odoo.exceptions import UserError
+
+from .delivery_carrier import GlsCancellationError
 
 
 class StockPicking(models.Model):
@@ -68,6 +71,19 @@ class StockPicking(models.Model):
         copy=False,
     )
     gls_shipping_notes = fields.Text(string="Notas de envío GLS")
+
+    def cancel_shipment(self) -> None:
+        gls_pickings = self.filtered(lambda picking: picking.delivery_type == "gls_asm")
+        for picking in gls_pickings:
+            try:
+                super(StockPicking, picking).cancel_shipment()
+            except GlsCancellationError as error:
+                if len(self) == 1:
+                    raise UserError(str(error)) from error
+                picking.message_post(body=str(error))
+        other_pickings = self - gls_pickings
+        if other_pickings:
+            return super(StockPicking, other_pickings).cancel_shipment()
 
     def gls_asm_get_label(self):
         """Get GLS Label for this picking expedition"""

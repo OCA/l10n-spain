@@ -24,6 +24,10 @@ from .gls_asm_request import GlsAsmRequest
 _logger = logging.getLogger(__name__)
 
 
+class GlsCancellationError(UserError):
+    """A GLS shipment or pickup could not be cancelled."""
+
+
 class DeliveryCarrier(models.Model):
     _inherit = "delivery.carrier"
 
@@ -97,7 +101,7 @@ class DeliveryCarrier(models.Model):
             if self.prod_environment
             else self.env["ir.config_parameter"]
             .sudo()
-            .get_param("delivery_gls_asm.api_user_demo", "")
+            .get_str("delivery_gls_asm.api_user_demo", "")
         )
         return uid
 
@@ -372,7 +376,7 @@ class DeliveryCarrier(models.Model):
                     if ref.get("_tipo", "") == "N":
                         gls_asm_picking_ref = ref.get("value", "")
                         break
-            except Exception as e:
+            except Exception as e:  # noqa: BLE001
                 _logger.warning(e)
             picking.write(
                 {
@@ -528,7 +532,7 @@ class DeliveryCarrier(models.Model):
             picking.write(
                 {
                     "pod_filename": f"gls_pod_{picking.carrier_tracking_ref}",
-                    "pod_file": base64.b64encode(response.content),
+                    "pod_file": base64.b64encode(response.content).decode(),
                     "pod_error": False,
                 }
             )
@@ -554,7 +558,7 @@ class DeliveryCarrier(models.Model):
         for picking in pickings.filtered("carrier_tracking_ref"):
             self.gls_asm_tracking_state_update(picking=picking)
             if picking.delivery_state != "shipping_recorded_in_carrier":
-                raise UserError(
+                raise GlsCancellationError(
                     self.env._(
                         "Unable to cancel GLS Expedition with reference "
                         "%(ref)s as it is in state %(state)s.\n"
@@ -573,12 +577,13 @@ class DeliveryCarrier(models.Model):
             )
             self.log_xml(response or "", "GLS ASM Cancel Response")
             if not response or response.get("_return") < 0:
-                msg = self.env._(
-                    "GLS Cancellation failed with reason: %s",
-                    response.get("value", "Connection Error"),
+                reason = response.get("value") if response else False
+                raise GlsCancellationError(
+                    self.env._(
+                        "GLS Cancellation failed with reason: %s",
+                        reason or "Connection Error",
+                    )
                 )
-                picking.message_post(body=msg)
-                continue
             picking.write(
                 {"gls_asm_public_tracking_ref": False, "gls_asm_picking_ref": False}
             )

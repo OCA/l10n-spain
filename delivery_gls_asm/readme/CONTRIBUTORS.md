@@ -5,3 +5,4 @@
 - [Studio73](https://www.studio73.es):
   - Ethan Hildick
   - David López
+  - Pablo Cortés

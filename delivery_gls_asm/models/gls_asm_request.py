@@ -386,7 +386,7 @@ class GlsAsmRequest:
         try:
             response = self.client.service.Anula(docIn=xml)
             _logger.debug(response)
-        except Exception as e:
+        except Exception as e:  # noqa: BLE001
             _logger.error(
                 f"No response from server canceling GLS ref {reference}.\n"
                 f"Traceback:\n{e}"
@@ -419,7 +419,7 @@ class GlsAsmRequest:
         try:
             response = self.client.service.Anula(docIn=xml)
             _logger.debug(response)
-        except Exception as e:
+        except Exception as e:  # noqa: BLE001
             _logger.error(
                 f"No response from server canceling GLS ref {reference}.\n"
                 f"Traceback:\n{e}"
