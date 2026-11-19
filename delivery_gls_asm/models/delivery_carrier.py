@@ -544,7 +544,7 @@ class DeliveryCarrier(models.Model):
             else:
                 picking.write({"pod_error": str(ex)})
             self.log_xml(
-                f"POD info: {str(pod_info)} Exception: {str(ex)}",
+                f"POD info: {pod_info!s} Exception: {ex!s}",
                 "GLS ASM POD Response",
             )
 
