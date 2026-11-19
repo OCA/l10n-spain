@@ -5,13 +5,13 @@
 from odoo import models
 
 
-class AccountMove(models.Model):
-    _inherit = "account.move"
+class SiiMixin(models.AbstractModel):
+    _inherit = "sii.mixin"
 
     def _get_aeat_taxes_map(self, codes, date):
         """Inject OSS taxes when querying not subjected invoices."""
         taxes = super()._get_aeat_taxes_map(codes, date)
-        if any([x in ["SFENS", "NotIncludedInTotal"] for x in codes]):
+        if any(x in ["SFENS", "NotIncludedInTotal"] for x in codes):
             taxes |= self.env["account.tax"].search(
                 [
                     ("oss_country_id", "!=", False),
