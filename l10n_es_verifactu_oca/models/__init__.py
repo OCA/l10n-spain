@@ -1,4 +1,5 @@
 from . import account_chart_template
+from . import account_tax
 from . import account_journal
 from . import res_company
 from . import verifactu_mixin

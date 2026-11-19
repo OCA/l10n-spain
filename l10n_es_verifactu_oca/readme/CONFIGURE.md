@@ -25,3 +25,16 @@ con los siguientes comandos para tratar de solucionarlo:
     clave de registro VERI\*FACTU.
 2.  Para aplicar las claves ejecute el asistente de actualización del
     módulo accountchart_update.
+
+## Canarias (IGIC)
+
+Para una compañía canaria, selecciona la Agencia Tributaria Canaria y carga
+el plan contable `es_canary_pymes`. El módulo asigna `Impuesto=03` y las claves
+de régimen IGIC a las posiciones fiscales nativas. Al instalar o actualizar el
+módulo también se actualizan los borradores de facturas y abonos de clientes.
+
+En el régimen de comerciante minorista, la carga impositiva implícita se
+calcula a partir del tipo de IGIC habitual del producto. Un mismo documento no
+puede mezclar tipos teóricos distintos. Los tipos del 1% y los mapeos de
+importación para minoristas requieren el cambio de plan contable de
+odoo/odoo#287870.

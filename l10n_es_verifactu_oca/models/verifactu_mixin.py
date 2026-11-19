@@ -384,7 +384,10 @@ class VerifactuMixin(models.AbstractModel):
         self.verifactu_refund_type = False
 
     def _get_verifactu_accepted_tax_agencies(self):
-        return ["l10n_es_aeat.aeat_tax_agency_spain"]
+        return [
+            "l10n_es_aeat.aeat_tax_agency_spain",
+            "l10n_es_aeat.aeat_tax_agency_canarias",
+        ]
 
     def _check_verifactu_configuration(self, suffixes=None):
         prefix = _("The invoice %s cannot be sent to VERI*FACTU because:")
