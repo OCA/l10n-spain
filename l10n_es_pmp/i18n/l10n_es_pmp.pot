@@ -1,0 +1,127 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_es_pmp
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-03 09:00+0000\n"
+"PO-Revision-Date: 2026-10-03 09:00+0000\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_es_pmp
+#: model:ir.model,name:l10n_es_pmp.model_l10n_es_pmp_wizard
+msgid "Wizard for the Average Payment Period to Suppliers (PMP)"
+msgstr ""
+
+#. module: l10n_es_pmp
+#: model_terms:ir.ui.view,arch_db:l10n_es_pmp.view_l10n_es_pmp_wizard_form
+msgid "Average Payment Period to Suppliers (PMP)"
+msgstr ""
+
+#. module: l10n_es_pmp
+#: model_terms:ir.ui.view,arch_db:l10n_es_pmp.view_l10n_es_pmp_wizard_form
+#: model:ir.actions.act_window,name:l10n_es_pmp.action_l10n_es_pmp_wizard
+#: model:ir.ui.menu,name:l10n_es_pmp.menu_l10n_es_pmp_wizard
+msgid "Average Payment Period (PMP)"
+msgstr ""
+
+#. module: l10n_es_pmp
+#: model:ir.model.fields.selection,name:l10n_es_pmp.selection__l10n_es_pmp_wizard__state__draft
+msgid "Draft"
+msgstr ""
+
+#. module: l10n_es_pmp
+#: model:ir.model.fields.selection,name:l10n_es_pmp.selection__l10n_es_pmp_wizard__state__done
+msgid "Done"
+msgstr ""
+
+#. module: l10n_es_pmp
+#: model:ir.model.fields,field_description:l10n_es_pmp.field_l10n_es_pmp_wizard__company_id
+msgid "Company"
+msgstr ""
+
+#. module: l10n_es_pmp
+#: model:ir.model.fields,field_description:l10n_es_pmp.field_l10n_es_pmp_wizard__date_start
+msgid "Start Date"
+msgstr ""
+
+#. module: l10n_es_pmp
+#: model:ir.model.fields,field_description:l10n_es_pmp.field_l10n_es_pmp_wizard__date_end
+msgid "End Date"
+msgstr ""
+
+#. module: l10n_es_pmp
+#: model:ir.model.fields,field_description:l10n_es_pmp.field_l10n_es_pmp_wizard__total_payments_made
+msgid "Total Payments Made"
+msgstr ""
+
+#. module: l10n_es_pmp
+#: model:ir.model.fields,field_description:l10n_es_pmp.field_l10n_es_pmp_wizard__total_pending_payments
+msgid "Total Pending Payments"
+msgstr ""
+
+#. module: l10n_es_pmp
+#: model:ir.model.fields,field_description:l10n_es_pmp.field_l10n_es_pmp_wizard__ratio_paid_operations
+msgid "Ratio of Paid Operations (days)"
+msgstr ""
+
+#. module: l10n_es_pmp
+#: model:ir.model.fields,field_description:l10n_es_pmp.field_l10n_es_pmp_wizard__ratio_pending_operations
+msgid "Ratio of Pending Operations (days)"
+msgstr ""
+
+#. module: l10n_es_pmp
+#: model:ir.model.fields,field_description:l10n_es_pmp.field_l10n_es_pmp_wizard__pmp
+msgid "Average Payment Period (days)"
+msgstr ""
+
+#. module: l10n_es_pmp
+#: model:ir.model.fields,field_description:l10n_es_pmp.field_l10n_es_pmp_wizard__volume_paid_in_term
+msgid "Monetary Volume Paid in Legal Term"
+msgstr ""
+
+#. module: l10n_es_pmp
+#: model:ir.model.fields,field_description:l10n_es_pmp.field_l10n_es_pmp_wizard__pct_volume_paid_in_term
+msgid "% over total monetary"
+msgstr ""
+
+#. module: l10n_es_pmp
+#: model:ir.model.fields,field_description:l10n_es_pmp.field_l10n_es_pmp_wizard__invoices_paid_in_term
+msgid "Number of Invoices Paid in Legal Term"
+msgstr ""
+
+#. module: l10n_es_pmp
+#: model:ir.model.fields,field_description:l10n_es_pmp.field_l10n_es_pmp_wizard__pct_invoices_paid_in_term
+msgid "% over total invoices"
+msgstr ""
+
+#. module: l10n_es_pmp
+#: model_terms:ir.ui.view,arch_db:l10n_es_pmp.view_l10n_es_pmp_wizard_form
+msgid "Official PMP Information (ICAC Resolution)"
+msgstr ""
+
+#. module: l10n_es_pmp
+#: model_terms:ir.ui.view,arch_db:l10n_es_pmp.view_l10n_es_pmp_wizard_form
+msgid "Additional Information (Crea y Crece Law 18/2022)"
+msgstr ""
+
+#. module: l10n_es_pmp
+#: model_terms:ir.ui.view,arch_db:l10n_es_pmp.view_l10n_es_pmp_wizard_form
+msgid "Calculate"
+msgstr ""
+
+#. module: l10n_es_pmp
+#: model_terms:ir.ui.view,arch_db:l10n_es_pmp.view_l10n_es_pmp_wizard_form
+msgid "Recalculate"
+msgstr ""
+
+#. module: l10n_es_pmp
+#: model_terms:ir.ui.view,arch_db:l10n_es_pmp.view_l10n_es_pmp_wizard_form
+msgid "Close"
+msgstr ""
