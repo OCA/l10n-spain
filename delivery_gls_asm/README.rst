@@ -197,6 +197,7 @@ Contributors
 
    -  Ethan Hildick
    -  David López
+   -  Pablo Cortés
 
 Maintainers
 -----------
