@@ -10,6 +10,7 @@ import pytz
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
+from odoo.tools import float_round
 
 VERIFACTU_VALID_INVOICE_STATES = ["posted"]
 VERIFACTU_OPERATION_MAPPING = {
@@ -21,6 +22,8 @@ VERIFACTU_OPERATION_MAPPING = {
     "no_deducible": "S1",
     # Not included here: exento, retencion, recargo, dua & ignore
 }
+MINORISTA_COEFFICIENT_FACTOR = 0.7
+ATC_VERIFACTU_TAX_KEY = "03"
 
 
 class AccountMove(models.Model):
@@ -85,9 +88,21 @@ class AccountMove(models.Model):
     @api.depends("fiscal_position_id")
     def _compute_verifactu_tax_key(self):
         for document in self:
-            document.verifactu_tax_key = (
-                document.fiscal_position_id.verifactu_tax_key or "01"
+            default_key = "01"
+            atc_agency_canarias = self.env.ref(
+                "l10n_es_aeat.aeat_tax_agency_canarias", raise_if_not_found=False
             )
+            if document.company_id.tax_agency_id == atc_agency_canarias:
+                default_key = "03"
+            document.verifactu_tax_key = (
+                document.fiscal_position_id.verifactu_tax_key or default_key
+            )
+
+    def _get_igic_cmino_tax_group(self):
+        return self.env.ref(
+            f"account.{self.company_id.id}_tax_group_igic_cmino",
+            raise_if_not_found=False,
+        )
 
     @api.depends("fiscal_position_id")
     def _compute_verifactu_registration_key(self):
@@ -97,14 +112,32 @@ class AccountMove(models.Model):
                 if key:
                     document.verifactu_registration_key = key
             else:
+                agency = self.env.ref(
+                    "l10n_es_aeat.aeat_tax_agency_canarias", raise_if_not_found=False
+                )
+                if agency and self.env.company.tax_agency_id == agency:
+                    tax_key = "03"
+                else:
+                    tax_key = "01"
                 domain = [
                     ("code", "=", "01"),
-                    ("verifactu_tax_key", "=", "01"),
+                    ("verifactu_tax_key", "=", tax_key),
                 ]
                 verifactu_key_obj = self.env["verifactu.registration.key"]
                 document.verifactu_registration_key = verifactu_key_obj.search(
                     domain, limit=1
                 )
+
+    def _is_igic_minorista_sale_tax(self, tax):
+        cmino_group = self._get_igic_cmino_tax_group()
+        if not cmino_group:
+            return False
+        return (
+            tax.type_tax_use == "sale"
+            and tax.tax_group_id == cmino_group
+            and tax.amount_type == "percent"
+            and not tax.amount
+        )
 
     def _get_verifactu_document_type(self):
         invoice_type = ""
@@ -338,6 +371,127 @@ class AccountMove(models.Model):
                 }
         return {"PrimerRegistro": "S"}
 
+    def _get_igic_theoretical_sale_taxes_from_product(self, product):
+        if not product:
+            return self.env["account.tax"]
+        cmino_group = self._get_igic_cmino_tax_group()
+        return product.taxes_id.filtered(
+            lambda tax: (
+                tax.company_id == self.company_id
+                and tax.type_tax_use == "sale"
+                and tax.amount > 0
+                and tax.amount_type == "percent"
+                and tax.tax_group_id != cmino_group
+            )
+        )
+
+    def _get_theoretical_percent_from_fp_mapping(self, inv_line, minorista_tax):
+        fp = self.fiscal_position_id
+        if not fp:
+            return None
+        mappings = fp.tax_ids.filtered(
+            lambda mapping: (
+                mapping.tax_dest_id == minorista_tax and mapping.tax_src_id.amount > 0
+            )
+        )
+        if not mappings:
+            return None
+        product_taxes = self._get_igic_theoretical_sale_taxes_from_product(
+            inv_line.product_id
+        )
+        if product_taxes:
+            matched = mappings.filtered(
+                lambda mapping: mapping.tax_src_id in product_taxes
+            )
+            if matched:
+                return matched[0].tax_src_id.amount
+        if len(mappings) == 1:
+            return mappings[0].tax_src_id.amount
+        return None
+
+    def _get_igic_minorista_theoretical_percent(self, minorista_tax):
+        self.ensure_one()
+        invoice_lines = self.invoice_line_ids.filtered(
+            lambda line: line.display_type == "product"
+            and minorista_tax in line.tax_ids
+        )
+        if not invoice_lines:
+            raise UserError(
+                _("No invoice line found for IGIC retailer tax %s.")
+                % minorista_tax.display_name
+            )
+        theoretical_percents = []
+        for line in invoice_lines:
+            theoretical_taxes = self._get_igic_theoretical_sale_taxes_from_product(
+                line.product_id
+            )
+            if len(theoretical_taxes) > 1:
+                raise UserError(
+                    _("Product %s has multiple IGIC sale taxes configured.")
+                    % line.product_id.display_name
+                )
+            if theoretical_taxes:
+                theoretical = theoretical_taxes.amount
+            else:
+                theoretical = self._get_theoretical_percent_from_fp_mapping(
+                    line, minorista_tax
+                )
+            if theoretical is None:
+                raise UserError(
+                    _(
+                        "Cannot determine theoretical IGIC rate for minorista "
+                        "line '%(line)s'. Configure product '%(product)s' with "
+                        "its usual IGIC sale tax (igic_r_*)."
+                    )
+                    % {
+                        "line": line.name,
+                        "product": line.product_id.display_name,
+                    }
+                )
+            theoretical_percents.append(theoretical)
+        unique_rates = set(theoretical_percents)
+        if len(unique_rates) > 1:
+            raise UserError(
+                _(
+                    "Minorista invoice '%(invoice)s' mixes theoretical IGIC "
+                    "rates (%(rates)s). Use separate invoices."
+                )
+                % {
+                    "invoice": self.display_name,
+                    "rates": ", ".join(str(rate) for rate in sorted(unique_rates)),
+                }
+            )
+        return unique_rates.pop()
+
+    def _get_igic_minorista_implicit_coefficient(self, theoretical_percent):
+        """Return the 0,7 x T coefficient from existing igic_sop_*_cmino taxes."""
+        self.ensure_one()
+        expected = MINORISTA_COEFFICIENT_FACTOR * theoretical_percent
+        cmino_group = self._get_igic_cmino_tax_group()
+        if not cmino_group:
+            raise UserError(
+                _("IGIC retailer tax group not found for company %s.")
+                % self.company_id.display_name
+            )
+        purchase_taxes = self.env["account.tax"].search(
+            [
+                ("company_id", "=", self.company_id.id),
+                ("type_tax_use", "=", "purchase"),
+                ("tax_group_id", "=", cmino_group.id),
+                ("amount_type", "in", ("percent", "division")),
+            ]
+        )
+        for tax in purchase_taxes:
+            if abs(tax.amount - expected) < 0.011:
+                return tax.amount
+        raise UserError(
+            _(
+                "No IGIC retailer purchase tax found for theoretical rate "
+                "%(rate)s%% (expected coefficient %(coef)s)."
+            )
+            % {"rate": theoretical_percent, "coef": expected}
+        )
+
     def _get_verifactu_tax_dict(self, tax_line, tax_lines):
         """Get the VERI*FACTU tax dictionary for the passed tax line.
 
@@ -368,6 +522,21 @@ class AccountMove(models.Model):
         if req_tax:
             tax_dict["TipoRecargoEquivalencia"] = req_tax.amount
             tax_dict["CuotaRecargoEquivalencia"] = tax_lines[req_tax]["amount"]
+
+        if self.verifactu_registration_key_code != "17":
+            return tax_dict
+        tax = tax_line["tax"]
+        if not self._is_igic_minorista_sale_tax(tax):
+            return tax_dict
+        theoretical = self._get_igic_minorista_theoretical_percent(tax)
+        self._get_igic_minorista_implicit_coefficient(theoretical)
+        base = tax_line["base"]
+        carga = float_round(
+            base * MINORISTA_COEFFICIENT_FACTOR * theoretical / 100.0,
+            precision_digits=2,
+        )
+        tax_dict["TipoImpositivo"] = str(float(theoretical))
+        tax_dict["CargaImpositivaImplicitadeMinoristas"] = carga
         return tax_dict
 
     def _get_verifactu_tax_req(self, tax):

@@ -15,3 +15,11 @@ class AccountChartTemplate(models.AbstractModel):
             "account.fiscal.position",
             module="l10n_es_verifactu_oca",
         )
+
+    @template("es_canary_common", "account.fiscal.position")
+    def _get_es_canary_verifactu_fiscal_position(self):
+        return self._parse_csv(
+            "es_canary_common",
+            "account.fiscal.position",
+            module="l10n_es_verifactu_oca",
+        )
