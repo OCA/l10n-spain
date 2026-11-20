@@ -49,13 +49,14 @@
                         options="{'currency_field': 'currency_id'}"
                     />
                 </group>
-                <group
-                    string="Detail by company"
-                    colspan="4"
-                    invisible="state == 'draft'"
-                >
-                    <field name="lines296" nolabel="1" colspan="2" />
-                </group>
+                <notebook invisible="state == 'draft'">
+                    <page string="Detail by company" name="page_lines296">
+                        <field name="lines296" nolabel="1" />
+                    </page>
+                    <page string="Tax lines" name="page_tax_lines">
+                        <field name="tax_line_ids" nolabel="1" readonly="1" />
+                    </page>
+                </notebook>
             </group>
             <form position="inside">
                 <chatter />
@@ -69,6 +70,7 @@
             <list>
                 <field name="partner_id" />
                 <field name="base_retenciones_ingresos" />
+                <field name="porcentaje_retencion" />
                 <field name="retenciones_ingresos" />
             </list>
         </field>
@@ -79,14 +81,19 @@
         <field name="arch" type="xml">
             <form string="Detail 296">
                 <group string="Common data in all recipients" colspan="2" col="2">
-                    <field name="partner_id" />
+                    <group colspan="2" col="2">
+                        <field name="partner_id" />
+                        <field name="nif_perceptor" />
+                    </group>
                     <group colspan="2" col="4">
                         <field name="fisica_juridica" />
                         <field name="fecha_devengo" />
                         <field name="naturaleza" />
                     </group>
-                    <field name="clave" />
-                    <field name="subclave" />
+                    <group colspan="2" col="4">
+                        <field name="clave" />
+                        <field name="subclave" />
+                    </group>
                     <group colspan="2" col="4">
                         <field name="base_retenciones_ingresos" />
                         <field name="porcentaje_retencion" />
@@ -105,29 +112,38 @@
                     <field name="cuenta_valores" />
                     <field name="pendiente" />
                 </group>
-                <group
-                    string="Identification data and address of the recipients"
-                    colspan="2"
-                    col="2"
-                >
-                    <group
-                        string="Address in the country of residence"
-                        colspan="2"
-                        col="2"
-                    >
-                        <field name="domicilio" />
-                        <field name="complemento_domicilio" />
-                        <field name="poblacion" />
-                        <field name="zip" />
-                        <field name="provincia" />
-                        <field name="pais" />
-                    </group>
-                    <field name="nif_pais_residencia" />
-                    <field name="fecha_nacimiento" />
-                    <field name="ciudad_nacimiento" />
-                    <field name="pais_nacimiento" />
-                    <field name="pais_residencia_fiscal" />
-                </group>
+                <notebook>
+                    <page string="Recipient data" name="page_recipient">
+                        <group
+                            string="Identification data and address of the recipients"
+                            colspan="2"
+                            col="2"
+                        >
+                            <group
+                                string="Address in the country of residence"
+                                colspan="2"
+                                col="2"
+                            >
+                                <field name="domicilio" />
+                                <field name="complemento_domicilio" />
+                                <field name="poblacion" />
+                                <field name="zip" />
+                                <field name="provincia" />
+                                <field name="pais" />
+                            </group>
+                            <group colspan="2" col="2">
+                                <field name="nif_pais_residencia" />
+                                <field name="fecha_nacimiento" />
+                                <field name="ciudad_nacimiento" />
+                                <field name="pais_nacimiento" />
+                                <field name="pais_residencia_fiscal" />
+                            </group>
+                        </group>
+                    </page>
+                    <page string="Move Lines" name="page_move_lines">
+                        <field name="move_line_ids" nolabel="1" readonly="1" />
+                    </page>
+                </notebook>
             </form>
         </field>
     </record>

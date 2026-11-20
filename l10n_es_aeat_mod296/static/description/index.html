@@ -408,24 +408,30 @@ informado con el impuesto nacional adecuado.</li>
 </div>
 <div class="section" id="usage">
 <h2><a class="toc-backref" href="#toc-entry-2">Usage</a></h2>
-<p>Para crear un modelo, por ejemplo de un trimestre del año:</p>
+<p>Para crear la declaración anual:</p>
 <ol class="arabic simple">
-<li>Ir a Contabilidad &gt; Informe &gt; Informes legales &gt; Declaraciones AEAT &gt;
-Modelo 296</li>
-<li>Pulsar en el botón “Crear”</li>
-<li>Seleccionar el ejercicio fiscal y el tipo de período, los periodos
-incluidos se calculan automáticamente</li>
-<li>Seleccionar el tipo de declaración</li>
-<li>Rellenar el teléfono, necesario para la exportacion BOE</li>
-<li>Guardar y pulsar en el botón “Calcular”</li>
+<li>Ir a <em>Facturación &gt; Declaraciones &gt; AEAT &gt; Modelo 296</em>.</li>
+<li>Pulsar en el botón “Nuevo”.</li>
+<li>Seleccionar el ejercicio fiscal. El periodo es siempre anual y sus
+fechas se calculan automáticamente.</li>
+<li>Rellenar el teléfono, necesario para la exportación BOE.</li>
+<li>Guardar y pulsar en el botón “Calcular”. Se crea una línea por
+perceptor y porcentaje de retención con su base y sus retenciones.
+Las rentas exentas por convenio (retenciones al 0 %) van en una línea
+con porcentaje 0, sin retención y con subclave 04, que se cambia a 03
+si la exención es interna.</li>
 <li>Rellenar (si es necesario) aquellos campos que Odoo no calcula
 automáticamente:<ul>
-<li>Retenciones ingresadas: Casilla [04]</li>
+<li>Retenciones ingresadas: casilla [04].</li>
+<li>En cada línea de perceptor: persona física o jurídica, naturaleza,
+fecha de devengo, clave, subclave y el resto de datos del registro
+de perceptor. Estos datos se conservan al pulsar “Recalcular”.</li>
 </ul>
 </li>
-<li>Cuando los valores sean los correctos, pulsar en el botón “Confirmar”</li>
+<li>Cuando los valores sean los correctos, pulsar en el botón
+“Confirmar”.</li>
 <li>Podemos exportar en formato BOE para presentarlo telemáticamente en
-el portal de la AEAT</li>
+el portal de la AEAT.</li>
 </ol>
 </div>
 <div class="section" id="bug-tracker">
@@ -470,6 +476,8 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <p>OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>
+<p>Current <a class="reference external" href="https://odoo-community.org/page/maintainer-role">maintainer</a>:</p>
+<p><a class="reference external image-reference" href="https://github.com/carlosdauden"><img alt="carlosdauden" src="https://github.com/carlosdauden.png?size=40px" /></a></p>
 <p>This module is part of the <a class="reference external" href="https://github.com/OCA/l10n-spain/tree/20.0/l10n_es_aeat_mod296">OCA/l10n-spain</a> project on GitHub.</p>
 <p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
 </div>
