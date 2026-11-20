@@ -30,6 +30,13 @@ class ResConfigSettings(models.TransientModel):
         config_parameter="sale_insurance_caser.sica_code",
         help="SICA code provided by Caser",
     )
+    caser_product_categ_id = fields.Many2one(
+        comodel_name="product.category",
+        string="Caser Insurance Product Category",
+        config_parameter="sale_insurance_caser.product_categ_id",
+        help="Category of the insurance products created from the price ranges. "
+        "Set its income account to book the insurance on it.",
+    )
 
     def action_open_caser_price_ranges(self):
         return {

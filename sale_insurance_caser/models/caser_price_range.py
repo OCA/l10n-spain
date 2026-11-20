@@ -211,6 +211,15 @@ class CaserPriceRange(models.Model):
             result["price_with_tax"] = float(prima_itotre_matches[2])
         return result
 
+    def _get_insurance_product_category(self):
+        categ_id = (
+            self.env["ir.config_parameter"]
+            .sudo()
+            .get_param("sale_insurance_caser.product_categ_id")
+        )
+        categ = self.env["product.category"].browse(int(categ_id or 0)).exists()
+        return categ or self.env.ref("product.product_category_all")
+
     def _create_or_update_insurance_product(self, price):
         # Create or update insurance product for this price range.
         self.ensure_one()
@@ -232,7 +241,7 @@ class CaserPriceRange(models.Model):
             "type": "service",
             "list_price": price,
             "standard_price": price,
-            "categ_id": self.env.ref("product.product_category_all").id,
+            "categ_id": self._get_insurance_product_category().id,
             "sale_ok": True,
             "purchase_ok": False,
             "taxes_id": [(6, 0, tax.ids)],
