@@ -84,7 +84,22 @@ class EDIBackendTestCase(TestL10nEsAeatCertificateBase, SavepointComponentRegist
         )
         main_company = self.env.ref("base.main_company")
         main_company.vat = "ESA12345674"
-        main_company.partner_id.country_id = self.env.ref("base.uk")
+        self.uk_state = self.env["res.country.state"].create(
+            {
+                "name": "London",
+                "code": "LDN",
+                "country_id": self.env.ref("base.uk").id,
+            }
+        )
+        main_company.partner_id.write(
+            {
+                "country_id": self.env.ref("base.uk").id,
+                "state_id": self.uk_state.id,
+                "street": "Main Street, 1",
+                "zip": "08001",
+                "city": "London",
+            }
+        )
         self.env["res.currency.rate"].search(
             [("currency_id", "=", main_company.currency_id.id)]
         ).write({"company_id": False})

@@ -66,7 +66,22 @@ class CommonTest(TestL10nEsAeatCertificateBase):
         )
         main_company = self.env.ref("base.main_company")
         main_company.vat = "ESA12345674"
-        main_company.partner_id.country_id = self.env.ref("base.uk")
+        self.uk_state = self.env["res.country.state"].create(
+            {
+                "name": "London",
+                "code": "LDN",
+                "country_id": self.env.ref("base.uk").id,
+            }
+        )
+        main_company.partner_id.write(
+            {
+                "country_id": self.env.ref("base.uk").id,
+                "state_id": self.uk_state.id,
+                "street": "Main Street, 1",
+                "zip": "08001",
+                "city": "London",
+            }
+        )
         self.env["res.currency.rate"].search(
             [("currency_id", "=", main_company.currency_id.id)]
         ).write({"company_id": False})
@@ -388,6 +403,38 @@ class CommonTest(TestL10nEsAeatCertificateBase):
             self.wizard.with_context(
                 active_ids=self.move.ids, active_model="account.move"
             ).create_facturae_file()
+
+    def test_missing_address_fields(self):
+        self.move.action_post()
+        cases = [
+            ("country_id", "country"),
+            ("state_id", "state"),
+            ("street", "street"),
+            ("zip", "zip"),
+            ("city", "city"),
+        ]
+        for label, partner in [
+            ("Partner", self.move.partner_id),
+            ("Company", self.main_company.partner_id),
+        ]:
+            original_facturae = partner.facturae
+            for field, field_label in cases:
+                original = partner[field]
+                partner.write({"facturae": False, field: False})
+                try:
+                    with self.assertRaises(exceptions.ValidationError) as cm:
+                        self.move.validate_facturae_fields()
+                    self.assertIn(
+                        "%s %s not provided" % (label, field_label),
+                        str(cm.exception),
+                    )
+                finally:
+                    partner.write(
+                        {
+                            field: original.id if hasattr(original, "id") else original,
+                            "facturae": original_facturae,
+                        }
+                    )
 
     def test_signature(self):
         self._activate_certificate(self.certificate_password)
