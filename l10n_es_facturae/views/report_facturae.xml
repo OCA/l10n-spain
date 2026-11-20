@@ -482,10 +482,10 @@
                             t-out="('%.2f' if version == '3_2' else '%.8f') % (sign * move.amount_untaxed)"
                         />
                         <TotalTaxOutputs
-                            t-out="('%.2f' if version == '3_2' else '%.8f') % (-amount_tax)"
+                            t-out="('%.2f' if version == '3_2' else '%.8f') % ((-amount_tax) or 0.0)"
                         />
                         <TotalTaxesWithheld
-                            t-out="('%.2f' if version == '3_2' else '%.8f') % (-amount_tax_withheld)"
+                            t-out="('%.2f' if version == '3_2' else '%.8f') % ((-amount_tax_withheld) or 0.0)"
                         />
                         <InvoiceTotal
                             t-out="('%.2f' if version == '3_2' else '%.8f') % (sign * move.amount_total)"

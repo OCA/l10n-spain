@@ -280,6 +280,17 @@ class CommonTest(TestL10nEsAeatCertificateBase, TestL10nEsAeatModBase):
                 namespaces={"fe": self.fe},
             ),
         )
+        total_taxes_withheld = generated_facturae.xpath(
+            "/fe:Facturae/Invoices/Invoice/InvoiceTotals/TotalTaxesWithheld",
+            namespaces={"fe": self.fe},
+        )[0].text
+        self.assertFalse(total_taxes_withheld.startswith("-"))
+        self.assertEqual(float(total_taxes_withheld), 0.0)
+        total_tax_outputs = generated_facturae.xpath(
+            "/fe:Facturae/Invoices/Invoice/InvoiceTotals/TotalTaxOutputs",
+            namespaces={"fe": self.fe},
+        )[0].text
+        self.assertFalse(total_tax_outputs.startswith("-"))
 
     def test_facturae_with_attachments(self):
         self._activate_certificate(self.certificate_password)
