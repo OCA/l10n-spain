@@ -74,3 +74,23 @@ Estas son las distintas operaciones posibles con este módulo:
 >     posibles errores de comunicación.
 > 3.  También puede activar Odoo con --log-level=debug para registrar
 >     las peticiones y las respuestas en el log.
+
+## Reintentos automáticos para referencias duplicadas
+
+> Cuando GLS devuelve un error de referencia duplicada
+> ("The order number already exists to this date and customer code.")
+> el módulo ahora intenta automáticamente reenviar el envío con un sufijo incremental.
+> Se añade un mensaje en el chatter cuando se requieren reintentos y se modifica la referencia
+
+> **Ejemplo de secuencia de reintentos:**
+> 1. Intento inicial: `WH/OUT/0123`
+> 2. Si falla: `WH/OUT/0123-1`
+> 3. Si falla: `WH/OUT/0123-2`
+> 4. Continúa hasta máximo de reintentos configurado
+
+> **Configuración:**
+> - El sistema funciona automáticamente con **5 reintentos por defecto**
+> - Opcionalmente, se puede configurar el número máximo de reintentos mediante el parámetro 
+>   del sistema `delivery_gls_asm.max_reference_retries` (si no existe, usa 5 por defecto)
+> - Si la referencia original + sufijo excede los 15 caracteres permitidos por GLS,
+>   la referencia original se trunca automáticamente para hacer espacio al sufijo
