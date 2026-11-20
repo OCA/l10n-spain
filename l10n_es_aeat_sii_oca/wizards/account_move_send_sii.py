@@ -13,6 +13,7 @@ class SendSIIWizard(models.TransientModel):
     with_errors_number = fields.Integer()
     modified_number = fields.Integer()
     account_move_ids = fields.Many2many("account.move", string="Invoices")
+    send_now = fields.Boolean()
 
     def default_get(self, fields):
         res = super().default_get(fields)
@@ -39,4 +40,8 @@ class SendSIIWizard(models.TransientModel):
         return res
 
     def action_confirm(self):
-        self.account_move_ids.send_sii()
+        if self.send_now:
+            # Call the method to instantly (right now) send all the records
+            self.account_move_ids.send_sii_now()
+        else:
+            self.account_move_ids.send_sii()
