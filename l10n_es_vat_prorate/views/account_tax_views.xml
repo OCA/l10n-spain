@@ -13,11 +13,6 @@
                     invisible="not company_with_vat_prorate"
                 />
                 <field name="company_with_vat_prorate" invisible="1" />
-                <field
-                    name="prorate_account_ids"
-                    widget="many2many_tags"
-                    invisible="not company_with_vat_prorate"
-                />
             </field>
         </field>
     </record>

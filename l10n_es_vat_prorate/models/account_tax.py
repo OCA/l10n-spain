@@ -16,13 +16,6 @@ class AccountTax(models.Model):
         readonly=False,
         string="With VAT Prorate",
     )
-    prorate_account_ids = fields.Many2many(
-        "account.account",
-        compute="_compute_with_vat_prorate",
-        store=True,
-        readonly=True,
-        help="Accounts to apply the recompute",
-    )
     company_with_vat_prorate = fields.Boolean(
         related="company_id.with_vat_prorate",
         string="Company with VAT prorate",
@@ -34,39 +27,28 @@ class AccountTax(models.Model):
         return [*self._l10n_es_get_sujeto_tax_types(), "dua"]
 
     def _is_vat_prorate_tax(self):
+        """Deductible input VAT. IGIC is left out: model 303 only declares VAT, and
+        the IGIC prorate is computed on the operations of the Canary Islands."""
         self.ensure_one()
         return (
             self.type_tax_use == "purchase"
             and self.amount_type == "percent"
             and self.amount > 0
             and self.l10n_es_type in self._get_vat_prorate_tax_types()
+            and self.l10n_es_applicability != "03"
         )
 
     @api.depends(
         "company_id.with_vat_prorate",
         "type_tax_use",
-        "amount_type",
-        "amount",
         "l10n_es_type",
-        "invoice_repartition_line_ids.factor_percent",
-        "invoice_repartition_line_ids.account_id",
+        "l10n_es_applicability",
     )
     def _compute_with_vat_prorate(self):
+        """Only what defines the kind of tax recomputes the mark, so that the one
+        set by the user in a tax survives the edition of its other fields.
+        """
         for tax in self:
-            with_vat_prorate = (
+            tax.with_vat_prorate = (
                 tax.company_with_vat_prorate and tax._is_vat_prorate_tax()
             )
-            tax_lines = tax.invoice_repartition_line_ids.filtered(
-                lambda line: line.repartition_type == "tax"
-            )
-            # A self-assessed tax (reverse charge, intra-community) has a negative
-            # line for the output VAT: only the deductible side is prorated
-            if with_vat_prorate and tax_lines.filtered(
-                lambda line: line.factor_percent < 0
-            ):
-                tax.prorate_account_ids = tax_lines.filtered(
-                    lambda line: line.factor_percent > 0
-                ).account_id
-            else:
-                tax.prorate_account_ids = False
-            tax.with_vat_prorate = with_vat_prorate

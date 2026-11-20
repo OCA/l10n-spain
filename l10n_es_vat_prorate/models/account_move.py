@@ -7,7 +7,7 @@ import json
 from contextlib import contextmanager
 
 from odoo import Command, api, fields, models
-from odoo.tools import float_round
+from odoo.tools import float_compare, float_round
 
 
 class AccountMove(models.Model):
@@ -74,9 +74,10 @@ class AccountMove(models.Model):
             analytic_distribution = invoice_line.analytic_distribution
             # It's need to group by tax_id, analytic_distribution and account_id
             uniq_line_key = f"{analytic_distribution}|{account_id}"
+            deductible_balance = invoice_line._get_vat_prorate_deductible_balance()
             for tax in invoice_line.tax_ids.filtered(lambda t: t.with_vat_prorate):
                 tax_total = float_round(
-                    invoice_line.balance * tax.amount / 100, precision_rounding=prec
+                    deductible_balance * tax.amount / 100, precision_rounding=prec
                 )
                 prorate_total = float_round(
                     tax_total * prorate, precision_rounding=prec
@@ -134,9 +135,10 @@ class AccountMove(models.Model):
             [("with_vat_prorate", "=", False)]
         ):
             prec = invoice_line.move_id.currency_id.rounding
+            deductible_balance = invoice_line._get_vat_prorate_deductible_balance()
             for tax in invoice_line.tax_ids.filtered(lambda t: t.with_vat_prorate):
                 tax_total = float_round(
-                    invoice_line.balance * tax.amount / 100, precision_rounding=prec
+                    deductible_balance * tax.amount / 100, precision_rounding=prec
                 )
                 taxes_with_prorate.setdefault(tax.id, {"tax_total": 0})
                 taxes_with_prorate[tax.id]["tax_total"] += tax_total
@@ -278,6 +280,21 @@ class AccountMoveLine(models.Model):
                 rec.move_id.prorate_id.type == "general"
                 or rec.move_id.prorate_id.special_vat_prorate_default
             )
+
+    def _get_vat_prorate_deductible_balance(self):
+        """Part of the balance of the invoice line whose tax can be deducted.
+
+        Odoo core takes the non deductible part of the line
+        (``deductible_percentage``, arts. 95 and 96 LIVA) out of its tax amount
+        into its own lines, rounded as done here. The prorate applies only on the
+        quota left (art. 104.Uno LIVA).
+        """
+        self.ensure_one()
+        if not float_compare(self.deductible_percentage, 1, precision_digits=4):
+            return self.balance
+        return self.balance - self.company_currency_id.round(
+            self.balance * (1 - self.deductible_percentage)
+        )
 
     def _process_aeat_tax_fee_info(self, res, tax, sign):
         result = super()._process_aeat_tax_fee_info(res, tax, sign)

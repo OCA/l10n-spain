@@ -35,6 +35,7 @@ class AccountUpdateVatProrate(models.TransientModel):
                 "type",
                 "special_vat_prorate_default",
                 "vat_prorate",
+                "account_id",
             ]
         )
         # Keep track of the original IDs to avoid unlink error if there is any invoice
@@ -42,6 +43,7 @@ class AccountUpdateVatProrate(models.TransientModel):
         for vals in vat_prorate_ids_vals:
             vals["origin_vat_prorate_id"] = vals.pop("id")
             vals["company_id"] = vals["company_id"][0] if vals["company_id"] else False
+            vals["account_id"] = vals["account_id"][0] if vals["account_id"] else False
         res.update(
             {
                 "company_id": company.id,
@@ -67,6 +69,7 @@ class AccountUpdateVatProrate(models.TransientModel):
                 "type": vat_prorate.type,
                 "vat_prorate": vat_prorate.vat_prorate,
                 "special_vat_prorate_default": vat_prorate.special_vat_prorate_default,
+                "account_id": vat_prorate.account_id.id,
             }
             if vat_prorate.origin_vat_prorate_id:
                 vals.pop("company_id")
