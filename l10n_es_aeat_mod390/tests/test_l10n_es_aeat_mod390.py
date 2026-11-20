@@ -2,9 +2,13 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl
 
 from collections import OrderedDict
+from datetime import date
 from typing import ClassVar
 
+from dateutil.relativedelta import relativedelta
+
 from odoo import exceptions
+from odoo.tests import Form
 
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
     TestL10nEsAeatModBase,
@@ -87,17 +91,17 @@ class TestL10nEsAeatMod390Base(TestL10nEsAeatModBase):
             # Régimen ordinario - Cuota 21%
             ("6", 1738.8),
             # Adquisiciones intracomunitarias de bienes - Base 4%
-            ("21", 300.0),
+            ("21", 2400.0),  # (100 + 700) * 3
             # Adquisiciones intracomunitarias de bienes - Cuota 4%
-            ("22", 12.0),
+            ("22", 96.0),
             # Adquisiciones intracomunitarias de bienes - Base 10%
-            ("23", 600.0),
+            ("23", 3000.0),  # (200 + 800) * 3
             # Adquisiciones intracomunitarias de bienes - Cuota 10%
-            ("24", 60.0),
+            ("24", 300.0),
             # Adquisiciones intracomunitarias de bienes - Base 21%
-            ("25", 900.0),
+            ("25", 3600.0),  # (300 + 900) * 3
             # Adquisiciones intracomunitarias de bienes - Cuota 21%
-            ("26", 189.0),
+            ("26", 756.0),
             # IVA devengado otros supuestos de inversión del sujeto pasivo - Base
             ("27", 1950.0),  # (110 + 120 + 130 + 140 + 150) * 3
             # IVA devengado otros supuestos de inversión del sujeto pasivo - Cuota
@@ -283,9 +287,9 @@ class TestL10nEsAeatMod390(TestL10nEsAeatMod390Base):
                 f"Incorrect result in field {field} {ex.exception}",
             )
         # Check computed fields
-        self.assertAlmostEqual(self.model390.casilla_33, 17380.0, 2)
-        self.assertAlmostEqual(self.model390.casilla_34, 2184.8, 2)
-        self.assertAlmostEqual(self.model390.casilla_47, 2449.8, 2)
+        self.assertAlmostEqual(self.model390.casilla_33, 24580.0, 2)
+        self.assertAlmostEqual(self.model390.casilla_34, 3075.8, 2)
+        self.assertAlmostEqual(self.model390.casilla_47, 3340.8, 2)
         self.assertAlmostEqual(self.model390.casilla_48, 6180.0, 2)
         self.assertAlmostEqual(self.model390.casilla_49, 696.6, 2)
         self.assertAlmostEqual(self.model390.casilla_50, 2880.0, 2)
@@ -301,13 +305,13 @@ class TestL10nEsAeatMod390(TestL10nEsAeatMod390Base):
         self.assertAlmostEqual(self.model390.casilla_597, 4500.0, 2)
         self.assertAlmostEqual(self.model390.casilla_598, 576.0, 2)
         self.assertAlmostEqual(self.model390.casilla_64, 2341.25, 2)
-        self.assertAlmostEqual(self.model390.casilla_65, 108.55, 2)
-        self.assertAlmostEqual(self.model390.casilla_86, 108.55, 2)
+        self.assertAlmostEqual(self.model390.casilla_65, 999.55, 2)
+        self.assertAlmostEqual(self.model390.casilla_86, 999.55, 2)
         self.assertAlmostEqual(self.model390.casilla_108, 41880.0, 2)
         # It's not possible to confirm without entering manual 303 summary
         with self.assertRaises(exceptions.UserError):
             self.model390.button_confirm()
-        self.model390.casilla_95 = 108.55
+        self.model390.casilla_95 = 999.55
         self.model390.button_confirm()
         # Export to BOE
         export_to_boe = self.env["l10n.es.aeat.report.export_to_boe"].create(
@@ -523,3 +527,377 @@ class TestL10nEsAeatMod390(TestL10nEsAeatMod390Base):
         self.assertAlmostEqual(self.model390_2023.casilla_97, 0.0, 2)
         self.assertAlmostEqual(self.model390_2023.casilla_98, 560.85, 2)
         self.assertAlmostEqual(self.model390_2023.casilla_662, 0.0, 2)
+
+
+class TestL10nEsAeatMod390Rate5(TestL10nEsAeatMod390Base):
+    """The 5 % deductible taxes of the Odoo core chart reach their own boxes of
+    the 2024 design and its export."""
+
+    taxes_sale: ClassVar[dict] = {}
+    taxes_purchase: ClassVar[dict] = {
+        "P_IVA5_BI": (1280, 64),
+        "P_IVA5_IBC": (1320, 66),
+        "P_IVA5_IBI": (1340, 67),
+        "P_IVA5_IC_BI": (1380, 69),
+        "P_IVA5_IC_SC": (1420, 71),
+    }
+
+    def test_model_390_rate_5(self):
+        self._invoice_purchase_create("2024-03-01")
+        model390 = self.env["l10n.es.aeat.mod390.report"].create(
+            {
+                "name": "9990000002390",
+                "company_id": self.company.id,
+                "company_vat": "123456789",
+                "contact_name": "Test owner",
+                "statement_type": "N",
+                "support_type": "T",
+                "contact_phone": "911234455",
+                "year": 2024,
+                "period_type": "0A",
+                "date_start": "2024-01-01",
+                "date_end": "2024-12-31",
+                "journal_id": self.journal_misc.id,
+            }
+        )
+        model390.button_calculate()
+        export_to_boe = self.env["l10n.es.aeat.report.export_to_boe"].create(
+            {"name": "test_export_to_boe.txt"}
+        )
+        expected = {
+            # box: (amount, export line)
+            728: (1280, "sub03_export_line_38"),
+            729: (64, "sub03_export_line_39"),
+            732: (1320, "sub03_export_line_66"),
+            733: (66, "sub03_export_line_67"),
+            734: (1340, "sub03_export_line_80"),
+            735: (67, "sub03_export_line_81"),
+            738: (1380, "sub04_export_line_10"),
+            739: (69, "sub04_export_line_11"),
+            740: (1420, "sub04_export_line_24"),
+            741: (71, "sub04_export_line_25"),
+        }
+        for box, (amount, export_line) in expected.items():
+            lines = model390.tax_line_ids.filtered(
+                lambda x, box=box: x.field_number == box
+            )
+            self.assertAlmostEqual(sum(lines.mapped("amount")), amount, 2, box)
+            line = self.env.ref(f"l10n_es_aeat_mod390.aeat_mod390_2024_{export_line}")
+            self.assertTrue(
+                export_to_boe._export_line_process(model390, line).endswith(
+                    f"{round(amount * 100):016d}".encode()
+                ),
+                box,
+            )
+
+
+class TestL10nEsAeatMod390Map2024(TestL10nEsAeatMod390Base):
+    """Boxes of the map in force since 2024 and their export."""
+
+    taxes_sale: ClassVar[dict] = {}
+    taxes_purchase: ClassVar[dict] = {}
+
+    def _create_390(self, year):
+        return self.env["l10n.es.aeat.mod390.report"].create(
+            {
+                "name": f"99900000{year}0",
+                "company_id": self.company.id,
+                "company_vat": "123456789",
+                "contact_name": "Test owner",
+                "statement_type": "N",
+                "support_type": "T",
+                "contact_phone": "911234455",
+                "year": year,
+                "period_type": "0A",
+                "date_start": f"{year}-01-01",
+                "date_end": f"{year}-12-31",
+                "journal_id": self.journal_misc.id,
+            }
+        )
+
+    def _box(self, report, box):
+        return sum(
+            report.tax_line_ids.filtered(lambda x: x.field_number == box).mapped(
+                "amount"
+            )
+        )
+
+    def test_model_390_intra_investment_goods(self):
+        """The VAT accrued on intra-community acquisitions of investment goods goes
+        to the same boxes as the one of current goods."""
+        self.patch(
+            type(self),
+            "taxes_purchase",
+            {"P_IVA21_IC_BI": (1000, 210), "P_IVA5_IC_BI": (2000, 100)},
+        )
+        # The map up to 2023 and the one in force since 2024
+        for model390 in (self.model390_2023, self._create_390(2024)):
+            with self.subTest(year=model390.year):
+                self._invoice_purchase_create(f"{model390.year}-03-01")
+                model390.button_calculate()
+                self.assertAlmostEqual(self._box(model390, 25), 1000, 2)
+                self.assertAlmostEqual(self._box(model390, 26), 210, 2)
+                self.assertAlmostEqual(self._box(model390, 718), 2000, 2)
+                self.assertAlmostEqual(self._box(model390, 719), 100, 2)
+                self.assertAlmostEqual(model390.casilla_34, 310, 2)
+                # Deductible side
+                self.assertAlmostEqual(self._box(model390, 634), 210, 2)
+        self.assertAlmostEqual(self._box(model390, 739), 100, 2)
+
+    def test_model_390_reagyp_compensations(self):
+        """Livestock and fishing compensations (10.5 %) go to boxes 60 and 61."""
+        self._get_taxes("P_IVA105_GAN").active = True
+        self.patch(
+            type(self),
+            "taxes_purchase",
+            {"P_IVA12_AGR": (1000, 120), "P_IVA105_GAN": (2000, 210)},
+        )
+        self._invoice_purchase_create("2024-03-01")
+        model390 = self._create_390(2024)
+        model390.button_calculate()
+        self.assertAlmostEqual(self._box(model390, 60), 3000, 2)
+        self.assertAlmostEqual(self._box(model390, 61), 330, 2)
+
+    def test_model_390_bankruptcy_refund(self):
+        """A refund of a debtor in bankruptcy goes to boxes 31/32 and 45/46, and the
+        surcharge of box 46 is counted only once, in [47]."""
+        self.patch(type(self), "taxes_sale", {"S_IVA21B,S_REQ52": (1000, 262)})
+        invoice = self._invoice_sale_create("2024-03-01")
+        refund = invoice.with_user(self.billing_user)._reverse_moves(
+            [{"date": "2024-06-01", "invoice_date": "2024-06-01"}]
+        )
+        with Form(refund) as refund_form:
+            refund_form.is_bankrupcy_uncollectible_debt = True
+        refund.action_post()
+        model390 = self._create_390(2024)
+        model390.button_calculate()
+        self.assertAlmostEqual(self._box(model390, 6), 210, 2)
+        self.assertAlmostEqual(self._box(model390, 32), -210, 2)
+        self.assertAlmostEqual(self._box(model390, 30), 0, 2)
+        self.assertAlmostEqual(self._box(model390, 46), -52, 2)
+        self.assertAlmostEqual(self._box(model390, 44), 0, 2)
+        self.assertAlmostEqual(model390.casilla_34, 0, 2)
+        self.assertAlmostEqual(model390.casilla_47, 0, 2)
+
+    def test_model_390_services_outside_eu_temporary_rates(self):
+        """Services from outside the EU at the temporary rates go to the reverse
+        charge boxes 27/28 and 523, and the 5 % ones are also deductible in
+        724/725, while the intra-community ones only go to their own boxes."""
+        self._get_taxes("P_IVA5_ISC").active = True
+        self.patch(
+            type(self),
+            "taxes_purchase",
+            {
+                "P_IVA2_IC_SC": (1000, 20),
+                "P_IVA2_ISC": (2000, 40),
+                "P_IVA5_ISC": (1000, 50),
+            },
+        )
+        self._invoice_purchase_create("2024-03-01")
+        model390 = self._create_390(2024)
+        model390.button_calculate()
+        self.assertAlmostEqual(self._box(model390, 687), 1000, 2)
+        self.assertAlmostEqual(self._box(model390, 688), 20, 2)
+        self.assertAlmostEqual(self._box(model390, 27), 3000, 2)
+        self.assertAlmostEqual(self._box(model390, 28), 90, 2)
+        self.assertAlmostEqual(self._box(model390, 523), 3000, 2)
+        self.assertAlmostEqual(model390.casilla_34, 110, 2)
+        # Deductible side
+        self.assertAlmostEqual(self._box(model390, 695), 2000, 2)
+        self.assertAlmostEqual(self._box(model390, 696), 40, 2)
+        self.assertAlmostEqual(self._box(model390, 724), 1000, 2)
+        self.assertAlmostEqual(self._box(model390, 725), 50, 2)
+
+    def test_model_390_reverse_charge_investment_goods(self):
+        """The deductible VAT of domestic investment goods with reverse charge only
+        takes the deductible journal item, not the accrued one."""
+        self.patch(type(self), "taxes_purchase", {"P_IVA21_ISP_BI": (1000, 210)})
+        # The map up to 2023 and the one in force since 2024
+        for model390 in (self.model390_2023, self._create_390(2024)):
+            with self.subTest(year=model390.year):
+                self._invoice_purchase_create(f"{model390.year}-03-01")
+                model390.button_calculate()
+                self.assertAlmostEqual(self._box(model390, 613), 1000, 2)
+                self.assertAlmostEqual(self._box(model390, 614), 210, 2)
+                self.assertAlmostEqual(self._box(model390, 28), 210, 2)
+
+    def test_model_390_import_dua_group(self):
+        """The base of an import with the DUA tax group goes to the import boxes."""
+        self.patch(type(self), "taxes_purchase", {"P_IVA21_IBC_GROUP": (1000, 210)})
+        self._invoice_purchase_create("2024-03-01")
+        model390 = self._create_390(2024)
+        model390.button_calculate()
+        self.assertAlmostEqual(self._box(model390, 621), 1000, 2)
+        self.assertAlmostEqual(self._box(model390, 622), 210, 2)
+
+    def test_model_390_exempt_articles_22_23(self):
+        """Deliveries exempt by articles 22 to 24 have the right to deduct, so they
+        go to box 104, not to 105."""
+        self._get_taxes("S_IVA0_ART22,S_IVA0_ART23").active = True
+        self.patch(
+            type(self),
+            "taxes_sale",
+            {"S_IVA0_ART22": (1000, 0), "S_IVA0_ART23": (2000, 0)},
+        )
+        # The map up to 2023 and the one in force since 2024
+        for model390 in (self.model390_2023, self._create_390(2024)):
+            with self.subTest(year=model390.year):
+                self._invoice_sale_create(f"{model390.year}-03-01")
+                model390.button_calculate()
+                self.assertAlmostEqual(self._box(model390, 104), 3000, 2)
+                self.assertAlmostEqual(self._box(model390, 105), 0, 2)
+
+    def test_model_390_2025_export_temporary_rates(self):
+        """The 2025 record design asks for 0 in the boxes of the temporary rates
+        (its note 2), also when the map computes them, while the 5 % imports of
+        current goods keep their boxes."""
+        self.patch(
+            type(self),
+            "taxes_purchase",
+            {
+                "P_IVA5_IC_BI": (2000, 100),
+                "P_IVA2_IC_SC": (1000, 20),
+                "P_IVA5_BI": (1200, 60),
+                "P_IVA5_IBI": (1400, 70),
+                "P_IVA5_IBC": (1600, 80),
+            },
+        )
+        self._invoice_purchase_create("2025-03-01")
+        model390 = self._create_390(2025)
+        model390.button_calculate()
+        self.assertEqual(
+            model390.export_config_id,
+            self.env.ref("l10n_es_aeat_mod390.aeat_mod390_2025_main_export_config"),
+        )
+        export_to_boe = self.env["l10n.es.aeat.report.export_to_boe"].create(
+            {"name": "test_export_to_boe.txt"}
+        )
+        contents = export_to_boe.action_get_file_from_config(model390)
+
+        def exported(page, position):
+            # Positions of the record design, counted from the start of the page
+            start = contents.index(f"<T390{page}>".encode()) + position - 1
+            return contents[start : start + 17]
+
+        # box: (page, position, amount computed by the map)
+        temporary_rates = {
+            687: ("02000", 1271, 1000),
+            688: ("02000", 1288, 20),
+            718: ("02000", 1101, 2000),
+            719: ("02000", 1118, 100),
+            728: ("03000", 557, 1200),
+            729: ("03000", 574, 60),
+            734: ("03000", 1271, 1400),
+            735: ("03000", 1288, 70),
+            738: ("04000", 81, 2000),
+            739: ("04000", 98, 100),
+            773: ("04000", 251, 1000),
+            774: ("04000", 268, 20),
+        }
+        for box, (page, position, amount) in temporary_rates.items():
+            self.assertAlmostEqual(self._box(model390, box), amount, 2, box)
+            self.assertEqual(exported(page, position), b"0" * 17, box)
+        self.assertEqual(exported("03000", 1033), f"{160000:017d}".encode())
+        self.assertEqual(exported("03000", 1050), f"{8000:017d}".encode())
+
+
+class TestL10nEsAeatMod390Using303(TestL10nEsAeatMod390Base):
+    """Boxes [85] and [662] from the 303 reports of the year."""
+
+    taxes_sale: ClassVar[dict] = {}
+    taxes_purchase: ClassVar[dict] = {}
+
+    def _create_303(self, year, period_type, first_month, last_month):
+        report = self.env["l10n.es.aeat.mod303.report"].create(
+            {
+                "name": f"303{year}{period_type}0000",
+                "company_id": self.company.id,
+                "company_vat": "123456789",
+                "contact_name": "Test owner",
+                "statement_type": "N",
+                "support_type": "T",
+                "contact_phone": "911234455",
+                "year": year,
+                "period_type": period_type,
+                "date_start": date(year, first_month, 1),
+                "date_end": date(year, last_month, 1) + relativedelta(day=31),
+                "journal_id": self.journal_misc.id,
+            }
+        )
+        return report
+
+    def test_model_390_using_303_monthly(self):
+        """[85] takes the compensation pending from previous years from the first
+        monthly 303, as it does from the first quarterly one."""
+        self.patch(type(self), "taxes_purchase", {"P_IVA21_BC": (500, 105)})
+        self.patch(type(self), "taxes_sale", {"S_IVA21B": (1000, 210)})
+        self._invoice_purchase_create("2023-01-10")
+        self._invoice_sale_create("2023-02-10")
+        report_01 = self._create_303(2023, "01", 1, 1)
+        # Pending from previous years
+        report_01.potential_cuota_compensar = 100
+        report_01.button_calculate()
+        report_02 = self._create_303(2023, "02", 2, 2)
+        report_02.button_calculate()
+        # 100 from previous years and 105 generated in January
+        self.assertAlmostEqual(report_02.cuota_compensar, 205, 2)
+        self.model390_2023.button_calculate()
+        self.assertAlmostEqual(self.model390_2023.casilla_85, 100, 2)
+
+    def test_model_390_using_303_662_pending_previous_years(self):
+        """When what is applied in the year doesn't use up the compensation pending
+        from previous years, what is generated in the year stays pending in [662]."""
+        self.patch(type(self), "taxes_purchase", {"P_IVA21_BC": (500, 105)})
+        self.patch(type(self), "taxes_sale", {"S_IVA21B": (1000, 210)})
+        self._invoice_purchase_create("2023-04-10")
+        self._invoice_sale_create("2023-07-10")
+        report_1t = self._create_303(2023, "1T", 1, 3)
+        report_1t.potential_cuota_compensar = 1000
+        report_1t.button_calculate()
+        report_2t = self._create_303(2023, "2T", 4, 6)
+        report_2t.button_calculate()
+        self.assertEqual(report_2t.result_type, "C")
+        report_3t = self._create_303(2023, "3T", 7, 9)
+        report_3t.button_calculate()
+        self.assertAlmostEqual(report_3t.cuota_compensar, 210, 2)
+        report_4t = self._create_303(2023, "4T", 10, 12)
+        report_4t.button_calculate()
+        self.model390_2023.button_calculate()
+        # 210 applied from the 1000 of previous years: the 105 of 2T stay pending
+        self.assertAlmostEqual(self.model390_2023.casilla_662, 105, 2)
+
+    def _quarterly_303(self, potential_first_period, sales, purchases):
+        """Calculate the four quarterly 303 of 2023, with a sale (S_IVA21B) and a
+        purchase (P_IVA21_BC) of the given bases in each quarter, and the 390."""
+        reports = self.env["l10n.es.aeat.mod303.report"]
+        for quarter, (sale, purchase) in enumerate(zip(sales, purchases, strict=True)):
+            month = quarter * 3 + 1
+            if sale:
+                self.patch(type(self), "taxes_sale", {"S_IVA21B": (sale, 0)})
+                self._invoice_sale_create(f"2023-{month:02d}-10")
+            if purchase:
+                self.patch(type(self), "taxes_purchase", {"P_IVA21_BC": (purchase, 0)})
+                self._invoice_purchase_create(f"2023-{month:02d}-10")
+            report = self._create_303(2023, f"{quarter + 1}T", month, month + 2)
+            if not quarter:
+                report.potential_cuota_compensar = potential_first_period
+            report.button_calculate()
+            reports |= report
+        self.model390_2023.button_calculate()
+        return reports
+
+    def test_model_390_using_303_662_previous_years_used_up_in_the_year(self):
+        """FIFO: 300 from previous years, 210 applied in 1T and 126 in 3T: 90 of the
+        126 use up what was left of previous years and 36 come from the 105 generated
+        in 2T, so 69 of them stay pending."""
+        reports = self._quarterly_303(300, (1000, 0, 600, 0), (0, 500, 0, 0))
+        self.assertEqual(reports.mapped("cuota_compensar"), [210, 0, 126, 0])
+        self.assertAlmostEqual(self.model390_2023.casilla_662, 69, 2)
+
+    def test_model_390_using_303_662_this_year_partly_applied(self):
+        """FIFO: 100 from previous years, nothing applied in 1T, 105 generated in 2T
+        and 157.5 applied in 3T: 100 come from previous years and 57.5 from this
+        year, so 47.5 stay pending."""
+        reports = self._quarterly_303(100, (0, 0, 750, 0), (0, 500, 0, 0))
+        self.assertEqual(reports.mapped("cuota_compensar"), [0, 0, 157.5, 0])
+        self.assertAlmostEqual(self.model390_2023.casilla_662, 47.5, 2)
