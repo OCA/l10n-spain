@@ -3,7 +3,10 @@
 # License AGPL-3.0 or later(http://www.gnu.org/licenses/agpl).
 
 
-from odoo import api, fields, models
+import json
+from contextlib import contextmanager
+
+from odoo import Command, api, fields, models
 from odoo.tools import float_round
 
 
@@ -38,11 +41,24 @@ class AccountMove(models.Model):
                 rec.prorate_id = rec.company_id.get_prorate(prorate_date)
                 rec.with_special_vat_prorate = rec.prorate_id.type == "special"
 
-    def button_draft(self):
-        res = super().button_draft()
-        for move in self:
-            move._apply_vat_prorate()
-        return res
+    @contextmanager
+    def _sync_tax_lines(self, container):
+        # Exits right after Odoo core computes the tax lines
+        with (
+            self._sync_vat_prorate_lines(container),
+            super()._sync_tax_lines(container),
+        ):
+            yield
+
+    @contextmanager
+    def _sync_vat_prorate_lines(self, container):
+        """Apply the prorate each time Odoo core computes the tax lines again, as it
+        does when the lines are written on their own (journal items list, imported
+        documents) and not only through the bill."""
+        yield
+        for move in container["records"]:
+            if move.state == "draft" and move.move_type in ("in_invoice", "in_refund"):
+                move._apply_vat_prorate()
 
     def _calculate_vat_prorate(self, invoice_lines):
         """This method calculates tax_total and prorate_total for each line of
@@ -120,140 +136,116 @@ class AccountMove(models.Model):
         ):
             prec = invoice_line.move_id.currency_id.rounding
             for tax in invoice_line.tax_ids.filtered(lambda t: t.with_vat_prorate):
-                if tax.id in taxes_with_prorate:
-                    taxes_with_prorate[tax.id]["tax_total"] += float_round(
-                        invoice_line.balance * tax.amount / 100, precision_rounding=prec
-                    )
-                else:
-                    taxes_with_prorate.update(
-                        {
-                            tax.id: {
-                                "tax_total": float_round(
-                                    invoice_line.balance * tax.amount / 100,
-                                    precision_rounding=prec,
-                                )
-                            }
-                        }
-                    )
+                tax_total = float_round(
+                    invoice_line.balance * tax.amount / 100, precision_rounding=prec
+                )
+                taxes_with_prorate.setdefault(tax.id, {"tax_total": 0})
+                taxes_with_prorate[tax.id]["tax_total"] += tax_total
         return taxes_with_prorate
-
-    def _get_lines_with_tax_prorate(self):
-        return self.line_ids.filtered_domain(
-            [
-                ("vat_prorate", "=", False),
-                ("tax_line_id.with_vat_prorate", "=", True),
-            ]
-        )
 
     def _get_invoice_line_with_prorate(self):
         self.ensure_one()
         return self.invoice_line_ids.filtered_domain([("with_vat_prorate", "=", True)])
 
+    def _get_vat_prorate_lines_key(self, vals_list):
+        """Comparable values of the prorate lines of a tax."""
+        return sorted(
+            (
+                vals["account_id"],
+                json.dumps(vals["analytic_distribution"] or {}, sort_keys=True),
+                self.company_currency_id.round(vals["balance"]),
+            )
+            for vals in vals_list
+        )
+
     def _apply_vat_prorate(self):
-        """Recalculate move.line_ids by applying the prorate.
-        If a move line with with_tax_prorate=True already has a prorate_line,
-        we need to recalculate the prorate and tax.
-        If a move line with with_tax_prorate=True does not have a
-        prorate_line, we need to use the copy method to create a new line
-        with the prorate applied and recalculate prorate balance and tax balance
-        We group the prorate lines by Tax->Account->Analytic Distribution.
+        """Split the deductible quota of each prorated tax between its tax line and
+        the prorate lines, grouped by account and analytic distribution.
+
+        It runs after Odoo core computes the tax lines, which drops the prorate
+        lines and gives the whole quota back to the tax line, or keeps them as they
+        are, so the lines are written only when they differ from the expected ones.
         """
-        invoice_lines_with_prorate = self._get_invoice_line_with_prorate()
+        self.ensure_one()
+        prorate_lines = self.line_ids.filtered("vat_prorate")
+        if not self.prorate_id and not prorate_lines:
+            return
         taxes_with_prorate, prorate_vals = self._calculate_vat_prorate(
-            invoice_lines_with_prorate
+            self._get_invoice_line_with_prorate()
         )
-        line_to_update = {"line_ids": []}
-        tax_lines = self._get_lines_with_tax_prorate()
-        prorate_lines = tax_lines.prorate_line_ids.filtered_domain(
-            [("vat_prorate", "=", True)]
+        currency = self.company_currency_id
+        taxes = (
+            self.env["account.tax"].browse(list(taxes_with_prorate))
+            | prorate_lines.tax_line_id
         )
-        prorate_lines.with_context(
-            dynamic_unlink=True
-        ).unlink()  # Remove all prorate lines
-        for tax_id, prorate_taxes in prorate_vals.items():
-            prorate_amount = 0
-            tax_line = tax_lines.filtered_domain(
-                [("tax_line_id", "=", tax_id), ("account_type", "=", "asset_current")]
+        # The deductible side only: a self-assessed tax has its output VAT too
+        tax_lines = self.line_ids.filtered(
+            lambda line: (
+                not line.vat_prorate
+                and line.tax_line_id in taxes
+                and line.account_type == "asset_current"
             )
-            prorate_line_ids = []
-            for prorate_data in prorate_taxes.values():
-                prorate_line = tax_line.copy()
-                tax_total = prorate_data.get("tax_total", 0)
-                prorate_total = prorate_data.get("prorate_total", 0)
-                prorate_amount += tax_total - prorate_total
-                prorate_line_ids.append(prorate_line.id)
-                line_to_update["line_ids"].append(
-                    (
-                        1,
-                        prorate_line.id,
+        )
+        for tax in taxes:
+            tax_line = tax_lines.filtered(lambda line, tax=tax: line.tax_line_id == tax)
+            if not tax_line:
+                # No quota (lines without amount): Odoo core makes no tax line
+                continue
+            old_prorate_lines = prorate_lines.filtered(
+                lambda line, tax=tax: line.tax_line_id == tax
+            )
+            new_vals = []
+            for data in prorate_vals.get(tax.id, {}).values():
+                balance = currency.round(data["tax_total"] - data["prorate_total"])
+                if not currency.is_zero(balance):
+                    new_vals.append(
                         {
-                            "balance": tax_total - prorate_total,
-                            "account_id": prorate_data["account_id"],
-                            "analytic_distribution": prorate_data[
-                                "analytic_distribution"
-                            ],
-                            "vat_prorate": True,
-                        },
+                            "account_id": data["account_id"],
+                            "analytic_distribution": data["analytic_distribution"],
+                            "balance": balance,
+                        }
                     )
+            if tax.id in taxes_with_prorate:
+                tax_balance = taxes_with_prorate[tax.id]["tax_total"] - sum(
+                    vals["balance"] for vals in new_vals
                 )
-            tax_val = taxes_with_prorate.pop(tax_id)
-            line_to_update["line_ids"].append(
-                [
-                    1,
-                    tax_line.id,
-                    {
-                        "balance": tax_val["tax_total"] - prorate_amount,
-                        "prorate_line_ids": [fields.Command.set(prorate_line_ids)],
-                    },
-                ]
-            )
-        for tax_id, tax_val in taxes_with_prorate.items():
-            tax_line = tax_lines.filtered_domain([("tax_line_id", "=", tax_id)])
-            line_to_update["line_ids"].append(
-                [
-                    1,
-                    tax_line.id,
-                    {
-                        "balance": tax_val["tax_total"],
-                    },
-                ]
-            )
-        self.with_context(skip_vat_prorate=True).write(line_to_update)
-
-    @api.model_create_multi
-    def create(self, vals_list):
-        moves = super().create(vals_list)
-        for move in moves:
-            if move.move_type in ["in_invoice", "in_refund"]:
-                move._apply_vat_prorate()
-        return moves
-
-    def write(self, vals):
-        res = super().write(vals)
-        for move in self:
-            if (
-                move.move_type in ["in_invoice", "in_refund"]
-                and not self.env.context.get("skip_vat_prorate", False)
-                and move.state == "draft"
-                and (
-                    "line_ds" in vals
-                    and len(vals["line_ids"])
-                    or "invoice_line_ids" in vals
+            else:
+                # Prorate no longer applied: the tax line takes its quota back
+                tax_balance = tax_line.balance + sum(
+                    old_prorate_lines.mapped("balance")
                 )
-                or any(
-                    key in vals
-                    for key in [
-                        "partner_id",
-                        "currency_id",
-                        "invoice_currency_rate",
-                        "prorate_id",
-                        "date",
-                        "invoice_date",
-                    ]
-                )
+            old_vals = [
+                {
+                    "account_id": line.account_id.id,
+                    "analytic_distribution": line.analytic_distribution,
+                    "balance": line.balance,
+                }
+                for line in old_prorate_lines
+            ]
+            old_key = self._get_vat_prorate_lines_key(old_vals)
+            if old_key == self._get_vat_prorate_lines_key(new_vals) and not (
+                currency.compare_amounts(tax_line.balance, tax_balance)
             ):
-                move._apply_vat_prorate()
-        return res
+                continue
+            old_prorate_lines.with_context(dynamic_unlink=True).unlink()
+            new_prorate_lines = self.env["account.move.line"]
+            for vals in new_vals:
+                new_prorate_line = tax_line.copy({"account_id": vals["account_id"]})
+                # Not the account again: it would give its default taxes to the line
+                new_prorate_line.write(
+                    {
+                        "balance": vals["balance"],
+                        "analytic_distribution": vals["analytic_distribution"],
+                        "vat_prorate": True,
+                    }
+                )
+                new_prorate_lines |= new_prorate_line
+            tax_line.write(
+                {
+                    "balance": tax_balance,
+                    "prorate_line_ids": [Command.set(new_prorate_lines.ids)],
+                }
+            )
 
 
 class AccountMoveLine(models.Model):
