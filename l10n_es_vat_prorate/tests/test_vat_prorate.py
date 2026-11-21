@@ -8,6 +8,7 @@ from datetime import date
 from psycopg2 import IntegrityError, errors
 
 from odoo import Command, exceptions
+from odoo.tests import Form
 from odoo.tests.common import tagged
 from odoo.tools import mute_logger
 
@@ -102,12 +103,23 @@ class TestVatProrate(AccountTestInvoicingCommon):
         )
         self.assertEqual(6, len(invoice.line_ids))
         self.assertEqual(3, len(invoice.line_ids.filtered(lambda r: r.tax_line_id)))
-        # Deal with analytics
-        invoice.line_ids[0].analytic_distribution = {self.analytic_account.id: 100}
-        self.assertEqual(4, len(invoice.line_ids))
+        # Deal with analytics: the prorate line of the expense takes its analytic
+        self.env.user.sudo().group_ids += self.env.ref(
+            "analytic.group_analytic_accounting"
+        )
+        with (
+            Form(invoice) as invoice_form,
+            invoice_form.invoice_line_ids.edit(0) as line_form,
+        ):
+            line_form.analytic_distribution = {self.analytic_account.id: 100}
+        self.assertEqual(6, len(invoice.line_ids))
         self.assertEqual(
             1,
-            len(invoice.line_ids.filtered(lambda r: r.analytic_distribution)),
+            len(
+                invoice.line_ids.filtered(
+                    lambda r: r.tax_line_id and r.analytic_distribution
+                )
+            ),
         )
 
     def test_prorate_tax_with_prorate_account(self):
@@ -303,3 +315,211 @@ class TestVatProrate(AccountTestInvoicingCommon):
             set(invoice.line_ids.filtered("vat_prorate").mapped("account_id").ids),
             {test_account.id},
         )
+
+    def _tax(self, name):
+        return self.env.ref(
+            f"account.{self.env.company.id}_account_tax_template_{name}"
+        )
+
+    def _create_bill(self, lines, move_type="in_invoice", invoice_date="2019-01-01"):
+        """Vendor bill with one line per (price, tax, account) given."""
+        return self.env["account.move"].create(
+            {
+                "move_type": move_type,
+                "partner_id": self.partner_a.id,
+                "invoice_date": invoice_date,
+                "date": invoice_date,
+                "invoice_line_ids": [
+                    Command.create(
+                        {
+                            "name": f"Line {price}",
+                            "price_unit": price,
+                            "tax_ids": [Command.set(tax.ids)],
+                            "account_id": (
+                                account or self.company_data["default_account_expense"]
+                            ).id,
+                        }
+                    )
+                    for price, tax, account in lines
+                ],
+            }
+        )
+
+    def _tax_lines(self, move):
+        return move.line_ids.filtered("tax_line_id").sorted(
+            lambda line: (line.vat_prorate, line.account_id.code, line.balance)
+        )
+
+    def test_prorate_on_journal_item_edition(self):
+        """The journal items list saves each line on its own: the tax lines that
+        Odoo core computes again keep the prorate."""
+        expense = self.company_data["default_account_expense"]
+        other_expense = self.copy_account(expense)
+        tax = self._tax("p_iva21_bc")
+        account_472 = tax.invoice_repartition_line_ids.account_id
+        bill = self._create_bill([(100, tax, expense)])
+        expense_line = bill.invoice_line_ids
+        expense_line.write({"analytic_distribution": {self.analytic_account.id: 100}})
+        self.assertRecordValues(
+            self._tax_lines(bill),
+            [
+                {"account_id": account_472.id, "balance": 4.2, "vat_prorate": False},
+                {"account_id": expense.id, "balance": 16.8, "vat_prorate": True},
+            ],
+        )
+        self.assertEqual(
+            bill.line_ids.filtered("vat_prorate").analytic_distribution,
+            {str(self.analytic_account.id): 100},
+        )
+        expense_line.write({"account_id": other_expense.id})
+        self.assertRecordValues(
+            self._tax_lines(bill),
+            [
+                {"account_id": account_472.id, "balance": 4.2, "vat_prorate": False},
+                {"account_id": other_expense.id, "balance": 16.8, "vat_prorate": True},
+            ],
+        )
+        bill.action_post()
+        tax_info = bill._get_aeat_tax_info()[tax]
+        self.assertAlmostEqual(tax_info["deductible_amount"], 4.2)
+
+    def test_prorate_on_bill_lines_write(self):
+        """Lines written, added or removed on their own keep the prorate."""
+        expense = self.company_data["default_account_expense"]
+        tax = self._tax("p_iva21_bc")
+        bill = self._create_bill([(100, tax, expense)])
+        bill.invoice_line_ids.write({"price_unit": 200})
+        self.assertRecordValues(
+            self._tax_lines(bill),
+            [
+                {"balance": 8.4, "vat_prorate": False},
+                {"balance": 33.6, "vat_prorate": True},
+            ],
+        )
+        new_line = self.env["account.move.line"].create(
+            {
+                "move_id": bill.id,
+                "name": "Line 300",
+                "price_unit": 300,
+                "tax_ids": [Command.set(tax.ids)],
+                "account_id": expense.id,
+            }
+        )
+        self.assertRecordValues(
+            self._tax_lines(bill),
+            [
+                {"balance": 21, "vat_prorate": False},
+                {"balance": 84, "vat_prorate": True},
+            ],
+        )
+        new_line.unlink()
+        self.assertRecordValues(
+            self._tax_lines(bill),
+            [
+                {"balance": 8.4, "vat_prorate": False},
+                {"balance": 33.6, "vat_prorate": True},
+            ],
+        )
+        self.assertAlmostEqual(bill.amount_total, 242)
+
+    def test_prorate_on_edi_import(self):
+        """The documents imported (UBL, Factur-X, OCR) fill the bill inside
+        ``_get_edi_creation``, where Odoo core computes the tax lines at the end."""
+        expense = self.company_data["default_account_expense"]
+        tax = self._tax("p_iva21_bc")
+        bill = self.env["account.move"].create({"move_type": "in_invoice"})
+        with bill._get_edi_creation() as bill:
+            bill.partner_id = self.partner_a
+            bill.invoice_date = date(2019, 1, 1)
+            bill.invoice_line_ids = [
+                Command.create(
+                    {
+                        "name": "Imported line",
+                        "price_unit": 100,
+                        "tax_ids": [Command.set(tax.ids)],
+                        "account_id": expense.id,
+                    }
+                )
+            ]
+        self.assertRecordValues(
+            self._tax_lines(bill),
+            [
+                {"balance": 4.2, "vat_prorate": False},
+                {"balance": 16.8, "vat_prorate": True},
+            ],
+        )
+
+    def test_special_prorate_self_assessed_tax_not_prorated(self):
+        """Special prorate with an intra-community acquisition line left out of the
+        prorate: the deductible side keeps the whole quota and the output VAT is
+        kept as it is."""
+        self.env.company.vat_prorate_ids[0].write(
+            {"type": "special", "special_vat_prorate_default": False}
+        )
+        tax = self._tax("p_iva21_ic_bc")
+        invoice = self._create_bill([(100, tax, None)])
+        invoice.action_post()
+        account_472, account_477 = (
+            tax.invoice_repartition_line_ids.filtered(
+                lambda line: line.factor_percent > 0 and line.account_id
+            ).account_id,
+            tax.invoice_repartition_line_ids.filtered(
+                lambda line: line.factor_percent < 0
+            ).account_id,
+        )
+        self.assertRecordValues(
+            invoice.line_ids.filtered("tax_line_id").sorted("balance"),
+            [
+                {"account_id": account_477.id, "balance": -21, "vat_prorate": False},
+                {"account_id": account_472.id, "balance": 21, "vat_prorate": False},
+            ],
+        )
+
+    def test_prorate_reset_to_draft(self):
+        tax = self._tax("p_iva21_bc")
+        invoice = self._create_bill([(100, tax, None)])
+        invoice.action_post()
+        invoice.button_draft()
+        invoice.action_post()
+        self.assertRecordValues(
+            self._tax_lines(invoice),
+            [
+                {"balance": 4.2, "vat_prorate": False},
+                {"balance": 16.8, "vat_prorate": True},
+            ],
+        )
+
+    def test_no_prorate_in_journal_entry(self):
+        """Writing a journal entry with a purchase tax doesn't add prorate lines."""
+        tax = self._tax("p_iva21_bc")
+        expense = self.company_data["default_account_expense"]
+        entry = self.env["account.move"].create(
+            {
+                "move_type": "entry",
+                "date": "2019-01-01",
+                "line_ids": [
+                    Command.create(
+                        {
+                            "name": "Expense",
+                            "account_id": expense.id,
+                            "balance": 100,
+                            "tax_ids": [Command.set(tax.ids)],
+                        }
+                    ),
+                    Command.create(
+                        {
+                            "name": "Counterpart",
+                            "account_id": self.company_data[
+                                "default_account_payable"
+                            ].id,
+                            "balance": -121,
+                        }
+                    ),
+                ],
+            }
+        )
+        lines = entry.line_ids
+        self.assertEqual(len(lines.filtered("tax_line_id")), 1)
+        entry.date = "2019-01-02"
+        self.assertEqual(entry.line_ids, lines)
+        self.assertFalse(entry.line_ids.filtered("vat_prorate"))
