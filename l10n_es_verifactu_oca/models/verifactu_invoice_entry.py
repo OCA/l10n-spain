@@ -355,11 +355,12 @@ class VerifactuInvoiceEntry(models.Model):
         for verifactu_response_line in verifactu_response_lines:
             invoice_num = verifactu_response_line["IDFactura"]["NumSerieFactura"]
             matching_entries = self.filtered(
-                lambda r, invoice_num=invoice_num: r.document_name == invoice_num
-            ).sorted(lambda x: x.create_date, reverse=True)
+                lambda record, invoice_num=invoice_num: record.document_name
+                == invoice_num
+            )
             if not matching_entries:
                 continue
-            verifactu_invoice_entry = matching_entries[0]  # Get first one
+            verifactu_invoice_entry = matching_entries[0]  # Assume one match
             document = verifactu_invoice_entry.document
             previous_response_line = document.last_verifactu_response_line_id
             send_state = VERIFACTU_STATE_MAPPING[
