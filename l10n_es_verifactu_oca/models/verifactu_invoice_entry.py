@@ -125,6 +125,48 @@ class VerifactuInvoiceEntry(models.Model):
         return self.env[self.model].browse(self.document_id).exists()
 
     @api.model
+    def _get_verifactu_sealed_fields(self):
+        """Fields that make up the billing record once its hash is generated.
+
+        Changing any of them afterwards would alter a record that has already
+        been chained (and maybe sent), so it is forbidden at ORM level: the
+        ``readonly`` attribute only applies to the views, not to RPC calls.
+        """
+        return {
+            "verifactu_chaining_id",
+            "model",
+            "document_id",
+            "document_name",
+            "previous_invoice_entry_id",
+            "company_id",
+            "document_hash",
+            "aeat_json_data",
+            "entry_type",
+        }
+
+    def write(self, vals):
+        sealed_fields = self._get_verifactu_sealed_fields().intersection(vals)
+        if sealed_fields:
+            for rec in self.filtered("document_hash"):
+                changed = [
+                    fname
+                    for fname in sealed_fields
+                    # "or False" so that False/""/0 count as the same empty value
+                    if (rec._fields[fname].convert_to_write(rec[fname], rec) or False)
+                    != (vals[fname] or False)
+                ]
+                if changed:
+                    raise UserError(
+                        self.env._(
+                            "You cannot modify the VERI*FACTU entry %(entry)s once "
+                            "its hash has been generated (fields: %(fields)s).",
+                            entry=rec.document_name or rec.id,
+                            fields=", ".join(sorted(changed)),
+                        )
+                    )
+        return super().write(vals)
+
+    @api.model
     def _cron_send_documents_to_verifactu(self):
         batch_limit = self.env["verifactu.mixin"]._get_verifactu_batch()
         for chaining in self.env["verifactu.chaining"].search([]):

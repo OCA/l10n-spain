@@ -346,8 +346,13 @@ class VerifactuMixin(models.AbstractModel):
                 except Exception:
                     # If JSON generation fails, store empty string
                     aeat_json_data = ""
-                invoice_entry.document_hash = hash_string.hexdigest().upper()
-                invoice_entry.aeat_json_data = aeat_json_data
+                # Both in a single write: once the hash is set the entry is sealed
+                invoice_entry.write(
+                    {
+                        "document_hash": hash_string.hexdigest().upper(),
+                        "aeat_json_data": aeat_json_data,
+                    }
+                )
                 self.env.cr.execute(
                     f"UPDATE {chaining._table} "
                     "SET last_verifactu_invoice_entry_id = %s WHERE id = %s",
