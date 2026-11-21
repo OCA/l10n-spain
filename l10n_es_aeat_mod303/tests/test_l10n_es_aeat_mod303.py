@@ -932,6 +932,35 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
         self.assertAlmostEqual(self._box(report, 94), 1500)
         self.assertAlmostEqual(self._box(report, 83), 0)
 
+    def test_model_303_intra_community_exempt_art_27_12(self):
+        """The intra-community deliveries after an exempt import (art. 27.12º LIVA)
+        are exempt by art. 25 LIVA: they go to [59] and to the annual [93].
+        """
+        self.patch(
+            type(self),
+            "taxes_sale",
+            {"S_IVA0_EU_E_M": (1000, 0), "S_IVA0_EU_E_H": (500, 0)},
+        )
+        self._invoice_sale_create("2025-11-01")
+        report = self._create_303(2025, "4T", exonerated_390="1")
+        report.button_calculate()
+        self.assertAlmostEqual(self._box(report, 59), 1500)
+        self.assertAlmostEqual(self._box(report, 93), 1500)
+
+    def test_model_303_triangular_operation(self):
+        """The delivery of the Spanish intermediary in a triangular operation takes
+        place in the Member State of arrival of the goods, so it is not subject by
+        the place of supply rules: it goes to [120] and to the annual [84], not to
+        [59].
+        """
+        self.patch(type(self), "taxes_sale", {"S_IVA0_EU_E_T": (1000, 0)})
+        self._invoice_sale_create("2025-11-01")
+        report = self._create_303(2025, "4T", exonerated_390="1")
+        report.button_calculate()
+        self.assertAlmostEqual(self._box(report, 120), 1000)
+        self.assertAlmostEqual(self._box(report, 84), 1000)
+        self.assertAlmostEqual(self._box(report, 59), 0)
+
     def test_model_303_reagyp_compensations(self):
         """Compensations paid under the special regime of agriculture (12%) and of
         livestock and fishing (10.5%) are deductible in [42].

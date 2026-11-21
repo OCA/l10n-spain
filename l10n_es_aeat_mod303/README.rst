@@ -124,6 +124,13 @@ Known issues / Roadmap
 - Las casillas [124] y [127] (operaciones sujetas y acogidas a los
   regímenes especiales de ventanilla única) no se rellenan.
 
+- Las transferencias de bienes en consigna a otro Estado miembro
+  (impuesto ``s_iva0_bc``) no suman en ninguna casilla: hasta que el
+  cliente retira los bienes no hay entrega (art. 9 bis de la Ley del
+  IVA) y solo se declaran en el modelo 349. La entrega exenta posterior
+  se factura con el impuesto de entregas intracomunitarias, que va a la
+  casilla 59.
+
 Bug Tracker
 ===========
 
