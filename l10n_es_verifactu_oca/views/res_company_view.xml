@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2024 Jose Zambudio <jose@aurestic.es> ç
+    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_company_verifactu_form" model="ir.ui.view">
+        <field name="name">res.company.verifactu.form</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form" />
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page name="verifactu" string="VERI*FACTU">
+                    <group name="verifactu_enabled">
+                        <field name="verifactu_enabled" string="Enabled?" />
+                    </group>
+                    <group invisible="not verifactu_enabled">
+                        <group name="verifactu_config">
+                            <field name="verifactu_test" string="Test environment?" />
+                            <field name="verifactu_start_date" string="Start date" />
+                        </group>
+                    </group>
+                    <group invisible="not verifactu_enabled">
+                        <group name="verifactu_verifactu_chaining">
+                            <field
+                                name="verifactu_chaining_id"
+                                string="Chaining reference"
+                                required="verifactu_enabled"
+                            />
+                        </group>
+                    </group>
+                    <group invisible="not verifactu_enabled">
+                        <group name="verifactu_description">
+                            <field
+                                name="verifactu_description"
+                                string="Default description"
+                            />
+                        </group>
+                    </group>
+                    <group invisible="not verifactu_enabled">
+                        <group name="verifactu_developer_id">
+                            <field
+                                name="verifactu_developer_id"
+                                string="Developer reference"
+                            />
+                        </group>
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+</odoo>

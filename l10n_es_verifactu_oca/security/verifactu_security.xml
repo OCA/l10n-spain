@@ -1,0 +1,6 @@
+<odoo>
+    <record id="group_verifactu_responsible" model="res.groups">
+        <field name="name">VERI*FACTU Responsible</field>
+        <field name="privilege_id" ref="l10n_es_aeat.res_groups_privilege_aeat" />
+    </record>
+</odoo>
