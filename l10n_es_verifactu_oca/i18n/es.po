@@ -4,18 +4,16 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-02 13:23+0000\n"
-"PO-Revision-Date: 2026-04-13 17:16+0000\n"
-"Last-Translator: Ed-Spain <eduamoros@gmail.com>\n"
+"POT-Creation-Date: 2026-11-19 11:03+0000\n"
+"PO-Revision-Date: 2026-11-19 11:03+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
-"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.15.2\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
 
 #. module: l10n_es_verifactu_oca
 #. odoo-python
@@ -118,7 +116,6 @@ msgstr "Estado de envío AEAT"
 
 #. module: l10n_es_verifactu_oca
 #: model:ir.model,name:l10n_es_verifactu_oca.model_account_chart_template
-#, fuzzy
 msgid "Account Chart Template"
 msgstr "Plantilla del plan contable"
 
@@ -183,17 +180,17 @@ msgstr "Ya enviadas a VERI*FACTU. Incluye facturas canceladas"
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__account_move__verifactu_refund_specific_type__r1
 msgid "Art. 80.1 y 80.2 y error fundado en derecho"
-msgstr "Art. 80.1 y 80.2 y error fundado en derecho"
+msgstr ""
 
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__account_move__verifactu_refund_specific_type__r2
 msgid "Art. 80.3"
-msgstr "Art. 80.3"
+msgstr ""
 
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__account_move__verifactu_refund_specific_type__r3
 msgid "Art. 80.4"
-msgstr "Art. 80.4"
+msgstr ""
 
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_chaining__message_attachment_count
@@ -216,7 +213,7 @@ msgstr "Por diferencias"
 #. module: l10n_es_verifactu_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.invoice_verifactu_form
 msgid "CSV"
-msgstr "CSV"
+msgstr ""
 
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__verifactu_invoice_entry__entry_type__cancel
@@ -268,6 +265,14 @@ msgid "Cancelled with Errors"
 msgstr "Cancelada con Errores"
 
 #. module: l10n_es_verifactu_oca
+#. odoo-python
+#: code:addons/l10n_es_verifactu_oca/models/account_move.py:0
+msgid ""
+"Cannot determine theoretical IGIC rate for minorista line '%(line)s'. "
+"Configure product '%(product)s' with its usual IGIC sale tax (igic_r_*)."
+msgstr "No se puede determinar la tasa teórica de IGIC para la línea minorista '%(line)s'. Configure el producto '%(product)s' con su impuesto de venta IGIC habitual (igic_r_*)."
+
+#. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_invoice_entry__verifactu_chaining_id
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.view_verifactu_invoice_entry_search
 msgid "Chaining"
@@ -295,8 +300,8 @@ msgstr "Comprobar facturas incorrectas de VERI*FACTU"
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_account_move__verifactu_macrodata
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_verifactu_mixin__verifactu_macrodata
 msgid ""
-"Check to confirm that the document has an absolute amount greater o equal to "
-"100 000 000,00 euros."
+"Check to confirm that the document has an absolute amount greater o equal to"
+" 100 000 000,00 euros."
 msgstr ""
 "Marca para confirmar que el documento tiene un importe absoluto mayor o "
 "igual a 100 000 000,00 euros."
@@ -398,7 +403,7 @@ msgstr "Fecha hasta"
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__account_move__verifactu_refund_specific_type__r5
 msgid "De factura simplificada"
-msgstr "De factura simplificada"
+msgstr ""
 
 #. module: l10n_es_verifactu_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.view_company_verifactu_form
@@ -504,7 +509,7 @@ msgstr "¿Fallido?"
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_developer__file_name
 msgid "File Name"
-msgstr ""
+msgstr "Nombre del archivo"
 
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_account_bank_statement_line__verifactu_refund_specific_type
@@ -544,7 +549,7 @@ msgstr "Icono Font awesome p. ej. fa-tasks"
 #. module: l10n_es_verifactu_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.invoice_verifactu_form
 msgid "General"
-msgstr "General"
+msgstr ""
 
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_verifactu_invoice_entry__aeat_json_data
@@ -590,7 +595,13 @@ msgstr "Cabecera"
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_map_line__id
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_registration_key__id
 msgid "ID"
-msgstr "ID"
+msgstr ""
+
+#. module: l10n_es_verifactu_oca
+#. odoo-python
+#: code:addons/l10n_es_verifactu_oca/models/account_move.py:0
+msgid "IGIC retailer tax group not found for company %s."
+msgstr "No se ha encontrado el grupo de impuestos IGIC minorista para la empresa %s."
 
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_invoice_entry_response__activity_exception_icon
@@ -620,16 +631,19 @@ msgstr "Si está marcado, hay nuevos mensajes que requieren su atención."
 
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_verifactu_chaining__message_has_error
+#: model:ir.model.fields,help:l10n_es_verifactu_oca.field_verifactu_chaining__message_has_sms_error
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_verifactu_developer__message_has_error
+#: model:ir.model.fields,help:l10n_es_verifactu_oca.field_verifactu_developer__message_has_sms_error
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_verifactu_invoice_entry_response__message_has_error
+#: model:ir.model.fields,help:l10n_es_verifactu_oca.field_verifactu_invoice_entry_response__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Si está marcada, algunos mensajes tienen un error de envío."
 
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_res_company__verifactu_start_date
 msgid ""
-"If this field is set, the VERI*FACTU won't be enabled on invoices with lower "
-"invoice date. If not set, it can be enabled on all invoice dates"
+"If this field is set, the VERI*FACTU won't be enabled on invoices with lower"
+" invoice date. If not set, it can be enabled on all invoice dates"
 msgstr ""
 "Si está establecido, VERI*FACTU no estará habilitado para facturas con una "
 "fecha anterior a la establecida. Si no, estará habilitado para todas las "
@@ -642,8 +656,8 @@ msgid ""
 "sequence from the entry back to the last hashed entry. The hash can also be "
 "performed on demand by the Secure Entries wizard."
 msgstr ""
-"Si está marcado, cuando se publica un asiento, aplicamos retroactivamente el "
-"hash a todos los movimientos en la secuencia desde el asiento hasta el "
+"Si está marcado, cuando se publica un asiento, aplicamos retroactivamente el"
+" hash a todos los movimientos en la secuencia desde el asiento hasta el "
 "último asiento con hash. El hash también puede realizarse bajo demanda "
 "mediante el asistente de Asientos Seguros."
 
@@ -743,8 +757,7 @@ msgid ""
 "Invoice entries are automatically created when invoices are validated\n"
 "                with VERI*FACTU enabled."
 msgstr ""
-"Las entradas de factura se crean automáticamente cuando las facturas son "
-"validadas\n"
+"Las entradas de factura se crean automáticamente cuando las facturas son validadas\n"
 "                con VERI*FACTU habilitado."
 
 #. module: l10n_es_verifactu_oca
@@ -835,6 +848,14 @@ msgid "Messages"
 msgstr "Mensajes"
 
 #. module: l10n_es_verifactu_oca
+#. odoo-python
+#: code:addons/l10n_es_verifactu_oca/models/account_move.py:0
+msgid ""
+"Minorista invoice '%(invoice)s' mixes theoretical IGIC rates (%(rates)s). "
+"Use separate invoices."
+msgstr "Factura minorista '%(invoice)s' mezcla tasas teóricas de IGIC (%(rates)s). Use facturas separadas."
+
+#. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_invoice_entry__model
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_invoice_entry_response_line__model
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_map__name
@@ -877,6 +898,14 @@ msgstr "Resumen de la próxima actividad"
 
 #. module: l10n_es_verifactu_oca
 #. odoo-python
+#: code:addons/l10n_es_verifactu_oca/models/account_move.py:0
+msgid ""
+"No IGIC retailer purchase tax found for theoretical rate %(rate)s%% "
+"(expected coefficient %(coef)s)."
+msgstr "No se ha encontrado impuesto de venta IGIC minorista para la tasa teórica %(rate)s%% (coeficiente esperado %(coef)s)."
+
+#. module: l10n_es_verifactu_oca
+#. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/verifactu_invoice_entry.py:0
 msgid "No VAT configured for the company '{}'"
 msgstr "Sin NIF configurado para la compañía '{}'"
@@ -890,6 +919,12 @@ msgstr "¡No se han encontrado entradas de factura VERI*FACTU!"
 #: model_terms:ir.actions.act_window,help:l10n_es_verifactu_oca.action_verifactu_invoice_entry_response
 msgid "No VERI*FACTU responses found!"
 msgstr "¡No se han encontrado respuestas VERI*FACTU!"
+
+#. module: l10n_es_verifactu_oca
+#. odoo-python
+#: code:addons/l10n_es_verifactu_oca/models/account_move.py:0
+msgid "No invoice line found for IGIC retailer tax %s."
+msgstr "Sin línea de factura para el impuesto de venta IGIC %s."
 
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__verifactu_invoice_entry__send_state__not_sent
@@ -935,8 +970,8 @@ msgstr "Número de mensajes con un error de envío"
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_account_move__verifactu_cancel_reason
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_verifactu_mixin__verifactu_cancel_reason
 msgid ""
-"Optional internal reason to cancel this invoicein VERI*FACTU. This reason is "
-"not sent to VERI*FACTU"
+"Optional internal reason to cancel this invoicein VERI*FACTU. This reason is"
+" not sent to VERI*FACTU"
 msgstr ""
 "Motivo opcional para cancelar esta factura en VERI*FACTU. El motivo no se "
 "envía a VERI*FACTU"
@@ -969,22 +1004,21 @@ msgid "Previous Invoice Entry"
 msgstr "Entrada de factura previa"
 
 #. module: l10n_es_verifactu_oca
+#. odoo-python
+#: code:addons/l10n_es_verifactu_oca/models/account_move.py:0
+msgid "Product %s has multiple IGIC sale taxes configured."
+msgstr "El producto %s tiene múltiples impuestos de venta IGIC configurados."
+
+#. module: l10n_es_verifactu_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.address_layout
 msgid "QR Tributario"
-msgstr "QR Tributario"
+msgstr ""
 
 #. module: l10n_es_verifactu_oca
 #. odoo-python
 #: code:addons/l10n_es_verifactu_oca/models/verifactu_mixin.py:0
 msgid "QR URL value '{}' is not ASCII"
 msgstr "El valor de la URL del QR '{}' no es ASCII"
-
-#. module: l10n_es_verifactu_oca
-#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_chaining__rating_ids
-#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_developer__rating_ids
-#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_invoice_entry_response__rating_ids
-msgid "Ratings"
-msgstr ""
 
 #. module: l10n_es_verifactu_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.invoice_verifactu_form
@@ -1062,7 +1096,7 @@ msgstr "Usuario responsable"
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields.selection,name:l10n_es_verifactu_oca.selection__account_move__verifactu_refund_specific_type__r4
 msgid "Resto"
-msgstr "Resto"
+msgstr ""
 
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_journal__restrict_mode_hash_table_readonly
@@ -1089,6 +1123,13 @@ msgstr "Nombre del SIF"
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_mixin__aeat_send_failed
 msgid "SII send failed"
 msgstr "Envío SII fallido"
+
+#. module: l10n_es_verifactu_oca
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_chaining__message_has_sms_error
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_developer__message_has_sms_error
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_invoice_entry_response__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
 
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_journal__restrict_mode_hash_table
@@ -1165,7 +1206,7 @@ msgstr ""
 #. module: l10n_es_verifactu_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.verifactu_tax_agency_form_view
 msgid "Suministro Facturas Emitidas"
-msgstr "Suministro Facturas Emitidas"
+msgstr ""
 
 #. module: l10n_es_verifactu_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.verifactu_registration_keys_view_search
@@ -1271,7 +1312,7 @@ msgstr "Operador de búsqueda no soportado"
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.view_account_position_form
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.view_company_verifactu_form
 msgid "VERI*FACTU"
-msgstr "VERI*FACTU"
+msgstr ""
 
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_bank_statement_line__verifactu_csv
@@ -1280,7 +1321,7 @@ msgstr "VERI*FACTU"
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_invoice_entry_response_line__verifactu_csv
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_mixin__verifactu_csv
 msgid "VERI*FACTU CSV"
-msgstr "VERI*FACTU CSV"
+msgstr ""
 
 #. module: l10n_es_verifactu_oca
 #: model:ir.actions.act_window,name:l10n_es_verifactu_oca.verifactu_cancel_invoice_wizard_action
@@ -1292,7 +1333,7 @@ msgstr "VERI*FACTU Cancelar Factura"
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_move__verifactu_qr
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_mixin__verifactu_qr
 msgid "VERI*FACTU QR"
-msgstr "VERI*FACTU QR"
+msgstr ""
 
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_aeat_tax_agency__verifactu_qr_base_url
@@ -1329,12 +1370,12 @@ msgstr "VERI*FACTU dirección de pruebas"
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_move__verifactu_qr_url
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_mixin__verifactu_qr_url
 msgid "VERI*FACTU URL"
-msgstr "VERI*FACTU URL"
+msgstr ""
 
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_aeat_tax_agency__verifactu_wsdl_out
 msgid "VERI*FACTU WSDL"
-msgstr "VERI*FACTU WSDL"
+msgstr ""
 
 #. module: l10n_es_verifactu_oca
 #: model:ir.model,name:l10n_es_verifactu_oca.model_verifactu_cancel_invoice_wizard
@@ -1405,7 +1446,7 @@ msgstr "VERI*FACTU habilitado"
 #. module: l10n_es_verifactu_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.invoice_verifactu_search
 msgid "VERI*FACTU error"
-msgstr "VERI*FACTU error"
+msgstr ""
 
 #. module: l10n_es_verifactu_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.invoice_verifactu_search
@@ -1467,7 +1508,7 @@ msgstr "VERI*FACTU última entrada de factura"
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_account_move__verifactu_macrodata
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_mixin__verifactu_macrodata
 msgid "VERI*FACTU macrodata?"
-msgstr "VERI*FACTU macrodata?"
+msgstr ""
 
 #. module: l10n_es_verifactu_oca
 #: model:ir.model,name:l10n_es_verifactu_oca.model_verifactu_map
@@ -1488,7 +1529,7 @@ msgstr "VERI*FACTU mapeos"
 #. module: l10n_es_verifactu_oca
 #: model:ir.model,name:l10n_es_verifactu_oca.model_verifactu_mixin
 msgid "VERI*FACTU mixin"
-msgstr "VERI*FACTU mixin"
+msgstr ""
 
 #. module: l10n_es_verifactu_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.invoice_verifactu_search
@@ -1612,7 +1653,7 @@ msgstr "VERI*FACTU entorno de pruebas?"
 #. module: l10n_es_verifactu_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.verifactu_tax_agency_form_view
 msgid "Validar QR"
-msgstr "Validar QR"
+msgstr ""
 
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_developer__version
@@ -1622,7 +1663,7 @@ msgstr "Versión"
 #. module: l10n_es_verifactu_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.verifactu_tax_agency_form_view
 msgid "WSDL"
-msgstr "WSDL"
+msgstr ""
 
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_chaining__website_message_ids
@@ -1693,9 +1734,3 @@ msgstr "número de factura"
 #: code:addons/l10n_es_verifactu_oca/models/account_move.py:0
 msgid "third-party number"
 msgstr "número de terceros"
-
-#~ msgid "Cancelled"
-#~ msgstr "Cancelada"
-
-#~ msgid "Last Modified on"
-#~ msgstr "Última modificación el"

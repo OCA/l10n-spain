@@ -18,3 +18,6 @@
   - Luis J. Salvatierra
 - Batista10:
   - Ivan Vilata i Balaguer
+- Binhex:
+  - Mario Montes
+  - Abraham J. Febres
