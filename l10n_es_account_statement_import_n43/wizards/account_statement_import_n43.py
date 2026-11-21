@@ -2,11 +2,12 @@
 # Copyright 2021 Tecnativa - Carlos Roca
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+import base64
 import logging
 import re
 from datetime import datetime
 
-from odoo import api, exceptions, fields, models
+from odoo import Command, api, exceptions, fields, models
 
 _logger = logging.getLogger(__name__)
 
@@ -363,17 +364,55 @@ class AccountStatementImport(models.TransientModel):
                 result.append(data)
         return result
 
+    def _get_n43_concepts_text(self, line):
+        return " ".join(
+            text.strip()
+            for texts in line["conceptos"].values()
+            for text in texts
+            if text.strip()
+        )
+
+    def _get_n43_movement_key(self, line):
+        """Natural key of an N43 movement, stable across files.
+
+        Built from the movement record fields and its complementary concept
+        records, so the same movement keeps its key even when it arrives in a
+        different file (e.g. overlapping statement ranges), while movements
+        sharing the main record (e.g. two payrolls of the same amount on the
+        same day) are told apart by their concepts."""
+        parts = [
+            line["fecha_oper"].strftime("%Y%m%d"),
+            line["fecha_valor"].strftime("%Y%m%d"),
+            line["of_origen"],
+            line["concepto_c"],
+            line["concepto_p"],
+            line["num_documento"],
+            line["referencia1"],
+            line["referencia2"],
+            f"{line['importe']:.2f}",
+        ]
+        concepts = self._get_n43_concepts_text(line)
+        if concepts:
+            parts.append(concepts)
+        return "-".join(parts)
+
     def _parse_single_file_n43(self, n43):
         transactions = []
+        occurrences = {}
         for group in n43:
             for line in group["lines"]:
-                conceptos = []
-                for concept_line in line["conceptos"]:
-                    conceptos.extend(
-                        x.strip() for x in line["conceptos"][concept_line] if x.strip()
-                    )
+                key = self._get_n43_movement_key(line)
+                occurrence = occurrences[key] = occurrences.get(key, 0) + 1
                 vals_line = {
-                    "payment_ref": " ".join(conceptos)
+                    # Identical movements in the same file are numbered, so the
+                    # first one keeps the bare key whatever the file contains
+                    "unique_import_id": key
+                    if occurrence == 1
+                    else f"{key}-{occurrence}",
+                    # removed before creating the record, see
+                    # _create_bank_statements
+                    "n43_occurrence": occurrence,
+                    "payment_ref": self._get_n43_concepts_text(line)
                     or self._get_n43_ref(line)
                     or "/",
                     "ref": self._get_n43_ref(line),
@@ -440,3 +479,123 @@ class AccountStatementImport(models.TransientModel):
                 #     line_vals['raw_data'], journal).id
             st_vals["transactions"] = transactions
         return res
+
+    def import_file_button(self):
+        """Ask the user about the possible duplicates before importing."""
+        return self._n43_review_action("statements") or super().import_file_button()
+
+    def import_file_and_reconcile_button(self):
+        """Same review for the button of account_statement_import_file_reconcile_oca."""
+        return (
+            self._n43_review_action("reconcile")
+            or super().import_file_and_reconcile_button()
+        )
+
+    def _n43_review_action(self, mode):
+        """Return the review dialog when the file carries possible duplicates.
+
+        A first pass parses the file without creating anything. If some
+        movement was already imported, or is repeated within the file, the user
+        decides which ones are real duplicates before the actual import."""
+        self.ensure_one()
+        if "n43_duplicate_decisions" in self.env.context:
+            return False
+        result = {"statement_ids": [], "notifications": []}
+        self.with_context(n43_dry_run=True).import_single_file(
+            base64.b64decode(self.statement_file), result
+        )
+        suspects = result.get("n43_suspects")
+        if not suspects:
+            return False
+        review = self.env["account.statement.import.n43.result"].create(
+            {
+                "import_wizard_id": self.id,
+                "mode": mode,
+                "line_ids": [Command.create(vals) for vals in suspects],
+            }
+        )
+        return {
+            "type": "ir.actions.act_window",
+            "name": self.env._("Possible duplicates"),
+            "res_model": "account.statement.import.n43.result",
+            "res_id": review.id,
+            "view_mode": "form",
+            "target": "new",
+            "context": self.env.context,
+        }
+
+    def _create_bank_statements(self, stmts_vals, result):
+        """Apply the user's decisions on the possible duplicates.
+
+        A movement already imported is skipped by default (the base method
+        does it through its unique_import_id). A movement repeated within the
+        same file is imported by default, as a bank doesn't list the same
+        movement twice in one statement. The user can revert both."""
+        decisions = self.env.context.get("n43_duplicate_decisions") or {}
+        absl_obj = self.env["account.bank.statement.line"].sudo()
+        used_ids = {
+            lvals.get("unique_import_id")
+            for st_vals in stmts_vals
+            for lvals in st_vals["transactions"]
+        }
+        suspects = []
+        for st_vals in stmts_vals:
+            transactions = []
+            for lvals in st_vals["transactions"]:
+                occurrence = lvals.pop("n43_occurrence", None)
+                unique_import_id = lvals.get("unique_import_id")
+                existing = (
+                    occurrence
+                    and unique_import_id
+                    and absl_obj.search(
+                        [("unique_import_id", "=", unique_import_id)], limit=1
+                    )
+                )
+                if not existing and (not occurrence or occurrence == 1):
+                    transactions.append(lvals)
+                    continue
+                is_duplicate = decisions.get(unique_import_id, bool(existing))
+                suspects.append(
+                    {
+                        "unique_import_id": unique_import_id,
+                        "reason": "imported" if existing else "repeated",
+                        "is_duplicate": is_duplicate,
+                        "date": lvals.get("date"),
+                        "amount": lvals["amount"],
+                        "payment_ref": lvals.get("payment_ref"),
+                        "matched_line_id": existing and existing.id,
+                    }
+                )
+                if existing and not is_duplicate:
+                    lvals["unique_import_id"] = self._n43_free_unique_import_id(
+                        unique_import_id, occurrence, used_ids
+                    )
+                elif not existing and is_duplicate:
+                    # Same balance handling as the base method for skipped lines
+                    if "balance_start" in st_vals:
+                        st_vals["balance_start"] += float(lvals["amount"])
+                    continue
+                transactions.append(lvals)
+            st_vals["transactions"] = transactions
+        if self.env.context.get("n43_dry_run"):
+            result.setdefault("n43_suspects", []).extend(suspects)
+            return False
+        return super()._create_bank_statements(stmts_vals, result)
+
+    def _n43_free_unique_import_id(self, unique_import_id, occurrence, used_ids):
+        """Next free occurrence of the movement, for one the user imports
+        although its unique_import_id already exists."""
+        base_id = (
+            unique_import_id
+            if occurrence == 1
+            else unique_import_id[: -len(f"-{occurrence}")]
+        )
+        absl_obj = self.env["account.bank.statement.line"].sudo()
+        number = 2
+        while f"{base_id}-{number}" in used_ids or absl_obj.search_count(
+            [("unique_import_id", "=", f"{base_id}-{number}")], limit=1
+        ):
+            number += 1
+        free_id = f"{base_id}-{number}"
+        used_ids.add(free_id)
+        return free_id

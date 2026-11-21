@@ -14,8 +14,10 @@
     "depends": ["account_statement_import_file"],
     "external_dependencies": {"python": ["chardet"]},
     "data": [
+        "security/ir.model.access.csv",
         "views/account_journal_views.xml",
         "wizards/account_statement_import_view.xml",
+        "wizards/account_statement_import_n43_result_views.xml",
     ],
     "installable": True,
 }

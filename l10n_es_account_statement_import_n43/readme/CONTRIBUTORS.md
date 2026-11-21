@@ -6,3 +6,5 @@
 - [Sygel](https://www.sygel.es):
   - Valentin Vinagre \<<valentin.vinagre@sygel.es>\>
 - Enric Tobella
+- [Domatix](https://www.domatix.com):
+  - Álvaro López \<<alvaro@domatix.com>\>
