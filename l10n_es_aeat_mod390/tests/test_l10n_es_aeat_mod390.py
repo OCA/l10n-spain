@@ -800,6 +800,30 @@ class TestL10nEsAeatMod390Map2024(TestL10nEsAeatMod390Base):
         self.assertEqual(exported("03000", 1033), f"{160000:017d}".encode())
         self.assertEqual(exported("03000", 1050), f"{8000:017d}".encode())
 
+    def test_model_390_intra_community_exempt_art_27_12(self):
+        """The intra-community deliveries after an exempt import (art. 27.12º) are
+        exempt by art. 25 and go to [103]."""
+        self.patch(
+            type(self),
+            "taxes_sale",
+            {"S_IVA0_EU_E_M": (1000, 0), "S_IVA0_EU_E_H": (500, 0)},
+        )
+        self._invoice_sale_create("2024-03-01")
+        model390 = self._create_390(2024)
+        model390.button_calculate()
+        self.assertAlmostEqual(self._box(model390, 103), 1500, 2)
+
+    def test_model_390_triangular_operation(self):
+        """The delivery of the Spanish intermediary in a triangular operation takes
+        place in the Member State of arrival of the goods, so it is not subject by
+        the place of supply rules and goes to [110], not to [103]."""
+        self.patch(type(self), "taxes_sale", {"S_IVA0_EU_E_T": (1000, 0)})
+        self._invoice_sale_create("2024-03-01")
+        model390 = self._create_390(2024)
+        model390.button_calculate()
+        self.assertAlmostEqual(self._box(model390, 110), 1000, 2)
+        self.assertAlmostEqual(self._box(model390, 103), 0, 2)
+
 
 class TestL10nEsAeatMod390Using303(TestL10nEsAeatMod390Base):
     """Boxes [85] and [662] from the 303 reports of the year."""
