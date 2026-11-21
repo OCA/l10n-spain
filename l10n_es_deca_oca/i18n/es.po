@@ -1,0 +1,261 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_es_deca_oca
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-05 18:18+0000\n"
+"PO-Revision-Date: 2026-10-05 18:18+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_es_deca_oca
+#: model:ir.actions.report,print_report_name:l10n_es_deca_oca.action_report_deca
+msgid "'DeCA - %s' % (object.name)"
+msgstr "'DeCA - %s' % (object.name)"
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
+msgid ""
+"<br/>\n"
+"                                    <span>NIF: </span>"
+msgstr ""
+"<br/>\n"
+"                                    <span>NIF: </span>"
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
+msgid "<strong class=\"fw-bold\">Carrier:</strong>"
+msgstr "<strong class=\"fw-bold\">Transportista:</strong>"
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
+msgid "<strong class=\"fw-bold\">Consignee / Place of delivery:</strong>"
+msgstr "<strong class=\"fw-bold\">Destinatario / Lugar de descarga:</strong>"
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
+msgid "<strong class=\"fw-bold\">Date of loading:</strong>"
+msgstr "<strong class=\"fw-bold\">Fecha de carga:</strong>"
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
+msgid "<strong class=\"fw-bold\">Place and date of issue:</strong>"
+msgstr "<strong class=\"fw-bold\">Lugar y fecha de emisión:</strong>"
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
+msgid "<strong class=\"fw-bold\">Sender / Place of loading:</strong>"
+msgstr "<strong class=\"fw-bold\">Cargador (Expedidor) / Lugar de carga:</strong>"
+
+#. module: l10n_es_deca_oca
+#. odoo-python
+#: code:addons/l10n_es_deca_oca/models/stock_picking.py:0
+msgid "Carrier NIF (VAT)"
+msgstr "NIF del transportista"
+
+#. module: l10n_es_deca_oca
+#. odoo-python
+#: code:addons/l10n_es_deca_oca/models/stock_picking.py:0
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_stock_picking__carrier_contact_id
+msgid "Carrier contact"
+msgstr "Contacto del transportista"
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,help:l10n_es_deca_oca.field_stock_picking__carrier_contact_id
+msgid "Carrier contact whose details are printed on the DeCA"
+msgstr "Contacto del transportista cuyos detalles se imprimen en el DeCA"
+
+#. module: l10n_es_deca_oca
+#. odoo-python
+#: code:addons/l10n_es_deca_oca/models/stock_picking.py:0
+msgid "Consignee NIF (VAT)"
+msgstr "NIF del destinatario"
+
+#. module: l10n_es_deca_oca
+#: model:ir.actions.report,name:l10n_es_deca_oca.action_report_deca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.view_picking_form_inherit_l10n_es_deca_oca
+msgid "DeCA"
+msgstr "DeCA"
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_stock_picking__deca_content_hash
+msgid "DeCA Content Hash"
+msgstr "Hash de contenido DeCA"
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_stock_picking__deca_first_version_date
+msgid "DeCA First Version Date"
+msgstr "Fecha de la primera versión DeCA"
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_stock_picking__deca_version
+msgid "DeCA Version"
+msgstr "Versión DeCA"
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_ir_actions_report__display_name
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_stock_move__display_name
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_stock_picking__display_name
+msgid "Display Name"
+msgstr "Nombre para mostrar"
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_stock_move__deca_weight
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_stock_picking__deca_weight
+msgid "Deca Weight"
+msgstr "Peso"
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
+msgid "Document for electronic Control of Administration (DeCA)"
+msgstr "Documento de control administrativo electrónico (DeCA)"
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_ir_actions_report__id
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_stock_move__id
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_stock_picking__id
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_es_deca_oca
+#. odoo-python
+#: code:addons/l10n_es_deca_oca/models/stock_picking.py:0
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_stock_picking__tractor_license_plate
+msgid "Main vehicle or tractor licence plate"
+msgstr "Matrícula del vehículo principal o tractora"
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.view_picking_form_inherit_l10n_es_deca_oca
+msgid "Print DeCA"
+msgstr "Imprimir DeCA"
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
+msgid "Product"
+msgstr "Producto"
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
+msgid "Quantity"
+msgstr "Cantidad"
+
+#. module: l10n_es_deca_oca
+#: model:ir.model,name:l10n_es_deca_oca.model_ir_actions_report
+msgid "Report Action"
+msgstr "Acción de informe"
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_stock_picking__deca_access_token
+msgid "Security access token to share url"
+msgstr "Token de acceso de seguridad para compartir url"
+
+#. module: l10n_es_deca_oca
+#. odoo-python
+#: code:addons/l10n_es_deca_oca/models/stock_picking.py:0
+msgid "Sender NIF (VAT)"
+msgstr "NIF del remitente"
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
+msgid "Special Authorizations:"
+msgstr "Autorizaciones Especiales:"
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_stock_picking__special_authorization_history
+msgid "Special authorisation history"
+msgstr "Historial de autorizaciones especiales"
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_stock_picking__special_authorization
+msgid "Special traffic authorisations"
+msgstr "Autorizaciones especiales de tráfico"
+
+#. module: l10n_es_deca_oca
+#: model:ir.model,name:l10n_es_deca_oca.model_stock_move
+msgid "Stock Move"
+msgstr "Movimiento de stock"
+
+#. module: l10n_es_deca_oca
+#: model:ir.actions.server,name:l10n_es_deca_oca.model_stock_picking_get_share_url_action_server
+msgid "Stock picking get share url"
+msgstr "Obtener url para compartir del albarán"
+
+#. module: l10n_es_deca_oca
+#. odoo-python
+#: code:addons/l10n_es_deca_oca/models/stock_picking.py:0
+msgid ""
+"The following data is missing for the DeCA report for picking %(picking)s:\n"
+"%(missing)s"
+msgstr ""
+"Faltan los siguientes datos obligatorios para el informe DeCA del albarán %(picking)s:\n"
+"%(missing)s"
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
+msgid ""
+"This carriage is governed by Law 15/2009 of 11 November, on the contract for"
+" the land carriage of goods, and by any other applicable Spanish "
+"legislation."
+msgstr ""
+"Este transporte se rige por la Ley 15/2009, de 11 de noviembre, del contrato"
+" de transporte terrestre de mercancías, y por el resto de legislación "
+"española aplicable."
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,help:l10n_es_deca_oca.field_stock_picking__deca_weight
+msgid "Total weight of the products in the picking."
+msgstr "Peso total de los productos en el albarán."
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_stock_picking__tractor_license_plate_history
+msgid "Tractor licence plate history"
+msgstr "Historial de matrícula de la tractora"
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
+msgid "Tractor licence plate:"
+msgstr "Matrícula de la tractora:"
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_stock_picking__trailer_license_plate_history
+msgid "Trailer licence plate history"
+msgstr "Historial de matrícula del remolque"
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
+msgid "Trailer licence plate:"
+msgstr "Matrícula del remolque:"
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_stock_picking__trailer_license_plate
+msgid "Trailer or semi-trailer licence plate"
+msgstr "Matrícula del remolque o semirremolque"
+
+#. module: l10n_es_deca_oca
+#: model:ir.model,name:l10n_es_deca_oca.model_stock_picking
+msgid "Transfer"
+msgstr "Traslado"
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
+msgid "Unit"
+msgstr "Unidad"
+
+#. module: l10n_es_deca_oca
+#. odoo-python
+#: code:addons/l10n_es_deca_oca/models/stock_picking.py:0
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
+msgid "Weight"
+msgstr "Peso"
+
+#. module: l10n_es_deca_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
+msgid "kg"
+msgstr "kg"
