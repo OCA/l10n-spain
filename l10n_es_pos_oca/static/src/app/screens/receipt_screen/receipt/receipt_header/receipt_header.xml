@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template" xml:space="preserve">
+    <t
+        t-name="OrderReceipt"
+        t-inherit="point_of_sale.ReceiptHeader"
+        t-inherit-mode="extension"
+    >
+        <xpath
+            expr="//span[hasclass('pos-receipt-vat')]/t[@t-out='order.pos_reference']"
+            position="attributes"
+        >
+            <attribute
+                name="t-out"
+            >order.config.is_simplified_config and !order.to_invoice ? order.get_l10n_es_unique_id() : order.pos_reference</attribute>
+        </xpath>
+    </t>
+</templates>

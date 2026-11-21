@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template" xml:space="preserve">
+    <t
+        t-name="TicketScreen"
+        t-inherit="point_of_sale.TicketScreen"
+        t-inherit-mode="extension"
+    >
+        <xpath expr="//td[hasclass('order-name')]" position="after">
+            <td class="align-middle">
+                <t t-if="order.l10n_es_unique_id" t-esc="order.l10n_es_unique_id" />
+            </td>
+        </xpath>
+        <xpath expr="//div[hasclass('order-name')]" position="after">
+            <div
+                t-if="order.l10n_es_unique_id"
+                class="p-2 d-flex flex-column flex-grow-1 justify-content-center align-items-start"
+            >
+                <div>Simplified Invoice</div>
+                <div t-esc="order.l10n_es_unique_id" />
+            </div>
+        </xpath>
+    </t>
+</templates>
