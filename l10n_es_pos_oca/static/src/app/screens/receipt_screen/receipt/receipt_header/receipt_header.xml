@@ -7,20 +7,29 @@
     >
         <xpath expr="//div[@t-if='props.data.company.name']" position="before">
             <t t-if="props.data.is_simplified_config and !props.data.to_invoice">
-                <div>Simplified invoice</div>
-                <div
+                <div name="simplified_invoice-number">
+                    Simplified invoice:&#160;
+                    <span
                     class="simplified-invoice-number"
                     t-esc="props.data.l10n_es_unique_id"
                 />
+                </div>
             </t>
         </xpath>
+        <xpath
+            expr="//div[@t-if='props.data.company.name' and @t-esc='props.data.company.name']"
+            position="attributes"
+        >
+            <!-- Hide the name because contact_address already contains the name !-->
+            <attribute name="class">d-none</attribute>
+        </xpath>
         <xpath expr="//div[@t-if='props.data.company.name']" position="after">
-            <div t-if="props.data.company.street" t-esc="props.data.company.street" />
-            <div t-if="props.data.company.zip" t-esc="props.data.company.zip" />
-            <div t-if="props.data.company.city" t-esc="props.data.company.city" />
-            <div t-if="props.data.company.state_id">(<t
-                t-esc="props.data.company.state_id.name"
-            />)</div>
+            <div
+                t-if="props.data.company.partner_id"
+                class="company_contact_address"
+                style="white-space: pre-line"
+                t-esc="props.data.company.partner_id.contact_address"
+            />
         </xpath>
         <xpath expr="//div[hasclass('pos-receipt-contact')]" position="inside">
             <t t-set="partner" t-value="props.data.partner" />
