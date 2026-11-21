@@ -169,7 +169,8 @@ class TestL10nEsAtcMod420Base(TestL10nEsAeatModBase):
         ),
         # IGIC deducible en operaciones interiores bienes y servicios corrientes - Base
         "26": (
-            (3 * 300 - 3 * 30)  # account_tax_template_igic_sop_3
+            (3 * 200)  # account_tax_template_igic_sop_0
+            + (3 * 300 - 3 * 30)  # account_tax_template_igic_sop_3
             + (3 * 400 - 3 * 40)  # account_tax_template_igic_sop_7
             + (3 * 500 - 3 * 50)  # account_tax_template_igic_sop_9_5
             + (3 * 600 - 3 * 60)  # account_tax_template_igic_sop_15
@@ -351,6 +352,25 @@ class TestL10nEsAtcMod420Base(TestL10nEsAeatModBase):
                 + 370  # account_tax_template_igic_ISP95,
                 + 380  # account_tax_template_igic_ISP15,
                 + 390  # account_tax_template_igic_ISP20,
+                + 100  # account_tax_template_igic_p_ex
+                + 210  # account_tax_template_igic_sop_i_0
+                + 220  # account_tax_template_igic_sop_i_3
+                + 230  # account_tax_template_igic_sop_i_7
+                + 240  # account_tax_template_igic_sop_i_9_5
+                + 250  # account_tax_template_igic_sop_i_15
+                + 260  # account_tax_template_igic_sop_i_20
+                + 270  # account_tax_template_igic_sop_i_0_inv
+                + 280  # account_tax_template_igic_sop_i_3_inv
+                + 290  # account_tax_template_igic_sop_i_7_inv
+                + 310  # account_tax_template_igic_sop_i_9_5_inv
+                + 320  # account_tax_template_igic_sop_i_15_inv
+                + 330  # account_tax_template_igic_sop_i_20_inv
+                + 410  # account_tax_template_igic_p_re0
+                + 420  # account_tax_template_igic_p_re03
+                + 430  # account_tax_template_igic_p_re07
+                + 440  # account_tax_template_igic_p_re095
+                + 450  # account_tax_template_igic_p_re15
+                + 460  # account_tax_template_igic_p_re20
             )
         ),
         # Rectificación de deducciones - Cuota
@@ -387,6 +407,25 @@ class TestL10nEsAtcMod420Base(TestL10nEsAeatModBase):
                 + 35.15  # account_tax_template_igic_ISP95,
                 + 57  # account_tax_template_igic_ISP15,
                 + 78  # account_tax_template_igic_ISP20,
+                + 0  # account_tax_template_igic_p_ex
+                + 0  # account_tax_template_igic_sop_i_0
+                + 6.6  # account_tax_template_igic_sop_i_3
+                + 16.1  # account_tax_template_igic_sop_i_7
+                + 22.8  # account_tax_template_igic_sop_i_9_5
+                + 37.5  # account_tax_template_igic_sop_i_15
+                + 52  # account_tax_template_igic_sop_i_20
+                + 0  # account_tax_template_igic_sop_i_0_inv
+                + 8.4  # account_tax_template_igic_sop_i_3_inv
+                + 20.3  # account_tax_template_igic_sop_i_7_inv
+                + 29.45  # account_tax_template_igic_sop_i_9_5_inv
+                + 48  # account_tax_template_igic_sop_i_15_inv
+                + 66  # account_tax_template_igic_sop_i_20_inv
+                + 0  # account_tax_template_igic_p_re0
+                + 1.26  # account_tax_template_igic_p_re03
+                + 3.01  # account_tax_template_igic_p_re07
+                + 4.18  # account_tax_template_igic_p_re095
+                + 6.75  # account_tax_template_igic_p_re15
+                + 9.2  # account_tax_template_igic_p_re20
             )
         ),
     }
@@ -573,9 +612,9 @@ class TestL10nEsAeatMod420(TestL10nEsAtcMod420Base):
         """
         Test the generation of the .xml file
         Devengado (DEV) = 291730
-        Deducible (DED) = 213345
+        Deducible (DED) = 180190
         Resultado (TIP) = I
-        Resultado (IMP) = 78385
+        Resultado (IMP) = 111540
         Resultado (FPA) = 5
         """
         self.model420.button_calculate()
@@ -604,15 +643,15 @@ class TestL10nEsAeatMod420(TestL10nEsAtcMod420Base):
         self.assertEqual(igi_dev_node[0].attrib["TOT"], "291730")
         igi_ded_node = dec_node.xpath("//IGI_DED")
         self.assertEqual(len(igi_ded_node), 1)
-        self.assertEqual(igi_ded_node[0].attrib["TOT"], "213345")
+        self.assertEqual(igi_ded_node[0].attrib["TOT"], "180190")
         liq_node = dec_node.xpath("//LIQ")
         self.assertEqual(len(liq_node), 1)
-        self.assertEqual(liq_node[0].attrib["DIF"], "78385")
-        self.assertEqual(liq_node[0].attrib["RLI"], "78385")
+        self.assertEqual(liq_node[0].attrib["DIF"], "111540")
+        self.assertEqual(liq_node[0].attrib["RLI"], "111540")
         res_node = dec_node.xpath("//RES")
         self.assertEqual(len(res_node), 1)
         self.assertEqual(res_node[0].attrib["TIP"], "I")
-        self.assertEqual(res_node[0].attrib["IMP"], "78385")
+        self.assertEqual(res_node[0].attrib["IMP"], "111540")
         self.assertEqual(res_node[0].attrib["FPA"], "5")
 
     @freeze_time("2026-01-01")
