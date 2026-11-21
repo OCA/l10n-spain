@@ -20,7 +20,6 @@ class AccountMove(models.Model):
         store=True,
         readonly=False,
     )
-
     thirdparty_number = fields.Char(
         string="Third-party number",
         index=True,
@@ -58,6 +57,13 @@ class AccountMove(models.Model):
 
 class AccountMoveLine(models.Model):
     _inherit = "account.move.line"
+
+    l10n_es_aeat_real_estate_id = fields.Many2one(
+        comodel_name="l10n.es.aeat.real_estate",
+        string="Real Estate",
+        help="Real Estate related to this move line",
+        domain="[('company_id', '=', company_id), ('partner_id', '=', partner_id)]",
+    )
 
     def _process_aeat_tax_base_info(self, res, tax, sign):
         """It modifies the dictionary given in res for setting the base amount info
