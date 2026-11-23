@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <!-- The ATC declarations are for the AEAT group too -->
+    <record id="l10n_es_aeat.res_groups_privilege_aeat" model="res.groups.privilege">
+        <field name="name">AEAT/ATC Permissions</field>
+    </record>
+    <record id="l10n_es_aeat.group_account_aeat" model="res.groups">
+        <field name="name">AEAT/ATC manager</field>
+    </record>
+</odoo>

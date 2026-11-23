@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo noupdate="1">
+    <record id="l10n_es_atc_java_param" model="ir.config_parameter">
+        <field name="key">l10n_es_atc.java_parameters</field>
+        <field name="value">-Xms32M -Xmx64M -XX:MaxMetaspaceSize=64m</field>
+    </record>
+</odoo>

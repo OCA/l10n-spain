@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="menu_root_atc" model="ir.ui.menu">
+        <field name="name">ATC</field>
+        <field name="parent_id" ref="l10n_es_aeat.menu_root_aeat" />
+        <field name="sequence" eval="20" />
+        <field
+            name="group_ids"
+            eval="[Command.link(ref('l10n_es_aeat.group_account_aeat'))]"
+        />
+    </record>
+</odoo>
