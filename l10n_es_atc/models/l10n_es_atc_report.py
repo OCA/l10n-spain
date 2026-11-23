@@ -115,6 +115,12 @@ class L10nEsAtcReport(models.AbstractModel):
                 )
             )
 
+    def button_confirm(self):
+        """Check the data of the declaration, as when generating its file."""
+        for report in self:
+            report._atc_validate_fields()
+        return super().button_confirm()
+
     def _atc_get_country_state_code(self, country_state):
         codigo_provincia = SPANISH_STATES.get(country_state.code)
         if not codigo_provincia:
