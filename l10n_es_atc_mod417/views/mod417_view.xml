@@ -92,7 +92,6 @@
                         class="oe_subtotal_footer_separator"
                     />
                     <field name="result_type" />
-                    <field name="company_partner_id" invisible="1" />
                 </group>
                 <field
                     name="tax_line_ids"

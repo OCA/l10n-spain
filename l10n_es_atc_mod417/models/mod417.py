@@ -29,12 +29,6 @@ class L10nEsAtcmod417Report(models.Model):
             ]
         )[:1]
 
-    company_partner_id = fields.Many2one(
-        comodel_name="res.partner",
-        string="Company Partner",
-        related="company_id.partner_id",
-        store=True,
-    )
     total_devengado = fields.Monetary(
         string="[25] Total accrued installments",
         readonly=True,
