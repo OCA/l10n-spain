@@ -8,22 +8,7 @@
             t-att-COM="doc.statement_type == 'C' and 'X' or None"
             t-att-NJA="doc.statement_type == 'C' and doc.previous_number or None"
         >
-            <!-- TODO: IDE attributes? -->
-            <IDE>
-                <!-- TODO: TIP, NPK, CAL, BLO, ESC, PIS, PUE, POR -->
-                <OTP
-                    t-att-NIF="doc.company_vat"
-                    t-att-NRS="doc.company_id.name.upper()"
-                    t-att-TEL="doc.company_id.phone"
-                    t-att-EMA="doc.company_id.email"
-                    t-att-PAI="doc.company_id.country_id.code"
-                    t-att-POP="doc._atc_get_country_state_code(doc.company_id.state_id)"
-                    t-att-CP="doc.company_id.zip"
-                    t-att-SVP="doc.company_id.atc_public_way"
-                    t-att-NVP="(doc.company_id.street or '').upper()"
-                    t-att-CMU="doc.company_id.city_id.code"
-                />
-            </IDE>
+            <t t-call="l10n_es_atc.atc_report_xml_ide" />
             <t
                 t-set="devengado_fields"
                 t-value="[(1, 3), (4, 6), (7, 9), (10, 12), (13, 15), (16, 18)]"

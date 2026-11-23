@@ -341,15 +341,6 @@ class L10nEsAtcMod420Report(models.Model):
             )
         return super().button_confirm()
 
-    def button_modelo_sobre(self):
-        self.ensure_one()
-        url = "/l10n_es_atc_mod420/static/src/pdf/caratula_sobre_420.pdf"
-        return {
-            "type": "ir.actions.act_url",
-            "url": url,
-            "target": "self",
-        }
-
     def action_generar_mod420(self):
         self.ensure_one()
         self._atc_validate_fields()
