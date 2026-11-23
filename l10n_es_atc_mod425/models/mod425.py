@@ -203,13 +203,11 @@ class L10nEsAtcMod425Report(models.Model):
     # 4. Representantes
     first_representative_name = fields.Char(
         string="Nombre del primer representante",
-        readonly=True,
         size=80,
         help=REPRESENTATIVE_HELP,
     )
     first_representative_vat = fields.Char(
         string="NIF del primer representante",
-        readonly=True,
         size=9,
     )
     first_representative_date = fields.Date(

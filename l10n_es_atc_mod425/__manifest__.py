@@ -11,6 +11,7 @@
     "license": "AGPL-3",
     "depends": [
         "base_location",
+        "l10n_es_aeat",
         "l10n_es_atc",
         "report_xml",
     ],
