@@ -619,6 +619,7 @@ class TestL10nEsAeatmod417(TestL10nEsAtcmod417Base):
             {
                 "regularizacion_cuotas": 150,
                 "a_deducir": 30,
+                "potential_cuotas_compensar": 20,
                 "cuotas_compensar": 20,
             }
         )
@@ -774,7 +775,12 @@ class TestL10nEsAeatmod417(TestL10nEsAtcmod417Base):
         # The result the form shows after calculating
         self.assertEqual(self.model417.result_type, "I")
         self.model417.write(
-            {"regularizacion_cuotas": 150, "cuotas_compensar": 20, "a_deducir": 1300}
+            {
+                "regularizacion_cuotas": 150,
+                "potential_cuotas_compensar": 20,
+                "cuotas_compensar": 20,
+                "a_deducir": 1300,
+            }
         )
         self.assertEqual(self.model417.result_type, "C")
         self.model417.button_confirm()
