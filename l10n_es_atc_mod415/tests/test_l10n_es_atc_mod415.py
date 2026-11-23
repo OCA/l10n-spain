@@ -11,6 +11,7 @@ import logging
 from unittest.mock import patch
 from urllib.parse import urlsplit
 
+from odoo.fields import Command
 from odoo.tests import Form, HttpCase, tagged
 
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
@@ -259,7 +260,132 @@ class TestL10nEsAtcMod415(TestL10nEsAtcMod415Base):
             self.assertEqual(record.operation_key, key, partner.name)
             self.assertAlmostEqual(record.amount, amount, 2, partner.name)
 
+    def test_model_415_cash_of_another_company(self):
+        """With several companies active, the cash collected by another
+        company is not declared in the 415 of this one."""
+        other_company = (
+            self.env["res.company"]
+            .sudo()
+            .create(
+                {"name": "Other company", "currency_id": self.env.ref("base.EUR").id}
+            )
+        )
+        self.env["account.chart.template"].sudo()._load(
+            template_code="es_pymes", company=other_company, install_demo=False
+        )
+        self.env.user.sudo().company_ids = [Command.link(other_company.id)]
+        env = self.env(
+            context=dict(
+                self.env.context,
+                allowed_company_ids=[self.company.id, other_company.id],
+            )
+        )
+        partner = env["res.partner"].create({"name": "Customer of the other company"})
+        invoice = (
+            env["account.move"]
+            .with_company(other_company)
+            .create(
+                {
+                    "move_type": "out_invoice",
+                    "partner_id": partner.id,
+                    "invoice_date": "2019-03-01",
+                    "invoice_line_ids": [
+                        Command.create(
+                            {"name": "Sale", "price_unit": 7000, "tax_ids": []}
+                        )
+                    ],
+                }
+            )
+        )
+        invoice.action_post()
+        payment_form = Form(
+            env["account.payment.register"]
+            .with_company(other_company)
+            .with_context(active_model="account.move", active_ids=invoice.ids)
+        )
+        # The charts of 20.0 do not create a cash journal
+        payment_form.journal_id = (
+            env["account.journal"]
+            .with_company(other_company)
+            .create({"name": "Cash", "code": "CSHO", "type": "cash"})
+        )
+        payment_form.payment_date = "2019-03-01"
+        payment_form.save().action_create_payments()
+        self.model415.with_env(env).button_calculate()
+        self.assertFalse(
+            self.model415.partner_record_ids.filtered(lambda x: x.partner_id == partner)
+        )
+        # The cash of this company is still declared
+        self.assertTrue(
+            self.model415.partner_record_ids.filtered(
+                lambda x: x.partner_id == self.customer_5
+            ).cash_amount
+        )
 
+    def test_model_415_recompute_a_partner(self):
+        """A bill entered after the calculation reaches the partner record when
+        the user presses Recompute on it, and the record has to be sent again."""
+        self.model415.button_calculate()
+        record = self.model415.partner_record_ids.filtered(
+            lambda x: x.partner_id == self.supplier
+        )
+        record.action_confirm()
+        self.assertAlmostEqual(record.amount, 3210)
+        # A bill of 4000 + 7 % IGIC
+        self._invoice_purchase_create("2019-10-01")
+        record.button_recompute()
+        self.assertAlmostEqual(record.amount, 3210 + 4280)
+        self.assertAlmostEqual(record.fourth_quarter, 4280)
+        self.assertEqual(record.state, "pending")
+
+    def test_model_415_new_partner_record_from_its_list(self):
+        """A partner record added from the list that the declaration opens
+        belongs to that declaration."""
+        self.model415.button_calculate()
+        action = self.model415.btn_list_records()
+        record_form = Form(
+            self.env[action["res_model"]].with_context(**action.get("context", {}))
+        )
+        record_form.partner_id = self.env["res.partner"].create({"name": "New partner"})
+        record = record_form.save()
+        self.assertEqual(record.report_id, self.model415)
+
+
+@tagged("post_install", "-at_install")
+class TestL10nEsAtcMod415NonDeductible(TestL10nEsAtcMod415Base):
+    def test_model_415_deductible_percentage(self):
+        """A bill of 4000 + 7 % IGIC with a deductible percentage of 50 % is
+        declared with its total, 4280: the IGIC borne counts whether it is
+        deductible or not, as in the model 347 (RGAT art. 34.2.a).
+        """
+        bill_form = Form(
+            self.env["account.move"]
+            .with_user(self.billing_user)
+            .with_context(default_move_type="in_invoice")
+        )
+        bill_form.partner_id = self.supplier
+        bill_form.invoice_date = "2019-02-01"
+        bill_form.journal_id = self.journal_purchase
+        with bill_form.invoice_line_ids.new() as line_form:
+            line_form.name = "Mixed use car"
+            line_form.price_unit = 4000
+            line_form.tax_ids.clear()
+            line_form.tax_ids.add(self._get_taxes("account_tax_template_igic_sop_7"))
+            line_form.deductible_percentage = 0.5
+        bill = bill_form.save()
+        bill.action_post()
+        model415 = self._model415_create()
+        model415.button_calculate()
+        record = model415.partner_record_ids
+        self.assertEqual(record.partner_id, self.supplier)
+        self.assertEqual(record.operation_key, "A")
+        self.assertAlmostEqual(record.amount, 4280, 2)
+        self.assertAlmostEqual(record.first_quarter, 4280, 2)
+        self.assertEqual(record.move_record_ids.move_id, bill)
+        self.assertAlmostEqual(record.move_record_ids.amount, 4280, 2)
+
+
+@tagged("post_install", "-at_install")
 class TestL10nEsAtcMod415Answer(TestL10nEsAtcMod415Base, HttpCase):
     taxes_purchase = {  # noqa: RUF012
         "account_tax_template_igic_sop_7": (4000, 280),

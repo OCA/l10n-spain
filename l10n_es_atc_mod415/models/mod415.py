@@ -3,7 +3,6 @@
 
 
 from odoo import api, fields, models
-from odoo.fields import Command, Domain
 
 KEY_TAX_MAPPING = {
     "A": "l10n_es_atc_mod415.atc_mod415_map_a",
@@ -32,152 +31,11 @@ class L10nEsAtcMod415Report(models.Model):
         string="Real Estate Records",
     )
 
-    def btn_list_records(self):
-        return {
-            "domain": "[('report_id','in'," + str(self.ids) + ")]",
-            "name": self.env._("Partner records"),
-            "view_mode": "list,form",
-            "res_model": "l10n.es.atc.mod415.partner_record",
-            "type": "ir.actions.act_window",
-        }
+    def _get_key_tax_mapping(self):
+        return KEY_TAX_MAPPING
 
-    def _account_move_line_domain(self, taxes):
-        """Return domain for searching move lines.
-
-        :param: taxes: Taxes to look for in move lines.
-        """
-        return Domain.AND(
-            [
-                Domain("partner_id.not_in_mod415", "=", False),
-                Domain("move_id.not_in_mod415", "=", False),
-                Domain("date", ">=", self.date_start),
-                Domain("date", "<=", self.date_end),
-                Domain.OR(
-                    [
-                        Domain("tax_ids", "in", taxes.ids),
-                        Domain("tax_line_id", "in", taxes.ids),
-                    ]
-                ),
-                Domain("parent_state", "=", "posted"),
-            ]
-        )
-
-    def _create_partner_records(self, key, map_ref, partner_record=None):
-        sign = -1 if key == "B" else 1
-        partner_record_obj = self.env["l10n.es.atc.mod415.partner_record"]
-        map_line = self.env.ref(map_ref)
-        taxes = map_line.get_taxes_for_company(self.company_id)
-        domain = self._account_move_line_domain(taxes)
-        if partner_record:
-            domain = domain & Domain("partner_id", "=", partner_record.partner_id.id)
-        groups = self.env["account.move.line"]._read_group(
-            domain=domain,
-            aggregates=["balance:sum"],
-            groupby=["partner_id"],
-        )
-        filtered_groups = list(
-            filter(lambda d: abs(d[1]) > self.operations_limit, groups)
-        )
-        for group in filtered_groups:
-            partner = group[0]
-            vals = {
-                "report_id": self.id,
-                "partner_id": partner.id,
-                "representative_vat": "",
-                "operation_key": key,
-                "amount": sign * group[1],
-            }
-            vals.update(self._get_partner_347_identification(partner))
-            move_groups = self.env["account.move.line"]._read_group(
-                domain=domain & Domain("partner_id", "=", partner.id),
-                aggregates=["balance:sum"],
-                groupby=["move_id"],
-            )
-            vals["move_record_ids"] = [
-                Command.create(
-                    {
-                        "move_id": move_group[0].id,
-                        "amount": sign * move_group[1],
-                    },
-                )
-                for move_group in move_groups
-            ]
-            if partner_record:
-                vals["move_record_ids"][0:0] = [
-                    (2, x) for x in partner_record.move_record_ids.ids
-                ]
-                partner_record.write(vals)
-            else:
-                partner_record_obj.create(vals)
-
-    def _create_cash_moves(self):
-        move_line_obj = self.env["account.move.line"]
-        cash_journals = self.env["account.journal"].search(
-            [Domain("type", "=", "cash")],
-        )
-        if not cash_journals:
-            return
-        domain = Domain.AND(
-            [
-                Domain("account_id.account_type", "=", "asset_receivable"),
-                Domain("journal_id", "in", cash_journals.ids),
-                Domain("date", ">=", self.date_start),
-                Domain("date", "<=", self.date_end),
-                Domain("partner_id.not_in_mod415", "=", False),
-            ]
-        )
-        cash_groups = move_line_obj._read_group(
-            domain=domain,
-            aggregates=["balance:sum"],
-            groupby=["partner_id"],
-        )
-        for cash_group in cash_groups:
-            partner = cash_group[0]
-            partner_record_obj = self.env["l10n.es.atc.mod415.partner_record"]
-            amount = abs(cash_group[1])
-            if amount > self.received_cash_limit:
-                move_lines = move_line_obj.search(
-                    domain & Domain("partner_id", "=", partner.id)
-                )
-                partner_record = partner_record_obj.search(
-                    Domain.AND(
-                        [
-                            Domain("partner_id", "=", partner.id),
-                            Domain("operation_key", "=", "B"),
-                            Domain("report_id", "=", self.id),
-                        ]
-                    )
-                )
-                if partner_record:
-                    partner_record.write(
-                        {
-                            "cash_record_ids": [Command.set(move_lines.ids)],
-                            "cash_amount": amount,
-                        }
-                    )
-                else:
-                    vals = {
-                        "report_id": self.id,
-                        "partner_id": partner.id,
-                        "representative_vat": "",
-                        "operation_key": "B",
-                        "amount": 0,
-                        "cash_amount": amount,
-                        "cash_record_ids": [Command.set(move_lines.ids)],
-                    }
-                    vals.update(self._get_partner_347_identification(partner))
-                    partner_record_obj.create(vals)
-
-    def calculate(self):
-        for report in self:
-            # Delete previous partner records
-            report.partner_record_ids.unlink()
-            self._create_partner_records("A", KEY_TAX_MAPPING["A"])
-            self._create_partner_records("B", KEY_TAX_MAPPING["B"])
-            self._create_cash_moves()
-            self.env.flush_all()
-            report.partner_record_ids.calculate_quarter_totals()
-        return True
+    def _get_not_included_field(self):
+        return "not_in_mod415"
 
 
 class L10nEsAtcMod415PartnerRecord(models.Model):
