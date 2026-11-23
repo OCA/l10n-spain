@@ -684,6 +684,10 @@ class TestL10nEsAeatmod417(TestL10nEsAtcmod417Base):
         ):
             self.model417.action_generar_mod417()
         self.model417.payment_type = "5"  # Pago telemático
+        # The file to file is generated from the confirmed declaration
+        with self.assertRaisesRegex(UserError, "Confirm the declaration"):
+            self.model417.action_generar_mod417()
+        self.model417.button_confirm()
         with self._atc_program() as runs:
             action = self.model417.action_generar_mod417()
         self.assertEqual(runs[0]["S"], "T")
@@ -729,6 +733,7 @@ class TestL10nEsAeatmod417(TestL10nEsAtcmod417Base):
         with self.assertRaisesRegex(UserError, r".*Select a bank account.*"):
             self.model417.action_generar_mod417()
         self.model417.partner_bank_id = self.bank_account
+        self.model417.button_confirm()
         with self._atc_program():
             self.model417.action_generar_mod417()
         dec_node = etree.fromstring(self._generated_files().raw.content)
@@ -757,6 +762,7 @@ class TestL10nEsAeatmod417(TestL10nEsAtcmod417Base):
             {"regularizacion_cuotas": 150, "cuotas_compensar": 20, "a_deducir": 1300}
         )
         self.assertEqual(self.model417.result_type, "C")
+        self.model417.button_confirm()
         with self._atc_program():
             self.model417.action_generar_mod417()
         dec_node = etree.fromstring(self._generated_files().raw.content)
