@@ -1,0 +1,3 @@
+id,name,model_id,group_id/id,operation,domain
+access_l10n_es_aeat_mod115_manager,l10n_es_aeat_mod115 manager,l10n.es.aeat.mod115.report,l10n_es_aeat.group_account_aeat,crud,
+aeat_115_company_rule,AEAT 115 multi-company,l10n.es.aeat.mod115.report,,crud,"[('company_id', 'in', company_ids)]"
