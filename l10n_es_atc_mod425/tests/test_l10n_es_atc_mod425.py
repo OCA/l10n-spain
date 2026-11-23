@@ -672,6 +672,24 @@ class TestL10nEsAeatMod425(TestL10nEsAtcMod425Base):
         self.assertEqual(res_node[0].attrib["TOT"], "2460000")
 
     @freeze_time("2026-01-15")
+    def test_model_425_substitutive_declaration(self):
+        """A substitutive annual summary carries the SUS mark and the number of
+        the declaration it replaces, the attributes of the schema of the 425,
+        which has no complementary declaration."""
+        report_form = Form(self.model425)
+        report_form.statement_type = "S"
+        report_form.previous_number = "4250000000001"
+        report_form.save()
+        self.model425.button_calculate()
+        self._set_f425_fields()
+        with self._atc_program():
+            self.model425.action_generar_mod425()
+        dec_node = etree.fromstring(self._generated_files().raw.content)
+        self.assertEqual(dec_node.attrib["SUS"], "X")
+        self.assertEqual(dec_node.attrib["NJA"], "4250000000001")
+        self.assertNotIn("COM", dec_node.attrib)
+
+    @freeze_time("2026-01-15")
     def test_model_425_declaration_pdf(self):
         """A draft is a PDF made by the same program with output type B."""
         self.model425.button_calculate()

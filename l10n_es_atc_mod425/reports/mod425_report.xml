@@ -5,8 +5,8 @@
             MOD="425"
             t-att-ANY="doc.year"
             t-att-PER="doc.period_type"
-            t-att-COM="doc.statement_type == 'C' and 'X' or None"
-            t-att-NJA="doc.statement_type == 'C' and doc.previous_number or None"
+            t-att-SUS="doc.statement_type == 'S' and 'X' or None"
+            t-att-NJA="doc.statement_type == 'S' and doc.previous_number or None"
             t-att-FIM="datetime.datetime.now().strftime('%Y%m%d')"
         >
             <!-- TODO: IDE attributes? -->
