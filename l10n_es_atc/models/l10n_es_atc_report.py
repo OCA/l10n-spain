@@ -44,20 +44,6 @@ class L10nEsAtcReport(models.AbstractModel):
         string="Tipo de salida",
         default="T",
     )
-    payment_type = fields.Selection(
-        selection=[
-            ("1", "1 - Efectivo"),
-            ("2", "2 - Adeudo en cuenta"),
-            ("3", "3 - Pago fraccionado"),
-            ("4", "4 - Domiciliación bancaria"),
-            ("5", "5 - Pago telemático"),
-            ("6", "6 - Aplazamiento 6 meses medidas Covid"),
-        ],
-        string="Forma de pago",
-        compute="_compute_payment_type",
-        store=True,
-        readonly=False,
-    )
 
     @api.model
     def _get_sequence_code(self):
@@ -77,12 +63,6 @@ class L10nEsAtcReport(models.AbstractModel):
         # Therefore, skip this check in this case.
         if self._name != "l10n.es.atc.report":
             return super()._register_hook(companies=companies)
-
-    @api.depends("output_type")
-    def _compute_payment_type(self):
-        for record in self:
-            if not record.payment_type and record.output_type == "T":
-                record.payment_type = "5"
 
     def _atc_get_messages(self):
         """
