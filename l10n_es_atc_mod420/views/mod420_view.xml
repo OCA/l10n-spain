@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record id="view_l10n_es_atc_mod420_report_tree" model="ir.ui.view">
-        <field name="name">l10n_es_igic.atc.mod420.report.tree</field>
+        <field name="name">l10n.es.atc.mod420.report.tree</field>
         <field name="model">l10n.es.atc.mod420.report</field>
         <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_tree" />
         <field name="arch" type="xml">
             <list position="attributes">
-                <attribute name="string">Modelo ATC 420</attribute>= </list>
+                <attribute name="string">Modelo ATC 420</attribute>
+            </list>
             <field name="period_type" position="after">
                 <field name="total_devengado" />
                 <field name="total_deducir" />
@@ -16,7 +17,7 @@
         </field>
     </record>
     <record id="view_l10n_es_atc_mod420_report_form" model="ir.ui.view">
-        <field name="name">l10n_es_igic.ATC.mod420.report.form</field>
+        <field name="name">l10n.es.atc.mod420.report.form</field>
         <field name="model">l10n.es.atc.mod420.report</field>
         <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_form" />
         <field name="arch" type="xml">
