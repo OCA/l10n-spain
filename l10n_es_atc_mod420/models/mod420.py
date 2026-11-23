@@ -2,7 +2,7 @@
 # Copyright 2024 Binhex - Christian Ramos
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl
 
-from odoo import api, fields, models
+from odoo import api, exceptions, fields, models
 
 from odoo.addons.l10n_es_atc.models.l10n_es_atc_report import ATC_JAR_URL
 
@@ -171,6 +171,13 @@ class L10nEsAtcMod420Report(models.Model):
                 + report.regularizacion_cuotas
                 - report.cuotas_compensar
                 - report.a_deducir
+            )
+
+    @api.constrains("statement_type")
+    def _check_type(self):
+        if "S" in self.mapped("statement_type"):
+            raise exceptions.UserError(
+                self.env._("You cannot make substitutive reports for this model.")
             )
 
     def _compute_allow_posting(self):

@@ -738,6 +738,15 @@ class TestL10nEsAeatMod420(TestL10nEsAtcMod420Base):
             "B00000000",
         )
 
+    def test_model_420_substitutive(self):
+        """The ATC file of the model 420 has the complementary declaration and
+        no substitutive one, so the form refuses that type."""
+        report_form = Form(self.model420)
+        report_form.statement_type = "S"
+        report_form.previous_number = "4200000000001"
+        with self.assertRaisesRegex(UserError, "substitutive reports"):
+            report_form.save()
+
     @freeze_time("2026-04-01")
     def test_model_420_declaration_manual_boxes(self):
         """The boxes 42 to 44 entered after calculating change the result and
