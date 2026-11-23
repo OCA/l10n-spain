@@ -83,7 +83,12 @@
                             name="regularizacion_cuotas"
                             readonly="state == 'done'"
                         />
+                        <field
+                            name="potential_cuotas_compensar"
+                            readonly="state == 'done'"
+                        />
                         <field name="cuotas_compensar" readonly="state == 'done'" />
+                        <field name="remaining_cuotas_compensar" />
                         <field
                             name="a_deducir"
                             readonly="statement_type != 'C' or state == 'done'"

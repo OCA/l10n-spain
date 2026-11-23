@@ -96,11 +96,22 @@ class L10nEsAtcMod420Report(models.Model):
         "be deducted and from which it is a debtor to the Treasury "
         "Public",
     )
+    potential_cuotas_compensar = fields.Monetary(
+        string="Pending quotas to compensate",
+        default=0,
+        help="Quotas in favor of the taxpayer from previous periods pending "
+        "compensation. The calculation takes them from the previous "
+        "declaration.",
+    )
     cuotas_compensar = fields.Monetary(
         string="[43] quotas to compensate",
         default=0,
         help="The installments in favor of the taxpayer from previous periods "
         "pending compensation ",
+    )
+    remaining_cuotas_compensar = fields.Monetary(
+        string="Remaining quotas to compensate",
+        compute="_compute_remaining_cuotas_compensar",
     )
     a_deducir = fields.Monetary(
         string="[44] To deduct",
@@ -171,6 +182,13 @@ class L10nEsAtcMod420Report(models.Model):
         for report in self:
             report.diferencia = report.total_devengado - report.total_deducir
 
+    @api.depends("potential_cuotas_compensar", "cuotas_compensar")
+    def _compute_remaining_cuotas_compensar(self):
+        for report in self:
+            report.remaining_cuotas_compensar = report.currency_id.round(
+                report.potential_cuotas_compensar - report.cuotas_compensar
+            )
+
     @api.depends("diferencia", "regularizacion_cuotas", "cuotas_compensar", "a_deducir")
     def _compute_resultado_autoliquidacion(self):
         for report in self:
@@ -214,6 +232,95 @@ class L10nEsAtcMod420Report(models.Model):
     def onchange_type(self):
         if self.statement_type != "C":
             self.a_deducir = 0
+
+    def calculate(self):
+        """Compensate the quotas pending from the previous declaration, as
+        the model 303 does."""
+        self.cuotas_compensar = 0
+        res = super().calculate()
+        for report in self:
+            prev_reports = self.search(
+                [
+                    ("company_id", "=", report.company_id.id),
+                    ("date_start", "<", report.date_start),
+                ]
+            ).filtered(lambda m: m.state not in ["draft", "cancelled"])
+            if prev_reports:
+                prev_report = max(prev_reports, key=lambda x: x.date_end)
+                if prev_report.remaining_cuotas_compensar >= 0:
+                    amount = prev_report.remaining_cuotas_compensar
+                    if prev_report.result_type == "C":
+                        amount -= prev_report.resultado_autoliquidacion
+                    report.potential_cuotas_compensar = max(0, amount)
+            if report.period_type in ("4T", "12"):
+                # The balance at the end of the year is returned, as with the
+                # option to return in the last period of the model 303
+                cuotas_compensar = report.potential_cuotas_compensar
+            elif (
+                float_compare(
+                    report.resultado_autoliquidacion,
+                    0,
+                    precision_digits=report.currency_id.decimal_places,
+                )
+                != -1
+            ):
+                cuotas_compensar = min(
+                    report.potential_cuotas_compensar,
+                    report.resultado_autoliquidacion,
+                )
+            else:
+                cuotas_compensar = 0
+            report.cuotas_compensar = cuotas_compensar
+        return res
+
+    @api.constrains("potential_cuotas_compensar", "cuotas_compensar")
+    def check_qty(self):
+        if self.filtered(
+            lambda x: (
+                float_compare(
+                    x.cuotas_compensar,
+                    0,
+                    precision_digits=x.currency_id.decimal_places,
+                )
+                < 0
+                or float_compare(
+                    x.remaining_cuotas_compensar,
+                    0,
+                    precision_digits=x.currency_id.decimal_places,
+                )
+                < 0
+            )
+        ):
+            raise exceptions.ValidationError(
+                self.env._(
+                    "The quotas to compensate must be indicated as a positive "
+                    "number, up to the pending ones."
+                )
+            )
+
+    def _prepare_regularization_extra_move_lines(self):
+        """The compensated quotas cancel the balance of Hacienda Pública
+        deudora left by the previous declarations, as in the model 303."""
+        lines = super()._prepare_regularization_extra_move_lines()
+        if not (self.result_type == "I" and self.cuotas_compensar):
+            return lines
+        account = self.env["account.account"].search(
+            [
+                ("code", "=like", f"{_ACCOUNT_PATTERN_MAP['C']}%"),
+                ("company_ids", "=", self.company_id.id),
+            ],
+            limit=1,
+        )
+        lines.append(
+            {
+                "name": self.env._("Compensation from previous periods"),
+                "account_id": account.id,
+                "partner_id": self.env.ref("l10n_es_atc.res_partner_atc").id,
+                "debit": 0.0,
+                "credit": self.cuotas_compensar,
+            }
+        )
+        return lines
 
     @api.model
     def _prepare_counterpart_move_line(self, account, debit, credit):

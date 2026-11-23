@@ -10,15 +10,17 @@ import shutil
 import subprocess
 import zipfile
 from contextlib import contextmanager
+from datetime import date
 from io import BytesIO
 from typing import ClassVar
 from unittest.mock import patch
 
 import requests
+from dateutil.relativedelta import relativedelta
 from freezegun import freeze_time
 from lxml import etree
 
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
 from odoo.tests import Form, tagged
 
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
@@ -618,6 +620,7 @@ class TestL10nEsAeatMod420(TestL10nEsAtcMod420Base):
             {
                 "regularizacion_cuotas": 150,
                 "a_deducir": 30,
+                "potential_cuotas_compensar": 20,
                 "cuotas_compensar": 20,
             }
         )
@@ -786,6 +789,78 @@ class TestL10nEsAeatMod420(TestL10nEsAtcMod420Base):
             self.model420.counterpart_account_id.company_ids, self.model420.company_id
         )
 
+    def _report_of_quarter(self, period_type):
+        quarter = int(period_type[0])
+        date_start = date(2026, 3 * quarter - 2, 1)
+        report = self.model420.copy(
+            {
+                "period_type": period_type,
+                "date_start": date_start,
+                "date_end": date_start + relativedelta(months=3, days=-1),
+            }
+        )
+        report.button_calculate()
+        return report
+
+    def test_model_420_quotas_to_compensate(self):
+        """The result to compensate of a quarter is compensated in the next
+        declarations, as in the model 303: the calculation fills [43] up to
+        the result and the move cancels the balance of Hacienda Pública
+        deudora."""
+        self._set_f420_fields()
+        for day in (10, 11, 12):
+            self._invoice_purchase_create(f"2026-04-{day}")
+        second = self._report_of_quarter("2T")
+        self.assertEqual(second.result_type, "C")
+        second.button_confirm()
+        pending = -second.resultado_autoliquidacion
+        # A sale smaller than the pending quotas: part of them is compensated
+        self._invoice_sale_create("2026-07-10")
+        third = self._report_of_quarter("3T")
+        self.assertGreater(pending, third.diferencia)
+        self.assertAlmostEqual(third.potential_cuotas_compensar, pending, 2)
+        self.assertAlmostEqual(third.cuotas_compensar, third.diferencia, 2)
+        self.assertAlmostEqual(
+            third.remaining_cuotas_compensar, pending - third.diferencia, 2
+        )
+        self.assertEqual(third.result_type, "N")
+        third.button_confirm()
+        # The last quarter takes the rest, which is returned
+        fourth = self._report_of_quarter("4T")
+        self.assertAlmostEqual(fourth.cuotas_compensar, pending - third.diferencia, 2)
+        self.assertAlmostEqual(
+            fourth.resultado_autoliquidacion, third.diferencia - pending, 2
+        )
+        self.assertEqual(fourth.result_type, "D")
+        # Entering more than the pending quotas is refused
+        report_form = Form(fourth)
+        report_form.cuotas_compensar = pending
+        with self.assertRaisesRegex(ValidationError, "quotas to compensate"):
+            report_form.save()
+
+    @freeze_time("2026-10-01")
+    def test_model_420_quotas_to_compensate_move(self):
+        """The compensated quotas go to Hacienda Pública deudora and the result
+        to enter to the counterpart."""
+        self._set_f420_fields()
+        self._invoice_purchase_create("2026-04-10")
+        second = self._report_of_quarter("2T")
+        second.button_confirm()
+        self._invoice_sale_create("2026-07-10")
+        self._invoice_sale_create("2026-07-11")
+        third = self._report_of_quarter("3T")
+        self.assertAlmostEqual(
+            third.cuotas_compensar, -second.resultado_autoliquidacion, 2
+        )
+        self.assertEqual(third.result_type, "I")
+        third.button_confirm()
+        third.button_post()
+        lines = third.move_id.line_ids
+        compensation = lines.filtered(lambda line: line.account_id.code == "470000")
+        self.assertAlmostEqual(-compensation.balance, third.cuotas_compensar, 2)
+        counterpart = lines.filtered(lambda line: line.account_id.code == "475000")
+        self.assertAlmostEqual(-counterpart.balance, third.resultado_autoliquidacion, 2)
+
     def test_model_420_to_deduct_only_complementary(self):
         """[44] is the result of the previous declaration of a complementary
         one: another type clears it, as [70] in the model 303."""
@@ -835,7 +910,12 @@ class TestL10nEsAeatMod420(TestL10nEsAtcMod420Base):
         # The result the form shows after calculating
         self.assertEqual(self.model420.result_type, "I")
         self.model420.write(
-            {"regularizacion_cuotas": 150, "cuotas_compensar": 20, "a_deducir": 1300}
+            {
+                "regularizacion_cuotas": 150,
+                "potential_cuotas_compensar": 20,
+                "cuotas_compensar": 20,
+                "a_deducir": 1300,
+            }
         )
         self.assertEqual(self.model420.result_type, "C")
         self.model420.button_confirm()
