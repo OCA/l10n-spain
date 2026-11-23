@@ -238,7 +238,11 @@ class L10nEsAtcMod420Report(models.Model):
         messages = super()._atc_get_messages()
         if not self.payment_type and self.resultado_autoliquidacion > 0:
             messages.append(self.env._("- Select a payment type"))
-        if self.output_type == "T" and self.payment_type and self.payment_type != "5":
+        if (
+            self.output_type == "T"
+            and self.payment_type
+            and self.payment_type not in ["4", "5"]
+        ):
             messages.append(
                 self.env._(
                     "- The selected payment type "
@@ -246,6 +250,8 @@ class L10nEsAtcMod420Report(models.Model):
                     "Please select a different payment type."
                 )
             )
+        if self._is_partner_bank_required() and not self.partner_bank_id:
+            messages.append(self.env._("- Select a bank account"))
         if not self.company_id.city_id.code:
             messages.append(
                 self.env._(
@@ -260,3 +266,6 @@ class L10nEsAtcMod420Report(models.Model):
                 )
             )
         return messages
+
+    def _is_partner_bank_required(self):
+        return self.payment_type == "4" and self.result_type in ["I", "D"]

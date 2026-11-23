@@ -742,6 +742,29 @@ class TestL10nEsAeatMod420(TestL10nEsAtcMod420Base):
             "B00000000",
         )
 
+    @freeze_time("2026-04-01")
+    def test_model_420_declaration_direct_debit(self):
+        """Paid by direct debit, as the order of the model 420 allows, the
+        file carries the IBAN of the bank account."""
+        self.model420.button_calculate()
+        self._set_f420_fields()
+        self.model420.payment_type = "4"  # Domiciliación bancaria
+        with self.assertRaisesRegex(UserError, r".*Select a bank account.*"):
+            self.model420.button_confirm()
+        self.model420.partner_bank_id = self.env["res.partner.bank"].create(
+            {
+                "account_number": "ES9121000418450200051332",
+                "partner_id": self.model420.company_id.partner_id.id,
+            }
+        )
+        self.model420.button_confirm()
+        with self._atc_program():
+            self.model420.action_generar_mod420()
+        dec_node = etree.fromstring(self._generated_files().raw.content)
+        res_node = dec_node.xpath("//RES")[0]
+        self.assertEqual(res_node.attrib["FPA"], "4")
+        self.assertEqual(res_node.attrib["IBAN"], "ES9121000418450200051332")
+
     def test_model_420_confirm_checks_the_declaration(self):
         """The declaration is confirmed only with the data the ATC program
         needs, as when generating its file."""
