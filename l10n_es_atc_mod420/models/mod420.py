@@ -30,6 +30,20 @@ class L10nEsAtcMod420Report(models.Model):
     _period_monthly = False
     _period_yearly = False
 
+    payment_type = fields.Selection(
+        selection=[
+            ("1", "1 - Efectivo"),
+            ("2", "2 - Adeudo en cuenta"),
+            ("3", "3 - Pago fraccionado"),
+            ("4", "4 - Domiciliación bancaria"),
+            ("5", "5 - Pago telemático"),
+            ("6", "6 - Aplazamiento 6 meses medidas Covid"),
+        ],
+        string="Forma de pago",
+        compute="_compute_payment_type",
+        store=True,
+        readonly=False,
+    )
     total_devengado = fields.Monetary(
         string="[25] Total accrued installments",
         readonly=True,
@@ -144,6 +158,12 @@ class L10nEsAtcMod420Report(models.Model):
         store=True,
         readonly=False,
     )
+
+    @api.depends("output_type")
+    def _compute_payment_type(self):
+        for record in self:
+            if not record.payment_type and record.output_type == "T":
+                record.payment_type = "5"
 
     @api.depends("company_id", "result_type")
     def _compute_counterpart_account_id(self):
