@@ -33,4 +33,4 @@ Para crear un modelo, por ejemplo de un trimestre del año:
 9.  La opción "Carátula sobre" permite imprimir la carátula del modelo 420 para su  
     presentación presencial
 
-10. El boton `Generar declaración` permite generar el archivo .xml y usando el `.jar` provisto por la ATC se puede obtener la declaracion. Este puede ser en formato `.dec` cuando en el campo `Tipo de salida` se elija `telemático`; en caso contrario, se generará en formato `.pdf`.
+10. El boton `Generar declaración` permite generar el archivo .xml y usando el `.jar` provisto por la ATC se puede obtener la declaracion. Este puede ser en formato `.dec` cuando en el campo `Tipo de salida` se elija `telemático`; en caso contrario, se generará en formato `.pdf`. Con la declaración calculada solo se puede imprimir el borrador (`Tipo de salida` `Imprimir Borrador`); la autoliquidación final y el fichero de la presentación telemática se generan con la declaración confirmada, que antes comprueba los datos que pide el programa de la ATC.

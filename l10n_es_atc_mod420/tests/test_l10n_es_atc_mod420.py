@@ -686,6 +686,10 @@ class TestL10nEsAeatMod420(TestL10nEsAtcMod420Base):
         ):
             self.model420.action_generar_mod420()
         self.model420.payment_type = "5"  # Pago telemático
+        # The file to file is generated from the confirmed declaration
+        with self.assertRaisesRegex(UserError, "Confirm the declaration"):
+            self.model420.action_generar_mod420()
+        self.model420.button_confirm()
         with self._atc_program() as runs:
             action = self.model420.action_generar_mod420()
         self.assertEqual(runs[0]["S"], "T")
@@ -738,10 +742,24 @@ class TestL10nEsAeatMod420(TestL10nEsAtcMod420Base):
             "B00000000",
         )
 
+    def test_model_420_confirm_checks_the_declaration(self):
+        """The declaration is confirmed only with the data the ATC program
+        needs, as when generating its file."""
+        self.model420.button_calculate()
+        with self.assertRaisesRegex(
+            UserError, r".*Please set the Public Way in the company.*"
+        ):
+            self.model420.button_confirm()
+        self.assertEqual(self.model420.state, "calculated")
+        self._set_f420_fields()
+        self.model420.button_confirm()
+        self.assertEqual(self.model420.state, "done")
+
     def test_model_420_refund_to_a_bank_account(self):
         """A result to return in the last quarter is paid into the bank account
         of the company chosen on the declaration, as in the AEAT models."""
         self.model420.button_calculate()
+        self._set_f420_fields()
         self.model420.period_type = "4T"
         self.model420.a_deducir = self.model420.diferencia + 100
         self.assertEqual(self.model420.result_type, "D")
@@ -779,6 +797,7 @@ class TestL10nEsAeatMod420(TestL10nEsAtcMod420Base):
             {"regularizacion_cuotas": 150, "cuotas_compensar": 20, "a_deducir": 1300}
         )
         self.assertEqual(self.model420.result_type, "C")
+        self.model420.button_confirm()
         with self._atc_program():
             self.model420.action_generar_mod420()
         dec_node = etree.fromstring(self._generated_files().raw.content)
@@ -811,6 +830,7 @@ class TestL10nEsAeatMod420(TestL10nEsAtcMod420Base):
         self.env["ir.config_parameter"].sudo().set_str("ir_attachment.location", "db")
         self.model420.button_calculate()
         self._set_f420_fields()
+        self.model420.button_confirm()
         with self._atc_program() as runs:
             self.model420.action_generar_mod420()
         jar = self.env["ir.attachment"].search([("name", "=", "pa-mod420.jar")])
