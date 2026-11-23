@@ -180,12 +180,25 @@ class L10nEsAeatMod347Report(models.Model):
             lambda x: x.state == "pending"
         ).send_email_direct()
 
+    def _get_key_tax_mapping(self):
+        """XML-IDs of the tax map lines of the keys A and B. Hook for the
+        declarations that inherit this one with their own map."""
+        return KEY_TAX_MAPPING
+
+    def _get_not_included_field(self):
+        """Name of the partner and move flag that leaves them out of the
+        declaration. Hook for the declarations that inherit this one."""
+        return "not_in_mod347"
+
+    def _get_partner_record_model(self):
+        return self.env[self._fields["partner_record_ids"].comodel_name]
+
     def btn_list_records(self):
         return {
             "domain": "[('report_id','in'," + str(self.ids) + ")]",
             "name": self.env._("Partner records"),
             "view_mode": "list,form",
-            "res_model": "l10n.es.aeat.mod347.partner_record",
+            "res_model": self._get_partner_record_model()._name,
             "context": dict(self.env.context, default_report_id=self.id),
             "type": "ir.actions.act_window",
         }
@@ -195,10 +208,11 @@ class L10nEsAeatMod347Report(models.Model):
 
         :param: taxes: Taxes to look for in move lines.
         """
+        not_included = self._get_not_included_field()
         return Domain.AND(
             [
-                Domain("partner_id.not_in_mod347", "=", False),
-                Domain("move_id.not_in_mod347", "=", False),
+                Domain(f"partner_id.{not_included}", "=", False),
+                Domain(f"move_id.{not_included}", "=", False),
                 Domain("date", ">=", self.date_start),
                 Domain("date", "<=", self.date_end),
                 Domain.OR(
@@ -250,7 +264,7 @@ class L10nEsAeatMod347Report(models.Model):
 
     def _create_partner_records(self, key, map_ref, partner_record=None):
         sign = -1 if key == "B" else 1
-        partner_record_obj = self.env["l10n.es.aeat.mod347.partner_record"]
+        partner_record_obj = self._get_partner_record_model()
         map_line = self.env.ref(map_ref)
         taxes = map_line.get_taxes_for_company(self.company_id)
         domain = self._account_move_line_domain(taxes)
@@ -311,7 +325,7 @@ class L10nEsAeatMod347Report(models.Model):
                 Domain("journal_id", "in", cash_journals.ids),
                 Domain("date", ">=", self.date_start),
                 Domain("date", "<=", self.date_end),
-                Domain("partner_id.not_in_mod347", "=", False),
+                Domain(f"partner_id.{self._get_not_included_field()}", "=", False),
             ]
         )
         cash_groups = move_line_obj._read_group(
@@ -321,7 +335,7 @@ class L10nEsAeatMod347Report(models.Model):
         )
         for cash_group in cash_groups:
             partner = cash_group[0]
-            partner_record_obj = self.env["l10n.es.aeat.mod347.partner_record"]
+            partner_record_obj = self._get_partner_record_model()
             amount = abs(cash_group[1])
             if amount > self.received_cash_limit:
                 move_lines = move_line_obj.search(
@@ -360,9 +374,10 @@ class L10nEsAeatMod347Report(models.Model):
         for report in self:
             # Delete previous partner records
             report.partner_record_ids.unlink()
-            self._create_partner_records("A", KEY_TAX_MAPPING["A"])
-            self._create_partner_records("B", KEY_TAX_MAPPING["B"])
-            self._create_cash_moves()
+            key_tax_mapping = report._get_key_tax_mapping()
+            report._create_partner_records("A", key_tax_mapping["A"])
+            report._create_partner_records("B", key_tax_mapping["B"])
+            report._create_cash_moves()
             self.env.flush_all()
             report.partner_record_ids.calculate_quarter_totals()
         return True
@@ -672,7 +687,7 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
         prev_amount = self.amount
         self.report_id._create_partner_records(
             self.operation_key,
-            KEY_TAX_MAPPING[self.operation_key],
+            self.report_id._get_key_tax_mapping()[self.operation_key],
             partner_record=self,
         )
         self.calculate_quarter_totals()

@@ -9,9 +9,12 @@ class MailComposer(models.TransientModel):
     def _action_send_mail(self, auto_commit=False):
         res = super()._action_send_mail(auto_commit=auto_commit)
         default_model = self.env.context.get("default_model", False)
-        partner_record_model = "l10n.es.aeat.mod347.partner_record"
-        if default_model == partner_record_model:
+        # The partner records of this model and of the ones that inherit it
+        partner_record_models = self.env.registry.descendants(
+            ["l10n.es.aeat.mod347.partner_record"], "_inherit"
+        )
+        if default_model in partner_record_models:
             active_id = self.env.context.get("active_id")
-            record = self.env[partner_record_model].browse(active_id)
+            record = self.env[default_model].browse(active_id)
             record.write({"state": "sent"})
         return res
