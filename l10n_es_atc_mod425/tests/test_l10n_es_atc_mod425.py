@@ -588,6 +588,12 @@ class TestL10nEsAeatMod425(TestL10nEsAtcMod425Base):
         self.model425.casilla_72 = 100
         self.assertAlmostEqual(self.model425.casilla_74, 24500, 2)
         self.assertAlmostEqual(self.model425.casilla_120, 24500, 2)
+        # Confirmed only with the data the ATC program needs
+        with self.assertRaisesRegex(
+            UserError, r".*Please set the Public Way in the company.*"
+        ):
+            self.model425.button_confirm()
+        self._set_f425_fields()
         self.model425.button_confirm()
         self.assertEqual(self.model425.state, "done")
         self.model425.button_unpost()
@@ -617,6 +623,10 @@ class TestL10nEsAeatMod425(TestL10nEsAtcMod425Base):
             self.model425.action_generar_mod425()
         self._set_f425_fields()
         self.assertEqual(self.model425.output_type, "T")
+        # The file to file is generated from the confirmed declaration
+        with self.assertRaisesRegex(UserError, "Confirm the declaration"):
+            self.model425.action_generar_mod425()
+        self.model425.button_confirm()
         with self._atc_program() as runs:
             action = self.model425.action_generar_mod425()
         self.assertEqual(runs[0]["S"], "T")
@@ -682,6 +692,7 @@ class TestL10nEsAeatMod425(TestL10nEsAtcMod425Base):
         report_form.save()
         self.model425.button_calculate()
         self._set_f425_fields()
+        self.model425.button_confirm()
         with self._atc_program():
             self.model425.action_generar_mod425()
         dec_node = etree.fromstring(self._generated_files().raw.content)
