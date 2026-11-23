@@ -207,6 +207,16 @@ class TestL10nEsAtcMod415(TestL10nEsAtcMod415Base):
             )
         )
 
+    def test_model_415_partner_excluded_in_its_company(self):
+        """A partner left out of the 415 of a company is still declared by
+        another one, as in the 347."""
+        self.assertTrue(self.customer_7.not_in_mod415)
+        other_company = self.env["res.company"].sudo().create({"name": "Other company"})
+        self.env.user.sudo().company_ids += other_company
+        partner_form = Form(self.customer_7.with_company(other_company))
+        self.assertFalse(partner_form.not_in_mod415)
+        self.assertTrue(Form(self.customer_7).not_in_mod415)
+
     def test_model_415_igic_taxes_of_odoo_core(self):
         """Every IGIC tax of Odoo core counts in the key of its side: purchases
         in A and sales in B, each invoice entered with the fiscal position the

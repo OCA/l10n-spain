@@ -15,6 +15,7 @@ class ResPartner(models.Model):
         "any ATC 415 model report, independently from the total "
         "amount of its operations.",
         default=False,
+        company_dependent=True,
     )
 
     @api.model
