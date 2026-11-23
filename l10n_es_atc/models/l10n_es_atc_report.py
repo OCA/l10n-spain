@@ -99,6 +99,16 @@ class L10nEsAtcReport(models.AbstractModel):
             report._atc_validate_fields()
         return super().button_confirm()
 
+    def button_modelo_sobre(self):
+        """Envelope of the ATC for the filing on paper, the same for the
+        declarations of every model."""
+        self.ensure_one()
+        return {
+            "type": "ir.actions.act_url",
+            "url": "/l10n_es_atc/static/src/pdf/caratula_sobre.pdf",
+            "target": "self",
+        }
+
     def _atc_get_country_state_code(self, country_state):
         codigo_provincia = self.SPANISH_STATES.get(country_state.code)
         if not codigo_provincia:
