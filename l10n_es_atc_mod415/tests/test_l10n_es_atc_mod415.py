@@ -338,6 +338,48 @@ class TestL10nEsAtcMod415(TestL10nEsAtcMod415Base):
         self.assertAlmostEqual(record.fourth_quarter, 4280)
         self.assertEqual(record.state, "pending")
 
+    def test_model_415_email_of_the_report_company(self):
+        """The email to the partner names the company of the declaration, also
+        when the user works in another one, and is kept once sent."""
+        self.model415.button_calculate()
+        record = self.model415.partner_record_ids[:1]
+        record.partner_id.email = "partner@example.com"
+        other_company = self.env["res.company"].sudo().create({"name": "Other company"})
+        self.env.user.sudo().write(
+            {
+                "company_ids": [Command.link(other_company.id)],
+                "company_id": other_company.id,
+            }
+        )
+        record.send_email_direct()
+        mail = (
+            self.env["mail.mail"]
+            .sudo()
+            .search([("model", "=", record._name), ("res_id", "=", record.id)])
+        )
+        self.assertIn(self.model415.company_id.name, mail.subject)
+        self.assertNotIn(other_company.name, mail.subject)
+        self.assertFalse(mail.auto_delete)
+
+    def test_model_415_partner_record_sent_from_the_composer(self):
+        """The email sent from the composer that the Send button of a partner
+        record opens marks the record as sent, as in the 347."""
+        self.model415.button_calculate()
+        record = self.model415.partner_record_ids[:1]
+        record.partner_id.email = "partner@example.com"
+        action = record.action_send()
+        composer_form = Form(
+            self.env[action["res_model"]].with_context(
+                active_id=record.id,
+                active_ids=record.ids,
+                **action["context"],
+            ),
+            view=self.env["ir.ui.view"].browse(action["view_id"]),
+        )
+        composer_form.body = "Test body"
+        composer_form.save().action_send_mail()
+        self.assertEqual(record.state, "sent")
+
     def test_model_415_new_partner_record_from_its_list(self):
         """A partner record added from the list that the declaration opens
         belongs to that declaration."""
