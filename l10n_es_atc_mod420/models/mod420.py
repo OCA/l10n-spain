@@ -28,12 +28,6 @@ class L10nEsAtcMod420Report(models.Model):
             ]
         )[:1]
 
-    company_partner_id = fields.Many2one(
-        comodel_name="res.partner",
-        string="Company Partner",
-        related="company_id.partner_id",
-        store=True,
-    )
     total_devengado = fields.Monetary(
         string="[25] Total accrued installments",
         readonly=True,
@@ -129,9 +123,6 @@ class L10nEsAtcMod420Report(models.Model):
         string="Result type",
         compute="_compute_result_type",
     )
-    bank_account_id = fields.Many2one(
-        comodel_name="res.partner.bank",
-    )
     counterpart_account_id = fields.Many2one(
         comodel_name="account.account",
         string="Counterpart account",
@@ -206,6 +197,15 @@ class L10nEsAtcMod420Report(models.Model):
             }
         )
         return vals
+
+    def button_confirm(self):
+        if any(
+            report.result_type == "D" and not report.partner_bank_id for report in self
+        ):
+            raise exceptions.UserError(
+                self.env._("Select an account for receiving the money")
+            )
+        return super().button_confirm()
 
     def button_modelo_sobre(self):
         self.ensure_one()

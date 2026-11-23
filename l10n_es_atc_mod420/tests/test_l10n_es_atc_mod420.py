@@ -738,6 +738,26 @@ class TestL10nEsAeatMod420(TestL10nEsAtcMod420Base):
             "B00000000",
         )
 
+    def test_model_420_refund_to_a_bank_account(self):
+        """A result to return in the last quarter is paid into the bank account
+        of the company chosen on the declaration, as in the AEAT models."""
+        self.model420.button_calculate()
+        self.model420.period_type = "4T"
+        self.model420.a_deducir = self.model420.diferencia + 100
+        self.assertEqual(self.model420.result_type, "D")
+        with self.assertRaisesRegex(UserError, "Select an account for receiving"):
+            self.model420.button_confirm()
+        report_form = Form(self.model420)
+        report_form.partner_bank_id = self.env["res.partner.bank"].create(
+            {
+                "account_number": "ES9121000418450200051332",
+                "partner_id": self.model420.company_id.partner_id.id,
+            }
+        )
+        report_form.save()
+        self.model420.button_confirm()
+        self.assertEqual(self.model420.state, "done")
+
     def test_model_420_substitutive(self):
         """The ATC file of the model 420 has the complementary declaration and
         no substitutive one, so the form refuses that type."""
