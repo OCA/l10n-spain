@@ -16,8 +16,6 @@ from odoo import api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools.float_utils import float_is_zero, float_round
 
-from odoo.addons.l10n_es_aeat.models.spanish_states_mapping import SPANISH_STATES
-
 _logger = logging.getLogger(__name__)
 
 # The URL to download the file
@@ -102,7 +100,7 @@ class L10nEsAtcReport(models.AbstractModel):
         return super().button_confirm()
 
     def _atc_get_country_state_code(self, country_state):
-        codigo_provincia = SPANISH_STATES.get(country_state.code)
+        codigo_provincia = self.SPANISH_STATES.get(country_state.code)
         if not codigo_provincia:
             raise UserError(
                 self.env._(
@@ -418,7 +416,6 @@ class L10nEsAtcReport(models.AbstractModel):
             lambda x: x.field_number == field_base
         )
         tax_lines = self.tax_line_ids.filtered(lambda x: x.field_number == field_amount)
-        taxes = tax_lines.mapped("move_line_ids.tax_line_id")
         data_total = {
             "base": 0,
             "amount": 0,

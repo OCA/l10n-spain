@@ -1,8 +1,8 @@
 # Copyright 2023 Binhex - Nicolás Ramos (http://binhex.es)
 
 {
-    "name": "ATC Menú",
-    "summary": "Modulo 'glue' de la AEAT para el menú de la ATC",
+    "name": "ATC Base",
+    "summary": "Módulo base para declaraciones de la ATC",
     "version": "20.0.1.0.0",
     "author": "Binhex, Odoo Community Association (OCA)",
     "license": "AGPL-3",
