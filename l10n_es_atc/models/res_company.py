@@ -9,7 +9,13 @@ _logger = logging.getLogger(__name__)
 class ResCompany(models.Model):
     _inherit = "res.company"
 
-    atc_public_way = fields.Char("Public Way")
+    atc_public_way = fields.Char(
+        "Public Way",
+        size=2,
+        help="Abbreviation of the type of public way of the address of the "
+        "company in the ATC declarations, of two characters: for example, CL "
+        "for a street or AV for an avenue.",
+    )
 
     @api.model_create_multi
     def create(self, vals_list):
