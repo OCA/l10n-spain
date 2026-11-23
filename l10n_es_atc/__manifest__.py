@@ -15,6 +15,7 @@
         "views/atc_menuitem.xml",
         "data/atc_partner.xml",
         "views/res_company_views.xml",
+        "reports/atc_report_templates.xml",
     ],
     "installable": True,
     "auto_install": False,
