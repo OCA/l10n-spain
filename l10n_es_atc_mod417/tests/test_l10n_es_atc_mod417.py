@@ -20,7 +20,7 @@ from freezegun import freeze_time
 from lxml import etree
 
 from odoo.exceptions import UserError
-from odoo.tests import tagged
+from odoo.tests import Form, tagged
 
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
     TestL10nEsAeatModBase,
@@ -735,6 +735,15 @@ class TestL10nEsAeatmod417(TestL10nEsAtcmod417Base):
         res_node = dec_node.xpath("//RES")[0]
         self.assertEqual(res_node.attrib["FPA"], "4")
         self.assertEqual(res_node.attrib["IBAN"], "ES9121000418450200051332")
+
+    def test_model_417_substitutive(self):
+        """The ATC file of the model 417 has the complementary declaration and
+        no substitutive one, so the form refuses that type."""
+        report_form = Form(self.model417)
+        report_form.statement_type = "S"
+        report_form.previous_number = "4170000000001"
+        with self.assertRaisesRegex(UserError, "substitutive reports"):
+            report_form.save()
 
     @freeze_time("2026-02-01")
     def test_model_417_declaration_manual_boxes(self):
