@@ -463,11 +463,6 @@ class TestL10nEsAtcMod420Base(TestL10nEsAeatModBase):
                 "date_start": "2026-01-01",
                 "date_end": "2026-03-31",
                 "journal_id": cls.journal_misc.id,
-                "counterpart_account_id": cls.env["account.account"]
-                .search(
-                    [("company_ids", "in", [cls.company.id]), ("code", "=", "475800")]
-                )
-                .id,
             }
         )
         # Cities and company data are administrator data, and the tests run as
@@ -598,10 +593,9 @@ class TestL10nEsAeatMod420(TestL10nEsAtcMod420Base):
     def test_model_420(self):
         _logger.debug("Calculate ATC 420 1T 2026")
         self.model420.button_calculate()
-        # Test default counterpart.
-        self.assertEqual(
-            self.model420.counterpart_account_id.id, self.accounts["475800"].id
-        )
+        # The counterpart of a result to enter is Hacienda Pública acreedora,
+        # as in the model 303
+        self.assertEqual(self.model420.counterpart_account_id, self.accounts["475000"])
         self.assertEqual(self.model420.state, "calculated")
         # Fill manual fields
         if self.debug:
@@ -633,6 +627,9 @@ class TestL10nEsAeatMod420(TestL10nEsAtcMod420Base):
         self.assertAlmostEqual(self.model420.resultado_autoliquidacion, result, 2)
 
         self.assertEqual(self.model420.result_type, "I")
+        # The user can choose another counterpart
+        with Form(self.model420) as report_form:
+            report_form.counterpart_account_id = self.accounts["475800"]
         # The form shows the button that creates the move
         self.assertTrue(self.model420.allow_posting)
         self.model420.button_post()
@@ -777,6 +774,17 @@ class TestL10nEsAeatMod420(TestL10nEsAtcMod420Base):
         self._set_f420_fields()
         self.model420.button_confirm()
         self.assertEqual(self.model420.state, "done")
+
+    def test_model_420_counterpart_to_compensate(self):
+        """A result to compensate goes to Hacienda Pública deudora of the
+        company of the declaration, as in the model 303."""
+        self.model420.button_calculate()
+        self.model420.a_deducir = self.model420.diferencia + 100
+        self.assertEqual(self.model420.result_type, "C")
+        self.assertEqual(self.model420.counterpart_account_id.code, "470000")
+        self.assertEqual(
+            self.model420.counterpart_account_id.company_ids, self.model420.company_id
+        )
 
     def test_model_420_refund_to_a_bank_account(self):
         """A result to return in the last quarter is paid into the bank account

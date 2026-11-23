@@ -6,6 +6,15 @@ from odoo import api, exceptions, fields, models
 
 from odoo.addons.l10n_es_atc.models.l10n_es_atc_report import ATC_JAR_URL
 
+# Counterpart of the result as in the AEAT model 303: Hacienda Pública
+# acreedora (4750) for a result to enter, deudora (4700) for the rest
+_ACCOUNT_PATTERN_MAP = {
+    "C": "4700",
+    "D": "4700",
+    "N": "4700",
+    "I": "4750",
+}
+
 ATC_JAR_URL["420"] = (
     "https://www3.gobiernodecanarias.org/tributos/atc/documents/d/agencia-tributaria-canaria/m420v930e26-zip-1"
 )
@@ -19,14 +28,6 @@ class L10nEsAtcMod420Report(models.Model):
     _period_quarterly = True
     _period_monthly = False
     _period_yearly = False
-
-    def _default_counterpart_420(self):
-        return self.env["account.account"].search(
-            [
-                ("company_ids", "in", [self.env.company.id]),
-                ("code", "like", "4757%"),
-            ]
-        )[:1]
 
     total_devengado = fields.Monetary(
         string="[25] Total accrued installments",
@@ -126,8 +127,23 @@ class L10nEsAtcMod420Report(models.Model):
     counterpart_account_id = fields.Many2one(
         comodel_name="account.account",
         string="Counterpart account",
-        default=lambda self: self._default_counterpart_420(),
+        compute="_compute_counterpart_account_id",
+        domain="[('company_ids', '=', company_id)]",
+        store=True,
+        readonly=False,
     )
+
+    @api.depends("company_id", "result_type")
+    def _compute_counterpart_account_id(self):
+        for report in self:
+            code = _ACCOUNT_PATTERN_MAP.get(report.result_type, "4750")
+            report.counterpart_account_id = self.env["account.account"].search(
+                [
+                    ("code", "=like", f"{code}%"),
+                    ("company_ids", "=", report.company_id.id),
+                ],
+                limit=1,
+            )
 
     @api.depends("tax_line_ids", "tax_line_ids.amount", "casilla_23", "casilla_24")
     def _compute_total_devengado(self):
