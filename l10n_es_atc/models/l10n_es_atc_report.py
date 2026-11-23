@@ -144,6 +144,14 @@ class L10nEsAtcReport(models.AbstractModel):
         ``report_xml``: every declaration module that calls this method must
         depend on it.
         """
+        if self.output_type != "B" and self.state not in ("done", "posted"):
+            raise UserError(
+                self.env._(
+                    "Confirm the declaration before generating its final version "
+                    "or its file for the telematic filing: before that, only the "
+                    "draft can be printed."
+                )
+            )
         xml_data = self.env["ir.actions.report"]._render_qweb_xml(
             report_name, self.ids
         )[0]
