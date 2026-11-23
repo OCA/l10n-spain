@@ -2,7 +2,7 @@
 <odoo>
     <template id="mod420_report_xml_doc">
         <DEC
-            MOD="420"
+            t-att-MOD="doc._aeat_number"
             t-att-ANY="doc.year"
             t-att-PER="doc.period_type"
             t-att-COM="doc.statement_type == 'C' and 'X' or None"
