@@ -491,15 +491,6 @@ class L10nEsAtcMod425Report(models.Model):
                 self.env._("You cannot make complementary reports for this model.")
             )
 
-    def button_modelo_sobre(self):
-        self.ensure_one()
-        url = "/l10n_es_atc_mod425/static/src/pdf/caratula_sobre_425.pdf"
-        return {
-            "type": "ir.actions.act_url",
-            "url": url,
-            "target": "self",
-        }
-
     def action_generar_mod425(self):
         self.ensure_one()
         self._atc_validate_fields()

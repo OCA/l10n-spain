@@ -9,22 +9,7 @@
             t-att-NJA="doc.statement_type == 'S' and doc.previous_number or None"
             t-att-FIM="datetime.datetime.now().strftime('%Y%m%d')"
         >
-            <!-- TODO: IDE attributes? -->
-            <IDE>
-                <!-- TODO: TIP, NPK, CAL, BLO, ESC, PIS, PUE, POR, FAX -->
-                <OTP
-                    t-att-NIF="doc.company_vat"
-                    t-att-NRS="doc.company_id.name.upper()"
-                    t-att-SVP="doc.company_id.atc_public_way"
-                    t-att-NVP="(doc.company_id.street or '').upper()"
-                    t-att-TEL="doc.company_id.phone"
-                    t-att-EMA="doc.company_id.email"
-                    t-att-POP="doc._atc_get_country_state_code(doc.company_id.state_id)"
-                    t-att-CMU="doc.company_id.city_id.code"
-                    t-att-CP="doc.company_id.zip"
-                    t-att-PAI="doc.company_id.country_id.code"
-                />
-            </IDE>
+            <t t-call="l10n_es_atc.atc_report_xml_ide" />
             <EST
                 t-att-DTP="doc.has_415 and 'S' or 'N'"
                 t-att-RECC="doc.is_cash_basis and 'S' or 'N'"
