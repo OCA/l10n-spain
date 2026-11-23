@@ -40,6 +40,30 @@ class PosOrder(models.Model):
     def _update_sequence_number(self, pos):
         pos.l10n_es_simplified_invoice_sequence_id.next_by_id()
 
+    def write(self, vals):
+        res = super().write(vals)
+        if vals.get("state") in ("paid", "done", "invoiced"):
+            for order in self:
+                order._l10n_es_assign_simplified_invoice_number()
+        return res
+
+    def _l10n_es_assign_simplified_invoice_number(self):
+        self.ensure_one()
+        config = self.config_id
+        if (
+            self.l10n_es_unique_id
+            or self.to_invoice
+            or not config.iface_l10n_es_simplified_invoice
+            or not self._simplified_limit_check(
+                self.amount_total, config.l10n_es_simplified_invoice_limit
+            )
+        ):
+            return
+        self.l10n_es_unique_id = (
+            config.l10n_es_simplified_invoice_sequence_id.next_by_id()
+        )
+        self.is_l10n_es_simplified_invoice = True
+
     @api.model
     def _process_order(self, pos_order, draft, existing_order):
         order_data = pos_order.get("data", {})
