@@ -84,7 +84,10 @@
                             readonly="state == 'done'"
                         />
                         <field name="cuotas_compensar" readonly="state == 'done'" />
-                        <field name="a_deducir" readonly="state == 'done'" />
+                        <field
+                            name="a_deducir"
+                            readonly="statement_type != 'C' or state == 'done'"
+                        />
                     </group>
                 </group>
 

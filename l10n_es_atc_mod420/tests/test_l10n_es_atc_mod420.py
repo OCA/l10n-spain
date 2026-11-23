@@ -786,6 +786,16 @@ class TestL10nEsAeatMod420(TestL10nEsAtcMod420Base):
             self.model420.counterpart_account_id.company_ids, self.model420.company_id
         )
 
+    def test_model_420_to_deduct_only_complementary(self):
+        """[44] is the result of the previous declaration of a complementary
+        one: another type clears it, as [70] in the model 303."""
+        report_form = Form(self.model420)
+        report_form.statement_type = "C"
+        report_form.previous_number = "4200000000001"
+        report_form.a_deducir = 30
+        report_form.statement_type = "N"
+        self.assertEqual(report_form.a_deducir, 0)
+
     def test_model_420_refund_to_a_bank_account(self):
         """A result to return in the last quarter is paid into the bank account
         of the company chosen on the declaration, as in the AEAT models."""

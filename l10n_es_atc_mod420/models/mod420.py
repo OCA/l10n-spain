@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl
 
 from odoo import api, exceptions, fields, models
+from odoo.tools import float_compare
 
 from odoo.addons.l10n_es_atc.models.l10n_es_atc_report import ATC_JAR_URL
 
@@ -194,15 +195,25 @@ class L10nEsAtcMod420Report(models.Model):
     @api.depends("resultado_autoliquidacion", "period_type")
     def _compute_result_type(self):
         for report in self:
-            if report.resultado_autoliquidacion == 0:
+            result = float_compare(
+                report.resultado_autoliquidacion,
+                0,
+                precision_digits=report.currency_id.decimal_places,
+            )
+            if result == 0:
                 report.result_type = "N"
-            elif report.resultado_autoliquidacion > 0:
+            elif result == 1:
                 report.result_type = "I"
             else:
                 if report.period_type in ("4T", "12"):
                     report.result_type = "D"
                 else:
                     report.result_type = "C"
+
+    @api.onchange("statement_type")
+    def onchange_type(self):
+        if self.statement_type != "C":
+            self.a_deducir = 0
 
     @api.model
     def _prepare_counterpart_move_line(self, account, debit, credit):
