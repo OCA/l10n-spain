@@ -741,6 +741,21 @@ class TestL10nEsAeatmod417(TestL10nEsAtcmod417Base):
         self.assertEqual(res_node.attrib["FPA"], "4")
         self.assertEqual(res_node.attrib["IBAN"], "ES9121000418450200051332")
 
+    @freeze_time("2026-02-01")
+    def test_model_417_company_address(self):
+        """The ATC program needs the municipality code of the city and the
+        public way of the company, as in the model 420."""
+        self.model417.button_calculate()
+        self._set_f417_fields()
+        self.model417.company_id.sudo().atc_public_way = False
+        with self.assertRaisesRegex(
+            UserError, r".*Please set the Public Way in the company.*"
+        ):
+            self.model417.button_confirm()
+        self.model417.company_id.city_id.sudo().code = False
+        with self.assertRaisesRegex(UserError, r".*Please set the code in the city.*"):
+            self.model417.action_generar_mod417()
+
     def test_model_417_substitutive(self):
         """The ATC file of the model 417 has the complementary declaration and
         no substitutive one, so the form refuses that type."""

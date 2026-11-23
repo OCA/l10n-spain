@@ -11,6 +11,7 @@
         "base_location",
         "l10n_es_aeat",
         "l10n_es_atc",
+        "l10n_es_atc_mod420",
         "report_xml",
     ],
     "external_dependencies": {
