@@ -1,0 +1,2188 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+	Esquema de datos del modelo 417. En las anotaciones de los atributos se informa
+	de aquellos que debeADIn quedar cumplimentados de forma obligatoria en el esquema,
+	a pesar de ser opcionales. Estos atributos serán completados por el programa.
+-->
+<xs:schema id="Modelo417DataSet" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="DEC">
+    	<xs:complexType>
+    		<xs:annotation>
+				<xs:documentation>
+					Nodo principal de la declaración, es común
+					a todas	las	declaraciones
+    			</xs:documentation>
+			</xs:annotation>
+
+      		<xs:sequence>
+
+      			<xs:element name="AUX" type="T_AUXILIAR" maxOccurs="1" minOccurs="0"/>
+
+				<xs:element name="IDE" type="T_IDENT_IGIC" maxOccurs="1" minOccurs="1">
+					<xs:annotation>
+						<xs:documentation>Datos identificativos y opciones tributarias</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+
+				<xs:element name="IGI_DEV" type="T_DEVENGADO" maxOccurs="1" minOccurs="0" >
+					<xs:annotation>
+						<xs:documentation>IGIC devengado</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+
+				<xs:element name="IGI_DED"  type="T_DEDUCIBLE" maxOccurs="1" minOccurs="0" >
+					<xs:annotation>
+						<xs:documentation>
+							IGIC deducible
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+
+				<xs:element name="LIQ" type="T_LIQUIDACION" maxOccurs="1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Liquidación</xs:documentation>
+					</xs:annotation>
+        		</xs:element>
+
+				<xs:element name="RES" minOccurs="1" maxOccurs="1" type="RESULTADO_LIQUIDACION">
+					<xs:annotation>
+						<xs:documentation>
+							Resultado de la declaración
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+
+				<xs:element name="ADI" type="T_INFO_ADICIONAL" maxOccurs="1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Información adicional</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+
+				<xs:element name="RCC" type="T_OPERACIONES_RECC" maxOccurs="1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>
+							Datos exclusivos para sujetos acogidos al régimen especial de criterio
+							de caja y/o destinatarios de operaciones afectadas por el mismo.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+
+				<xs:element name="ACT_EST" type="OPERACION_DATOS_ESTADISTICOS" maxOccurs="unbounded" minOccurs="0" >
+					<xs:annotation>
+						<xs:documentation>Datos estadísticos</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+
+				<xs:element name="OPE" type="T_OPERACIONES_EJERCICIO" maxOccurs="1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Operaciones realizadas en el ejercicio</xs:documentation>
+					</xs:annotation>
+        		</xs:element>
+
+				<xs:element name="ACT_PRO" type="OPERACION_DATOS_ESTADISTICOS" maxOccurs="unbounded" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>
+							Prorrata
+							El C.N.A.E. se establece en el atributo "EPI" (código de actividad/epígrafe)
+							El % Prorrata se establece en el atributo "DEF" (prorrata definitiva)
+							Tipo Prorrata: G=General; E=Especial
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+
+				<xs:element name="ACT_DED"  type="T_DEDUCIBLE" maxOccurs="unbounded" minOccurs="0" >
+					<xs:annotation>
+						<xs:documentation>
+							Actividades con regímenes de deducción defierenciados.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+
+			<xs:attribute name="NDE" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						Atributo cumplimentado por el programa.
+						Tiene carácter interno obligatorio.
+						Número de identificación electrónica de la declaración equivalente
+						al número de justificante.
+    				</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="MOD" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation>
+						Identificador del modelo.
+    				</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="ANY" use="required">
+				<xs:annotation>
+					<xs:documentation>
+						Ejercicio al que se refiere la autoliquidación.
+						Formato	String(4).
+    				</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:length value="4"></xs:length>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="PER" use="required">
+				<xs:annotation>
+					<xs:documentation>
+						Período al que se refiere la autoliquidación.
+						Formato String(2):
+							Primer trimestre:  1T
+							Segundo trimestre: 2T
+							Tercer trimestre:  3T
+							Cuarto trimestre:  4T
+    				</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:length value="2"></xs:length>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="FIM">
+				<xs:annotation>
+					<xs:documentation>
+						Atributo cumplimentado por el programa.
+						Tiene carácter interno obligatorio.
+						Fecha de impresión/generación de la declaración
+						según el cliente del programa de ayuda.
+    				</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:length value="8"></xs:length>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="COM" use="optional">
+				<xs:annotation>
+					<xs:documentation>
+						Se establece con "X" cuando esta autoliquidación sea complementaria
+						de otra u otras autoliquidaciones presentadas anteriormente por el
+						mismo concepto y correspondientes al mismo ejercicio y período.
+    				</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="X"></xs:enumeration>
+						<xs:enumeration value=""></xs:enumeration>
+
+						<xs:minLength value="0"></xs:minLength>
+						<xs:maxLength value="1"></xs:maxLength>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="NJA" type="xs:string" use="optional">
+				<xs:annotation>
+					<xs:documentation>
+						Para una declaración complementaria se declara el
+						número anterior de justificante.
+    				</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="VER" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						Atributo cumplimentado por el programa.
+						Versión del programa de ayuda con la que se generó el XML.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="DATOS_PERSONALES">
+		<xs:annotation>
+			<xs:documentation>
+				Se utilizará este elemento para almacenar los datos de cualquiera de las
+				personas que figuran en la declaración. El primer elemento se interpreta
+				como el	sujeto pasivo.
+			</xs:documentation>
+		</xs:annotation>
+
+		<!--  -->
+		<xs:attribute name="SEC" type="xs:int">
+			<xs:annotation>
+				<xs:documentation>
+					Cumplimentado por el programa.
+					Número de orden de la persona dentro de un conjunto
+					de personas del mismo tipo.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="TPE">
+			<xs:annotation>
+				<xs:documentation>
+					Cumplimentado por el programa.
+					Código que identifica la función dela persona en el impuesto. Utilizamos los códigos
+					de la tabla REEP de M@GIN por defecto (i.e. SP = sujeto pasivo,transmitente = TR,
+					presentador = PR, representante = RP, otros = OT)
+				</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:length value="2" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="NIF" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>
+					Nif de la persona.
+					Formato: String(9)
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="NRS" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>
+					Nombre o razón social.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="SVP" use="required">
+			<xs:annotation>
+				<xs:documentation>
+					Siglas vía pública.
+					Formato String(2)
+				</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:length value="2"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="NVP" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>
+					Nombre de la vía pública.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="TIP" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					Tipo de número (NPK).
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="NPK" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					Número de edificio/pto kilométrico.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="CAL" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>
+					Calificador de número.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="BLO" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Bloque</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ESC" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>escalera</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="PIS" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>Piso</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="PUE" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>Puerta</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="POR" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>Portal</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="COM" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>Complemento</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="LOC" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>Localidad</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="TEL" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>Teléfono</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="MOV" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>teléfono móvil</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="EMA" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>Email</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="POP" use="required">
+			<xs:annotation>
+				<xs:documentation>
+					Código de provincia.
+					Formato: String(2)
+				</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:length value="2"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="CMU" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Código de municipio</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="CP" use="required">
+			<xs:annotation>
+				<xs:documentation>
+					Código Postal.
+					Formato: String(5)
+				</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:length value="5"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="PAI" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					País.
+					Formato: String(2) según el estándar ISO 3166
+				</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+
+					<xs:length value="2"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="FAX" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>número Fax</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+
+	</xs:complexType>
+
+
+
+	<xs:complexType name="RESULTADO_LIQUIDACION">
+
+		<xs:annotation>
+			<xs:documentation>
+				Resultado de la declaración
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="SAF" type="T_FRACCIONAMIENTO"	minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+						Información del módulo de fraccionamiento aplazamiento
+						cuando la forma de pago seleccionada es ""pago fraccionado"
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="TIP" use="required">
+			<xs:annotation>
+				<xs:documentation>
+					Tipo de resultado de la liquidación
+					 I = Ingreso
+					 D = Devolución
+					 C = A Compensar,
+					 S = Sin Actividad
+
+					 En caso de resultado de la liquidación 0, cuando
+					 se ha producido actividad en el período, el tipo
+					 de resultado será "C"
+				</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:length value="1"/>
+					<xs:enumeration value="I"/>
+					<xs:enumeration value="C"/>
+					<xs:enumeration value="D"/>
+					<xs:enumeration value="S"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="IMP" use="optional" type="IMPA15ABSType">
+			<xs:annotation>
+				<xs:documentation>
+					Importe a Ingresar, Compensar o Devolver
+					Formato	A15 con	máscara EEEEEEEEEEEEEEEEEDD
+						E = parte entera
+						D = parte decimal
+					La coma es implícita (no se incluye)
+					Los ceros por la izquierda se omiten
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="FPA" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					Forma de pago ingresos
+					1 - Efectivo
+					2 - Adeudo en cuenta
+					3 - Pago fraccionado
+					4 - Domiciliación bancaria
+					5 - Pago telemático
+					6 - Aplazamiento 6 meses medidas Covid
+				</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:length value="1"/>
+					<xs:enumeration value="1"/>
+					<xs:enumeration value="2"/>
+					<xs:enumeration value="3"/>
+					<xs:enumeration value="4"/>
+					<xs:enumeration value="5"/>
+					<xs:enumeration value="6"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="CCC" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					Código de Cuenta Corriente
+					Formato A20
+				</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:length value="20"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="IBAN" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					Código internacional de cuenta bancaria
+					Formato A24
+				</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:length value="24"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+
+
+	<!-- Nuevo tipo para solicitud de aplazamiento fraccionamiento -->
+	<xs:complexType name="T_FRACCIONAMIENTO">
+
+		<xs:annotation>
+			<xs:documentation>
+				Elemento correspondiente al formulario de
+				solicitud de aplazamiento fraccionamiento.
+				Pago fraccionado en los pa.
+			</xs:documentation>
+		</xs:annotation>
+
+		<xs:sequence>
+			<xs:element name="INTERESADO" minOccurs="1" maxOccurs="1" type="T_PERSONA">
+				<xs:annotation>
+					<xs:documentation>
+						Los atributos: tipo de persona, nif, nombre o razón social, teléfono
+						y fax son cumplimentados por el programa/módulo impresión.
+
+						Interesado (declarante) en la solicitud
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="REPRESENTANTE" minOccurs="0" maxOccurs="1" type="T_PERSONA">
+				<xs:annotation>
+					<xs:documentation>Representante</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NOTIFICADO" minOccurs="1" maxOccurs="1" type="T_PERSONA">
+				<xs:annotation>
+					<xs:documentation>
+						Atributos cumplimentados programa/módulo impresión:
+						  - Tipo de persona.
+						  - NIF y  nombre o razón social cuando se trate de dirección postal.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+
+			<!-- Causas que motivan la solicitud -->
+			<xs:element name="CAUSAS" minOccurs="1" maxOccurs="1" type="T_CAUSAS">
+				<xs:annotation>
+					<xs:documentation>
+						Datos de domiciliación bancaria en cuenta
+						abierta	en entidad financiera
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+
+			<!-- Opciones de supuesto legal -->
+			<xs:element name="SUPUESTOS" minOccurs="1" maxOccurs="1" type="T_SUPUESTOS">
+				<xs:annotation>
+					<xs:documentation>Supuesto legal</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+
+			<!-- Documentación requerida: Otro documentación -->
+			<xs:element name="DOCUMENTACION" minOccurs="1" maxOccurs="1" type="T_DOCUMENTACION">
+				<xs:annotation>
+					<xs:documentation>Documentacion requerida</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+
+		<xs:attribute name="VER" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>
+					Cumplimentado por el programa/módulo impresión.
+					Versión del formulario.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+
+		<!-- Datos de la deuda -->
+		<xs:attribute name="EXP" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>
+					Cumplimentado por el programa/módulo impresión.
+					Impuesto (modelo)/Nº Expediente
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="JUS" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					Cumplimentado por el programa/módulo impresión.
+					Clave de liquidación/Nº Autoliquidación/
+					Justificante
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="IMP" type="IMPA15Type" use="required">
+			<xs:annotation>
+				<xs:documentation>
+					Cumplimentado por el programa/módulo impresión.
+					Importe
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ING" type="IMPA15Type" use="required">
+			<xs:annotation>
+				<xs:documentation>Ingresado a cuenta</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+
+		<!-- Datos sobre el banco -->
+		<xs:attribute name="ENT" type="xs:string" >
+			<xs:annotation>
+				<xs:documentation>
+					Cumplimentado por el programa/módulo impresión.
+					Denominación de la entidad bancaria.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="IBAN" use="required">
+			<xs:annotation>
+				<xs:documentation>
+					Cumplimentado por el programa/módulo impresión.
+					Código internacional de cuenta bancaria en formato String (24)
+				</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:length value="24"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+
+		<!-- Causas que motivan la solicitud: Otra Causa -->
+
+		<!-- Opciones de supuesto legal: Otro supuesto -->
+
+		<xs:attribute name="PRO" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>texto Propuesta de pago.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+
+		<!-- Documentación requerida: Otro documentación -->
+
+		<!-- Firma: Fecha firma -->
+		<xs:attribute name="FEC" type="xs:string" >
+			<xs:annotation>
+				<xs:documentation>
+					Cumplimentado por el programa.
+					Fecha de la firma. Fecha del día de la impresión
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+
+	<xs:complexType name="T_CAUSAS">
+		<xs:attribute name="CA_DET" type="xs:boolean" default="false">
+			<xs:annotation>
+				<xs:documentation>
+					Dificultades económico-financieras de carácter transitorio
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="CA_OTR" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>
+					Otras causas
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<xs:complexType name="T_SUPUESTOS">
+		<xs:attribute name="SU_GE_SG" type="xs:boolean" default="false">
+			<xs:annotation>
+				<xs:documentation>
+					Deudas hasta 30.000 euros sin garantía
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="SU_GE_CG" type="xs:boolean" default="false">
+			<xs:annotation>
+				<xs:documentation>
+					Deudas superiores a 30.000 euros con garantía
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="SU_ES_A82SG" type="xs:boolean" default="false">
+			<xs:annotation>
+				<xs:documentation>
+					Hasta un año sin garantía (Artículo 82 R.I.S.D.)
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="SU_ES_A83CG" type="xs:boolean" default="false">
+			<xs:annotation>
+				<xs:documentation>
+					Máximo 5 anualidades con garantía (Artículo 83 R.I.S.D.)
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="SU_ES_A39SG" type="xs:boolean" default="false">
+			<xs:annotation>
+				<xs:documentation>
+					Artículo 39.4 L.I.S.D. sin garantía. Seguro de vida en forma de renta temp/vitalicia
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="SU_ES_A39CG" type="xs:boolean" default="false">
+			<xs:annotation>
+				<xs:documentation>
+					Artículo 39 L.I.S.D. con garantía
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="SU_ES_A113SG" type="xs:boolean" default="false">
+			<xs:annotation>
+				<xs:documentation>
+					Máximo tres anualidades, sin garantía (Artículo 113 R.I.T.P A.J.D.)
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="SU_ES_OTR" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>
+					Otros supuesto
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<xs:complexType name="T_DOCUMENTACION">
+		<xs:attribute name="DO_AU_MOF" type="xs:boolean" default="false">
+			<xs:annotation>
+				<xs:documentation>
+					Autoliquidación: Modelo oficial
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="DO_GA_CAS" type="xs:boolean" default="false">
+			<xs:annotation>
+				<xs:documentation>
+					Garantía: Compromiso de Aval solidario de entidad de crédito o
+					sociedad de garnatía recíproca
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="DO_GA_CSC" type="xs:boolean" default="false">
+			<xs:annotation>
+				<xs:documentation>
+					Garantía: Certificado de Seguro de Caución
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="DO_GA_OTG" type="xs:boolean" default="false">
+			<xs:annotation>
+				<xs:documentation>
+					Garantía: Otras, hipoteca inmobiliaria o mobiliaria, prenda, ...
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="DO_OTR_DOC" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>
+					Otra documentación
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="DO_ODS_FAE" type="xs:boolean" default="false">
+			<xs:annotation>
+				<xs:documentation>
+					Otra documentación para deudas superiores a 30000 euros IGIC: relación
+					de facturas emitidas que no han sido cobradas con identificación de clientes,
+					cuantías y fechas de vencimiento de las mismas.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="DO_ODS_JDO" type="xs:boolean" default="false">
+			<xs:annotation>
+				<xs:documentation>
+					Otra documentación para deudas superiores a 30000 euros IGIC:
+					Justificación documental que acredite que las mismas no han sido
+					efectivamente satisfechas.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="DO_ODS_FAR" type="xs:boolean" default="false">
+			<xs:annotation>
+				<xs:documentation>
+					Otra documentación para deudas superiores a 30000 euros IGIC: relación
+					de facturas recibidas, con identificación de proveedores y cuantías,
+					acreditándose si las mismas han sido satisfechas.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="DO_ODS_COP" type="xs:boolean" default="false">
+			<xs:annotation>
+				<xs:documentation>
+					Otra documentación para deudas superiores a 30000 euros IGIC: copia de
+					cuantos requerimientos o actuaciones se hayan realizado frente al
+					acreedor reclamando el pago de las facturas impagadas.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+
+	<xs:complexType name="T_PERSONA">
+		<xs:sequence>
+			<xs:element name="PER" type="T_DATOS_PERSONALES" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+						Persona asociada a la dirección de notificación
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="DIR" type="T_DIRECCION" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+						Dirección de notificación
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+        </xs:sequence>
+		<xs:attribute name="SEC" type="xs:int">
+			<xs:annotation>
+				<xs:documentation>
+					Cumplimentado por el programa/módulo impresión.
+					Número de orden de la persona dentro de un
+					conjunto de personas del mismo tipo.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="TPE" type="xs:string" >
+			<xs:annotation>
+				<xs:documentation>
+					Cumplimentado por el programa/módulo impresión.
+					Código que identifica la función de la persona:
+					Utilizamos los códigos de la tabla REEP de
+					M@GIN:
+					- SP = sujeto pasivo/beneficiario(isd)
+					- CA = causante
+					- TR = transmitente/contratante(isd)
+					- PR = presentador
+					- RP = representante
+					Módulo de fraccionamiento de pago:
+					- OT = otros (definido por el contribuyente en un texto)
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<xs:complexType name="T_DATOS_PERSONALES">
+		<xs:annotation>
+			<xs:documentation>
+				Se utilizará este elemento para almacenar los datos
+				de cualquiera de las personas que figuran en la declaración.
+			</xs:documentation>
+		</xs:annotation>
+
+		<xs:attribute name="NIF" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>
+					Nif de la persona
+					Formato: String(9)
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="NRS" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>
+					Nombre o razón social
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="DEN" type="xs:string" >
+			<xs:annotation>
+				<xs:documentation>
+					Denominación cuando el tipo de persona es "OT"
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="FNA">
+			<xs:annotation>
+				<xs:documentation>
+					Fecha de nacimiento
+					Formato: dd/mm/aaaa
+				</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<!-- <xs:length value="10"></xs:length> -->
+					<xs:pattern value="\d{2}/\d{2}/\d{4}"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="FFA" >
+			<xs:annotation>
+				<xs:documentation>
+					Fecha de fallecimiento
+					Formato: dd/mm/aaaa
+				</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<!-- <xs:length value="10"></xs:length> -->
+					<xs:pattern value="\d{2}/\d{2}/\d{4}"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+
+	<xs:complexType name="T_DIRECCION">
+		<xs:annotation>
+			<xs:documentation>
+				Se utilizará este elemento para almacenar
+				los datos
+				del medio de notificación empleado.
+			</xs:documentation>
+		</xs:annotation>
+
+		<xs:attribute name="TDI" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					Código que identifica el tipo de dirección:
+					- DP: Dirección Postal
+					- DE: Dirección Electrónica
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+
+		<xs:attribute name="SVP" use="required">
+			<xs:annotation>
+				<xs:documentation>
+					Siglas vía pública
+					Formato String(2)
+				</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:length value="2"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="SIG" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					Cumplimentado por el programa.
+					Descripción de siglas de la vía pública.
+					Obligatorio en caso excepcionales como sigla
+					de notificación en fraccionamiento/aplazamiento.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="NVP" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					Nombre de la vía pública.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="TIP" type="xs:string" use="optional" >
+			<xs:annotation>
+				<xs:documentation>
+					Tipo de número (NPK).
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="NPK" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					Número de edificio/pto kilométrico
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="CAL" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					Calificador de número
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="BLO" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>Bloque</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ESC" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>escalera</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="PIS" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>Piso</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="PUE" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>Puerta</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="POR" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>Portal</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="COM" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>Complemento</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="LOC" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>Localidad</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="POP" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					Código de provincia.
+					Formato: String(2).
+				</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:length value="2"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="PRO" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					Cumplimentado por el programa.
+					Descripción de provincia.
+					Obligatorio en caso excepcionales como provincia
+					de notificación en fraccionamiento.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="CMU" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>Código de municipio</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="MUN" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					Cumplimentado por el programa.
+					Descripción de municipio.
+					Obligatorio en caso excepcionales como municipio de notificación en
+					fraccionamiento o cuando se trata de un municipio extranjero (Pais No España).
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="CP" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					Código Postal
+					Formato: String(5)
+				</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:length value="5"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="ZIP" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>Código ZIP</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="EST" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>Provincia/Región/Estado</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="PAI" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					País.
+					Formato: String(2) según el estándar ISO 3166
+				</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+
+					<xs:length value="2"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="TEL" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>Teléfono</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="MOV" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>teléfono móvil</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="FAX" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>número Fax</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="EMA" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>Email</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+
+	</xs:complexType>
+
+
+	<!--  Tipo de información interna del programa de ayuda -->
+	<xs:complexType name="T_AUXILIAR">
+
+		<xs:attribute name="COL" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					Indica con una "X" si la presentacion que se genera es Colectiva
+				</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string" />
+			</xs:simpleType>
+		</xs:attribute>
+
+		<xs:attribute name="SIS" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					Plataforma/sistema operativo desde el que se ejecuta el programa/mod. impresión
+					del modelo:
+						1 - Windows
+						2 - Mac
+						3 - Unix/Linux
+
+						9 - Indeterminado
+				</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="1" />
+					<xs:maxLength value="1" />
+
+					<xs:enumeration value="1" />
+					<xs:enumeration value="2" />
+					<xs:enumeration value="3" />
+					<xs:enumeration value="9" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+
+		<xs:attribute name="VIC" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					Versión interna de control. Corresponde al
+					cuarto dígito de la versión.
+
+					Ejemplo: Versión 6.2.5.1, VIC=1
+				</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string" />
+			</xs:simpleType>
+		</xs:attribute>
+
+		<xs:attribute name="ORG" use="optional" >
+			<xs:annotation>
+				<xs:documentation>
+					Identificación del origen del código desde el que se generó la
+					presentación/declaración:
+					    PA: programa de ayuda
+						MI: módulo de impresión
+						ML: módulo de liquidación
+				</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="2" />
+					<xs:maxLength value="2" />
+
+					<xs:enumeration value="PA" />
+					<xs:enumeration value="MI" />
+					<xs:enumeration value="ML" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+
+	</xs:complexType>
+
+
+
+	<xs:complexType name="OPERACION_DATOS_ESTADISTICOS">
+
+		<xs:attribute name="CLA">
+			<xs:annotation>
+				<xs:documentation>
+					Clave
+				</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:annotation>
+					<xs:documentation>
+						Clave, tendrá un sólo carácter
+					</xs:documentation>
+				</xs:annotation>
+				<xs:restriction base="xs:string">
+					<xs:length value="1" />
+					<xs:pattern value="[0-9]{1}"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="EPI" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>
+					Código de actividad/epígrafe.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="REG">
+			<xs:annotation>
+				<xs:documentation>
+					Régimen aplicable
+				</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:annotation>
+					<xs:documentation>
+						Régimen aplicable, tendrá un sólo carácter
+					</xs:documentation>
+				</xs:annotation>
+				<xs:restriction base="xs:string">
+					<xs:length value="1" />
+					<xs:pattern value="[0-9]{1}"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="PRO" type="IMPA5Type">
+			<xs:annotation>
+				<xs:documentation>
+					Porcentaje provisional prorrata general
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="DEF" type="IMPA5Type">
+			<xs:annotation>
+				<xs:documentation>
+					Porcentaje definitivo prorrata general
+					En el modelo 417, contiene el valor de prorrata.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ESP" use="optional" type="CHECKType">
+			<xs:annotation>
+				<xs:documentation>
+					PRORRATA ESPECIAL,CASILLA G
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="TIP" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>
+					TIPO PRORRATA.
+					Modelo 417:
+						- G: General
+						- E: Especial
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="IMP" type="IMPA15Type">
+			<xs:annotation>
+				<xs:documentation>
+					Importe total operaciones
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="IMD" type="IMPA15Type">
+			<xs:annotation>
+				<xs:documentation>
+					Importe operaciones derecho deducción
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<xs:complexType name="T_LIQUIDACION">
+		<xs:annotation>
+			<xs:documentation>Liquidacion</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="DIF" type="IMPA15Type">
+			<xs:annotation>
+				<xs:documentation>Diferencia</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="RCU" type="IMPA15Type">
+			<xs:annotation>
+				<xs:documentation>Regularización cuotas artículo 22.8.5ª Ley 20/1991</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="CPA" type="IMPA15Type">
+			<xs:annotation>
+				<xs:documentation>Cuota de IGIC a compensar de períodos anteriores</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="SUT" type="IMPA15Type">
+			<xs:annotation>
+				<xs:documentation>Suma de totales o resultados</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="DAC" type="IMPA15Type">
+			<xs:annotation>
+				<xs:documentation>A deducir (exclusivamente en caso de autoliquidación complementaria)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="RLI" type="IMPA15Type">
+			<xs:annotation>
+				<xs:documentation>Resultado de la autoliquidación</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<xs:complexType name="T_INFO_ADICIONAL">
+		<xs:annotation>
+			<xs:documentation>Información adicional</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="EOA" type="IMPA15Type">
+			<xs:annotation>
+				<xs:documentation>Exportaciones y otras operaciones exentas con derecho a deducción</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ODD" type="IMPA15Type" >
+			<xs:annotation>
+				<xs:documentation>
+					Operaciones no sujetas o con inversión del sujeto pasivo
+					que originan el derecho a deducción
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<xs:complexType name="T_OPERACIONES_RECC">
+		<xs:annotation>
+			<xs:documentation>
+				Datos exclusivos para sujetos acogidos al régimen especial
+				de criterio de caja y/o destinatarios de operaciones afectadas
+				por el mismo.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="IEB" minOccurs="0" maxOccurs="1" type="T_BASE_CUOTA" >
+				<xs:annotation>
+					<xs:documentation>
+	   					importes de las entregas de bienes y prestaciones de servicios a las
+	   					que habiéndoles sido aplicado el RECC, hubieran resultado devengadas
+	   					conforme a la regla general de devengo contenida en el artículo 18 de
+	   					la Ley 20/1991.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IAB" minOccurs="0" maxOccurs="1"  type="T_BASE_CUOTA">
+				<xs:annotation>
+					<xs:documentation>
+	   					Importes de las adquisiciones de bienes y prestaciones de servicios a las
+	   					que  sea de aplicacion o afecte el RECC conforme a la regla general de devengo
+	   					contenida en el artículo 18 de la Ley 20/1991.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="T_DEVENGADO">
+		<xs:sequence>
+			<xs:element name="DEV" maxOccurs="unbounded" minOccurs="0" type="T_BASE_CUOTA">
+				<xs:annotation>
+					<xs:documentation>Bases, tipos y cuotas devengadas</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DEG" maxOccurs="unbounded" minOccurs="0" type="T_BASE_CUOTA">
+				<xs:annotation>
+					<xs:documentation>Bases, tipos y cuotas devengadas intragrupo</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OIN" minOccurs="0" maxOccurs="1" type="T_BASE_CUOTA">
+				<xs:annotation>
+					<xs:documentation>Operaciones con inversión del sujeto pasivo</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MBC" minOccurs="0" maxOccurs="1" type="T_BASE_CUOTA">
+				<xs:annotation>
+					<xs:documentation>Modificación bases y cuotas</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GBC" minOccurs="0" maxOccurs="1" type="T_BASE_CUOTA">
+				<xs:annotation>
+					<xs:documentation>Modificación bases y cuotas operaciones intragrupo</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CRV" minOccurs="0" maxOccurs="1" type="T_BASE_CUOTA">
+				<xs:annotation>
+					<xs:documentation>Cuotas devueltas en Régimen de viajeros</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CAT" minOccurs="0" maxOccurs="1" type="T_BASE_CUOTA">
+				<xs:annotation>
+					<xs:documentation>Compensación artículo 87.Uno 1º Ley 4/2012</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="TOT" type="IMPA15Type">
+			<xs:annotation>
+				<xs:documentation>Total cuotas devengadas</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<xs:complexType name="T_DEDUCIBLE">
+		<xs:sequence>
+
+			<xs:element name="OIC" minOccurs="0" maxOccurs="1" type="T_BASE_CUOTA">
+				<xs:annotation>
+					<xs:documentation>IGIC deducible en operaciones interiores con bienes corrientes</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="OII" minOccurs="0" maxOccurs="1" type="T_BASE_CUOTA">
+				<xs:annotation>
+					<xs:documentation>IGIC deducible en operaciones interiores con bienes de inversión</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="IMC" minOccurs="0" maxOccurs="1" type="T_BASE_CUOTA">
+				<xs:annotation>
+					<xs:documentation>IGIC deducible por importación de bienes corrientes</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="IMI" minOccurs="0" maxOccurs="1" type="T_BASE_CUOTA">
+				<xs:annotation>
+					<xs:documentation>IGIC deducible por importación de bienes de inversión</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="RED" minOccurs="0" maxOccurs="1" type="T_BASE_CUOTA">
+				<xs:annotation>
+					<xs:documentation>Rectificación de deducciones</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="CRA" minOccurs="0" maxOccurs="1" type="T_BASE_CUOTA">
+				<xs:annotation>
+					<xs:documentation>
+						Compensaciones en régimen especial de la
+						agricultura, ganadería y pesca.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="RBI" minOccurs="0" maxOccurs="1" type="T_BASE_CUOTA">
+				<xs:annotation>
+					<xs:documentation>
+						Regularización de cuotas soportadas por bienes de inversión.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="RIA" minOccurs="0" maxOccurs="1" type="T_BASE_CUOTA">
+				<xs:annotation>
+					<xs:documentation>
+						Regularización de cuotas soportadas antes del inicio de la actividad.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="RPP" minOccurs="0" maxOccurs="1" type="T_BASE_CUOTA">
+				<xs:annotation>
+					<xs:documentation>
+						Regularización por aplicación del porcentaje definitivo de prorrata.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="OGC" minOccurs="0" maxOccurs="1" type="T_BASE_CUOTA">
+				<xs:annotation>
+					<xs:documentation>IGIC deducible en operaciones intragrupo con bienes corrientes</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="OGI" minOccurs="0" maxOccurs="1" type="T_BASE_CUOTA">
+				<xs:annotation>
+					<xs:documentation>IGIC deducible en operaciones intragrupo con bienes de inversión</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="REG" minOccurs="0" maxOccurs="1" type="T_BASE_CUOTA">
+				<xs:annotation>
+					<xs:documentation>Rectificación de deducciones por operaciones intragrupo</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+
+		</xs:sequence>
+
+		<xs:attribute name="TOT" type="IMPA15Type">
+			<xs:annotation>
+				<xs:documentation>
+					Total cuotas deducibles
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+
+	</xs:complexType>
+
+
+	<xs:complexType name="T_OPERACIONES_EJERCICIO">
+		<xs:annotation>
+			<xs:documentation>Operaciones realizadas en el ejercicio</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="REG" type="IMPA15Type">
+			<xs:annotation>
+				<xs:documentation>Operaciones en régimen general</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="RES" type="IMPA15Type">
+			<xs:annotation>
+				<xs:documentation>Operaciones en régimen simplificado</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="REC" type="IMPA15Type">
+			<xs:annotation>
+				<xs:documentation>
+    				Operaciones en las que habiéndoles sido aplicado el régimen especial del
+     				criterio de caja hubieran resultado devengadas conforme a la regla general
+     				de devengo contenida en el artículo 18 Ley 20/1991
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="EXP" type="IMPA15Type">
+			<xs:annotation>
+				<xs:documentation>Exportaciones definitivas y operaciones asimiladas a la exportación</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="EXE" type="IMPA15Type">
+			<xs:annotation>
+				<xs:documentation>Operaciones relativas a áreas exentas</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="OIE" type="IMPA15Type">
+			<xs:annotation>
+				<xs:documentation>
+     				Operaciones interiores exentas por el artículo 25 de la Ley 19/1994
+     				realizadas por el sujeto pasivo.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ECD" type="IMPA15Type">
+			<xs:annotation>
+				<xs:documentation>Otras operaciones exentas con derecho a deducción</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ESD" type="IMPA15Type">
+			<xs:annotation>
+				<xs:documentation>Operaciones exentas sin derecho a deducción</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="NSJ" type="IMPA15Type">
+			<xs:annotation>
+				<xs:documentation>
+     				Operaciones no sujetas por reglas de localización o
+     				con inversión del sujeto pasivo.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="REAG" type="IMPA15Type">
+			<xs:annotation>
+				<xs:documentation>
+     				Operaciones en régimen especial de la agricultura,
+     				ganadería y pesca.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="REBU" type="IMPA15Type">
+			<xs:annotation>
+				<xs:documentation>
+     				Operaciones en régimen especial de bienes usados,
+     				objetos de arte, antigüedades o colección.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="REAV" type="IMPA15Type">
+			<xs:annotation>
+				<xs:documentation>
+    				Operaciones en régimen especial de Agencia de Viajes.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="EBI" type="IMPA15Type">
+			<xs:annotation>
+				<xs:documentation>
+    				Entregas de bienes inmuebles y operaciones
+    				financieras no habituales.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="EBT" type="IMPA15Type">
+			<xs:annotation>
+				<xs:documentation>
+    				Entregas de bienes de inversión
+    				para el transmitente.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="IBE" type="IMPA15Type">
+			<xs:annotation>
+				<xs:documentation>
+     				Importaciones de bienes de inversión exentos por
+     				el artículo 25 de la Ley 19/1994
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="CND" type="IMPA15Type">
+			<xs:annotation>
+				<xs:documentation>
+     				Cuotas de IGIC soportado no deducible
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ODD" type="IMPA15Type">
+			<xs:annotation>
+				<xs:documentation>
+     				Otras operaciones no sujetas con derecho a deducción
+     				(art.29.4.1ªg ley 20/1991)
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="TOT" type="IMPA15Type">
+			<xs:annotation>
+				<xs:documentation>Total volumen operaciones</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<xs:complexType name="T_IDENT_IGIC">
+		<xs:annotation>
+			<xs:documentation>Datos identificativos y situación tributaria</xs:documentation>
+		</xs:annotation>
+
+		<xs:sequence>
+			<xs:element name="OTP" type="DATOS_PERSONALES"	minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Sujeto pasivo.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="ENT" type="T_ENTIDAD_IGIC"  minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+					    Datos complementarios para entidades.
+					    Ejemplo: modelo 418
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+
+		<xs:attribute name="ACO" type="SINOType" >
+			<xs:annotation>
+				<xs:documentation>Autoliquidación conjunta</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+
+		<xs:attribute name="RDM" type="SINOType" >
+			<xs:annotation>
+				<xs:documentation>Inscrito en el Régimen devolución mensual</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+
+		<xs:attribute name="RECC" type="SINOType" >
+			<xs:annotation>
+				<xs:documentation>Opta por Régimen Especial Criterio Caja</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+
+		<xs:attribute name="DRECC" type="SINOType" >
+			<xs:annotation>
+				<xs:documentation>
+					Destinatario de operaciones a las que se aplique
+					el Régimen Especial Criterio Caja.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+
+		<xs:attribute name="EOP" type="SINOType" >
+			<xs:annotation>
+				<xs:documentation>Entidad no establecida con obligaciones periódicas</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ACR" type="SINOType">
+			<xs:annotation>
+				<xs:documentation>Declarado en concurso de acreedores en el período.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+
+		<xs:attribute name="FAC" >
+			<xs:annotation>
+				<xs:documentation>Fecha en que se dictó el auto de declaración de concurso</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:pattern value="\d{2}/\d{2}/\d{4}" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+
+		<xs:attribute name="TAC" type="xs:string" >
+			<xs:annotation>
+				<xs:documentation>
+				    Tipo de autoliquidación si se encuentra en concurso
+				    de acreedores:
+				       - PR: Preconcursal
+				       - PT: Postconcursal
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+
+		<xs:attribute name="TRA" type="SINOType">
+			<xs:annotation>
+				<xs:documentation>Tipo régimen especial aplicable: art. 98.5 Ley 4/2012</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+
+		<xs:attribute name="VAO" type="SINOType">
+			<xs:annotation>
+				<xs:documentation>Existe volumen anual de operaciones.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+
+		<xs:attribute name="GEM" type="SINOType">
+			<xs:annotation>
+				<xs:documentation>Gran empresa.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+
+		<xs:attribute name="RPE" type="SINOType">
+			<xs:annotation>
+				<xs:documentation>Régimen especial pequeño empresario o profesional</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+
+	</xs:complexType>
+
+
+	<xs:complexType name="T_OPERACIONES_REPEP">
+		<xs:annotation>
+			<xs:documentation>
+				Declaración informativa del volumen de operaciones en el
+				régimen especial del pequeño empresario o profesional.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="EPE" type="IMPA15Type">
+			<xs:annotation>
+				<xs:documentation>
+					 Importe de operaciones habituales u ocasionales sujetas al IGIC
+					 exentas por Régimen especial del pequeño empresario o profesional
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ECM" type="IMPA15Type">
+			<xs:annotation>
+				<xs:documentation>
+					 Importe de operaciones sujetas al IGIC exentas por Régimen especial
+					 del comerciante minorista
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ONS" type="IMPA15Type">
+			<xs:annotation>
+				<xs:documentation>
+					 Importe de operaciones no sujetas al IGIC
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="IOO" type="IMPA15Type">
+			<xs:annotation>
+				<xs:documentation>Importe de operaciones ocasionales</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="IST" type="IMPA15Type">
+			<xs:annotation>
+				<xs:documentation>
+					Importe en el supuesto de transmisión de la totalidad o parte del
+				    patrimonio empresarial o profesional
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="TOT" type="IMPA15Type">
+			<xs:annotation>
+				<xs:documentation>Total volumen de operaciones en el REPEP</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<xs:complexType name="T_BASE_CUOTA">
+		<xs:annotation>
+			<xs:documentation>Bases, tipos y cuotas</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="BAS" type="IMPA15Type" use="optional" />
+		<xs:attribute name="TIP" type="IMPA5Type" use="optional" />
+		<xs:attribute name="CUO" type="IMPA15Type" use="optional" />
+	</xs:complexType>
+
+	<xs:simpleType name="POSESTType">
+		<xs:annotation>
+			<xs:documentation>
+				Posición estadística
+					Mínimo: 2 caracteres
+					Máximo: 12 caracteres
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{2,12}"/>
+			<xs:minLength value="2"/>
+			<xs:maxLength value="12"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="T_REPRESENTANTE">
+		<xs:sequence>
+			<xs:element name="OTP" minOccurs="1" maxOccurs="1" type="T_PERSONA">
+				<xs:annotation>
+					<xs:documentation>
+						Causa presentación:
+							A: Alta
+							B: Baja
+							M: Modificación
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="CAP" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>
+					Causa presentación:
+						A: Alta
+						B: Baja
+						M: Modificación
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="TIP" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>
+					Tipo de representación:
+						PF: Física
+						PJ: Jurídica
+						IN: Individual
+						SO: Solidaria
+						MA: Mancomunada
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="CAR" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>
+					Causa representación:
+						LE: Legal
+						IO: Por incapacidad de obrar
+						PJ: Personas jurídicas y entidades
+						VO: Voluntaria
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="TIT" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>
+					Título representación:
+						PNO: Poder notarial
+						DCF: Documento privado con firma legitimada notarialmente
+						DSF: Documento privado sin firma legitimada notarialmente
+						COA: Comparecencia ante el órgano administrativo
+						DNA: Documento normalizado aprobado por la administración
+						OTR: Otros
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="OTR" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Descripciones.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="NOT" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Notaría</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="FPO" >
+			<xs:annotation>
+				<xs:documentation>
+					Fecha poder
+					Formato: dd/mm/aaaa
+				</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<!-- <xs:length value="10"></xs:length> -->
+					<xs:pattern value="\d{2}/\d{2}/\d{4}"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+
+	<xs:complexType name="T_MODULO">
+
+		<xs:attribute name="EPI"  type="xs:string" />
+		<xs:attribute name="SEC"  type="xs:string" />
+		<xs:attribute name="MOD1" type="IMPA15Type" />
+		<xs:attribute name="MOD2" type="IMPA15Type" />
+		<xs:attribute name="MOD3" type="IMPA15Type" />
+		<xs:attribute name="MOD4" type="IMPA15Type" />
+		<xs:attribute name="MOD5" type="IMPA15Type" />
+		<xs:attribute name="MOD6" type="IMPA15Type" />
+		<xs:attribute name="MOD7" type="IMPA15Type" />
+		<xs:attribute name="TOT"  type="IMPA15Type" />
+
+		<xs:attribute name="CASA" type="IMPA15Type" use="required">
+			<xs:annotation>
+				<xs:documentation>
+					Cuota anual devengada por operaciones corrientes
+					Casilla (A)
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="CASB" type="IMPA15Type" use="required">
+			<xs:annotation>
+				<xs:documentation>
+					Cuotas soportadas por operaciones corrientes,
+					Casilla (B)
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="CASC" type="IMPA5Type" use="required">
+			<xs:annotation>
+				<xs:documentation>
+					Índice corrector, Casilla (C)
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="CASD" type="IMPA15Type" use="required">
+			<xs:annotation>
+				<xs:documentation>
+					Diferencia [(A-B)*C], Casilla (D)
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="CASE" type="IMPA5Type" use="required">
+			<xs:annotation>
+				<xs:documentation>
+					Porcentaje cuota mínima operaciones corrientes
+					Casilla (E)
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="CASF" type="IMPA15Type" use="required">
+			<xs:annotation>
+				<xs:documentation>
+					Cuota mínima, Casilla (F)
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+
+		<xs:attribute name="CASG" type="IMPA15Type">
+			<xs:annotation>
+				<xs:documentation>
+					Cuota anual derivada de régimen simplificado
+					(El importe mayor de casilla D o casilla F),
+					Casilla G
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<xs:complexType name="T_SIMPLIFICADO">
+		<xs:annotation>
+			<xs:documentation>casillas régimen simplificado</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="TRS" type="IMPA15Type">
+			<xs:annotation>
+				<xs:documentation>Total cuota anual derivada del régimen simplificado</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="CAF" type="IMPA15Type">
+			<xs:annotation>
+				<xs:documentation>
+					Cuotas devengadas por entregas o transmisiones de
+					activos fijos o por inversión del sujeto pasivo.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="CBI" type="IMPA15Type">
+			<xs:annotation>
+				<xs:documentation>Cuotas devengadas por arrendamientos de bienes inmuebles</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="RCU" type="IMPA15Type">
+			<xs:annotation>
+				<xs:documentation>Rectificación de cuotas impositivas repercutidas</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="TOT" type="IMPA15Type">
+			<xs:annotation>
+				<xs:documentation>Total cuotas</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="DAF" type="IMPA15Type">
+			<xs:annotation>
+				<xs:documentation>
+					Cuotas deducibles por adquisición o importación	de activos fijos</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="DBI" type="IMPA15Type">
+			<xs:annotation>
+				<xs:documentation>Cuotas deducibles por arrendamientos de bienes inmuebles</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="TOD" type="IMPA15Type">
+			<xs:annotation>
+				<xs:documentation>Total cuotas deducibles</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<xs:complexType name="T_ENTIDAD_IGIC">
+		<xs:annotation>
+			<xs:documentation>casillas régimen simplificado</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="TPE" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>
+					Tipo entidad:
+						DM:Dominante
+						DP:Dependiente
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="NIFD" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>NIF entidad dominante</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<xs:complexType name="T_FIRMA">
+		<xs:annotation>
+			<xs:documentation>Datos relativoa a firma</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="LUG" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>lugar</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="FEC" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>Fecha</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="CAL" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>Firma en calidad de</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<xs:simpleType name="IMPA15Type">
+		<xs:annotation>
+			<xs:documentation>
+				Importes en formato A15 con máscara	SEEEEEEEEEEEEEEEEDD
+					S = signo
+					E = parte entera
+					D = parte decimal
+				La coma es implícita (no se incluye)
+				Los ceros por la izquierda se omiten
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\-?\d{2,15}"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="IMPA15ABSType">
+		<xs:annotation>
+			<xs:documentation>
+				Importes en formato A15 con máscara EEEEEEEEEEEEEDD
+					E = parte entera
+					D = parte decimal
+				La coma es implícita (no se incluye)
+				Los ceros por la izquierda se omiten
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{2,15}"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="IMPA15_4ABSType">
+		<xs:annotation>
+			<xs:documentation>
+				Importes/valor en formato A15 con máscara EEEEEEEEEEEDDDD
+					E = parte entera
+					D = parte decimal
+				La coma es implícita (no se incluye)
+				Los ceros por la izquierda se omiten
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{2,15}"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="IMPA5Type">
+		<xs:annotation>
+			<xs:documentation>
+				Importes en formato A5 con máscara EEEDD
+					E = parte entera
+					D = parte decimal
+				La coma es implícita (no se incluye)
+				Los ceros por la izquierda se omiten
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{2,5}"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="IMPA7Type">
+		<xs:annotation>
+			<xs:documentation>
+				Importes en formato A7 con máscara EEEDDDD
+					E = parte entera
+					D = parte decimal
+				La coma es implícita (no se incluye)
+				Los ceros por la izquierda se omiten
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{4,7}"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="IMPA8ABSType">
+		<xs:annotation>
+			<xs:documentation>
+				Importes en formato A8 con máscara EEEEEEDD
+					E = parte entera
+					D = parte decimal
+				La coma es implícita (no se incluye)
+				Los ceros por la izquierda se omiten
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{2,8}"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="FECHA">
+		<xs:annotation>
+			<xs:documentation>Fecha en formato ddmmaaaa</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{8}"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="CHECKType">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="0"/>
+			<xs:maxLength value="1"/>
+			<xs:enumeration value=""/>
+			<xs:enumeration value="X"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="SINOType">
+		<xs:restriction base="xs:string">
+			<xs:length value="1"/>
+			<xs:enumeration value="N"/>
+			<xs:enumeration value="S"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+</xs:schema>
