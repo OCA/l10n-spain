@@ -34,6 +34,9 @@ class TestL10nEsAeatMod592(TestL10nEsAeatModBase):
                 "external_report_layout_id": cls.env.ref(
                     "web.external_layout_standard"
                 ).id,
+                "mod592_payable_account_id": cls.accounts["475100"].id,
+                "mod592_receivable_account_id": cls.accounts["473000"].id,
+                "mod592_counterpart_account_id": cls.accounts["600000"].id,
             }
         )
         cls.product_a = cls.env["product.product"].create(
@@ -174,6 +177,7 @@ class TestL10nEsAeatMod592(TestL10nEsAeatModBase):
         self.assertEqual(self.model592.state, "draft")
         self.model592.button_confirm()
         self.assertEqual(self.model592.state, "done")
+        self.assertTrue(self.model592.allow_posting)
         res = self.model592.view_action_mod592_report_line_acquirer()
         items = self.env[res["res_model"]].search(res["domain"])
         self.assertEqual(acquirer_lines, items)
@@ -202,6 +206,32 @@ class TestL10nEsAeatMod592(TestL10nEsAeatModBase):
         res = self.model592.view_action_mod592_report_line_manufacturer()
         items = self.env[res["res_model"]].search(res["domain"])
         self.assertEqual(self.model592.manufacturer_line_ids, items)
+        self.model592.write(
+            {
+                "journal_id": self.journal_misc.id,
+            }
+        )
+        self.model592.button_post()
+        self.assertEqual(self.model592.state, "posted")
+        self.assertEqual(self.model592.move_id.journal_id, self.journal_misc)
+        self.assertEqual(self.model592.move_id.ref, self.model592.name)
+        self.assertEqual(self.model592.move_id.date, self.model592.date_end)
+        self.assertEqual(len(self.model592.move_id.line_ids), 2)
+        self.assertRecordValues(
+            self.model592.move_id.line_ids.sorted("credit"),
+            [
+                {
+                    "account_id": self.accounts["600000"].id,
+                    "debit": 30.0,
+                    "credit": 0.0,
+                },
+                {
+                    "account_id": self.accounts["475100"].id,
+                    "debit": 0.0,
+                    "credit": 30.0,
+                },
+            ],
+        )
         # report_file_name
         self.assertTrue(self.model592.get_report_file_name())
         # export_csv_acquirer
@@ -252,3 +282,19 @@ class TestL10nEsAeatMod592(TestL10nEsAeatModBase):
         self.assertRegex(res_text, "A002")
         self.assertRegex(res_text, "M001")
         self.assertRegex(res_text, self.picking.name)
+
+    def test_model_592_accounts_fallback(self):
+        self.company.mod592_payable_account_id = False
+        self.company.mod592_receivable_account_id = False
+        self.assertEqual(
+            self.model592._get_mod592_account(
+                "mod592_payable_account_id", "account_common_4750"
+            ).id,
+            self.company._get_account_id_from_xmlid("account_common_4750"),
+        )
+        self.assertEqual(
+            self.model592._get_mod592_account(
+                "mod592_receivable_account_id", "account_common_4700"
+            ).id,
+            self.company._get_account_id_from_xmlid("account_common_4700"),
+        )
