@@ -1,0 +1,7 @@
+- Nicolás Ramos \<<n.ramos@binhex.cloud>\>
+- Christian Ramos \<<c.ramos@binhex.cloud>\>
+- [Tecnativa](https://www.tecnativa.com):
+  - Pedro M. Baeza
+  - Sergio Teruel
+  - Carlos Lopez
+  - Carlos Dauden

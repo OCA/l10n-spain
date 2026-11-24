@@ -1,0 +1,3 @@
+id,name,model_id,group_id/id,operation,domain
+access_l10n_es_atc_mod420_manager,l10n_es_atc_mod420_manager,l10n.es.atc.mod420.report,l10n_es_aeat.group_account_aeat,crud,
+l10n_es_atc_mod420_multicompany_rule,ATC Mod 420 multicompany,l10n.es.atc.mod420.report,,crud,"[('company_id', 'in', company_ids)]"
