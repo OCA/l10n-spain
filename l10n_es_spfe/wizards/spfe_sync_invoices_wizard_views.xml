@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Acysos S.L.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_spfe_sync_invoices_wizard_form" model="ir.ui.view">
+        <field name="name">l10n.es.spfe.sync.wizard.form</field>
+        <field name="model">l10n.es.spfe.sync.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Synchronize Invoices with AEAT SPFE">
+                <group>
+                    <group>
+                        <field name="company_id" groups="base.group_multi_company" />
+                        <field name="role" />
+                        <field name="date_filter" />
+                    </group>
+                    <group>
+                        <field name="date_start" />
+                        <field name="date_end" />
+                        <field
+                            name="download_and_import_bills"
+                            invisible="role != 'AccountingCustomerParty'"
+                        />
+                    </group>
+                </group>
+                <footer>
+                    <button
+                        name="action_sync_spfe_invoices"
+                        type="object"
+                        string="Query / Download from SPFE"
+                        class="btn-primary"
+                    />
+                    <button string="Close" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_spfe_sync_invoices_wizard" model="ir.actions.act_window">
+        <field name="name">Query / Download SPFE Invoices</field>
+        <field name="res_model">l10n.es.spfe.sync.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

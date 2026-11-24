@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Acysos S.L.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_aeat_tax_agency_spfe_form" model="ir.ui.view">
+        <field name="name">aeat.tax.agency.spfe.form</field>
+        <field name="model">aeat.tax.agency</field>
+        <field name="inherit_id" ref="l10n_es_aeat.aeat_tax_agency_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page name="spfe" string="SPFE">
+                    <group>
+                        <field name="spfe_party_id" />
+                        <field name="spfe_prod_cert_base_url" />
+                        <field name="spfe_prod_seal_base_url" />
+                        <field name="spfe_test_cert_base_url" />
+                        <field name="spfe_test_seal_base_url" />
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

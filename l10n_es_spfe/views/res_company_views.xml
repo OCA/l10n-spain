@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Acysos S.L.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_company_spfe_form" model="ir.ui.view">
+        <field name="name">res.company.spfe.form</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form" />
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page name="spfe" string="SPFE">
+                    <group name="spfe_main">
+                        <group>
+                            <field name="spfe_enabled" />
+                            <field name="spfe_test" invisible="not spfe_enabled" />
+                            <field
+                                name="spfe_use_seal_certificate"
+                                invisible="not spfe_enabled"
+                            />
+                            <field name="spfe_auto_send" invisible="not spfe_enabled" />
+                            <field
+                                name="spfe_auto_send_payment"
+                                invisible="not spfe_enabled"
+                            />
+                            <field
+                                name="spfe_start_date"
+                                invisible="not spfe_enabled"
+                            />
+                        </group>
+                        <group invisible="not spfe_enabled">
+                            <field name="spfe_sender_vat" />
+                            <field name="spfe_company_legal_form" />
+                            <field name="spfe_third_party_issuer_id" />
+                            <field name="spfe_billing_authorization_ref" />
+                            <field name="spfe_billing_authorization_desc" />
+                            <button
+                                name="action_configure_spfe_spanish_taxes"
+                                type="object"
+                                string="Auto-configure Spanish Taxes for SPFE"
+                                class="btn-secondary"
+                            />
+                        </group>
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+</odoo>

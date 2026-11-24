@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Acysos S.L.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <menuitem
+        id="menu_l10n_es_spfe_root"
+        name="SPFE (Factura Electrónica)"
+        parent="l10n_es_aeat.menu_l10n_es_aeat_submenu"
+        sequence="50"
+        groups="l10n_es_spfe.group_spfe_manager,l10n_es_aeat.group_account_aeat"
+    />
+    <menuitem
+        id="menu_l10n_es_spfe_submissions"
+        name="SPFE Communications Log"
+        parent="menu_l10n_es_spfe_root"
+        action="action_spfe_submission"
+        sequence="10"
+        groups="l10n_es_spfe.group_spfe_manager,l10n_es_aeat.group_account_aeat"
+    />
+    <menuitem
+        id="menu_l10n_es_spfe_sync"
+        name="Query / Download SPFE Invoices"
+        parent="menu_l10n_es_spfe_root"
+        action="action_spfe_sync_invoices_wizard"
+        sequence="20"
+        groups="l10n_es_spfe.group_spfe_manager,l10n_es_aeat.group_account_aeat"
+    />
+    <menuitem
+        id="menu_l10n_es_spfe_registration_keys"
+        name="SPFE Regime Keys"
+        parent="l10n_es_aeat.menu_l10n_es_aeat_config"
+        action="action_spfe_registration_key"
+        sequence="50"
+        groups="l10n_es_spfe.group_spfe_manager,l10n_es_aeat.group_account_aeat"
+    />
+</odoo>

@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Acysos S.L.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_move_spfe_form" model="ir.ui.view">
+        <field name="name">account.move.spfe.form</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <field name="spfe_enabled" invisible="1" />
+                <field name="spfe_company_test" invisible="1" />
+                <field name="spfe_payment_pending" invisible="1" />
+                <button
+                    name="action_spfe_send_invoice"
+                    type="object"
+                    string="Send to SPFE"
+                    class="oe_highlight"
+                    groups="l10n_es_spfe.group_spfe_manager,l10n_es_aeat.group_account_aeat"
+                    invisible="not spfe_enabled or state != 'posted' or move_type not in ('out_invoice', 'out_refund') or spfe_state in ('sent', 'cancelled')"
+                />
+                <button
+                    name="action_spfe_validate_pre"
+                    type="object"
+                    string="Validate SPFE (PRE)"
+                    groups="l10n_es_spfe.group_spfe_manager,l10n_es_aeat.group_account_aeat"
+                    invisible="not spfe_enabled or not spfe_company_test or state != 'posted' or move_type not in ('out_invoice', 'out_refund') or spfe_state in ('sent', 'cancelled')"
+                />
+                <button
+                    name="action_spfe_query_status"
+                    type="object"
+                    string="Query SPFE"
+                    groups="l10n_es_spfe.group_spfe_manager,l10n_es_aeat.group_account_aeat"
+                    invisible="not spfe_enabled or state != 'posted'"
+                />
+                <button
+                    name="action_open_spfe_event_wizard"
+                    type="object"
+                    string="SPFE Status Event"
+                    groups="l10n_es_spfe.group_spfe_manager,l10n_es_aeat.group_account_aeat"
+                    invisible="not spfe_enabled or state != 'posted' or spfe_state != 'sent'"
+                />
+                <button
+                    name="action_open_spfe_cancel_wizard"
+                    type="object"
+                    string="Cancel in SPFE"
+                    groups="l10n_es_spfe.group_spfe_manager,l10n_es_aeat.group_account_aeat"
+                    invisible="not spfe_enabled or state != 'posted' or move_type not in ('out_invoice', 'out_refund') or spfe_state != 'sent'"
+                />
+            </xpath>
+            <xpath expr="//header" position="after">
+                <div
+                    class="alert alert-warning d-flex align-items-center justify-content-between mb-0"
+                    role="alert"
+                    invisible="not spfe_payment_pending"
+                >
+                    <span
+                    >Full collection / payment status is pending communication to AEAT SPFE (Anexo II).</span>
+                    <button
+                        name="action_spfe_send_payment_status"
+                        type="object"
+                        string="Send Payment/Collection to SPFE"
+                        groups="l10n_es_spfe.group_spfe_manager,l10n_es_aeat.group_account_aeat"
+                        class="btn btn-sm btn-warning ms-3"
+                    />
+                </div>
+                <div
+                    class="alert alert-danger mb-0"
+                    role="alert"
+                    invisible="state != 'posted' or spfe_state != 'cancelled'"
+                >
+                    <span
+                    >This invoice has been cancelled in AEAT SPFE while remaining posted in accounting.</span>
+                </div>
+            </xpath>
+
+            <xpath
+                expr="//field[@name='invoice_line_ids']/list//field[@name='tax_ids']"
+                position="after"
+            >
+                <field
+                    name="spfe_registration_key_id"
+                    optional="hide"
+                    column_invisible="not parent.spfe_enabled"
+                />
+                <field
+                    name="spfe_second_registration_key_id"
+                    optional="hide"
+                    column_invisible="not parent.spfe_enabled"
+                />
+                <field
+                    name="spfe_real_estate_id"
+                    optional="hide"
+                    column_invisible="not parent.spfe_enabled"
+                />
+                <field
+                    name="spfe_property_situation"
+                    optional="hide"
+                    column_invisible="not parent.spfe_enabled"
+                />
+                <field
+                    name="spfe_cadastral_reference"
+                    optional="hide"
+                    column_invisible="not parent.spfe_enabled"
+                />
+                <field
+                    name="spfe_line_info"
+                    optional="hide"
+                    column_invisible="not parent.spfe_enabled"
+                />
+                <field
+                    name="spfe_collection_line_type"
+                    optional="hide"
+                    column_invisible="not parent.spfe_enabled"
+                />
+            </xpath>
+
+            <xpath expr="//notebook" position="inside">
+                <page name="spfe" string="SPFE" invisible="not spfe_enabled">
+                    <group>
+                        <group string="SPFE Document Settings">
+                            <field
+                                name="spfe_invoice_type"
+                                readonly="spfe_state == 'sent'"
+                            />
+                            <field
+                                name="spfe_copy_indicator"
+                                readonly="spfe_state == 'sent'"
+                            />
+                            <field
+                                name="spfe_operation_date"
+                                readonly="spfe_state == 'sent'"
+                            />
+                            <field
+                                name="spfe_prepaid_date"
+                                readonly="spfe_state == 'sent'"
+                            />
+                            <field
+                                name="spfe_period_start_date"
+                                readonly="spfe_state == 'sent'"
+                            />
+                            <field
+                                name="spfe_period_end_date"
+                                readonly="spfe_state == 'sent'"
+                            />
+                            <field
+                                name="spfe_third_party_issuer_id"
+                                readonly="spfe_state == 'sent'"
+                            />
+                        </group>
+                        <group string="SPFE Status &amp; Identification">
+                            <field name="spfe_state" widget="badge" />
+                            <field
+                                name="spfe_supplier_status"
+                                invisible="move_type not in ('out_invoice', 'out_refund')"
+                            />
+                            <field
+                                name="spfe_customer_status"
+                                invisible="move_type not in ('in_invoice', 'in_refund')"
+                            />
+                            <field name="spfe_locator" />
+                            <field name="spfe_ubl_attachment_id" />
+                            <div
+                                colspan="2"
+                                class="d-flex gap-2 mt-1"
+                                invisible="state != 'posted'"
+                                groups="l10n_es_spfe.group_spfe_manager,l10n_es_aeat.group_account_aeat"
+                            >
+                                <button
+                                    name="action_spfe_generate_ubl_xml"
+                                    type="object"
+                                    string="Download SPFE UBL XML"
+                                    class="btn-secondary btn-sm"
+                                    invisible="move_type not in ('out_invoice', 'out_refund')"
+                                />
+                                <button
+                                    name="action_spfe_download_by_id"
+                                    type="object"
+                                    string="Download UBL from SPFE (by ID)"
+                                    class="btn-secondary btn-sm"
+                                />
+                            </div>
+                            <field
+                                name="spfe_last_error"
+                                invisible="not spfe_last_error"
+                            />
+                        </group>
+                    </group>
+                    <group>
+                        <group
+                            string="Rectificativa Details"
+                            invisible="spfe_invoice_type not in ('384', '471')"
+                        >
+                            <field
+                                name="spfe_refund_type"
+                                required="spfe_enabled and spfe_invoice_type in ('384', '471')"
+                                readonly="spfe_state == 'sent'"
+                            />
+                            <field
+                                name="spfe_refund_mode"
+                                required="spfe_enabled and spfe_invoice_type in ('384', '471')"
+                                readonly="spfe_state == 'sent'"
+                            />
+                            <field
+                                name="spfe_rectified_move_ids"
+                                widget="many2many_tags"
+                                readonly="spfe_state == 'sent'"
+                            />
+                            <field
+                                name="spfe_rectified_base"
+                                invisible="spfe_refund_mode != 'S'"
+                                readonly="spfe_state == 'sent'"
+                            />
+                            <field
+                                name="spfe_rectified_tax"
+                                invisible="spfe_refund_mode != 'S'"
+                                readonly="spfe_state == 'sent'"
+                            />
+                            <field
+                                name="spfe_rectified_surcharge"
+                                invisible="spfe_refund_mode != 'S'"
+                                readonly="spfe_state == 'sent'"
+                            />
+                        </group>
+                        <group string="Fiscal QR &amp; Annotations">
+                            <field
+                                name="spfe_qr_type"
+                                readonly="spfe_state == 'sent'"
+                            />
+                            <field name="spfe_qr_url" readonly="spfe_state == 'sent'" />
+                            <field
+                                name="spfe_note_code"
+                                readonly="spfe_state == 'sent'"
+                            />
+                            <field name="spfe_note" readonly="spfe_state == 'sent'" />
+                        </group>
+                    </group>
+                    <separator string="SPFE Communication History" />
+                    <field name="spfe_submission_line_ids">
+                        <list>
+                            <field name="send_date" />
+                            <field name="operation_type" />
+                            <field name="status_code" />
+                            <field name="status_description" />
+                            <field name="spfe_locator" />
+                            <field name="submission_id" />
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_invoice_spfe_tree" model="ir.ui.view">
+        <field name="name">account.invoice.spfe.list</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_invoice_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//list" position="inside">
+                <field name="spfe_state" optional="show" widget="badge" />
+                <field name="spfe_payment_pending" optional="hide" />
+                <field name="spfe_locator" optional="hide" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_server_spfe_send_invoices" model="ir.actions.server">
+        <field name="name">Send Customer Invoices to AEAT SPFE</field>
+        <field name="model_id" ref="account.model_account_move" />
+        <field name="binding_model_id" ref="account.model_account_move" />
+        <field name="binding_view_types">list</field>
+        <field
+            name="group_ids"
+            eval="[Command.link(ref('l10n_es_spfe.group_spfe_manager')), Command.link(ref('l10n_es_aeat.group_account_aeat'))]"
+        />
+        <field name="state">code</field>
+        <field name="code">records.action_spfe_send_invoice()</field>
+    </record>
+
+    <record id="action_server_spfe_send_payment_status" model="ir.actions.server">
+        <field name="name">Send Payment/Collection to SPFE</field>
+        <field name="model_id" ref="account.model_account_move" />
+        <field name="binding_model_id" ref="account.model_account_move" />
+        <field name="binding_view_types">list</field>
+        <field
+            name="group_ids"
+            eval="[Command.link(ref('l10n_es_spfe.group_spfe_manager')), Command.link(ref('l10n_es_aeat.group_account_aeat'))]"
+        />
+        <field name="state">code</field>
+        <field name="code">records.action_spfe_send_payment_status()</field>
+    </record>
+
+    <record id="action_server_spfe_query_status" model="ir.actions.server">
+        <field name="name">Query SPFE</field>
+        <field name="model_id" ref="account.model_account_move" />
+        <field name="binding_model_id" ref="account.model_account_move" />
+        <field name="binding_view_types">list</field>
+        <field
+            name="group_ids"
+            eval="[Command.link(ref('l10n_es_spfe.group_spfe_manager')), Command.link(ref('l10n_es_aeat.group_account_aeat'))]"
+        />
+        <field name="state">code</field>
+        <field name="code">records.action_spfe_query_status()</field>
+    </record>
+</odoo>
