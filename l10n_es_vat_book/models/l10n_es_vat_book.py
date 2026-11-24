@@ -334,6 +334,9 @@ class L10nEsVatBook(models.Model):
         )
 
     def get_pos_partner_ids(self):
+        cached = self.env.context.get("vat_book_pos_partner_ids")
+        if cached is not None:
+            return cached
         return (
             self.env["res.partner"]
             .with_context(active_test=False)
@@ -398,10 +401,13 @@ class L10nEsVatBook(models.Model):
                 moves_dic[line_key] = self._prepare_book_line_vals(move_line, line_type)
             self.upsert_book_line_tax(move_line, moves_dic[line_key], taxes)
         lines_values = []
+        sp_taxes_dic = self.get_special_taxes_dic()
+        self = self.with_context(
+            vat_book_pos_partner_ids=frozenset(self.get_pos_partner_ids())
+        )
         for line_vals in moves_dic.values():
             tax_lines = line_vals.pop("tax_lines")
             # Match special taxes groups
-            sp_taxes_dic = self.get_special_taxes_dic()
             sp_taxes = {}
             # First loop for extracting special taxes
             for tax_line in tax_lines.values():

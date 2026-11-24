@@ -145,3 +145,37 @@ class TestL10nEsAeatVatBook(TestL10nEsAeatVatBookBase):
         self.assertEqual(len(vat_book.issued_line_ids), 0)
         self.assertEqual(len(vat_book.rectification_issued_line_ids), 0)
         self.assertEqual(len(vat_book.issued_tax_summary_ids), 0)
+
+    def test_anonymous_cash_customer_refreshed_on_recalculation(self):
+        self.customer.write({"country_id": self.env.ref("base.es").id, "vat": False})
+        self._invoice_sale_create("2017-01-13")
+        self.company.vat = "ES12345678Z"
+        vat_book = self.env["l10n.es.vat.book"].create(
+            {
+                "name": "Test VAT Book anonymous customer",
+                "company_id": self.company.id,
+                "company_vat": "1234567890",
+                "contact_name": "Test owner",
+                "statement_type": "N",
+                "support_type": "T",
+                "contact_phone": "911234455",
+                "year": 2017,
+                "period_type": "1T",
+                "date_start": "2017-01-01",
+                "date_end": "2017-03-31",
+            }
+        )
+        vat_book.button_calculate()
+        line = vat_book.issued_line_ids.filtered(
+            lambda x: x.partner_id == self.customer
+        )
+        self.assertTrue(line, "The customer invoice is not in the VAT book")
+        self.assertTrue(
+            line.exception_text, "A customer without VAT must raise an exception"
+        )
+        self.customer.aeat_anonymous_cash_customer = True
+        vat_book.button_recalculate()
+        line = vat_book.issued_line_ids.filtered(
+            lambda x: x.partner_id == self.customer
+        )
+        self.assertFalse(line.exception_text)
