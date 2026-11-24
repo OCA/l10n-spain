@@ -1,0 +1,327 @@
+# Copyright 2018 Studio73 - Abraham Anes
+# Copyright 2019 Studio73 - Pablo Fuentes
+# Copyright 2022,2026 Tecnativa - Pedro M. Baeza
+# Copyright 2026 Tecnativa - Sergio Teruel
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
+import json
+import logging
+
+from deepdiff import DeepDiff
+from deepdiff.helper import notpresent
+from zeep.helpers import serialize_object
+
+from odoo import Command, fields, models
+from odoo.tools import float_compare
+
+_logger = logging.getLogger(__name__)
+
+
+class SiiMixin(models.AbstractModel):
+    _inherit = "sii.mixin"
+
+    sii_match_sent = fields.Text(string="SII match sent", copy=False, readonly=True)
+    sii_match_return = fields.Text(string="SII match return", copy=False, readonly=True)
+    sii_match_state = fields.Selection(
+        string="Match state",
+        readonly=True,
+        copy=False,
+        selection=[
+            ("1", "No testable"),
+            ("2", "In process of contrast"),
+            ("3", "Not contrasted"),
+            ("4", "Partially contrasted"),
+            ("5", "Contrasted"),
+        ],
+        help="- No testable: The counterpart is not subscribed to SII "
+        "the record will not be contrasted.\n"
+        "- In process of contrast: AEAT is processing the data "
+        "soon will be a result.\n"
+        "- Not contrasted: The counterpart "
+        "has not sent the invoice to SII, "
+        "AEAT gives up to 4 months in order "
+        "to contrast the information.\n"
+        "- Partially contrasted: A invoice has been found "
+        "but some data is different.\n"
+        "- Contrasted: The counterpart has send "
+        "the invoice to SII, all is OK.",
+    )
+    sii_contrast_state = fields.Selection(
+        string="AEAT contrast state",
+        readonly=True,
+        copy=False,
+        selection=[
+            ("correct", "Correct"),
+            ("no_exist", "Doesn't exist"),
+            ("partially", "Partially correct"),
+        ],
+    )
+    sii_match_difference_ids = fields.One2many(
+        string="SII match differences",
+        readonly=True,
+        copy=False,
+        comodel_name="l10n.es.aeat.sii.match.difference",
+        inverse_name="invoice_id",
+        domain=lambda self: [("model", "=", self._name)],
+    )
+
+    def _get_diffs(self, odoo_values, sii_values):
+        sii_values = json.loads(json.dumps(serialize_object(sii_values)))
+        dp = self.env["decimal.precision"].precision_get("Account")
+        res = []
+        diff = DeepDiff(odoo_values, sii_values, view="tree")
+        # A key that the AEAT doesn't return counts as an empty value, which isn't
+        # compared, but an item of more or less in a list (e.g. a tax line) does
+        levels = [
+            level
+            for report_type in (
+                "type_changes",
+                "values_changed",
+                "dictionary_item_added",
+                "iterable_item_added",
+                "iterable_item_removed",
+            )
+            for level in diff.get(report_type, [])
+        ]
+        for level in levels:
+            odoo_value = "" if level.t1 is notpresent else level.t1
+            sii_value = "" if level.t2 is notpresent else level.t2
+            if sii_value is None:
+                continue
+            label = level.path().split("['")[-1].replace("']", "")
+            different = sii_value != odoo_value
+            # We made an explicit case for TipoImpositivo because we get
+            # always 2 numbers as strings, one with decimal point separator
+            # and another without
+            if label == "TipoImpositivo" and odoo_value != "":
+                odoo_value = float(odoo_value)
+            if isinstance(odoo_value, float | int) and sii_value != "":
+                sii_value = float(sii_value)
+                different = (
+                    float_compare(odoo_value, sii_value, precision_digits=dp) != 0
+                )
+            elif isinstance(odoo_value, str) and isinstance(sii_value, str):
+                sii_value = sii_value.strip()
+                odoo_value = odoo_value.strip()
+                different = sii_value != odoo_value
+            if different:
+                res.append(
+                    {
+                        "sii_field": label,
+                        "sii_return_field_value": self._get_diff_text(sii_value),
+                        "sii_sent_field_value": self._get_diff_text(odoo_value),
+                    }
+                )
+        return res
+
+    def _get_diff_text(self, value):
+        """A whole line of more or less is shown as JSON."""
+        return json.dumps(value) if isinstance(value, dict | list) else value
+
+    def _get_diffs_values(self, sii_values):
+        self.ensure_one()
+        res = []
+        if self.aeat_content_sent:
+            odoo_values = json.loads(self.aeat_content_sent)
+            mapping_key = self._get_mapping_key()
+            if mapping_key in ["out_invoice", "out_refund"]:
+                res += self._get_diffs(
+                    odoo_values["FacturaExpedida"], sii_values["DatosFacturaEmitida"]
+                )
+            elif mapping_key in ["in_invoice", "in_refund"]:
+                res += self._get_diffs(
+                    odoo_values["FacturaRecibida"], sii_values["DatosFacturaRecibida"]
+                )
+        return res
+
+    def _get_match_report_values(self, inv_dict):
+        """Obtain from the AEAT returned dictionary, the matching result values with the
+        current Odoo document represented by `self`. This dictionary can be used for
+        writing values, dropping some keys, into `l10n.es.aeat.sii.match.result` or
+        into `sii.mixin` documents.
+        """
+        if not inv_dict:
+            inv_dict = {}
+            # As we don't have .get method in zeep results, we have to go this way
+            name = False
+            csv = False
+            match_state = False
+        else:
+            name = inv_dict["IDFactura"]["NumSerieFacturaEmisor"]
+            csv = inv_dict["DatosPresentacion"]["CSV"]
+            match_state = (
+                inv_dict["EstadoFactura"]["EstadoCuadre"]
+                if inv_dict["EstadoFactura"]
+                else False
+            )
+        # The match state is the counterpart contrast, which the AEAT also
+        # gives for the records that aren't in Odoo
+        if inv_dict and self:
+            inv_location = "both"
+            contrast_state = "correct"
+        elif self:
+            inv_location = "odoo"
+            contrast_state = "no_exist"
+        else:
+            inv_location = "sii"
+            contrast_state = "no_exist"
+        diffs = self._get_diffs_values(inv_dict) if (inv_dict and self) else []
+        if diffs:
+            contrast_state = "partially"
+            for diff in diffs:  # Fill the document o2m values
+                diff["invoice_id"] = self.id
+                diff["model"] = self._name if self else False
+        vals = {
+            "invoice": name,
+            "invoice_id": self.id,
+            "model": self._name,
+            "csv": csv,
+            "invoice_location": inv_location,
+            "sii_contrast_state": contrast_state,
+            "sii_match_state": match_state,
+            "sii_match_difference_ids": [Command.create(x) for x in diffs],
+        }
+        if inv_dict:
+            vals["sii_match_return"] = json.dumps(str(inv_dict), indent=4)
+        return vals
+
+    def contrast_aeat(self):
+        """Overridable hook for raising any error or filtering out records if needed."""
+        for document in self:
+            document._contrast_invoice_to_aeat()
+
+    def _get_contrast_invoice_dict_out(self):
+        """Build dict with data to send to AEAT WS for invoice types:
+        out_invoice and out_refund.
+        :return: invoices (dict) : Dict XML with data for this invoice.
+        """
+        self.ensure_one()
+        invoice_date = self._change_date_format(self._get_document_date())
+        company = self.company_id
+        ejercicio = self._get_document_fiscal_year()
+        periodo = self._get_document_period()
+        number = self._get_document_serial_number()
+        # IDFactura already identifies the invoice, so the counterpart isn't
+        # used as a filter: if the partner identification changed after the
+        # invoice was sent, AEAT would reject the query (e.g. error 1149) or
+        # not find the invoice. Counterpart differences are reported as diffs.
+        inv_dict = {
+            "FiltroConsulta": {},
+            "PeriodoLiquidacion": {"Ejercicio": ejercicio, "Periodo": periodo},
+            "IDFactura": {
+                "IDEmisorFactura": {
+                    "NIF": company.partner_id._parse_aeat_vat_info()[2]
+                },
+                "NumSerieFacturaEmisor": (number or "")[:60],
+                "FechaExpedicionFacturaEmisor": invoice_date,
+            },
+        }
+        return inv_dict
+
+    def _get_contrast_invoice_dict_in(self):
+        """Build dict with data to send to AEAT WS for invoice types:
+        in_invoice and in_refund.
+        :return: invoices (dict) : Dict XML with data for this invoice.
+        """
+        self.ensure_one()
+        invoice_date = self._change_date_format(self._get_document_date())
+        ejercicio = self._get_document_fiscal_year()
+        periodo = self._get_document_period()
+        inv_dict = {
+            "FiltroConsulta": {},
+            "IDFactura": {
+                "IDEmisorFactura": {
+                    "NombreRazon": self._aeat_get_partner().name[0:120],
+                },
+                "NumSerieFacturaEmisor": ((self.ref or "")[:60]),
+                "FechaExpedicionFacturaEmisor": invoice_date,
+            },
+            "PeriodoLiquidacion": {"Ejercicio": ejercicio, "Periodo": periodo},
+        }
+        # Uso condicional de IDOtro/NIF
+        ident = self._get_sii_identifier()
+        inv_dict["IDFactura"]["IDEmisorFactura"].update(ident)
+        return inv_dict
+
+    def _get_contrast_invoice_dict(self):
+        self.ensure_one()
+        self._aeat_check_exceptions()
+        mapping_key = self._get_mapping_key()
+        if mapping_key in ["out_invoice", "out_refund"]:
+            return self._get_contrast_invoice_dict_out()
+        elif mapping_key in ["in_invoice", "in_refund"]:
+            return self._get_contrast_invoice_dict_in()
+        return {}
+
+    def _contrast_invoice_to_aeat(self):
+        for document in self:
+            mapping_key = document._get_mapping_key()
+            serv = document._connect_aeat(mapping_key)
+            header = document._get_aeat_header(False, True)
+            inv_dict = document._get_contrast_invoice_dict()
+            inv_vals = {"sii_match_sent": json.dumps(inv_dict, indent=4)}
+            try:
+                if mapping_key in ["out_invoice", "out_refund"]:
+                    res = serv.ConsultaLRFacturasEmitidas(header, inv_dict)
+                    res_lines = res["RegistroRespuestaConsultaLRFacturasEmitidas"]
+                elif mapping_key in ["in_invoice", "in_refund"]:
+                    res = serv.ConsultaLRFacturasRecibidas(header, inv_dict)
+                    res_lines = res["RegistroRespuestaConsultaLRFacturasRecibidas"]
+                res_line = res_lines[0] if res_lines else False
+                match_vals = document._get_match_report_values(res_line)
+                inv_vals["sii_match_return"] = match_vals.get("sii_match_return", False)
+                inv_vals["sii_match_state"] = match_vals["sii_match_state"]
+                inv_vals["sii_contrast_state"] = match_vals["sii_contrast_state"]
+                inv_vals["sii_match_difference_ids"] = [Command.clear()] + match_vals[
+                    "sii_match_difference_ids"
+                ]
+                if (
+                    not document.sii_csv
+                    and match_vals["invoice_location"] == "both"
+                    and match_vals["csv"]
+                ):
+                    # The AEAT confirms this invoice is actually registered
+                    # (typical case: it was sent and accepted, but Odoo never
+                    # processed the response, e.g. a timeout) - recover the
+                    # real send state instead of leaving it stuck on error.
+                    inv_vals.update(
+                        {
+                            "sii_csv": match_vals["csv"],
+                            "aeat_state": "sent",
+                            "aeat_send_error": False,
+                            "aeat_send_failed": False,
+                        }
+                    )
+                document.write(inv_vals)
+            except Exception as fault:
+                _logger.exception(
+                    "Error contrasting %s with AEAT", document.display_name
+                )
+                document.write(
+                    {
+                        "sii_match_sent": inv_vals["sii_match_sent"],
+                        "sii_match_return": repr(fault),
+                        "sii_contrast_state": False,
+                        "sii_match_state": False,
+                    }
+                )
+
+    def _send_sii_locked_documents(self, book, communication_type):
+        res = super()._send_sii_locked_documents(book, communication_type)
+        if not communication_type:  # cancellation
+            return res
+        # Try match invoice data with SII info in this case. It runs within the
+        # transaction of the request, so the results just stored are visible.
+        # TODO: Use other data like as a standard code instead of this string
+        duplicated = self.filtered(
+            lambda am: am.aeat_send_error == "3000 | Factura duplicada"
+        )
+        if duplicated:
+            # The AEAT already registered the request: a failed contrast must
+            # not roll back the storage of its results
+            try:
+                with self.env.cr.savepoint():
+                    duplicated._contrast_invoice_to_aeat()
+            except Exception:
+                _logger.exception("Error contrasting duplicated invoices with AEAT")
+        return res

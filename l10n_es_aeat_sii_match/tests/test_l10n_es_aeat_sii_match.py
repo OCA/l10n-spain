@@ -1,0 +1,197 @@
+# Copyright 2023 Tecnativa - Víctor Martínez
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+
+import json
+from unittest.mock import MagicMock, patch
+
+from odoo import Command
+from odoo.exceptions import UserError
+from odoo.tests import Form
+
+from odoo.addons.l10n_es_aeat_sii_oca.tests.test_l10n_es_aeat_sii import (
+    TestL10nEsAeatSiiBase,
+)
+from odoo.addons.l10n_es_aeat_sii_oca.tests.test_sii_send_batch import (
+    FakeSiiService,
+)
+
+
+class TestL10nEsAeatSiiMatch(TestL10nEsAeatSiiBase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.env = cls.env(
+            context=dict(
+                cls.env.context,
+                test_queue_job_no_delay=True,  # no jobs thanks
+            )
+        )
+        cls.invoice.action_post()
+        cls.invoice = cls.env[cls.invoice._name].browse(cls.invoice.id)
+
+    def _aeat_consulta_response(self, csv):
+        return {
+            "RegistroRespuestaConsultaLRFacturasEmitidas": [
+                {
+                    "IDFactura": {"NumSerieFacturaEmisor": self.invoice.name},
+                    "DatosPresentacion": {"CSV": csv},
+                    "EstadoFactura": {
+                        "EstadoRegistro": "AceptadoConCSV",
+                        "EstadoCuadre": "5",
+                    },
+                }
+            ]
+        }
+
+    def test_contrast_aeat_recovers_duplicate_error(self):
+        """A "3000 - Factura duplicada" send error means AEAT already has the
+        invoice registered, but Odoo never stored aeat_state/sii_csv. Contrasting
+        it must recover the real send state, not just the informational fields.
+        """
+        invoice = self.invoice
+        invoice.write(
+            {
+                "aeat_state": "not_sent",
+                "aeat_send_failed": True,
+                "aeat_send_error": "3000 | Factura duplicada",
+                "sii_csv": False,
+            }
+        )
+        fake_serv = MagicMock()
+        fake_serv.ConsultaLRFacturasEmitidas.return_value = (
+            self._aeat_consulta_response("FAKECSV123")
+        )
+        with patch.object(type(invoice), "_connect_aeat", return_value=fake_serv):
+            invoice.contrast_aeat()
+        self.assertEqual(invoice.aeat_state, "sent")
+        self.assertEqual(invoice.sii_csv, "FAKECSV123")
+        self.assertFalse(invoice.aeat_send_error)
+        self.assertFalse(invoice.aeat_send_failed)
+        self.assertEqual(invoice.sii_contrast_state, "correct")
+
+    def test_send_duplicated_contrasts_with_aeat(self):
+        """A record already registered in the AEAT when sending it is contrasted,
+        recovering the CSV of its first registration."""
+        invoice = self.invoice
+        company_nif = self.company.partner_id._parse_aeat_vat_info()[2]
+        service = FakeSiiService(
+            results={
+                (company_nif, invoice.name): {
+                    "EstadoRegistro": "Incorrecto",
+                    "CodigoErrorRegistro": 3000,
+                    "DescripcionErrorRegistro": "Factura duplicada",
+                    "RegistroDuplicado": {"EstadoRegistro": "Correcta"},
+                },
+            }
+        )
+
+        def consulta(header, inv_dict):
+            # The AEAT returns the data of the registered invoice
+            res = self._aeat_consulta_response("FAKECSV123")
+            res["RegistroRespuestaConsultaLRFacturasEmitidas"][0][
+                "DatosFacturaEmitida"
+            ] = json.loads(invoice.aeat_content_sent)["FacturaExpedida"]
+            return res
+
+        service.ConsultaLRFacturasEmitidas = consulta
+        invoice.send_sii_now()
+        with (
+            patch.object(
+                type(invoice), "_connect_aeat", lambda move, mapping_key: service
+            ),
+            self.enter_registry_test_mode(),
+        ):
+            # As the cron worker, which runs it with its own user
+            self.env.ref(
+                "l10n_es_aeat_sii_oca.invoice_send_to_sii"
+            ).sudo().method_direct_trigger()
+        self.assertEqual(invoice.aeat_state, "sent")
+        self.assertEqual(invoice.sii_csv, "FAKECSV123")
+        self.assertEqual(invoice.sii_contrast_state, "correct")
+
+    def test_contrast_aeat_not_found_in_aeat(self):
+        """When AEAT has no record at all, contrasting must not raise nor
+        invent a send state - it just reports "no_exist" for manual review.
+        """
+        invoice = self.invoice
+        invoice.write(
+            {
+                "aeat_state": "not_sent",
+                "aeat_send_failed": True,
+                "aeat_send_error": "3000 | Factura duplicada",
+                "sii_csv": False,
+            }
+        )
+        fake_serv = MagicMock()
+        fake_serv.ConsultaLRFacturasEmitidas.return_value = {
+            "RegistroRespuestaConsultaLRFacturasEmitidas": []
+        }
+        with patch.object(type(invoice), "_connect_aeat", return_value=fake_serv):
+            invoice.contrast_aeat()
+        self.assertEqual(invoice.sii_contrast_state, "no_exist")
+        self.assertFalse(invoice.sii_csv)
+        self.assertEqual(invoice.aeat_state, "not_sent")
+
+    def test_contrast_aeat_guard_rejects_never_sent(self):
+        """An invoice that was never even attempted (no send, no failure) has
+        nothing to contrast and must keep raising, as before."""
+        invoice = self.invoice
+        invoice.write(
+            {"aeat_state": "not_sent", "aeat_send_failed": False, "sii_csv": False}
+        )
+        with self.assertRaises(UserError):
+            invoice.contrast_aeat()
+
+    def test_contrast_aeat_batch_continues_after_error(self):
+        """Contrasting several invoices at once must not crash nor stop the
+        batch just because one invoice raises (e.g. an AEAT communication
+        error): it must record the error on that invoice and keep
+        contrasting the rest.
+        """
+        invoice = self.invoice
+        invoice.write({"aeat_state": "sent", "sii_csv": "FAKECSV000"})
+        invoice2 = self._create_invoice("out_invoice")
+        invoice2.action_post()
+        invoice2.write({"aeat_state": "sent", "sii_csv": "FAKECSV111"})
+        fake_serv = MagicMock()
+        fake_serv.ConsultaLRFacturasEmitidas.side_effect = [
+            Exception("AEAT communication error"),
+            {"RegistroRespuestaConsultaLRFacturasEmitidas": []},
+        ]
+        with (
+            patch.object(type(invoice), "_connect_aeat", return_value=fake_serv),
+            self.assertLogs(
+                "odoo.addons.l10n_es_aeat_sii_match.models.sii_mixin", "ERROR"
+            ),
+        ):
+            (invoice + invoice2).contrast_aeat()
+        self.assertFalse(invoice.sii_contrast_state)
+        self.assertIn("AEAT communication error", invoice.sii_match_return)
+        self.assertEqual(invoice2.sii_contrast_state, "no_exist")
+
+    def test_invoice_form_without_aeat_group(self):
+        """An invoicing user without the AEAT group opens a contrasted invoice."""
+        self.invoice.write({"aeat_state": "sent", "sii_csv": "FAKECSV000"})
+        fake_serv = MagicMock()
+        fake_serv.ConsultaLRFacturasEmitidas.return_value = (
+            self._aeat_consulta_response("FAKECSV000")
+        )
+        with patch.object(type(self.invoice), "_connect_aeat", return_value=fake_serv):
+            self.invoice.contrast_aeat()
+        user = (
+            self.env["res.users"]
+            .sudo()
+            .create(
+                {
+                    "name": "Invoicing user",
+                    "login": "sii_match_invoicing_user",
+                    "group_ids": [
+                        Command.set([self.env.ref("account.group_account_invoice").id])
+                    ],
+                    "company_ids": [Command.set(self.company.ids)],
+                    "company_id": self.company.id,
+                }
+            )
+        )
+        invoice_form = Form(self.invoice.with_user(user))
+        self.assertEqual(invoice_form.name, self.invoice.name)
