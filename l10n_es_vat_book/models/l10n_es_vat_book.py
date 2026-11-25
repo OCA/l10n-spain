@@ -282,7 +282,7 @@ class L10nEsVatBook(models.Model):
         for i, tax in enumerate(move_line.tax_ids):
             res = {}
             move_line._process_aeat_tax_base_info(res, tax, sign)
-            if i == 0:
+            if i == 0 and not move_line.tax_line_id:
                 vat_book_line["base_amount"] += res[tax]["base"]
             if tax not in implied_taxes:
                 continue
