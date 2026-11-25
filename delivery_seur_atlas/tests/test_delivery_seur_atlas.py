@@ -210,3 +210,21 @@ class TestDeliverySeurAtlas(BaseCommon):
         self.picking.tracking_state_update()
         self.assertIn("[LI527] NO CONTESTA TELEFONO", self.picking.tracking_state)
         self.assertEqual(self.picking.delivery_state, "incident")
+
+    def test_04_seur_atlas_shipping_comments(self):
+        """The picking note reaches SEUR as plain text"""
+        calls = self._mock_seur_api(
+            {
+                "shipments": {"shipmentCode": "028111000201420210719"},
+                "labels": [
+                    {
+                        "ecb": "47470138102390",
+                        "pack": "1/1",
+                        "pdf": base64.b64encode(b"%PDF-1.4 label").decode(),
+                    }
+                ],
+            }
+        )
+        self.picking.note = "<p>Ring twice</p>"
+        self.picking.button_validate()
+        self.assertEqual(calls[0][2]["json"]["comments"], "Ring twice")

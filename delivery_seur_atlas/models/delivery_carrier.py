@@ -7,6 +7,7 @@ import logging
 from dateutil.parser import isoparse
 
 from odoo import api, fields, models
+from odoo.tools import html2plaintext
 
 from .seur_master_data import PRODUCT_CODES, SERVICE_CODES, TRACKING_STATES_MAP
 from .seur_request_atlas import SeurAtlasRequest
@@ -157,7 +158,7 @@ class DeliveryCarrier(models.Model):
                     "country": "ES",
                 },
             },
-            "comments": picking.note,
+            "comments": html2plaintext(picking.note) if picking.note else "",
             # TODO: Implement packagings better
             "parcels": [
                 {"weight": weight_by_parcel, "width": 1, "height": 1, "length": 1}
