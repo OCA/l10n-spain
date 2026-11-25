@@ -1,0 +1,6 @@
+- [Tecnativa](https://www.tecnativa.com):  
+  - Pedro M. Baeza
+  - Ernesto García Medina
+  - Carlos Dauden
+- [APSL-Nagarro](<https://apsl.tech>):
+  - Bernat Obrador \<<bernat.obrador@nagarro.com>\>
