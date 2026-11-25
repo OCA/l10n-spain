@@ -110,7 +110,7 @@ class ResPartner(models.Model):
                 elif partner.company_id:
                     company = partner.company_id
                 else:
-                    company = self.env.user.company_id
+                    company = self.env.company
                 if company.vat_check_aeat:
                     partner.aeat_check_partner()
         return res

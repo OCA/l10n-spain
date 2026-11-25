@@ -3,6 +3,8 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 from unittest import mock
 
+from odoo import Command
+
 from odoo.addons.base.tests.common import BaseCommon
 
 # The AEAT services are external: the census check goes through the SOAP
@@ -158,6 +160,40 @@ class TestResPartner(BaseCommon):
         self.assertFalse(
             (partner | passport_partner).filtered("aeat_partner_check_result")
         )
+
+    def test_automatic_check_active_company(self):
+        """The automatic check follows the active company, the same when the
+        partner is created and when it is updated"""
+        company_b = (
+            self.env["res.company"]
+            .sudo()
+            .create({"name": "Company B", "vat_check_aeat": True})
+        )
+        self.env.user.sudo().company_ids = [Command.link(company_b.id)]
+        self.assertFalse(self.env.user.company_id.vat_check_aeat)
+        with (
+            mock.patch(
+                SEND_SOAP,
+                return_value=self._census_answer("SHARED PARTNER", vat="B12345674"),
+            ) as send_soap,
+            mock.patch(REQUESTS_POST) as post,
+        ):
+            self._surcharge_answer(post, subject=False)
+            partner = (
+                self.env["res.partner"]
+                .with_company(company_b)
+                .create(
+                    {
+                        "name": "Shared partner",
+                        "country_id": self.env.ref("base.es").id,
+                        "vat": "ESB12345674",
+                    }
+                )
+            )
+            self.assertEqual(send_soap.call_count, 1)
+            partner.name = "SHARED PARTNER"
+        self.assertEqual(send_soap.call_count, 2)
+        self.assertFalse(partner.aeat_data_diff)
 
     def test_compute_data_diff(self):
         partner = self.partner.sudo()
