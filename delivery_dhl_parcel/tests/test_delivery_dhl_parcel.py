@@ -477,3 +477,20 @@ class TestDeliveryDhlParcel(BaseCommon):
         vals = self._sent_shipment(requests_post)
         self.assertEqual(vals["Receiver"]["Address"], address[:80])
         self.assertEqual(len(vals["Receiver"]["Address"]), 80)
+
+    def test_15_tracking_unknown_event_is_incident(self):
+        """An event code DHL does not map to a state is an incident"""
+        self._dhl_api(
+            get_answer=[
+                {
+                    "DateTime": "2020-10-02T10:40:49",
+                    "Code": "I",
+                    "Status": "Dirección incorrecta",
+                    "Ubication": "Araba/Álava",
+                }
+            ]
+        )
+        self.picking.carrier_tracking_ref = "0870002260"
+        self.picking.tracking_state_update()
+        self.assertEqual(self.picking.tracking_state, "[I] Dirección incorrecta")
+        self.assertEqual(self.picking.delivery_state, "incident")
