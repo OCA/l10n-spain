@@ -30,10 +30,10 @@ class ResPartner(models.Model):
             if partner.aeat_partner_check_result != "NO IDENTIFICABLE":
                 # Odoo don't support two space between name. Some names
                 # in AEAT has two space instead one
-                partner.aeat_data_diff = False
-                if partner.aeat_partner_name:
-                    if partner.name != partner.aeat_partner_name.replace("  ", " "):
-                        partner.aeat_data_diff = True
+                partner.aeat_data_diff = bool(
+                    partner.aeat_partner_name
+                    and partner.name != partner.aeat_partner_name.replace("  ", " ")
+                )
 
     aeat_partner_check_result = fields.Selection(
         selection=RESULTS, string="Check Result", readonly=True
