@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 140" width="140" height="140">
+  <rect x="4" y="4" width="132" height="132" rx="22" ry="22" fill="#1B3F7A" stroke="#F29100" stroke-width="5"/>
+  <rect x="12" y="16" width="116" height="30" rx="6" ry="6" fill="#F29100"/>
+  <text x="70" y="37" font-family="Arial, Helvetica, sans-serif" font-size="15.5" font-weight="900" fill="#FFFFFF" text-anchor="middle" letter-spacing="0.8">TRANSAHER</text>
+  <!-- Logistics Truck Trailer & Cab -->
+  <rect x="18" y="56" width="64" height="44" rx="4" fill="#FFFFFF"/>
+  <path d="M84 66 H106 L118 81 V100 H84 Z" fill="#FFFFFF"/>
+  <polygon points="88,71 103,71 112,82 88,82" fill="#1B3F7A"/>
+  <!-- Transaher Circle Checkmark Badge inside Trailer -->
+  <circle cx="50" cy="78" r="15" fill="#F29100"/>
+  <polyline points="42,78 48,84 59,72" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Wheels -->
+  <circle cx="38" cy="105" r="11" fill="#1B3F7A" stroke="#F29100" stroke-width="3.5"/>
+  <circle cx="38" cy="105" r="4" fill="#FFFFFF"/>
+  <circle cx="100" cy="105" r="11" fill="#1B3F7A" stroke="#F29100" stroke-width="3.5"/>
+  <circle cx="100" cy="105" r="4" fill="#FFFFFF"/>
+</svg>
+

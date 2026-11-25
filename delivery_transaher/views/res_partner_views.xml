@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_partner_form_inherit_transaher" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit.transaher</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//page[@name='sales_purchases']//group[@name='container_row_2']"
+                position="inside"
+            >
+                <group string="Transaher Logistics" name="transaher_partner_settings">
+                    <field name="transaher_portes_default" />
+                    <field name="transaher_postal_rep_code" />
+                    <field name="transaher_delivery_notes" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

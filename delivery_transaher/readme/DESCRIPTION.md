@@ -1,0 +1,22 @@
+This module integrates Odoo's `delivery` framework with **Grupo Transaher**'s official SOAP Web Services (`https://clientes.transaher.es`), relying natively on OCA standard logistics modules (`delivery_package_number`, `delivery_state`, and `stock_picking_volume`):
+
+- **Standard OCA Logistics Integration**:
+  - **Package Count (`delivery_package_number`)**: Uses `picking.number_of_packages` for `Datosentrada` Field 11 (`Bultos`), 24-digit package barcode generation, QWeb labels, manifests, and `per_package` tariff rules.
+  - **Shipment Volume (`stock_picking_volume`)**: Uses `picking.volume` and `product._get_volume_for_qty()` for `Datosentrada` Field 13 (`Volumen` in m³) and volumetric chargeable weight calculation.
+  - **Carrier Tracking State (`delivery_state`)**: Implements `transaher_tracking_state_update()` for `picking.tracking_state_update()` and OCA's scheduled cron `_update_delivery_state()`, populating `delivery_state`, `tracking_state`, `tracking_state_history`, `tracking_json`, `date_shipped`, and `date_delivered`.
+- **Shipment Registration & Cancellation (`stock.picking`)**:
+  - Automatic or manual shipment registration via `awsprcsatsoap` (`wsPrcSATSOAP.Execute`, `Ediprocod = 20`) building the 18-field pipe-separated `Datosentrada` string with comma decimal formatting and automatic pipe sanitization.
+  - Full persistence of Transaher's composite shipment identifier (`Holding.Seccion.Centro.CodExpedicion`) plus destination routing metadata (`Centro_Destino`, `Area_Dis_Cod`, `Area_Dis_Dsc`, `Servicio`, `Expedicion_Ch`).
+  - One-click shipment cancellation via `awsExpBaja` (`wsExpBaja.Execute`) enforcing Transaher's status rules (`shipping_recorded_in_carrier`).
+- **Official & Local Standard Label Generation (PDF / ZPL / QWeb)**:
+  - Automatic 20-minute token management via `wsgetToken` with cached reuse and transparent renewal on token expiration codes (`1` / `2`).
+  - Official label download via `wsEtiExpSOAP` supporting Base64 `PDF` and thermal formats, configurable `<Bultos>` tag (`-1` vs empty), and `PosicionInicialImpresion` for multi-label A4 sheets.
+  - Built-in QWeb PDF 100x150mm 9-zone + 24-digit Code128 standard label generator implementing Transaher's exact specification (including Portugal's 4-digit postal code + `9` padding rule), usable standalone or as an automatic fallback.
+- **Live Tracking, Incidences & Invoice Cost Auditing**:
+  - Direct link to Transaher's web tracking portal.
+  - Real-time synchronization via `wsInformacionTransporte` retrieving expedition events, incidences, deliveries, package SSCCs, and invoiced freight amounts (`sdtImportes`), auditing cost deviations (`transaher_cost_difference`).
+- **Daily Loading Manifest (`awsmnfprtsoap`)**:
+  - Interactive wizard querying `awsmnfprtsoap` (`wsMnfPrtSOAP.Execute`) for a date/time window (`aaaammddhhmm`) and generating a formatted PDF Loading Manifest (`Manifiesto de Carga`) for the driver's signature.
+- **Freight Tariff Engine & Internal Cost Preservation**:
+  - Configurable zone/province/postal-prefix/weight/package tariff rules (`transaher.tariff.rule`) supporting `fixed`, `per_kg`, `per_excess_kg`, `per_100kg`, and `per_package` calculation modes plus volumetric weight conversion and fuel, COD, and cargo insurance surcharges.
+  - Internal estimated cost tracking on `sale.order` and `stock.picking` even when shipping is free for the customer.

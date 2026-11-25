@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_transaher_tariff_rule_user,transaher.tariff.rule.user,model_transaher_tariff_rule,base.group_user,1,0,0,0
+access_transaher_tariff_rule_manager,transaher.tariff.rule.manager,model_transaher_tariff_rule,stock.group_stock_manager,1,1,1,1
+access_transaher_tariff_rule_sales_manager,transaher.tariff.rule.sales.manager,model_transaher_tariff_rule,sales_team.group_sale_manager,1,1,1,1
+access_transaher_manifest_wizard_user,transaher.manifest.wizard.user,model_transaher_manifest_wizard,stock.group_stock_user,1,1,1,1

@@ -1,0 +1,2002 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* delivery_transaher
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-12 22:40+0000\n"
+"PO-Revision-Date: 2026-11-12 22:40+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/wizard/transaher_manifest_wizard.py:0
+msgid "'Date From' cannot be later than 'Date To'."
+msgstr "'Fecha desde' no puede ser posterior a 'Fecha hasta'."
+
+#. module: delivery_transaher
+#: model:ir.actions.report,print_report_name:delivery_transaher.action_report_transaher_label
+msgid ""
+"'Transaher_Label_%s' % (object.transaher_cod_expedicion or object.name)"
+msgstr ""
+"'Etiqueta_Transaher_%s' % (object.transaher_cod_expedicion or object.name)"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,help:delivery_transaher.field_delivery_carrier__transaher_label_mode
+msgid ""
+"- Transaher Web Service PDF (with Local Fallback): Downloads the official PDF/ZPL from wsEtiExpSOAP and falls back to the local 24-digit barcode QWeb label if unavailable.\n"
+"- Transaher Web Service Only: Exclusively uses wsEtiExpSOAP.\n"
+"- Local Standard Transaher Label PDF: Generates the label locally following Section 5 of the manual."
+msgstr ""
+"- PDF Web Service Transaher (con respaldo local): Descarga el PDF/ZPL oficial desde wsEtiExpSOAP y recurre a la etiqueta QWeb local con código de barras de 24 dígitos si no está disponible.\n"
+"- Solo Web Service Transaher: Utiliza exclusivamente wsEtiExpSOAP.\n"
+"- Etiqueta estándar Transaher PDF local: Genera la etiqueta localmente siguiendo la Sección 5 del manual."
+
+#. module: delivery_transaher
+#: model:ir.model.fields.selection,name:delivery_transaher.selection__delivery_carrier__transaher_portes__1
+#: model:ir.model.fields.selection,name:delivery_transaher.selection__res_partner__transaher_portes_default__1
+#: model:ir.model.fields.selection,name:delivery_transaher.selection__stock_picking__transaher_portes__1
+msgid "1 - Freight Prepaid (Portes Pagados)"
+msgstr "1 - Portes Pagados"
+
+#. module: delivery_transaher
+#: model:ir.model.fields.selection,name:delivery_transaher.selection__delivery_carrier__transaher_portes__2
+#: model:ir.model.fields.selection,name:delivery_transaher.selection__res_partner__transaher_portes_default__2
+#: model:ir.model.fields.selection,name:delivery_transaher.selection__stock_picking__transaher_portes__2
+msgid "2 - Freight Collect (Portes Debidos)"
+msgstr "2 - Portes Debidos"
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/delivery_carrier.py:0
+msgid "24-Digit Barcodes"
+msgstr "Códigos de barras de 24 dígitos"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_stock_picking__transaher_barcodes
+msgid "24-Digit Package Barcodes"
+msgstr "Códigos de barras de bultos (24 dígitos)"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,help:delivery_transaher.field_stock_quant_package__transaher_barcode
+msgid ""
+"24-character Code 128 / Interleaved 2 of 5 barcode generated per Transaher "
+"Technical Manual Section 5.2."
+msgstr ""
+"Código de barras de 24 caracteres Code 128 / 2 de 5 entrelazado generado "
+"según la Sección 5.2 del Manual Técnico de Transaher."
+
+#. module: delivery_transaher
+#: model:ir.model.fields,help:delivery_transaher.field_stock_picking__transaher_barcodes
+msgid ""
+"24-character Code 128 / Interleaved 2 of 5 barcodes generated per package "
+"(Section 5.2)."
+msgstr ""
+"Códigos de barras de 24 caracteres Code 128 / 2 de 5 entrelazado generados "
+"por bulto (Sección 5.2)."
+
+#. module: delivery_transaher
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.report_transaher_label_document
+msgid ""
+"<br/>\n"
+"                                    <strong>Kilos:</strong>"
+msgstr ""
+"<br/>\n"
+"                                    <strong>Kilos:</strong>"
+
+#. module: delivery_transaher
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.report_transaher_manifest_document
+msgid ""
+"<br/>\n"
+"                                <strong>Delivery Method:</strong>"
+msgstr ""
+"<br/>\n"
+"                                <strong>Método de envío:</strong>"
+
+#. module: delivery_transaher
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.report_transaher_manifest_document
+msgid ""
+"<br/>\n"
+"                                <strong>Period:</strong>"
+msgstr ""
+"<br/>\n"
+"                                <strong>Periodo:</strong>"
+
+#. module: delivery_transaher
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.report_transaher_manifest_document
+msgid ""
+"<br/>\n"
+"                                <strong>Printed:</strong>"
+msgstr ""
+"<br/>\n"
+"                                <strong>Impreso:</strong>"
+
+#. module: delivery_transaher
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.view_delivery_carrier_form_inherit_transaher
+msgid ""
+"<span class=\"o_stat_text\">Daily</span>\n"
+"                        <span class=\"o_stat_text\">Manifest</span>"
+msgstr ""
+"<span class=\"o_stat_text\">Manifiesto</span>\n"
+"                        <span class=\"o_stat_text\">Diario</span>"
+
+#. module: delivery_transaher
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.view_delivery_carrier_form_inherit_transaher
+msgid ""
+"<span class=\"o_stat_text\">Test Token</span>\n"
+"                        <span class=\"o_stat_text\">wsgetToken</span>"
+msgstr ""
+"<span class=\"o_stat_text\">Probar Token</span>\n"
+"                        <span class=\"o_stat_text\">wsgetToken</span>"
+
+#. module: delivery_transaher
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.report_transaher_label_document
+msgid "<span style=\"font-size: 9px; font-weight: normal;\">Expedición:</span>"
+msgstr "<span style=\"font-size: 9px; font-weight: normal;\">Expedición:</span>"
+
+#. module: delivery_transaher
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.report_transaher_label_document
+msgid "<strong>CONSIGNATARIO:</strong>"
+msgstr "<strong>CONSIGNATARIO:</strong>"
+
+#. module: delivery_transaher
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.report_transaher_manifest_document
+msgid "<strong>Carrier Signature &amp; Stamp (Transaher):</strong>"
+msgstr "<strong>Firma y sello del transportista (Transaher):</strong>"
+
+#. module: delivery_transaher
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.report_transaher_label_document
+msgid "<strong>Fecha:</strong>"
+msgstr "<strong>Fecha:</strong>"
+
+#. module: delivery_transaher
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.report_transaher_label_document
+msgid "<strong>OBSERVACIONES:</strong>"
+msgstr "<strong>OBSERVACIONES:</strong>"
+
+#. module: delivery_transaher
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.report_transaher_label_document
+msgid "<strong>PEDIDO:</strong>"
+msgstr "<strong>PEDIDO:</strong>"
+
+#. module: delivery_transaher
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.report_transaher_label_document
+msgid "<strong>REF.:</strong>"
+msgstr "<strong>REF.:</strong>"
+
+#. module: delivery_transaher
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.report_transaher_label_document
+msgid "<strong>REMITENTE:</strong>"
+msgstr "<strong>REMITENTE:</strong>"
+
+#. module: delivery_transaher
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.report_transaher_manifest_document
+msgid "<strong>Shipper Company:</strong>"
+msgstr "<strong>Empresa remitente:</strong>"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_transaher_tariff_rule__active
+msgid "Active"
+msgstr "Activo"
+
+#. module: delivery_transaher
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.report_transaher_manifest_document
+msgid "Address"
+msgstr "Dirección"
+
+#. module: delivery_transaher
+#: model:ir.model.fields.selection,name:delivery_transaher.selection__delivery_carrier__transaher_bultos_tag_mode__reprint_all
+msgid "All Shipment Packages (-1)"
+msgstr "Todos los bultos de la expedición (-1)"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_stock_picking__transaher_driver_info
+msgid "Assigned Driver"
+msgstr "Chófer asignado"
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/transaher_request.py:0
+msgid "At least one Transaher expedition is required to request labels."
+msgstr ""
+"Se requiere al menos una expedición de Transaher para solicitar etiquetas."
+
+#. module: delivery_transaher
+#: model:ir.model.fields,help:delivery_transaher.field_delivery_carrier__transaher_use_order_incoterm
+msgid ""
+"Automatically map Sale Order / Picking Incoterms (EXW/FCA -> 2 Debidos; "
+"DAP/CPT/DDP -> 1 Pagados)."
+msgstr ""
+"Mapear automáticamente los Incoterms del pedido de venta / albarán (EXW/FCA "
+"-> 2 Debidos; DAP/CPT/DDP -> 1 Pagados)."
+
+#. module: delivery_transaher
+#: model:ir.model.fields.selection,name:delivery_transaher.selection__delivery_carrier__transaher_default_packaging_code__bul
+#: model:ir.model.fields.selection,name:delivery_transaher.selection__stock_package_type__transaher_packaging_code__bul
+msgid "BUL - Standard Parcel / Box (Bulto)"
+msgstr "BUL - Bulto / Paquete estándar"
+
+#. module: delivery_transaher
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.report_transaher_label_document
+msgid "BULTOS"
+msgstr "BULTOS"
+
+#. module: delivery_transaher
+#: model:ir.model.fields.selection,name:delivery_transaher.selection__transaher_tariff_rule__rate_type__per_100kg
+msgid "Base + Price per 100 Kg Fraction"
+msgstr "Base + Precio por fracción de 100 kg"
+
+#. module: delivery_transaher
+#: model:ir.model.fields.selection,name:delivery_transaher.selection__transaher_tariff_rule__rate_type__per_excess_kg
+msgid "Base + Price per Excess Kg (above Included Kg)"
+msgstr "Base + Precio por kg adicional (sobre kg incluidos)"
+
+#. module: delivery_transaher
+#: model:ir.model.fields.selection,name:delivery_transaher.selection__transaher_tariff_rule__rate_type__per_package
+msgid "Base + Price per Package / Pallet"
+msgstr "Base + Precio por bulto / palet"
+
+#. module: delivery_transaher
+#: model:ir.model.fields.selection,name:delivery_transaher.selection__transaher_tariff_rule__rate_type__per_kg
+msgid "Base + Price per Total Kg"
+msgstr "Base + Precio por kg total"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_transaher_tariff_rule__base_price
+msgid "Base Price (€)"
+msgstr "Precio base (€)"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,help:delivery_transaher.field_delivery_carrier__transaher_test_mclient_url
+msgid ""
+"Base URL for GeneXus SOAP services in test mode (awsprcsatsoap, awsexpbaja, "
+"awsmnfprtsoap)."
+msgstr ""
+"URL base de los servicios SOAP GeneXus en entorno de pruebas (awsprcsatsoap,"
+" awsexpbaja, awsmnfprtsoap)."
+
+#. module: delivery_transaher
+#: model:ir.model.fields,help:delivery_transaher.field_delivery_carrier__transaher_test_mbridge_url
+msgid ""
+"Base URL for WCF SOAP services in test mode (wsgetToken, wsetiexpsoap, "
+"wsInformacionTransporte)."
+msgstr ""
+"URL base de los servicios SOAP WCF en entorno de pruebas (wsgetToken, "
+"wsetiexpsoap, wsInformacionTransporte)."
+
+#. module: delivery_transaher
+#: model:ir.model.fields.selection,name:delivery_transaher.selection__delivery_carrier__transaher_default_packaging_code__caj
+#: model:ir.model.fields.selection,name:delivery_transaher.selection__stock_package_type__transaher_packaging_code__caj
+msgid "CAJ - Cardboard Box (Caja)"
+msgstr "CAJ - Caja de cartón"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_transaher_tariff_rule__cod_surcharge_pct
+msgid "COD Surcharge (%)"
+msgstr "Recargo contra reembolso (%)"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_delivery_carrier__transaher_cached_token
+msgid "Cached Security Token"
+msgstr "Token de seguridad en caché"
+
+#. module: delivery_transaher
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.view_picking_form_inherit_transaher
+msgid "Calculate / Update Estimated Rate"
+msgstr "Calcular / Actualizar tarifa estimada"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_transaher_tariff_rule__rate_type
+msgid "Calculation Mode"
+msgstr "Modo de cálculo"
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/transaher_request.py:0
+msgid "Cancellation rejected by Transaher"
+msgstr "Anulación rechazada por Transaher"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,help:delivery_transaher.field_transaher_tariff_rule__insurance_surcharge_pct
+msgid "Cargo insurance fee percentage over declared insured value."
+msgstr "Porcentaje de seguro de mercancía sobre el valor asegurado declarado."
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_stock_package_type__package_carrier_type
+msgid "Carrier"
+msgstr "Transportista"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_stock_picking__transaher_cod_amount
+msgid "Cash on Delivery / COD (€)"
+msgstr "Contra reembolso (€)"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,help:delivery_transaher.field_transaher_tariff_rule__cod_surcharge_pct
+msgid "Cash-on-delivery (Contra reembolso) fee percentage over COD amount."
+msgstr ""
+"Porcentaje de comisión por contra reembolso sobre el importe a cobrar."
+
+#. module: delivery_transaher
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.report_transaher_manifest_document
+msgid "Center"
+msgstr "Centro"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,help:delivery_transaher.field_stock_picking__transaher_centro
+msgid ""
+"Center code returned by awsprcsatsoap (e.g. 461 Valencia, 81 Barcelona)."
+msgstr ""
+"Código de centro devuelto por awsprcsatsoap (p. ej. 461 Valencia, 81 "
+"Barcelona)."
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_stock_picking__transaher_expedicion_ch
+msgid "Channel / External Expedition Ref"
+msgstr "Ref. expedición canal / externa"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_choose_delivery_carrier__transaher_chargeable_weight
+msgid "Chargeable Weight (kg)"
+msgstr "Peso tasable (kg)"
+
+#. module: delivery_transaher
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.view_transaher_manifest_wizard_form
+msgid "Close"
+msgstr "Cerrar"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,help:delivery_transaher.field_transaher_tariff_rule__zip_prefixes
+msgid ""
+"Comma-separated postal code prefixes (e.g. '07, 35, 38, 46'). Leave empty "
+"for all."
+msgstr ""
+"Prefijos de código postal separados por comas (p. ej. '07, 35, 38, 46'). "
+"Dejar vacío para todos."
+
+#. module: delivery_transaher
+#: model:ir.model.fields,help:delivery_transaher.field_stock_picking__transaher_expedition_key
+msgid ""
+"Composite expedition key Holding.Seccion.Centro.CodExpedicion used by "
+"wsEtiExpSOAP and awsExpBaja."
+msgstr ""
+"Clave compuesta de expedición Holding.Seccion.Centro.CodExpedicion utilizada"
+" por wsEtiExpSOAP y awsExpBaja."
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/transaher_request.py:0
+msgid "Connection error with Transaher Web Service (%(url)s): %(err)s"
+msgstr "Error de conexión con el Web Service de Transaher (%(url)s): %(err)s"
+
+#. module: delivery_transaher
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.report_transaher_manifest_document
+msgid "Consignee"
+msgstr "Consignatario"
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/delivery_carrier.py:0
+msgid ""
+"Consignee '%s' must have Street, Postal Code, City, and Country configured "
+"to register an expedition in Transaher."
+msgstr ""
+"El destinatario '%s' debe tener Calle, Código Postal, Población y País "
+"configurados para dar de alta una expedición en Transaher."
+
+#. module: delivery_transaher
+#: model:ir.model,name:delivery_transaher.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,help:delivery_transaher.field_delivery_carrier__transaher_bultos_tag_mode
+msgid ""
+"Controls the <Bultos> tag in wsEtiExpSOAP (Section 6.1): '-1' prints all "
+"packages of the expedition; empty prints only unprinted packages."
+msgstr ""
+"Controla la etiqueta <Bultos> en wsEtiExpSOAP (Sección 6.1): '-1' imprime "
+"todos los bultos de la expedición; vacío imprime únicamente los bultos "
+"pendientes de imprimir."
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_stock_picking__transaher_cost_difference
+msgid "Cost Deviation (€)"
+msgstr "Desviación de coste (€)"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_transaher_tariff_rule__country_ids
+msgid "Countries"
+msgstr "Países"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_transaher_manifest_wizard__create_uid
+#: model:ir.model.fields,field_description:delivery_transaher.field_transaher_tariff_rule__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_transaher_manifest_wizard__create_date
+#: model:ir.model.fields,field_description:delivery_transaher.field_transaher_tariff_rule__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_transaher_tariff_rule__currency_id
+msgid "Currency"
+msgstr "Moneda"
+
+#. module: delivery_transaher
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.report_transaher_label_document
+msgid "Customer Logo"
+msgstr "Logo del cliente"
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/stock_picking.py:0
+msgid "DEBIDOS"
+msgstr "DEBIDOS"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_transaher_manifest_wizard__date_from
+msgid "Date From"
+msgstr "Fecha desde"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_transaher_manifest_wizard__date_to
+msgid "Date To"
+msgstr "Fecha hasta"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_delivery_carrier__transaher_send_volume
+msgid "Declare Volume (m³) in Shipments"
+msgstr "Declarar volumen (m³) en las expediciones"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_delivery_carrier__transaher_cod_surcharge_pct
+msgid "Default COD Surcharge (%)"
+msgstr "Recargo contra reembolso por defecto (%)"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,help:delivery_transaher.field_delivery_carrier__transaher_cod_surcharge_pct
+msgid "Default Cash-on-Delivery (Contra reembolso) surcharge percentage."
+msgstr "Porcentaje de recargo por contra reembolso aplicado por defecto."
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_delivery_carrier__transaher_portes
+msgid "Default Freight Terms (Tipo de Portes)"
+msgstr "Tipo de portes por defecto"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_delivery_carrier__transaher_fuel_surcharge_pct
+msgid "Default Fuel Surcharge (%)"
+msgstr "Recargo de combustible por defecto (%)"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_delivery_carrier__transaher_insurance_surcharge_pct
+msgid "Default Insurance Surcharge (%)"
+msgstr "Recargo de seguro por defecto (%)"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_delivery_carrier__transaher_default_package_type_id
+msgid "Default Package / Pallet Type"
+msgstr "Tipo de bulto / palet por defecto"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_delivery_carrier__transaher_default_packaging_code
+msgid "Default Packaging Classification"
+msgstr "Clasificación de embalaje por defecto"
+
+#. module: delivery_transaher
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.view_delivery_carrier_form_inherit_transaher
+msgid "Default Surcharges"
+msgstr "Recargos por defecto"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,help:delivery_transaher.field_delivery_carrier__transaher_insurance_surcharge_pct
+msgid ""
+"Default cargo insurance percentage applied when insured value is declared."
+msgstr ""
+"Porcentaje de seguro de mercancía aplicado por defecto cuando se declara "
+"valor asegurado."
+
+#. module: delivery_transaher
+#: model:ir.model.fields,help:delivery_transaher.field_res_partner__transaher_delivery_notes
+#: model:ir.model.fields,help:delivery_transaher.field_res_users__transaher_delivery_notes
+msgid ""
+"Default delivery instructions sent to Transaher (automatically split across "
+"Observations 1 & 2, max 70 chars each)."
+msgstr ""
+"Instrucciones de entrega por defecto enviadas a Transaher (divididas "
+"automáticamente entre Observaciones 1 y 2, máx. 70 caracteres cada una)."
+
+#. module: delivery_transaher
+#: model:ir.model.fields,help:delivery_transaher.field_res_partner__transaher_portes_default
+#: model:ir.model.fields,help:delivery_transaher.field_res_users__transaher_portes_default
+msgid ""
+"Default freight payment terms (Portes Pagados / Debidos) for Transaher "
+"shipments to this partner."
+msgstr ""
+"Condición de portes por defecto (Portes Pagados / Debidos) para envíos "
+"Transaher a este contacto."
+
+#. module: delivery_transaher
+#: model:ir.model.fields,help:delivery_transaher.field_delivery_carrier__transaher_fuel_surcharge_pct
+msgid ""
+"Default fuel surcharge percentage applied in the local tariff table when a "
+"rule does not specify its own."
+msgstr ""
+"Porcentaje de recargo de combustible aplicado en la tabla de tarifas local "
+"cuando una regla no especifica el suyo propio."
+
+#. module: delivery_transaher
+#: model:ir.model.fields,help:delivery_transaher.field_delivery_carrier__transaher_default_package_type_id
+msgid ""
+"Default package or pallet type when the picking or sale order has no "
+"detailed packages."
+msgstr ""
+"Tipo de bulto o palet por defecto cuando el albarán o pedido de venta no "
+"tiene paquetes detallados."
+
+#. module: delivery_transaher
+#: model:ir.model.fields,help:delivery_transaher.field_delivery_carrier__transaher_seccion
+msgid "Default section code (10 per Transaher Technical Manual Section 4.2)."
+msgstr ""
+"Código de sección por defecto (10 según la Sección 4.2 del Manual Técnico de"
+" Transaher)."
+
+#. module: delivery_transaher
+#: model:ir.model.fields,help:delivery_transaher.field_delivery_carrier__transaher_prod_mbridge_url
+msgid ""
+"Definitive production URL for MBridge SOAP services provided by Transaher."
+msgstr ""
+"URL definitiva de producción para los servicios SOAP MBridge facilitada por "
+"Transaher."
+
+#. module: delivery_transaher
+#: model:ir.model.fields,help:delivery_transaher.field_delivery_carrier__transaher_prod_mclient_url
+msgid ""
+"Definitive production URL for MClient SOAP services provided by Transaher."
+msgstr ""
+"URL definitiva de producción para los servicios SOAP MClient facilitada por "
+"Transaher."
+
+#. module: delivery_transaher
+#: model:ir.model,name:delivery_transaher.model_choose_delivery_carrier
+msgid "Delivery Carrier Selection Wizard"
+msgstr "Asistente de selección de método de envío"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_transaher_tariff_rule__carrier_id
+msgid "Delivery Method"
+msgstr "Método de envío"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_stock_picking__transaher_centro_destino
+msgid "Destination Center"
+msgstr "Centro de destino"
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/delivery_carrier.py:0
+msgid "Destination Center / Zone"
+msgstr "Centro / Zona de destino"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_transaher_manifest_wizard__display_name
+#: model:ir.model.fields,field_description:delivery_transaher.field_transaher_tariff_rule__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_stock_picking__transaher_area_dis_cod
+msgid "Distribution Area Code"
+msgstr "Código de zona de reparto"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_stock_picking__transaher_area_dis_dsc
+msgid "Distribution Area Description"
+msgstr "Descripción de zona de reparto"
+
+#. module: delivery_transaher
+#: model:ir.model.fields.selection,name:delivery_transaher.selection__delivery_carrier__transaher_default_packaging_code__eur
+#: model:ir.model.fields.selection,name:delivery_transaher.selection__stock_package_type__transaher_packaging_code__eur
+msgid "EUR - Euro Pallet (120 x 80 cm)"
+msgstr "EUR - Europalet (120 x 80 cm)"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,help:delivery_transaher.field_transaher_manifest_wizard__date_to
+msgid "End date/time sent to awsmnfprtsoap in aaaammddhhmm format."
+msgstr "Fecha y hora final enviada a awsmnfprtsoap en formato aaaammddhhmm."
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/transaher_request.py:0
+msgid "Error querying transport info"
+msgstr "Error al consultar información de transporte"
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/transaher_request.py:0
+msgid "Error retrieving manifest"
+msgstr "Error al obtener el manifiesto"
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/delivery_carrier.py:0
+msgid "Estimated Freight Cost"
+msgstr "Coste estimado del transporte"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_sale_order__transaher_estimated_cost
+msgid "Estimated Internal Transaher Cost (€)"
+msgstr "Coste interno estimado Transaher (€)"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_stock_picking__transaher_estimated_cost
+msgid "Estimated Transaher Cost (€)"
+msgstr "Coste estimado Transaher (€)"
+
+#. module: delivery_transaher
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.report_transaher_manifest_document
+msgid "Expedition"
+msgstr "Expedición"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_stock_picking__transaher_fecha_expedicion
+msgid "Expedition Date (Transaher)"
+msgstr "Fecha de expedición (Transaher)"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,help:delivery_transaher.field_stock_picking__transaher_obs_2
+msgid ""
+"Field 10 of Datosentrada: delivery observations line 2 (max. 70 characters)."
+msgstr ""
+"Campo 10 de Datosentrada: línea 2 de observaciones de entrega (máx. 70 "
+"caracteres)."
+
+#. module: delivery_transaher
+#: model:ir.model.fields,help:delivery_transaher.field_stock_picking__transaher_insured_value
+msgid "Field 14 of Datosentrada: cargo insured value (format 123456,123)."
+msgstr ""
+"Campo 14 de Datosentrada: valor asegurado de la mercancía (formato "
+"123456,123)."
+
+#. module: delivery_transaher
+#: model:ir.model.fields,help:delivery_transaher.field_stock_picking__transaher_cod_amount
+msgid ""
+"Field 15 of Datosentrada: Contra reembolso amount to collect on delivery "
+"(format 123456,123)."
+msgstr ""
+"Campo 15 de Datosentrada: importe de contra reembolso a cobrar en la entrega"
+" (formato 123456,123)."
+
+#. module: delivery_transaher
+#: model:ir.model.fields,help:delivery_transaher.field_stock_picking__transaher_postal_rep_code
+msgid "Field 5 of Datosentrada: Correos postal repetition code (optional)."
+msgstr ""
+"Campo 5 de Datosentrada: código de repetición postal según base de datos de "
+"Correos (opcional)."
+
+#. module: delivery_transaher
+#: model:ir.model.fields,help:delivery_transaher.field_delivery_carrier__transaher_portes
+#: model:ir.model.fields,help:delivery_transaher.field_stock_picking__transaher_portes
+msgid ""
+"Field 8 of Datosentrada: 1 = Freight Prepaid (Pagados), 2 = Freight Collect "
+"(Debidos)."
+msgstr "Campo 8 de Datosentrada: 1 = Portes Pagados, 2 = Portes Debidos."
+
+#. module: delivery_transaher
+#: model:ir.model.fields,help:delivery_transaher.field_stock_picking__transaher_obs_1
+msgid ""
+"Field 9 of Datosentrada: delivery observations line 1 (max. 70 characters)."
+msgstr ""
+"Campo 9 de Datosentrada: línea 1 de observaciones de entrega (máx. 70 "
+"caracteres)."
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_transaher_manifest_wizard__pdf_filename
+msgid "File Name"
+msgstr "Nombre de archivo"
+
+#. module: delivery_transaher
+#: model:ir.model.fields.selection,name:delivery_transaher.selection__transaher_tariff_rule__rate_type__fixed
+msgid "Fixed Bracket Price"
+msgstr "Precio fijo por tramo"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,help:delivery_transaher.field_delivery_carrier__transaher_protocolo
+msgid ""
+"Fixed EDI/SOAP protocol code (20 per Transaher Technical Manual Sections 3.1"
+" & 8)."
+msgstr ""
+"Código fijo de protocolo EDI/SOAP (20 según las Secciones 3.1 y 8 del Manual"
+" Técnico de Transaher)."
+
+#. module: delivery_transaher
+#: model:ir.model.fields,help:delivery_transaher.field_delivery_carrier__transaher_holding
+msgid ""
+"Fixed holding code (0 per Transaher Technical Manual Sections 2.1 & 4.2)."
+msgstr ""
+"Código fijo de holding (0 según las Secciones 2.1 y 4.2 del Manual Técnico "
+"de Transaher)."
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_delivery_carrier__transaher_free_for_customer
+msgid "Free Shipping for Customer (Keep Internal Cost)"
+msgstr "Envío gratuito para el cliente (mantener coste interno)"
+
+#. module: delivery_transaher
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.view_picking_form_inherit_transaher
+msgid "Freight Rate Control & Billing Audit"
+msgstr "Control de tarifas y auditoría de facturación"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_stock_picking__transaher_portes
+msgid "Freight Terms (Tipo de Portes)"
+msgstr "Tipo de portes"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_transaher_tariff_rule__fuel_surcharge_pct
+msgid "Fuel Surcharge (%)"
+msgstr "Recargo de combustible (%)"
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/delivery_carrier.py:0
+msgid "Gross / Chargeable Weight"
+msgstr "Peso bruto / tasable"
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/delivery_carrier.py:0
+#: code:addons/delivery_transaher/models/stock_picking.py:0
+msgid ""
+"Gross weight: %(gross).2f kg | Vol: %(vol).3f m³ | Chargeable weight: "
+"%(chg).2f kg | Packages: %(pkgs)d"
+msgstr ""
+"Peso bruto: %(gross).2f kg | Vol.: %(vol).3f m³ | Peso tasable: %(chg).2f kg"
+" | Bultos: %(pkgs)d"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_stock_picking__transaher_has_incidence
+msgid "Has Active Incidence"
+msgstr "Con incidencia activa"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_delivery_carrier__transaher_holding
+msgid "Holding Code (CodigoHolding)"
+msgstr "Código de Holding (CodigoHolding)"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_transaher_manifest_wizard__id
+#: model:ir.model.fields,field_description:delivery_transaher.field_transaher_tariff_rule__id
+msgid "ID"
+msgstr "ID"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,help:delivery_transaher.field_transaher_tariff_rule__fuel_surcharge_pct
+msgid ""
+"If 0, uses the default fuel surcharge percentage configured on the delivery "
+"method."
+msgstr ""
+"Si es 0, utiliza el porcentaje de recargo de combustible configurado por "
+"defecto en el método de envío."
+
+#. module: delivery_transaher
+#: model:ir.model.fields,help:delivery_transaher.field_delivery_carrier__transaher_free_for_customer
+msgid ""
+"If enabled, the customer is charged 0.00 € on the sale order line while Odoo"
+" preserves the internal Transaher cost on the sale order and picking."
+msgstr ""
+"Si está activo, al cliente se le factura 0,00 € en la línea del pedido de "
+"venta mientras Odoo conserva el coste interno de Transaher en el pedido y en"
+" el albarán."
+
+#. module: delivery_transaher
+#: model:ir.model.fields,help:delivery_transaher.field_transaher_tariff_rule__country_ids
+msgid "If left empty, applies to any country allowed by the carrier."
+msgstr ""
+"Si se deja vacío, se aplica a cualquier país permitido por el transportista."
+
+#. module: delivery_transaher
+#: model:ir.model.fields,help:delivery_transaher.field_transaher_tariff_rule__state_ids
+msgid "If left empty, applies to any state/province in the country."
+msgstr "Si se deja vacío, se aplica a cualquier provincia del país."
+
+#. module: delivery_transaher
+#: model:ir.model.fields,help:delivery_transaher.field_transaher_tariff_rule__included_weight
+msgid "In 'Excess Kg' mode, kilograms already included in the base price."
+msgstr ""
+"En el modo 'Kg adicional', kilogramos ya incluidos dentro del precio base."
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/transaher_tariff_rule.py:0
+msgid "In rule '%s', Minimum Packages/Pallets cannot be greater than Maximum."
+msgstr ""
+"En la regla '%s', el mínimo de bultos/palets no puede ser mayor que el "
+"máximo."
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/transaher_tariff_rule.py:0
+msgid "In rule '%s', Minimum Weight cannot be greater than Maximum Weight."
+msgstr ""
+"En la regla '%s', el peso mínimo no puede ser mayor que el peso máximo."
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/delivery_carrier.py:0
+msgid "Incidences"
+msgstr "Incidencias"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_transaher_tariff_rule__included_weight
+msgid "Included Kg in Base"
+msgstr "Kg incluidos en base"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_delivery_carrier__transaher_posicion_inicial
+msgid "Initial Print Position (Multi-Label Sheet)"
+msgstr "Posición inicial de impresión (hoja multietiqueta)"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_transaher_tariff_rule__insurance_surcharge_pct
+msgid "Insurance Surcharge (%)"
+msgstr "Recargo de seguro (%)"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_stock_picking__transaher_insured_value
+msgid "Insured Value (€)"
+msgstr "Valor asegurado (€)"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_choose_delivery_carrier__transaher_estimated_cost
+msgid "Internal Transaher Cost (€)"
+msgstr "Coste interno Transaher (€)"
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/transaher_request.py:0
+msgid "Invalid Transaher expedition number ('%s') for cancellation."
+msgstr "Número de expedición Transaher no válido ('%s') para anulación."
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/transaher_request.py:0
+msgid "Invalid or expired token"
+msgstr "Token inválido o caducado"
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/delivery_carrier.py:0
+msgid "Invalid postal code ('%s') for Transaher shipment."
+msgstr "Código postal no válido ('%s') para envío Transaher."
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_stock_picking__transaher_invoiced_cost
+msgid "Invoiced Transaher Cost (€)"
+msgstr "Coste facturado Transaher (€)"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_choose_delivery_carrier__is_transaher_carrier
+msgid "Is Transaher"
+msgstr "Es Transaher"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_stock_picking__is_transaher_carrier
+msgid "Is Transaher Carrier"
+msgstr "Es transportista Transaher"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_delivery_carrier__transaher_label_mode
+msgid "Label Generation Mode"
+msgstr "Modo de generación de etiquetas"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_transaher_manifest_wizard__write_uid
+#: model:ir.model.fields,field_description:delivery_transaher.field_transaher_tariff_rule__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_transaher_manifest_wizard__write_date
+#: model:ir.model.fields,field_description:delivery_transaher.field_transaher_tariff_rule__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: delivery_transaher
+#: model:ir.model.fields.selection,name:delivery_transaher.selection__transaher_manifest_wizard__source_mode__local_pickings
+msgid "Local Odoo Pickings Only"
+msgstr "Solo albaranes locales de Odoo"
+
+#. module: delivery_transaher
+#: model:ir.model.fields.selection,name:delivery_transaher.selection__delivery_carrier__transaher_label_mode__local_qweb
+msgid "Local Standard Transaher Label PDF (24-digit Barcode)"
+msgstr "Etiqueta estándar Transaher PDF local (código de barras 24 dígitos)"
+
+#. module: delivery_transaher
+#: model:ir.model.fields.selection,name:delivery_transaher.selection__delivery_carrier__transaher_default_packaging_code__med
+#: model:ir.model.fields.selection,name:delivery_transaher.selection__stock_package_type__transaher_packaging_code__med
+msgid "MED - Half Pallet (80 x 60 cm)"
+msgstr "MED - Medio palet (80 x 60 cm)"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_transaher_manifest_wizard__source_mode
+msgid "Manifest Data Source"
+msgstr "Origen de datos del manifiesto"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_transaher_manifest_wizard__pdf_file
+msgid "Manifest PDF"
+msgstr "Manifiesto PDF"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_delivery_carrier__transaher_use_order_incoterm
+msgid "Map Freight Terms from Incoterm"
+msgstr "Asignar tipo de portes según Incoterm"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_transaher_tariff_rule__max_packages
+msgid "Max. Packages / Pallets"
+msgstr "Máx. bultos / palets"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_transaher_tariff_rule__max_weight
+msgid "Max. Weight (kg)"
+msgstr "Peso máx. (kg)"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,help:delivery_transaher.field_transaher_tariff_rule__max_weight
+msgid ""
+"Maximum chargeable weight (inclusive) in kilograms. 0 = No upper limit."
+msgstr ""
+"Peso tasable máximo (inclusive) en kilogramos. 0 = Sin límite superior."
+
+#. module: delivery_transaher
+#: model:ir.model.fields,help:delivery_transaher.field_transaher_tariff_rule__max_packages
+msgid "Maximum number of packages or pallets (0 = no limit)."
+msgstr "Número máximo de bultos o palets (0 = sin límite)."
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_transaher_tariff_rule__min_packages
+msgid "Min. Packages / Pallets"
+msgstr "Mín. bultos / palets"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_transaher_tariff_rule__min_weight
+msgid "Min. Weight (kg)"
+msgstr "Peso mín. (kg)"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_transaher_tariff_rule__min_charge
+msgid "Minimum Charge (€)"
+msgstr "Importe mínimo (€)"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,help:delivery_transaher.field_transaher_tariff_rule__min_weight
+msgid "Minimum chargeable weight (inclusive) in kilograms."
+msgstr "Peso tasable mínimo (inclusive) en kilogramos."
+
+#. module: delivery_transaher
+#: model:ir.model.fields,help:delivery_transaher.field_transaher_tariff_rule__min_charge
+msgid "Minimum guaranteed freight charge before surcharges."
+msgstr "Importe mínimo garantizado de porte antes de recargos."
+
+#. module: delivery_transaher
+#: model:ir.model.fields,help:delivery_transaher.field_transaher_tariff_rule__min_packages
+msgid "Minimum number of packages or pallets (0 = no minimum)."
+msgstr "Número mínimo de bultos o palets (0 = sin mínimo)."
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/transaher_request.py:0
+msgid ""
+"Missing Transaher Client Code or Password for %(env)s environment on "
+"delivery method '%(carrier)s'."
+msgstr ""
+"Falta el Código de Cliente o la Contraseña de Transaher para el entorno de "
+"%(env)s en el método de envío '%(carrier)s'."
+
+#. module: delivery_transaher
+#: model:ir.model.fields,help:delivery_transaher.field_stock_picking__transaher_invoiced_cost
+msgid ""
+"Net freight amount reported by Transaher wsInformacionTransporte "
+"(<Importes>)."
+msgstr ""
+"Importe neto de portes informado por wsInformacionTransporte de Transaher "
+"(<Importes>)."
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/transaher_request.py:0
+msgid "No Base64 PDF/ZPL data returned by wsEtiExpSOAP."
+msgstr "wsEtiExpSOAP no devolvió datos PDF/ZPL en Base64."
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/wizard/transaher_manifest_wizard.py:0
+msgid "No Transaher expeditions were found between %(d1)s and %(d2)s."
+msgstr "No se encontraron expediciones de Transaher entre %(d1)s y %(d2)s."
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/stock_picking.py:0
+msgid ""
+"No applicable Transaher tariff found for %(partner)s (ZIP %(zip)s, "
+"%(weight).2f chargeable kg, %(pkgs)d packages)."
+msgstr ""
+"No se encontró ninguna tarifa Transaher aplicable para %(partner)s (CP "
+"%(zip)s, %(weight).2f kg tasables, %(pkgs)d bultos)."
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/delivery_carrier.py:0
+msgid ""
+"No matching rule found in Transaher Tariff Table for %(partner)s (ZIP "
+"%(zip)s, %(country)s, %(weight).2f chargeable kg, %(pkgs)d packages)."
+msgstr ""
+"No se encontró ninguna regla aplicable en la tabla de tarifas de Transaher "
+"para %(partner)s (CP %(zip)s, %(country)s, %(weight).2f kg tasables, "
+"%(pkgs)d bultos)."
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/transaher_request.py:0
+msgid "No token returned by wsgetToken."
+msgstr "wsgetToken no devolvió ningún token de seguridad."
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/delivery_carrier.py:0
+msgid "Notices"
+msgstr "Avisos"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,help:delivery_transaher.field_delivery_carrier__transaher_client_code_prod
+msgid "Numeric client code provided by Transaher for production."
+msgstr ""
+"Código numérico de cliente facilitado por Transaher para el entorno de "
+"producción."
+
+#. module: delivery_transaher
+#: model:ir.model.fields,help:delivery_transaher.field_delivery_carrier__transaher_client_code_test
+msgid "Numeric client code provided by Transaher for the test environment."
+msgstr ""
+"Código numérico de cliente facilitado por Transaher para el entorno de "
+"pruebas."
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_stock_picking__transaher_obs_1
+msgid "Observations Line 1"
+msgstr "Observaciones línea 1"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_stock_picking__transaher_obs_2
+msgid "Observations Line 2"
+msgstr "Observaciones línea 2"
+
+#. module: delivery_transaher
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.view_picking_form_inherit_transaher
+msgid "Observations line 1 (max. 70 chars)"
+msgstr "Observaciones línea 1 (máx. 70 caracteres)"
+
+#. module: delivery_transaher
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.view_picking_form_inherit_transaher
+msgid "Observations line 2 (max. 70 chars)"
+msgstr "Observaciones línea 2 (máx. 70 caracteres)"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,help:delivery_transaher.field_stock_picking__transaher_cod_expedicion
+msgid "Official CodExpedicion returned by Transaher Alta (awsprcsatsoap)."
+msgstr ""
+"CodExpedicion oficial devuelto por el alta de Transaher (awsprcsatsoap)."
+
+#. module: delivery_transaher
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.view_picking_form_inherit_transaher
+msgid "Open Transaher Portal"
+msgstr "Abrir portal Transaher"
+
+#. module: delivery_transaher
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.view_picking_form_inherit_transaher
+msgid "Operational Parameters (Datosentrada)"
+msgstr "Parámetros operativos (Datosentrada)"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,help:delivery_transaher.field_delivery_carrier__transaher_posicion_inicial
+msgid ""
+"Optional PosicionInicialImpresion parameter for multi-label A4 sheets (0 = "
+"omit / start from 1)."
+msgstr ""
+"Parámetro opcional PosicionInicialImpresion para hojas A4 multietiqueta (0 ="
+" omitir / empezar en 1)."
+
+#. module: delivery_transaher
+#: model:ir.model.fields,help:delivery_transaher.field_res_partner__transaher_postal_rep_code
+#: model:ir.model.fields,help:delivery_transaher.field_res_users__transaher_postal_rep_code
+msgid ""
+"Optional postal repetition code according to Correos database (Field 5 of "
+"Datosentrada)."
+msgstr ""
+"Código opcional de repetición postal según la base de datos de Correos "
+"(Campo 5 de Datosentrada)."
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_delivery_carrier__transaher_centro_cod
+msgid "Origin Center Code (Centro)"
+msgstr "Código de centro de origen (Centro)"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_delivery_carrier__transaher_centro_label
+msgid "Origin Center Label"
+msgstr "Etiqueta de centro de origen"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,help:delivery_transaher.field_delivery_carrier__transaher_centro_cod
+msgid ""
+"Origin Transaher center code (e.g. 461 for Valencia, 81 for Barcelona). Used"
+" as fallback in barcodes and cancellations."
+msgstr ""
+"Código de centro Transaher de origen (p. ej. 461 Valencia, 81 Barcelona). "
+"Usado como respaldo en códigos de barras y bajas."
+
+#. module: delivery_transaher
+#: model:ir.model.fields,help:delivery_transaher.field_delivery_carrier__transaher_centro_label
+msgid ""
+"Origin center label printed in Zone 1 of local Transaher labels (e.g. '81 "
+"BARCELONA' or '461 VALENCIA')."
+msgstr ""
+"Texto del centro de origen impreso en la Zona 1 de las etiquetas locales de "
+"Transaher (p. ej. '81 BARCELONA' o '461 VALENCIA')."
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/stock_picking.py:0
+msgid "PAGADOS"
+msgstr "PAGADOS"
+
+#. module: delivery_transaher
+#: model:ir.model.fields.selection,name:delivery_transaher.selection__delivery_carrier__transaher_default_packaging_code__pal
+#: model:ir.model.fields.selection,name:delivery_transaher.selection__stock_package_type__transaher_packaging_code__pal
+msgid "PAL - Pallet (Palet)"
+msgstr "PAL - Palet"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,help:delivery_transaher.field_stock_quant_package__transaher_sscc
+msgid ""
+"Package EAN / SSCC identifier reported by Transaher wsInformacionTransporte."
+msgstr ""
+"Identificador EAN / SSCC del bulto informado por wsInformacionTransporte de "
+"Transaher."
+
+#. module: delivery_transaher
+#: model:ir.model.fields,help:delivery_transaher.field_stock_package_type__transaher_packaging_code
+msgid ""
+"Package/pallet classification for Transaher shipments (BUL = Parcel, CAJ = "
+"Box, EUR = Euro Pallet, PAL = Pallet)."
+msgstr ""
+"Clasificación de bulto/palet para envíos Transaher (BUL = Bulto, CAJ = Caja,"
+" EUR = Europalet, PAL = Palet)."
+
+#. module: delivery_transaher
+#: model:ir.model,name:delivery_transaher.model_stock_quant_package
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.report_transaher_manifest_document
+msgid "Packages"
+msgstr "Bultos"
+
+#. module: delivery_transaher
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.view_delivery_carrier_form_inherit_transaher
+msgid "Packaging & Label Printing (wsEtiExpSOAP)"
+msgstr "Embalaje e impresión de etiquetas (wsEtiExpSOAP)"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,help:delivery_transaher.field_delivery_carrier__transaher_password_prod
+msgid "Password provided by Transaher for production."
+msgstr "Contraseña facilitada por Transaher para el entorno de producción."
+
+#. module: delivery_transaher
+#: model:ir.model.fields,help:delivery_transaher.field_delivery_carrier__transaher_password_test
+msgid "Password provided by Transaher for the test environment."
+msgstr "Contraseña facilitada por Transaher para el entorno de pruebas."
+
+#. module: delivery_transaher
+#: model:ir.model.fields.selection,name:delivery_transaher.selection__delivery_carrier__transaher_bultos_tag_mode__pending
+msgid "Pending Unprinted Packages Only (Empty tag)"
+msgstr "Solo bultos pendientes de imprimir (etiqueta vacía)"
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/stock_picking.py:0
+msgid "Picking %s does not have a Transaher delivery method assigned."
+msgstr "El albarán %s no tiene asignado un método de envío Transaher."
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/delivery_carrier.py:0
+msgid "Picking %s does not have a Transaher expedition code yet."
+msgstr "El albarán %s aún no tiene un código de expedición de Transaher."
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/delivery_carrier.py:0
+msgid "Picking %s does not have a delivery address assigned."
+msgstr "El albarán %s no tiene asignada una dirección de entrega."
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_stock_picking__transaher_postal_rep_code
+msgid "Postal Repetition Code"
+msgstr "Código de repetición postal"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_res_partner__transaher_postal_rep_code
+#: model:ir.model.fields,field_description:delivery_transaher.field_res_users__transaher_postal_rep_code
+msgid "Postal Repetition Code (Transaher)"
+msgstr "Código de repetición postal (Transaher)"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_transaher_tariff_rule__price_per_kg
+msgid "Price / Kg or Fraction (€)"
+msgstr "Precio / kg o fracción (€)"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_transaher_tariff_rule__price_per_package
+msgid "Price / Package or Pallet (€)"
+msgstr "Precio / bulto o palet (€)"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,help:delivery_transaher.field_transaher_tariff_rule__price_per_kg
+msgid ""
+"Price per kg (or per 100 kg fraction when calculation mode is '100 Kg "
+"Fraction')."
+msgstr ""
+"Precio por kg (o por fracción de 100 kg cuando el modo de cálculo es "
+"'Fracción de 100 kg')."
+
+#. module: delivery_transaher
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.view_delivery_carrier_form_inherit_transaher
+msgid "Pricing & Customer Billing"
+msgstr "Tarificación y facturación al cliente"
+
+#. module: delivery_transaher
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.view_transaher_manifest_wizard_form
+msgid "Print PDF Directly"
+msgstr "Imprimir PDF directamente"
+
+#. module: delivery_transaher
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.view_picking_form_inherit_transaher
+msgid "Print Standard Barcode Label (QWeb)"
+msgstr "Imprimir etiqueta estándar con código de barras (QWeb)"
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/delivery_carrier.py:0
+#: code:addons/delivery_transaher/models/transaher_request.py:0
+msgid "Production"
+msgstr "Producción"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_delivery_carrier__transaher_client_code_prod
+msgid "Production Client Code (CodigoCliente)"
+msgstr "Código de cliente de producción (CodigoCliente)"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_delivery_carrier__transaher_prod_mbridge_url
+msgid "Production MBridge Base URL"
+msgstr "URL base MBridge de producción"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_delivery_carrier__transaher_prod_mclient_url
+msgid "Production MClient Base URL"
+msgstr "URL base MClient de producción"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_delivery_carrier__transaher_password_prod
+msgid "Production Password (PasswordCliente)"
+msgstr "Contraseña de producción (PasswordCliente)"
+
+#. module: delivery_transaher
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.view_delivery_carrier_form_inherit_transaher
+msgid "Protocol & Expedition Defaults"
+msgstr "Protocolo y valores por defecto de expedición"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_delivery_carrier__transaher_protocolo
+msgid "Protocol Code (Protocolo)"
+msgstr "Código de protocolo (Protocolo)"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_delivery_carrier__delivery_type
+msgid "Provider"
+msgstr "Proveedor"
+
+#. module: delivery_transaher
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.view_transaher_manifest_wizard_form
+msgid "Query & Generate PDF Manifest"
+msgstr "Consultar y generar manifiesto PDF"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,help:delivery_transaher.field_sale_order__transaher_estimated_cost
+msgid ""
+"Real estimated shipping cost with Transaher (preserved internally even when "
+"shipping is free for the customer)."
+msgstr ""
+"Coste real estimado del envío con Transaher (conservado internamente incluso"
+" cuando el envío es gratuito para el cliente)."
+
+#. module: delivery_transaher
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.report_transaher_manifest_document
+msgid "Ref. / Delivery Note"
+msgstr "Ref. / Albarán"
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/delivery_carrier.py:0
+msgid "Return pickup %s"
+msgstr "Recogida devolución %s"
+
+#. module: delivery_transaher
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.view_delivery_carrier_form_inherit_transaher
+msgid "SOAP Credentials & Endpoints"
+msgstr "Credenciales y endpoints SOAP"
+
+#. module: delivery_transaher
+#: model:ir.model.fields.selection,name:delivery_transaher.selection__delivery_carrier__transaher_default_packaging_code__sob
+#: model:ir.model.fields.selection,name:delivery_transaher.selection__stock_package_type__transaher_packaging_code__sob
+msgid "SOB - Envelope / Document (Sobre)"
+msgstr "SOB - Sobre / Documentación"
+
+#. module: delivery_transaher
+#: model:ir.model,name:delivery_transaher.model_sale_order
+msgid "Sales Order"
+msgstr "Pedido de venta"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_delivery_carrier__transaher_seccion
+msgid "Section Code (Seccod)"
+msgstr "Código de sección (Seccod)"
+
+#. module: delivery_transaher
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.view_delivery_carrier_form_inherit_transaher
+msgid "Security Token Cache"
+msgstr "Caché de token de seguridad"
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/delivery_carrier.py:0
+msgid ""
+"Security token successfully obtained from wsgetToken (%s). Valid for 20 "
+"minutes."
+msgstr ""
+"Token de seguridad obtenido correctamente desde wsgetToken (%s). Válido "
+"durante 20 minutos."
+
+#. module: delivery_transaher
+#: model:ir.model.fields,help:delivery_transaher.field_delivery_carrier__transaher_send_volume
+msgid "Send package volume in Field 13 of Datosentrada (format 123,123)."
+msgstr ""
+"Enviar el volumen de los bultos en el Campo 13 de Datosentrada (formato "
+"123,123)."
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_transaher_tariff_rule__sequence
+msgid "Sequence"
+msgstr "Secuencia"
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/delivery_carrier.py:0
+msgid "Shipment successfully registered in Transaher:"
+msgstr "Expedición registrada correctamente en Transaher:"
+
+#. module: delivery_transaher
+#: model:ir.model,name:delivery_transaher.model_delivery_carrier
+msgid "Shipping Methods"
+msgstr "Métodos de envío"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,help:delivery_transaher.field_transaher_manifest_wizard__date_from
+msgid "Start date/time sent to awsmnfprtsoap in aaaammddhhmm format."
+msgstr "Fecha y hora inicial enviada a awsmnfprtsoap en formato aaaammddhhmm."
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_transaher_tariff_rule__state_ids
+msgid "States / Provinces"
+msgstr "Provincias"
+
+#. module: delivery_transaher
+#: model:ir.model,name:delivery_transaher.model_stock_package_type
+msgid "Stock package type"
+msgstr "Tipo de paquete de stock"
+
+#. module: delivery_transaher
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.report_transaher_manifest_document
+msgid "TOTAL EXPEDITIONS:"
+msgstr "TOTAL EXPEDICIONES:"
+
+#. module: delivery_transaher
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.report_transaher_label_document
+msgid "TRANSAHER"
+msgstr "TRANSAHER"
+
+#. module: delivery_transaher
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.report_transaher_manifest_document
+msgid "TRANSAHER — DAILY LOADING MANIFEST"
+msgstr "TRANSAHER — MANIFIESTO DIARIO DE CARGA"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_delivery_carrier__transaher_tariff_rule_ids
+msgid "Tariff Table by Zones / Weights / Packages"
+msgstr "Tabla de tarifas por zonas / pesos / bultos"
+
+#. module: delivery_transaher
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.view_delivery_carrier_form_inherit_transaher
+msgid "Tariff Table by Zones, Provinces, Postal Codes, Weights, and Packages"
+msgstr ""
+"Tabla de tarifas por zonas, provincias, códigos postales, pesos y bultos"
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/delivery_carrier.py:0
+#: code:addons/delivery_transaher/models/transaher_request.py:0
+msgid "Test"
+msgstr "Pruebas"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_delivery_carrier__transaher_client_code_test
+msgid "Test Client Code (CodigoCliente)"
+msgstr "Código de cliente de pruebas (CodigoCliente)"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_delivery_carrier__transaher_test_mbridge_url
+msgid "Test MBridge Base URL"
+msgstr "URL base MBridge de pruebas"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_delivery_carrier__transaher_test_mclient_url
+msgid "Test MClient Base URL"
+msgstr "URL base MClient de pruebas"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_delivery_carrier__transaher_password_test
+msgid "Test Password (PasswordCliente)"
+msgstr "Contraseña de pruebas (PasswordCliente)"
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/delivery_carrier.py:0
+msgid ""
+"The consignee (%s) must have a Postal Code and Country to calculate the "
+"Transaher rate."
+msgstr ""
+"El destinatario (%s) debe tener Código Postal y País para calcular la tarifa"
+" de Transaher."
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/stock_picking.py:0
+msgid ""
+"The picking consignee must have a Postal Code and Country to calculate the "
+"Transaher rate."
+msgstr ""
+"El destinatario del albarán debe tener Código Postal y País para calcular la"
+" tarifa de Transaher."
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/stock_picking.py:0
+msgid "This picking does not have a Transaher tracking link yet."
+msgstr "Este albarán aún no dispone de enlace de seguimiento en Transaher."
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_delivery_carrier__transaher_token_valid_until
+msgid "Token Valid Until"
+msgstr "Token válido hasta"
+
+#. module: delivery_transaher
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.view_picking_tree_inherit_transaher
+msgid "Total Transaher Estimated"
+msgstr "Total estimado Transaher"
+
+#. module: delivery_transaher
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.view_picking_tree_inherit_transaher
+msgid "Total Transaher Invoiced"
+msgstr "Total facturado Transaher"
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/transaher_tariff_rule.py:0
+msgid "Total Transaher Tariff: %.2f €"
+msgstr "Total tarifa Transaher: %.2f €"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_delivery_carrier__transaher_tracking_url
+msgid "Tracking Portal URL"
+msgstr "URL del portal de seguimiento"
+
+#. module: delivery_transaher
+#: model:ir.model.fields.selection,name:delivery_transaher.selection__delivery_carrier__delivery_type__transaher
+#: model:ir.model.fields.selection,name:delivery_transaher.selection__stock_package_type__package_carrier_type__transaher
+msgid "Transaher"
+msgstr "Transaher"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_stock_quant_package__transaher_barcode
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.report_transaher_label_document
+msgid "Transaher 24-Digit Barcode"
+msgstr "Código de barras Transaher (24 dígitos)"
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/transaher_request.py:0
+msgid ""
+"Transaher Alta (`awsprcsatsoap`) did not return a valid `<MT_Return>` XML "
+"payload."
+msgstr ""
+"El alta en Transaher (`awsprcsatsoap`) no devolvió un XML `<MT_Return>` "
+"válido."
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/transaher_request.py:0
+msgid "Transaher Alta did not return an expedition code (`CodExpedicion`)."
+msgstr ""
+"El alta en Transaher no devolvió ningún código de expedición "
+"(`CodExpedicion`)."
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/transaher_request.py:0
+msgid ""
+"Transaher Alta returned ErrCod=0 but no `<Expedicion>` element was included."
+msgstr ""
+"El alta en Transaher devolvió ErrCod=0 pero no incluyó ningún nodo "
+"`<Expedicion>`."
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/transaher_request.py:0
+msgid "Transaher Authentication Error (code %(code)s): %(detail)s"
+msgstr "Error de autenticación en Transaher (código %(code)s): %(detail)s"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_sale_order__transaher_chargeable_weight
+#: model:ir.model.fields,field_description:delivery_transaher.field_stock_picking__transaher_chargeable_weight
+msgid "Transaher Chargeable Weight (kg)"
+msgstr "Peso tasable Transaher (kg)"
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/transaher_request.py:0
+msgid "Transaher Client Code ('%s') must be numeric."
+msgstr "El Código de Cliente de Transaher ('%s') debe ser numérico."
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/delivery_carrier.py:0
+msgid "Transaher Connection Successful (%s)"
+msgstr "Conexión con Transaher correcta (%s)"
+
+#. module: delivery_transaher
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.view_transaher_manifest_wizard_form
+msgid "Transaher Daily Loading Manifest (awsmnfprtsoap)"
+msgstr "Manifiesto diario de carga Transaher (awsmnfprtsoap)"
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/delivery_carrier.py:0
+#: model:ir.actions.report,name:delivery_transaher.action_report_transaher_manifest
+#: model:ir.ui.menu,name:delivery_transaher.menu_transaher_manifest
+msgid "Transaher Daily Manifest"
+msgstr "Manifiesto diario Transaher"
+
+#. module: delivery_transaher
+#: model:ir.model,name:delivery_transaher.model_transaher_manifest_wizard
+msgid "Transaher Daily Manifest (awsmnfprtsoap) Wizard"
+msgstr "Asistente de manifiesto diario Transaher (awsmnfprtsoap)"
+
+#. module: delivery_transaher
+#: model:ir.model,name:delivery_transaher.model_report_delivery_transaher_report_transaher_manifest_document
+msgid "Transaher Daily Manifest PDF Report"
+msgstr "Informe PDF de manifiesto diario Transaher"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_transaher_manifest_wizard__carrier_id
+msgid "Transaher Delivery Method"
+msgstr "Método de envío Transaher"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_res_partner__transaher_delivery_notes
+#: model:ir.model.fields,field_description:delivery_transaher.field_res_users__transaher_delivery_notes
+msgid "Transaher Delivery Observations"
+msgstr "Observaciones de entrega Transaher"
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/delivery_carrier.py:0
+msgid "Transaher Expedition"
+msgstr "Expedición Transaher"
+
+#. module: delivery_transaher
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.view_picking_form_inherit_transaher
+msgid "Transaher Expedition & Routing"
+msgstr "Expedición y enrutamiento Transaher"
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/transaher_request.py:0
+msgid "Transaher Expedition Cancellation Error (code %(code)s): %(reason)s"
+msgstr "Error al anular expedición en Transaher (código %(code)s): %(reason)s"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_stock_picking__transaher_cod_expedicion
+msgid "Transaher Expedition Code"
+msgstr "Código de expedición Transaher"
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/transaher_request.py:0
+msgid "Transaher Expedition Creation Error (ErrCod %(code)s): %(desc)s"
+msgstr "Error al crear expedición en Transaher (ErrCod %(code)s): %(desc)s"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_res_partner__transaher_portes_default
+#: model:ir.model.fields,field_description:delivery_transaher.field_res_users__transaher_portes_default
+msgid "Transaher Freight Terms"
+msgstr "Condición de portes Transaher"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_stock_picking__transaher_expedition_key
+msgid "Transaher Full Key (H.S.C.Exp)"
+msgstr "Clave completa Transaher (H.S.C.Exp)"
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/transaher_request.py:0
+msgid ""
+"Transaher HTTP %(code)s error on %(svc)s:\n"
+"%(body)s"
+msgstr ""
+"Error HTTP %(code)s de Transaher en %(svc)s:\n"
+"%(body)s"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_stock_picking__transaher_holding
+msgid "Transaher Holding"
+msgstr "Holding Transaher"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_stock_picking__transaher_incidence_text
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.view_picking_form_inherit_transaher
+msgid "Transaher Incidences"
+msgstr "Incidencias Transaher"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_stock_picking__transaher_invoice_number
+msgid "Transaher Invoice Number"
+msgstr "Número de factura Transaher"
+
+#. module: delivery_transaher
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.view_picking_form_inherit_transaher
+msgid "Transaher Label (WS)"
+msgstr "Etiqueta Transaher (WS)"
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/transaher_request.py:0
+msgid ""
+"Transaher Label Error (`wsEtiExpSOAP`):\n"
+"%s"
+msgstr ""
+"Error de etiquetas Transaher (`wsEtiExpSOAP`):\n"
+"%s"
+
+#. module: delivery_transaher
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.view_partner_form_inherit_transaher
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.view_picking_form_inherit_transaher
+msgid "Transaher Logistics"
+msgstr "Logística Transaher"
+
+#. module: delivery_transaher
+#: model:ir.actions.act_window,name:delivery_transaher.action_transaher_manifest_wizard
+msgid "Transaher Manifest"
+msgstr "Manifiesto Transaher"
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/transaher_request.py:0
+msgid "Transaher Manifest Error (`awsmnfprtsoap` ErrCod %(code)s): %(desc)s"
+msgstr ""
+"Error de manifiesto Transaher (`awsmnfprtsoap` ErrCod %(code)s): %(desc)s"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_stock_picking__transaher_centro
+msgid "Transaher Origin Center"
+msgstr "Centro de origen Transaher"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_stock_package_type__transaher_packaging_code
+#: model:ir.model.fields,field_description:delivery_transaher.field_stock_picking__transaher_package_type_id
+msgid "Transaher Packaging Type"
+msgstr "Tipo de embalaje Transaher"
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/transaher_request.py:0
+msgid ""
+"Transaher SOAP Fault [%(code)s] on %(svc)s:\n"
+"%(msg)s"
+msgstr ""
+"Fallo SOAP de Transaher [%(code)s] en %(svc)s:\n"
+"%(msg)s"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_stock_quant_package__transaher_sscc
+msgid "Transaher SSCC / EAN"
+msgstr "SSCC / EAN Transaher"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_stock_picking__transaher_seccion
+msgid "Transaher Section"
+msgstr "Sección Transaher"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_stock_picking__transaher_servicio
+msgid "Transaher Service"
+msgstr "Servicio Transaher"
+
+#. module: delivery_transaher
+#: model:delivery.carrier,name:delivery_transaher.delivery_carrier_transaher_main
+#: model:product.template,name:delivery_transaher.product_product_delivery_transaher_product_template
+msgid "Transaher Smart Logistic"
+msgstr "Transaher Smart Logistic"
+
+#. module: delivery_transaher
+#: model:ir.actions.report,name:delivery_transaher.action_report_transaher_label
+msgid "Transaher Standard Label (24-Digit Barcode)"
+msgstr "Etiqueta estándar Transaher (código de barras 24 dígitos)"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_stock_picking__transaher_cost_breakdown
+msgid "Transaher Tariff / Cost Breakdown"
+msgstr "Desglose de tarifa / coste Transaher"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_choose_delivery_carrier__transaher_rate_breakdown
+#: model:ir.model.fields,field_description:delivery_transaher.field_sale_order__transaher_rate_breakdown
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.choose_delivery_carrier_view_form_inherit_transaher
+msgid "Transaher Tariff Breakdown"
+msgstr "Desglose de tarifa Transaher"
+
+#. module: delivery_transaher
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.view_delivery_carrier_form_inherit_transaher
+msgid "Transaher Tariff Rules"
+msgstr "Reglas de tarifa Transaher"
+
+#. module: delivery_transaher
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.view_delivery_carrier_form_inherit_transaher
+msgid "Transaher Tariffs & Costs"
+msgstr "Tarifas y costes Transaher"
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/transaher_request.py:0
+msgid ""
+"Transaher Tracking Error (`wsInformacionTransporte` code %(code)s): %(desc)s"
+msgstr ""
+"Error de seguimiento Transaher (`wsInformacionTransporte` código %(code)s): "
+"%(desc)s"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_stock_picking__transaher_tracking_url
+msgid "Transaher Tracking Link"
+msgstr "Enlace de seguimiento Transaher"
+
+#. module: delivery_transaher
+#: model:ir.model,name:delivery_transaher.model_transaher_tariff_rule
+msgid "Transaher Transport Tariff Rule by Zone / Weight / Package"
+msgstr "Regla de tarifa de transporte Transaher por zona / peso / bulto"
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/transaher_request.py:0
+msgid "Transaher Web Service (%s) returned an empty or invalid XML response."
+msgstr ""
+"El Web Service de Transaher (%s) devolvió una respuesta XML vacía o no "
+"válida."
+
+#. module: delivery_transaher
+#: model:ir.model.fields.selection,name:delivery_transaher.selection__transaher_manifest_wizard__source_mode__ws_with_fallback
+msgid "Transaher Web Service (awsmnfprtsoap) + Local Fallback"
+msgstr "Web Service Transaher (awsmnfprtsoap) + Respaldo local"
+
+#. module: delivery_transaher
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.view_delivery_carrier_form_inherit_transaher
+msgid "Transaher Web Service Configuration"
+msgstr "Configuración Web Service Transaher"
+
+#. module: delivery_transaher
+#: model:ir.model.fields.selection,name:delivery_transaher.selection__transaher_manifest_wizard__source_mode__ws_only
+msgid "Transaher Web Service Only (awsmnfprtsoap)"
+msgstr "Solo Web Service Transaher (awsmnfprtsoap)"
+
+#. module: delivery_transaher
+#: model:ir.model.fields.selection,name:delivery_transaher.selection__delivery_carrier__transaher_label_mode__ws_only
+msgid "Transaher Web Service Only (wsEtiExpSOAP)"
+msgstr "Solo Web Service Transaher (wsEtiExpSOAP)"
+
+#. module: delivery_transaher
+#: model:ir.model.fields.selection,name:delivery_transaher.selection__delivery_carrier__transaher_label_mode__ws_with_fallback
+msgid "Transaher Web Service PDF (with Local QWeb Label Fallback)"
+msgstr "PDF Web Service Transaher (con respaldo de etiqueta QWeb local)"
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/delivery_carrier.py:0
+msgid ""
+"Transaher expedition #%(exp)s is currently in carrier state '%(state)s'. Per"
+" Transaher rules (Section 4.1), cancellation via awsExpBaja is only allowed "
+"when the expedition is in Received, Documented, or Labelled status."
+msgstr ""
+"La expedición de Transaher n.º %(exp)s se encuentra actualmente en el estado"
+" del transportista '%(state)s'. Según las reglas de Transaher (apartado "
+"4.1), la anulación mediante awsExpBaja solo está permitida cuando la "
+"expedición está en situación Recepcionado, Documentado o Etiquetado."
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/delivery_carrier.py:0
+msgid ""
+"Transaher expedition cancelled via awsExpBaja and unlinked from picking."
+msgstr ""
+"Expedición Transaher anulada mediante awsExpBaja y desvinculada del albarán."
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/transaher_request.py:0
+msgid "Transaher rejected the newly generated security token: %s"
+msgstr "Transaher rechazó el token de seguridad recién generado: %s"
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/delivery_carrier.py:0
+msgid "Transaher return expedition created (Expedition #%s)."
+msgstr "Expedición de devolución Transaher creada (Expedición n.º %s)."
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/delivery_carrier.py:0
+msgid "Transaher shipping label downloaded and attached to picking."
+msgstr "Etiqueta de envío Transaher descargada y adjuntada al albarán."
+
+#. module: delivery_transaher
+#: model:ir.model.fields,help:delivery_transaher.field_delivery_carrier__transaher_tracking_url
+msgid "Transaher web portal URL for shipment tracking links."
+msgstr ""
+"URL del portal web de Transaher para los enlaces de seguimiento de envíos."
+
+#. module: delivery_transaher
+#: model:ir.model,name:delivery_transaher.model_stock_picking
+msgid "Transfer"
+msgstr "Albarán"
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/transaher_request.py:0
+msgid "Unknown error in awsprcsatsoap"
+msgstr "Error desconocido en awsprcsatsoap"
+
+#. module: delivery_transaher
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.view_picking_form_inherit_transaher
+msgid "Update Tracking & Invoiced Costs"
+msgstr "Actualizar seguimiento y costes facturados"
+
+#. module: delivery_transaher
+#: model:ir.model.fields.selection,name:delivery_transaher.selection__res_partner__transaher_portes_default__default
+msgid "Use Delivery Method Default"
+msgstr "Usar valor por defecto del método de envío"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,help:delivery_transaher.field_delivery_carrier__transaher_volumetric_factor
+msgid ""
+"Volume-to-chargeable-weight conversion factor for road freight (e.g. 250 or "
+"333 kg/m³). Set 0 to use gross weight only."
+msgstr ""
+"Factor de conversión de volumen a peso tasable para transporte terrestre (p."
+" ej. 250 o 333 kg/m³). Indique 0 para usar solo el peso bruto."
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_delivery_carrier__transaher_volumetric_factor
+msgid "Volumetric Factor (kg / m³)"
+msgstr "Factor volumétrico (kg / m³)"
+
+#. module: delivery_transaher
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.report_transaher_manifest_document
+msgid "Weight (kg)"
+msgstr "Peso (kg)"
+
+#. module: delivery_transaher
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.report_transaher_label_document
+msgid "Z.R.:"
+msgstr "Z.R.:"
+
+#. module: delivery_transaher
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.report_transaher_manifest_document
+msgid "ZIP / City"
+msgstr "CP / Población"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_transaher_tariff_rule__zip_prefixes
+msgid "ZIP / Postal Code Prefixes"
+msgstr "Prefijos de CP / Código postal"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_transaher_tariff_rule__name
+msgid "Zone / Rule Description"
+msgstr "Zona / Descripción de la regla"
+
+#. module: delivery_transaher
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.view_delivery_carrier_form_inherit_transaher
+msgid "e.g. 07, 35, 38"
+msgstr "p. ej. 07, 35, 38"
+
+#. module: delivery_transaher
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.view_delivery_carrier_form_inherit_transaher
+msgid "e.g. 12345"
+msgstr "p. ej. 12345"
+
+#. module: delivery_transaher
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.view_delivery_carrier_form_inherit_transaher
+msgid "e.g. Spain Mainland (Up to 100 kg)"
+msgstr "p. ej. España Península (hasta 100 kg)"
+
+#. module: delivery_transaher
+#: model_terms:ir.ui.view,arch_db:delivery_transaher.report_transaher_manifest_document
+msgid "kg"
+msgstr "kg"
+
+#. module: delivery_transaher
+#: model:ir.model.fields,field_description:delivery_transaher.field_delivery_carrier__transaher_bultos_tag_mode
+msgid "wsEtiExpSOAP Package Tag (<Bultos>)"
+msgstr "Etiqueta de bultos wsEtiExpSOAP (<Bultos>)"
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/delivery_carrier.py:0
+msgid ""
+"wsEtiExpSOAP unavailable (%s); local Transaher barcode label generated."
+msgstr ""
+"wsEtiExpSOAP no disponible (%s); se ha generado la etiqueta local con código"
+" de barras Transaher."
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/transaher_tariff_rule.py:0
+msgid "• Applied rule: %(rule)s — Base freight: %(freight).2f €"
+msgstr "• Regla aplicada: %(rule)s — Porte base: %(freight).2f €"
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/transaher_tariff_rule.py:0
+msgid "• Cargo insurance (%(pct).2f%%): %(amt).2f €"
+msgstr "• Seguro de mercancía (%(pct).2f%%): %(amt).2f €"
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/transaher_tariff_rule.py:0
+msgid "• Cash-on-delivery fee (%(pct).2f%%): %(amt).2f €"
+msgstr "• Comisión contra reembolso (%(pct).2f%%): %(amt).2f €"
+
+#. module: delivery_transaher
+#. odoo-python
+#: code:addons/delivery_transaher/models/transaher_tariff_rule.py:0
+msgid "• Fuel surcharge (%(pct).2f%%): %(amt).2f €"
+msgstr "• Recargo de combustible (%(pct).2f%%): %(amt).2f €"

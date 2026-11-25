@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <!-- Standard Transaher Package Types -->
+    <record id="stock_package_type_transaher_bulto" model="stock.package.type">
+        <field name="name">Transaher Standard Box / Parcel (40x30x30)</field>
+        <field name="package_carrier_type">transaher</field>
+        <field name="transaher_packaging_code">BUL</field>
+        <field name="shipper_package_code">BUL</field>
+        <field name="packaging_length">400</field>
+        <field name="width">300</field>
+        <field name="height">300</field>
+        <field name="base_weight">0.5</field>
+        <field name="max_weight">35.0</field>
+    </record>
+
+    <record id="stock_package_type_transaher_europallet" model="stock.package.type">
+        <field name="name">Transaher Europallet (EUR 120x80)</field>
+        <field name="package_carrier_type">transaher</field>
+        <field name="transaher_packaging_code">EUR</field>
+        <field name="shipper_package_code">EUR</field>
+        <field name="packaging_length">1200</field>
+        <field name="width">800</field>
+        <field name="height">1200</field>
+        <field name="base_weight">25.0</field>
+        <field name="max_weight">1000.0</field>
+    </record>
+
+    <record id="stock_package_type_transaher_half_pallet" model="stock.package.type">
+        <field name="name">Transaher Half Pallet (MED 80x60)</field>
+        <field name="package_carrier_type">transaher</field>
+        <field name="transaher_packaging_code">MED</field>
+        <field name="shipper_package_code">MED</field>
+        <field name="packaging_length">800</field>
+        <field name="width">600</field>
+        <field name="height">1000</field>
+        <field name="base_weight">12.0</field>
+        <field name="max_weight">500.0</field>
+    </record>
+
+    <!-- Service Product for Transaher Shipping Method -->
+    <record id="product_product_delivery_transaher" model="product.product">
+        <field name="name">Transaher Smart Logistic</field>
+        <field name="default_code">DELIVERY_TRANSAHER</field>
+        <field name="type">service</field>
+        <field name="categ_id" ref="delivery.product_category_deliveries" />
+        <field name="sale_ok" eval="False" />
+        <field name="purchase_ok" eval="True" />
+        <field name="list_price">0.0</field>
+    </record>
+
+    <!-- Preconfigured Transaher Shipping Method -->
+    <record id="delivery_carrier_transaher_main" model="delivery.carrier">
+        <field name="name">Transaher Smart Logistic</field>
+        <field name="delivery_type">transaher</field>
+        <field name="integration_level">rate_and_ship</field>
+        <field name="product_id" ref="product_product_delivery_transaher" />
+        <field name="prod_environment" eval="False" />
+        <field name="transaher_holding">0</field>
+        <field name="transaher_seccion">10</field>
+        <field name="transaher_centro_cod">461</field>
+        <field name="transaher_centro_label">461 VALENCIA</field>
+        <field name="transaher_protocolo">20</field>
+        <field name="transaher_portes">1</field>
+        <field
+            name="transaher_default_package_type_id"
+            ref="stock_package_type_transaher_bulto"
+        />
+        <field name="transaher_default_packaging_code">BUL</field>
+        <field name="transaher_label_mode">ws_with_fallback</field>
+        <field name="transaher_bultos_tag_mode">reprint_all</field>
+        <field name="transaher_volumetric_factor">250.0</field>
+    </record>
+
+    <!-- Sample Tariff Rules (Mainland Spain, Heavy Shipments, Portugal) -->
+    <record id="transaher_tariff_rule_es_light" model="transaher.tariff.rule">
+        <field name="name">Spain Mainland (Up to 100 kg)</field>
+        <field name="sequence">10</field>
+        <field name="carrier_id" ref="delivery_carrier_transaher_main" />
+        <field name="country_ids" eval="[(4, ref('base.es'))]" />
+        <field name="max_weight">100.0</field>
+        <field name="rate_type">per_excess_kg</field>
+        <field name="base_price">9.50</field>
+        <field name="included_weight">15.0</field>
+        <field name="price_per_kg">0.22</field>
+        <field name="min_charge">9.50</field>
+        <field name="fuel_surcharge_pct">4.0</field>
+    </record>
+
+    <record id="transaher_tariff_rule_es_heavy" model="transaher.tariff.rule">
+        <field name="name">Spain Mainland Heavy / Pallets (&gt; 100 kg)</field>
+        <field name="sequence">20</field>
+        <field name="carrier_id" ref="delivery_carrier_transaher_main" />
+        <field name="country_ids" eval="[(4, ref('base.es'))]" />
+        <field name="min_weight">100.01</field>
+        <field name="rate_type">per_100kg</field>
+        <field name="base_price">20.00</field>
+        <field name="price_per_kg">12.50</field>
+        <field name="min_charge">32.50</field>
+        <field name="fuel_surcharge_pct">4.0</field>
+    </record>
+
+    <record id="transaher_tariff_rule_pt" model="transaher.tariff.rule">
+        <field name="name">Portugal Standard Iberia</field>
+        <field name="sequence">30</field>
+        <field name="carrier_id" ref="delivery_carrier_transaher_main" />
+        <field name="country_ids" eval="[(4, ref('base.pt'))]" />
+        <field name="rate_type">per_excess_kg</field>
+        <field name="base_price">16.00</field>
+        <field name="included_weight">15.0</field>
+        <field name="price_per_kg">0.30</field>
+        <field name="min_charge">16.00</field>
+        <field name="fuel_surcharge_pct">4.5</field>
+    </record>
+</odoo>

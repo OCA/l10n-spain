@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_transaher_manifest_wizard_form" model="ir.ui.view">
+        <field name="name">transaher.manifest.wizard.form</field>
+        <field name="model">transaher.manifest.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Transaher Daily Loading Manifest (awsmnfprtsoap)">
+                <group>
+                    <group>
+                        <field name="carrier_id" />
+                        <field name="date_from" />
+                        <field name="date_to" />
+                        <field name="source_mode" />
+                    </group>
+                    <group invisible="not pdf_file">
+                        <field name="pdf_filename" invisible="1" />
+                        <field
+                            name="pdf_file"
+                            filename="pdf_filename"
+                            widget="binary"
+                        />
+                    </group>
+                </group>
+                <footer>
+                    <button
+                        name="action_generate_manifest_pdf"
+                        string="Query &amp; Generate PDF Manifest"
+                        type="object"
+                        class="btn-primary"
+                        data-hotkey="q"
+                    />
+                    <button
+                        name="action_print_manifest"
+                        string="Print PDF Directly"
+                        type="object"
+                        class="btn-secondary"
+                        icon="fa-print"
+                    />
+                    <button
+                        string="Close"
+                        class="btn-secondary"
+                        special="cancel"
+                        data-hotkey="x"
+                    />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_transaher_manifest_wizard" model="ir.actions.act_window">
+        <field name="name">Transaher Manifest</field>
+        <field name="res_model">transaher.manifest.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem
+        id="menu_transaher_manifest"
+        name="Transaher Daily Manifest"
+        action="action_transaher_manifest_wizard"
+        parent="stock.menu_warehouse_report"
+        sequence="100"
+    />
+</odoo>
