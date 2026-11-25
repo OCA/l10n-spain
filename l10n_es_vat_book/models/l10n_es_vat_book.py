@@ -282,7 +282,10 @@ class L10nEsVatBook(models.Model):
                 value["tax_amount"] += amount * sign
                 value["move_line_ids"].append((4, move_line.id))
             return
-        if move_line.tax_line_id:
+        # Only the taxes of the book are tax amounts. The tax line of another
+        # tax that affects the base of the next ones (e.g. the electricity
+        # tax) is part of the VAT base: it is added to the base below
+        if move_line.tax_line_id in implied_taxes:
             res = {}
             move_line._process_aeat_tax_fee_info(res, move_line.tax_line_id, sign)
             for child_tax, info in res.items():
@@ -296,7 +299,7 @@ class L10nEsVatBook(models.Model):
         for i, tax in enumerate(move_line.tax_ids):
             res = {}
             move_line._process_aeat_tax_base_info(res, tax, sign)
-            if i == 0:
+            if i == 0 and move_line.tax_line_id not in implied_taxes:
                 vat_book_line["base_amount"] += next(iter(res.values()))["base"]
             for child_tax, info in res.items():
                 if child_tax not in implied_taxes:

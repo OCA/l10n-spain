@@ -227,3 +227,107 @@ class TestL10nEsVatBookXlsx(TestL10nEsAeatVatBookBase):
         self.assertAlmostEqual(tax_line.base_amount, -100, 2)
         self.assertAlmostEqual(tax_line.tax_amount, -21, 2)
         self.assertAlmostEqual(tax_line.deductible_amount, -10.5, 2)
+
+    def _tax_affecting_base(self, vat_tax, name, amount_type, amount):
+        """Special tax out of the book that is part of the VAT base (art.
+        78.Dos.4º LIVA), set up by an administrator before the VAT."""
+        return (
+            self.env["account.tax"]
+            .sudo()
+            .create(
+                {
+                    "name": name,
+                    "amount": amount,
+                    "amount_type": amount_type,
+                    "type_tax_use": vat_tax.type_tax_use,
+                    "include_base_amount": True,
+                    "sequence": vat_tax.sequence - 1,
+                    "company_id": self.company.id,
+                }
+            )
+        )
+
+    def _line_with_taxes(self, account, quantity, price_unit, taxes):
+        return {
+            "invoice_line_ids": [
+                Command.create(
+                    {
+                        "name": "Test for taxes affecting the VAT base",
+                        "account_id": account.id,
+                        "quantity": quantity,
+                        "price_unit": price_unit,
+                        "tax_ids": [Command.set(taxes.ids)],
+                    }
+                )
+            ]
+        }
+
+    def _check_tax_affecting_base(self, invoice, book_line, summary, vat_tax, vals):
+        """The special tax is in the VAT base, not a tax of the book, and the
+        total of the book line is the one of the invoice."""
+        base, quota, total = vals
+        self.assertAlmostEqual(invoice.amount_total, total, 2)
+        self.assertAlmostEqual(book_line.base_amount, base, 2)
+        self.assertAlmostEqual(book_line.total_amount, total, 2)
+        self.assertEqual(book_line.tax_line_ids.tax_id, vat_tax)
+        self.assertAlmostEqual(book_line.tax_line_ids.base_amount, base, 2)
+        self.assertAlmostEqual(book_line.tax_line_ids.tax_amount, quota, 2)
+        self.assertEqual(summary.tax_id, vat_tax)
+
+    def test_xlsx_issued_tax_affecting_base(self):
+        """Electricity sold for 100 with the electricity tax (a percentage, 5 %
+        here) and 21 % VAT on 105."""
+        vat_tax = self._get_taxes("S_IVA21B")
+        electricity_tax = self._tax_affecting_base(
+            vat_tax, "Electricity tax 5%", "percent", 5
+        )
+        invoice = self._invoice_sale_create(
+            "2017-01-13",
+            extra_vals=self._line_with_taxes(
+                self.accounts["700000"], 1, 100, electricity_tax | vat_tax
+            ),
+        )
+        vat_book = self._create_vat_book()
+        vat_book.button_calculate()
+        self._check_tax_affecting_base(
+            invoice,
+            vat_book.issued_line_ids,
+            vat_book.issued_tax_summary_ids,
+            vat_tax,
+            (105, 22.05, 127.05),
+        )
+        issued, _received = self._export_xlsx(vat_book)
+        rows = self._rows(issued, "W")
+        self.assertEqual(list(rows), [21])
+        self.assertEqual(issued[f"U{rows[21]}"].value, 127.05)
+        self.assertEqual(issued[f"V{rows[21]}"].value, 105)
+        self.assertEqual(issued[f"X{rows[21]}"].value, 22.05)
+
+    def test_xlsx_received_tax_affecting_base(self):
+        """20 kg of non reusable plastic packaging bought for 100 with the
+        plastic tax (a fixed 0.45 per kg, 9) and 21 % VAT on 109."""
+        vat_tax = self._get_taxes("P_IVA21_BC")
+        plastic_tax = self._tax_affecting_base(
+            vat_tax, "Plastic packaging tax 0.45/kg", "fixed", 0.45
+        )
+        bill = self._invoice_purchase_create(
+            "2017-01-20",
+            extra_vals=self._line_with_taxes(
+                self.accounts["600000"], 20, 5, plastic_tax | vat_tax
+            ),
+        )
+        vat_book = self._create_vat_book()
+        vat_book.button_calculate()
+        self._check_tax_affecting_base(
+            bill,
+            vat_book.received_line_ids,
+            vat_book.received_tax_summary_ids,
+            vat_tax,
+            (109, 22.89, 131.89),
+        )
+        _issued, received = self._export_xlsx(vat_book)
+        rows = self._rows(received, "AA")
+        self.assertEqual(list(rows), [109])
+        self.assertEqual(received[f"Z{rows[109]}"].value, 131.89)
+        self.assertEqual(received[f"AB{rows[109]}"].value, 21)
+        self.assertEqual(received[f"AC{rows[109]}"].value, 22.89)
