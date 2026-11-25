@@ -76,6 +76,44 @@ class TestL10nEsAeatMod303VatProrate(TestL10nEsAeatMod303Base):
             self.model303_4t.move_id.line_ids.filtered(lambda x: x.debit == 2.1)
         )
 
+    def test_model_303_prorate_previous_declarations(self):
+        """The regularization of the definitive prorate takes the filed
+        declaration of each earlier period: not the drafts or the cancelled
+        ones, and only the last complementary one of its period."""
+        self._set_general_prorate("2024-01-01", 90)
+        self._invoice_purchase_create("2024-01-01")
+        self.model303.button_calculate()
+        self.model303.button_confirm()
+        self.assertEqual(self.model303.total_deducir, 94.5)
+        # The complementary declaration of 1T adds a bill
+        self._invoice_purchase_create("2024-02-01")
+        dates = {"date_start": "2024-01-01", "date_end": "2024-03-31"}
+        complementary = self.model303.copy(
+            {
+                "name": "9990000000304",
+                "statement_type": "C",
+                "previous_number": self.model303.name,
+                **dates,
+            }
+        )
+        complementary.button_calculate()
+        complementary.button_confirm()
+        self.assertEqual(complementary.total_deducir, 189)
+        # Another bill in declarations of 1T that are not filed
+        self._invoice_purchase_create("2024-03-01")
+        cancelled = complementary.copy({"name": "9990000000305", **dates})
+        cancelled.button_calculate()
+        cancelled.button_cancel()
+        draft = complementary.copy({"name": "9990000000306", **dates})
+        draft.button_calculate()
+        draft.button_recover()
+        self.assertEqual(draft.total_deducir, 283.5)
+        self._invoice_purchase_create("2024-11-01")
+        self.model303_4t.vat_prorate_percent = 89
+        self.model303_4t.button_calculate()
+        # 1 % of 189 in 1T and of 94.5 in 4T
+        self.assertEqual(self.model303_4t.casilla_44, -3.15)
+
     def test_model_303_with_prorate_non_deductible_line(self):
         """Fuel of a car used 50 % in the activity (art. 95 LIVA) with a prorate of
         80 %: [29] has the prorate of the quota left deductible (art. 104.Uno

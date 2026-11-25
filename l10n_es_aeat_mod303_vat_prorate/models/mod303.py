@@ -69,6 +69,22 @@ class L10nEsAeatMod303Report(models.Model):
                 self.env._("VAT prorate percent must be between 0.00 and 100")
             )
 
+    def _get_previous_prorate_reports(self):
+        """Declaration of each earlier period of the year whose deductible
+        amount is regularized with the definitive prorate: drafts and cancelled
+        declarations were not filed, and a complementary or substitutive
+        declaration replaces the previous ones of its period, so only the
+        latest one of each period is taken.
+        """
+        self.ensure_one()
+        reports = self._get_previous_fiscalyear_reports(self.date_start).filtered(
+            lambda report: report.state not in ("draft", "cancelled")
+        )
+        res = self.browse()
+        for period_reports in reports.grouped("period_type").values():
+            res |= period_reports.sorted("id")[-1:]
+        return res
+
     def _general_prorate_method(self):
         self.ensure_one()
         theoretical_prorate = self.prorate_id.vat_prorate
@@ -84,8 +100,7 @@ class L10nEsAeatMod303Report(models.Model):
             return
         result = 0
         # Get the difference for the previous reports
-        prev_reports = self._get_previous_fiscalyear_reports(self.date_start)
-        for report in prev_reports:
+        for report in self._get_previous_prorate_reports():
             result += diff_perc * report.total_deducir / theoretical_prorate
         # Get the diff for this declaration (the last of the year)
         diff_amount = round(diff_perc * self.total_deducir / theoretical_prorate, 2)
