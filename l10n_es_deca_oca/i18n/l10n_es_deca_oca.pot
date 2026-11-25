@@ -4,10 +4,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 19.0+e\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-05 18:17+0000\n"
-"PO-Revision-Date: 2026-10-05 18:17+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -50,6 +48,11 @@ msgstr ""
 #. module: l10n_es_deca_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
 msgid "<strong class=\"fw-bold\">Sender / Place of loading:</strong>"
+msgstr ""
+
+#. module: l10n_es_deca_oca
+#: model:ir.model.fields,help:l10n_es_deca_oca.field_stock_picking_type__l10n_es_deca_enabled
+msgid "Allows printing the DeCA report for incoming shipments."
 msgstr ""
 
 #. module: l10n_es_deca_oca
@@ -98,9 +101,8 @@ msgid "DeCA Version"
 msgstr ""
 
 #. module: l10n_es_deca_oca
-#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_stock_move__display_name
-#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_stock_picking__display_name
-msgid "Display Name"
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_stock_picking__deca_is_visible
+msgid "Deca Is Visible"
 msgstr ""
 
 #. module: l10n_es_deca_oca
@@ -110,13 +112,26 @@ msgid "Deca Weight"
 msgstr ""
 
 #. module: l10n_es_deca_oca
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_stock_move__display_name
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_stock_picking__display_name
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_stock_picking_type__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: l10n_es_deca_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_deca_oca.report_deca_document
 msgid "Document for electronic Control of Administration (DeCA)"
 msgstr ""
 
 #. module: l10n_es_deca_oca
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_stock_picking_type__l10n_es_deca_enabled
+msgid "Enable DeCA"
+msgstr ""
+
+#. module: l10n_es_deca_oca
 #: model:ir.model.fields,field_description:l10n_es_deca_oca.field_stock_move__id
 #: model:ir.model.fields,field_description:l10n_es_deca_oca.field_stock_picking__id
+#: model:ir.model.fields,field_description:l10n_es_deca_oca.field_stock_picking_type__id
 msgid "ID"
 msgstr ""
 
@@ -125,6 +140,11 @@ msgstr ""
 #: code:addons/l10n_es_deca_oca/models/stock_picking.py:0
 #: model:ir.model.fields,field_description:l10n_es_deca_oca.field_stock_picking__tractor_license_plate
 msgid "Main vehicle or tractor licence plate"
+msgstr ""
+
+#. module: l10n_es_deca_oca
+#: model:ir.model,name:l10n_es_deca_oca.model_stock_picking_type
+msgid "Picking Type"
 msgstr ""
 
 #. module: l10n_es_deca_oca
