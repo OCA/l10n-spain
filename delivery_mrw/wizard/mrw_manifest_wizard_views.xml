@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="delivery_mrw_manifest_wizard_form" model="ir.ui.view">
+        <field name="model">mrw.manifest.wizard</field>
+        <field name="arch" type="xml">
+            <form string="MRW Manifest">
+                <group>
+                    <group>
+                        <field name="date_from" />
+                        <field name="carrier_id" widget="selection" />
+                    </group>
+                </group>
+                <footer>
+                    <button
+                        name="get_manifest"
+                        string="Get Manifest"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                    <button string="Cancel" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
