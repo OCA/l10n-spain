@@ -1,6 +1,7 @@
 - ForgeFlow (<https://www.forgeflow.com>)
 - [Tecnativa](https://www.tecnativa.com):
   - Pedro M. Baeza
+  - Carlos Dauden
 - [Sygel](http://www.sygel.es):
   - Harald Panten \<<harald.panten@sygel.es>\>
   - Valentin Vinagre \<<valentin.vinagre@sygel.es>\>
