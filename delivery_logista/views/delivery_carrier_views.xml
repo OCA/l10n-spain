@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Acysos S.L.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_delivery_carrier_form_inherit_logista" model="ir.ui.view">
+        <field name="name">delivery.carrier.form.inherit.logista</field>
+        <field name="model">delivery.carrier</field>
+        <field name="inherit_id" ref="delivery.view_delivery_carrier_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button
+                    name="action_test_logista_plaza_ws"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-plug"
+                    invisible="delivery_type != 'logista'"
+                >
+                    <div class="o_stat_info">
+                        <span class="o_stat_text">Test</span>
+                        <span class="o_stat_text">Plaza WS</span>
+                    </div>
+                </button>
+            </xpath>
+            <xpath expr="//notebook/page[1]" position="before">
+                <page
+                    string="Logista Configuration"
+                    name="logista_configuration"
+                    invisible="delivery_type != 'logista'"
+                >
+                    <group>
+                        <group string="Connection &amp; Sender">
+                            <field
+                                name="logista_api_token"
+                                password="True"
+                                required="delivery_type == 'logista'"
+                            />
+                            <field name="logista_auth_scheme" />
+                            <field
+                                name="logista_sender_code"
+                                required="delivery_type == 'logista'"
+                            />
+                            <field name="logista_send_sender_name" />
+                            <field
+                                name="logista_test_url"
+                                invisible="prod_environment"
+                            />
+                            <field
+                                name="logista_prod_url"
+                                invisible="not prod_environment"
+                            />
+                            <field
+                                name="logista_test_plaza_url"
+                                invisible="prod_environment"
+                            />
+                            <field
+                                name="logista_prod_plaza_url"
+                                invisible="not prod_environment"
+                            />
+                            <field name="logista_tracking_url" />
+                        </group>
+                        <group string="Service &amp; Freight">
+                            <field
+                                name="logista_service_id"
+                                required="delivery_type == 'logista'"
+                            />
+                            <field
+                                name="logista_sector_code"
+                                required="delivery_type == 'logista'"
+                            />
+                            <field
+                                name="logista_freight_type"
+                                required="delivery_type == 'logista'"
+                            />
+                            <field name="logista_use_order_incoterm" />
+                            <field name="logista_delivery_note_action" />
+                            <field name="logista_tight_flow" />
+                            <field name="logista_notification_type" />
+                            <field name="logista_cash_on_delivery" />
+                            <field name="logista_send_volume" />
+                            <field name="logista_allow_local_cancel" />
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Labels, Barcodes &amp; Packaging">
+                            <field name="logista_label_format" />
+                            <field name="logista_origin_delegation_code" />
+                            <field name="logista_origin_delegation_name" />
+                            <field name="logista_customer_barcode_code" />
+                            <field
+                                name="logista_default_packaging_id"
+                                context="{'default_package_carrier_type': 'logista'}"
+                            />
+                        </group>
+                        <group string="ePackingList &amp; Base Pricing">
+                            <field name="logista_epacking_enabled" />
+                            <field
+                                name="logista_epacking_mailing"
+                                invisible="not logista_epacking_enabled"
+                            />
+                            <field
+                                name="logista_epacking_printing"
+                                invisible="not logista_epacking_enabled"
+                            />
+                            <field
+                                name="fixed_price"
+                                widget="monetary"
+                                string="Default Fixed Price"
+                            />
+                        </group>
+                    </group>
+                    <separator
+                        string="Optional Price Rules (by Weight / Volume / Packages)"
+                    />
+                    <field name="price_rule_ids" nolabel="1" />
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

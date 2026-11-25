@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Acysos S.L.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="stock_package_type_form_inherit_logista" model="ir.ui.view">
+        <field name="name">stock.package.type.form.inherit.logista</field>
+        <field name="model">stock.package.type</field>
+        <field
+            name="inherit_id"
+            ref="stock_delivery.stock_package_type_form_delivery"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='shipper_package_code']" position="before">
+                <field
+                    name="logista_package_kind"
+                    invisible="package_carrier_type != 'logista'"
+                    required="package_carrier_type == 'logista'"
+                />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_quant_package_form_inherit_logista" model="ir.ui.view">
+        <field name="name">stock.quant.package.form.inherit.logista</field>
+        <field name="model">stock.quant.package</field>
+        <field name="inherit_id" ref="stock.view_quant_package_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='package_type_id']" position="after">
+                <field
+                    name="logista_barcode"
+                    readonly="1"
+                    invisible="not logista_barcode"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>

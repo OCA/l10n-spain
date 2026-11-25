@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Acysos S.L.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_partner_form_inherit_logista" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit.logista</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//page[@name='sales_purchases']//group[@name='container_row_2']"
+                position="inside"
+            >
+                <group string="Logista Parcel" name="logista_partner_settings">
+                    <field name="logista_customer_code" />
+                    <field name="logista_freight_type" />
+                    <field name="logista_notification_type" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

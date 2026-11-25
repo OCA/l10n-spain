@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Acysos S.L.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <!-- 100x150mm Thermal Label Paper Format -->
+    <record id="paperformat_logista_label_100x150" model="report.paperformat">
+        <field name="name">Logista Parcel Label 100x150mm</field>
+        <field name="default" eval="False" />
+        <field name="format">custom</field>
+        <field name="page_height">150</field>
+        <field name="page_width">100</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">3</field>
+        <field name="margin_bottom">3</field>
+        <field name="margin_left">3</field>
+        <field name="margin_right">3</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">0</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <!-- Official Logista Parcel Shipping Label Template (Bultos & Palets) -->
+    <template id="report_logista_label_document">
+        <t t-call="web.basic_layout">
+            <t t-foreach="docs" t-as="picking">
+                <t
+                    t-set="label_items"
+                    t-value="picking._get_logista_label_items(is_return=env.context.get('logista_is_return', False))"
+                />
+                <t t-foreach="label_items" t-as="lbl">
+                    <div
+                        class="page"
+                        style="page-break-after: always; font-family: Helvetica, Arial, sans-serif; font-size: 9px; color: #000; padding: 2px;"
+                    >
+                        <!-- Header: Logista PARCEL + Timestamp & Destination Delegation -->
+                        <table
+                            style="width: 100%; border-collapse: collapse; margin-bottom: 2px;"
+                        >
+                            <tr>
+                                <td style="width: 34%; vertical-align: top;">
+                                    <div
+                                        style="font-size: 18px; font-weight: 900; color: #1f2bd6; line-height: 1;"
+                                    >
+                                        Logista
+                                    </div>
+                                    <div
+                                        style="font-size: 8px; font-weight: 800; color: #ff6a00; letter-spacing: 0.5px; margin-left: 22px;"
+                                    >
+                                        PARCEL
+                                    </div>
+                                    <div
+                                        style="font-size: 7.5px; font-weight: bold; margin-top: 3px;"
+                                    >
+                                        <span t-out="lbl['origin_header']" />
+                                    </div>
+                                </td>
+                                <td
+                                    style="width: 66%; vertical-align: bottom; text-align: left;"
+                                >
+                                    <div style="font-size: 7px; font-weight: bold;">
+                                        <span
+                                        t-out="lbl['delegacion_destino']"
+                                    /> -- <span t-out="lbl['printed_at']" />
+                                    </div>
+                                    <div
+                                        style="font-size: 20px; font-weight: 900; line-height: 1.05; letter-spacing: -0.3px;"
+                                    >
+                                        <span t-out="lbl['delegacion_destino']" />
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <!-- Sender (Remitente) Block -->
+                        <table
+                            style="width: 100%; border-top: 2px solid #000; border-collapse: collapse; margin-bottom: 2px;"
+                        >
+                            <tr>
+                                <td
+                                    style="width: 5%; vertical-align: middle; text-align: center; font-size: 6.5px; font-weight: bold; padding: 2px 1px;"
+                                >
+                                    <div
+                                        style="writing-mode: vertical-rl; transform: rotate(180deg);"
+                                    >Remitente</div>
+                                </td>
+                                <td
+                                    style="width: 95%; padding: 2px 3px; vertical-align: top;"
+                                >
+                                    <div
+                                        style="font-size: 10px; font-weight: 800; line-height: 1.15;"
+                                    >
+                                        <span t-out="lbl['remitente_name']" />
+                                    </div>
+                                    <div style="font-size: 8px; line-height: 1.15;">
+                                        <span t-out="lbl['remitente_street']" />
+                                    </div>
+                                    <div style="font-size: 8px; line-height: 1.15;">
+                                        <span t-out="lbl['remitente_cp_city']" />
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <!-- Consignee (Destinatario) Box + Delivery Zone (zonaReparto) -->
+                        <table
+                            style="width: 100%; border: 2px solid #000; border-collapse: collapse; margin-bottom: 3px;"
+                        >
+                            <tr>
+                                <td
+                                    style="width: 5%; background: #000; color: #fff; vertical-align: middle; text-align: center; font-size: 6.5px; font-weight: bold; padding: 2px 1px;"
+                                >
+                                    <div
+                                        style="writing-mode: vertical-rl; transform: rotate(180deg);"
+                                    >Destinatario</div>
+                                </td>
+                                <td
+                                    style="width: 68%; padding: 3px 4px; vertical-align: top;"
+                                >
+                                    <div
+                                        style="font-size: 10px; font-weight: 800; line-height: 1.15;"
+                                    >
+                                        <span t-out="lbl['consignatario_name']" />
+                                    </div>
+                                    <div style="font-size: 8px; line-height: 1.2;">
+                                        <span t-out="lbl['consignatario_street']" />
+                                    </div>
+                                    <div
+                                        t-if="lbl['consignatario_dept']"
+                                        style="font-size: 8px; line-height: 1.2;"
+                                    >
+                                        <span t-out="lbl['consignatario_dept']" />
+                                    </div>
+                                    <div
+                                        style="background: #000; color: #fff; font-size: 11px; font-weight: 900; padding: 1px 4px; margin-top: 2px; display: inline-block; min-width: 92%;"
+                                    >
+                                        <span t-out="lbl['consignatario_cp_city']" />
+                                    </div>
+                                    <div
+                                        style="font-size: 7.5px; font-weight: bold; margin-top: 2px;"
+                                    >
+                                        <span
+                                            t-out="lbl['consignatario_country_tel']"
+                                        />
+                                    </div>
+                                </td>
+                                <td
+                                    style="width: 27%; padding: 3px; vertical-align: bottom; text-align: center;"
+                                >
+                                    <div
+                                        style="font-size: 26px; font-weight: 900; line-height: 1;"
+                                    >
+                                        <span t-out="lbl['zona_reparto']" />
+                                    </div>
+                                    <div
+                                        style="font-size: 8px; font-weight: 800; margin-top: 3px;"
+                                    >
+                                        <span t-out="lbl['sector_label']" />
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <!-- Expedition (Expedición): Service, Freight, Observations, Reference & Package/Pallet Counter -->
+                        <table
+                            style="width: 100%; border-collapse: collapse; margin-bottom: 4px;"
+                        >
+                            <tr>
+                                <td
+                                    style="width: 5%; vertical-align: middle; text-align: center; font-size: 6.5px; font-weight: bold; padding: 2px 1px;"
+                                >
+                                    <div
+                                        style="writing-mode: vertical-rl; transform: rotate(180deg);"
+                                    >Expedición</div>
+                                </td>
+                                <td
+                                    style="width: 50%; padding: 2px 4px; vertical-align: top;"
+                                >
+                                    <div
+                                        style="font-size: 19px; font-weight: 900; line-height: 1.05;"
+                                    >
+                                        <span t-out="lbl['service_name']" />
+                                    </div>
+                                    <div
+                                        style="background: #000; color: #fff; font-size: 8px; font-weight: 800; padding: 1px 5px; margin-top: 2px; display: inline-block;"
+                                    >
+                                        <span t-out="lbl['freight_label']" />
+                                    </div>
+                                    <div
+                                        t-if="lbl['obs_1']"
+                                        style="font-size: 7.5px; font-weight: bold; margin-top: 2px; line-height: 1.15;"
+                                    >
+                                        <span t-out="lbl['obs_1']" />
+                                    </div>
+                                    <div
+                                        t-if="lbl['obs_2']"
+                                        style="font-size: 7.5px; font-weight: bold; line-height: 1.15;"
+                                    >
+                                        <span t-out="lbl['obs_2']" />
+                                    </div>
+                                </td>
+                                <td
+                                    t-att-style="'width: 45%; vertical-align: top; padding: 3px 5px; background: #000; color: #fff;' if lbl['is_pallet'] else 'width: 45%; vertical-align: top; padding: 3px 5px;'"
+                                >
+                                    <div
+                                        style="font-size: 12px; font-weight: 900; line-height: 1.15;"
+                                    >
+                                        Ref. <span t-out="lbl['main_reference']" />
+                                    </div>
+                                    <div
+                                        style="font-size: 10.5px; font-weight: 800; line-height: 1.2;"
+                                    >
+                                        <t t-if="lbl['is_pallet']">Pal.</t>
+                                        <t t-else="">Bto.</t>
+                                        <span t-out="lbl['unit_index']" />/<span
+                                        t-out="lbl['control_packages']"
+                                    />
+                                        Tot: <span t-out="lbl['packages']" /> Btos.
+                                    </div>
+                                    <div
+                                        style="font-size: 9px; font-weight: 800; line-height: 1.2;"
+                                    >
+                                        Peso: <span t-out="lbl['weight_kg']" /> Kgs.
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <!-- 34-Digit Code 128 Barcode (Min height 24mm, quiet zone >= 4mm per Labelling Spec v4) -->
+                        <div
+                            style="border-top: 2px solid #000; padding-top: 4mm; margin-top: 2px; text-align: center;"
+                        >
+                            <img
+                                t-att-src="'/report/barcode/?barcode_type=%s&amp;value=%s&amp;width=%s&amp;height=%s&amp;quiet=0' % ('Code128', lbl['barcode'], 1020, 240)"
+                                style="width: 86mm; height: 28mm;"
+                                alt="Logista Parcel 34-Digit Barcode"
+                            />
+                            <div
+                                style="font-family: monospace; font-size: 8px; letter-spacing: 0.6px; margin-top: 2px;"
+                            >
+                                <span t-out="lbl['barcode']" />
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_logista_label" model="ir.actions.report">
+        <field name="name">Logista Parcel Label</field>
+        <field name="model">stock.picking</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">delivery_logista.report_logista_label_document</field>
+        <field name="report_file">delivery_logista.report_logista_label_document</field>
+        <field name="paperformat_id" ref="paperformat_logista_label_100x150" />
+        <field
+            name="print_report_name"
+        >'Logista_Label_%s' % (object.carrier_tracking_ref or object.name)</field>
+    </record>
+</odoo>
