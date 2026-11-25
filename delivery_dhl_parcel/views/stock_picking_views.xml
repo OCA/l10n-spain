@@ -31,7 +31,7 @@
                     name="dhl_parcel_toggle_hold_shipment"
                     string="Release DHL Parcel shipment"
                     type="object"
-                    invisible="delivery_type != 'dhl_parcel' or state != 'done' or not carrier_tracking_ref or dhl_parcel_shipment_held"
+                    invisible="delivery_type != 'dhl_parcel' or state != 'done' or not carrier_tracking_ref or not dhl_parcel_shipment_held"
                 />
             </xpath>
         </field>

@@ -5,7 +5,10 @@ import time
 from unittest import mock
 from unittest.mock import MagicMock, Mock
 
+from lxml import etree
+
 from odoo.tests import Form
+from odoo.tools.safe_eval import safe_eval
 
 from odoo.addons.base.tests.common import BaseCommon
 from odoo.addons.delivery_dhl_parcel.models.dhl_parcel_request import DhlParcelRequest
@@ -494,3 +497,35 @@ class TestDeliveryDhlParcel(BaseCommon):
         self.picking.tracking_state_update()
         self.assertEqual(self.picking.tracking_state, "[I] Dirección incorrecta")
         self.assertEqual(self.picking.delivery_state, "incident")
+
+    def _visible_hold_buttons(self):
+        """Labels of the hold and release buttons shown in the picking form"""
+        arch = self.env["stock.picking"].get_view(view_type="form")["arch"]
+        values = {
+            name: self.picking[name]
+            for name in (
+                "delivery_type",
+                "state",
+                "carrier_tracking_ref",
+                "dhl_parcel_shipment_held",
+            )
+        }
+        return [
+            button.get("string")
+            for button in etree.fromstring(arch).xpath(
+                "//button[@name='dhl_parcel_toggle_hold_shipment']"
+            )
+            if not safe_eval(button.get("invisible", "False"), values)
+        ]
+
+    def test_16_hold_and_release_buttons(self):
+        """A held shipment shows the button to release it"""
+        self._dhl_api()
+        self.picking.button_validate()
+        self.assertEqual(self._visible_hold_buttons(), ["Hold DHL Parcel shipment"])
+        self.picking.dhl_parcel_toggle_hold_shipment()
+        self.assertTrue(self.picking.dhl_parcel_shipment_held)
+        self.assertEqual(self._visible_hold_buttons(), ["Release DHL Parcel shipment"])
+        self.picking.dhl_parcel_toggle_hold_shipment()
+        self.assertFalse(self.picking.dhl_parcel_shipment_held)
+        self.assertEqual(self._visible_hold_buttons(), ["Hold DHL Parcel shipment"])
