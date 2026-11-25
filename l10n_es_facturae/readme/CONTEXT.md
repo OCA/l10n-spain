@@ -1,0 +1,1 @@
+La facturación electrónica consiste en la emisión, envío y recepción de facturas en formato digital, garantizando su validez legal y fiscal. Este método permite cumplir con las normativas vigentes, especialmente en transacciones con administraciones públicas y grandes empresas.
