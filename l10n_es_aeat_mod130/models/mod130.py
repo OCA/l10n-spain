@@ -179,13 +179,11 @@ class L10nEsAeatMod130Report(models.Model):
             # Truncar resultado, ya que es lo que hace la AEAT
             deduccion = trunc(0.02 * report.casilla_03, 2)
             if report.activity_type == "other":
-                if deduccion > 660.14:
-                    deduccion = 660.14
+                deduccion = min(deduccion, 660.14)
             else:
                 raise exceptions.UserError(self.env._("No implementado"))
             dif = report.casilla_14 - report.casilla_15
-            if deduccion > dif:
-                deduccion = dif
+            deduccion = min(deduccion, dif)
             report.casilla_16 = deduccion
 
     @api.depends("casilla_14", "casilla_15", "casilla_16")
