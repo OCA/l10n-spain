@@ -93,7 +93,6 @@
                         <br />
                     </div>
                     <br />
-                    <t t-set="packages" t-value="len(deliveries)" />
                     <table class="table table-sm" width="100%">
                         <tr>
                             <th width="1%" class="text-start">Shipping Num.</th>

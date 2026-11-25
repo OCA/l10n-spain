@@ -1,6 +1,7 @@
 import datetime
 from unittest import mock
 
+from odoo import fields
 from odoo.exceptions import UserError
 from odoo.tests import Form
 
@@ -9,6 +10,12 @@ from odoo.addons.delivery_mrw.models.mrw_request import MRWRequest
 
 
 class TestDeliveryMRW(BaseCommon):
+    _test_user_groups = (
+        "stock.group_stock_manager",
+        "sales_team.group_sale_salesman",
+        "base.group_partner_manager",
+    )
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -56,7 +63,7 @@ class TestDeliveryMRW(BaseCommon):
             line.product_id = cls.product
             line.product_uom_qty = 20.0
         cls.sale_order = order_form.save()
-        cls.sale_order.date_order = datetime.datetime.today()
+        cls.sale_order.date_order = fields.Datetime.now()
         cls.sale_order.carrier_id = cls.carrier_mrw.id
         cls.sale_order.action_confirm()
         cls.picking = cls.sale_order.picking_ids
@@ -80,7 +87,7 @@ class TestDeliveryMRW(BaseCommon):
         self.assertEqual(self.picking.state, "done")
         self.assertTrue(self.picking.carrier_tracking_ref)
         wizard = self.env["mrw.manifest.wizard"].create(
-            {"carrier_id": self.carrier_mrw.id, "date_from": datetime.date.today()}
+            {"carrier_id": self.carrier_mrw.id, "date_from": fields.Date.today()}
         )
         manifest_data = wizard.get_manifest()["data"]["deliveries"]
         self.assertEqual(
@@ -295,7 +302,7 @@ class TestDeliveryMRW(BaseCommon):
     @mock.patch("odoo.addons.delivery_mrw.models.delivery_carrier.MRWRequest")
     def test_19_mrw_tracking_state_update_ok(self, mock_mrw_request):
         self.picking.carrier_tracking_ref = "MRW-TRACK-OK"
-        delivered_dt = datetime.datetime(2024, 2, 2, 12, 0)
+        delivered_dt = fields.Datetime.to_datetime("2024-02-02 12:00:00")
         mock_mrw_request.return_value._get_tracking_states.return_value = {
             "MensajeSeguimiento": "Busqueda correcta por Número de Albarán.",
         }
@@ -303,7 +310,7 @@ class TestDeliveryMRW(BaseCommon):
             {
                 "state_code": "01",
                 "description": "En reparto",
-                "delivery_date": datetime.datetime(2024, 2, 2, 10, 30),
+                "delivery_date": fields.Datetime.to_datetime("2024-02-02 10:30:00"),
             },
             {
                 "state_code": "00",
@@ -388,3 +395,49 @@ class TestDeliveryMRW(BaseCommon):
         _, kwargs = mock_client.call_args
         self.assertIn("plugins", kwargs)
         self.assertTrue(len(kwargs["plugins"]) > 0)
+
+    def _mock_mrw_soap(self, mock_client):
+        """Answers of the MRW SAGEC SOAP service for a shipment and its label"""
+        service = mock_client.return_value.service
+        answers = {
+            "TransmEnvio": {"Estado": "1", "Mensaje": "", "NumeroEnvio": "0262612345"},
+            "EtiquetaEnvio": {
+                "Estado": "1",
+                "Mensaje": "",
+                "EtiquetaFile": b"%PDF-1.4 MRW label",
+            },
+        }
+        calls = {}
+
+        def call(method):
+            def reply(request=None):
+                calls[method] = request
+                return answers[method]
+
+            return reply
+
+        service.__getitem__.side_effect = call
+        return calls
+
+    @mock.patch("odoo.addons.delivery_mrw.models.mrw_request.Client")
+    def test_25_validate_picking_sends_shipment_and_attaches_label(self, mock_client):
+        calls = self._mock_mrw_soap(mock_client)
+        self.picking.number_of_packages = 2
+        self.picking.move_ids.quantity = self.picking.move_ids.product_uom_qty
+        self.picking.button_validate()
+        self.assertEqual(self.picking.carrier_tracking_ref, "0262612345")
+        sent = calls["TransmEnvio"]
+        self.assertEqual(sent["DatosServicio"]["Referencia"], self.picking.name)
+        self.assertEqual(sent["DatosServicio"]["NumeroBultos"], 2)
+        address = sent["DatosEntrega"]["Direccion"]
+        self.assertEqual(address["Via"].strip(), "Calle de La Rua")
+        self.assertEqual(address["Numero"], "3")
+        self.assertEqual(calls["EtiquetaEnvio"]["NumeroEnvio"], "0262612345")
+        label = self.env["ir.attachment"].search(
+            [
+                ("res_model", "=", "stock.picking"),
+                ("res_id", "=", self.picking.id),
+                ("name", "=", "mrw_label_0262612345.pdf"),
+            ]
+        )
+        self.assertEqual(label.raw.content, b"%PDF-1.4 MRW label")

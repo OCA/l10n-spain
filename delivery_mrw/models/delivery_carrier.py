@@ -2,7 +2,6 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import re
-from datetime import datetime
 
 from lxml import etree
 
@@ -203,7 +202,7 @@ class DeliveryCarrier(models.Model):
                 pretty_print=True,
             )
         # Don't fail hard on this. Sometimes zeep could not be able to keep history
-        except Exception:
+        except (IndexError, KeyError, TypeError):
             return
         # Debug must be active in the carrier
         self.log_xml(mrw_last_request, "mrw_request")
@@ -301,7 +300,7 @@ class DeliveryCarrier(models.Model):
         """
         self.ensure_one()
         receiving_partner = picking.partner_id
-        today = datetime.today()
+        today = fields.Datetime.now()
         vals = {
             # Nodo opcional que contendrá información sobre los datos de recogida u
             # origen del envío solicitado.

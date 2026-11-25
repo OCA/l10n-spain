@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import logging
-from datetime import datetime
+from datetime import date, datetime, time
 
 from zeep import Client
 from zeep import helpers as ZeepHelpers
@@ -11,6 +11,7 @@ from zeep.exceptions import Fault
 from zeep.plugins import HistoryPlugin
 from zeep.transports import Transport as ZeepTransport
 
+from odoo import fields
 from odoo.exceptions import UserError
 
 _logger = logging.getLogger(__name__)
@@ -112,12 +113,14 @@ class MRWRequest:
                     day = int(date_str[:2])
                     month = int(date_str[2:4])
                     year = int(date_str[4:])
-                    input_date = datetime(year, month, day)
+                    hour = minute = 0
                     if time_str and len(time_str) == 4:
                         hour = int(time_str[:2])
                         minute = int(time_str[2:4])
-                        input_date = input_date.replace(hour=hour, minute=minute)
-            except Exception as err:
+                    input_date = datetime.combine(
+                        date(year, month, day), time(hour, minute)
+                    )
+            except ValueError as err:
                 _logger.error(err)
             return input_date
 
@@ -140,7 +143,7 @@ class MRWRequest:
                 tracking.get("FechaEntrega", False), tracking.get("HoraEntrega", False)
             )
             if not delivery_date:
-                delivery_date = datetime.now()
+                delivery_date = fields.Datetime.now()
             track_dict = {
                 "state_code": tracking.get("Estado", False),
                 "description": tracking.get("EstadoDescripcion"),
