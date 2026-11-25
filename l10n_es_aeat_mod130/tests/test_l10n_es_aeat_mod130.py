@@ -4,6 +4,7 @@ import logging
 from typing import ClassVar
 
 from odoo import SUPERUSER_ID, Command, exceptions
+from odoo.tests import Form
 
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
     TestL10nEsAeatModBase,
@@ -89,7 +90,8 @@ class TestL10nEsAeatMod130Base(TestL10nEsAeatModBase):
                 "date_end": "2019-06-30",
             }
         )
-        self.taxes_sale["S_IVA21B"] = (300,)
+        # Patched for this test only: the class attribute is shared by all of them
+        self.patch(type(self), "taxes_sale", {"S_IVA21B": (300,)})
         self._invoice_sale_create("2019-04-01")
         model130_2t.button_calculate()
         self.assertAlmostEqual(model130_2t.casilla_01, 1300, 2)
@@ -184,6 +186,8 @@ class TestL10nEsAeatMod130Base(TestL10nEsAeatModBase):
         model130.button_recalculate()
         self.assertAlmostEqual(model130.casilla_06, 200, 2)
 
+    form_view = "l10n_es_aeat_mod130.view_l10n_es_aeat_mod130_report_form"
+
     def _create_model130(self, company=None, **vals):
         company = company or self.company
         return (
@@ -240,3 +244,22 @@ class TestL10nEsAeatMod130Base(TestL10nEsAeatModBase):
             [("id", "in", (own_report + other_report).ids)]
         )
         self.assertEqual(reports, own_report)
+
+    def test_model_130_complementary(self):
+        self._invoice_sale_create("2019-01-01")
+        model130 = self._create_model130(
+            journal_id=self.journal_misc.id,
+            statement_type="C",
+            previous_number="1300000000001",
+        )
+        model130.button_calculate()
+        self.assertAlmostEqual(model130.casilla_17, 190, 2)
+        with self.assertRaises(exceptions.ValidationError):
+            model130.button_confirm()
+        # The result of the previous declaration is entered in the form that
+        # the menu action opens
+        with Form(model130, view=self.form_view) as form:
+            form.casilla_18 = 150
+        self.assertAlmostEqual(model130.result, 40, 2)
+        model130.button_confirm()
+        self.assertEqual(model130.state, "done")

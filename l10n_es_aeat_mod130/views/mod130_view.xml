@@ -98,7 +98,7 @@
                         <field
                             name="casilla_18"
                             string="[18] A deducir - Resultado de las anteriores declaraciones"
-                            readonly="state not in ['done', 'cancelled', 'posted'] or statement_type != 'C'"
+                            readonly="state != 'calculated' or statement_type != 'C'"
                         />
                     </group>
                     <group class="oe_subtotal_footer oe_right" colspan="2">
