@@ -133,6 +133,32 @@ class TestResPartner(BaseCommon):
             partner.email = "new.partner@example.com"
             self.assertEqual(send_soap.call_count, 2)
 
+    def test_automatic_check_without_spanish_nif(self):
+        """Partners without a Spanish NIF are not sent to the AEAT, which
+        can't identify them"""
+        self.env.company.sudo().vat_check_aeat = True
+        with (
+            mock.patch(SEND_SOAP, return_value=[]) as send_soap,
+            mock.patch(REQUESTS_POST) as post,
+        ):
+            partner = self.env["res.partner"].create(
+                {"name": "Without VAT", "country_id": self.env.ref("base.es").id}
+            )
+            partner.name = "Without VAT renamed"
+            passport_partner = self.env["res.partner"].create(
+                {
+                    "name": "With passport",
+                    "country_id": self.env.ref("base.es").id,
+                    "l10n_es_passport": "PAB123456",
+                }
+            )
+            passport_partner.name = "With passport renamed"
+        send_soap.assert_not_called()
+        post.assert_not_called()
+        self.assertFalse(
+            (partner | passport_partner).filtered("aeat_partner_check_result")
+        )
+
     def test_compute_data_diff(self):
         partner = self.partner.sudo()
         partner.aeat_partner_check_result = "IDENTIFICADO"

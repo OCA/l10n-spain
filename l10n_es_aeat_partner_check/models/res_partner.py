@@ -51,6 +51,16 @@ class ResPartner(models.Model):
     def get_test_mode(self, port_name):
         return port_name
 
+    def _get_aeat_check_vat_number(self):
+        """Spanish NIF that the AEAT services can check, or an empty string
+        for a partner without one (no VAT number, a passport or another
+        document), which the census can't identify."""
+        self.ensure_one()
+        country_code, identifier_type, vat_number = self._parse_aeat_vat_info()
+        if country_code != "ES" or identifier_type:
+            return ""
+        return vat_number
+
     def aeat_check_partner(self):
         soap_obj = self.env["l10n.es.aeat.soap"]
         service = "VNifV2Service"
@@ -61,8 +71,8 @@ class ResPartner(models.Model):
         port_name = "VNifPort1"
         operation = "VNifV2"
         for partner in self:
-            country_code, _, vat_number = partner._parse_aeat_vat_info()
-            if country_code != "ES":
+            vat_number = partner._get_aeat_check_vat_number()
+            if not vat_number:
                 continue
             request = {"Nif": vat_number, "Nombre": partner.name}
             try:
@@ -120,8 +130,8 @@ class ResPartner(models.Model):
             + "BUGC-JDIT/CompRecEquivServlet"
         )
         for partner in self:
-            country_code, _, vat_number = partner._parse_aeat_vat_info()
-            if country_code != "ES":
+            vat_number = partner._get_aeat_check_vat_number()
+            if not vat_number:
                 continue
             if "company_id" in partner._fields:
                 public_crt, private_key = (
