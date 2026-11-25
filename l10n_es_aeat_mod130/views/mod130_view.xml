@@ -109,12 +109,10 @@
                 <group string="Observaciones" colspan="4">
                     <field name="comments" nolabel="1" readonly="state != 'draft'" />
                 </group>
-                <field name="partner_bank_id" position="attributes">
-                    <attribute
-                        name="invisible"
-                    >tipo_declaracion not in ('I')</attribute>
-                </field>
             </xpath>
+            <field name="partner_bank_id" position="attributes">
+                <attribute name="invisible">tipo_declaracion != 'I'</attribute>
+            </field>
             <xpath expr="//sheet" position="after">
                 <chatter />
             </xpath>

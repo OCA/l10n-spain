@@ -263,3 +263,26 @@ class TestL10nEsAeatMod130Base(TestL10nEsAeatModBase):
         self.assertAlmostEqual(model130.result, 40, 2)
         model130.button_confirm()
         self.assertEqual(model130.state, "done")
+
+    def test_model_130_bank_account_only_to_pay(self):
+        self._invoice_purchase_create("2019-01-01")
+        model130 = self._create_model130(journal_id=self.journal_misc.id)
+        model130.button_calculate()
+        self.assertEqual(model130.tipo_declaracion, "N")
+        with (
+            Form(model130, view=self.form_view) as form,
+            self.assertRaisesRegex(AssertionError, "invisible field"),
+        ):
+            form.partner_bank_id = self.env["res.partner.bank"]
+        self._invoice_sale_create("2019-01-01")
+        model130.button_recalculate()
+        self.assertEqual(model130.tipo_declaracion, "I")
+        bank = self.env["res.partner.bank"].create(
+            {
+                "partner_id": self.company.partner_id.id,
+                "account_number": "ES91 2100 0418 4502 0005 1332",
+            }
+        )
+        with Form(model130, view=self.form_view) as form:
+            form.partner_bank_id = bank
+        self.assertEqual(model130.partner_bank_id, bank)
