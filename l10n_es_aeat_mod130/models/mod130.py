@@ -241,11 +241,25 @@ class L10nEsAeatMod130Report(models.Model):
         withholdings = groups[0][0] or 0.0
         return (incomes, expenses, withholdings)
 
+    def _get_previous_quarters_reports(self):
+        """Declaration of each earlier quarter of the year that counts for
+        box 05: drafts and cancelled declarations were not filed, and a
+        complementary declaration replaces boxes 01 to 17 of the previous ones
+        of its quarter, so only the latest one of each quarter is taken.
+        """
+        self.ensure_one()
+        reports = self._get_previous_fiscalyear_reports(self.date_start).filtered(
+            lambda report: report.state not in ("draft", "cancelled")
+        )
+        res = self.browse()
+        for quarter_reports in reports.grouped("period_type").values():
+            res |= quarter_reports.sorted("id")[-1:]
+        return res
+
     def _calc_prev_trimesters_data(self):
         self.ensure_one()
         amount = 0
-        prev_reports = self._get_previous_fiscalyear_reports(self.date_start)
-        for prev in prev_reports:
+        for prev in self._get_previous_quarters_reports():
             if prev.casilla_07 > 0:
                 amount += prev.casilla_07 - prev.casilla_16
         return amount

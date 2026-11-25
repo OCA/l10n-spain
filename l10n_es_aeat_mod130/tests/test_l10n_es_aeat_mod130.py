@@ -264,6 +264,72 @@ class TestL10nEsAeatMod130Base(TestL10nEsAeatModBase):
         model130.button_confirm()
         self.assertEqual(model130.state, "done")
 
+    def _create_quarter(self, period_type, date_start, date_end, **vals):
+        return self._create_model130(
+            journal_id=self.journal_misc.id,
+            period_type=period_type,
+            date_start=date_start,
+            date_end=date_end,
+            **vals,
+        )
+
+    def test_model_130_previous_quarters_complementary(self):
+        """Box 05 takes the complementary declaration of an earlier quarter
+        instead of adding it to the original one"""
+        self._invoice_sale_create("2019-01-01")
+        first = self._create_quarter("1T", "2019-01-01", "2019-03-31")
+        first.button_calculate()
+        first.button_confirm()
+        self.assertAlmostEqual(first.casilla_07, 190, 2)
+        # A late sale of the first quarter needs a complementary declaration
+        self._invoice_sale_create("2019-02-01")
+        complementary = self._create_quarter(
+            "1T",
+            "2019-01-01",
+            "2019-03-31",
+            statement_type="C",
+            previous_number="1300000000001",
+        )
+        complementary.button_calculate()
+        with Form(complementary, view=self.form_view) as form:
+            form.casilla_18 = first.result
+        complementary.button_confirm()
+        self.assertAlmostEqual(complementary.casilla_07, 380, 2)
+        second = self._create_quarter("2T", "2019-04-01", "2019-06-30")
+        second.button_calculate()
+        self.assertAlmostEqual(second.casilla_04, 380, 2)
+        self.assertAlmostEqual(second.casilla_05, 380, 2)
+        self.assertAlmostEqual(second.casilla_07, 0, 2)
+        self.assertEqual(second.tipo_declaracion, "N")
+
+    def test_model_130_previous_quarters_not_filed(self):
+        """Cancelled and draft declarations of an earlier quarter don't count"""
+        self._invoice_sale_create("2019-01-01")
+        cancelled = self._create_quarter("1T", "2019-01-01", "2019-03-31")
+        cancelled.button_calculate()
+        cancelled.button_confirm()
+        cancelled.button_cancel()
+        first = self._create_quarter("1T", "2019-01-01", "2019-03-31")
+        first.button_calculate()
+        first.button_confirm()
+        # A complementary declaration calculated and left in draft is not filed
+        self._invoice_sale_create("2019-03-01")
+        draft = self._create_quarter(
+            "1T",
+            "2019-01-01",
+            "2019-03-31",
+            statement_type="C",
+            previous_number="1300000000001",
+        )
+        draft.button_calculate()
+        draft.button_recover()
+        self.assertAlmostEqual(draft.casilla_07, 380, 2)
+        second = self._create_quarter("2T", "2019-04-01", "2019-06-30")
+        second.button_calculate()
+        self.assertAlmostEqual(second.casilla_04, 380, 2)
+        self.assertAlmostEqual(second.casilla_05, 190, 2)
+        self.assertAlmostEqual(second.casilla_07, 190, 2)
+
     def test_model_130_bank_account_only_to_pay(self):
         self._invoice_purchase_create("2019-01-01")
         model130 = self._create_model130(journal_id=self.journal_misc.id)
