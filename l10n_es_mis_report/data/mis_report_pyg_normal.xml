@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record id="mis_report_es_pyg_normal" model="mis.report">
         <field name="name">Pérdidas y ganancias completo (PGCE 2008)</field>
@@ -8,7 +8,7 @@
         <field name="report_id" ref="mis_report_es_pyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">10</field>
+        <field name="sequence" eval="10" />
         <field name="name">esA</field>
         <field name="description">A) OPERACIONES CONTINUADAS</field>
         <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l1" />
@@ -20,7 +20,7 @@
         <field name="report_id" ref="mis_report_es_pyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">20</field>
+        <field name="sequence" eval="20" />
         <field name="name">es40100</field>
         <field name="description">1. Importe neto de la cifra de negocios</field>
         <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
@@ -30,7 +30,7 @@
         <field name="report_id" ref="mis_report_es_pyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">30</field>
+        <field name="sequence" eval="30" />
         <field name="name">es40110</field>
         <field name="description">a) Ventas</field>
         <field name="expression">-balp[700%,701%,702%,703%,704%,706%,708%,709%]</field>
@@ -45,7 +45,7 @@
         <field name="report_id" ref="mis_report_es_pyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">40</field>
+        <field name="sequence" eval="40" />
         <field name="name">es40120</field>
         <field name="description">b) Prestaciones de servicios</field>
         <field name="expression">-balp[705%]</field>
@@ -60,7 +60,7 @@
         <field name="report_id" ref="mis_report_es_pyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">50</field>
+        <field name="sequence" eval="50" />
         <field name="name">es40200</field>
         <field
             name="description"
@@ -77,7 +77,7 @@
         <field name="report_id" ref="mis_report_es_pyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">60</field>
+        <field name="sequence" eval="60" />
         <field name="name">es40300</field>
         <field
             name="description"
@@ -94,7 +94,7 @@
         <field name="report_id" ref="mis_report_es_pyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">70</field>
+        <field name="sequence" eval="70" />
         <field name="name">es40400</field>
         <field name="description">4. Aprovisionamientos</field>
         <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
@@ -104,7 +104,7 @@
         <field name="report_id" ref="mis_report_es_pyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">80</field>
+        <field name="sequence" eval="80" />
         <field name="name">es40410</field>
         <field name="description">a) Consumo de mercaderías</field>
         <field name="expression">-balp[600%,6060%,6080%,6090%,610%]</field>
@@ -119,7 +119,7 @@
         <field name="report_id" ref="mis_report_es_pyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">90</field>
+        <field name="sequence" eval="90" />
         <field name="name">es40420</field>
         <field
             name="description"
@@ -138,7 +138,7 @@
         <field name="report_id" ref="mis_report_es_pyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">100</field>
+        <field name="sequence" eval="100" />
         <field name="name">es40430</field>
         <field name="description">c) Trabajos realizados por otras empresas</field>
         <field name="expression">-balp[607%]</field>
@@ -153,7 +153,7 @@
         <field name="report_id" ref="mis_report_es_pyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">110</field>
+        <field name="sequence" eval="110" />
         <field name="name">es40440</field>
         <field
             name="description"
@@ -170,7 +170,7 @@
         <field name="report_id" ref="mis_report_es_pyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">120</field>
+        <field name="sequence" eval="120" />
         <field name="name">es40500</field>
         <field name="description">5. Otros ingresos de explotación</field>
         <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
@@ -180,7 +180,7 @@
         <field name="report_id" ref="mis_report_es_pyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">130</field>
+        <field name="sequence" eval="130" />
         <field name="name">es40510</field>
         <field
             name="description"
@@ -197,7 +197,7 @@
         <field name="report_id" ref="mis_report_es_pyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">140</field>
+        <field name="sequence" eval="140" />
         <field name="name">es40520</field>
         <field
             name="description"
@@ -214,7 +214,7 @@
         <field name="report_id" ref="mis_report_es_pyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">150</field>
+        <field name="sequence" eval="150" />
         <field name="name">es40600</field>
         <field name="description">6. Gastos de personal</field>
         <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
@@ -224,7 +224,7 @@
         <field name="report_id" ref="mis_report_es_pyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">160</field>
+        <field name="sequence" eval="160" />
         <field name="name">es40610</field>
         <field name="description">a) Sueldos, salarios y asimilados</field>
         <field name="expression">-balp[640%,641%,6450%]</field>
@@ -239,7 +239,7 @@
         <field name="report_id" ref="mis_report_es_pyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">170</field>
+        <field name="sequence" eval="170" />
         <field name="name">es40620</field>
         <field name="description">b) Cargas sociales</field>
         <field name="expression">-balp[642%,643%,649%]</field>
@@ -254,7 +254,7 @@
         <field name="report_id" ref="mis_report_es_pyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">180</field>
+        <field name="sequence" eval="180" />
         <field name="name">es40630</field>
         <field name="description">c) Provisiones</field>
         <field name="expression">-balp[644%,6457%,7950%,7957%]</field>
@@ -269,7 +269,7 @@
         <field name="report_id" ref="mis_report_es_pyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">190</field>
+        <field name="sequence" eval="190" />
         <field name="name">es40700</field>
         <field name="description">7. Otros gastos de explotación</field>
         <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
@@ -279,7 +279,7 @@
         <field name="report_id" ref="mis_report_es_pyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">200</field>
+        <field name="sequence" eval="200" />
         <field name="name">es40710</field>
         <field name="description">a) Servicios exteriores</field>
         <field name="expression">-balp[62%]</field>
@@ -294,7 +294,7 @@
         <field name="report_id" ref="mis_report_es_pyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">210</field>
+        <field name="sequence" eval="210" />
         <field name="name">es40720</field>
         <field name="description">b) Tributos</field>
         <field name="expression">-balp[631%,634%,636%,639%]</field>
@@ -309,7 +309,7 @@
         <field name="report_id" ref="mis_report_es_pyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">220</field>
+        <field name="sequence" eval="220" />
         <field name="name">es40730</field>
         <field
             name="description"
@@ -326,7 +326,7 @@
         <field name="report_id" ref="mis_report_es_pyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">230</field>
+        <field name="sequence" eval="230" />
         <field name="name">es40740</field>
         <field name="description">d) Otros gastos de gestión corriente </field>
         <field name="expression">-balp[651%,659%]</field>
@@ -341,7 +341,7 @@
         <field name="report_id" ref="mis_report_es_pyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">240</field>
+        <field name="sequence" eval="240" />
         <field name="name">es40800</field>
         <field name="description">8. Amortización del inmovilizado</field>
         <field name="expression">-balp[68%]</field>
@@ -356,7 +356,7 @@
         <field name="report_id" ref="mis_report_es_pyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">250</field>
+        <field name="sequence" eval="250" />
         <field name="name">es40900</field>
         <field
             name="description"
@@ -373,7 +373,7 @@
         <field name="report_id" ref="mis_report_es_pyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">260</field>
+        <field name="sequence" eval="260" />
         <field name="name">es41000</field>
         <field name="description">10. Excesos de provisiones </field>
         <field name="expression">-balp[7951%,7952%,7955%,7956%]</field>
@@ -388,7 +388,7 @@
         <field name="report_id" ref="mis_report_es_pyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">270</field>
+        <field name="sequence" eval="270" />
         <field name="name">es41100</field>
         <field
             name="description"
@@ -400,7 +400,7 @@
         <field name="report_id" ref="mis_report_es_pyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">280</field>
+        <field name="sequence" eval="280" />
         <field name="name">es41110</field>
         <field name="description">a) Deterioro y pérdidas</field>
         <field name="expression">-balp[690%,691%,692%,790%,791%,792%]</field>
@@ -415,7 +415,7 @@
         <field name="report_id" ref="mis_report_es_pyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">290</field>
+        <field name="sequence" eval="290" />
         <field name="name">es41120</field>
         <field name="description">b) Resultados por enajenaciones y otras</field>
         <field name="expression">-balp[670%,671%,672%,770%,771%,772%]</field>
@@ -430,7 +430,7 @@
         <field name="report_id" ref="mis_report_es_pyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">300</field>
+        <field name="sequence" eval="300" />
         <field name="name">es41200</field>
         <field
             name="description"
@@ -447,7 +447,7 @@
         <field name="report_id" ref="mis_report_es_pyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">310</field>
+        <field name="sequence" eval="310" />
         <field name="name">es41300</field>
         <field name="description">13. Otros resultados</field>
         <field name="expression">-balp[678%,778%]</field>
@@ -462,7 +462,7 @@
         <field name="report_id" ref="mis_report_es_pyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">320</field>
+        <field name="sequence" eval="320" />
         <field name="name">es49100</field>
         <field
             name="description"
@@ -481,7 +481,7 @@
         <field name="report_id" ref="mis_report_es_pyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">330</field>
+        <field name="sequence" eval="330" />
         <field name="name">es41400</field>
         <field name="description">14. Ingresos financieros</field>
         <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
@@ -491,7 +491,7 @@
         <field name="report_id" ref="mis_report_es_pyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">340</field>
+        <field name="sequence" eval="340" />
         <field name="name">es41410</field>
         <field
             name="description"
@@ -503,7 +503,7 @@
         <field name="report_id" ref="mis_report_es_pyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">350</field>
+        <field name="sequence" eval="350" />
         <field name="name">es41411</field>
         <field name="description">a 1) En empresas del grupo y asociadas</field>
         <field name="expression">-balp[7600%,7601%]</field>
@@ -518,7 +518,7 @@
         <field name="report_id" ref="mis_report_es_pyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">360</field>
+        <field name="sequence" eval="360" />
         <field name="name">es41412</field>
         <field name="description">a 2) En terceros</field>
         <field name="expression">-balp[7602%,7603%]</field>
@@ -533,7 +533,7 @@
         <field name="report_id" ref="mis_report_es_pyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">370</field>
+        <field name="sequence" eval="370" />
         <field name="name">es41420</field>
         <field
             name="description"
@@ -545,7 +545,7 @@
         <field name="report_id" ref="mis_report_es_pyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">380</field>
+        <field name="sequence" eval="380" />
         <field name="name">es41421</field>
         <field name="description">b 1) De empresas del grupo y asociadas</field>
         <field name="expression">-balp[7610%,7611%,76200%,76201%,76210%,76211%]</field>
@@ -560,7 +560,7 @@
         <field name="report_id" ref="mis_report_es_pyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">390</field>
+        <field name="sequence" eval="390" />
         <field name="name">es41422</field>
         <field name="description">b 2) De terceros</field>
         <field
@@ -577,7 +577,7 @@
         <field name="report_id" ref="mis_report_es_pyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">400</field>
+        <field name="sequence" eval="400" />
         <field name="name">es41430</field>
         <field
             name="description"
@@ -594,7 +594,7 @@
         <field name="report_id" ref="mis_report_es_pyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">410</field>
+        <field name="sequence" eval="410" />
         <field name="name">es41500</field>
         <field name="description">15. Gastos financieros</field>
         <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
@@ -604,7 +604,7 @@
         <field name="report_id" ref="mis_report_es_pyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">420</field>
+        <field name="sequence" eval="420" />
         <field name="name">es41510</field>
         <field
             name="description"
@@ -623,7 +623,7 @@
         <field name="report_id" ref="mis_report_es_pyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">430</field>
+        <field name="sequence" eval="430" />
         <field name="name">es41520</field>
         <field name="description">b) Por deudas con terceros</field>
         <field
@@ -640,7 +640,7 @@
         <field name="report_id" ref="mis_report_es_pyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">440</field>
+        <field name="sequence" eval="440" />
         <field name="name">es41530</field>
         <field name="description">c) Por actualización de provisiones</field>
         <field name="expression">-balp[660%]</field>
@@ -655,7 +655,7 @@
         <field name="report_id" ref="mis_report_es_pyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">450</field>
+        <field name="sequence" eval="450" />
         <field name="name">es41600</field>
         <field
             name="description"
@@ -667,7 +667,7 @@
         <field name="report_id" ref="mis_report_es_pyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">460</field>
+        <field name="sequence" eval="460" />
         <field name="name">es41610</field>
         <field name="description">a) Cartera de negociación y otros </field>
         <field name="expression">-balp[6630%,6631%,6633%,7630%,7631%,7633%]</field>
@@ -682,7 +682,7 @@
         <field name="report_id" ref="mis_report_es_pyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">470</field>
+        <field name="sequence" eval="470" />
         <field name="name">es41620</field>
         <field
             name="description"
@@ -699,7 +699,7 @@
         <field name="report_id" ref="mis_report_es_pyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">480</field>
+        <field name="sequence" eval="480" />
         <field name="name">es41700</field>
         <field name="description">17. Diferencias de cambio</field>
         <field name="expression">-balp[668%,768%]</field>
@@ -714,7 +714,7 @@
         <field name="report_id" ref="mis_report_es_pyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">490</field>
+        <field name="sequence" eval="490" />
         <field name="name">es41800</field>
         <field
             name="description"
@@ -726,7 +726,7 @@
         <field name="report_id" ref="mis_report_es_pyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">500</field>
+        <field name="sequence" eval="500" />
         <field name="name">es41810</field>
         <field name="description">a) Deterioros y pérdidas</field>
         <field name="expression">-balp[696%,697%,698%,699%,796%,797%,798%,799%]</field>
@@ -741,7 +741,7 @@
         <field name="report_id" ref="mis_report_es_pyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">510</field>
+        <field name="sequence" eval="510" />
         <field name="name">es41820</field>
         <field name="description">b) Resultados por enajenaciones y otras</field>
         <field name="expression">-balp[666%,667%,673%,675%,766%,773%,775%]</field>
@@ -756,7 +756,7 @@
         <field name="report_id" ref="mis_report_es_pyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">520</field>
+        <field name="sequence" eval="520" />
         <field name="name">es49200</field>
         <field
             name="description"
@@ -773,7 +773,7 @@
         <field name="report_id" ref="mis_report_es_pyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">530</field>
+        <field name="sequence" eval="530" />
         <field name="name">es49300</field>
         <field name="description">A.3) RESULTADO ANTES DE IMPUESTOS (A.1 + A.2)</field>
         <field name="expression">+es49100+es49200</field>
@@ -788,7 +788,7 @@
         <field name="report_id" ref="mis_report_es_pyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">540</field>
+        <field name="sequence" eval="540" />
         <field name="name">es41900</field>
         <field name="description">19. Impuestos sobre beneficios</field>
         <field name="expression">-balp[6300%,6301%,633%,638%]</field>
@@ -803,7 +803,7 @@
         <field name="report_id" ref="mis_report_es_pyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">550</field>
+        <field name="sequence" eval="550" />
         <field name="name">es49400</field>
         <field
             name="description"
@@ -820,7 +820,7 @@
         <field name="report_id" ref="mis_report_es_pyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">560</field>
+        <field name="sequence" eval="560" />
         <field name="name">esB</field>
         <field name="description">B) OPERACIONES INTERRUMPIDAS</field>
         <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l1" />
@@ -830,7 +830,7 @@
         <field name="report_id" ref="mis_report_es_pyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">570</field>
+        <field name="sequence" eval="570" />
         <field name="name">es42000</field>
         <field
             name="description"
@@ -841,7 +841,7 @@
         <field name="report_id" ref="mis_report_es_pyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">580</field>
+        <field name="sequence" eval="580" />
         <field name="name">es49500</field>
         <field name="description">A.5) RESULTADO DEL EJERCICIO (A.4 + 20)</field>
         <field name="expression">+es49400+es42000</field>

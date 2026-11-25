@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record id="mis_report_es_balance_abreviado" model="mis.report">
         <field name="name">Balance abreviado (PGCE 2008)</field>
@@ -8,7 +8,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">10</field>
+        <field name="sequence" eval="10" />
         <field name="name">es11000</field>
         <field name="description">A) ACTIVO NO CORRIENTE</field>
         <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l1" />
@@ -20,7 +20,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">20</field>
+        <field name="sequence" eval="20" />
         <field name="name">es11100</field>
         <field name="description">I. Inmovilizado intangible</field>
         <field name="expression">+bale[20%,280%,290%]</field>
@@ -35,7 +35,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">30</field>
+        <field name="sequence" eval="30" />
         <field name="name">es11200</field>
         <field name="description">II. Inmovilizado material </field>
         <field name="expression">+bale[21%,281%,291%,23%]</field>
@@ -50,7 +50,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">40</field>
+        <field name="sequence" eval="40" />
         <field name="name">es11300</field>
         <field name="description">III. Inversiones inmobiliarias</field>
         <field name="expression">+bale[22%,282%,292%]</field>
@@ -65,7 +65,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">50</field>
+        <field name="sequence" eval="50" />
         <field name="name">es11400</field>
         <field
             name="description"
@@ -84,7 +84,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">60</field>
+        <field name="sequence" eval="60" />
         <field name="name">es11500</field>
         <field name="description">V. Inversiones financieras a largo plazo</field>
         <field
@@ -101,7 +101,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">70</field>
+        <field name="sequence" eval="70" />
         <field name="name">es11600</field>
         <field name="description">VI. Activos por impuesto diferido</field>
         <field name="expression">+bale[474%]</field>
@@ -116,7 +116,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">80</field>
+        <field name="sequence" eval="80" />
         <field name="name">es11700</field>
         <field name="description">VII. Deudores comerciales no corrientes</field>
         <field name="expression">+bale[11700%]</field>
@@ -131,7 +131,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">90</field>
+        <field name="sequence" eval="90" />
         <field name="name">es12000</field>
         <field name="description">B) ACTIVO CORRIENTE</field>
         <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l1" />
@@ -143,7 +143,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">100</field>
+        <field name="sequence" eval="100" />
         <field name="name">es12100</field>
         <field
             name="description"
@@ -160,7 +160,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">110</field>
+        <field name="sequence" eval="110" />
         <field name="name">es12200</field>
         <field name="description">II. Existencias</field>
         <field name="expression">+bale[30%,31%,32%,33%,34%,35%,36%,39%,407%]</field>
@@ -175,7 +175,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">120</field>
+        <field name="sequence" eval="120" />
         <field name="name">es12300</field>
         <field
             name="description"
@@ -187,7 +187,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">130</field>
+        <field name="sequence" eval="130" />
         <field name="name">es12380</field>
         <field
             name="description"
@@ -206,7 +206,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">140</field>
+        <field name="sequence" eval="140" />
         <field name="name">es12381</field>
         <field
             name="description"
@@ -223,7 +223,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">150</field>
+        <field name="sequence" eval="150" />
         <field name="name">es12382</field>
         <field
             name="description"
@@ -240,7 +240,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">160</field>
+        <field name="sequence" eval="160" />
         <field name="name">es12370</field>
         <field
             name="description"
@@ -257,7 +257,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">170</field>
+        <field name="sequence" eval="170" />
         <field name="name">es12390</field>
         <field name="description">3. Otros deudores</field>
         <field
@@ -274,7 +274,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">180</field>
+        <field name="sequence" eval="180" />
         <field name="name">es12400</field>
         <field
             name="description"
@@ -293,7 +293,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">190</field>
+        <field name="sequence" eval="190" />
         <field name="name">es12500</field>
         <field name="description">V. Inversiones financieras a corto plazo</field>
         <field
@@ -310,7 +310,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">200</field>
+        <field name="sequence" eval="200" />
         <field name="name">es12600</field>
         <field name="description">VI. Periodificaciones a corto plazo</field>
         <field name="expression">+bale[480%,567%]</field>
@@ -325,7 +325,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">210</field>
+        <field name="sequence" eval="210" />
         <field name="name">es12700</field>
         <field
             name="description"
@@ -342,7 +342,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">220</field>
+        <field name="sequence" eval="220" />
         <field name="name">es10000</field>
         <field name="description">TOTAL ACTIVO (A + B)</field>
         <field name="expression">+es11000+es12000</field>
@@ -357,7 +357,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">230</field>
+        <field name="sequence" eval="230" />
         <field name="name">es20000</field>
         <field name="description">A) PATRIMONIO NETO</field>
         <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l1" />
@@ -367,7 +367,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">240</field>
+        <field name="sequence" eval="240" />
         <field name="name">es21000</field>
         <field name="description">A-1) Fondos propios</field>
         <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l2" />
@@ -379,7 +379,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">250</field>
+        <field name="sequence" eval="250" />
         <field name="name">es21100</field>
         <field name="description">I. Capital</field>
         <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
@@ -389,7 +389,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">260</field>
+        <field name="sequence" eval="260" />
         <field name="name">es21110</field>
         <field name="description">1. Capital escriturado</field>
         <field name="expression">-bale[100%,101%,102%]</field>
@@ -404,7 +404,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">270</field>
+        <field name="sequence" eval="270" />
         <field name="name">es21120</field>
         <field name="description">2. (Capital no exigido) </field>
         <field name="expression">-bale[1030%,1040%]</field>
@@ -419,7 +419,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">280</field>
+        <field name="sequence" eval="280" />
         <field name="name">es21200</field>
         <field name="description">II. Prima de emisión</field>
         <field name="expression">-bale[110%]</field>
@@ -434,7 +434,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">290</field>
+        <field name="sequence" eval="290" />
         <field name="name">es21300</field>
         <field name="description">III. Reservas</field>
         <field name="expression">+es21350+es21360</field>
@@ -449,7 +449,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">291</field>
+        <field name="sequence" eval="291" />
         <field name="name">es21350</field>
         <field name="description">1. Reserva de Capitalización</field>
         <field name="auto_expand_accounts">False</field>
@@ -459,7 +459,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">292</field>
+        <field name="sequence" eval="292" />
         <field name="name">es21360</field>
         <field name="description">2. Otras reservas</field>
         <field name="expression">-bale[112%,113%,114%,115%,119%]</field>
@@ -474,7 +474,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">300</field>
+        <field name="sequence" eval="300" />
         <field name="name">es21400</field>
         <field
             name="description"
@@ -491,7 +491,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">310</field>
+        <field name="sequence" eval="310" />
         <field name="name">es21500</field>
         <field name="description">V. Resultados de ejercicios anteriores </field>
         <field name="expression">-bale[120%,121%]</field>
@@ -506,7 +506,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">320</field>
+        <field name="sequence" eval="320" />
         <field name="name">es21600</field>
         <field name="description">VI. Otras aportaciones de socios</field>
         <field name="expression">-bale[118%]</field>
@@ -521,7 +521,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">330</field>
+        <field name="sequence" eval="330" />
         <field name="name">es21700</field>
         <field name="description">VII. Resultado del ejercicio</field>
         <field name="expression">-bale[129%,6%,7%]-balu[129%,6%,7%]</field>
@@ -532,7 +532,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">340</field>
+        <field name="sequence" eval="340" />
         <field name="name">es21800</field>
         <field name="description">VIII. (Dividendo a cuenta)</field>
         <field name="expression">-bale[557%]</field>
@@ -547,7 +547,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">350</field>
+        <field name="sequence" eval="350" />
         <field name="name">es21900</field>
         <field name="description">IX. Otros instrumentos de patrimonio neto</field>
         <field name="expression">-bale[111%]</field>
@@ -562,7 +562,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">360</field>
+        <field name="sequence" eval="360" />
         <field name="name">es22000</field>
         <field name="description">A-2) Ajustes por cambios de valor</field>
         <field name="expression">-bale[133%,1340%,137%]</field>
@@ -577,7 +577,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">370</field>
+        <field name="sequence" eval="370" />
         <field name="name">es23000</field>
         <field
             name="description"
@@ -594,7 +594,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">380</field>
+        <field name="sequence" eval="380" />
         <field name="name">es31000</field>
         <field name="description">B) PASIVO NO CORRIENTE</field>
         <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l1" />
@@ -606,7 +606,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">390</field>
+        <field name="sequence" eval="390" />
         <field name="name">es31100</field>
         <field name="description">I. Provisiones a largo plazo</field>
         <field name="expression">-bale[14%]</field>
@@ -621,7 +621,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">400</field>
+        <field name="sequence" eval="400" />
         <field name="name">es31200</field>
         <field name="description">II. Deudas a largo plazo</field>
         <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
@@ -631,7 +631,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">410</field>
+        <field name="sequence" eval="410" />
         <field name="name">es31220</field>
         <field name="description">1. Deudas con entidades de crédito</field>
         <field name="expression">-bale[1605%,170%]</field>
@@ -646,7 +646,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">420</field>
+        <field name="sequence" eval="420" />
         <field name="name">es31230</field>
         <field name="description">2. Acreedores por arrendamiento financiero</field>
         <field name="expression">-bale[1625%,174%]</field>
@@ -661,7 +661,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">430</field>
+        <field name="sequence" eval="430" />
         <field name="name">es31290</field>
         <field name="description">3. Otras deudas a largo plazo</field>
         <field
@@ -678,7 +678,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">440</field>
+        <field name="sequence" eval="440" />
         <field name="name">es31300</field>
         <field
             name="description"
@@ -697,7 +697,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">450</field>
+        <field name="sequence" eval="450" />
         <field name="name">es31400</field>
         <field name="description">IV. Pasivos por impuesto diferido</field>
         <field name="expression">-bale[479%]</field>
@@ -712,7 +712,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">460</field>
+        <field name="sequence" eval="460" />
         <field name="name">es31500</field>
         <field name="description">V. Periodificaciones a largo plazo</field>
         <field name="expression">-bale[181%]</field>
@@ -727,7 +727,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">470</field>
+        <field name="sequence" eval="470" />
         <field name="name">es31600</field>
         <field name="description">VI. Acreedores comerciales no corrientes</field>
         <field name="expression">-bale[31600%]</field>
@@ -742,7 +742,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">480</field>
+        <field name="sequence" eval="480" />
         <field name="name">es31700</field>
         <field
             name="description"
@@ -759,7 +759,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">490</field>
+        <field name="sequence" eval="490" />
         <field name="name">es32000</field>
         <field name="description">C) PASIVO CORRIENTE</field>
         <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l1" />
@@ -771,7 +771,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">500</field>
+        <field name="sequence" eval="500" />
         <field name="name">es32100</field>
         <field
             name="description"
@@ -788,7 +788,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">510</field>
+        <field name="sequence" eval="510" />
         <field name="name">es32200</field>
         <field name="description">II. Provisiones a corto plazo</field>
         <field name="expression">-bale[499%,529%]</field>
@@ -803,7 +803,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">520</field>
+        <field name="sequence" eval="520" />
         <field name="name">es32300</field>
         <field name="description">III. Deudas a corto plazo</field>
         <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
@@ -813,7 +813,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">530</field>
+        <field name="sequence" eval="530" />
         <field name="name">es32320</field>
         <field name="description">1. Deudas con entidades de crédito</field>
         <field name="expression">-bale[5105%,520%,527%]</field>
@@ -828,7 +828,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">540</field>
+        <field name="sequence" eval="540" />
         <field name="name">es32330</field>
         <field name="description">2. Acreedores por arrendamiento financiero</field>
         <field name="expression">-bale[5125%,524%]</field>
@@ -843,7 +843,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">550</field>
+        <field name="sequence" eval="550" />
         <field name="name">es32390</field>
         <field name="description">3. Otras deudas a corto plazo</field>
         <field
@@ -860,7 +860,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">560</field>
+        <field name="sequence" eval="560" />
         <field name="name">es32400</field>
         <field
             name="description"
@@ -879,7 +879,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">570</field>
+        <field name="sequence" eval="570" />
         <field name="name">es32500</field>
         <field
             name="description"
@@ -891,7 +891,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">580</field>
+        <field name="sequence" eval="580" />
         <field name="name">es32580</field>
         <field name="description">1. Proveedores</field>
         <field
@@ -908,7 +908,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">590</field>
+        <field name="sequence" eval="590" />
         <field name="name">es32581</field>
         <field name="description">a) Proveedores a largo plazo</field>
         <field name="expression">-bale[32581%]</field>
@@ -923,7 +923,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">600</field>
+        <field name="sequence" eval="600" />
         <field name="name">es32582</field>
         <field name="description">b) Proveedores a corto plazo</field>
         <field name="expression">-bale[32582%]</field>
@@ -938,7 +938,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">610</field>
+        <field name="sequence" eval="610" />
         <field name="name">es32590</field>
         <field name="description">2. Otros acreedores</field>
         <field name="expression">-bale[41%,438%,465%,466%,475%,476%,477%]</field>
@@ -953,7 +953,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">620</field>
+        <field name="sequence" eval="620" />
         <field name="name">es32600</field>
         <field name="description">VI. Periodificaciones a corto plazo</field>
         <field name="expression">-bale[485%,568%]</field>
@@ -968,7 +968,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">630</field>
+        <field name="sequence" eval="630" />
         <field name="name">es32700</field>
         <field
             name="description"
@@ -985,7 +985,7 @@
         <field name="report_id" ref="mis_report_es_balance_abreviado" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">640</field>
+        <field name="sequence" eval="640" />
         <field name="name">es30000</field>
         <field name="description">TOTAL PATRIMONIO NETO Y PASIVO (A + B + C)</field>
         <field name="expression">+es20000+es31000+es32000</field>

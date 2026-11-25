@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record id="mis_report_es_eiyg_normal" model="mis.report">
         <field name="name">Estado de ingresos y gastos reconocidos (PGCE 2008)</field>
@@ -8,7 +8,7 @@
         <field name="report_id" ref="mis_report_es_eiyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">10</field>
+        <field name="sequence" eval="10" />
         <field name="name">es59100</field>
         <field
             name="description"
@@ -19,7 +19,7 @@
         <field name="report_id" ref="mis_report_es_eiyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">20</field>
+        <field name="sequence" eval="20" />
         <field name="name">es59200</field>
         <field
             name="description"
@@ -38,7 +38,7 @@
         <field name="report_id" ref="mis_report_es_eiyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">30</field>
+        <field name="sequence" eval="30" />
         <field name="name">es50010</field>
         <field name="description">I. Por valoración de instrumentos financieros</field>
         <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l4" />
@@ -48,7 +48,7 @@
         <field name="report_id" ref="mis_report_es_eiyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">40</field>
+        <field name="sequence" eval="40" />
         <field name="name">es50011</field>
         <field
             name="description"
@@ -65,7 +65,7 @@
         <field name="report_id" ref="mis_report_es_eiyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">50</field>
+        <field name="sequence" eval="50" />
         <field name="name">es50012</field>
         <field name="description">2. Otros ingresos/gastos</field>
         <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l5" />
@@ -74,7 +74,7 @@
         <field name="report_id" ref="mis_report_es_eiyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">60</field>
+        <field name="sequence" eval="60" />
         <field name="name">es50020</field>
         <field name="description">II. Por coberturas de flujos de efectivo</field>
         <field name="expression">-bale[810%,910%]</field>
@@ -89,7 +89,7 @@
         <field name="report_id" ref="mis_report_es_eiyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">70</field>
+        <field name="sequence" eval="70" />
         <field name="name">es50030</field>
         <field
             name="description"
@@ -106,7 +106,7 @@
         <field name="report_id" ref="mis_report_es_eiyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">80</field>
+        <field name="sequence" eval="80" />
         <field name="name">es50040</field>
         <field
             name="description"
@@ -123,7 +123,7 @@
         <field name="report_id" ref="mis_report_es_eiyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">90</field>
+        <field name="sequence" eval="90" />
         <field name="name">es50050</field>
         <field
             name="description"
@@ -140,7 +140,7 @@
         <field name="report_id" ref="mis_report_es_eiyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">100</field>
+        <field name="sequence" eval="100" />
         <field name="name">es50060</field>
         <field name="description">VI. Diferencias de conversión</field>
         <field name="expression">-bale[811%,820%,911%,920%]</field>
@@ -155,7 +155,7 @@
         <field name="report_id" ref="mis_report_es_eiyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">110</field>
+        <field name="sequence" eval="110" />
         <field name="name">es50070</field>
         <field name="description">VII. Efecto impositivo</field>
         <field name="expression">-bale[8300%,8301%,833%,834%,835%,838%]</field>
@@ -170,7 +170,7 @@
         <field name="report_id" ref="mis_report_es_eiyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">120</field>
+        <field name="sequence" eval="120" />
         <field name="name">es59300</field>
         <field
             name="description"
@@ -189,7 +189,7 @@
         <field name="report_id" ref="mis_report_es_eiyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">130</field>
+        <field name="sequence" eval="130" />
         <field name="name">es50080</field>
         <field
             name="description"
@@ -201,7 +201,7 @@
         <field name="report_id" ref="mis_report_es_eiyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">140</field>
+        <field name="sequence" eval="140" />
         <field name="name">es50081</field>
         <field
             name="description"
@@ -218,7 +218,7 @@
         <field name="report_id" ref="mis_report_es_eiyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">150</field>
+        <field name="sequence" eval="150" />
         <field name="name">es50082</field>
         <field name="description">2. Otros ingresos/gastos</field>
         <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l5" />
@@ -227,7 +227,7 @@
         <field name="report_id" ref="mis_report_es_eiyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">160</field>
+        <field name="sequence" eval="160" />
         <field name="name">es50090</field>
         <field name="description">IX. Por coberturas de flujos de efectivo</field>
         <field name="expression">-bale[812%,912%]</field>
@@ -242,7 +242,7 @@
         <field name="report_id" ref="mis_report_es_eiyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">170</field>
+        <field name="sequence" eval="170" />
         <field name="name">es50100</field>
         <field
             name="description"
@@ -259,7 +259,7 @@
         <field name="report_id" ref="mis_report_es_eiyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">180</field>
+        <field name="sequence" eval="180" />
         <field name="name">es50110</field>
         <field
             name="description"
@@ -276,7 +276,7 @@
         <field name="report_id" ref="mis_report_es_eiyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">190</field>
+        <field name="sequence" eval="190" />
         <field name="name">es50120</field>
         <field name="description">XII. Diferencias de conversión</field>
         <field name="expression">-bale[813%,821%,913%,921%]</field>
@@ -291,7 +291,7 @@
         <field name="report_id" ref="mis_report_es_eiyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">200</field>
+        <field name="sequence" eval="200" />
         <field name="name">es50130</field>
         <field name="description">XIII. Efecto impositivo</field>
         <field name="expression">-bale[8301%,836%,837%]</field>
@@ -306,7 +306,7 @@
         <field name="report_id" ref="mis_report_es_eiyg_normal" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">210</field>
+        <field name="sequence" eval="210" />
         <field name="name">es59400</field>
         <field
             name="description"
