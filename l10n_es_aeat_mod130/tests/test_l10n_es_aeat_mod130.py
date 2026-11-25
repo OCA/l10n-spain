@@ -1,8 +1,9 @@
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0
 
 import logging
+from typing import ClassVar
 
-from odoo import Command, exceptions
+from odoo import SUPERUSER_ID, Command, exceptions
 
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
     TestL10nEsAeatModBase,
@@ -15,11 +16,11 @@ class TestL10nEsAeatMod130Base(TestL10nEsAeatModBase):
     # Set 'debug' attribute to True to easy debug this test
     # Do not forget to include '--log-handler aeat:DEBUG' in Odoo command line
     debug = False
-    taxes_sale = {
+    taxes_sale: ClassVar[dict] = {
         # tax code: (base, tax_amount)
         "S_IVA21B": (1000, 0),
     }
-    taxes_purchase = {
+    taxes_purchase: ClassVar[dict] = {
         # tax code: (base, tax_amount)
         "P_IVA21_BC": (900, 0),
     }
@@ -44,7 +45,7 @@ class TestL10nEsAeatMod130Base(TestL10nEsAeatModBase):
             {
                 "name": "9990000000130",
                 "company_id": self.company.id,
-                "company_vat": "1234567890",
+                "company_vat": "123456789",
                 "contact_name": "Test owner",
                 "statement_type": "N",
                 "support_type": "T",
@@ -167,7 +168,7 @@ class TestL10nEsAeatMod130Base(TestL10nEsAeatModBase):
         model130 = self.env["l10n.es.aeat.mod130.report"].create(
             {
                 "company_id": self.company.id,
-                "company_vat": "1234567890",
+                "company_vat": "123456789",
                 "contact_name": "Test owner",
                 "contact_phone": "911234455",
                 "year": 2019,
@@ -182,3 +183,60 @@ class TestL10nEsAeatMod130Base(TestL10nEsAeatModBase):
         draft_move.action_post()
         model130.button_recalculate()
         self.assertAlmostEqual(model130.casilla_06, 200, 2)
+
+    def _create_model130(self, company=None, **vals):
+        company = company or self.company
+        return (
+            self.env["l10n.es.aeat.mod130.report"]
+            .sudo()
+            .create(
+                {
+                    "company_id": company.id,
+                    "company_vat": "123456789",
+                    "contact_name": "Test owner",
+                    "contact_phone": "911234455",
+                    "statement_type": "N",
+                    "support_type": "T",
+                    "year": 2019,
+                    "period_type": "1T",
+                    "date_start": "2019-01-01",
+                    "date_end": "2019-03-31",
+                    **vals,
+                }
+            )
+            .sudo(False)
+        )
+
+    def test_model_130_export_iban(self):
+        self._invoice_sale_create("2019-01-01")
+        bank = self.env["res.partner.bank"].create(
+            {
+                "partner_id": self.company.partner_id.id,
+                "account_number": "ES91 2100 0418 4502 0005 1332",
+            }
+        )
+        model130 = self._create_model130(journal_id=self.journal_misc.id)
+        model130.button_calculate()
+        self.assertEqual(model130.tipo_declaracion, "I")
+        model130.partner_bank_id = bank
+        export_to_boe = self.env["l10n.es.aeat.report.export_to_boe"].create(
+            {"name": "test_export_to_boe.txt"}
+        )
+        content = export_to_boe._export_config(
+            model130, self.env.ref("l10n_es_aeat_mod130.aeat_mod130_export_config")
+        )
+        self.assertIn(b"ES9121000418450200051332", content)
+
+    def test_model_130_company_rule(self):
+        # Created by another user, so that the test user is not linked to it
+        other_company = (
+            self.env["res.company"]
+            .with_user(SUPERUSER_ID)
+            .create({"name": "Other company"})
+        )
+        own_report = self._create_model130()
+        other_report = self._create_model130(company=other_company)
+        reports = self.env["l10n.es.aeat.mod130.report"].search(
+            [("id", "in", (own_report + other_report).ids)]
+        )
+        self.assertEqual(reports, own_report)

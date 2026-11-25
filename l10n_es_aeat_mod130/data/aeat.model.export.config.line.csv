@@ -31,7 +31,7 @@ aeat_mod130_sub_export_line_29,aeat_mod130_sub_export_config,29,"Liquidación (3
 aeat_mod130_sub_export_line_30,aeat_mod130_sub_export_config,30,"Liquidación (3). III. Total Liquidación - [19] Resultado de la autoliquidación ([17]-[18])",float,17,2,right,True,N,0,,X,${object.result},,,,
 aeat_mod130_sub_export_line_31,aeat_mod130_sub_export_config,31,"Declaración complementaria",boolean,1,0,left,,N,0," ",X,${object.statement_type == 'C'},,,,
 aeat_mod130_sub_export_line_32,aeat_mod130_sub_export_config,32,"Número de justificante de la declaración anterior",string,13,0,left,,N,0,,X,${object.previous_number if object.statement_type == 'C' else ''},,,,
-aeat_mod130_sub_export_line_33,aeat_mod130_sub_export_config,33,"Domiciliación IBAN",string,34,0,left,,N,0,,X,"${object.partner_bank_id and object.partner_bank_id.acc_number and object.partner_bank_id.acc_number.replace("" "", """") or """"}",,,,
+aeat_mod130_sub_export_line_33,aeat_mod130_sub_export_config,33,"Domiciliación IBAN",string,34,0,left,,N,0,,X,"${object.partner_bank_id and object.partner_bank_id.account_number and object.partner_bank_id.account_number.replace("" "", """") or """"}",,,,
 aeat_mod130_sub_export_line_34,aeat_mod130_sub_export_config,34,"Reservado AEAT",string,96,0,left,,N,0,,X,,,,,
 aeat_mod130_sub_export_line_35,aeat_mod130_sub_export_config,35,"Reservado para la Administración. Sello electronico",string,13,0,left,,N,0,,X,,,,,
 aeat_mod130_sub_export_line_36,aeat_mod130_sub_export_config,36,"Indicador de fin de registro",string,12,0,left,,N,0,,X,,"</T13001000>",,,
