@@ -4,7 +4,7 @@ from datetime import timedelta
 
 from odoo import fields
 from odoo.exceptions import UserError
-from odoo.tests import tagged
+from odoo.tests import Form, tagged
 
 from odoo.addons.account_payment_order.tests.test_payment_order_outbound import (
     TestPaymentOrderOutboundBase,
@@ -120,3 +120,18 @@ class TestPaymentOrderOutboundBaseAEF(TestPaymentOrderOutboundBase):
         self.assertEqual(lines[4][2:36].strip(), "FR2012421242124212421242124")
         self.assertEqual(lines[4][36:47], "PSSTFRPPXXX")
         self.assertEqual(lines[4][47:81].strip(), "")
+
+    def test_payment_method_only_in_bank_journals(self):
+        method = self.env.ref(
+            "l10n_es_payment_order_confirming_aef.export_confirming_aef"
+        )
+        for journal_type in ("bank", "cash", "credit"):
+            with Form(self.env["account.journal"]) as journal_form:
+                journal_form.name = f"New {journal_type} journal"
+                journal_form.type = journal_type
+                # Methods that can be added to the journal
+                available = journal_form.available_payment_method_ids
+            if journal_type == "bank":
+                self.assertIn(method, available)
+            else:
+                self.assertNotIn(method, available)
