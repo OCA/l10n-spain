@@ -4,14 +4,9 @@
 import hashlib
 import io
 
-try:
-    from pypdf import PdfReader, PdfWriter
-except ImportError:
-    from PyPDF2 import PdfFileReader as PdfReader
-    from PyPDF2 import PdfFileWriter as PdfWriter
-
 from odoo import api, fields, models
 from odoo.exceptions import UserError
+from odoo.tools.pdf import PdfReader, PdfWriter
 
 
 class StockPicking(models.Model):
@@ -150,7 +145,7 @@ class StockPicking(models.Model):
         )
         for move in self.move_ids:
             data += f"{move.product_id.id}{move.quantity}"
-            data += f"{move.product_uom.id}{move.deca_weight}"
+            data += f"{move.uom_id.id}{move.deca_weight}"
         return hashlib.md5(data.encode("utf-8")).hexdigest()
 
     def write(self, vals):
@@ -184,7 +179,7 @@ class StockPicking(models.Model):
             self.sudo().deca_access_token = self.env[
                 "ir.attachment"
             ]._generate_access_token()
-        base_url = self.env["ir.config_parameter"].sudo().get_param("web.base.url")
+        base_url = self.get_base_url()
         return f"{base_url}/my/picking/{self.id}?access_token={self.deca_access_token}"
 
     def _render_deca_pdf(self):
@@ -206,7 +201,7 @@ class StockPicking(models.Model):
                 )
             )
             if attachment:
-                return attachment, attachment.raw, "pdf"
+                return attachment, attachment.raw.content, "pdf"
         content, ext = self.env["ir.actions.report"]._render_qweb_pdf(
             "l10n_es_deca_oca.report_deca", [self.id]
         )
@@ -222,20 +217,9 @@ class StockPicking(models.Model):
         )
         reader = PdfReader(io.BytesIO(content))
         writer = PdfWriter()
-        if hasattr(reader, "pages"):
-            for page in reader.pages:
-                if hasattr(writer, "add_page"):
-                    writer.add_page(page)
-                else:
-                    writer.addPage(page)
-        else:
-            for i in range(reader.getNumPages()):
-                writer.addPage(reader.getPage(i))
-        try:
-            metadata = reader.metadata or {}
-        except AttributeError:
-            metadata = reader.getDocumentInfo() or {}
-        custom_metadata = dict(metadata)
+        for page in reader.pages:
+            writer.add_page(page)
+        custom_metadata = dict(reader.metadata or {})
         creation_date = self.deca_first_version_date.strftime("D:%Y%m%d%H%M%SZ")
         mod_date = fields.Datetime.now().strftime("D:%Y%m%d%H%M%SZ")
         custom_metadata.update(
@@ -244,10 +228,7 @@ class StockPicking(models.Model):
                 "/ModDate": mod_date,
             }
         )
-        try:
-            writer.add_metadata(custom_metadata)
-        except AttributeError:
-            writer.addMetadata(custom_metadata)
+        writer.add_metadata(custom_metadata)
         output = io.BytesIO()
         writer.write(output)
         final_content = output.getvalue()

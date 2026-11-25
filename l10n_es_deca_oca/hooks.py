@@ -34,7 +34,7 @@ def post_init_hook(env):
                         ROUND(
                             (
                                 CASE
-                                    WHEN sm.product_uom = pt.uom_id
+                                    WHEN sm.uom_id = pt.uom_id
                                     THEN sm.quantity
                                     ELSE sm.quantity * move_uom.factor / prod_uom.factor
                                 END
@@ -46,7 +46,7 @@ def post_init_hook(env):
             FROM stock_move sm
             JOIN product_product pp ON pp.id = sm.product_id
             JOIN product_template pt ON pt.id = pp.product_tmpl_id
-            JOIN uom_uom move_uom ON move_uom.id = sm.product_uom
+            JOIN uom_uom move_uom ON move_uom.id = sm.uom_id
             JOIN uom_uom prod_uom ON prod_uom.id = pt.uom_id
             WHERE sm.deca_weight IS NULL
         )

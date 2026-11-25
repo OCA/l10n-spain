@@ -64,7 +64,7 @@ class TestStockPickingDeca(TransactionCase):
             {
                 "product_id": cls.product.id,
                 "product_uom_qty": 10.0,
-                "product_uom": cls.product.uom_id.id,
+                "uom_id": cls.product.uom_id.id,
                 "picking_id": cls.picking.id,
                 "location_id": cls.location_stock.id,
                 "location_dest_id": cls.location_customer.id,
@@ -137,7 +137,7 @@ class TestStockPickingDeca(TransactionCase):
                 ]
             )
             self.assertTrue(att_v1)
-            self.assertEqual(att_v1.raw, pdf_1)
+            self.assertEqual(att_v1.raw.content, pdf_1)
             reader_v1 = PdfReader(io.BytesIO(pdf_1))
             self.assertIn("/CreationDate", reader_v1.metadata)
             self.assertIn("/ModDate", reader_v1.metadata)
@@ -154,11 +154,11 @@ class TestStockPickingDeca(TransactionCase):
             # 3. Modify fields not in hash (note, state) -> should still be v1
             self.picking.note = "Test internal note"
             self.picking.action_confirm()
-            _att, pdf_1_cached_2, _ext = self.picking._render_deca_pdf()
+            _att, _pdf_1_cached_2, _ext = self.picking._render_deca_pdf()
             self.assertEqual(self.picking.deca_version, 1)
             # 4. Modify a DeCA field -> hash changes -> should generate v2
             self.picking.tractor_license_plate = "9999ZZZ"
-            _att, pdf_2, _ext = self.picking._render_deca_pdf()
+            _att, _pdf_2, _ext = self.picking._render_deca_pdf()
             self.assertEqual(
                 self.picking.deca_version,
                 2,
@@ -175,7 +175,7 @@ class TestStockPickingDeca(TransactionCase):
             self.assertTrue(att_v2)
             # 5. Modify trailer plate -> should generate v3
             self.picking.trailer_license_plate = "R9999XXX"
-            _att, pdf_3, _ext = self.picking._render_deca_pdf()
+            _att, _pdf_3, _ext = self.picking._render_deca_pdf()
             self.assertEqual(
                 self.picking.deca_version,
                 3,
@@ -183,7 +183,7 @@ class TestStockPickingDeca(TransactionCase):
             )
             # 6. Modify special authorization -> should generate v4
             self.picking.special_authorization = "NEW-AUTH"
-            _att, pdf_4, _ext = self.picking._render_deca_pdf()
+            _att, _pdf_4, _ext = self.picking._render_deca_pdf()
             self.assertEqual(
                 self.picking.deca_version,
                 4,
@@ -194,7 +194,7 @@ class TestStockPickingDeca(TransactionCase):
                 {"name": "New Carrier", "vat": "ES99999999R"}
             )
             self.picking.carrier_contact_id = new_carrier
-            _att, pdf_5, _ext = self.picking._render_deca_pdf()
+            _att, _pdf_5, _ext = self.picking._render_deca_pdf()
             self.assertEqual(
                 self.picking.deca_version,
                 5,
@@ -259,7 +259,7 @@ class TestStockPickingDeca(TransactionCase):
             {
                 "product_id": self.product.id,
                 "product_uom_qty": 5.0,
-                "product_uom": self.product.uom_id.id,
+                "uom_id": self.product.uom_id.id,
                 "picking_id": picking_in.id,
                 "location_id": self.location_customer.id,
                 "location_dest_id": self.location_stock.id,
@@ -284,7 +284,7 @@ class TestStockPickingDeca(TransactionCase):
             {
                 "product_id": self.product.id,
                 "product_uom_qty": 2.0,
-                "product_uom": self.product.uom_id.id,
+                "uom_id": self.product.uom_id.id,
                 "picking_id": picking_int.id,
                 "location_id": self.location_stock.id,
                 "location_dest_id": self.location_stock.id,
@@ -322,7 +322,7 @@ class TestStockPickingDeca(TransactionCase):
         # 2000 g are 2 kg
         self.move.write(
             {
-                "product_uom": self.env.ref("uom.product_uom_gram").id,
+                "uom_id": self.env.ref("uom.product_uom_gram").id,
                 "product_uom_qty": 2000.0,
             }
         )
@@ -334,7 +334,7 @@ class TestStockPickingDeca(TransactionCase):
         # 1 t are 1000 kg
         self.move.write(
             {
-                "product_uom": self.env.ref("uom.product_uom_ton").id,
+                "uom_id": self.env.ref("uom.product_uom_ton").id,
                 "product_uom_qty": 1.0,
                 "quantity": 0.0,
             }
@@ -421,7 +421,7 @@ class TestStockPickingDeca(TransactionCase):
             {
                 "product_id": self.product.id,
                 "product_uom_qty": 5.0,
-                "product_uom": self.product.uom_id.id,
+                "uom_id": self.product.uom_id.id,
                 "picking_id": picking_in.id,
                 "location_id": self.location_customer.id,
                 "location_dest_id": self.location_stock.id,
@@ -462,3 +462,43 @@ class TestStockPickingDeca(TransactionCase):
         post_init_hook(self.env)
         self.assertEqual(self.move.deca_weight, 25.0)
         self.assertEqual(self.picking.deca_weight, 25.0)
+
+    def test_12_history_not_logged_without_previous_value(self):
+        """No history is logged when the old value is empty or unchanged."""
+        self.picking.trailer_license_plate = False
+        self.picking.action_confirm()
+        self.picking.move_ids.quantity = 10.0
+        self.picking.button_validate()
+        self.assertEqual(self.picking.state, "done")
+        # Empty previous value -> nothing to keep in history
+        self.picking.trailer_license_plate = "R3333GGG"
+        self.assertFalse(self.picking.trailer_license_plate_history)
+        # Same value -> nothing to keep in history
+        self.picking.tractor_license_plate = "1111AAA"
+        self.assertFalse(self.picking.tractor_license_plate_history)
+
+    def test_13_get_share_url_reuses_token(self):
+        """An existing access token is reused when sharing again."""
+        url_1 = self.picking._get_share_url()
+        token = self.picking.deca_access_token
+        url_2 = self.picking._get_share_url()
+        self.assertEqual(self.picking.deca_access_token, token)
+        self.assertEqual(url_1, url_2)
+
+    def test_14_render_regenerates_missing_attachment(self):
+        """If the cached attachment was removed, the DeCA is rendered again."""
+        writer = PdfWriter()
+        writer.add_blank_page(width=72, height=72)
+        out = io.BytesIO()
+        writer.write(out)
+        dummy_pdf = out.getvalue()
+        with patch.object(
+            IrActionsReport, "_render_qweb_pdf", return_value=(dummy_pdf, "pdf")
+        ):
+            att_v1, _pdf, _ext = self.picking._render_deca_pdf()
+            self.assertEqual(self.picking.deca_version, 1)
+            att_v1.unlink()
+            att_v2, _pdf, _ext = self.picking._render_deca_pdf()
+            self.assertTrue(att_v2)
+            self.assertEqual(self.picking.deca_version, 2)
+            self.assertEqual(att_v2.name, f"DeCA - {self.picking.name} - v2.pdf")

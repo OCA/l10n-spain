@@ -14,13 +14,13 @@ class StockMove(models.Model):
         compute_sudo=True,
     )
 
-    @api.depends("product_id", "product_uom_qty", "product_uom", "quantity", "state")
+    @api.depends("product_id", "product_uom_qty", "uom_id", "quantity", "state")
     def _compute_deca_weight(self):
         uom_kgm = self.env.ref("uom.product_uom_kgm")
         for move in self:
             product_qty = move.product_qty
             if move.quantity:
-                product_qty = move.product_uom._compute_quantity(
+                product_qty = move.uom_id._compute_quantity(
                     move.quantity, move.product_id.uom_id, rounding_method="HALF-UP"
                 )
             if move.product_id.uom_id._has_common_reference(uom_kgm):

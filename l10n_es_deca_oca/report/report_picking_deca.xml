@@ -104,8 +104,8 @@
                                 <br />
 
                                 <strong
-                                    class="mt-2 d-block"
                                     t-if="o.tractor_license_plate or o.tractor_license_plate_history"
+                                    class="mt-2 d-block"
                                 >Tractor licence plate:</strong>
                                 <div>
                                     <t t-if="o.tractor_license_plate_history">
@@ -126,8 +126,8 @@
                                 </div>
 
                                 <strong
-                                    class="mt-2 d-block"
                                     t-if="o.trailer_license_plate or o.trailer_license_plate_history"
+                                    class="mt-2 d-block"
                                 >Trailer licence plate:</strong>
                                 <div>
                                     <t t-if="o.trailer_license_plate_history">
@@ -148,8 +148,8 @@
                                 </div>
 
                                 <strong
-                                    class="mt-2 d-block"
                                     t-if="o.special_authorization or o.special_authorization_history"
+                                    class="mt-2 d-block"
                                 >Special Authorizations:</strong>
                                 <div>
                                     <t t-if="o.special_authorization_history">
@@ -193,7 +193,7 @@
                                             <span t-field="move.quantity" />
                                         </td>
                                         <td>
-                                            <span t-field="move.product_uom.name" />
+                                            <span t-field="move.uom_id.name" />
                                         </td>
                                         <td class="text-end"><span
                                             t-field="move.deca_weight"
