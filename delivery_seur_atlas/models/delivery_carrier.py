@@ -266,7 +266,7 @@ class DeliveryCarrier(models.Model):
         current_tracking = trackings.pop()
         picking.tracking_state = self._seur_atlas_format_tracking(current_tracking)
         picking.delivery_state = TRACKING_STATES_MAP.get(
-            current_tracking["eventCode"], "incidence"
+            current_tracking["eventCode"], "incident"
         )
 
     def seur_atlas_cancel_shipment(self, pickings):

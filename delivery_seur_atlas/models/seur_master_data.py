@@ -37,7 +37,7 @@ PRODUCT_CODES = [
 ]
 
 TRACKING_STATES_MAP = {
-    "II716": "incidence",  # ERROR EN BULTO
+    "II716": "incident",  # ERROR EN BULTO
     "LC001": "in_transit",  # EN REPARTO CONFIRMADO
     "LC002": "in_transit",  # EN REPARTO CONFIRMADO STR
     "LC003": "in_transit",  # EN REPARTO CONFIRMADO - BULTOS
@@ -49,8 +49,8 @@ TRACKING_STATES_MAP = {
     "LC103": "in_transit",  # CONFIRMADA A REPARTO EN ISLA
     "LC845": "in_transit",  # FINAL DE RETENCION
     "LC860": "in_transit",  # EN REPARTO INTERNACIONAL
-    "LC870": "incidence",  # ENTREGA POR ERROR YA RECUPERAD
-    "LD221": "incidence",  # RETENIDO ADUANA
+    "LC870": "incident",  # ENTREGA POR ERROR YA RECUPERAD
+    "LD221": "incident",  # RETENIDO ADUANA
     "LD841": "in_transit",  # ENTRA EN ADUANA
     "LD846": "in_transit",  # SALE DE ADUANAS
     "LI300": "in_transit",  # SITUACIÓN DE CONVIVENCIA
@@ -204,58 +204,58 @@ TRACKING_STATES_MAP = {
     "LI500": "in_transit",  # INCIDENCIA SACADA A REPARTO
     "LI501": "in_transit",  # INCIDENCIA EN GESTION SEUR
     "LI502": "in_transit",  # DEMORA REPARTO PREFERENTES
-    "LI510": "incidence",  # FALTAN BULTOS
-    "LI511": "incidence",  # FALTA EXPEDICIÓN COMPLETA
-    "LI512": "incidence",  # FALTA POR SERVICIO (48 HORAS)
-    "LI513": "incidence",  # FALTA DOCUMENTACIÓN
-    "LI514": "incidence",  # CONFIRMADO PARCIAL PARA ENLACE
+    "LI510": "incident",  # FALTAN BULTOS
+    "LI511": "incident",  # FALTA EXPEDICIÓN COMPLETA
+    "LI512": "incident",  # FALTA POR SERVICIO (48 HORAS)
+    "LI513": "incident",  # FALTA DOCUMENTACIÓN
+    "LI514": "incident",  # CONFIRMADO PARCIAL PARA ENLACE
     "LI515": "in_transit",  # PENDIENTE DE REPARTO EN PLAZA
     "LI516": "in_transit",  # EXPEDICIÓN PARCIAL EN REPARTO
-    "LI517": "incidence",  # INCIDENCIA EN DESPACHO ADUANA
-    "LI518": "incidence",  # EXP. SIN CONTROLAR POR FIESTA
+    "LI517": "incident",  # INCIDENCIA EN DESPACHO ADUANA
+    "LI518": "incident",  # EXP. SIN CONTROLAR POR FIESTA
     "LI519": "customer_delivered",  # EXPEDICIÓN PARCIAL ENTREGADA
     "LI520": "canceled_shipment",  # DESTINATARIO DESCONOCIDO
     "LI521": "canceled_shipment",  # DOMICILIO DESCONOCIDO
     "LI522": "canceled_shipment",  # AUSENCIA PROLONGADA
     "LI523": "canceled_shipment",  # CERRADO O PRIMERA AUSENCIA
-    "LI524": "incidence",  # CAMBIO DE DOMICILIO
-    "LI525": "incidence",  # FIESTA LOCAL
-    "LI526": "incidence",  # ACCESO IMPOSIBLE AL CLIENTE
-    "LI527": "incidence",  # NO CONTESTA TELÉFONO
-    "LI528": "incidence",  # VACACIONES DEL CLIENTE
+    "LI524": "incident",  # CAMBIO DE DOMICILIO
+    "LI525": "incident",  # FIESTA LOCAL
+    "LI526": "incident",  # ACCESO IMPOSIBLE AL CLIENTE
+    "LI527": "incident",  # NO CONTESTA TELÉFONO
+    "LI528": "incident",  # VACACIONES DEL CLIENTE
     "LI529": "canceled_shipment",  # CERRADO DEFINITIVAMENTE
-    "LI530": "incidence",  # RECEPCIONADO EN PUNTO
-    "LI531": "incidence",  # RETENER EN PLAZA
-    "LI532": "incidence",  # NO HAY PERSONA DE CONTACTO
-    "LI533": "incidence",  # FALTA DE TIEMPO FLOTA
-    "LI534": "incidence",  # COMPROBAR SI ES REEMBOLSO
+    "LI530": "incident",  # RECEPCIONADO EN PUNTO
+    "LI531": "incident",  # RETENER EN PLAZA
+    "LI532": "incident",  # NO HAY PERSONA DE CONTACTO
+    "LI533": "incident",  # FALTA DE TIEMPO FLOTA
+    "LI534": "incident",  # COMPROBAR SI ES REEMBOLSO
     "LI535": "no_update",  # EXPEDICIÓN EXTRAVIADA
-    "LI536": "incidence",  # ACCIDENTE/AVERÍA VEHÍCULO
-    "LI537": "incidence",  # EXPEDICIÓN DETERIORADA
-    "LI538": "incidence",  # EXP. DETERIORADA EN REPARTO
-    "LI539": "incidence",  # PAQUETE ABIERTO
-    "LI540": "incidence",  # AVISARÁN
-    "LI541": "incidence",  # SIN EFECTIVO A LA ENTREGA
+    "LI536": "incident",  # ACCIDENTE/AVERÍA VEHÍCULO
+    "LI537": "incident",  # EXPEDICIÓN DETERIORADA
+    "LI538": "incident",  # EXP. DETERIORADA EN REPARTO
+    "LI539": "incident",  # PAQUETE ABIERTO
+    "LI540": "incident",  # AVISARÁN
+    "LI541": "incident",  # SIN EFECTIVO A LA ENTREGA
     "LI542": "canceled_shipment",  # RECHAZO. INDICAN DEVOLUCIÓN
-    "LI543": "incidence",  # PDTE REPARTO DEVOLUCIÓN MASIVA
-    "LI544": "incidence",  # CLIMA ADVERSO
+    "LI543": "incident",  # PDTE REPARTO DEVOLUCIÓN MASIVA
+    "LI544": "incident",  # CLIMA ADVERSO
     "LI545": "canceled_shipment",  # NO CONOCEN AL REMITENTE
-    "LI546": "incidence",  # QUIEREN ABRIR EL PAQUETE
+    "LI546": "incident",  # QUIEREN ABRIR EL PAQUETE
     "LI547": "in_transit",  # CONCERTADO PRÓXIMO REPARTO
     "LI548": "in_transit",  # CONCERTADA ENTREGA CON RMTE.
     "LI549": "in_transit",  # PENDIENTE ENTREGA CC/GS
     "LI550": "canceled_shipment",  # NO ACEPTAN POR ROTURA
     "LI551": "canceled_shipment",  # NO ACEPTAN PORTES
-    "LI552": "incidence",  # NO ACEPTAN REEMBOLSO
-    "LI553": "incidence",  # NO ACEPTAN DESPACHO O IMPUESTO
-    "LI554": "incidence",  # NO QUIERE FIRMAR ALBARÁN/CDE
-    "LI555": "incidence",  # NO ACEPTAN GASTOS REEMBOLSO
+    "LI552": "incident",  # NO ACEPTAN REEMBOLSO
+    "LI553": "incident",  # NO ACEPTAN DESPACHO O IMPUESTO
+    "LI554": "incident",  # NO QUIERE FIRMAR ALBARÁN/CDE
+    "LI555": "incident",  # NO ACEPTAN GASTOS REEMBOLSO
     "LI556": "canceled_shipment",  # ROTURA. CERTIFICAR DESTRUCCIÓN
     "LI557": "in_transit",  # SEGUNDA OLEADA
     "LI558": "in_transit",  # FALTA DE TIEMPO NAVE
-    "LI559": "incidence",  # PENDIENTE CONCERTACIÓN CC/GS
+    "LI559": "incident",  # PENDIENTE CONCERTACIÓN CC/GS
     "LI560": "in_transit",  # NO TIENE PREPARADO EL CAMBIO
-    "LI561": "incidence",  # ERROR DESTINO
+    "LI561": "incident",  # ERROR DESTINO
     "LI562": "in_transit",  # SOBREINYECCIÓN DEL CLIENTE
     "LI563": "canceled_shipment",  # NO SALIÓ A REPARTO. CERRADO
     "LI564": "in_transit",  # ENTREGA CON MEDIOS ADICIONALES
@@ -264,80 +264,80 @@ TRACKING_STATES_MAP = {
     "LI567": "in_transit",  # PDTE. CONCERTACIÓN AUTOMÁTICA
     "LI568": "in_transit",  # POSICIONADORA FALTAN BULTOS
     "LI569": "customer_delivered",  # DEPOSITADO REPARTIDOR PICK UP
-    "LI570": "incidence",  # INCIDENCIA EN PUDO
+    "LI570": "incident",  # INCIDENCIA EN PUDO
     "LI571": "canceled_shipment",  # DEVOLVER.DEST.RECHAZA PUDO
     "LI572": "canceled_shipment",  # DEVOLVER.PLZO.CUMPLIDO PUDO
-    "LI573": "incidence",  # INCIDENCIA EN LOCKER
+    "LI573": "incident",  # INCIDENCIA EN LOCKER
     "LI574": "customer_delivered",  # RECEPCIONADO EN PICK UP
-    "LI575": "incidence",  # DESTINATARIO SIN IDENTIFICAR
+    "LI575": "incident",  # DESTINATARIO SIN IDENTIFICAR
     "LI576": "customer_delivered",  # DEPOSITADO PUNTO REPARTIDOR
     "LI577": "customer_delivered",  # DEPOSITADO REPARTIDOR LOCKER
     "LI578": "customer_delivered",  # RECEPCIONADO EN LOCKER
     "LI579": "customer_delivered",  # RECOGIDO REPARTIDOR LOCKER
     "LI580": "in_transit",  # EN GESTIÓN ADUANA
-    "LI581": "incidence",  # FALTA EN ORIGEN CLIENTE
+    "LI581": "incident",  # FALTA EN ORIGEN CLIENTE
     "LI599": "canceled_shipment",  # EXPEDICIÓN EN BAUL
-    "LI600": "incidence",  # MERCANCÍA SIN IDENTIFICAR
-    "LI717": "incidence",  # FALTA FACTURA
-    "LI718": "incidence",  # FALTA DESCRIPCIÓN DE MERCANCÍA
-    "LI719": "incidence",  # FALTA VALOR DE LA MERCANCÍA
-    "LI721": "incidence",  # FALTA NIF/CIF DEL REMITENTE
-    "LI722": "incidence",  # FALTA NIF/CIF DEL DESTINATARIO
-    "LI725": "incidence",  # FALTA BULTO Y FACTURA
+    "LI600": "incident",  # MERCANCÍA SIN IDENTIFICAR
+    "LI717": "incident",  # FALTA FACTURA
+    "LI718": "incident",  # FALTA DESCRIPCIÓN DE MERCANCÍA
+    "LI719": "incident",  # FALTA VALOR DE LA MERCANCÍA
+    "LI721": "incident",  # FALTA NIF/CIF DEL REMITENTE
+    "LI722": "incident",  # FALTA NIF/CIF DEL DESTINATARIO
+    "LI725": "incident",  # FALTA BULTO Y FACTURA
     "LI730": "SEE MESSAGE",  # INCIDENCIA DESCRITA EN MENSAJE
-    "LI731": "incidence",  # FALTA TITULAR CIF/NIF REMITENT
-    "LI732": "incidence",  # FALTA TITULAR CIF/NIF DESTINAT
-    "LI752": "incidence",  # DATOS DOCUMENTADOS INCORRECTOS
+    "LI731": "incident",  # FALTA TITULAR CIF/NIF REMITENT
+    "LI732": "incident",  # FALTA TITULAR CIF/NIF DESTINAT
+    "LI752": "incident",  # DATOS DOCUMENTADOS INCORRECTOS
     "LI799": "in_transit",  # MERCANCÍA PDTE DE EMBARCAR
     "LI810": "no_update",  # FALTAN BULTOS
     "LI811": "no_update",  # FALTA EXPEDICIÓN COMPLETA
-    "LI813": "incidence",  # FALTA DOCUMENTACIÓN
+    "LI813": "incident",  # FALTA DOCUMENTACIÓN
     "LI840": "canceled_shipment",  # MERCANCIA DESECHADA
     "LI843": "no_update",  # PERDIDO DESPUES DE RECOGER
-    "LI847": "incidence",  # INSPECCIÓN ADUANERA
-    "LI848": "incidence",  # RETENIDO EN ADUANA
-    "LI849": "incidence",  # INSPECCION NO ADUANERA
-    "LI850": "incidence",  # CONFISCADO P/ADUANA
-    "LI851": "incidence",  # RECIBIDO NO COMUNICADO
-    "LI852": "incidence",  # DATOS COMUNICADOS INCORRECTOS
-    "LI853": "incidence",  # EMBALAJE INSUFICIENTE
-    "LI854": "incidence",  # REPRECINTADO
-    "LI855": "incidence",  # ERROR EN PESO
-    "LI862": "incidence",  # DECLARACION ERRONEA
-    "LI863": "incidence",  # CUARENTENA
-    "LI864": "incidence",  # ESPERANDO PAGO DE IMPUESTOS
-    "LI865": "incidence",  # ADUANAS:DATOS INSUF./INCORRECT
-    "LI866": "incidence",  # MATERIAL RESTRINGIDO
-    "LI867": "incidence",  # INFORMACIÓN ACTUALIZADA
-    "LI868": "incidence",  # PO BOX SIN TELEFONO
-    "LI869": "incidence",  # ESPERANDO INSTRUCCION REMITENT
-    "LI871": "incidence",  # LUGAR NO SEGURO
+    "LI847": "incident",  # INSPECCIÓN ADUANERA
+    "LI848": "incident",  # RETENIDO EN ADUANA
+    "LI849": "incident",  # INSPECCION NO ADUANERA
+    "LI850": "incident",  # CONFISCADO P/ADUANA
+    "LI851": "incident",  # RECIBIDO NO COMUNICADO
+    "LI852": "incident",  # DATOS COMUNICADOS INCORRECTOS
+    "LI853": "incident",  # EMBALAJE INSUFICIENTE
+    "LI854": "incident",  # REPRECINTADO
+    "LI855": "incident",  # ERROR EN PESO
+    "LI862": "incident",  # DECLARACION ERRONEA
+    "LI863": "incident",  # CUARENTENA
+    "LI864": "incident",  # ESPERANDO PAGO DE IMPUESTOS
+    "LI865": "incident",  # ADUANAS:DATOS INSUF./INCORRECT
+    "LI866": "incident",  # MATERIAL RESTRINGIDO
+    "LI867": "incident",  # INFORMACIÓN ACTUALIZADA
+    "LI868": "incident",  # PO BOX SIN TELEFONO
+    "LI869": "incident",  # ESPERANDO INSTRUCCION REMITENT
+    "LI871": "incident",  # LUGAR NO SEGURO
     "LI873": "customer_delivered",  # ENTREGADO A BROKER
     "LI876": "in_transit",  # PERDIDA CONEXION ARRASTRE INTL
     "LI877": "in_transit",  # EN GESTIÓN ALMACEN DESTINO
-    "LI879": "incidence",  # MAL TIEMPO
-    "LI880": "incidence",  # HUELGA
+    "LI879": "incident",  # MAL TIEMPO
+    "LI880": "incident",  # HUELGA
     "LI881": "no_update",  # ENVIO ROBADO
     "LI882": "no_update",  # BULTO DAÑADO
-    "LI888": "incidence",  # MISS ROUTED-MISS LOADED
-    "LI891": "incidence",  # INFORMACIÓN ADICIONAL
-    "LI892": "incidence",  # RETENER
-    "LI893": "incidence",  # IMPOSIBLE EJECUTAR SOLUC NOS
-    "LI894": "incidence",  # INCIDENCIA EN DESPACHO ADUANA
-    "LI895": "incidence",  # INCIDENCIA DOCUMENTACIÓN ADUAN
-    "LK510": "incidence",  # Error en plaza de destino
-    "LK511": "incidence",  # Error en servicio
-    "LK512": "incidence",  # Error en peso
-    "LK513": "incidence",  # Error en volumen
-    "LK514": "incidence",  # Error en tarifa
-    "LK515": "incidence",  # Error tipo de portes
-    "LK516": "incidence",  # Error en bultos
+    "LI888": "incident",  # MISS ROUTED-MISS LOADED
+    "LI891": "incident",  # INFORMACIÓN ADICIONAL
+    "LI892": "incident",  # RETENER
+    "LI893": "incident",  # IMPOSIBLE EJECUTAR SOLUC NOS
+    "LI894": "incident",  # INCIDENCIA EN DESPACHO ADUANA
+    "LI895": "incident",  # INCIDENCIA DOCUMENTACIÓN ADUAN
+    "LK510": "incident",  # Error en plaza de destino
+    "LK511": "incident",  # Error en servicio
+    "LK512": "incident",  # Error en peso
+    "LK513": "incident",  # Error en volumen
+    "LK514": "incident",  # Error en tarifa
+    "LK515": "incident",  # Error tipo de portes
+    "LK516": "incident",  # Error en bultos
     "LK517": "canceled_shipment",  # Anulado cambio destinatario
-    "LK520": "incidence",  # Falta expedición parcial
+    "LK520": "incident",  # Falta expedición parcial
     "LK521": "canceled_shipment",  # ANUL. FALTA Y ACUERDO FRANQ.
     "LK522": "canceled_shipment",  # ANULADA POR NO SALIÓ/DUPLICADA
     "LK523": "canceled_shipment",  # Expedición duplicada
-    "LK524": "incidence",  # CAMBIO DIRECCIÓN DESTINATARIO
+    "LK524": "incident",  # CAMBIO DIRECCIÓN DESTINATARIO
     "LK525": "no_update",  # ANULADA POR RETORNO INSULAR
     "LK530": "canceled_shipment",  # Cobro-origen portes
     "LK531": "canceled_shipment",  # Cobro-origen gastos reembolso
@@ -347,8 +347,8 @@ TRACKING_STATES_MAP = {
     "LK536": "canceled_shipment",  # Cambio valor reembolso
     "LK537": "canceled_shipment",  # Suprimir valor reembolso
     "LK545": "canceled_shipment",  # Retasación llegadas a debidos
-    "LK551": "incidence",  # Error reembolso
-    "LK552": "incidence",  # Error CDE
+    "LK551": "incident",  # Error reembolso
+    "LK552": "incident",  # Error CDE
     "LK553": "canceled_shipment",  # Error seguro
     "LK554": "canceled_shipment",  # ANULADA ERROR SC SEUR PLUS
     "LK555": "canceled_shipment",  # ANULADO ERROR SC CAMBIO
@@ -359,11 +359,11 @@ TRACKING_STATES_MAP = {
     "LK572": "no_update",  # Imposible devolver al remiten.
     "LK573": "canceled_shipment",  # Anulado mercancía desechada
     "LK574": "no_update",  # DEVOLUCIÓN ANULADA REEMBOLSO
-    "LK583": "incidence",  # Error POBLACIÓN
-    "LK590": "incidence",  # Cargo reexpedición
-    "LK596": "incidence",  # Cargo por indemnización
-    "LK597": "incidence",  # Cargo dscto a cliente nacional
-    "LK598": "incidence",  # ANULACION FRANQUCIA FUSIONADA
+    "LK583": "incident",  # Error POBLACIÓN
+    "LK590": "incident",  # Cargo reexpedición
+    "LK596": "incident",  # Cargo por indemnización
+    "LK597": "incident",  # Cargo dscto a cliente nacional
+    "LK598": "incident",  # ANULACION FRANQUCIA FUSIONADA
     "LL001": "customer_delivered",  # Entregado
     "LL003": "customer_delivered",  # ENTREGADO POR BULTO
     "LL007": "canceled_shipment",  # Liquidada entrega parcial
@@ -378,11 +378,11 @@ TRACKING_STATES_MAP = {
     "LL082": "canceled_shipment",  # POSICIONADORA BULTOS DESTRUIDO
     "LL091": "no_update",  # LIQUIDADO EXPEDIC. EXTRAVIADA
     "LL092": "no_update",  # LIQUIDADO EXPEDICION ARCHIVADA
-    "LL099": "incidence",  # Provisional dado de baja
-    "LL100": "incidence",  # Liquidado CARGO
-    "LL200": "incidence",  # Liquidado CASACION PROVISIONAL
+    "LL099": "incident",  # Provisional dado de baja
+    "LL100": "incident",  # Liquidado CARGO
+    "LL200": "incident",  # Liquidado CASACION PROVISIONAL
     "LL300": "no_update",  # Liquidado DEVUELTO
-    "LL301": "incidence",  # LIQUIDADO REENVIO A OTRA PLAZA
+    "LL301": "incident",  # LIQUIDADO REENVIO A OTRA PLAZA
     "LL303": "canceled_shipment",  # Liquidado MERCANCIA DESECHADA
     "LL310": "canceled_shipment",  # Liquida-Indemniza FALTA PARCIA
     "LL360": "no_update",  # POSICIONADORA ALMACÉN REGULADO
@@ -392,10 +392,10 @@ TRACKING_STATES_MAP = {
     "LL833": "no_update",  # DEVOLVER A ORIGEN
     "LL834": "no_update",  # DEVUELTA A INTERNACIONAL
     "LL835": "no_update",  # DEVUELTA A CORRESPONSAL/CLIENT
-    "LL838": "incidence",  # REEXPEDIR
+    "LL838": "incident",  # REEXPEDIR
     "LL872": "customer_delivered",  # ENTREGADO A VECINO
     "LL873": "customer_delivered",  # ENTREGADO A BROKER
-    "LL874": "incidence",  # CONFISCADO P/ADUANA
+    "LL874": "incident",  # CONFISCADO P/ADUANA
     "LM001": "customer_delivered",  # Error tipo pago cobrado
     "LM002": "customer_delivered",  # Error tipo pago factura
     "LM003": "customer_delivered",  # Error tipo pago recibo
@@ -418,12 +418,12 @@ TRACKING_STATES_MAP = {
     "LM022": "customer_delivered",  # POSIBLE LIQUIDACIÓN PARCIAL
     "LM023": "customer_delivered",  # ENTREGA SIN VERIFICAR FIRMA
     "LM024": "customer_delivered",  # ENTREGA SIN VERIFICAR DESTINAT
-    "LM025": "incidence",  # ENTREGA PENDIENTE FIRMA VÁLIDA
+    "LM025": "incident",  # ENTREGA PENDIENTE FIRMA VÁLIDA
     "LM026": "customer_delivered",  # CDE PENDIENTE DIGITALIZAR
     "LM027": "customer_delivered",  # CDE PENDIENTE RECIBIR IMAGEN
     "LM060": "customer_delivered",  # ENTREGA SIN CONTRASTAR RETORNO
-    "LM999": "incidence",  # ENTREGA  RELACIÓN A VERIFICAR
-    "LR802": "incidence",  # PERDIDA DE CONEXIÓN CAUSA AJENA
+    "LM999": "incident",  # ENTREGA  RELACIÓN A VERIFICAR
+    "LR802": "incident",  # PERDIDA DE CONEXIÓN CAUSA AJENA
     "LS001": "in_transit",  # ASIGNADA AUTOMÁTICAMENTE
     "LS002": "in_transit",  # ASIGNADA MANUALMENTE
     "LS003": "in_transit",  # REASIGNADA

@@ -180,3 +180,33 @@ class TestDeliverySeurAtlas(BaseCommon):
         self.assertEqual(label.name, "seur_47470138102388.pdf")
         self.assertEqual(label.mimetype, "application/pdf")
         self.assertEqual(label.raw.content, b"%PDF-1.4 label")
+
+    def test_03_seur_atlas_tracking_incident(self):
+        """SEUR incidences and unknown events set the incident carrier state"""
+        self._mock_seur_api(
+            {
+                "shipments": {"shipmentCode": "028111000201420210718"},
+                "labels": [
+                    {
+                        "ecb": "47470138102389",
+                        "pack": "1/1",
+                        "pdf": base64.b64encode(b"%PDF-1.4 label").decode(),
+                    }
+                ],
+                "tracking-services/extended": [
+                    {
+                        "situations": [
+                            {
+                                "situationDate": "2026-11-20T09:15:00",
+                                "eventCode": "LI527",
+                                "description": "NO CONTESTA TELEFONO",
+                            }
+                        ]
+                    }
+                ],
+            }
+        )
+        self.picking.button_validate()
+        self.picking.tracking_state_update()
+        self.assertIn("[LI527] NO CONTESTA TELEFONO", self.picking.tracking_state)
+        self.assertEqual(self.picking.delivery_state, "incident")
