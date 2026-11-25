@@ -543,4 +543,9 @@ class DeliveryCarrier(models.Model):
             tracking.get("state_code"), tracking.get("description")
         )
         if tracking.get("state_code") == "00":
-            picking.write({"date_delivered": tracking.get("delivery_date")})
+            picking.write(
+                {
+                    "date_delivered": tracking.get("delivery_date"),
+                    "delivery_state": "customer_delivered",
+                }
+            )

@@ -459,3 +459,32 @@ class TestDeliveryMRW(BaseCommon):
             ]
         )
         self.assertEqual(len(carriers), 2)
+
+    @mock.patch("odoo.addons.delivery_mrw.models.mrw_request.Client")
+    def test_27_tracking_update_marks_delivered_picking(self, mock_client):
+        self._mock_mrw_soap(mock_client)
+        self.picking.move_ids.quantity = self.picking.move_ids.product_uom_qty
+        self.picking.button_validate()
+        get_envios = mock_client.return_value.service.GetEnvios
+        get_envios.return_value = {
+            "MensajeSeguimiento": "Busqueda correcta por Número de Albarán.",
+            "Seguimiento": {
+                "Abonado": {
+                    "SeguimientoAbonado": {
+                        "Seguimiento": {
+                            "Estado": "00",
+                            "EstadoDescripcion": "Entregado",
+                            "FechaEntrega": "02022024",
+                            "HoraEntrega": "1200",
+                        }
+                    }
+                }
+            },
+        }
+        self.picking.tracking_state_update()
+        self.assertEqual(self.picking.tracking_state, "[00] Entregado")
+        self.assertEqual(self.picking.delivery_state, "customer_delivered")
+        # The delivered shipment is no longer queried by the update cron
+        get_envios.reset_mock()
+        self.env["stock.picking"]._update_delivery_state()
+        get_envios.assert_not_called()
