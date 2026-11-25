@@ -195,6 +195,39 @@ class TestResPartner(BaseCommon):
         self.assertEqual(send_soap.call_count, 2)
         self.assertFalse(partner.aeat_data_diff)
 
+    def test_automatic_check_contacts(self):
+        """Contacts take the VAT number of their company, but only the
+        company is sent to the AEAT, not the names of its contacts"""
+        self.env.company.sudo().vat_check_aeat = True
+        with (
+            mock.patch(
+                SEND_SOAP,
+                return_value=self._census_answer("PARENT COMPANY", vat="B12345674"),
+            ) as send_soap,
+            mock.patch(REQUESTS_POST) as post,
+        ):
+            self._surcharge_answer(post, subject=False)
+            company = self.env["res.partner"].create(
+                {
+                    "name": "PARENT COMPANY",
+                    "is_company": True,
+                    "country_id": self.env.ref("base.es").id,
+                    "vat": "ESB12345674",
+                }
+            )
+            contact = self.env["res.partner"].create(
+                {"name": "John Contact", "parent_id": company.id}
+            )
+            self.assertEqual(contact.vat, "ESB12345674")
+            self.assertEqual(send_soap.call_count, 1)
+            company.vat = "ESA12345674"
+            self.assertEqual(contact.vat, "ESA12345674")
+        self.assertEqual(
+            [call.args[-1]["Nombre"] for call in send_soap.call_args_list],
+            ["PARENT COMPANY", "PARENT COMPANY"],
+        )
+        self.assertFalse(contact.aeat_partner_check_result)
+
     def test_compute_data_diff(self):
         partner = self.partner.sudo()
         partner.aeat_partner_check_result = "IDENTIFICADO"

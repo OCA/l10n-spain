@@ -101,10 +101,16 @@ class ResPartner(models.Model):
             partner.sudo().write(vals)
         self.aeat_check_re()
 
+    def _get_aeat_auto_check_partners(self):
+        """Contacts of a company take its VAT number, so the automatic check
+        is done only on the commercial partners: checking the contacts would
+        send their own names with the VAT number of the company."""
+        return self.filtered(lambda partner: partner == partner.commercial_partner_id)
+
     def write(self, vals):
         res = super().write(vals)
         if "name" in vals or "vat" in vals:
-            for partner in self:
+            for partner in self._get_aeat_auto_check_partners():
                 if "company_id" in vals:
                     company = self.env["res.company"].browse(vals["company_id"])
                 elif partner.company_id:
@@ -118,7 +124,7 @@ class ResPartner(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         res_list = super().create(vals_list)
-        for partner in res_list:
+        for partner in res_list._get_aeat_auto_check_partners():
             company = partner.company_id if partner.company_id else self.env.company
             if company.vat_check_aeat:
                 partner.aeat_check_partner()
