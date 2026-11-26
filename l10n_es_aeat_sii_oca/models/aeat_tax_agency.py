@@ -1,5 +1,6 @@
 # Copyright 2018 Javi Melendez <javimelex@gmail.com>
 # Copyright 2022 Lois Rilo <lois.rilo@forgeflow.com>
+# Copyright 2026 Binovo IT Human Project SL
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import fields, models
@@ -59,8 +60,19 @@ class AeatTaxAgency(models.Model):
         if not address and company.sii_test:
             # If not test address is provides we try to get it using the port name.
             port_name += "Pruebas"
+        wsdl = getattr(self, wsdl_field)
+        agency_navarra = self.env.ref(
+            "l10n_es_aeat.aeat_tax_agency_navarra", raise_if_not_found=False
+        )
+        if agency_navarra and self == agency_navarra:
+            # Navarra does not publish a WSDL: reuse AEAT Spain's and use
+            # the Navarra SOAP URL stored in sii_wsdl_* as the endpoint.
+            wsdl = getattr(
+                self.env.ref("l10n_es_aeat.aeat_tax_agency_spain"), wsdl_field
+            )
+            address = getattr(self, wsdl_field)
         return {
-            "wsdl": getattr(self, wsdl_field),
+            "wsdl": wsdl,
             "address": address,
             "port_name": port_name,
         }
