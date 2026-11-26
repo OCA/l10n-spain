@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo noupdate="1">
+    <record id="max_chaining_attempts" model="ir.config_parameter">
+        <field name="key">l10n_es_verifactu_pos_oca.max_chaining_attempts</field>
+        <field name="value">10</field>
+    </record>
+</odoo>
