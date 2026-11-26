@@ -151,7 +151,16 @@ class PaymentProvider(models.Model):
                 and self.redsys_merchant_description[:125]
             ),
             "Ds_Merchant_ConsumerLanguage": (self.redsys_merchant_lang or "001"),
-            "Ds_Merchant_UrlOk": "%s/payment/redsys/result/redsys_result_ok" % base_url,
+            # Include the transaction reference in UrlOk so the return
+            # controller can re-attach it to the user's session, even when
+            # the cross-site round-trip drops the original session cookie.
+            "Ds_Merchant_UrlOk": (
+                "%s/payment/redsys/return?tx_ref=%s"
+                % (
+                    callback_url or base_url,
+                    urllib.parse.quote(tx_values.get("reference") or ""),
+                )
+            )[:250],
             "Ds_Merchant_UrlKo": "%s/payment/redsys/result/redsys_result_ko" % base_url,
             "Ds_Merchant_Paymethods": self.redsys_pay_method or "T",
         }
