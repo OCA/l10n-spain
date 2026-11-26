@@ -9,3 +9,4 @@ from . import account_journal
 from . import account_move
 from . import res_partner
 from . import account_chart_template
+from . import l10n_es_aeat_real_estate

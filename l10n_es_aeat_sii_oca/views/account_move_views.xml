@@ -3,6 +3,7 @@
      Copyright 2020 Tecnativa - Pedro M. Baeza
      Copyright 2021 Tecnativa - João Marques
      Copyright 2023 Aures Tic - Jose Zambudio
+     Copyright 2026 Tecnativa - Carlos Dauden
     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
 <odoo>
     <record id="invoice_sii_form" model="ir.ui.view">
@@ -116,15 +117,23 @@
                         <field
                             name="sii_property_location"
                             groups="account.group_account_invoice"
-                            invisible="sii_registration_key_code not in ['12', '13'] or move_type not in ['out_invoice', 'out_refund']"
-                            required="sii_registration_key_code in ['12', '13'] and move_type in ['out_invoice', 'out_refund']"
+                            invisible="sii_registration_key_code not in ['12', '13'] or move_type not in ['out_invoice', 'out_refund'] or sii_line_real_estates"
+                            required="sii_registration_key_code in ['12', '13'] and move_type in ['out_invoice', 'out_refund'] and not sii_line_real_estates"
                         />
                         <field
                             name="sii_property_cadastrial_code"
                             groups="account.group_account_invoice"
-                            invisible="sii_registration_key_code not in ['12', '13'] or move_type not in ['out_invoice', 'out_refund']"
-                            required="sii_registration_key_code in ['12', '13'] and sii_property_location in ['1', '2'] and move_type in ['out_invoice', 'out_refund']"
+                            invisible="sii_registration_key_code not in ['12', '13'] or move_type not in ['out_invoice', 'out_refund'] or sii_line_real_estates"
+                            required="sii_registration_key_code in ['12', '13'] and sii_property_location in ['1', '2'] and move_type in ['out_invoice', 'out_refund'] and not sii_line_real_estates"
                         />
+                        <div
+                            colspan="2"
+                            class="text-muted"
+                            groups="account.group_account_invoice"
+                            invisible="sii_registration_key_code not in ['12', '13'] or move_type not in ['out_invoice', 'out_refund'] or not sii_line_real_estates"
+                        >
+                            The real estates of the invoice lines are sent as the real properties.
+                        </div>
                     </group>
                     <group
                         string="Result"

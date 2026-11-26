@@ -10,6 +10,7 @@
 # Copyright 2023 Aures Tic - Almudena de la Puente <almudena@aurestic.es>
 # Copyright 2023 Aures Tic - Jose Zambudio <jose@aurestic.es>
 # Copyright 2023 Moduon Team - Eduardo de Miguel
+# Copyright 2026 Tecnativa - Carlos Dauden
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import json
@@ -22,6 +23,8 @@ from odoo.exceptions import UserError
 from odoo.osv.expression import AND, OR
 
 SII_VALID_INVOICE_STATES = ["posted"]
+# Real estates of an issued invoice the SII accepts (DatosInmueble)
+SII_MAX_REAL_ESTATES = 15
 _logger = logging.getLogger(__name__)
 
 
@@ -78,6 +81,11 @@ class AccountMove(models.Model):
         string="Real property cadastrial code",
         copy=False,
     )
+    sii_line_real_estates = fields.Boolean(
+        compute="_compute_sii_line_real_estates",
+        help="The lines carry real estates, so they are sent to the SII "
+        "instead of the real property location of the invoice.",
+    )
     sii_lc_operation = fields.Boolean(
         string="Customs - Complementary settlement",
         help="Check this mark if this invoice represents a complementary "
@@ -120,6 +128,13 @@ class AccountMove(models.Model):
             taxes = invoice.company_id._get_taxes_from_xmlids(xmlids)
             invoice.sii_dua_invoice = invoice.line_ids.filtered(
                 lambda x, taxes=taxes: bool(taxes & x.tax_ids)
+            )
+
+    @api.depends("invoice_line_ids.l10n_es_aeat_real_estate_id")
+    def _compute_sii_line_real_estates(self):
+        for invoice in self:
+            invoice.sii_line_real_estates = bool(
+                invoice.invoice_line_ids.l10n_es_aeat_real_estate_id
             )
 
     @api.depends("state", "aeat_state", "sii_needs_cancel")
@@ -306,6 +321,23 @@ class AccountMove(models.Model):
         if not self.ref and self.move_type in ["in_invoice", "in_refund"]:
             error_msg = self.env._("The supplier number invoice is required")
             raise UserError(error_msg)
+        real_estate_count = len(self.invoice_line_ids.l10n_es_aeat_real_estate_id)
+        if (
+            self.move_type in ["out_invoice", "out_refund"]
+            and self.sii_registration_key.code in ["12", "13"]
+            and real_estate_count > SII_MAX_REAL_ESTATES
+        ):
+            raise UserError(
+                self.env._(
+                    "The lines of the invoice %(invoice)s have %(count)s "
+                    "different real estates, and the SII accepts up to %(max)s "
+                    "per invoice. Split them into several invoices of up to "
+                    "%(max)s real estates each.",
+                    invoice=self.display_name,
+                    count=real_estate_count,
+                    max=SII_MAX_REAL_ESTATES,
+                )
+            )
         return res
 
     def _get_sii_invoice_type(self):
@@ -329,6 +361,25 @@ class AccountMove(models.Model):
                 else:
                     invoice_type = "R5" if is_simplified else "R1"
         return invoice_type
+
+    def _get_sii_real_estate_details(self):
+        """One detail per distinct real estate of the lines, in their order, or
+        the real property of the invoice when the lines carry none."""
+        self.ensure_one()
+        lines = self.invoice_line_ids.sorted(lambda line: (line.sequence, line.id))
+        real_estates = lines.l10n_es_aeat_real_estate_id
+        if not real_estates:
+            return {
+                "SituacionInmueble": self.sii_property_location,
+                "ReferenciaCatastral": (self.sii_property_cadastrial_code or ""),
+            }
+        return [
+            {
+                "SituacionInmueble": real_estate._get_sii_situation(),
+                "ReferenciaCatastral": real_estate.reference or "",
+            }
+            for real_estate in real_estates
+        ]
 
     def _get_aeat_invoice_dict_out(self, cancel=False):
         inv_dict = super()._get_aeat_invoice_dict_out(cancel=cancel)
@@ -355,10 +406,7 @@ class AccountMove(models.Model):
         self._adapt_sii_export_registration_keys(inv_dict["FacturaExpedida"])
         if self.sii_registration_key.code in ["12", "13"]:
             inv_dict["FacturaExpedida"]["DatosInmueble"] = {
-                "DetalleInmueble": {
-                    "SituacionInmueble": self.sii_property_location,
-                    "ReferenciaCatastral": (self.sii_property_cadastrial_code or ""),
-                }
+                "DetalleInmueble": self._get_sii_real_estate_details()
             }
         exp_dict = inv_dict["FacturaExpedida"]
         if self.move_type == "out_refund":

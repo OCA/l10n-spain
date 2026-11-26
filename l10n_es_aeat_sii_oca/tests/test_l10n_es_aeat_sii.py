@@ -4,12 +4,13 @@
 # Copyright 2021 Tecnativa - João Marques
 # Copyright 2017-2023 Tecnativa - Pedro M. Baeza
 # Copyright 2023 Moduon Team - Eduardo de Miguel
+# Copyright 2026 Tecnativa - Carlos Dauden
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
 
 import json
 from datetime import timedelta
 
-from odoo import exceptions, fields
+from odoo import Command, exceptions, fields
 from odoo.tools.misc import file_path
 
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_certificate import (
@@ -530,6 +531,109 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
             else:
                 self.assertFalse(invoice.sii_dua_invoice)
         return
+
+    def _create_real_estate_invoice(self, real_estates):
+        """Leased premises invoice (key 12) with a line per real estate, or one
+        line without it, and the real property of the invoice filled in."""
+        tax = self.company._get_taxes_from_xmlids(["account_tax_template_s_iva21s"])
+        return self.env["account.move"].create(
+            {
+                "name": "TEST001",
+                "partner_id": self.partner.id,
+                "invoice_date": "2020-01-01",
+                "move_type": "out_invoice",
+                "sii_registration_key": self.env.ref(
+                    "l10n_es_aeat_sii_oca.aeat_sii_mapping_registration_keys_12"
+                ).id,
+                "sii_property_location": "3",
+                "invoice_line_ids": [
+                    Command.create(
+                        {
+                            "product_id": self.product.id,
+                            "account_id": self.account_expense.id,
+                            "price_unit": 100,
+                            "tax_ids": [Command.set(tax.ids)],
+                            "l10n_es_aeat_real_estate_id": real_estate.id,
+                        }
+                    )
+                    for real_estate in real_estates or [real_estates]
+                ],
+            }
+        )
+
+    def test_real_estates_of_the_lines(self):
+        """Issued invoices of leased premises send the distinct real estates of
+        their lines, in line order, or the real property of the invoice when
+        the lines carry none; the SII accepts up to 15 of them."""
+        Estate = self.env["l10n.es.aeat.real_estate"]
+        base_vals = {
+            "partner_id": self.company.partner_id.id,
+            "address": "Mayor",
+            "number": 1,
+            "city": "Madrid",
+            "zip": "28001",
+        }
+        madrid, paris, pamplona, *premises = Estate.create(
+            [
+                {
+                    **base_vals,
+                    "name": "Madrid",
+                    "state_id": self.env.ref("base.state_es_m").id,
+                    "reference": "8374992BV4192Q4560EG",
+                },
+                {
+                    **base_vals,
+                    "name": "Paris",
+                    "country_id": self.env.ref("base.fr").id,
+                    "city": "Paris",
+                    "zip": "75001",
+                    "reference": "FR-75056-000AB-0123",
+                },
+                {
+                    **base_vals,
+                    "name": "Pamplona",
+                    "state_id": self.env.ref("base.state_es_na").id,
+                    "city": "Pamplona",
+                    "zip": "31001",
+                    "reference": "201001000123400001",
+                },
+            ]
+            + [{**base_vals, "name": f"Premises {i}"} for i in range(16)]
+        )
+        cases = (
+            (
+                # Without reference it goes as situation 3
+                madrid + paris + pamplona + premises[0] + madrid,
+                [
+                    {
+                        "SituacionInmueble": "1",
+                        "ReferenciaCatastral": "8374992BV4192Q4560EG",
+                    },
+                    {
+                        "SituacionInmueble": "4",
+                        "ReferenciaCatastral": "FR-75056-000AB-0123",
+                    },
+                    {
+                        "SituacionInmueble": "2",
+                        "ReferenciaCatastral": "201001000123400001",
+                    },
+                    {"SituacionInmueble": "3", "ReferenciaCatastral": ""},
+                ],
+            ),
+            (Estate, {"SituacionInmueble": "3", "ReferenciaCatastral": ""}),
+        )
+        for real_estates, details in cases:
+            invoice = self._create_real_estate_invoice(real_estates)
+            self.assertEqual(invoice.sii_line_real_estates, bool(real_estates))
+            self.assertEqual(
+                invoice._get_aeat_invoice_dict()["FacturaExpedida"]["DatosInmueble"],
+                {"DetalleInmueble": details},
+            )
+        invoice = self._create_real_estate_invoice(Estate.concat(*premises))
+        with self.assertRaisesRegex(
+            exceptions.UserError, "have 16 different real estates.*up to 15"
+        ):
+            invoice._get_aeat_invoice_dict()
 
     def test_sii_description(self):
         company = self.invoice.company_id
