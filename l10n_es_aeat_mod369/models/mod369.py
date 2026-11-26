@@ -252,6 +252,7 @@ class L10nEsAeatMod369Report(models.Model):
                 "services": {"ES": 1, "OUT-ES": 1},
             }
             country_groups = {}
+            currency = report.company_id.currency_id
             tax_lines = report.mapped("tax_line_ids")
             for line in tax_lines.filtered(lambda tl: len(tl.move_line_ids) > 0):
                 mod369_line = line.mod369_line_id
@@ -330,7 +331,11 @@ class L10nEsAeatMod369Report(models.Model):
                         },
                     )
                     if line.map_line_id.field_type == "amount":
-                        country_groups[key]["tax_correction"] -= mline.debit
+                        country_groups[key]["tax_correction"] = currency.round(
+                            country_groups[key]["tax_correction"]
+                            + mline.credit
+                            - mline.debit
+                        )
                     country_groups[key]["refund_line_ids"] += [(4, mline.id)]
 
             groups = self.env["l10n.es.aeat.mod369.line.grouped"].create(
