@@ -285,3 +285,104 @@ class TestVatProrate(AccountTestInvoicingCommon):
         wizard.execute()
         self.assertFalse(self.env.company.with_vat_prorate)
         self.assertEqual(len(self.env.company.vat_prorate_ids), 1)
+
+    def test_special_prorate_intra_community_tax(self):
+        self.env.company.vat_prorate_ids[0].write(
+            {
+                "type": "special",
+                "vat_prorate": 40,
+                "special_vat_prorate_default": True,
+            }
+        )
+        # 21% EU S (Services) tax
+        tax = self.env.ref(
+            f"account.{self.env.company.id}_account_tax_template_p_iva21_sp_in"
+        )
+        invoice = self.init_invoice(
+            "in_invoice",
+            amounts=[100],
+            taxes=[tax],
+            invoice_date=date(2026, 1, 1),
+        )
+        invoice_line = invoice.invoice_line_ids
+        self.assertEqual(1, len(invoice_line))
+        self.assertTrue(invoice_line.with_vat_prorate)
+        self.assertEqual(5, len(invoice.line_ids))
+        self.assertEqual(1, len(invoice.line_ids.filtered("vat_prorate")))
+        self.assertAlmostEqual(invoice.line_ids.filtered("vat_prorate").debit, 12.60)
+        # Disable special VAT prorate on the invoice line
+        invoice.write(
+            {"invoice_line_ids": [(1, invoice_line.id, {"with_vat_prorate": False})]}
+        )
+        self.assertFalse(invoice_line.with_vat_prorate)
+        self.assertEqual(4, len(invoice.line_ids))
+        self.assertFalse(invoice.line_ids.filtered("vat_prorate"))
+        tax_lines = invoice.line_ids.filtered(lambda r: r.tax_line_id == tax)
+        self.assertEqual(2, len(tax_lines))
+        self.assertAlmostEqual(
+            tax_lines.filtered(lambda r: r.account_type == "asset_current").debit,
+            21.00,
+        )
+        self.assertAlmostEqual(
+            tax_lines.filtered(lambda r: r.account_type == "liability_current").credit,
+            21.00,
+        )
+        self.assertAlmostEqual(sum(invoice.line_ids.mapped("balance")), 0.00)
+
+    def test_special_prorate_intra_community_tax_multiple_lines(self):
+        self.env.company.vat_prorate_ids[0].write(
+            {
+                "type": "special",
+                "vat_prorate": 40,
+                "special_vat_prorate_default": True,
+            }
+        )
+        # 21% EU S (Services) tax
+        tax = self.env.ref(
+            f"account.{self.env.company.id}_account_tax_template_p_iva21_sp_in"
+        )
+        invoice = self.init_invoice(
+            "in_invoice",
+            amounts=[100, 200],
+            taxes=[tax],
+            invoice_date=date(2026, 1, 1),
+        )
+        invoice_lines = invoice.invoice_line_ids
+        self.assertEqual(2, len(invoice_lines))
+        # Both invoice lines with special VAT prorate
+        self.assertTrue(all(invoice_lines.mapped("with_vat_prorate")))
+        self.assertEqual(1, len(invoice.line_ids.filtered("vat_prorate")))
+        self.assertAlmostEqual(invoice.line_ids.filtered("vat_prorate").debit, 37.80)
+        # Disable special VAT prorate on the first invoice line
+        invoice.write(
+            {
+                "invoice_line_ids": [
+                    (1, invoice_lines[0].id, {"with_vat_prorate": False})
+                ]
+            }
+        )
+        self.assertFalse(invoice_lines[0].with_vat_prorate)
+        self.assertTrue(invoice_lines[1].with_vat_prorate)
+        self.assertEqual(1, len(invoice.line_ids.filtered("vat_prorate")))
+        self.assertAlmostEqual(invoice.line_ids.filtered("vat_prorate").debit, 25.20)
+        # Disable special VAT prorate on the second invoice line
+        invoice.write(
+            {
+                "invoice_line_ids": [
+                    (1, invoice_lines[1].id, {"with_vat_prorate": False})
+                ]
+            }
+        )
+        self.assertFalse(any(invoice_lines.mapped("with_vat_prorate")))
+        self.assertFalse(invoice.line_ids.filtered("vat_prorate"))
+        tax_lines = invoice.line_ids.filtered(lambda r: r.tax_line_id == tax)
+        self.assertEqual(2, len(tax_lines))
+        self.assertAlmostEqual(
+            tax_lines.filtered(lambda r: r.account_type == "asset_current").debit,
+            63.00,
+        )
+        self.assertAlmostEqual(
+            tax_lines.filtered(lambda r: r.account_type == "liability_current").credit,
+            63.00,
+        )
+        self.assertAlmostEqual(sum(invoice.line_ids.mapped("balance")), 0.00)
