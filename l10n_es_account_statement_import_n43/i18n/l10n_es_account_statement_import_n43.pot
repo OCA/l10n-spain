@@ -14,6 +14,14 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_es_account_statement_import_n43
+#: model_terms:ir.ui.view,arch_db:l10n_es_account_statement_import_n43.account_statement_import_n43_result_form
+msgid ""
+"<strong>\n"
+"                            Some movements of the file may be duplicates.\n"
+"                        </strong>"
+msgstr ""
+
+#. module: l10n_es_account_statement_import_n43
 #: model_terms:ir.ui.view,arch_db:l10n_es_account_statement_import_n43.account_statement_import_form
 msgid "AEB norm 43 (.n43)"
 msgstr ""
@@ -24,8 +32,35 @@ msgid "All"
 msgstr ""
 
 #. module: l10n_es_account_statement_import_n43
+#: model:ir.model.fields.selection,name:l10n_es_account_statement_import_n43.selection__account_statement_import_n43_result_line__reason__imported
+msgid "Already imported"
+msgstr ""
+
+#. module: l10n_es_account_statement_import_n43
+#: model:ir.model.fields,field_description:l10n_es_account_statement_import_n43.field_account_statement_import_n43_result_line__amount
+msgid "Amount"
+msgstr ""
+
+#. module: l10n_es_account_statement_import_n43
 #: model:ir.model.fields.selection,name:l10n_es_account_statement_import_n43.selection__account_journal__n43_partner_search__caixabank
 msgid "CaixaBank"
+msgstr ""
+
+#. module: l10n_es_account_statement_import_n43
+#: model_terms:ir.ui.view,arch_db:l10n_es_account_statement_import_n43.account_statement_import_n43_result_form
+msgid "Cancel"
+msgstr ""
+
+#. module: l10n_es_account_statement_import_n43
+#: model:ir.model.fields,field_description:l10n_es_account_statement_import_n43.field_account_statement_import_n43_result__create_uid
+#: model:ir.model.fields,field_description:l10n_es_account_statement_import_n43.field_account_statement_import_n43_result_line__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: l10n_es_account_statement_import_n43
+#: model:ir.model.fields,field_description:l10n_es_account_statement_import_n43.field_account_statement_import_n43_result__create_date
+#: model:ir.model.fields,field_description:l10n_es_account_statement_import_n43.field_account_statement_import_n43_result_line__create_date
+msgid "Created on"
 msgstr ""
 
 #. module: l10n_es_account_statement_import_n43
@@ -33,6 +68,11 @@ msgstr ""
 #: code:addons/l10n_es_account_statement_import_n43/wizards/account_statement_import_n43.py:0
 msgid ""
 "Credit amount doesn't match with the defined in the last record of account."
+msgstr ""
+
+#. module: l10n_es_account_statement_import_n43
+#: model:ir.model.fields,field_description:l10n_es_account_statement_import_n43.field_account_statement_import_n43_result_line__date
+msgid "Date"
 msgstr ""
 
 #. module: l10n_es_account_statement_import_n43
@@ -50,7 +90,14 @@ msgstr ""
 #. module: l10n_es_account_statement_import_n43
 #: model:ir.model.fields,field_description:l10n_es_account_statement_import_n43.field_account_journal__display_name
 #: model:ir.model.fields,field_description:l10n_es_account_statement_import_n43.field_account_statement_import__display_name
+#: model:ir.model.fields,field_description:l10n_es_account_statement_import_n43.field_account_statement_import_n43_result__display_name
+#: model:ir.model.fields,field_description:l10n_es_account_statement_import_n43.field_account_statement_import_n43_result_line__display_name
 msgid "Display Name"
+msgstr ""
+
+#. module: l10n_es_account_statement_import_n43
+#: model:ir.model.fields,field_description:l10n_es_account_statement_import_n43.field_account_statement_import_n43_result_line__is_duplicate
+msgid "Duplicate"
 msgstr ""
 
 #. module: l10n_es_account_statement_import_n43
@@ -76,7 +123,14 @@ msgstr ""
 #. module: l10n_es_account_statement_import_n43
 #: model:ir.model.fields,field_description:l10n_es_account_statement_import_n43.field_account_journal__id
 #: model:ir.model.fields,field_description:l10n_es_account_statement_import_n43.field_account_statement_import__id
+#: model:ir.model.fields,field_description:l10n_es_account_statement_import_n43.field_account_statement_import_n43_result__id
+#: model:ir.model.fields,field_description:l10n_es_account_statement_import_n43.field_account_statement_import_n43_result_line__id
 msgid "ID"
+msgstr ""
+
+#. module: l10n_es_account_statement_import_n43
+#: model_terms:ir.ui.view,arch_db:l10n_es_account_statement_import_n43.account_statement_import_n43_result_form
+msgid "Import"
 msgstr ""
 
 #. module: l10n_es_account_statement_import_n43
@@ -85,8 +139,60 @@ msgid "Import Bank Statement Files"
 msgstr ""
 
 #. module: l10n_es_account_statement_import_n43
+#: model:ir.model.fields,field_description:l10n_es_account_statement_import_n43.field_account_statement_import_n43_result__import_wizard_id
+msgid "Import Wizard"
+msgstr ""
+
+#. module: l10n_es_account_statement_import_n43
 #: model:ir.model,name:l10n_es_account_statement_import_n43.model_account_journal
 msgid "Journal"
+msgstr ""
+
+#. module: l10n_es_account_statement_import_n43
+#: model:ir.model.fields,field_description:l10n_es_account_statement_import_n43.field_account_statement_import_n43_result__write_uid
+#: model:ir.model.fields,field_description:l10n_es_account_statement_import_n43.field_account_statement_import_n43_result_line__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: l10n_es_account_statement_import_n43
+#: model:ir.model.fields,field_description:l10n_es_account_statement_import_n43.field_account_statement_import_n43_result__write_date
+#: model:ir.model.fields,field_description:l10n_es_account_statement_import_n43.field_account_statement_import_n43_result_line__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: l10n_es_account_statement_import_n43
+#: model:ir.model.fields,field_description:l10n_es_account_statement_import_n43.field_account_statement_import_n43_result__line_ids
+msgid "Line"
+msgstr ""
+
+#. module: l10n_es_account_statement_import_n43
+#: model:ir.model.fields,help:l10n_es_account_statement_import_n43.field_account_statement_import_n43_result_line__is_duplicate
+msgid "Marked movements are not imported."
+msgstr ""
+
+#. module: l10n_es_account_statement_import_n43
+#: model:ir.model.fields,field_description:l10n_es_account_statement_import_n43.field_account_statement_import_n43_result_line__matched_line_id
+msgid "Matched Line"
+msgstr ""
+
+#. module: l10n_es_account_statement_import_n43
+#: model_terms:ir.ui.view,arch_db:l10n_es_account_statement_import_n43.account_statement_import_n43_result_form
+msgid "Matching line"
+msgstr ""
+
+#. module: l10n_es_account_statement_import_n43
+#: model:ir.model.fields,field_description:l10n_es_account_statement_import_n43.field_account_statement_import_n43_result__mode
+msgid "Mode"
+msgstr ""
+
+#. module: l10n_es_account_statement_import_n43
+#: model:ir.model,name:l10n_es_account_statement_import_n43.model_account_statement_import_n43_result_line
+msgid "N43 import possible duplicate"
+msgstr ""
+
+#. module: l10n_es_account_statement_import_n43
+#: model:ir.model,name:l10n_es_account_statement_import_n43.model_account_statement_import_n43_result
+msgid "N43 import review of possible duplicates"
 msgstr ""
 
 #. module: l10n_es_account_statement_import_n43
@@ -132,9 +238,41 @@ msgid "Partner search for N43 import"
 msgstr ""
 
 #. module: l10n_es_account_statement_import_n43
+#: model:ir.model.fields,field_description:l10n_es_account_statement_import_n43.field_account_statement_import_n43_result_line__payment_ref
+msgid "Payment Ref"
+msgstr ""
+
+#. module: l10n_es_account_statement_import_n43
+#. odoo-python
+#: code:addons/l10n_es_account_statement_import_n43/wizards/account_statement_import_n43.py:0
+#: model_terms:ir.ui.view,arch_db:l10n_es_account_statement_import_n43.account_statement_import_n43_result_form
+msgid "Possible duplicates"
+msgstr ""
+
+#. module: l10n_es_account_statement_import_n43
+#: model:ir.model.fields,field_description:l10n_es_account_statement_import_n43.field_account_statement_import_n43_result_line__reason
+msgid "Reason"
+msgstr ""
+
+#. module: l10n_es_account_statement_import_n43
+#: model:ir.model.fields.selection,name:l10n_es_account_statement_import_n43.selection__account_statement_import_n43_result__mode__reconcile
+msgid "Reconcile"
+msgstr ""
+
+#. module: l10n_es_account_statement_import_n43
 #. odoo-python
 #: code:addons/l10n_es_account_statement_import_n43/wizards/account_statement_import_n43.py:0
 msgid "Record type %s is not valid."
+msgstr ""
+
+#. module: l10n_es_account_statement_import_n43
+#: model:ir.model.fields,field_description:l10n_es_account_statement_import_n43.field_account_statement_import_n43_result_line__matched_statement_name
+msgid "Reference"
+msgstr ""
+
+#. module: l10n_es_account_statement_import_n43
+#: model:ir.model.fields.selection,name:l10n_es_account_statement_import_n43.selection__account_statement_import_n43_result_line__reason__repeated
+msgid "Repeated in the file"
 msgstr ""
 
 #. module: l10n_es_account_statement_import_n43
@@ -148,6 +286,35 @@ msgid "Santander"
 msgstr ""
 
 #. module: l10n_es_account_statement_import_n43
+#: model:ir.model.fields.selection,name:l10n_es_account_statement_import_n43.selection__account_statement_import_n43_result__mode__statements
+msgid "Show statements"
+msgstr ""
+
+#. module: l10n_es_account_statement_import_n43
+#: model_terms:ir.ui.view,arch_db:l10n_es_account_statement_import_n43.account_statement_import_n43_result_form
+msgid "Statement"
+msgstr ""
+
+#. module: l10n_es_account_statement_import_n43
+#: model_terms:ir.ui.view,arch_db:l10n_es_account_statement_import_n43.account_statement_import_n43_result_form
+msgid ""
+"The movements marked as duplicates will not be imported.\n"
+"                            Uncheck the ones that are not duplicates. Movements already\n"
+"                            imported are marked by default, movements repeated within\n"
+"                            the file are not."
+msgstr ""
+
+#. module: l10n_es_account_statement_import_n43
+#: model:ir.model.fields,field_description:l10n_es_account_statement_import_n43.field_account_statement_import_n43_result_line__unique_import_id
+msgid "Unique Import"
+msgstr ""
+
+#. module: l10n_es_account_statement_import_n43
 #: model:ir.model.fields.selection,name:l10n_es_account_statement_import_n43.selection__account_journal__n43_date_type__fecha_valor
 msgid "Value Date"
+msgstr ""
+
+#. module: l10n_es_account_statement_import_n43
+#: model:ir.model.fields,field_description:l10n_es_account_statement_import_n43.field_account_statement_import_n43_result_line__wizard_id
+msgid "Wizard"
 msgstr ""
