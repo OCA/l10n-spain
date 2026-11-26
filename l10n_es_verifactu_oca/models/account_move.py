@@ -27,6 +27,15 @@ class AccountMove(models.Model):
     _name = "account.move"
     _inherit = ["account.move", "verifactu.mixin"]
 
+    verifactu_document_type = fields.Char(
+        string="VERI*FACTU document type",
+        readonly=True,
+        copy=False,
+        store=True,
+        help="Document type sealed when the VERI*FACTU hash is generated. "
+        "Reused later so the AEAT payload keeps the same TipoFactura.",
+    )
+
     verifactu_refund_specific_type = fields.Selection(
         string="VERI*FACTU refund specific type",
         selection=[
@@ -106,7 +115,8 @@ class AccountMove(models.Model):
                     domain, limit=1
                 )
 
-    def _get_verifactu_document_type(self):
+    def _calc_verifactu_document_type(self):
+        self.ensure_one()
         invoice_type = ""
         if self.move_type in ["out_invoice", "out_refund"]:
             is_simplified = self._is_aeat_simplified_invoice()
@@ -117,6 +127,10 @@ class AccountMove(models.Model):
                 else:
                     invoice_type = "R5" if is_simplified else "R1"
         return invoice_type
+
+    def _get_verifactu_document_type(self):
+        self.ensure_one()
+        return self.verifactu_document_type or self._calc_verifactu_document_type()
 
     def _get_verifactu_description(self):
         return self.verifactu_description or self.company_id.verifactu_description
@@ -595,3 +609,8 @@ class AccountMove(models.Model):
                 )
                 rec.verifactu_registration_date = datetime.now()
                 rec._generate_verifactu_chaining(entry_type=entry_type)
+
+    def _generate_verifactu_chaining(self, entry_type=False):
+        self.ensure_one()
+        self.verifactu_document_type = self._calc_verifactu_document_type()
+        return super()._generate_verifactu_chaining(entry_type=entry_type)
