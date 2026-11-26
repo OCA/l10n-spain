@@ -1,0 +1,4 @@
+- [FAQ de la ATC para el SII](https://www3.gobiernodecanarias.org/tributos/atc/estatico/asistencia_contribuyente/pdf/Preguntas_frecuentes_SII.pdf)
+- [Parte técnica](https://www3.gobiernodecanarias.org/tributos/atc/jsf/publico/asistenciaContribuyente/sii/tecnica.jsp)
+- [Parte de ayuda](https://www3.gobiernodecanarias.org/tributos/atc/jsf/publico/asistenciaContribuyente/sii/ayuda.jsp)
+- [Parte de normativa](https://www3.gobiernodecanarias.org/tributos/atc/jsf/publico/asistenciaContribuyente/sii/normativa.jsp)
