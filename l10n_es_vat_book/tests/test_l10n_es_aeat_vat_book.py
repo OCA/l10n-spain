@@ -144,3 +144,61 @@ class TestL10nEsAeatVatBook(TestL10nEsAeatVatBookBase):
         self.assertEqual(len(vat_book.issued_line_ids), 0)
         self.assertEqual(len(vat_book.rectification_issued_line_ids), 0)
         self.assertEqual(len(vat_book.issued_tax_summary_ids), 0)
+
+    def test_vat_book_tax_affecting_base(self):
+        """A tax out of the book that affects the base of the VAT (e.g. the
+        electricity tax) is part of the VAT base, not a tax of the book."""
+        self.company.vat = "ES12345678Z"
+        iva = self._get_taxes("S_IVA21S")
+        special_tax = self.env["account.tax"].create(
+            {
+                "name": "Special tax 5%",
+                "amount": 5,
+                "amount_type": "percent",
+                "type_tax_use": "sale",
+                "include_base_amount": True,
+                "sequence": iva.sequence - 1,
+                "company_id": self.company.id,
+            }
+        )
+        invoice = self._invoice_sale_create(
+            "2017-01-13",
+            extra_vals={
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "name": "Electricity",
+                            "account_id": self.accounts["700000"].id,
+                            "price_unit": 100,
+                            "tax_ids": [(6, 0, (special_tax | iva).ids)],
+                        },
+                    )
+                ]
+            },
+        )
+        vat_book = self.env["l10n.es.vat.book"].create(
+            {
+                "name": "Test VAT Book",
+                "company_id": self.company.id,
+                "company_vat": "1234567890",
+                "contact_name": "Test owner",
+                "statement_type": "N",
+                "support_type": "T",
+                "contact_phone": "911234455",
+                "year": 2017,
+                "period_type": "1T",
+                "date_start": "2017-01-01",
+                "date_end": "2017-03-31",
+            }
+        )
+        vat_book.button_calculate()
+        line = vat_book.issued_line_ids
+        self.assertEqual(line.tax_line_ids.tax_id, iva)
+        self.assertAlmostEqual(line.tax_line_ids.base_amount, 105)
+        self.assertAlmostEqual(line.tax_line_ids.tax_amount, 22.05)
+        self.assertEqual(vat_book.issued_tax_summary_ids.tax_id, iva)
+        self.assertAlmostEqual(line.base_amount, 105)
+        self.assertAlmostEqual(invoice.amount_total, 127.05)
+        self.assertAlmostEqual(line.total_amount, invoice.amount_total)
