@@ -551,3 +551,31 @@ class TestL10nEsTicketBAIInvoice(TestL10nEsTicketBAIAPI):
             self._prepare_invoice_refund_send_to_tax_agency_by_substitution()
             self._prepare_araba_company(self.main_company)
             self._prepare_invoice_refund_send_to_tax_agency_by_substitution()
+
+    def test_partner_commercial_fields(self):
+        parent_partner = self.env["res.partner"].create(
+            {
+                "name": "Foreign Company Ltd",
+                "is_company": True,
+                "tbai_partner_idtype": "03",
+                "tbai_partner_identification_number": "PASS123456",
+            }
+        )
+        child_partner = self.env["res.partner"].create(
+            {
+                "name": "Invoice Address",
+                "type": "invoice",
+                "parent_id": parent_partner.id,
+            }
+        )
+        self.assertEqual(child_partner.tbai_partner_idtype, "03")
+        self.assertEqual(child_partner.tbai_partner_identification_number, "PASS123456")
+
+        parent_partner.write(
+            {
+                "tbai_partner_idtype": "04",
+                "tbai_partner_identification_number": "DOC789012",
+            }
+        )
+        self.assertEqual(child_partner.tbai_partner_idtype, "04")
+        self.assertEqual(child_partner.tbai_partner_identification_number, "DOC789012")
