@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Acysos S.L.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_spfe_submission_list" model="ir.ui.view">
+        <field name="name">l10n.es.spfe.submission.list</field>
+        <field name="model">l10n.es.spfe.submission</field>
+        <field name="arch" type="xml">
+            <list
+                decoration-success="state == 'accepted'"
+                decoration-warning="state == 'partial'"
+                decoration-danger="state in ('rejected', 'error')"
+            >
+                <field name="name" />
+                <field name="send_date" />
+                <field name="operation_type" />
+                <field name="response_code" />
+                <field name="response_description" />
+                <field name="state" widget="badge" />
+                <field name="company_id" groups="base.group_multi_company" />
+            </list>
+        </field>
+    </record>
+
+    <record id="view_spfe_submission_form" model="ir.ui.view">
+        <field name="name">l10n.es.spfe.submission.form</field>
+        <field name="model">l10n.es.spfe.submission</field>
+        <field name="arch" type="xml">
+            <form string="SPFE Submission" create="0" edit="0">
+                <header>
+                    <field name="state" widget="statusbar" />
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="operation_type" />
+                            <field name="send_date" />
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                            />
+                        </group>
+                        <group>
+                            <field name="message_id" />
+                            <field name="response_id" />
+                            <field name="response_code" />
+                            <field name="response_description" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="lines" string="Documents">
+                            <field name="line_ids">
+                                <list>
+                                    <field name="move_id" />
+                                    <field name="invoice_number" />
+                                    <field name="invoice_date" />
+                                    <field name="issuer_vat" />
+                                    <field name="status_code" />
+                                    <field name="status_description" />
+                                    <field name="spfe_locator" />
+                                </list>
+                            </field>
+                        </page>
+                        <page
+                            name="technical"
+                            string="Technical XML"
+                            groups="l10n_es_aeat.group_account_aeat"
+                        >
+                            <group>
+                                <field name="request_soap_xml" />
+                                <field name="response_xml" />
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter />
+            </form>
+        </field>
+    </record>
+
+    <record id="view_spfe_submission_search" model="ir.ui.view">
+        <field name="name">l10n.es.spfe.submission.search</field>
+        <field name="model">l10n.es.spfe.submission</field>
+        <field name="arch" type="xml">
+            <search string="SPFE Submissions">
+                <field name="name" />
+                <field name="message_id" />
+                <field name="response_id" />
+                <field name="operation_type" />
+                <filter
+                    string="Accepted"
+                    name="accepted"
+                    domain="[('state', '=', 'accepted')]"
+                />
+                <filter
+                    string="Errors / Rejected"
+                    name="errors"
+                    domain="[('state', 'in', ('partial', 'rejected', 'error'))]"
+                />
+            </search>
+        </field>
+    </record>
+
+    <record id="action_spfe_submission" model="ir.actions.act_window">
+        <field name="name">SPFE Communications Log</field>
+        <field name="res_model">l10n.es.spfe.submission</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

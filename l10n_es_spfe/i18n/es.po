@@ -1,0 +1,2143 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-24 13:56+0000\n"
+"PO-Revision-Date: 2026-11-24 14:00+0000\n"
+"Last-Translator: Acysos S.L. <info@acysos.com>\n"
+"Language-Team: Spanish\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: l10n_es_spfe
+#. odoo-python
+#: code:addons/l10n_es_spfe/models/account_move.py:0
+msgid ""
+"%(role)s '%(name)s' must have street and country configured for SPFE (BR-"
+"ES-8 / BR-ES-10)."
+msgstr ""
+"%(role)s '%(name)s' debe tener calle y país configurados para SPFE (BR-ES-8 "
+"/ BR-ES-10)."
+
+#. module: l10n_es_spfe
+#: model_terms:ir.ui.view,arch_db:l10n_es_spfe.view_move_spfe_form
+msgid ""
+"<span>Full collection / payment status is pending communication to AEAT SPFE"
+" (Anexo II).</span>"
+msgstr ""
+"<span>El estado de cobro / pago completo está pendiente de comunicar a AEAT "
+"SPFE (Anexo II).</span>"
+
+#. module: l10n_es_spfe
+#: model_terms:ir.ui.view,arch_db:l10n_es_spfe.view_move_spfe_form
+msgid ""
+"<span>This invoice has been cancelled in AEAT SPFE while remaining posted in"
+" accounting.</span>"
+msgstr ""
+"<span>Esta factura ha sido anulada en el SPFE de la AEAT mientras permanece "
+"contabilizada en contabilidad.</span>"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_move_line__spfe_real_estate_id
+msgid "AEAT Real Estate"
+msgstr "Inmueble AEAT"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_submission__response_id
+msgid "AEAT Response ID"
+msgstr "ID de respuesta AEAT"
+
+#. module: l10n_es_spfe
+#: model:ir.model,name:l10n_es_spfe.model_l10n_es_spfe_soap
+msgid "AEAT SPFE SOAP 1.2 & ebMS 3.0 Client"
+msgstr "Cliente SOAP 1.2 y ebMS 3.0 de AEAT SPFE"
+
+#. module: l10n_es_spfe
+#. odoo-python
+#: code:addons/l10n_es_spfe/models/spfe_soap_client.py:0
+msgid "AEAT SPFE SOAP Fault (%(code)s): %(reason)s"
+msgstr "Fallo SOAP de AEAT SPFE (%(code)s): %(reason)s"
+
+#. module: l10n_es_spfe
+#: model:ir.model,name:l10n_es_spfe.model_l10n_es_spfe_submission_line
+msgid "AEAT SPFE Submission Document Line"
+msgstr "Línea de documento de envío AEAT SPFE"
+
+#. module: l10n_es_spfe
+#: model:ir.model,name:l10n_es_spfe.model_l10n_es_spfe_submission
+msgid "AEAT SPFE Submission Log"
+msgstr "Registro de envíos AEAT SPFE"
+
+#. module: l10n_es_spfe
+#. odoo-python
+#: code:addons/l10n_es_spfe/models/account_move.py:0
+#: code:addons/l10n_es_spfe/wizards/spfe_cancel_invoice_wizard.py:0
+#: code:addons/l10n_es_spfe/wizards/spfe_invoice_event_wizard.py:0
+msgid "AEAT SPFE response did not include DocumentStatus."
+msgstr "La respuesta de AEAT SPFE no incluye DocumentStatus."
+
+#. module: l10n_es_spfe
+#. odoo-python
+#: code:addons/l10n_es_spfe/models/spfe_soap_client.py:0
+msgid "AEAT SPFE returned HTTP %(code)s: %(body)s"
+msgstr "AEAT SPFE devolvió HTTP %(code)s: %(body)s"
+
+#. module: l10n_es_spfe
+#: model:ir.actions.server,name:l10n_es_spfe.ir_cron_spfe_send_pending_invoices_ir_actions_server
+msgid "AEAT SPFE: Send pending electronic invoices"
+msgstr "AEAT SPFE: Enviar facturas electrónicas pendientes"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,help:l10n_es_spfe.field_res_company__spfe_billing_authorization_ref
+msgid ""
+"AUT: Reference number of special billing authorization granted by AEAT."
+msgstr ""
+"AUT: Número de referencia de autorización especial de facturación concedida "
+"por la AEAT."
+
+#. module: l10n_es_spfe
+#: model_terms:ir.ui.view,arch_db:l10n_es_spfe.view_spfe_submission_search
+msgid "Accepted"
+msgstr "Aceptado"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__l10n_es_spfe_submission__state__accepted
+msgid "Accepted (200)"
+msgstr "Aceptado (200)"
+
+#. module: l10n_es_spfe
+#. odoo-python
+#: code:addons/l10n_es_spfe/wizards/spfe_invoice_event_wizard.py:0
+msgid "Action %(code)s is only valid for issuer/supplier invoices."
+msgstr ""
+"La acción %(code)s solo es válida para facturas emitidas (emisor/proveedor)."
+
+#. module: l10n_es_spfe
+#. odoo-python
+#: code:addons/l10n_es_spfe/wizards/spfe_invoice_event_wizard.py:0
+msgid "Action %(code)s is only valid for recipient/customer bills."
+msgstr ""
+"La acción %(code)s solo es válida para facturas recibidas "
+"(destinatario/cliente)."
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_submission__message_needaction
+msgid "Action Needed"
+msgstr "Acción necesaria"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_registration_key__active
+msgid "Active"
+msgstr "Activo"
+
+#. module: l10n_es_spfe
+#: model:ir.model,name:l10n_es_spfe.model_aeat_tax_agency
+msgid "Aeat Tax Agency"
+msgstr "Agencia Tributaria AEAT"
+
+#. module: l10n_es_spfe
+#: model:l10n.es.spfe.registration.key,name:l10n_es_spfe.spfe_reg_key_igic_09
+msgid "Agencias de viaje mediadoras en nombre y por cuenta ajena (IGIC)"
+msgstr "Agencias de viaje mediadoras en nombre y por cuenta ajena (IGIC)"
+
+#. module: l10n_es_spfe
+#. odoo-python
+#: code:addons/l10n_es_spfe/models/account_move.py:0
+msgid ""
+"An invoice registered in SPFE cannot be reset to draft. Issue a corrective "
+"invoice instead."
+msgstr ""
+"Una factura registrada en el SPFE no puede pasarse a borrador. Emita una "
+"factura rectificativa en su lugar."
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_submission__message_attachment_count
+msgid "Attachment Count"
+msgstr "Nº de adjuntos"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_res_company__spfe_auto_send_payment
+msgid "Auto-Send Full Collection / Payment to SPFE"
+msgstr "Comunicar automáticamente cobro / pago completo a SPFE"
+
+#. module: l10n_es_spfe
+#: model_terms:ir.ui.view,arch_db:l10n_es_spfe.view_company_spfe_form
+msgid "Auto-configure Spanish Taxes for SPFE"
+msgstr "Autoconfigurar impuestos españoles para SPFE"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,help:l10n_es_spfe.field_res_company__spfe_auto_send_payment
+msgid ""
+"Automatically communicate full invoice collection (SETTLEMENT) and full bill"
+" payment (PAYMENT) to AEAT SPFE via scheduled action."
+msgstr ""
+"Comunicar automáticamente el cobro completo de facturas emitidas "
+"(SETTLEMENT) y el pago completo de facturas recibidas (PAYMENT) al SPFE de "
+"la AEAT mediante acción planificada."
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,help:l10n_es_spfe.field_l10n_es_spfe_sync_wizard__download_and_import_bills
+msgid ""
+"Automatically download UBL 2.5 XML via locator (DownloadInvoicesByLOCSOAP) "
+"and import missing vendor bills."
+msgstr ""
+"Descargar automáticamente el XML UBL 2.5 por localizador "
+"(DownloadInvoicesByLOCSOAP) e importar las facturas de proveedor faltantes."
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,help:l10n_es_spfe.field_account_bank_statement_line__spfe_rectified_move_ids
+#: model:ir.model.fields,help:l10n_es_spfe.field_account_move__spfe_rectified_move_ids
+msgid "BG-3: Preceding invoices rectified by this corrective invoice."
+msgstr ""
+"BG-3: Facturas precedentes rectificadas por esta factura rectificativa."
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,help:l10n_es_spfe.field_res_company__spfe_third_party_issuer_id
+msgid ""
+"BG-ES-1: Third party materially issuing invoices on behalf of the company "
+"(art. 5 RD 1619/2012, FacturaciónPorTercero)."
+msgstr ""
+"BG-ES-1: Tercero que expide materialmente las facturas en nombre de la "
+"compañía (art. 5 RD 1619/2012, FacturaciónPorTercero)."
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,help:l10n_es_spfe.field_account_bank_statement_line__spfe_third_party_issuer_id
+#: model:ir.model.fields,help:l10n_es_spfe.field_account_move__spfe_third_party_issuer_id
+msgid "BG-ES-1: Third party materially issuing this invoice."
+msgstr "BG-ES-1: Tercero que expide materialmente esta factura."
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,help:l10n_es_spfe.field_account_bank_statement_line__spfe_note_code
+#: model:ir.model.fields,help:l10n_es_spfe.field_account_move__spfe_note_code
+msgid "BT-21: UNTDID 4451 subject code (e.g. 'REG' for regulatory mentions)."
+msgstr ""
+"BT-21: Código de asunto UNTDID 4451 (p. ej., 'REG' para menciones "
+"normativas)."
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,help:l10n_es_spfe.field_account_bank_statement_line__spfe_note
+#: model:ir.model.fields,help:l10n_es_spfe.field_account_move__spfe_note
+msgid "BT-22: Invoice note included in UBL Annotation."
+msgstr "BT-22: Nota de factura incluida en el nodo Annotation del UBL."
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,help:l10n_es_spfe.field_res_company__spfe_company_legal_form
+msgid ""
+"BT-33: Additional legal or commercial registry information included in "
+"PartyLegalEntity/CompanyLegalForm."
+msgstr ""
+"BT-33: Información jurídica o del Registro Mercantil incluida en "
+"PartyLegalEntity/CompanyLegalForm."
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,help:l10n_es_spfe.field_account_bank_statement_line__spfe_invoice_type
+#: model:ir.model.fields,help:l10n_es_spfe.field_account_move__spfe_invoice_type
+msgid "BT-3: Invoice type code according to SPFE Lista L1."
+msgstr "BT-3: Código de tipo de factura conforme a la Lista L1 del SPFE."
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,help:l10n_es_spfe.field_account_bank_statement_line__spfe_period_start_date
+#: model:ir.model.fields,help:l10n_es_spfe.field_account_move__spfe_period_start_date
+msgid "BT-73: Summary invoice period start date."
+msgstr "BT-73: Fecha de inicio del periodo de facturación recapitulativa."
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,help:l10n_es_spfe.field_account_bank_statement_line__spfe_period_end_date
+#: model:ir.model.fields,help:l10n_es_spfe.field_account_move__spfe_period_end_date
+msgid "BT-74: Summary invoice period end date."
+msgstr "BT-74: Fecha de fin del periodo de facturación recapitulativa."
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,help:l10n_es_spfe.field_account_bank_statement_line__spfe_operation_date
+#: model:ir.model.fields,help:l10n_es_spfe.field_account_move__spfe_operation_date
+msgid ""
+"BT-7: Effective operation/tax point date when different from issue date."
+msgstr ""
+"BT-7: Fecha efectiva de operación o devengo cuando difiere de la fecha de "
+"expedición."
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,help:l10n_es_spfe.field_account_bank_statement_line__spfe_copy_indicator
+#: model:ir.model.fields,help:l10n_es_spfe.field_account_move__spfe_copy_indicator
+msgid "BT-ES-1: Mark when issuing a faithful copy of the original invoice."
+msgstr ""
+"BT-ES-1: Marcar cuando se expida un duplicado fiel de la factura original."
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,help:l10n_es_spfe.field_account_bank_statement_line__spfe_qr_url
+#: model:ir.model.fields,help:l10n_es_spfe.field_account_move__spfe_qr_url
+msgid "BT-ES-25: Verification URL encoded in the fiscal QR."
+msgstr "BT-ES-25: URL de cotejo codificada en el código QR fiscal."
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,help:l10n_es_spfe.field_account_bank_statement_line__spfe_prepaid_date
+#: model:ir.model.fields,help:l10n_es_spfe.field_account_move__spfe_prepaid_date
+msgid "BT-ES-2: Effective payment date when collected in advance."
+msgstr ""
+"BT-ES-2: Fecha efectiva de cobro cuando se ha percibido por anticipado."
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__l10n_es_spfe_event_wizard__response_code__canceldefault
+msgid "CANCELDEFAULT - Anulación de impago (Emisor)"
+msgstr "CANCELDEFAULT - Anulación de impago (Emisor)"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__l10n_es_spfe_event_wizard__response_code__cancelpayment
+msgid "CANCELPAYMENT - Anulación de pago (Destinatario)"
+msgstr "CANCELPAYMENT - Anulación de pago (Destinatario)"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__l10n_es_spfe_event_wizard__response_code__cancelrejection
+msgid "CANCELREJECTION - Anulación de rechazo (Destinatario)"
+msgstr "CANCELREJECTION - Anulación de rechazo (Destinatario)"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__l10n_es_spfe_event_wizard__response_code__cancelsettlement
+msgid "CANCELSETTLEMENT - Anulación de cobro (Emisor)"
+msgstr "CANCELSETTLEMENT - Anulación de cobro (Emisor)"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__l10n_es_spfe_submission__operation_type__cancel
+msgid "Cancel Invoice (CANCELINVOICE)"
+msgstr "Anular factura (CANCELINVOICE)"
+
+#. module: l10n_es_spfe
+#: model:ir.model,name:l10n_es_spfe.model_l10n_es_spfe_cancel_wizard
+#: model_terms:ir.ui.view,arch_db:l10n_es_spfe.view_spfe_cancel_invoice_wizard_form
+msgid "Cancel Invoice in AEAT SPFE"
+msgstr "Anular factura en AEAT SPFE"
+
+#. module: l10n_es_spfe
+#. odoo-python
+#: code:addons/l10n_es_spfe/models/account_move.py:0
+msgid "Cancel Invoice in SPFE"
+msgstr "Anular factura en SPFE"
+
+#. module: l10n_es_spfe
+#: model_terms:ir.ui.view,arch_db:l10n_es_spfe.view_move_spfe_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_spfe.view_spfe_cancel_invoice_wizard_form
+msgid "Cancel in SPFE"
+msgstr "Anular en SPFE"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_cancel_wizard__effective_date
+msgid "Cancellation Date"
+msgstr "Fecha de anulación"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_cancel_wizard__reason
+msgid "Cancellation Reason"
+msgstr "Motivo de anulación"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__account_move__spfe_state__cancelled
+msgid "Cancelled in SPFE"
+msgstr "Anulada en SPFE"
+
+#. module: l10n_es_spfe
+#: model_terms:ir.ui.view,arch_db:l10n_es_spfe.view_spfe_cancel_invoice_wizard_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_spfe.view_spfe_invoice_event_wizard_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_spfe.view_spfe_sync_invoices_wizard_form
+msgid "Close"
+msgstr "Cerrar"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_registration_key__code
+msgid "Code"
+msgstr "Código"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_event_wizard__financing_arrangement
+msgid "Collected via Financing Arrangement"
+msgstr "Cobrado mediante acuerdo de financiación"
+
+#. module: l10n_es_spfe
+#: model:ir.model,name:l10n_es_spfe.model_base_ubl
+msgid "Common methods to generate and parse UBL XML files"
+msgstr "Métodos comunes para generar y analizar ficheros XML UBL"
+
+#. module: l10n_es_spfe
+#: model:ir.model,name:l10n_es_spfe.model_l10n_es_spfe_event_wizard
+msgid "Communicate Invoice Payment / Rejection / Settlement Status to SPFE"
+msgstr "Comunicar estado de pago / rechazo / cobro de factura al SPFE"
+
+#. module: l10n_es_spfe
+#. odoo-python
+#: code:addons/l10n_es_spfe/models/account_move.py:0
+#: model_terms:ir.ui.view,arch_db:l10n_es_spfe.view_spfe_invoice_event_wizard_form
+msgid "Communicate SPFE Invoice Status"
+msgstr "Comunicar estado de factura SPFE"
+
+#. module: l10n_es_spfe
+#: model:ir.model,name:l10n_es_spfe.model_res_company
+msgid "Companies"
+msgstr "Compañías"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_submission__company_id
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_submission_line__company_id
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_sync_wizard__company_id
+msgid "Company"
+msgstr "Compañía"
+
+#. module: l10n_es_spfe
+#. odoo-python
+#: code:addons/l10n_es_spfe/models/spfe_soap_client.py:0
+msgid "Company '%(company)s' is missing a NIF for SPFE."
+msgstr "Falta configurar el NIF en la compañía '%(company)s' para SPFE."
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,help:l10n_es_spfe.field_res_company__spfe_use_seal_certificate
+msgid ""
+"Connect using Electronic Seal ports (prewww10/www10) instead of "
+"personal/representative certificate ports (prewww1/www1)."
+msgstr ""
+"Conectar mediante los puertos de Sello Electrónico (prewww10/www10) en lugar"
+" de los puertos de certificado personal/representante (prewww1/www1)."
+
+#. module: l10n_es_spfe
+#. odoo-python
+#: code:addons/l10n_es_spfe/models/spfe_soap_client.py:0
+msgid "Connection error communicating with AEAT SPFE (%(url)s): %(error)s"
+msgstr "Error de conexión al comunicar con AEAT SPFE (%(url)s): %(error)s"
+
+#. module: l10n_es_spfe
+#: model:ir.model,name:l10n_es_spfe.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_cancel_wizard__create_uid
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_event_wizard__create_uid
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_registration_key__create_uid
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_submission__create_uid
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_submission_line__create_uid
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_sync_wizard__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_cancel_wizard__create_date
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_event_wizard__create_date
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_registration_key__create_date
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_submission__create_date
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_submission_line__create_date
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_sync_wizard__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: l10n_es_spfe
+#. odoo-python
+#: code:addons/l10n_es_spfe/models/account_move.py:0
+msgid "Customer"
+msgstr "Cliente"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__l10n_es_spfe_event_wizard__party_role__customer
+msgid "Customer / Recipient (Pago / Rechazo)"
+msgstr "Cliente / Destinatario (Pago / Rechazo)"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__l10n_es_spfe_submission__operation_type__customer_events
+msgid "Customer Events - Payment/Rejection"
+msgstr "Eventos de destinatario - Pago/Rechazo"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__l10n_es_spfe_event_wizard__response_code__default
+msgid "DEFAULT - Impago (Emisor)"
+msgstr "DEFAULT - Impago (Emisor)"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,help:l10n_es_spfe.field_account_tax__spfe_registration_key_id
+msgid "Default SPFE regime key (REGI) associated with this tax."
+msgstr "Clave de régimen SPFE (REGI) por defecto asociada a este impuesto."
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,help:l10n_es_spfe.field_account_fiscal_position__spfe_registration_key_id
+msgid ""
+"Default SPFE regime key applied to invoice lines using this fiscal position."
+msgstr ""
+"Clave de régimen SPFE por defecto aplicada a las líneas de factura con esta "
+"posición fiscal."
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_registration_key__name
+msgid "Description"
+msgstr "Descripción"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_submission_line__status_description
+msgid "Description / Error"
+msgstr "Descripción / Error"
+
+#. module: l10n_es_spfe
+#. odoo-python
+#: code:addons/l10n_es_spfe/models/base_ubl.py:0
+msgid "Discount"
+msgstr "Descuento"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_fiscal_position__display_name
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_journal__display_name
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_move__display_name
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_move_line__display_name
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_tax__display_name
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_aeat_tax_agency__display_name
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_base_ubl__display_name
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_cancel_wizard__display_name
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_event_wizard__display_name
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_registration_key__display_name
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_soap__display_name
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_submission__display_name
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_submission_line__display_name
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_sync_wizard__display_name
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_res_company__display_name
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_res_partner__display_name
+msgid "Display Name"
+msgstr "Nombre para mostrar"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_submission__response_xml
+msgid "DocumentStatus / Response XML"
+msgstr "XML de respuesta / DocumentStatus"
+
+#. module: l10n_es_spfe
+#: model_terms:ir.ui.view,arch_db:l10n_es_spfe.view_spfe_submission_form
+msgid "Documents"
+msgstr "Documentos"
+
+#. module: l10n_es_spfe
+#: model_terms:ir.ui.view,arch_db:l10n_es_spfe.view_move_spfe_form
+msgid "Download SPFE UBL XML"
+msgstr "Descargar XML UBL SPFE"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_sync_wizard__download_and_import_bills
+msgid "Download UBL & Create Draft Vendor Bills"
+msgstr "Descargar UBL y crear facturas de proveedor en borrador"
+
+#. module: l10n_es_spfe
+#: model_terms:ir.ui.view,arch_db:l10n_es_spfe.view_move_spfe_form
+msgid "Download UBL from SPFE (by ID)"
+msgstr "Descargar UBL de SPFE (por ID)"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__l10n_es_spfe_submission__operation_type__download_id
+msgid "Download by ID (DOWNLOADBYID)"
+msgstr "Descarga por identificador (DOWNLOADBYID)"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__l10n_es_spfe_submission__operation_type__download_loc
+msgid "Download by Locator (DOWNLOADBYLOC)"
+msgstr "Descarga por localizador (DOWNLOADBYLOC)"
+
+#. module: l10n_es_spfe
+#. odoo-python
+#: code:addons/l10n_es_spfe/models/account_move.py:0
+#: code:addons/l10n_es_spfe/wizards/spfe_sync_invoices_wizard.py:0
+msgid "Downloaded %(count)s UBL invoices."
+msgstr "Se han descargado %(count)s facturas UBL."
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_event_wizard__effective_date
+msgid "Effective Date"
+msgstr "Fecha efectiva"
+
+#. module: l10n_es_spfe
+#. odoo-python
+#: code:addons/l10n_es_spfe/wizards/spfe_invoice_event_wizard.py:0
+msgid "Effective Date cannot be later than today (BR-PAGO-2 / BR-COBRO-2)."
+msgstr ""
+"La fecha efectiva no puede ser posterior a hoy (BR-PAGO-2 / BR-COBRO-2)."
+
+#. module: l10n_es_spfe
+#. odoo-python
+#: code:addons/l10n_es_spfe/wizards/spfe_invoice_event_wizard.py:0
+msgid "Effective Date is mandatory for %(code)s."
+msgstr "La fecha efectiva es obligatoria para %(code)s."
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,help:l10n_es_spfe.field_res_company__spfe_enabled
+msgid "Enable AEAT Public Electronic Invoicing Solution (SPFE)."
+msgstr ""
+"Habilitar la Solución Pública de Facturación Electrónica (SPFE) de la AEAT."
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_sync_wizard__date_end
+msgid "End Date"
+msgstr "Fecha fin"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__l10n_es_spfe_submission__state__error
+msgid "Error"
+msgstr "Error"
+
+#. module: l10n_es_spfe
+#: model_terms:ir.ui.view,arch_db:l10n_es_spfe.view_spfe_submission_search
+msgid "Errors / Rejected"
+msgstr "Con errores / Rechazados"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_event_wizard__response_code
+msgid "Event Type"
+msgstr "Tipo de evento"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_res_partner__spfe_exclude
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_res_users__spfe_exclude
+msgid "Exclude from SPFE"
+msgstr "Excluir de SPFE"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,help:l10n_es_spfe.field_res_partner__spfe_exclude
+#: model:ir.model.fields,help:l10n_es_spfe.field_res_users__spfe_exclude
+msgid ""
+"Exclude invoices for this partner from mandatory B2B SPFE submission (e.g. "
+"final consumers B2C or excluded entities)."
+msgstr ""
+"Excluir las facturas de este contacto de la remisión obligatoria B2B al SPFE"
+" (p. ej., consumidores finales B2C o entidades excluidas)."
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_submission__send_date
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_submission_line__send_date
+msgid "Execution Date"
+msgstr "Fecha de ejecución"
+
+#. module: l10n_es_spfe
+#: model:l10n.es.spfe.registration.key,name:l10n_es_spfe.spfe_reg_key_iva_02
+msgid "Exportación"
+msgstr "Exportación"
+
+#. module: l10n_es_spfe
+#: model:l10n.es.spfe.registration.key,name:l10n_es_spfe.spfe_reg_key_igic_02
+msgid "Exportación (IGIC)"
+msgstr "Exportación (IGIC)"
+
+#. module: l10n_es_spfe
+#: model:l10n.es.spfe.registration.key,name:l10n_es_spfe.spfe_reg_key_igic_14
+msgid "Factura con IGIC pendiente de devengo en certificaciones de obra AAPP"
+msgstr "Factura con IGIC pendiente de devengo en certificaciones de obra AAPP"
+
+#. module: l10n_es_spfe
+#: model:l10n.es.spfe.registration.key,name:l10n_es_spfe.spfe_reg_key_igic_15
+msgid ""
+"Factura con IGIC pendiente de devengo en operaciones de tracto sucesivo"
+msgstr ""
+"Factura con IGIC pendiente de devengo en operaciones de tracto sucesivo"
+
+#. module: l10n_es_spfe
+#: model:l10n.es.spfe.registration.key,name:l10n_es_spfe.spfe_reg_key_iva_14
+msgid ""
+"Factura con IVA pendiente de devengo en certificaciones de obra cuyo "
+"destinatario sea una Administración Pública"
+msgstr ""
+"Factura con IVA pendiente de devengo en certificaciones de obra cuyo "
+"destinatario sea una Administración Pública"
+
+#. module: l10n_es_spfe
+#: model:l10n.es.spfe.registration.key,name:l10n_es_spfe.spfe_reg_key_iva_15
+msgid "Factura con IVA pendiente de devengo en operaciones de tracto sucesivo"
+msgstr ""
+"Factura con IVA pendiente de devengo en operaciones de tracto sucesivo"
+
+#. module: l10n_es_spfe
+#: model:l10n.es.spfe.registration.key,name:l10n_es_spfe.spfe_reg_key_iva_09
+msgid ""
+"Facturación de las prestaciones de servicios de agencias de viaje que actúan"
+" como mediadoras en nombre y por cuenta ajena (D.A.4ª RD1619/2012)"
+msgstr ""
+"Facturación de las prestaciones de servicios de agencias de viaje que actúan"
+" como mediadoras en nombre y por cuenta ajena (D.A.4ª RD1619/2012)"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_sync_wizard__date_filter
+msgid "Filter By"
+msgstr "Filtrar por"
+
+#. module: l10n_es_spfe
+#: model:ir.model,name:l10n_es_spfe.model_account_fiscal_position
+msgid "Fiscal Position"
+msgstr "Posición fiscal"
+
+#. module: l10n_es_spfe
+#: model_terms:ir.ui.view,arch_db:l10n_es_spfe.view_move_spfe_form
+msgid "Fiscal QR & Annotations"
+msgstr "QR fiscal y anotaciones"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_submission__message_follower_ids
+msgid "Followers"
+msgstr "Seguidores"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_submission__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Seguidores (Contactos)"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_event_wizard__shipment_date
+msgid "Goods / Services Receipt Date"
+msgstr "Fecha de recepción de bienes / servicios"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_submission__has_message
+msgid "Has Message"
+msgstr "Tiene mensajes"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_fiscal_position__id
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_journal__id
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_move__id
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_move_line__id
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_tax__id
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_aeat_tax_agency__id
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_base_ubl__id
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_cancel_wizard__id
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_event_wizard__id
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_registration_key__id
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_soap__id
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_submission__id
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_submission_line__id
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_sync_wizard__id
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_res_company__id
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_res_partner__id
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__l10n_es_spfe_registration_key__tax_qualifier__igic
+msgid "IGIC"
+msgstr "IGIC"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,help:l10n_es_spfe.field_account_move_line__spfe_line_info
+msgid "INFO: Additional regulatory mention at invoice line level."
+msgstr "INFO: Mención normativa adicional a nivel de línea de factura."
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__l10n_es_spfe_registration_key__tax_qualifier__ipsi
+msgid "IPSI"
+msgstr "IPSI"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__l10n_es_spfe_registration_key__tax_qualifier__iva
+msgid "IVA"
+msgstr "IVA"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,help:l10n_es_spfe.field_l10n_es_spfe_submission__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Si está marcado, hay nuevos mensajes que requieren su atención."
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,help:l10n_es_spfe.field_l10n_es_spfe_submission__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Si está marcado, algunos mensajes tienen error de entrega."
+
+#. module: l10n_es_spfe
+#. odoo-python
+#: code:addons/l10n_es_spfe/wizards/spfe_sync_invoices_wizard.py:0
+msgid "Imported SPFE Vendor Bills"
+msgstr "Facturas de proveedor importadas desde SPFE"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,help:l10n_es_spfe.field_account_journal__spfe_enabled
+msgid "Include invoices posted in this journal in AEAT SPFE."
+msgstr "Incluir las facturas confirmadas en este diario en AEAT SPFE."
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,help:l10n_es_spfe.field_account_bank_statement_line__spfe_payment_pending
+#: model:ir.model.fields,help:l10n_es_spfe.field_account_move__spfe_payment_pending
+msgid ""
+"Indicates that a full collection (SETTLEMENT), full payment (PAYMENT), or "
+"its cancellation is pending communication to AEAT SPFE."
+msgstr ""
+"Indica que el cobro completo (SETTLEMENT), el pago completo (PAYMENT) o su "
+"anulación está pendiente de comunicar a AEAT SPFE."
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_cancel_wizard__move_id
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_event_wizard__move_id
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_submission_line__move_id
+msgid "Invoice"
+msgstr "Factura"
+
+#. module: l10n_es_spfe
+#. odoo-python
+#: code:addons/l10n_es_spfe/models/account_move.py:0
+msgid ""
+"Invoice '%(inv)s' date (%(date)s) is earlier than SPFE entry into force "
+"(%(start)s)."
+msgstr ""
+"La fecha de la factura '%(inv)s' (%(date)s) es anterior a la entrada en "
+"vigor del SPFE (%(start)s)."
+
+#. module: l10n_es_spfe
+#. odoo-python
+#: code:addons/l10n_es_spfe/models/account_move.py:0
+msgid "Invoice '%(inv)s' has no invoice lines for SPFE."
+msgstr "La factura '%(inv)s' no tiene líneas de factura para SPFE."
+
+#. module: l10n_es_spfe
+#. odoo-python
+#: code:addons/l10n_es_spfe/models/account_move.py:0
+msgid "Invoice '%(inv)s' is already registered in SPFE."
+msgstr "La factura '%(inv)s' ya está registrada en SPFE."
+
+#. module: l10n_es_spfe
+#. odoo-python
+#: code:addons/l10n_es_spfe/models/account_move.py:0
+msgid "Invoice '%(inv)s' is missing an issue date."
+msgstr "La factura '%(inv)s' no tiene fecha de expedición."
+
+#. module: l10n_es_spfe
+#. odoo-python
+#: code:addons/l10n_es_spfe/models/account_move.py:0
+msgid "Invoice '%(inv)s' must be posted before generating SPFE XML."
+msgstr ""
+"La factura '%(inv)s' debe estar confirmada antes de generar el XML SPFE."
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__l10n_es_spfe_sync_wizard__date_filter__issuedate
+msgid "Invoice Issue Date"
+msgstr "Fecha de expedición de la factura"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_submission__line_ids
+msgid "Invoice Lines"
+msgstr "Líneas de factura"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_submission_line__invoice_number
+msgid "Invoice Number"
+msgstr "Número de factura"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_event_wizard__reception_date
+msgid "Invoice Reception Date"
+msgstr "Fecha de recepción de la factura"
+
+#. module: l10n_es_spfe
+#. odoo-python
+#: code:addons/l10n_es_spfe/wizards/spfe_cancel_invoice_wizard.py:0
+msgid ""
+"Invoice cancelled in AEAT SPFE (reason: %(reason)s). Note: the accounting "
+"entry remains posted in Odoo."
+msgstr ""
+"Factura anulada en el SPFE de la AEAT (motivo: %(reason)s). Nota: el asiento"
+" contable permanece publicado en Odoo."
+
+#. module: l10n_es_spfe
+#. odoo-python
+#: code:addons/l10n_es_spfe/models/account_move_line.py:0
+msgid ""
+"Invoice line '%(line)s' must have one main VAT/IGIC/IPSI tax configured for "
+"SPFE."
+msgstr ""
+"La línea de factura '%(line)s' debe tener configurado un impuesto principal "
+"de IVA/IGIC/IPSI para SPFE."
+
+#. module: l10n_es_spfe
+#. odoo-python
+#: code:addons/l10n_es_spfe/wizards/spfe_invoice_event_wizard.py:0
+msgid "Invoice reception date must be equal to or after issue date."
+msgstr ""
+"La fecha de recepción de la factura debe ser igual o posterior a la fecha de"
+" expedición."
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_submission__message_is_follower
+msgid "Is Follower"
+msgstr "Es seguidor"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_submission_line__invoice_date
+msgid "Issue Date"
+msgstr "Fecha de expedición"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__l10n_es_spfe_sync_wizard__role__accountingsupplierparty
+msgid "Issued Invoices (Supplier / Issuer)"
+msgstr "Facturas emitidas (Proveedor / Emisor)"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_submission_line__issuer_vat
+msgid "Issuer NIF"
+msgstr "NIF del emisor"
+
+#. module: l10n_es_spfe
+#: model:ir.model,name:l10n_es_spfe.model_account_journal
+msgid "Journal"
+msgstr "Diario"
+
+#. module: l10n_es_spfe
+#: model:ir.model,name:l10n_es_spfe.model_account_move
+msgid "Journal Entry"
+msgstr "Asiento contable"
+
+#. module: l10n_es_spfe
+#: model:ir.model,name:l10n_es_spfe.model_account_move_line
+msgid "Journal Item"
+msgstr "Apunte contable"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_cancel_wizard__write_uid
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_event_wizard__write_uid
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_registration_key__write_uid
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_submission__write_uid
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_submission_line__write_uid
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_sync_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_cancel_wizard__write_date
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_event_wizard__write_date
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_registration_key__write_date
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_submission__write_date
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_submission_line__write_date
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_sync_wizard__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,help:l10n_es_spfe.field_account_bank_statement_line__spfe_refund_type
+#: model:ir.model.fields,help:l10n_es_spfe.field_account_move__spfe_refund_type
+msgid "Lista L2.A: Legal ground for corrective invoice."
+msgstr "Lista L2.A: Causa legal de la factura rectificativa."
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,help:l10n_es_spfe.field_account_bank_statement_line__spfe_refund_mode
+#: model:ir.model.fields,help:l10n_es_spfe.field_account_move__spfe_refund_mode
+msgid "Lista L2.B: Corrective invoice mode (differences or substitution)."
+msgstr ""
+"Lista L2.B: Modalidad de factura rectificativa (por diferencias o por "
+"sustitución)."
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,help:l10n_es_spfe.field_account_bank_statement_line__spfe_rectified_tax
+#: model:ir.model.fields,help:l10n_es_spfe.field_account_move__spfe_rectified_tax
+msgid "Lista L2.C: Rectified VAT quota in substitution mode."
+msgstr "Lista L2.C: Cuota de IVA rectificada en modalidad de sustitución."
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,help:l10n_es_spfe.field_account_bank_statement_line__spfe_rectified_surcharge
+#: model:ir.model.fields,help:l10n_es_spfe.field_account_move__spfe_rectified_surcharge
+msgid "Lista L2.C: Rectified equivalence surcharge in substitution mode."
+msgstr ""
+"Lista L2.C: Recargo de equivalencia rectificado en modalidad de sustitución."
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,help:l10n_es_spfe.field_account_bank_statement_line__spfe_rectified_base
+#: model:ir.model.fields,help:l10n_es_spfe.field_account_move__spfe_rectified_base
+msgid "Lista L2.C: Rectified taxable base in substitution mode."
+msgstr "Lista L2.C: Base imponible rectificada en modalidad de sustitución."
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,help:l10n_es_spfe.field_account_tax__spfe_withholding_type
+msgid "Lista L5: Withholding tax concept reported in WithholdingTaxTotal."
+msgstr "Lista L5: Concepto de retención comunicado en WithholdingTaxTotal."
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,help:l10n_es_spfe.field_account_move_line__spfe_property_situation
+msgid "Lista L6: Property location code for lease operations."
+msgstr ""
+"Lista L6: Clave de situación del inmueble para operaciones de arrendamiento."
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,help:l10n_es_spfe.field_account_move_line__spfe_collection_line_type
+msgid "Lista L7: Disbursement or third-party collection line type."
+msgstr "Lista L7: Tipo de línea de suplido o cobro por cuenta de terceros."
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,help:l10n_es_spfe.field_account_tax__spfe_is_surcharge
+msgid ""
+"Mark if this tax represents Spanish Equivalence Surcharge (Recargo de "
+"Equivalencia, category N in SPFE)."
+msgstr ""
+"Marcar si este impuesto corresponde al Recargo de Equivalencia (categoría N "
+"en SPFE)."
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,help:l10n_es_spfe.field_account_tax__spfe_is_withholding
+msgid ""
+"Mark if this tax represents a withholding tax reported in "
+"WithholdingTaxTotal and CollectionInvoiceLine (RETE)."
+msgstr ""
+"Marcar si este impuesto corresponde a una retención declarada en "
+"WithholdingTaxTotal y CollectionInvoiceLine (RETE)."
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_submission__message_has_error
+msgid "Message Delivery error"
+msgstr "Error de entrega de mensaje"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_submission__message_ids
+msgid "Messages"
+msgstr "Mensajes"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,help:l10n_es_spfe.field_res_company__spfe_start_date
+msgid ""
+"Minimum invoice issue date eligible for SPFE (Orden HAC/1028/2026 entry into"
+" force: 2026-10-06)."
+msgstr ""
+"Fecha mínima de expedición admisible para SPFE (entrada en vigor de la Orden"
+" HAC/1028/2026: 06/10/2026)."
+
+#. module: l10n_es_spfe
+#. odoo-python
+#: code:addons/l10n_es_spfe/models/aeat_tax_agency.py:0
+msgid "Missing SPFE base URL on tax agency '%(agency)s'."
+msgstr "Falta la URL base de SPFE en la agencia tributaria '%(agency)s'."
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_registration_key__tax_qualifier
+msgid "National Tax Qualifier"
+msgstr "Calificador de impuesto nacional"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_event_wizard__is_negative_invoice
+msgid "Negative Rectificativa Invoice"
+msgstr "Factura rectificativa negativa"
+
+#. module: l10n_es_spfe
+#. odoo-python
+#: code:addons/l10n_es_spfe/models/account_move.py:0
+msgid ""
+"No selected invoice has a pending full collection or payment status change "
+"to communicate to SPFE."
+msgstr ""
+"Ninguna factura seleccionada tiene un cambio de estado de cobro o pago "
+"completo pendiente de comunicar a SPFE."
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__account_move__spfe_state__not_sent
+msgid "Not Sent"
+msgstr "No enviada"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_submission__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Número de acciones"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_submission__message_has_error_counter
+msgid "Number of errors"
+msgstr "Número de errores"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,help:l10n_es_spfe.field_l10n_es_spfe_submission__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "Número de mensajes que requieren acción"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,help:l10n_es_spfe.field_l10n_es_spfe_submission__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Número de mensajes con error de entrega"
+
+#. module: l10n_es_spfe
+#. odoo-python
+#: code:addons/l10n_es_spfe/models/account_move.py:0
+msgid "Only customer invoices can be submitted to SPFE."
+msgstr "Solo se pueden enviar facturas de cliente al SPFE."
+
+#. module: l10n_es_spfe
+#. odoo-python
+#: code:addons/l10n_es_spfe/models/account_move.py:0
+#: code:addons/l10n_es_spfe/wizards/spfe_cancel_invoice_wizard.py:0
+msgid "Only invoices registered in SPFE can be cancelled in SPFE."
+msgstr "Solo se pueden anular en SPFE las facturas ya registradas en SPFE."
+
+#. module: l10n_es_spfe
+#: model:l10n.es.spfe.registration.key,name:l10n_es_spfe.spfe_reg_key_iva_03
+msgid ""
+"Operaciones a las que se aplique el régimen especial de bienes usados, "
+"objetos de arte, antigüedades y objetos de colección"
+msgstr ""
+"Operaciones a las que se aplique el régimen especial de bienes usados, "
+"objetos de arte, antigüedades y objetos de colección"
+
+#. module: l10n_es_spfe
+#: model:l10n.es.spfe.registration.key,name:l10n_es_spfe.spfe_reg_key_iva_11
+msgid "Operaciones de arrendamiento de local de negocio"
+msgstr "Operaciones de arrendamiento de local de negocio"
+
+#. module: l10n_es_spfe
+#: model:l10n.es.spfe.registration.key,name:l10n_es_spfe.spfe_reg_key_igic_11
+msgid "Operaciones de arrendamiento de local de negocio (IGIC)"
+msgstr "Operaciones de arrendamiento de local de negocio (IGIC)"
+
+#. module: l10n_es_spfe
+#: model:l10n.es.spfe.registration.key,name:l10n_es_spfe.spfe_reg_key_ipsi_11
+msgid "Operaciones de arrendamiento de local de negocio (IPSI)"
+msgstr "Operaciones de arrendamiento de local de negocio (IPSI)"
+
+#. module: l10n_es_spfe
+#: model:l10n.es.spfe.registration.key,name:l10n_es_spfe.spfe_reg_key_ipsi_19
+msgid "Operaciones interiores exentas (IPSI)"
+msgstr "Operaciones interiores exentas (IPSI)"
+
+#. module: l10n_es_spfe
+#: model:l10n.es.spfe.registration.key,name:l10n_es_spfe.spfe_reg_key_igic_19
+msgid "Operaciones interiores exentas por aplicación artículo 25 Ley 19/1994"
+msgstr "Operaciones interiores exentas por aplicación artículo 25 Ley 19/1994"
+
+#. module: l10n_es_spfe
+#: model:l10n.es.spfe.registration.key,name:l10n_es_spfe.spfe_reg_key_ipsi_08
+msgid "Operaciones sujetas al IGIC / IVA"
+msgstr "Operaciones sujetas al IGIC / IVA"
+
+#. module: l10n_es_spfe
+#: model:l10n.es.spfe.registration.key,name:l10n_es_spfe.spfe_reg_key_iva_08
+msgid "Operaciones sujetas al IPSI / IGIC"
+msgstr "Operaciones sujetas al IPSI / IGIC"
+
+#. module: l10n_es_spfe
+#: model:l10n.es.spfe.registration.key,name:l10n_es_spfe.spfe_reg_key_igic_08
+msgid "Operaciones sujetas al IPSI / IVA"
+msgstr "Operaciones sujetas al IPSI / IVA"
+
+#. module: l10n_es_spfe
+#: model:l10n.es.spfe.registration.key,name:l10n_es_spfe.spfe_reg_key_iva_01
+msgid "Operación en régimen general y no incluidas en otras claves"
+msgstr "Operación en régimen general y no incluidas en otras claves"
+
+#. module: l10n_es_spfe
+#: model:l10n.es.spfe.registration.key,name:l10n_es_spfe.spfe_reg_key_igic_01
+msgid "Operación en régimen general y no incluidas en otras claves (IGIC)"
+msgstr "Operación en régimen general y no incluidas en otras claves (IGIC)"
+
+#. module: l10n_es_spfe
+#: model:l10n.es.spfe.registration.key,name:l10n_es_spfe.spfe_reg_key_ipsi_01
+msgid "Operación en régimen general y no incluidas en otras claves (IPSI)"
+msgstr "Operación en régimen general y no incluidas en otras claves (IPSI)"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_submission__operation_type
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_submission_line__operation_type
+msgid "Operation"
+msgstr "Operación"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,help:l10n_es_spfe.field_res_company__spfe_sender_vat
+msgid ""
+"Optional NIF of the certificate holder (Social Collaborator or "
+"Representative) for ebMS From/PartyId. Defaults to the company NIF."
+msgstr ""
+"NIF opcional del titular del certificado (colaborador social o "
+"representante) para From/PartyId en ebMS. Por defecto usa el NIF de la "
+"compañía."
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__l10n_es_spfe_event_wizard__response_code__payment
+msgid "PAYMENT - Pago efectivo completo (Destinatario)"
+msgstr "PAYMENT - Pago efectivo completo (Destinatario)"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__account_move__spfe_customer_status__paid
+msgid "Paid (PAYMENT)"
+msgstr "Pagada (PAYMENT)"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__l10n_es_spfe_submission__state__partial
+msgid "Partially Accepted (406)"
+msgstr "Aceptado parcialmente (406)"
+
+#. module: l10n_es_spfe
+#. odoo-python
+#: code:addons/l10n_es_spfe/models/res_partner.py:0
+msgid ""
+"Partner '%(partner)s' is missing a tax identification number (NIF/VAT) "
+"required by SPFE."
+msgstr ""
+"El contacto '%(partner)s' no tiene número de identificación fiscal (NIF/IVA)"
+" requerido por SPFE."
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_event_wizard__due_date
+msgid "Payment Due Date"
+msgstr "Fecha de vencimiento del pago"
+
+#. module: l10n_es_spfe
+#. odoo-python
+#: code:addons/l10n_es_spfe/wizards/spfe_invoice_event_wizard.py:0
+msgid "Payment Due Date is mandatory for PAYMENT (BR-PAGO-3)."
+msgstr ""
+"La fecha de vencimiento del pago es obligatoria para PAYMENT (BR-PAGO-3)."
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__account_move__spfe_customer_status__none
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__account_move__spfe_supplier_status__none
+msgid "Pending / Accepted"
+msgstr "Pendiente / Aceptada"
+
+#. module: l10n_es_spfe
+#. odoo-python
+#: code:addons/l10n_es_spfe/models/spfe_soap_client.py:0
+msgid ""
+"Please configure an active AEAT X.509 certificate for company '%(company)s'."
+msgstr ""
+"Configure un certificado X.509 de la AEAT activo para la compañía "
+"'%(company)s'."
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__account_move__spfe_state__validated_pre
+msgid "Pre-Validated (PRE)"
+msgstr "Prevalidada (PRE)"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__l10n_es_spfe_submission__operation_type__validate_pre
+msgid "Pre-Validation (PRE only)"
+msgstr "Prevalidación (solo PRE)"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_event_wizard__is_corrected_invoice
+msgid "Previously Rectified Invoice"
+msgstr "Factura rectificada previamente"
+
+#. module: l10n_es_spfe
+#: model:ir.actions.act_window,name:l10n_es_spfe.action_spfe_sync_invoices_wizard
+#: model:ir.ui.menu,name:l10n_es_spfe.menu_l10n_es_spfe_sync
+msgid "Query / Download SPFE Invoices"
+msgstr "Consultar / Descargar facturas SPFE"
+
+#. module: l10n_es_spfe
+#: model_terms:ir.ui.view,arch_db:l10n_es_spfe.view_spfe_sync_invoices_wizard_form
+msgid "Query / Download from SPFE"
+msgstr "Consultar / Descargar desde SPFE"
+
+#. module: l10n_es_spfe
+#: model:ir.actions.server,name:l10n_es_spfe.action_server_spfe_query_status
+#: model_terms:ir.ui.view,arch_db:l10n_es_spfe.view_move_spfe_form
+msgid "Query SPFE"
+msgstr "Consultar SPFE"
+
+#. module: l10n_es_spfe
+#: model:ir.model,name:l10n_es_spfe.model_l10n_es_spfe_sync_wizard
+msgid "Query and Download Invoices from AEAT SPFE"
+msgstr "Consultar y descargar facturas de AEAT SPFE"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__l10n_es_spfe_submission__operation_type__query_filter
+msgid "Query by Date Filter (QUERYBYFILTER)"
+msgstr "Consulta por filtro de fechas (QUERYBYFILTER)"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__l10n_es_spfe_submission__operation_type__query_id
+msgid "Query by ID (QUERYBYID)"
+msgstr "Consulta por identificador (QUERYBYID)"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,help:l10n_es_spfe.field_res_company__spfe_auto_send
+msgid "Queue customer invoices for automatic SPFE submission via cron."
+msgstr ""
+"Encolar las facturas de cliente para su envío automático al SPFE mediante "
+"tarea programada."
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,help:l10n_es_spfe.field_account_move_line__spfe_cadastral_reference
+msgid "RCAT: Cadastral reference reported on leased property lines."
+msgstr ""
+"RCAT: Referencia catastral comunicada en líneas de arrendamiento de "
+"inmuebles."
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,help:l10n_es_spfe.field_account_move_line__spfe_registration_key_id
+msgid "REGI: Regime key reported in SPFE AdditionalItemProperty."
+msgstr "REGI: Clave de régimen comunicada en AdditionalItemProperty del SPFE."
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__l10n_es_spfe_event_wizard__response_code__rejection
+msgid "REJECTION - Rechazo de factura (Destinatario)"
+msgstr "REJECTION - Rechazo de factura (Destinatario)"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__l10n_es_spfe_sync_wizard__role__accountingcustomerparty
+msgid "Received Invoices (Customer / Recipient)"
+msgstr "Facturas recibidas (Cliente / Destinatario)"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,help:l10n_es_spfe.field_aeat_tax_agency__spfe_party_id
+msgid "Recipient PartyId in ebMS 3.0 header (AEAT NIF: Q2826000H)."
+msgstr "PartyId destinatario en la cabecera ebMS 3.0 (NIF AEAT: Q2826000H)."
+
+#. module: l10n_es_spfe
+#: model_terms:ir.ui.view,arch_db:l10n_es_spfe.view_move_spfe_form
+msgid "Rectificativa Details"
+msgstr "Detalle de rectificativa"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_bank_statement_line__spfe_rectified_base
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_move__spfe_rectified_base
+msgid "Rectified Base"
+msgstr "Base rectificada"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_bank_statement_line__spfe_rectified_surcharge
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_move__spfe_rectified_surcharge
+msgid "Rectified RE Surcharge"
+msgstr "Recargo de equivalencia rectificado"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_bank_statement_line__spfe_rectified_tax
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_move__spfe_rectified_tax
+msgid "Rectified VAT Quota"
+msgstr "Cuota de IVA rectificada"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_submission__name
+msgid "Reference"
+msgstr "Referencia"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__account_move__spfe_state__sent
+msgid "Registered in SPFE"
+msgstr "Registrada en SPFE"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__l10n_es_spfe_submission__state__rejected
+msgid "Rejected (400)"
+msgstr "Rechazado (400)"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__account_move__spfe_customer_status__rejected
+msgid "Rejected (REJECTION)"
+msgstr "Rechazada (REJECTION)"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__account_move__spfe_state__rejected
+msgid "Rejected by SPFE"
+msgstr "Rechazada por SPFE"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_event_wizard__rejection_reason
+msgid "Rejection Reason (Anexo II L1)"
+msgstr "Motivo de rechazo (Anexo II L1)"
+
+#. module: l10n_es_spfe
+#. odoo-python
+#: code:addons/l10n_es_spfe/wizards/spfe_invoice_event_wizard.py:0
+msgid "Rejection date must be after the invoice issue date (BR-RECHAZO-3)."
+msgstr ""
+"La fecha de rechazo debe ser posterior a la fecha de expedición de la "
+"factura (BR-RECHAZO-3)."
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_submission__response_code
+msgid "Response Code"
+msgstr "Código de respuesta"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_submission__response_description
+msgid "Response Summary"
+msgstr "Resumen de respuesta"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_submission__state
+msgid "Result"
+msgstr "Resultado"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_event_wizard__party_role
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_sync_wizard__role
+msgid "Role"
+msgstr "Rol"
+
+#. module: l10n_es_spfe
+#: model:l10n.es.spfe.registration.key,name:l10n_es_spfe.spfe_reg_key_igic_03
+msgid ""
+"Régimen especial de bienes usados, arte, antigüedades y colección (IGIC)"
+msgstr ""
+"Régimen especial de bienes usados, arte, antigüedades y colección (IGIC)"
+
+#. module: l10n_es_spfe
+#: model:l10n.es.spfe.registration.key,name:l10n_es_spfe.spfe_reg_key_igic_17
+msgid "Régimen especial de comerciante minorista (IGIC)"
+msgstr "Régimen especial de comerciante minorista (IGIC)"
+
+#. module: l10n_es_spfe
+#: model:l10n.es.spfe.registration.key,name:l10n_es_spfe.spfe_reg_key_iva_05
+msgid "Régimen especial de las agencias de viajes"
+msgstr "Régimen especial de las agencias de viajes"
+
+#. module: l10n_es_spfe
+#: model:l10n.es.spfe.registration.key,name:l10n_es_spfe.spfe_reg_key_igic_05
+msgid "Régimen especial de las agencias de viajes (IGIC)"
+msgstr "Régimen especial de las agencias de viajes (IGIC)"
+
+#. module: l10n_es_spfe
+#: model:l10n.es.spfe.registration.key,name:l10n_es_spfe.spfe_reg_key_iva_07
+msgid "Régimen especial del criterio de caja"
+msgstr "Régimen especial del criterio de caja"
+
+#. module: l10n_es_spfe
+#: model:l10n.es.spfe.registration.key,name:l10n_es_spfe.spfe_reg_key_igic_07
+msgid "Régimen especial del criterio de caja (IGIC)"
+msgstr "Régimen especial del criterio de caja (IGIC)"
+
+#. module: l10n_es_spfe
+#: model:l10n.es.spfe.registration.key,name:l10n_es_spfe.spfe_reg_key_iva_04
+msgid "Régimen especial del oro de inversión"
+msgstr "Régimen especial del oro de inversión"
+
+#. module: l10n_es_spfe
+#: model:l10n.es.spfe.registration.key,name:l10n_es_spfe.spfe_reg_key_igic_04
+msgid "Régimen especial del oro de inversión (IGIC)"
+msgstr "Régimen especial del oro de inversión (IGIC)"
+
+#. module: l10n_es_spfe
+#: model:l10n.es.spfe.registration.key,name:l10n_es_spfe.spfe_reg_key_igic_18
+msgid "Régimen especial del pequeño empresario o profesional (IGIC)"
+msgstr "Régimen especial del pequeño empresario o profesional (IGIC)"
+
+#. module: l10n_es_spfe
+#: model:l10n.es.spfe.registration.key,name:l10n_es_spfe.spfe_reg_key_igic_06
+msgid "Régimen especial grupo de entidades en IGIC (Nivel Avanzado)"
+msgstr "Régimen especial grupo de entidades en IGIC (Nivel Avanzado)"
+
+#. module: l10n_es_spfe
+#: model:l10n.es.spfe.registration.key,name:l10n_es_spfe.spfe_reg_key_iva_06
+msgid "Régimen especial grupo de entidades en IVA (Nivel Avanzado)"
+msgstr "Régimen especial grupo de entidades en IVA (Nivel Avanzado)"
+
+#. module: l10n_es_spfe
+#: model:l10n.es.spfe.registration.key,name:l10n_es_spfe.spfe_reg_key_ipsi_20
+msgid "Régimen simplificado (IPSI)"
+msgstr "Régimen simplificado (IPSI)"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__l10n_es_spfe_event_wizard__response_code__settlement
+msgid "SETTLEMENT - Cobro efectivo completo (Emisor)"
+msgstr "SETTLEMENT - Cobro efectivo completo (Emisor)"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_submission__request_soap_xml
+msgid "SOAP Request Envelope"
+msgstr "Sobre SOAP de petición"
+
+#. module: l10n_es_spfe
+#: model_terms:ir.ui.view,arch_db:l10n_es_spfe.view_account_position_spfe_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_spfe.view_aeat_tax_agency_spfe_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_spfe.view_company_spfe_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_spfe.view_move_spfe_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_spfe.view_tax_spfe_form
+msgid "SPFE"
+msgstr "SPFE"
+
+#. module: l10n_es_spfe
+#: model:ir.ui.menu,name:l10n_es_spfe.menu_l10n_es_spfe_root
+msgid "SPFE (Factura Electrónica)"
+msgstr "SPFE (Factura Electrónica)"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_move_line__spfe_second_registration_key_id
+msgid "SPFE 2nd Regime Key"
+msgstr "2.ª clave de régimen SPFE"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_aeat_tax_agency__spfe_party_id
+msgid "SPFE AEAT Party ID (NIF)"
+msgstr "Party ID (NIF) AEAT en SPFE"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_res_company__spfe_billing_authorization_desc
+msgid "SPFE Billing Authorization Description"
+msgstr "Descripción de autorización de facturación SPFE"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_res_company__spfe_billing_authorization_ref
+msgid "SPFE Billing Authorization Ref."
+msgstr "Ref. autorización de facturación SPFE"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_move_line__spfe_cadastral_reference
+msgid "SPFE Cadastral Reference"
+msgstr "Referencia catastral SPFE"
+
+#. module: l10n_es_spfe
+#. odoo-python
+#: code:addons/l10n_es_spfe/wizards/spfe_cancel_invoice_wizard.py:0
+msgid "SPFE Cancellation Rejected"
+msgstr "Anulación SPFE rechazada"
+
+#. module: l10n_es_spfe
+#: model_terms:ir.ui.view,arch_db:l10n_es_spfe.view_move_spfe_form
+msgid "SPFE Communication History"
+msgstr "Historial de comunicaciones SPFE"
+
+#. module: l10n_es_spfe
+#: model:ir.actions.act_window,name:l10n_es_spfe.action_spfe_submission
+#: model:ir.ui.menu,name:l10n_es_spfe.menu_l10n_es_spfe_submissions
+msgid "SPFE Communications Log"
+msgstr "Registro de comunicaciones SPFE"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_bank_statement_line__spfe_customer_status
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_move__spfe_customer_status
+msgid "SPFE Customer Event Status"
+msgstr "Estado de evento destinatario SPFE"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_fiscal_position__spfe_registration_key_id
+msgid "SPFE Default Regime Key"
+msgstr "Clave de régimen SPFE por defecto"
+
+#. module: l10n_es_spfe
+#: model_terms:ir.ui.view,arch_db:l10n_es_spfe.view_move_spfe_form
+msgid "SPFE Document Settings"
+msgstr "Parámetros del documento SPFE"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_bank_statement_line__spfe_enabled
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_journal__spfe_enabled
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_move__spfe_enabled
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_res_company__spfe_enabled
+msgid "SPFE Enabled"
+msgstr "SPFE habilitado"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_tax__spfe_is_surcharge
+msgid "SPFE Equivalence Surcharge (RE)"
+msgstr "Recargo de equivalencia SPFE (RE)"
+
+#. module: l10n_es_spfe
+#. odoo-python
+#: code:addons/l10n_es_spfe/wizards/spfe_invoice_event_wizard.py:0
+msgid "SPFE Event Rejected"
+msgstr "Evento SPFE rechazado"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_bank_statement_line__spfe_copy_indicator
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_move__spfe_copy_indicator
+msgid "SPFE Faithful Copy"
+msgstr "Duplicado fiel SPFE"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_bank_statement_line__spfe_qr_type
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_move__spfe_qr_type
+msgid "SPFE Fiscal QR Type"
+msgstr "Tipo de QR fiscal SPFE"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_bank_statement_line__spfe_qr_url
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_move__spfe_qr_url
+msgid "SPFE Fiscal QR URL"
+msgstr "URL QR fiscal SPFE"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_bank_statement_line__spfe_note
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_move__spfe_note
+msgid "SPFE Invoice Note"
+msgstr "Nota de factura SPFE"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_bank_statement_line__spfe_invoice_type
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_move__spfe_invoice_type
+msgid "SPFE Invoice Type"
+msgstr "Tipo de factura SPFE"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_bank_statement_line__spfe_last_error
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_move__spfe_last_error
+msgid "SPFE Last Message / Error"
+msgstr "Último mensaje / error SPFE"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_move_line__spfe_line_info
+msgid "SPFE Line Regulatory Info"
+msgstr "Información normativa de línea SPFE"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_bank_statement_line__spfe_locator
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_move__spfe_locator
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_submission_line__spfe_locator
+msgid "SPFE Locator"
+msgstr "Localizador SPFE"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_bank_statement_line__spfe_submission_line_ids
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_move__spfe_submission_line_ids
+msgid "SPFE Logs"
+msgstr "Registros SPFE"
+
+#. module: l10n_es_spfe
+#: model:res.groups,name:l10n_es_spfe.group_spfe_manager
+msgid "SPFE Manager"
+msgstr "Responsable SPFE"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_res_company__spfe_company_legal_form
+msgid "SPFE Mercantile / Legal Information"
+msgstr "Información mercantil / jurídica SPFE"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_bank_statement_line__spfe_note_code
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_move__spfe_note_code
+msgid "SPFE Note Code"
+msgstr "Código de nota SPFE"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_bank_statement_line__spfe_operation_date
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_move__spfe_operation_date
+msgid "SPFE Operation Date"
+msgstr "Fecha de operación SPFE"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_bank_statement_line__spfe_payment_pending
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_move__spfe_payment_pending
+msgid "SPFE Payment / Collection Pending"
+msgstr "Cobro / pago SPFE pendiente"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_aeat_tax_agency__spfe_test_cert_base_url
+msgid "SPFE Pre-production Base URL (Certificate)"
+msgstr "URL base de preproducción SPFE (Certificado)"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_aeat_tax_agency__spfe_test_seal_base_url
+msgid "SPFE Pre-production Base URL (Electronic Seal)"
+msgstr "URL base de preproducción SPFE (Sello electrónico)"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_bank_statement_line__spfe_prepaid_date
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_move__spfe_prepaid_date
+msgid "SPFE Prepaid Effective Date"
+msgstr "Fecha efectiva de cobro anticipado SPFE"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_aeat_tax_agency__spfe_prod_cert_base_url
+msgid "SPFE Production Base URL (Certificate)"
+msgstr "URL base de producción SPFE (Certificado)"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_aeat_tax_agency__spfe_prod_seal_base_url
+msgid "SPFE Production Base URL (Electronic Seal)"
+msgstr "URL base de producción SPFE (Sello electrónico)"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_move_line__spfe_property_situation
+msgid "SPFE Property Situation"
+msgstr "Situación del inmueble SPFE"
+
+#. module: l10n_es_spfe
+#. odoo-python
+#: code:addons/l10n_es_spfe/wizards/spfe_sync_invoices_wizard.py:0
+msgid "SPFE Query Result"
+msgstr "Resultado de consulta SPFE"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_bank_statement_line__spfe_refund_mode
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_move__spfe_refund_mode
+msgid "SPFE Rectificativa Mode"
+msgstr "Modalidad de rectificativa SPFE"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_bank_statement_line__spfe_refund_type
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_move__spfe_refund_type
+msgid "SPFE Rectificativa Type"
+msgstr "Tipo de rectificativa SPFE"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_bank_statement_line__spfe_rectified_move_ids
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_move__spfe_rectified_move_ids
+msgid "SPFE Referenced Preceding Invoices"
+msgstr "Facturas precedentes rectificadas SPFE"
+
+#. module: l10n_es_spfe
+#: model:ir.model,name:l10n_es_spfe.model_l10n_es_spfe_registration_key
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_move_line__spfe_registration_key_id
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_tax__spfe_registration_key_id
+#: model_terms:ir.ui.view,arch_db:l10n_es_spfe.view_spfe_registration_key_form
+msgid "SPFE Regime Key"
+msgstr "Clave de régimen SPFE"
+
+#. module: l10n_es_spfe
+#: model:ir.actions.act_window,name:l10n_es_spfe.action_spfe_registration_key
+#: model:ir.ui.menu,name:l10n_es_spfe.menu_l10n_es_spfe_registration_keys
+msgid "SPFE Regime Keys"
+msgstr "Claves de régimen SPFE"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__l10n_es_spfe_sync_wizard__date_filter__registrationdate
+msgid "SPFE Registration Date"
+msgstr "Fecha de registro en SPFE"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_res_company__spfe_sender_vat
+msgid "SPFE Sender Certificate NIF"
+msgstr "NIF del certificado remitente SPFE"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_res_company__spfe_start_date
+msgid "SPFE Start Date"
+msgstr "Fecha de inicio SPFE"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_bank_statement_line__spfe_state
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_move__spfe_state
+msgid "SPFE Status"
+msgstr "Estado SPFE"
+
+#. module: l10n_es_spfe
+#: model_terms:ir.ui.view,arch_db:l10n_es_spfe.view_move_spfe_form
+msgid "SPFE Status & Identification"
+msgstr "Estado e identificación SPFE"
+
+#. module: l10n_es_spfe
+#: model_terms:ir.ui.view,arch_db:l10n_es_spfe.view_move_spfe_form
+msgid "SPFE Status Event"
+msgstr "Evento de estado SPFE"
+
+#. module: l10n_es_spfe
+#: model_terms:ir.ui.view,arch_db:l10n_es_spfe.view_spfe_submission_form
+msgid "SPFE Submission"
+msgstr "Envío SPFE"
+
+#. module: l10n_es_spfe
+#: model_terms:ir.ui.view,arch_db:l10n_es_spfe.view_spfe_submission_search
+msgid "SPFE Submissions"
+msgstr "Envíos SPFE"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_bank_statement_line__spfe_period_end_date
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_move__spfe_period_end_date
+msgid "SPFE Summary Period End"
+msgstr "Fin periodo recapitulativo SPFE"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_bank_statement_line__spfe_period_start_date
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_move__spfe_period_start_date
+msgid "SPFE Summary Period Start"
+msgstr "Inicio periodo recapitulativo SPFE"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_bank_statement_line__spfe_supplier_status
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_move__spfe_supplier_status
+msgid "SPFE Supplier Event Status"
+msgstr "Estado de evento emisor SPFE"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_bank_statement_line__spfe_company_test
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_move__spfe_company_test
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_res_company__spfe_test
+msgid "SPFE Test Environment (PRE)"
+msgstr "Entorno de pruebas SPFE (PRE)"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_move_line__spfe_collection_line_type
+msgid "SPFE Third-Party Collection Type"
+msgstr "Tipo de cobro por cuenta de terceros SPFE"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_bank_statement_line__spfe_third_party_issuer_id
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_move__spfe_third_party_issuer_id
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_res_company__spfe_third_party_issuer_id
+msgid "SPFE Third-Party Issuer"
+msgstr "Tercero expedidor SPFE"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_bank_statement_line__spfe_ubl_attachment_id
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_move__spfe_ubl_attachment_id
+msgid "SPFE UBL 2.5 XML"
+msgstr "XML UBL 2.5 SPFE"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_tax__spfe_withholding_type
+msgid "SPFE Withholding Concept"
+msgstr "Concepto de retención SPFE"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_account_tax__spfe_is_withholding
+msgid "SPFE Withholding Tax (IRPF/IS)"
+msgstr "Impuesto de retención SPFE (IRPF/IS)"
+
+#. module: l10n_es_spfe
+#. odoo-python
+#: code:addons/l10n_es_spfe/models/spfe_registration_key.py:0
+msgid "SPFE regime key %(code)s already exists for %(qual)s."
+msgstr "La clave de régimen SPFE %(code)s ya existe para %(qual)s."
+
+#. module: l10n_es_spfe
+#. odoo-python
+#: code:addons/l10n_es_spfe/wizards/spfe_cancel_invoice_wizard.py:0
+msgid "SPFE rejected invoice cancellation: %(msg)s"
+msgstr "SPFE rechazó la anulación de la factura: %(msg)s"
+
+#. module: l10n_es_spfe
+#. odoo-python
+#: code:addons/l10n_es_spfe/models/account_move.py:0
+#: code:addons/l10n_es_spfe/wizards/spfe_invoice_event_wizard.py:0
+msgid "SPFE rejected status event: %(msg)s"
+msgstr "SPFE rechazó el evento de estado: %(msg)s"
+
+#. module: l10n_es_spfe
+#. odoo-python
+#: code:addons/l10n_es_spfe/models/account_move.py:0
+msgid "Seller"
+msgstr "Vendedor"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_res_company__spfe_auto_send
+msgid "Send Automatically on Invoice Post"
+msgstr "Enviar automáticamente al confirmar factura"
+
+#. module: l10n_es_spfe
+#: model:ir.actions.server,name:l10n_es_spfe.action_server_spfe_send_invoices
+msgid "Send Customer Invoices to AEAT SPFE"
+msgstr "Enviar facturas de cliente al SPFE de la AEAT"
+
+#. module: l10n_es_spfe
+#: model:ir.actions.server,name:l10n_es_spfe.action_server_spfe_send_payment_status
+#: model_terms:ir.ui.view,arch_db:l10n_es_spfe.view_move_spfe_form
+msgid "Send Payment/Collection to SPFE"
+msgstr "Comunicar cobro/pago a SPFE"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,help:l10n_es_spfe.field_account_bank_statement_line__spfe_company_test
+#: model:ir.model.fields,help:l10n_es_spfe.field_account_move__spfe_company_test
+#: model:ir.model.fields,help:l10n_es_spfe.field_res_company__spfe_test
+msgid "Send SPFE requests to AEAT pre-production (PRE) endpoints."
+msgstr ""
+"Enviar las peticiones SPFE a los endpoints de preproducción (PRE) de la "
+"AEAT."
+
+#. module: l10n_es_spfe
+#: model_terms:ir.ui.view,arch_db:l10n_es_spfe.view_move_spfe_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_spfe.view_spfe_invoice_event_wizard_form
+msgid "Send to SPFE"
+msgstr "Enviar a SPFE"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__account_move__spfe_supplier_status__settled
+msgid "Settled / Collected (SETTLEMENT)"
+msgstr "Cobrada (SETTLEMENT)"
+
+#. module: l10n_es_spfe
+#. odoo-python
+#: code:addons/l10n_es_spfe/models/account_move.py:0
+msgid ""
+"Spanish %(role)s '%(name)s' must have city, ZIP code, and province "
+"configured for SPFE (BR-ES-9 / BR-ES-11)."
+msgstr ""
+"%(role)s español '%(name)s' debe tener ciudad, código postal y provincia "
+"configurados para SPFE (BR-ES-9 / BR-ES-11)."
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_sync_wizard__date_start
+msgid "Start Date"
+msgstr "Fecha inicio"
+
+#. module: l10n_es_spfe
+#. odoo-python
+#: code:addons/l10n_es_spfe/wizards/spfe_sync_invoices_wizard.py:0
+msgid "Start Date must be earlier than or equal to End Date."
+msgstr "La fecha de inicio debe ser anterior o igual a la fecha de fin."
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_submission_line__status_code
+msgid "Status Code"
+msgstr "Código de estado"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_submission_line__submission_id
+msgid "Submission"
+msgstr "Envío"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__l10n_es_spfe_submission__operation_type__send
+msgid "Submit Invoices (SUBMITINVOICE)"
+msgstr "Envío de facturas (SUBMITINVOICE)"
+
+#. module: l10n_es_spfe
+#. odoo-python
+#: code:addons/l10n_es_spfe/models/account_move.py:0
+msgid ""
+"Summary invoice period (BG-14) start and end dates must belong to the same "
+"month and year with StartDate < EndDate (BR-ES-3 / BR-ES-4)."
+msgstr ""
+"Las fechas de inicio y fin del periodo de facturación recapitulativa (BG-14)"
+" deben pertenecer al mismo mes y año con fecha de inicio anterior a la de "
+"fin (BR-ES-3 / BR-ES-4)."
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__l10n_es_spfe_event_wizard__party_role__supplier
+msgid "Supplier / Issuer (Cobro / Impago)"
+msgstr "Proveedor / Emisor (Cobro / Impago)"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__l10n_es_spfe_submission__operation_type__supplier_events
+msgid "Supplier Events - Settlement/Default"
+msgstr "Eventos de emisor - Cobro/Impago"
+
+#. module: l10n_es_spfe
+#: model_terms:ir.ui.view,arch_db:l10n_es_spfe.view_spfe_sync_invoices_wizard_form
+msgid "Synchronize Invoices with AEAT SPFE"
+msgstr "Sincronizar facturas con AEAT SPFE"
+
+#. module: l10n_es_spfe
+#: model:ir.model,name:l10n_es_spfe.model_account_tax
+msgid "Tax"
+msgstr "Impuesto"
+
+#. module: l10n_es_spfe
+#: model_terms:ir.ui.view,arch_db:l10n_es_spfe.view_spfe_submission_form
+msgid "Technical XML"
+msgstr "XML técnico"
+
+#. module: l10n_es_spfe
+#. odoo-python
+#: code:addons/l10n_es_spfe/models/aeat_tax_agency.py:0
+msgid ""
+"The SPFE individual validation service (ValidationInvoiceSOAP) is only "
+"available in the Pre-production (PRE) environment."
+msgstr ""
+"El servicio de validación individual SPFE (ValidationInvoiceSOAP) solo está "
+"disponible en el entorno de preproducción (PRE)."
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__account_move__spfe_qr_type__ticketbai
+msgid "TicketBAI"
+msgstr "TicketBAI"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_submission_line__payload_xml
+msgid "UBL Payload XML"
+msgstr "XML de carga útil UBL"
+
+#. module: l10n_es_spfe
+#. odoo-python
+#: code:addons/l10n_es_spfe/models/spfe_soap_client.py:0
+msgid "Unexpected ValidationInvoiceSOAP response without DocumentStatus."
+msgstr "Respuesta inesperada de ValidationInvoiceSOAP sin DocumentStatus."
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,help:l10n_es_spfe.field_account_bank_statement_line__spfe_locator
+#: model:ir.model.fields,help:l10n_es_spfe.field_account_move__spfe_locator
+msgid "Unique external locator assigned by AEAT SPFE (LOCGENV1:...)."
+msgstr "Localizador externo único asignado por AEAT SPFE (LOCGENV1:...)."
+
+#. module: l10n_es_spfe
+#. odoo-python
+#: code:addons/l10n_es_spfe/models/aeat_tax_agency.py:0
+msgid "Unknown SPFE service key: %(key)s"
+msgstr "Clave de servicio SPFE desconocida: %(key)s"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__account_move__spfe_supplier_status__defaulted
+msgid "Unpaid / Default (DEFAULT)"
+msgstr "Impagada (DEFAULT)"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_res_company__spfe_use_seal_certificate
+msgid "Use Electronic Seal Certificate"
+msgstr "Usar certificado de sello electrónico"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__account_move__spfe_qr_type__verifactu
+msgid "VERI*FACTU"
+msgstr "VERI*FACTU"
+
+#. module: l10n_es_spfe
+#: model_terms:ir.ui.view,arch_db:l10n_es_spfe.view_move_spfe_form
+msgid "Validate SPFE (PRE)"
+msgstr "Validar SPFE (PRE)"
+
+#. module: l10n_es_spfe
+#. odoo-python
+#: code:addons/l10n_es_spfe/models/account_move.py:0
+msgid ""
+"Vendor bill '%(inv)s' is missing the supplier invoice reference required by "
+"SPFE."
+msgstr ""
+"A la factura de proveedor '%(inv)s' le falta la referencia de factura del "
+"proveedor exigida por el SPFE."
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_submission__website_message_ids
+msgid "Website Messages"
+msgstr "Mensajes del sitio web"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,help:l10n_es_spfe.field_l10n_es_spfe_submission__website_message_ids
+msgid "Website communication history"
+msgstr "Historial de comunicación del sitio web"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__account_tax__spfe_withholding_type__01
+msgid "[01] Art. 75.1.c) 1º RIRPF - Actividades profesionales"
+msgstr "[01] Art. 75.1.c) 1º RIRPF - Actividades profesionales"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__account_move_line__spfe_property_situation__01
+msgid ""
+"[01] Inmueble con ref. catastral en España (excepto País Vasco y Navarra)"
+msgstr ""
+"[01] Inmueble con ref. catastral en España (excepto País Vasco y Navarra)"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__l10n_es_spfe_event_wizard__rejection_reason__01
+msgid "[01] Rechazo comercial"
+msgstr "[01] Rechazo comercial"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__account_tax__spfe_withholding_type__02
+msgid "[02] Art. 75.1.c) 2º RIRPF - Actividades agrícolas y ganaderas"
+msgstr "[02] Art. 75.1.c) 2º RIRPF - Actividades agrícolas y ganaderas"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__l10n_es_spfe_event_wizard__rejection_reason__02
+msgid "[02] Consumo particular o no afecto a la actividad"
+msgstr "[02] Consumo particular o no afecto a la actividad"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__account_move_line__spfe_property_situation__02
+msgid "[02] Inmueble con ref. catastral en País Vasco o Navarra"
+msgstr "[02] Inmueble con ref. catastral en País Vasco o Navarra"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__account_tax__spfe_withholding_type__03
+msgid "[03] Art. 75.1.c) 3º RIRPF - Actividades forestales"
+msgstr "[03] Art. 75.1.c) 3º RIRPF - Actividades forestales"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__account_move_line__spfe_property_situation__03
+msgid "[03] Inmueble sin referencia catastral"
+msgstr "[03] Inmueble sin referencia catastral"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__account_tax__spfe_withholding_type__04
+msgid "[04] Art. 75.1.c) 4º RIRPF - Actividades empresariales (módulos)"
+msgstr "[04] Art. 75.1.c) 4º RIRPF - Actividades empresariales (módulos)"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__account_move_line__spfe_property_situation__04
+msgid "[04] Inmueble situado en el extranjero"
+msgstr "[04] Inmueble situado en el extranjero"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__account_tax__spfe_withholding_type__05
+msgid "[05] Art. 75.1.d) 2º RIRPF - Aprovechamientos forestales"
+msgstr "[05] Art. 75.1.d) 2º RIRPF - Aprovechamientos forestales"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__account_tax__spfe_withholding_type__06
+msgid "[06] Art. 75.2.a) RIRPF - Arrendamientos de inmuebles urbanos"
+msgstr "[06] Art. 75.2.a) RIRPF - Arrendamientos de inmuebles urbanos"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__account_tax__spfe_withholding_type__07
+msgid "[07] Art. 75.2.b) RIRPF - Propiedad intelectual/industrial/otros"
+msgstr "[07] Art. 75.2.b) RIRPF - Propiedad intelectual/industrial/otros"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__account_tax__spfe_withholding_type__08
+msgid "[08] Art. 60.1.c) RIS - Administradores y consejeros"
+msgstr "[08] Art. 60.1.c) RIS - Administradores y consejeros"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__account_tax__spfe_withholding_type__09
+msgid "[09] Art. 60.1.d) RIS - Cesión derecho de imagen"
+msgstr "[09] Art. 60.1.d) RIS - Cesión derecho de imagen"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__account_tax__spfe_withholding_type__10
+msgid "[10] Art. 60.1.e) RIS - Arrendamiento inmuebles urbanos (IS)"
+msgstr "[10] Art. 60.1.e) RIS - Arrendamiento inmuebles urbanos (IS)"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__account_tax__spfe_withholding_type__11
+msgid "[11] Otros"
+msgstr "[11] Otros"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__account_move__spfe_invoice_type__380
+msgid "[380] Factura ordinaria (art. 6, 7.2 y 7.3 RD 1619/2012)"
+msgstr "[380] Factura ordinaria (art. 6, 7.2 y 7.3 RD 1619/2012)"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__account_move__spfe_invoice_type__384
+msgid "[384] Factura rectificativa"
+msgstr "[384] Factura rectificativa"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__account_move__spfe_invoice_type__388
+msgid "[388] Factura en sustitución de facturas simplificadas"
+msgstr "[388] Factura en sustitución de facturas simplificadas"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__account_move__spfe_invoice_type__389
+msgid "[389] Factura emitida por el destinatario"
+msgstr "[389] Factura emitida por el destinatario"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__account_move__spfe_invoice_type__471
+msgid "[471] Factura rectificativa emitida por el destinatario"
+msgstr "[471] Factura rectificativa emitida por el destinatario"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__account_move_line__spfe_collection_line_type__iedmt
+msgid "[IEDMT] Impuesto Especial sobre Determinados Medios de Transporte"
+msgstr "[IEDMT] Impuesto Especial sobre Determinados Medios de Transporte"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__account_move__spfe_refund_mode__i
+msgid "[I] By differences (Por diferencias)"
+msgstr "[I] Por diferencias"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__account_move_line__spfe_collection_line_type__mino
+msgid "[MINO] Minoración en nombre de un tercero"
+msgstr "[MINO] Minoración en nombre de un tercero"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__account_move_line__spfe_collection_line_type__otros
+msgid "[OTROS] Otras tasas o impuestos en nombre de un tercero"
+msgstr "[OTROS] Otras tasas o impuestos en nombre de un tercero"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__account_move__spfe_refund_type__r1
+msgid "[R1] Error fundado en derecho y Art. 80.Uno, Dos y Seis LIVA"
+msgstr "[R1] Error fundado en derecho y Art. 80.Uno, Dos y Seis LIVA"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__account_move__spfe_refund_type__r2
+msgid "[R2] Concurso de acreedores (Art. 80.Tres LIVA)"
+msgstr "[R2] Concurso de acreedores (Art. 80.Tres LIVA)"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__account_move__spfe_refund_type__r3
+msgid "[R3] Créditos incobrables (Art. 80.Cuatro LIVA)"
+msgstr "[R3] Créditos incobrables (Art. 80.Cuatro LIVA)"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__account_move__spfe_refund_type__r4
+msgid "[R4] Resto de causas"
+msgstr "[R4] Resto de causas"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__account_move_line__spfe_collection_line_type__supl
+msgid "[SUPL] Suplido / Cargo en nombre de un tercero"
+msgstr "[SUPL] Suplido / Cargo en nombre de un tercero"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields.selection,name:l10n_es_spfe.selection__account_move__spfe_refund_mode__s
+msgid "[S] By substitution (Por sustitución)"
+msgstr "[S] Por sustitución"
+
+#. module: l10n_es_spfe
+#: model:ir.model.fields,field_description:l10n_es_spfe.field_l10n_es_spfe_submission__message_id
+msgid "ebMS Message ID"
+msgstr "ID de mensaje ebMS"
+
+#. module: l10n_es_spfe
+#. odoo-python
+#: code:addons/l10n_es_spfe/wizards/spfe_sync_invoices_wizard.py:0
+msgid "id"
+msgstr "ID"

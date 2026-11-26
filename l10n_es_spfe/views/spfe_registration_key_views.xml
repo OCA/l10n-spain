@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Acysos S.L.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_spfe_registration_key_list" model="ir.ui.view">
+        <field name="name">l10n.es.spfe.registration.key.list</field>
+        <field name="model">l10n.es.spfe.registration.key</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="tax_qualifier" />
+                <field name="code" />
+                <field name="name" />
+                <field name="active" optional="hide" />
+            </list>
+        </field>
+    </record>
+
+    <record id="view_spfe_registration_key_form" model="ir.ui.view">
+        <field name="name">l10n.es.spfe.registration.key.form</field>
+        <field name="model">l10n.es.spfe.registration.key</field>
+        <field name="arch" type="xml">
+            <form string="SPFE Regime Key">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="tax_qualifier" />
+                            <field name="code" />
+                            <field name="active" />
+                        </group>
+                        <group>
+                            <field name="name" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_spfe_registration_key" model="ir.actions.act_window">
+        <field name="name">SPFE Regime Keys</field>
+        <field name="res_model">l10n.es.spfe.registration.key</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

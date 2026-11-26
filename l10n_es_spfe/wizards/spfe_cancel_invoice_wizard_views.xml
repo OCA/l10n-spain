@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Acysos S.L.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_spfe_cancel_invoice_wizard_form" model="ir.ui.view">
+        <field name="name">l10n.es.spfe.cancel.wizard.form</field>
+        <field name="model">l10n.es.spfe.cancel.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Cancel Invoice in AEAT SPFE">
+                <group>
+                    <field name="move_id" />
+                    <field name="effective_date" />
+                    <field name="reason" />
+                </group>
+                <footer>
+                    <button
+                        name="action_confirm_cancel"
+                        type="object"
+                        string="Cancel in SPFE"
+                        class="btn-primary"
+                    />
+                    <button string="Close" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

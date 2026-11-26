@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Acysos S.L.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo noupdate="1">
+    <record id="group_spfe_manager" model="res.groups">
+        <field name="name">SPFE Manager</field>
+        <field name="privilege_id" ref="l10n_es_aeat.res_groups_privilege_aeat" />
+        <field
+            name="user_ids"
+            eval="[Command.link(ref('base.user_root')), Command.link(ref('base.user_admin'))]"
+        />
+    </record>
+
+    <record id="spfe_submission_comp_rule" model="ir.rule">
+        <field name="name">SPFE Submission multi-company</field>
+        <field name="model_id" ref="model_l10n_es_spfe_submission" />
+        <field name="global" eval="True" />
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+
+    <record id="spfe_submission_line_comp_rule" model="ir.rule">
+        <field name="name">SPFE Submission Line multi-company</field>
+        <field name="model_id" ref="model_l10n_es_spfe_submission_line" />
+        <field name="global" eval="True" />
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+</odoo>

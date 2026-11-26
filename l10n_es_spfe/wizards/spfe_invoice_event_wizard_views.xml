@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Acysos S.L.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_spfe_invoice_event_wizard_form" model="ir.ui.view">
+        <field name="name">l10n.es.spfe.event.wizard.form</field>
+        <field name="model">l10n.es.spfe.event.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Communicate SPFE Invoice Status">
+                <group>
+                    <group>
+                        <field name="move_id" />
+                        <field name="party_role" readonly="1" />
+                        <field name="response_code" />
+                        <field
+                            name="effective_date"
+                            invisible="response_code not in ('PAYMENT', 'REJECTION', 'SETTLEMENT', 'DEFAULT')"
+                            required="response_code in ('PAYMENT', 'REJECTION', 'SETTLEMENT', 'DEFAULT')"
+                        />
+                        <field
+                            name="due_date"
+                            invisible="response_code not in ('PAYMENT', 'SETTLEMENT')"
+                            required="response_code == 'PAYMENT'"
+                        />
+                    </group>
+                    <group>
+                        <field
+                            name="rejection_reason"
+                            invisible="response_code != 'REJECTION'"
+                            required="response_code == 'REJECTION'"
+                        />
+                        <field
+                            name="shipment_date"
+                            invisible="response_code not in ('PAYMENT', 'SETTLEMENT', 'DEFAULT')"
+                        />
+                        <field
+                            name="reception_date"
+                            invisible="response_code not in ('PAYMENT', 'SETTLEMENT', 'DEFAULT')"
+                        />
+                        <field
+                            name="is_corrected_invoice"
+                            invisible="response_code != 'PAYMENT'"
+                        />
+                        <field
+                            name="is_negative_invoice"
+                            invisible="response_code != 'PAYMENT'"
+                        />
+                        <field
+                            name="financing_arrangement"
+                            invisible="response_code != 'SETTLEMENT'"
+                        />
+                    </group>
+                </group>
+                <footer>
+                    <button
+                        name="action_send_event"
+                        type="object"
+                        string="Send to SPFE"
+                        class="btn-primary"
+                    />
+                    <button string="Close" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

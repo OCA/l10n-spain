@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Acysos S.L.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_account_position_spfe_form" model="ir.ui.view">
+        <field name="name">account.fiscal.position.spfe.form</field>
+        <field name="model">account.fiscal.position</field>
+        <field name="inherit_id" ref="account.view_account_position_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page name="spfe" string="SPFE">
+                    <group>
+                        <field name="spfe_registration_key_id" />
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

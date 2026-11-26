@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Acysos S.L.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo noupdate="0">
+    <!-- EN 16931:2026 / SPFE Lista L4 Category N (National VAT regimes: RE / Group) -->
+    <record id="tax_categ_n" model="unece.code.list">
+        <field name="type">tax_categ</field>
+        <field name="code">N</field>
+        <field name="name">National VAT regimes (Equivalence Surcharge / Group)</field>
+        <field name="description">
+            Regímenes nacionales de IVA (régimen especial de grupo de entidades, nivel
+            avanzado, y régimen especial del recargo de equivalencia).
+        </field>
+    </record>
+
+    <!-- UNECE 5153 WTH Withholding tax type if not present -->
+    <record id="tax_type_wth" model="unece.code.list">
+        <field name="type">tax_type</field>
+        <field name="code">WTH</field>
+        <field name="name">Withholding tax</field>
+        <field name="description">Retención practicada en factura (SPFE).</field>
+    </record>
+
+    <!-- Spanish VATEX-ES codes defined in SPFE Anexo I / Reglas de Negocio -->
+    <record id="tax_vatex_es_iva20" model="unece.code.list">
+        <field name="type">tax_vatex</field>
+        <field name="code">VATEX-ES-IVA20</field>
+        <field name="name">Exenta por el artículo 20 LIVA</field>
+        <field
+            name="description"
+        >Exención en operaciones interiores (Art. 20 LIVA).</field>
+    </record>
+    <record id="tax_vatex_es_iva21" model="unece.code.list">
+        <field name="type">tax_vatex</field>
+        <field name="code">VATEX-ES-IVA21</field>
+        <field name="name">Exenta por el artículo 21 LIVA</field>
+        <field
+            name="description"
+        >Exención en exportaciones de bienes (Art. 21 LIVA).</field>
+    </record>
+    <record id="tax_vatex_es_iva22" model="unece.code.list">
+        <field name="type">tax_vatex</field>
+        <field name="code">VATEX-ES-IVA22</field>
+        <field name="name">Exenta por el artículo 22 LIVA</field>
+        <field name="description">
+            Exención en operaciones asimiladas a las exportaciones (Art. 22 LIVA).
+        </field>
+    </record>
+    <record id="tax_vatex_es_iva23_24" model="unece.code.list">
+        <field name="type">tax_vatex</field>
+        <field name="code">VATEX-ES-IVA23/24</field>
+        <field name="name">Exenta por los artículos 23 y 24 LIVA</field>
+        <field name="description">
+            Exención en zonas francas, depósitos francos y otros regímenes (Art. 23/24 LIVA).
+        </field>
+    </record>
+    <record id="tax_vatex_es_iva25" model="unece.code.list">
+        <field name="type">tax_vatex</field>
+        <field name="code">VATEX-ES-IVA25</field>
+        <field name="name">Exenta por el artículo 25 LIVA</field>
+        <field name="description">
+            Exención en entregas destinadas a otro Estado miembro (Art. 25 LIVA).
+        </field>
+    </record>
+    <record id="tax_vatex_es_140bis" model="unece.code.list">
+        <field name="type">tax_vatex</field>
+        <field name="code">VATEX-ES-140BIS</field>
+        <field
+            name="name"
+        >Exenta régimen especial oro de inversión (Art. 140 bis LIVA)</field>
+        <field name="description">Régimen especial del oro de inversión.</field>
+    </record>
+    <record id="tax_vatex_es_n1" model="unece.code.list">
+        <field name="type">tax_vatex</field>
+        <field name="code">VATEX-ES-N1</field>
+        <field name="name">No sujeta por el artículo 7 LIVA / otros supuestos</field>
+        <field name="description">Operación no sujeta artículo 7, 14, otros.</field>
+    </record>
+    <record id="tax_vatex_es_n2" model="unece.code.list">
+        <field name="type">tax_vatex</field>
+        <field name="code">VATEX-ES-N2</field>
+        <field name="name">No sujeta por reglas de localización</field>
+        <field
+            name="description"
+        >Operación no sujeta por reglas de localización.</field>
+    </record>
+    <record id="tax_vatex_es_otros" model="unece.code.list">
+        <field name="type">tax_vatex</field>
+        <field name="code">VATEX-ES-OTROS</field>
+        <field name="name">Exenta por otras causas (SPFE)</field>
+        <field
+            name="description"
+        >Otros supuestos de exención reconocidos por normativa.</field>
+    </record>
+    <record id="tax_vatex_es_igic1tr" model="unece.code.list">
+        <field name="type">tax_vatex</field>
+        <field name="code">VATEX-ES-IGIC1TR</field>
+        <field name="name">Exenta IGIC Art. 10 Ley 20/1991</field>
+    </record>
+    <record id="tax_vatex_es_igic11" model="unece.code.list">
+        <field name="type">tax_vatex</field>
+        <field name="code">VATEX-ES-IGIC11</field>
+        <field name="name">Exenta IGIC Art. 11 Ley 20/1991</field>
+    </record>
+    <record id="tax_vatex_es_igic12" model="unece.code.list">
+        <field name="type">tax_vatex</field>
+        <field name="code">VATEX-ES-IGIC12</field>
+        <field name="name">Exenta IGIC Art. 12 Ley 20/1991</field>
+    </record>
+    <record id="tax_vatex_es_igic13" model="unece.code.list">
+        <field name="type">tax_vatex</field>
+        <field name="code">VATEX-ES-IGIC13</field>
+        <field name="name">Exenta IGIC Art. 13 Ley 20/1991</field>
+    </record>
+    <record id="tax_vatex_es_igic25" model="unece.code.list">
+        <field name="type">tax_vatex</field>
+        <field name="code">VATEX-ES-IGIC25</field>
+        <field name="name">Exenta IGIC Art. 25 Ley 19/1994</field>
+    </record>
+    <record id="tax_vatex_es_igic47" model="unece.code.list">
+        <field name="type">tax_vatex</field>
+        <field name="code">VATEX-ES-IGIC47</field>
+        <field name="name">Exenta IGIC Art. 47 Ley 19/1994</field>
+    </record>
+    <record id="tax_vatex_es_igic110" model="unece.code.list">
+        <field name="type">tax_vatex</field>
+        <field name="code">VATEX-ES-IGIC110</field>
+        <field name="name">Exenta IGIC Pequeño Empresario (Art. 110 Ley 4/2012)</field>
+    </record>
+    <record id="tax_vatex_es_ipsi7" model="unece.code.list">
+        <field name="type">tax_vatex</field>
+        <field name="code">VATEX-ES-IPSI7</field>
+        <field name="name">Exenta IPSI Art. 7 Ley 8/1991</field>
+    </record>
+    <record id="tax_vatex_es_ipsi8" model="unece.code.list">
+        <field name="type">tax_vatex</field>
+        <field name="code">VATEX-ES-IPSI8</field>
+        <field name="name">Exenta IPSI Art. 8 Ley 8/1991</field>
+    </record>
+</odoo>

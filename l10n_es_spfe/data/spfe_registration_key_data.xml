@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Acysos S.L.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo noupdate="0">
+    <!-- Lista L3A: Claves de régimen IVA -->
+    <record id="spfe_reg_key_iva_01" model="l10n.es.spfe.registration.key">
+        <field name="code">01</field>
+        <field name="tax_qualifier">IVA</field>
+        <field
+            name="name"
+        >Operación en régimen general y no incluidas en otras claves</field>
+    </record>
+    <record id="spfe_reg_key_iva_02" model="l10n.es.spfe.registration.key">
+        <field name="code">02</field>
+        <field name="tax_qualifier">IVA</field>
+        <field name="name">Exportación</field>
+    </record>
+    <record id="spfe_reg_key_iva_03" model="l10n.es.spfe.registration.key">
+        <field name="code">03</field>
+        <field name="tax_qualifier">IVA</field>
+        <field
+            name="name"
+        >Operaciones a las que se aplique el régimen especial de bienes usados, objetos de arte, antigüedades y objetos de colección</field>
+    </record>
+    <record id="spfe_reg_key_iva_04" model="l10n.es.spfe.registration.key">
+        <field name="code">04</field>
+        <field name="tax_qualifier">IVA</field>
+        <field name="name">Régimen especial del oro de inversión</field>
+    </record>
+    <record id="spfe_reg_key_iva_05" model="l10n.es.spfe.registration.key">
+        <field name="code">05</field>
+        <field name="tax_qualifier">IVA</field>
+        <field name="name">Régimen especial de las agencias de viajes</field>
+    </record>
+    <record id="spfe_reg_key_iva_06" model="l10n.es.spfe.registration.key">
+        <field name="code">06</field>
+        <field name="tax_qualifier">IVA</field>
+        <field
+            name="name"
+        >Régimen especial grupo de entidades en IVA (Nivel Avanzado)</field>
+    </record>
+    <record id="spfe_reg_key_iva_07" model="l10n.es.spfe.registration.key">
+        <field name="code">07</field>
+        <field name="tax_qualifier">IVA</field>
+        <field name="name">Régimen especial del criterio de caja</field>
+    </record>
+    <record id="spfe_reg_key_iva_08" model="l10n.es.spfe.registration.key">
+        <field name="code">08</field>
+        <field name="tax_qualifier">IVA</field>
+        <field name="name">Operaciones sujetas al IPSI / IGIC</field>
+    </record>
+    <record id="spfe_reg_key_iva_09" model="l10n.es.spfe.registration.key">
+        <field name="code">09</field>
+        <field name="tax_qualifier">IVA</field>
+        <field
+            name="name"
+        >Facturación de las prestaciones de servicios de agencias de viaje que actúan como mediadoras en nombre y por cuenta ajena (D.A.4ª RD1619/2012)</field>
+    </record>
+    <record id="spfe_reg_key_iva_11" model="l10n.es.spfe.registration.key">
+        <field name="code">11</field>
+        <field name="tax_qualifier">IVA</field>
+        <field name="name">Operaciones de arrendamiento de local de negocio</field>
+    </record>
+    <record id="spfe_reg_key_iva_14" model="l10n.es.spfe.registration.key">
+        <field name="code">14</field>
+        <field name="tax_qualifier">IVA</field>
+        <field
+            name="name"
+        >Factura con IVA pendiente de devengo en certificaciones de obra cuyo destinatario sea una Administración Pública</field>
+    </record>
+    <record id="spfe_reg_key_iva_15" model="l10n.es.spfe.registration.key">
+        <field name="code">15</field>
+        <field name="tax_qualifier">IVA</field>
+        <field
+            name="name"
+        >Factura con IVA pendiente de devengo en operaciones de tracto sucesivo</field>
+    </record>
+
+    <!-- Lista L3B: Claves de régimen IGIC -->
+    <record id="spfe_reg_key_igic_01" model="l10n.es.spfe.registration.key">
+        <field name="code">01</field>
+        <field name="tax_qualifier">IGIC</field>
+        <field
+            name="name"
+        >Operación en régimen general y no incluidas en otras claves (IGIC)</field>
+    </record>
+    <record id="spfe_reg_key_igic_02" model="l10n.es.spfe.registration.key">
+        <field name="code">02</field>
+        <field name="tax_qualifier">IGIC</field>
+        <field name="name">Exportación (IGIC)</field>
+    </record>
+    <record id="spfe_reg_key_igic_03" model="l10n.es.spfe.registration.key">
+        <field name="code">03</field>
+        <field name="tax_qualifier">IGIC</field>
+        <field
+            name="name"
+        >Régimen especial de bienes usados, arte, antigüedades y colección (IGIC)</field>
+    </record>
+    <record id="spfe_reg_key_igic_04" model="l10n.es.spfe.registration.key">
+        <field name="code">04</field>
+        <field name="tax_qualifier">IGIC</field>
+        <field name="name">Régimen especial del oro de inversión (IGIC)</field>
+    </record>
+    <record id="spfe_reg_key_igic_05" model="l10n.es.spfe.registration.key">
+        <field name="code">05</field>
+        <field name="tax_qualifier">IGIC</field>
+        <field name="name">Régimen especial de las agencias de viajes (IGIC)</field>
+    </record>
+    <record id="spfe_reg_key_igic_06" model="l10n.es.spfe.registration.key">
+        <field name="code">06</field>
+        <field name="tax_qualifier">IGIC</field>
+        <field
+            name="name"
+        >Régimen especial grupo de entidades en IGIC (Nivel Avanzado)</field>
+    </record>
+    <record id="spfe_reg_key_igic_07" model="l10n.es.spfe.registration.key">
+        <field name="code">07</field>
+        <field name="tax_qualifier">IGIC</field>
+        <field name="name">Régimen especial del criterio de caja (IGIC)</field>
+    </record>
+    <record id="spfe_reg_key_igic_08" model="l10n.es.spfe.registration.key">
+        <field name="code">08</field>
+        <field name="tax_qualifier">IGIC</field>
+        <field name="name">Operaciones sujetas al IPSI / IVA</field>
+    </record>
+    <record id="spfe_reg_key_igic_09" model="l10n.es.spfe.registration.key">
+        <field name="code">09</field>
+        <field name="tax_qualifier">IGIC</field>
+        <field
+            name="name"
+        >Agencias de viaje mediadoras en nombre y por cuenta ajena (IGIC)</field>
+    </record>
+    <record id="spfe_reg_key_igic_11" model="l10n.es.spfe.registration.key">
+        <field name="code">11</field>
+        <field name="tax_qualifier">IGIC</field>
+        <field
+            name="name"
+        >Operaciones de arrendamiento de local de negocio (IGIC)</field>
+    </record>
+    <record id="spfe_reg_key_igic_14" model="l10n.es.spfe.registration.key">
+        <field name="code">14</field>
+        <field name="tax_qualifier">IGIC</field>
+        <field
+            name="name"
+        >Factura con IGIC pendiente de devengo en certificaciones de obra AAPP</field>
+    </record>
+    <record id="spfe_reg_key_igic_15" model="l10n.es.spfe.registration.key">
+        <field name="code">15</field>
+        <field name="tax_qualifier">IGIC</field>
+        <field
+            name="name"
+        >Factura con IGIC pendiente de devengo en operaciones de tracto sucesivo</field>
+    </record>
+    <record id="spfe_reg_key_igic_17" model="l10n.es.spfe.registration.key">
+        <field name="code">17</field>
+        <field name="tax_qualifier">IGIC</field>
+        <field name="name">Régimen especial de comerciante minorista (IGIC)</field>
+    </record>
+    <record id="spfe_reg_key_igic_18" model="l10n.es.spfe.registration.key">
+        <field name="code">18</field>
+        <field name="tax_qualifier">IGIC</field>
+        <field
+            name="name"
+        >Régimen especial del pequeño empresario o profesional (IGIC)</field>
+    </record>
+    <record id="spfe_reg_key_igic_19" model="l10n.es.spfe.registration.key">
+        <field name="code">19</field>
+        <field name="tax_qualifier">IGIC</field>
+        <field
+            name="name"
+        >Operaciones interiores exentas por aplicación artículo 25 Ley 19/1994</field>
+    </record>
+
+    <!-- Lista L3C: Claves de régimen IPSI -->
+    <record id="spfe_reg_key_ipsi_01" model="l10n.es.spfe.registration.key">
+        <field name="code">01</field>
+        <field name="tax_qualifier">IPSI</field>
+        <field
+            name="name"
+        >Operación en régimen general y no incluidas en otras claves (IPSI)</field>
+    </record>
+    <record id="spfe_reg_key_ipsi_08" model="l10n.es.spfe.registration.key">
+        <field name="code">08</field>
+        <field name="tax_qualifier">IPSI</field>
+        <field name="name">Operaciones sujetas al IGIC / IVA</field>
+    </record>
+    <record id="spfe_reg_key_ipsi_11" model="l10n.es.spfe.registration.key">
+        <field name="code">11</field>
+        <field name="tax_qualifier">IPSI</field>
+        <field
+            name="name"
+        >Operaciones de arrendamiento de local de negocio (IPSI)</field>
+    </record>
+    <record id="spfe_reg_key_ipsi_19" model="l10n.es.spfe.registration.key">
+        <field name="code">19</field>
+        <field name="tax_qualifier">IPSI</field>
+        <field name="name">Operaciones interiores exentas (IPSI)</field>
+    </record>
+    <record id="spfe_reg_key_ipsi_20" model="l10n.es.spfe.registration.key">
+        <field name="code">20</field>
+        <field name="tax_qualifier">IPSI</field>
+        <field name="name">Régimen simplificado (IPSI)</field>
+    </record>
+</odoo>

@@ -1,0 +1,19 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_spfe_registration_key_invoice,l10n.es.spfe.registration.key invoice,model_l10n_es_spfe_registration_key,account.group_account_invoice,1,0,0,0
+access_spfe_registration_key_aeat,l10n.es.spfe.registration.key aeat,model_l10n_es_spfe_registration_key,l10n_es_aeat.group_account_aeat,1,1,1,0
+access_spfe_registration_key_spfe,l10n.es.spfe.registration.key spfe,model_l10n_es_spfe_registration_key,group_spfe_manager,1,1,1,0
+access_spfe_registration_key_system,l10n.es.spfe.registration.key system,model_l10n_es_spfe_registration_key,base.group_system,1,1,1,1
+access_spfe_submission_invoice,l10n.es.spfe.submission invoice,model_l10n_es_spfe_submission,account.group_account_invoice,1,0,0,0
+access_spfe_submission_aeat,l10n.es.spfe.submission aeat,model_l10n_es_spfe_submission,l10n_es_aeat.group_account_aeat,1,1,1,0
+access_spfe_submission_spfe,l10n.es.spfe.submission spfe,model_l10n_es_spfe_submission,group_spfe_manager,1,1,1,0
+access_spfe_submission_system,l10n.es.spfe.submission system,model_l10n_es_spfe_submission,base.group_system,1,1,1,1
+access_spfe_submission_line_invoice,l10n.es.spfe.submission.line invoice,model_l10n_es_spfe_submission_line,account.group_account_invoice,1,0,0,0
+access_spfe_submission_line_aeat,l10n.es.spfe.submission.line aeat,model_l10n_es_spfe_submission_line,l10n_es_aeat.group_account_aeat,1,1,1,0
+access_spfe_submission_line_spfe,l10n.es.spfe.submission.line spfe,model_l10n_es_spfe_submission_line,group_spfe_manager,1,1,1,0
+access_spfe_submission_line_system,l10n.es.spfe.submission.line system,model_l10n_es_spfe_submission_line,base.group_system,1,1,1,1
+access_spfe_cancel_wizard_invoice,l10n.es.spfe.cancel.wizard invoice,model_l10n_es_spfe_cancel_wizard,account.group_account_invoice,1,1,1,1
+access_spfe_cancel_wizard_spfe,l10n.es.spfe.cancel.wizard spfe,model_l10n_es_spfe_cancel_wizard,group_spfe_manager,1,1,1,1
+access_spfe_event_wizard_invoice,l10n.es.spfe.event.wizard invoice,model_l10n_es_spfe_event_wizard,account.group_account_invoice,1,1,1,1
+access_spfe_event_wizard_spfe,l10n.es.spfe.event.wizard spfe,model_l10n_es_spfe_event_wizard,group_spfe_manager,1,1,1,1
+access_spfe_sync_wizard_invoice,l10n.es.spfe.sync.wizard invoice,model_l10n_es_spfe_sync_wizard,account.group_account_invoice,1,1,1,1
+access_spfe_sync_wizard_spfe,l10n.es.spfe.sync.wizard spfe,model_l10n_es_spfe_sync_wizard,group_spfe_manager,1,1,1,1

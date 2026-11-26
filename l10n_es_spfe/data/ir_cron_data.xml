@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Acysos S.L.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo noupdate="1">
+    <record forcecreate="True" id="ir_cron_spfe_send_pending_invoices" model="ir.cron">
+        <field name="name">AEAT SPFE: Send pending electronic invoices</field>
+        <field name="model_id" ref="model_l10n_es_spfe_submission" />
+        <field name="state">code</field>
+        <field name="code">model._cron_send_pending_spfe_invoices()</field>
+        <field name="interval_number">15</field>
+        <field name="interval_type">minutes</field>
+        <field name="active" eval="False" />
+    </record>
+</odoo>
