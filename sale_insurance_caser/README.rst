@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ====================
 Sale Insurance Caser
 ====================
@@ -17,7 +13,7 @@ Sale Insurance Caser
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github
@@ -51,6 +47,11 @@ Go to *Settings > Sales > Caser Insurance* and configure:
 3. **Caser Agency Code**: Your agency code (e.g., "9999")
 4. **Caser Agent Code**: Your agent code (e.g., "9999999")
 5. **Caser SICA Code**: Your SICA code (e.g., "9999")
+6. **Caser Insurance Product Category**: Category of the insurance
+   products created from the price ranges. Set an income account on it
+   to book the insurance on that account instead of the default sales
+   one. The category is applied to the existing products the next time
+   their prices are updated from Caser.
 
 Usage
 =====
@@ -130,6 +131,7 @@ Contributors
 - `Tecnativa <https://www.tecnativa.com>`__:
 
   - Juan Carlos Oñate
+  - Sergio Teruel
 
 Maintainers
 -----------

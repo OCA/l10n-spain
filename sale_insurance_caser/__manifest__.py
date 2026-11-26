@@ -3,7 +3,7 @@
 {
     "name": "Sale Insurance Caser",
     "summary": "Automate insurance policy request with Caser",
-    "version": "18.0.1.0.0",
+    "version": "18.0.1.1.0",
     "category": "Sales/Sales",
     "author": "Tecnativa, Odoo Community Association (OCA)",
     "maintainers": ["juancarlosonate-tecnativa"],
