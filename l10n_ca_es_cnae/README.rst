@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 =========================================
 Categorías de empresa CNAE 2009 (catalán)
 =========================================
@@ -17,7 +13,7 @@ Categorías de empresa CNAE 2009 (catalán)
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github
@@ -68,6 +64,14 @@ Puede ejecutar el asistente varias veces sin problemas. Las traducciones
 actualizarán los registros existentes, sin duplicados. Las industrias se
 asignan utilizando campos específicos en el formulario de socio de
 **empresa**, como Industria principal o Industrias secundarias.
+
+Known issues / Roadmap
+======================
+
+- Las traducciones son de CNAE 2009 (CCAE-2009). Los códigos que
+  desaparecen o cambian de actividad en CNAE 2025 no se traducen, y los
+  códigos nuevos de CNAE 2025 tampoco. Falta incorporar las traducciones
+  de CCAE-2025 de Idescat.
 
 Bug Tracker
 ===========
