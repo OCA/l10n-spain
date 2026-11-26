@@ -20,6 +20,11 @@ msgstr ""
 "X-Generator: Weblate 5.15.2\n"
 
 #. module: l10n_es_account_asset
+#: model:ir.model,name:l10n_es_account_asset.model_account_chart_template
+msgid "Account Chart Template"
+msgstr ""
+
+#. module: l10n_es_account_asset
 #: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset__annual_percentage
 #: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset_profile__annual_percentage
 msgid "Annual depreciation percentage"
@@ -42,10 +47,26 @@ msgid "Depreciation percentage"
 msgstr "Percentatge d'amortització"
 
 #. module: l10n_es_account_asset
+#: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset__display_name
+#: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset_profile__display_name
+#: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_chart_template__display_name
+#: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_move__display_name
+msgid "Display Name"
+msgstr "Nom visible"
+
+#. module: l10n_es_account_asset
 #. odoo-python
 #: code:addons/l10n_es_account_asset/models/account_asset_profile.py:0
 msgid "Fixed percentage"
 msgstr "Percentatge fix"
+
+#. module: l10n_es_account_asset
+#: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset__id
+#: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset_profile__id
+#: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_chart_template__id
+#: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_move__id
+msgid "ID"
+msgstr "ID"
 
 #. module: l10n_es_account_asset
 #: model:ir.model,name:l10n_es_account_asset.model_account_move
@@ -53,16 +74,10 @@ msgid "Journal Entry"
 msgstr "Assentament Comptable"
 
 #. module: l10n_es_account_asset
-#: model:ir.model.constraint,message:l10n_es_account_asset.constraint_account_asset_annual_percentage
-#: model:ir.model.constraint,message:l10n_es_account_asset.constraint_account_asset_profile_annual_percentage
+#: model:ir.model.constraint,message:l10n_es_account_asset.constraint_account_asset_annual_percentage_check
+#: model:ir.model.constraint,message:l10n_es_account_asset.constraint_account_asset_profile_annual_percentage_check
 msgid "Wrong percentage!"
 msgstr "Percentatge equivocat!"
-
-#~ msgid "Display Name"
-#~ msgstr "Nom visible"
-
-#~ msgid "ID"
-#~ msgstr "ID"
 
 #~ msgid "Last Modified on"
 #~ msgstr "Darrera modificació el"
