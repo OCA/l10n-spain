@@ -62,7 +62,12 @@ class AccountMoveLine(models.Model):
         comodel_name="l10n.es.aeat.real_estate",
         string="Real Estate",
         help="Real Estate related to this move line",
-        domain="[('company_id', '=', company_id), ('partner_id', '=', partner_id)]",
+        # The premises a customer invoice leases are the company's own, while
+        # the other moves refer to the ones of their partner, as the landlord
+        domain="[('company_id', '=', company_id), ('owned_by_company', '=', "
+        "move_type in ('out_invoice', 'out_refund', 'out_receipt')), "
+        "('partner_id', '=?', move_type not in "
+        "('out_invoice', 'out_refund', 'out_receipt') and partner_id)]",
     )
 
     def _process_aeat_tax_base_info(self, res, tax, sign):
