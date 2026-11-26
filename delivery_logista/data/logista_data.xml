@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Acysos S.L.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo noupdate="1">
+    <!-- Standard Logista Parcel Package & Pallet Types -->
+    <record id="stock_package_type_logista_parcel" model="stock.package.type">
+        <field name="name">Logista Standard Parcel / Box (40x30x30)</field>
+        <field name="package_carrier_type">logista</field>
+        <field name="logista_package_kind">parcel</field>
+        <field name="shipper_package_code">PARCEL</field>
+        <field name="packaging_length">40</field>
+        <field name="width">30</field>
+        <field name="height">30</field>
+        <field name="base_weight">0.5</field>
+        <field name="max_weight">35.0</field>
+    </record>
+
+    <record id="stock_package_type_logista_europallet" model="stock.package.type">
+        <field name="name">Logista Europallet (120x80)</field>
+        <field name="package_carrier_type">logista</field>
+        <field name="logista_package_kind">pallet</field>
+        <field name="shipper_package_code">PALLET</field>
+        <field name="packaging_length">120</field>
+        <field name="width">80</field>
+        <field name="height">120</field>
+        <field name="base_weight">25.0</field>
+        <field name="max_weight">1000.0</field>
+    </record>
+
+    <record id="stock_package_type_logista_half_pallet" model="stock.package.type">
+        <field name="name">Logista Half Pallet (80x60)</field>
+        <field name="package_carrier_type">logista</field>
+        <field name="logista_package_kind">pallet</field>
+        <field name="shipper_package_code">PALLET</field>
+        <field name="packaging_length">80</field>
+        <field name="width">60</field>
+        <field name="height">100</field>
+        <field name="base_weight">12.0</field>
+        <field name="max_weight">500.0</field>
+    </record>
+
+    <!-- Service Product for Logista Parcel Shipping Method -->
+    <record id="product_product_delivery_logista" model="product.product">
+        <field name="name">Logista Parcel</field>
+        <field name="default_code">DELIVERY_LOGISTA</field>
+        <field name="type">service</field>
+        <field name="categ_id" ref="delivery.product_category_deliveries" />
+        <field name="sale_ok" eval="False" />
+        <field name="purchase_ok" eval="True" />
+        <field name="list_price">0.0</field>
+    </record>
+
+    <!-- Preconfigured Generic Logista Parcel Shipping Method (no customer credentials) -->
+    <record id="delivery_carrier_logista_main" model="delivery.carrier">
+        <field name="name">Logista Parcel</field>
+        <field name="delivery_type">logista</field>
+        <field name="integration_level">rate_and_ship</field>
+        <field name="product_id" ref="product_product_delivery_logista" />
+        <field name="prod_environment" eval="False" />
+        <field name="logista_auth_scheme">raw</field>
+        <field name="logista_service_id">1</field>
+        <field name="logista_sector_code">0</field>
+        <field name="logista_freight_type">P</field>
+        <field name="logista_label_format">PDF</field>
+        <field
+            name="logista_default_packaging_id"
+            ref="stock_package_type_logista_parcel"
+        />
+    </record>
+</odoo>

@@ -1,0 +1,809 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#       * delivery_logista
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-24 19:27+0000\n"
+"PO-Revision-Date: 2026-11-24 19:27+0000\n"
+"Last-Translator: \n"
+"Language: es\n"
+"Language-Team: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#. module: delivery_logista
+#, python-format
+msgid "'Logista_Label_%s' % (object.carrier_tracking_ref or object.name)"
+msgstr "'Etiqueta_Logista_%s' % (object.carrier_tracking_ref or object.name)"
+
+#. module: delivery_logista
+msgid "0 - Default / No Action"
+msgstr "0 - Por defecto / Sin acción"
+
+#. module: delivery_logista
+msgid "0 - Generic"
+msgstr "0 - Genérico"
+
+#. module: delivery_logista
+msgid "1 - AMBIPAQ"
+msgstr "1 - AMBIPAQ"
+
+#. module: delivery_logista
+msgid "1 - Out for Delivery (Reparto)"
+msgstr "1 - Reparto"
+
+#. module: delivery_logista
+msgid "1 - Pharma"
+msgstr "1 - Farma"
+
+#. module: delivery_logista
+msgid "1 - Scan Signed Customer Delivery Note"
+msgstr "1 - Escanear albarán de cliente firmado"
+
+#. module: delivery_logista
+msgid "2 - Delivered (Entrega)"
+msgstr "2 - Entrega"
+
+#. module: delivery_logista
+msgid "2 - Food"
+msgstr "2 - Alimentación"
+
+#. module: delivery_logista
+msgid "2 - Return Signed Customer Delivery Note"
+msgstr "2 - Devolver albarán de cliente firmado"
+
+#. module: delivery_logista
+msgid "2 - URGEPAQ"
+msgstr "2 - URGEPAQ"
+
+#. module: delivery_logista
+msgid ""
+"2-digit origin delegation code provided by Logista Parcel for positions "
+"9-10 of the 34-digit Code 128 barcode."
+msgstr ""
+"Código de delegación de origen de 2 dígitos proporcionado por Logista "
+"Parcel para las posiciones 9-10 del código de barras Code 128 de 34 "
+"dígitos."
+
+#. module: delivery_logista
+msgid "3 - Electronics"
+msgstr "3 - Electrónica"
+
+#. module: delivery_logista
+msgid "3 - FRIOFARMA"
+msgstr "3 - FRIOFARMA"
+
+#. module: delivery_logista
+msgid "3 - Out for Delivery & Delivered (Reparto y entrega)"
+msgstr "3 - Reparto y entrega"
+
+#. module: delivery_logista
+msgid "34-character Code 128 barcode generated for Logista Parcel labels."
+msgstr ""
+"Código de barras Code 128 de 34 caracteres generado para las etiquetas de "
+"Logista Parcel."
+
+#. module: delivery_logista
+msgid "4 - Convenience"
+msgstr "4 - Conveniencia"
+
+#. module: delivery_logista
+msgid "4 - Documentation (Documentación)"
+msgstr "4 - Documentación"
+
+#. module: delivery_logista
+msgid "4 - FRIOPAQ"
+msgstr "4 - FRIOPAQ"
+
+#. module: delivery_logista
+msgid "5 - Books / Stationery"
+msgstr "5 - Libros / Papelería"
+
+#. module: delivery_logista
+msgid "5 - URGEFRIO"
+msgstr "5 - URGEFRIO"
+
+#. module: delivery_logista
+msgid "6 - FARMAPLUS"
+msgstr "6 - FARMAPLUS"
+
+#. module: delivery_logista
+msgid "6 - Textile"
+msgstr "6 - Textil"
+
+#. module: delivery_logista
+msgid ""
+"6-digit customer code provided by Logista Parcel for positions 11-16 of the"
+" 34-digit barcode. If empty, the last 6 digits of Sender.Code are used."
+msgstr ""
+"Código de cliente de 6 dígitos proporcionado por Logista Parcel para las "
+"posiciones 11-16 del código de barras de 34 dígitos. Si está vacío, se usan"
+" los últimos 6 dígitos de Sender.Code."
+
+#. module: delivery_logista
+msgid "7 - AEREO FRIO"
+msgstr "7 - AEREO FRIO"
+
+#. module: delivery_logista
+msgid "7 - Cosmetics"
+msgstr "7 - Cosmética"
+
+#. module: delivery_logista
+msgid "8 - Automotive"
+msgstr "8 - Automoción"
+
+#. module: delivery_logista
+msgid "8 - FARMA < 25"
+msgstr "8 - FARMA < 25"
+
+#. module: delivery_logista
+msgid "9 - I2GOURMET"
+msgstr "9 - I2GOURMET"
+
+#. module: delivery_logista
+msgid "9-character sender code provided by Logista Parcel."
+msgstr "Código de remitente de 9 caracteres proporcionado por Logista Parcel."
+
+#. module: delivery_logista
+msgid ""
+"<span class=\"o_stat_text\">Test</span>\n"
+"                        <span class=\"o_stat_text\">Plaza WS</span>"
+msgstr ""
+"<span class=\"o_stat_text\">Probar</span>\n"
+"                        <span class=\"o_stat_text\">WS Plazas</span>"
+
+#. module: delivery_logista
+msgid "Action on signed customer delivery note (`DeliveryNoteAction`)."
+msgstr "Acción sobre el albarán de cliente firmado (`DeliveryNoteAction`)."
+
+#. module: delivery_logista
+msgid "Allow Local Cancellation in Odoo"
+msgstr "Permitir cancelación local en Odoo"
+
+#. module: delivery_logista
+msgid "Arranged Delivery Date"
+msgstr "Fecha de entrega concertada"
+
+#. module: delivery_logista
+msgid "Authorization Header Format"
+msgstr "Formato de cabecera Authorization"
+
+#. module: delivery_logista
+msgid ""
+"Authorization token provided by Logista Parcel (valid for 3 months; renew "
+"before expiration)."
+msgstr ""
+"Token de autorización proporcionado por Logista Parcel (validez de 3 meses;"
+" renovar antes de su caducidad)."
+
+#. module: delivery_logista
+msgid ""
+"Automatically map Sale Order / Picking Incoterms (EXW/FCA -> D Collect; "
+"CPT/DAP/DDP -> P Prepaid)."
+msgstr ""
+"Mapear automáticamente los Incoterms del pedido o albarán (EXW/FCA -> D "
+"Debidos; CPT/DAP/DDP -> P Pagados)."
+
+#. module: delivery_logista
+msgid "Barcode Customer Code (6 Digits)"
+msgstr "Código de cliente etiqueta (6 dígitos)"
+
+#. module: delivery_logista
+#. odoo-python
+#: code:addons/delivery_logista/models/delivery_carrier.py
+msgid "Barcodes"
+msgstr "Códigos de barras"
+
+#. module: delivery_logista
+msgid "Bearer (Bearer <token>)"
+msgstr "Bearer (Bearer <token>)"
+
+#. module: delivery_logista
+msgid "Bto."
+msgstr "Bto."
+
+#. module: delivery_logista
+msgid "Btos."
+msgstr "Btos."
+
+#. module: delivery_logista
+#. odoo-python
+#: code:addons/delivery_logista/models/delivery_carrier.py
+msgid "Cancelled locally"
+msgstr "Cancelado localmente"
+
+#. module: delivery_logista
+msgid "Carrier"
+msgstr "Transportista"
+
+#. module: delivery_logista
+msgid "Cash on Delivery (Contra Reembolso)"
+msgstr "Contra reembolso"
+
+#. module: delivery_logista
+msgid "Cash on Delivery (€)"
+msgstr "Contra reembolso (€)"
+
+#. module: delivery_logista
+msgid "Cash on Delivery amount in EUR (`CashOnDelivery`)."
+msgstr "Importe contra reembolso en euros (`CashOnDelivery`)."
+
+#. module: delivery_logista
+msgid ""
+"Classifies this package type as a Parcel (Bulto) or Pallet (Palet) for "
+"Logista Parcel labels and mixed shipments (MixShipment)."
+msgstr ""
+"Clasifica este tipo de paquete como Bulto o Palet para las etiquetas de "
+"Logista Parcel y expediciones mixtas (MixShipment)."
+
+#. module: delivery_logista
+msgid "Connection & Sender"
+msgstr "Conexión y remitente"
+
+#. module: delivery_logista
+#. odoo-python
+#: code:addons/delivery_logista/models/logista_request.py
+#, python-format
+msgid "Connection error with Logista Parcel API (%(url)s): %(error)s"
+msgstr "Error de conexión con la API de Logista Parcel (%(url)s): %(error)s"
+
+#. module: delivery_logista
+#. odoo-python
+#: code:addons/delivery_logista/models/logista_request.py
+#, python-format
+msgid ""
+"Consignee '%s' must have Street, City, Postal Code, and Country configured "
+"for Logista Parcel."
+msgstr ""
+"El destinatario '%s' debe tener calle, población, código postal y país "
+"configurados para Logista Parcel."
+
+#. module: delivery_logista
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: delivery_logista
+#. odoo-python
+#: code:addons/delivery_logista/models/delivery_carrier.py
+#, python-format
+msgid ""
+"Could not resolve a Logista Parcel delegation for ZIP '%(zip)s' "
+"(%(country)s). Check network connectivity and postal code."
+msgstr ""
+"No se pudo resolver la delegación de Logista Parcel para el CP '%(zip)s' "
+"(%(country)s). Verifique la conexión y el código postal."
+
+#. module: delivery_logista
+#. odoo-python
+#: code:addons/delivery_logista/models/logista_request.py
+#, python-format
+msgid ""
+"Country '%(country)s' on '%(partner)s' is not supported by Logista Parcel "
+"API v5 (supported: Spain ES, Portugal PT, Andorra AD)."
+msgstr ""
+"El país '%(country)s' en '%(partner)s' no está soportado por la API v5 de "
+"Logista Parcel (soportados: España ES, Portugal PT, Andorra AD)."
+
+#. module: delivery_logista
+msgid "D - Collect (Debidos)"
+msgstr "D - Portes debidos"
+
+#. module: delivery_logista
+msgid "Declared Insurance Value (€)"
+msgstr "Valor asegurado declarado (€)"
+
+#. module: delivery_logista
+msgid "Declared insurance amount in EUR (`InsuranceValue`)."
+msgstr "Importe del seguro declarado en euros (`InsuranceValue`)."
+
+#. module: delivery_logista
+msgid "Default Fixed Price"
+msgstr "Precio fijo por defecto"
+
+#. module: delivery_logista
+msgid "Default Freight Type"
+msgstr "Tipo de portes por defecto"
+
+#. module: delivery_logista
+msgid "Default Packaging Type"
+msgstr "Tipo de paquete por defecto"
+
+#. module: delivery_logista
+msgid "Default Status Notification"
+msgstr "Notificación de estado por defecto"
+
+#. module: delivery_logista
+msgid "Default freight terms (Prepaid / Collect) for this partner."
+msgstr "Tipo de portes por defecto (Pagados / Debidos) para este contacto."
+
+#. module: delivery_logista
+msgid "Delivery Note Action"
+msgstr "Acción sobre albarán de cliente"
+
+#. module: delivery_logista
+msgid "Delivery comments printed on label and sent to API (max 100 chars)."
+msgstr ""
+"Comentarios para la entrega impresos en la etiqueta y enviados a la API "
+"(máx. 100 caracteres)."
+
+#. module: delivery_logista
+msgid "Destinatario"
+msgstr "Destinatario"
+
+#. module: delivery_logista
+msgid "Enable ePackingList"
+msgstr "Activar ePackingList"
+
+#. module: delivery_logista
+#. odoo-python
+#: code:addons/delivery_logista/models/delivery_carrier.py
+msgid "Error: this delivery method is not available for this address."
+msgstr "Error: este método de envío no está disponible para esta dirección."
+
+#. module: delivery_logista
+msgid "Expedición"
+msgstr "Expedición"
+
+#. module: delivery_logista
+msgid ""
+"Header format for `Authorization`: raw `<token>` (Section Autenticación) or"
+" `Bearer <token>`."
+msgstr ""
+"Formato de la cabecera `Authorization`: `<token>` directo (apartado "
+"Autenticación) o `Bearer <token>`."
+
+#. module: delivery_logista
+msgid "Include Sender Name in Payload"
+msgstr "Incluir nombre del remitente en la petición"
+
+#. module: delivery_logista
+msgid "Include picking volume in cubic meters (`Volume`) when greater than zero."
+msgstr ""
+"Incluir el volumen del albarán en metros cúbicos (`Volume`) cuando sea "
+"mayor que cero."
+
+#. module: delivery_logista
+msgid "Kgs."
+msgstr "Kgs."
+
+#. module: delivery_logista
+msgid "Label Format"
+msgstr "Formato de etiqueta"
+
+#. module: delivery_logista
+msgid "Labels, Barcodes & Packaging"
+msgstr "Etiquetas, códigos de barras y embalaje"
+
+#. module: delivery_logista
+msgid "Logista"
+msgstr "Logista"
+
+#. module: delivery_logista
+msgid "Logista 34-Digit Barcode"
+msgstr "Código de barras 34 dígitos Logista"
+
+#. module: delivery_logista
+msgid "Logista API Token"
+msgstr "Token API Logista"
+
+#. module: delivery_logista
+msgid "Logista Configuration"
+msgstr "Configuración Logista"
+
+#. module: delivery_logista
+msgid "Logista Consignee Code"
+msgstr "Código destinatario Logista"
+
+#. module: delivery_logista
+msgid "Logista Default Freight Type"
+msgstr "Tipo de portes Logista por defecto"
+
+#. module: delivery_logista
+msgid "Logista Delivery Comments"
+msgstr "Comentarios de entrega Logista"
+
+#. module: delivery_logista
+msgid "Logista Freight Type"
+msgstr "Tipo de portes Logista"
+
+#. module: delivery_logista
+msgid "Logista Handling Unit Type"
+msgstr "Tipo de unidad logística Logista"
+
+#. module: delivery_logista
+msgid "Logista Label"
+msgstr "Etiqueta Logista"
+
+#. module: delivery_logista
+msgid "Logista Main Reference"
+msgstr "Referencia principal Logista"
+
+#. module: delivery_logista
+msgid "Logista Notification Preference"
+msgstr "Preferencia de notificación Logista"
+
+#. module: delivery_logista
+msgid "Logista Parcel"
+msgstr "Logista Parcel"
+
+#. module: delivery_logista
+msgid "Logista Parcel 34-Digit Barcode"
+msgstr "Código de barras 34 dígitos Logista Parcel"
+
+#. module: delivery_logista
+#. odoo-python
+#: code:addons/delivery_logista/models/logista_request.py
+#, python-format
+msgid ""
+"Logista Parcel API Error:\n"
+"%s"
+msgstr ""
+"Error de la API de Logista Parcel:\n"
+"%s"
+
+#. module: delivery_logista
+#. odoo-python
+#: code:addons/delivery_logista/models/logista_request.py
+#, python-format
+msgid "Logista Parcel API did not return a valid ShipmentId: %s"
+msgstr "La API de Logista Parcel no devolvió un ShipmentId válido: %s"
+
+#. module: delivery_logista
+msgid ""
+"Logista Parcel API v5 does not expose a remote cancellation endpoint. When "
+"enabled, cancelling a shipment in Odoo unlinks the tracking reference and "
+"reminds the user to notify the origin delegation if needed."
+msgstr ""
+"La API v5 de Logista Parcel no expone un endpoint de cancelación remota. Si"
+" está activo, cancelar el envío en Odoo desvincula la referencia y recuerda"
+" avisar a la delegación de origen si procede."
+
+#. module: delivery_logista
+#. odoo-python
+#: code:addons/delivery_logista/models/delivery_carrier.py
+msgid ""
+"Logista Parcel API v5 does not provide an automatic shipment cancellation "
+"endpoint. Please contact your Logista Parcel origin delegation or enable "
+"local cancellation on the carrier."
+msgstr ""
+"La API v5 de Logista Parcel no dispone de un endpoint de cancelación "
+"automática. Contacte con su delegación de origen de Logista Parcel o active"
+" la cancelación local en el método de envío."
+
+#. module: delivery_logista
+msgid "Logista Parcel Label"
+msgstr "Etiqueta Logista Parcel"
+
+#. module: delivery_logista
+msgid "Logista Parcel Options"
+msgstr "Opciones de Logista Parcel"
+
+#. module: delivery_logista
+#. odoo-python
+#: code:addons/delivery_logista/models/delivery_carrier.py
+msgid "Logista Parcel Plaza Service OK"
+msgstr "Servicio de Plazas Logista Parcel OK"
+
+#. module: delivery_logista
+msgid "Logista Parcel Service"
+msgstr "Servicio Logista Parcel"
+
+#. module: delivery_logista
+#. odoo-python
+#: code:addons/delivery_logista/models/delivery_carrier.py
+msgid "Logista Parcel label generated:"
+msgstr "Etiqueta Logista Parcel generada:"
+
+#. module: delivery_logista
+#. odoo-python
+#: code:addons/delivery_logista/models/delivery_carrier.py
+msgid "Logista Parcel label reprinted."
+msgstr "Etiqueta Logista Parcel reimpresa."
+
+#. module: delivery_logista
+#. odoo-python
+#: code:addons/delivery_logista/models/delivery_carrier.py
+#, python-format
+msgid "Logista Parcel return expedition registered (ShipmentId: %s)."
+msgstr "Expedición de devolución registrada en Logista Parcel (ShipmentId: %s)."
+
+#. module: delivery_logista
+#. odoo-python
+#: code:addons/delivery_logista/models/delivery_carrier.py
+#, python-format
+msgid ""
+"Logista Parcel shipment %s unlinked locally in Odoo. Remember to notify "
+"your Logista Parcel origin delegation if the expedition was already "
+"consolidated in I2MS."
+msgstr ""
+"Envío %s de Logista Parcel desvinculado localmente en Odoo. Recuerde avisar"
+" a su delegación de origen de Logista Parcel si la expedición ya había sido"
+" integrada en I2MS."
+
+#. module: delivery_logista
+msgid "Logista Service Override"
+msgstr "Servicio Logista específico"
+
+#. module: delivery_logista
+msgid "Loose Parcels in Mixed Shipment"
+msgstr "Bultos sueltos en expedición mixta"
+
+#. module: delivery_logista
+msgid "Map Freight Type from Incoterm"
+msgstr "Mapear tipo de portes desde Incoterm"
+
+#. module: delivery_logista
+#. odoo-python
+#: code:addons/delivery_logista/models/logista_request.py
+#, python-format
+msgid "Missing Logista Parcel API Token on delivery method '%s'."
+msgstr "Falta el Token API de Logista Parcel en el método de envío '%s'."
+
+#. module: delivery_logista
+#. odoo-python
+#: code:addons/delivery_logista/models/logista_request.py
+#, python-format
+msgid "Missing Sender Code (`Sender.Code`) on Logista Parcel delivery method '%s'."
+msgstr "Falta el código de remitente (`Sender.Code`) en el método de envío '%s'."
+
+#. module: delivery_logista
+msgid "No Status Notification"
+msgstr "Sin notificación de estado"
+
+#. module: delivery_logista
+msgid "Number of loose parcels (`MixPackages`) in a mixed pallet+parcel shipment."
+msgstr ""
+"Número de bultos sueltos (`MixPackages`) en una expedición mixta de palets "
+"y bultos."
+
+#. module: delivery_logista
+msgid ""
+"Number of pallets when shipping pallets or mixed shipments without "
+"individual Odoo packages."
+msgstr ""
+"Número de palets al enviar palets o expediciones mixtas sin paquetes "
+"individuales de Odoo."
+
+#. module: delivery_logista
+msgid "Optional Price Rules (by Weight / Volume / Packages)"
+msgstr "Reglas de precio opcionales (por peso / volumen / paquetes)"
+
+#. module: delivery_logista
+msgid "Optional arranged delivery date (`ArrangedDeliveryDate`, yyyy-mm-dd)."
+msgstr "Fecha de entrega concertada opcional (`ArrangedDeliveryDate`, yyyy-mm-dd)."
+
+#. module: delivery_logista
+msgid ""
+"Optional consignee CustomerCode (max 15 chars) sent in Logista Parcel API "
+"v5."
+msgstr ""
+"CustomerCode opcional del consignatario (máx. 15 caracteres) enviado en la "
+"API v5 de Logista Parcel."
+
+#. module: delivery_logista
+msgid "Optional explicit main customer reference (max 9 alphanumeric chars)."
+msgstr ""
+"Referencia principal explícita opcional del cliente (máx. 9 caracteres "
+"alfanuméricos)."
+
+#. module: delivery_logista
+msgid "Optional header text printed above the sender block on labels."
+msgstr ""
+"Texto opcional de cabecera impreso sobre el bloque de remitente en las "
+"etiquetas."
+
+#. module: delivery_logista
+msgid "Optional per-picking override of FreightType (P = Pagados, D = Debidos)."
+msgstr ""
+"Sobrescritura opcional por albarán del tipo de portes (P = Pagados, D = "
+"Debidos)."
+
+#. module: delivery_logista
+msgid "Optional per-picking override of the Logista Parcel service."
+msgstr "Sobrescritura opcional por albarán del servicio de Logista Parcel."
+
+#. module: delivery_logista
+msgid "Origin Delegation Code (2 Digits)"
+msgstr "Código delegación origen (2 dígitos)"
+
+#. module: delivery_logista
+msgid "Origin Delegation Label Header"
+msgstr "Cabecera delegación origen en etiqueta"
+
+#. module: delivery_logista
+msgid "P - Prepaid (Pagados)"
+msgstr "P - Portes pagados"
+
+#. module: delivery_logista
+msgid "PARCEL"
+msgstr "PARCEL"
+
+#. module: delivery_logista
+msgid "PDF (100x150mm Label)"
+msgstr "PDF (Etiqueta 100x150mm)"
+
+#. module: delivery_logista
+msgid "Packages"
+msgstr "Paquetes"
+
+#. module: delivery_logista
+msgid "Pal."
+msgstr "Pal."
+
+#. module: delivery_logista
+msgid "Pallet (Palet)"
+msgstr "Palet"
+
+#. module: delivery_logista
+msgid "Pallets Count (Logista)"
+msgstr "Nº de palets (Logista)"
+
+#. module: delivery_logista
+msgid "Parcel (Bulto)"
+msgstr "Bulto"
+
+#. module: delivery_logista
+msgid "Peso:"
+msgstr "Peso:"
+
+#. module: delivery_logista
+#. odoo-python
+#: code:addons/delivery_logista/models/logista_request.py
+#, python-format
+msgid "Picking %s does not have a delivery address assigned."
+msgstr "El albarán %s no tiene una dirección de entrega asignada."
+
+#. module: delivery_logista
+msgid "Production Plaza Routing Endpoint"
+msgstr "URL Producción Servicio de Plazas"
+
+#. module: delivery_logista
+msgid "Production Shipment Endpoint"
+msgstr "URL Producción Integración Envíos"
+
+#. module: delivery_logista
+msgid "Provider"
+msgstr "Proveedor"
+
+#. module: delivery_logista
+msgid "Ref."
+msgstr "Ref."
+
+#. module: delivery_logista
+msgid "Remitente"
+msgstr "Remitente"
+
+#. module: delivery_logista
+#. odoo-python
+#: code:addons/delivery_logista/models/logista_request.py
+#, python-format
+msgid "Return %s"
+msgstr "Devolución %s"
+
+#. module: delivery_logista
+msgid "Sector Code"
+msgstr "Código de sector"
+
+#. module: delivery_logista
+msgid ""
+"Sector code assigned by Logista Parcel (Position 1 of the 34-digit barcode "
+"and `keyact` parameter in `wsRepartoProductoPorPlazas`)."
+msgstr ""
+"Código de sector facilitado por Logista Parcel (posición 1 del código de "
+"barras de 34 dígitos y parámetro `keyact` en `wsRepartoProductoPorPlazas`)."
+
+#. module: delivery_logista
+msgid "Send Volume (m³)"
+msgstr "Enviar volumen (m³)"
+
+#. module: delivery_logista
+msgid ""
+"Send the Sale Order total amount as `CashOnDelivery` unless overridden on "
+"the picking."
+msgstr ""
+"Enviar el total del pedido de venta como `CashOnDelivery` salvo que se "
+"indique otro importe en el albarán."
+
+#. module: delivery_logista
+msgid "Sender Code (Sender.Code)"
+msgstr "Código de remitente (Sender.Code)"
+
+#. module: delivery_logista
+msgid "Service & Freight"
+msgstr "Servicio y portes"
+
+#. module: delivery_logista
+#. odoo-python
+#: code:addons/delivery_logista/models/delivery_carrier.py
+msgid "SessionId"
+msgstr "SessionId"
+
+#. module: delivery_logista
+#. odoo-python
+#: code:addons/delivery_logista/models/delivery_carrier.py
+msgid "ShipmentId"
+msgstr "ShipmentId"
+
+#. module: delivery_logista
+msgid "Shipping Methods"
+msgstr "Métodos de envío"
+
+#. module: delivery_logista
+msgid "Status notification preference (SMS / Email) for Logista Parcel."
+msgstr "Preferencia de notificación de estado (SMS / Email) para Logista Parcel."
+
+#. module: delivery_logista
+msgid "Stock package type"
+msgstr "Tipo de paquete de stock"
+
+#. module: delivery_logista
+msgid "Test Plaza Routing Endpoint"
+msgstr "URL Pruebas Servicio de Plazas"
+
+#. module: delivery_logista
+msgid "Test Shipment Endpoint"
+msgstr "URL Pruebas Integración Envíos"
+
+#. module: delivery_logista
+msgid "Tight Flow Service (Flujo Tenso)"
+msgstr "Servicio de flujo tenso"
+
+#. module: delivery_logista
+#. odoo-python
+#: code:addons/delivery_logista/models/logista_request.py
+#, python-format
+msgid "Timeout: Logista Parcel server did not reply within %ss."
+msgstr "Tiempo de espera agotado: el servidor de Logista Parcel no respondió en %ss."
+
+#. module: delivery_logista
+msgid "Token (<token>)"
+msgstr "Token (<token>)"
+
+#. module: delivery_logista
+msgid "Tot:"
+msgstr "Tot:"
+
+#. module: delivery_logista
+msgid "Tracking URL"
+msgstr "URL de seguimiento"
+
+#. module: delivery_logista
+msgid "Transfer"
+msgstr "Albarán"
+
+#. module: delivery_logista
+#. odoo-python
+#: code:addons/delivery_logista/models/logista_request.py
+#, python-format
+msgid "Unexpected response from Logista Parcel shipment API: %s"
+msgstr "Respuesta inesperada de la API de envíos de Logista Parcel: %s"
+
+#. module: delivery_logista
+#. odoo-python
+#: code:addons/delivery_logista/models/delivery_carrier.py
+#, python-format
+msgid "ZIP %(zip)s -> Delegation: %(del)s (Code %(code)s), Zone: %(zone)s"
+msgstr "CP %(zip)s -> Delegación: %(del)s (Código %(code)s), Zona: %(zone)s"
+
+#. module: delivery_logista
+msgid "ZPL (Zebra Thermal Printer)"
+msgstr "ZPL (Impresora térmica Zebra)"
+
+#. module: delivery_logista
+msgid "ePackingList & Base Pricing"
+msgstr "ePackingList y tarifa base"
+
+#. module: delivery_logista
+msgid "ePackingList Email Delivery"
+msgstr "Envío por correo de ePackingList"
+
+#. module: delivery_logista
+msgid "ePackingList Print Copy"
+msgstr "Impresión de copia ePackingList"
+

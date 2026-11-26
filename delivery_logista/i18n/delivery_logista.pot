@@ -1,0 +1,906 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* delivery_logista
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-24 19:27+0000\n"
+"PO-Revision-Date: 2026-11-24 19:27+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: delivery_logista
+#: model:ir.actions.report,print_report_name:delivery_logista.action_report_logista_label
+msgid "'Logista_Label_%s' % (object.carrier_tracking_ref or object.name)"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields.selection,name:delivery_logista.selection__delivery_carrier__logista_delivery_note_action__0
+#: model:ir.model.fields.selection,name:delivery_logista.selection__stock_picking__logista_delivery_note_action__0
+msgid "0 - Default / No Action"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields.selection,name:delivery_logista.selection__delivery_carrier__logista_sector_code__0
+msgid "0 - Generic"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields.selection,name:delivery_logista.selection__delivery_carrier__logista_service_id__1
+#: model:ir.model.fields.selection,name:delivery_logista.selection__stock_picking__logista_service_id__1
+msgid "1 - AMBIPAQ"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields.selection,name:delivery_logista.selection__delivery_carrier__logista_notification_type__1
+#: model:ir.model.fields.selection,name:delivery_logista.selection__res_partner__logista_notification_type__1
+msgid "1 - Out for Delivery (Reparto)"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields.selection,name:delivery_logista.selection__delivery_carrier__logista_sector_code__1
+msgid "1 - Pharma"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields.selection,name:delivery_logista.selection__delivery_carrier__logista_delivery_note_action__1
+#: model:ir.model.fields.selection,name:delivery_logista.selection__stock_picking__logista_delivery_note_action__1
+msgid "1 - Scan Signed Customer Delivery Note"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields.selection,name:delivery_logista.selection__delivery_carrier__logista_notification_type__2
+#: model:ir.model.fields.selection,name:delivery_logista.selection__res_partner__logista_notification_type__2
+msgid "2 - Delivered (Entrega)"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields.selection,name:delivery_logista.selection__delivery_carrier__logista_sector_code__2
+msgid "2 - Food"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields.selection,name:delivery_logista.selection__delivery_carrier__logista_delivery_note_action__2
+#: model:ir.model.fields.selection,name:delivery_logista.selection__stock_picking__logista_delivery_note_action__2
+msgid "2 - Return Signed Customer Delivery Note"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields.selection,name:delivery_logista.selection__delivery_carrier__logista_service_id__2
+#: model:ir.model.fields.selection,name:delivery_logista.selection__stock_picking__logista_service_id__2
+msgid "2 - URGEPAQ"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,help:delivery_logista.field_delivery_carrier__logista_origin_delegation_code
+msgid ""
+"2-digit origin delegation code provided by Logista Parcel for positions 9-10"
+" of the 34-digit Code 128 barcode."
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields.selection,name:delivery_logista.selection__delivery_carrier__logista_sector_code__3
+msgid "3 - Electronics"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields.selection,name:delivery_logista.selection__delivery_carrier__logista_service_id__3
+#: model:ir.model.fields.selection,name:delivery_logista.selection__stock_picking__logista_service_id__3
+msgid "3 - FRIOFARMA"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields.selection,name:delivery_logista.selection__delivery_carrier__logista_notification_type__3
+#: model:ir.model.fields.selection,name:delivery_logista.selection__res_partner__logista_notification_type__3
+msgid "3 - Out for Delivery & Delivered (Reparto y entrega)"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,help:delivery_logista.field_stock_quant_package__logista_barcode
+msgid "34-character Code 128 barcode generated for Logista Parcel labels."
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields.selection,name:delivery_logista.selection__delivery_carrier__logista_sector_code__4
+msgid "4 - Convenience"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields.selection,name:delivery_logista.selection__delivery_carrier__logista_notification_type__4
+#: model:ir.model.fields.selection,name:delivery_logista.selection__res_partner__logista_notification_type__4
+msgid "4 - Documentation (Documentación)"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields.selection,name:delivery_logista.selection__delivery_carrier__logista_service_id__4
+#: model:ir.model.fields.selection,name:delivery_logista.selection__stock_picking__logista_service_id__4
+msgid "4 - FRIOPAQ"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields.selection,name:delivery_logista.selection__delivery_carrier__logista_sector_code__5
+msgid "5 - Books / Stationery"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields.selection,name:delivery_logista.selection__delivery_carrier__logista_service_id__5
+#: model:ir.model.fields.selection,name:delivery_logista.selection__stock_picking__logista_service_id__5
+msgid "5 - URGEFRIO"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields.selection,name:delivery_logista.selection__delivery_carrier__logista_service_id__6
+#: model:ir.model.fields.selection,name:delivery_logista.selection__stock_picking__logista_service_id__6
+msgid "6 - FARMAPLUS"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields.selection,name:delivery_logista.selection__delivery_carrier__logista_sector_code__6
+msgid "6 - Textile"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,help:delivery_logista.field_delivery_carrier__logista_customer_barcode_code
+msgid ""
+"6-digit customer code provided by Logista Parcel for positions 11-16 of the "
+"34-digit barcode. If empty, the last 6 digits of Sender.Code are used."
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields.selection,name:delivery_logista.selection__delivery_carrier__logista_service_id__7
+#: model:ir.model.fields.selection,name:delivery_logista.selection__stock_picking__logista_service_id__7
+msgid "7 - AEREO FRIO"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields.selection,name:delivery_logista.selection__delivery_carrier__logista_sector_code__7
+msgid "7 - Cosmetics"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields.selection,name:delivery_logista.selection__delivery_carrier__logista_sector_code__8
+msgid "8 - Automotive"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields.selection,name:delivery_logista.selection__delivery_carrier__logista_service_id__8
+#: model:ir.model.fields.selection,name:delivery_logista.selection__stock_picking__logista_service_id__8
+msgid "8 - FARMA < 25"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields.selection,name:delivery_logista.selection__delivery_carrier__logista_service_id__9
+#: model:ir.model.fields.selection,name:delivery_logista.selection__stock_picking__logista_service_id__9
+msgid "9 - I2GOURMET"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,help:delivery_logista.field_delivery_carrier__logista_sender_code
+msgid "9-character sender code provided by Logista Parcel."
+msgstr ""
+
+#. module: delivery_logista
+#: model_terms:ir.ui.view,arch_db:delivery_logista.view_delivery_carrier_form_inherit_logista
+msgid ""
+"<span class=\"o_stat_text\">Test</span>\n"
+"                        <span class=\"o_stat_text\">Plaza WS</span>"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,help:delivery_logista.field_stock_picking__logista_delivery_note_action
+msgid "Action on signed customer delivery note (`DeliveryNoteAction`)."
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,field_description:delivery_logista.field_delivery_carrier__logista_allow_local_cancel
+msgid "Allow Local Cancellation in Odoo"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,field_description:delivery_logista.field_stock_picking__logista_arranged_delivery_date
+msgid "Arranged Delivery Date"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,field_description:delivery_logista.field_delivery_carrier__logista_auth_scheme
+msgid "Authorization Header Format"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,help:delivery_logista.field_delivery_carrier__logista_api_token
+msgid ""
+"Authorization token provided by Logista Parcel (valid for 3 months; renew "
+"before expiration)."
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,help:delivery_logista.field_delivery_carrier__logista_use_order_incoterm
+msgid ""
+"Automatically map Sale Order / Picking Incoterms (EXW/FCA -> D Collect; "
+"CPT/DAP/DDP -> P Prepaid)."
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,field_description:delivery_logista.field_delivery_carrier__logista_customer_barcode_code
+msgid "Barcode Customer Code (6 Digits)"
+msgstr ""
+
+#. module: delivery_logista
+#. odoo-python
+#: code:addons/delivery_logista/models/delivery_carrier.py:0
+msgid "Barcodes"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields.selection,name:delivery_logista.selection__delivery_carrier__logista_auth_scheme__bearer
+msgid "Bearer (Bearer <token>)"
+msgstr ""
+
+#. module: delivery_logista
+#: model_terms:ir.ui.view,arch_db:delivery_logista.report_logista_label_document
+msgid "Bto."
+msgstr ""
+
+#. module: delivery_logista
+#: model_terms:ir.ui.view,arch_db:delivery_logista.report_logista_label_document
+msgid "Btos."
+msgstr ""
+
+#. module: delivery_logista
+#. odoo-python
+#: code:addons/delivery_logista/models/delivery_carrier.py:0
+msgid "Cancelled locally"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,field_description:delivery_logista.field_stock_package_type__package_carrier_type
+msgid "Carrier"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,field_description:delivery_logista.field_delivery_carrier__logista_cash_on_delivery
+msgid "Cash on Delivery (Contra Reembolso)"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,field_description:delivery_logista.field_stock_picking__logista_cod_amount
+msgid "Cash on Delivery (€)"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,help:delivery_logista.field_stock_picking__logista_cod_amount
+msgid "Cash on Delivery amount in EUR (`CashOnDelivery`)."
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,help:delivery_logista.field_stock_package_type__logista_package_kind
+msgid ""
+"Classifies this package type as a Parcel (Bulto) or Pallet (Palet) for "
+"Logista Parcel labels and mixed shipments (MixShipment)."
+msgstr ""
+
+#. module: delivery_logista
+#: model_terms:ir.ui.view,arch_db:delivery_logista.view_delivery_carrier_form_inherit_logista
+msgid "Connection & Sender"
+msgstr ""
+
+#. module: delivery_logista
+#. odoo-python
+#: code:addons/delivery_logista/models/logista_request.py:0
+msgid "Connection error with Logista Parcel API (%(url)s): %(error)s"
+msgstr ""
+
+#. module: delivery_logista
+#. odoo-python
+#: code:addons/delivery_logista/models/logista_request.py:0
+msgid ""
+"Consignee '%s' must have Street, City, Postal Code, and Country configured "
+"for Logista Parcel."
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model,name:delivery_logista.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: delivery_logista
+#. odoo-python
+#: code:addons/delivery_logista/models/delivery_carrier.py:0
+msgid ""
+"Could not resolve a Logista Parcel delegation for ZIP '%(zip)s' "
+"(%(country)s). Check network connectivity and postal code."
+msgstr ""
+
+#. module: delivery_logista
+#. odoo-python
+#: code:addons/delivery_logista/models/logista_request.py:0
+msgid ""
+"Country '%(country)s' on '%(partner)s' is not supported by Logista Parcel "
+"API v5 (supported: Spain ES, Portugal PT, Andorra AD)."
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields.selection,name:delivery_logista.selection__delivery_carrier__logista_freight_type__d
+#: model:ir.model.fields.selection,name:delivery_logista.selection__res_partner__logista_freight_type__d
+#: model:ir.model.fields.selection,name:delivery_logista.selection__stock_picking__logista_freight_type__d
+msgid "D - Collect (Debidos)"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,field_description:delivery_logista.field_stock_picking__logista_insured_value
+msgid "Declared Insurance Value (€)"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,help:delivery_logista.field_stock_picking__logista_insured_value
+msgid "Declared insurance amount in EUR (`InsuranceValue`)."
+msgstr ""
+
+#. module: delivery_logista
+#: model_terms:ir.ui.view,arch_db:delivery_logista.view_delivery_carrier_form_inherit_logista
+msgid "Default Fixed Price"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,field_description:delivery_logista.field_delivery_carrier__logista_freight_type
+msgid "Default Freight Type"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,field_description:delivery_logista.field_delivery_carrier__logista_default_packaging_id
+msgid "Default Packaging Type"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,field_description:delivery_logista.field_delivery_carrier__logista_notification_type
+msgid "Default Status Notification"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,help:delivery_logista.field_res_partner__logista_freight_type
+#: model:ir.model.fields,help:delivery_logista.field_res_users__logista_freight_type
+msgid "Default freight terms (Prepaid / Collect) for this partner."
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,field_description:delivery_logista.field_delivery_carrier__logista_delivery_note_action
+#: model:ir.model.fields,field_description:delivery_logista.field_stock_picking__logista_delivery_note_action
+msgid "Delivery Note Action"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,help:delivery_logista.field_stock_picking__logista_comments
+msgid "Delivery comments printed on label and sent to API (max 100 chars)."
+msgstr ""
+
+#. module: delivery_logista
+#: model_terms:ir.ui.view,arch_db:delivery_logista.report_logista_label_document
+msgid "Destinatario"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,field_description:delivery_logista.field_delivery_carrier__logista_epacking_enabled
+msgid "Enable ePackingList"
+msgstr ""
+
+#. module: delivery_logista
+#. odoo-python
+#: code:addons/delivery_logista/models/delivery_carrier.py:0
+msgid "Error: this delivery method is not available for this address."
+msgstr ""
+
+#. module: delivery_logista
+#: model_terms:ir.ui.view,arch_db:delivery_logista.report_logista_label_document
+msgid "Expedición"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,help:delivery_logista.field_delivery_carrier__logista_auth_scheme
+msgid ""
+"Header format for `Authorization`: raw `<token>` (Section Autenticación) or "
+"`Bearer <token>`."
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,field_description:delivery_logista.field_delivery_carrier__logista_send_sender_name
+msgid "Include Sender Name in Payload"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,help:delivery_logista.field_delivery_carrier__logista_send_volume
+msgid ""
+"Include picking volume in cubic meters (`Volume`) when greater than zero."
+msgstr ""
+
+#. module: delivery_logista
+#: model_terms:ir.ui.view,arch_db:delivery_logista.report_logista_label_document
+msgid "Kgs."
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,field_description:delivery_logista.field_delivery_carrier__logista_label_format
+msgid "Label Format"
+msgstr ""
+
+#. module: delivery_logista
+#: model_terms:ir.ui.view,arch_db:delivery_logista.view_delivery_carrier_form_inherit_logista
+msgid "Labels, Barcodes & Packaging"
+msgstr ""
+
+#. module: delivery_logista
+#: model_terms:ir.ui.view,arch_db:delivery_logista.report_logista_label_document
+msgid "Logista"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,field_description:delivery_logista.field_stock_quant_package__logista_barcode
+msgid "Logista 34-Digit Barcode"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,field_description:delivery_logista.field_delivery_carrier__logista_api_token
+msgid "Logista API Token"
+msgstr ""
+
+#. module: delivery_logista
+#: model_terms:ir.ui.view,arch_db:delivery_logista.view_delivery_carrier_form_inherit_logista
+msgid "Logista Configuration"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,field_description:delivery_logista.field_res_partner__logista_customer_code
+#: model:ir.model.fields,field_description:delivery_logista.field_res_users__logista_customer_code
+msgid "Logista Consignee Code"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,field_description:delivery_logista.field_res_partner__logista_freight_type
+#: model:ir.model.fields,field_description:delivery_logista.field_res_users__logista_freight_type
+msgid "Logista Default Freight Type"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,field_description:delivery_logista.field_stock_picking__logista_comments
+msgid "Logista Delivery Comments"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,field_description:delivery_logista.field_stock_picking__logista_freight_type
+msgid "Logista Freight Type"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,field_description:delivery_logista.field_stock_package_type__logista_package_kind
+msgid "Logista Handling Unit Type"
+msgstr ""
+
+#. module: delivery_logista
+#: model_terms:ir.ui.view,arch_db:delivery_logista.view_picking_form_inherit_logista
+msgid "Logista Label"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,field_description:delivery_logista.field_stock_picking__logista_customer_reference
+msgid "Logista Main Reference"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,field_description:delivery_logista.field_res_partner__logista_notification_type
+#: model:ir.model.fields,field_description:delivery_logista.field_res_users__logista_notification_type
+msgid "Logista Notification Preference"
+msgstr ""
+
+#. module: delivery_logista
+#: model:delivery.carrier,name:delivery_logista.delivery_carrier_logista_main
+#: model:ir.model.fields.selection,name:delivery_logista.selection__delivery_carrier__delivery_type__logista
+#: model:ir.model.fields.selection,name:delivery_logista.selection__stock_package_type__package_carrier_type__logista
+#: model:product.template,name:delivery_logista.product_product_delivery_logista_product_template
+#: model_terms:ir.ui.view,arch_db:delivery_logista.view_partner_form_inherit_logista
+msgid "Logista Parcel"
+msgstr ""
+
+#. module: delivery_logista
+#: model_terms:ir.ui.view,arch_db:delivery_logista.report_logista_label_document
+msgid "Logista Parcel 34-Digit Barcode"
+msgstr ""
+
+#. module: delivery_logista
+#. odoo-python
+#: code:addons/delivery_logista/models/logista_request.py:0
+msgid ""
+"Logista Parcel API Error:\n"
+"%s"
+msgstr ""
+
+#. module: delivery_logista
+#. odoo-python
+#: code:addons/delivery_logista/models/logista_request.py:0
+msgid "Logista Parcel API did not return a valid ShipmentId: %s"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,help:delivery_logista.field_delivery_carrier__logista_allow_local_cancel
+msgid ""
+"Logista Parcel API v5 does not expose a remote cancellation endpoint. When "
+"enabled, cancelling a shipment in Odoo unlinks the tracking reference and "
+"reminds the user to notify the origin delegation if needed."
+msgstr ""
+
+#. module: delivery_logista
+#. odoo-python
+#: code:addons/delivery_logista/models/delivery_carrier.py:0
+msgid ""
+"Logista Parcel API v5 does not provide an automatic shipment cancellation "
+"endpoint. Please contact your Logista Parcel origin delegation or enable "
+"local cancellation on the carrier."
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.actions.report,name:delivery_logista.action_report_logista_label
+msgid "Logista Parcel Label"
+msgstr ""
+
+#. module: delivery_logista
+#: model_terms:ir.ui.view,arch_db:delivery_logista.view_picking_form_inherit_logista
+msgid "Logista Parcel Options"
+msgstr ""
+
+#. module: delivery_logista
+#. odoo-python
+#: code:addons/delivery_logista/models/delivery_carrier.py:0
+msgid "Logista Parcel Plaza Service OK"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,field_description:delivery_logista.field_delivery_carrier__logista_service_id
+msgid "Logista Parcel Service"
+msgstr ""
+
+#. module: delivery_logista
+#. odoo-python
+#: code:addons/delivery_logista/models/delivery_carrier.py:0
+msgid "Logista Parcel label generated:"
+msgstr ""
+
+#. module: delivery_logista
+#. odoo-python
+#: code:addons/delivery_logista/models/delivery_carrier.py:0
+msgid "Logista Parcel label reprinted."
+msgstr ""
+
+#. module: delivery_logista
+#. odoo-python
+#: code:addons/delivery_logista/models/delivery_carrier.py:0
+msgid "Logista Parcel return expedition registered (ShipmentId: %s)."
+msgstr ""
+
+#. module: delivery_logista
+#. odoo-python
+#: code:addons/delivery_logista/models/delivery_carrier.py:0
+msgid ""
+"Logista Parcel shipment %s unlinked locally in Odoo. Remember to notify your"
+" Logista Parcel origin delegation if the expedition was already consolidated"
+" in I2MS."
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,field_description:delivery_logista.field_stock_picking__logista_service_id
+msgid "Logista Service Override"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,field_description:delivery_logista.field_stock_picking__logista_loose_packages_qty
+msgid "Loose Parcels in Mixed Shipment"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,field_description:delivery_logista.field_delivery_carrier__logista_use_order_incoterm
+msgid "Map Freight Type from Incoterm"
+msgstr ""
+
+#. module: delivery_logista
+#. odoo-python
+#: code:addons/delivery_logista/models/logista_request.py:0
+msgid "Missing Logista Parcel API Token on delivery method '%s'."
+msgstr ""
+
+#. module: delivery_logista
+#. odoo-python
+#: code:addons/delivery_logista/models/logista_request.py:0
+msgid ""
+"Missing Sender Code (`Sender.Code`) on Logista Parcel delivery method '%s'."
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields.selection,name:delivery_logista.selection__delivery_carrier__logista_notification_type__none
+#: model:ir.model.fields.selection,name:delivery_logista.selection__res_partner__logista_notification_type__none
+msgid "No Status Notification"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,help:delivery_logista.field_stock_picking__logista_loose_packages_qty
+msgid ""
+"Number of loose parcels (`MixPackages`) in a mixed pallet+parcel shipment."
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,help:delivery_logista.field_stock_picking__logista_pallets_qty
+msgid ""
+"Number of pallets when shipping pallets or mixed shipments without "
+"individual Odoo packages."
+msgstr ""
+
+#. module: delivery_logista
+#: model_terms:ir.ui.view,arch_db:delivery_logista.view_delivery_carrier_form_inherit_logista
+msgid "Optional Price Rules (by Weight / Volume / Packages)"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,help:delivery_logista.field_stock_picking__logista_arranged_delivery_date
+msgid "Optional arranged delivery date (`ArrangedDeliveryDate`, yyyy-mm-dd)."
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,help:delivery_logista.field_res_partner__logista_customer_code
+#: model:ir.model.fields,help:delivery_logista.field_res_users__logista_customer_code
+msgid ""
+"Optional consignee CustomerCode (max 15 chars) sent in Logista Parcel API "
+"v5."
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,help:delivery_logista.field_stock_picking__logista_customer_reference
+msgid "Optional explicit main customer reference (max 9 alphanumeric chars)."
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,help:delivery_logista.field_delivery_carrier__logista_origin_delegation_name
+msgid "Optional header text printed above the sender block on labels."
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,help:delivery_logista.field_stock_picking__logista_freight_type
+msgid ""
+"Optional per-picking override of FreightType (P = Pagados, D = Debidos)."
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,help:delivery_logista.field_stock_picking__logista_service_id
+msgid "Optional per-picking override of the Logista Parcel service."
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,field_description:delivery_logista.field_delivery_carrier__logista_origin_delegation_code
+msgid "Origin Delegation Code (2 Digits)"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,field_description:delivery_logista.field_delivery_carrier__logista_origin_delegation_name
+msgid "Origin Delegation Label Header"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields.selection,name:delivery_logista.selection__delivery_carrier__logista_freight_type__p
+#: model:ir.model.fields.selection,name:delivery_logista.selection__res_partner__logista_freight_type__p
+#: model:ir.model.fields.selection,name:delivery_logista.selection__stock_picking__logista_freight_type__p
+msgid "P - Prepaid (Pagados)"
+msgstr ""
+
+#. module: delivery_logista
+#: model_terms:ir.ui.view,arch_db:delivery_logista.report_logista_label_document
+msgid "PARCEL"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields.selection,name:delivery_logista.selection__delivery_carrier__logista_label_format__pdf
+msgid "PDF (100x150mm Label)"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model,name:delivery_logista.model_stock_quant_package
+msgid "Packages"
+msgstr ""
+
+#. module: delivery_logista
+#: model_terms:ir.ui.view,arch_db:delivery_logista.report_logista_label_document
+msgid "Pal."
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields.selection,name:delivery_logista.selection__stock_package_type__logista_package_kind__pallet
+msgid "Pallet (Palet)"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,field_description:delivery_logista.field_stock_picking__logista_pallets_qty
+msgid "Pallets Count (Logista)"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields.selection,name:delivery_logista.selection__stock_package_type__logista_package_kind__parcel
+msgid "Parcel (Bulto)"
+msgstr ""
+
+#. module: delivery_logista
+#: model_terms:ir.ui.view,arch_db:delivery_logista.report_logista_label_document
+msgid "Peso:"
+msgstr ""
+
+#. module: delivery_logista
+#. odoo-python
+#: code:addons/delivery_logista/models/logista_request.py:0
+msgid "Picking %s does not have a delivery address assigned."
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,field_description:delivery_logista.field_delivery_carrier__logista_prod_plaza_url
+msgid "Production Plaza Routing Endpoint"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,field_description:delivery_logista.field_delivery_carrier__logista_prod_url
+msgid "Production Shipment Endpoint"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,field_description:delivery_logista.field_delivery_carrier__delivery_type
+msgid "Provider"
+msgstr ""
+
+#. module: delivery_logista
+#: model_terms:ir.ui.view,arch_db:delivery_logista.report_logista_label_document
+msgid "Ref."
+msgstr ""
+
+#. module: delivery_logista
+#: model_terms:ir.ui.view,arch_db:delivery_logista.report_logista_label_document
+msgid "Remitente"
+msgstr ""
+
+#. module: delivery_logista
+#. odoo-python
+#: code:addons/delivery_logista/models/logista_request.py:0
+msgid "Return %s"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,field_description:delivery_logista.field_delivery_carrier__logista_sector_code
+msgid "Sector Code"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,help:delivery_logista.field_delivery_carrier__logista_sector_code
+msgid ""
+"Sector code assigned by Logista Parcel (Position 1 of the 34-digit barcode "
+"and `keyact` parameter in `wsRepartoProductoPorPlazas`)."
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,field_description:delivery_logista.field_delivery_carrier__logista_send_volume
+msgid "Send Volume (m³)"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,help:delivery_logista.field_delivery_carrier__logista_cash_on_delivery
+msgid ""
+"Send the Sale Order total amount as `CashOnDelivery` unless overridden on "
+"the picking."
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,field_description:delivery_logista.field_delivery_carrier__logista_sender_code
+msgid "Sender Code (Sender.Code)"
+msgstr ""
+
+#. module: delivery_logista
+#: model_terms:ir.ui.view,arch_db:delivery_logista.view_delivery_carrier_form_inherit_logista
+msgid "Service & Freight"
+msgstr ""
+
+#. module: delivery_logista
+#. odoo-python
+#: code:addons/delivery_logista/models/delivery_carrier.py:0
+msgid "SessionId"
+msgstr ""
+
+#. module: delivery_logista
+#. odoo-python
+#: code:addons/delivery_logista/models/delivery_carrier.py:0
+msgid "ShipmentId"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model,name:delivery_logista.model_delivery_carrier
+msgid "Shipping Methods"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,help:delivery_logista.field_res_partner__logista_notification_type
+#: model:ir.model.fields,help:delivery_logista.field_res_users__logista_notification_type
+msgid "Status notification preference (SMS / Email) for Logista Parcel."
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model,name:delivery_logista.model_stock_package_type
+msgid "Stock package type"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,field_description:delivery_logista.field_delivery_carrier__logista_test_plaza_url
+msgid "Test Plaza Routing Endpoint"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,field_description:delivery_logista.field_delivery_carrier__logista_test_url
+msgid "Test Shipment Endpoint"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,field_description:delivery_logista.field_delivery_carrier__logista_tight_flow
+#: model:ir.model.fields,field_description:delivery_logista.field_stock_picking__logista_tight_flow
+msgid "Tight Flow Service (Flujo Tenso)"
+msgstr ""
+
+#. module: delivery_logista
+#. odoo-python
+#: code:addons/delivery_logista/models/logista_request.py:0
+msgid "Timeout: Logista Parcel server did not reply within %ss."
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields.selection,name:delivery_logista.selection__delivery_carrier__logista_auth_scheme__raw
+msgid "Token (<token>)"
+msgstr ""
+
+#. module: delivery_logista
+#: model_terms:ir.ui.view,arch_db:delivery_logista.report_logista_label_document
+msgid "Tot:"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,field_description:delivery_logista.field_delivery_carrier__logista_tracking_url
+msgid "Tracking URL"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model,name:delivery_logista.model_stock_picking
+msgid "Transfer"
+msgstr ""
+
+#. module: delivery_logista
+#. odoo-python
+#: code:addons/delivery_logista/models/logista_request.py:0
+msgid "Unexpected response from Logista Parcel shipment API: %s"
+msgstr ""
+
+#. module: delivery_logista
+#. odoo-python
+#: code:addons/delivery_logista/models/delivery_carrier.py:0
+msgid "ZIP %(zip)s -> Delegation: %(del)s (Code %(code)s), Zone: %(zone)s"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields.selection,name:delivery_logista.selection__delivery_carrier__logista_label_format__zpl
+msgid "ZPL (Zebra Thermal Printer)"
+msgstr ""
+
+#. module: delivery_logista
+#: model_terms:ir.ui.view,arch_db:delivery_logista.view_delivery_carrier_form_inherit_logista
+msgid "ePackingList & Base Pricing"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,field_description:delivery_logista.field_delivery_carrier__logista_epacking_mailing
+msgid "ePackingList Email Delivery"
+msgstr ""
+
+#. module: delivery_logista
+#: model:ir.model.fields,field_description:delivery_logista.field_delivery_carrier__logista_epacking_printing
+msgid "ePackingList Print Copy"
+msgstr ""

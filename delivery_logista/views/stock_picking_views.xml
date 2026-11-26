@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Acysos S.L.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_picking_form_inherit_logista" model="ir.ui.view">
+        <field name="name">stock.picking.form.inherit.logista</field>
+        <field name="model">stock.picking</field>
+        <field
+            name="inherit_id"
+            ref="stock_delivery.view_picking_withcarrier_out_form"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='print_return_label']/.." position="inside">
+                <button
+                    name="logista_get_label"
+                    string="Logista Label"
+                    type="object"
+                    invisible="not carrier_tracking_ref or delivery_type != 'logista'"
+                />
+            </xpath>
+            <xpath expr="//group[@name='carrier_data']" position="after">
+                <group
+                    name="logista_shipping_options"
+                    string="Logista Parcel Options"
+                    invisible="delivery_type != 'logista'"
+                >
+                    <field name="logista_service_id" />
+                    <field name="logista_freight_type" />
+                    <field name="logista_arranged_delivery_date" />
+                    <field name="logista_delivery_note_action" />
+                    <field name="logista_tight_flow" />
+                    <field name="logista_pallets_qty" />
+                    <field name="logista_loose_packages_qty" />
+                    <field name="logista_cod_amount" />
+                    <field name="logista_insured_value" />
+                    <field name="logista_customer_reference" />
+                    <field name="logista_comments" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
