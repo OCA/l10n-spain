@@ -9,7 +9,6 @@
 - Realizar declaración solo de proveedores.
 - No se permite marcar las operaciones como de seguro (para entidades
   aseguradoras).
-- No se permite marcar las operaciones como de arrendamiento.
 - No se incluye la gestión del criterio de caja.
 - No se incluye la gestión de inversión de sujeto pasivo.
 - No se incluye la gestión de depósito aduanero.

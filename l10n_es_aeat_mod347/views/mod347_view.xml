@@ -264,6 +264,7 @@
             <list decoration-danger="check_ok==False">
                 <field name="partner_vat" select="1" />
                 <field name="partner_id" select="1" />
+                <field name="real_estate_id" optional="show" />
                 <field name="reference" select="2" />
                 <field name="amount" />
                 <field name="address" />
@@ -299,6 +300,7 @@
                 </group>
                 <group string="Real estate info">
                     <group>
+                        <field name="real_estate_id" />
                         <field name="situation" />
                         <field name="reference" />
                     </group>

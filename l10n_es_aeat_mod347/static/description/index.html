@@ -488,8 +488,19 @@ notificará a los seguidores que estén del mismo. Por defecto, el
 declaración. <strong>NOTA:</strong> Para que esto funcione, debe tener bien
 configurado todos los parámetros relativos a catchall, correo
 entrante, etc.</li>
+<li>Las líneas de las facturas de cliente con un inmueble (el local que
+la compañía alquila al cliente) se declaran aparte en un registro de
+empresa marcado como arrendamiento de local de negocio, con el
+importe de los alquileres IVA incluido, y crean un registro de
+inmueble por cliente e inmueble con los datos del inmueble. El resto
+de operaciones del cliente quedan en su registro general, que es el
+que recibe los cobros en efectivo. El límite de importe se aplica al
+total de operaciones del cliente.</li>
 <li>También puede introducir manualmente los registros de inmuebles para
-aquellos que no estén reflejados en el modelo 115.</li>
+aquellos que no estén reflejados en el modelo 115, eligiendo un
+inmueble para rellenar sus datos o escribiéndolos. Al calcular se
+vuelven a crear los registros de inmuebles que tienen un inmueble y
+se mantienen los que no lo tienen.</li>
 <li>Una vez cotejados todos los registros, se puede pulsar en el botón
 “Confirmar” para confirmar la declaración y dejar los datos ya
 fijos.</li>
@@ -511,7 +522,6 @@ E, F y G.</li>
 <li>Realizar declaración solo de proveedores.</li>
 <li>No se permite marcar las operaciones como de seguro (para entidades
 aseguradoras).</li>
-<li>No se permite marcar las operaciones como de arrendamiento.</li>
 <li>No se incluye la gestión del criterio de caja.</li>
 <li>No se incluye la gestión de inversión de sujeto pasivo.</li>
 <li>No se incluye la gestión de depósito aduanero.</li>
