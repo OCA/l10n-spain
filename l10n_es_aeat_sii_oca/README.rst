@@ -99,6 +99,12 @@ de gastos de envío debe llevar un impuesto de bienes, de forma que la
 posición fiscal extracomunitaria lo convierta en el impuesto exento de
 exportación de bienes en lugar del de servicios no sujetos.
 
+En las facturas emitidas con clave de registro 12 o 13 (arrendamiento de
+local de negocio) se envían los inmuebles de las líneas de la factura,
+uno por cada inmueble distinto y hasta un máximo de 15. Los campos de
+situación y referencia catastral de la factura quedan para las facturas
+cuyas líneas no tienen inmueble.
+
 Known issues / Roadmap
 ======================
 
