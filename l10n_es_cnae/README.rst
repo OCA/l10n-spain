@@ -1,9 +1,5 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ===============================
-Categorías de empresa CNAE 2009
+Categorías de empresa CNAE 2025
 ===============================
 
 .. 
@@ -17,7 +13,7 @@ Categorías de empresa CNAE 2009
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github
@@ -32,8 +28,9 @@ Categorías de empresa CNAE 2009
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-Añade todas las categorías CNAE 2009 (españolas) al listado de
-industrias de empresa, además de todas las categorías NACE (europeas).
+Añade todas las categorías CNAE 2025 (españolas) al listado de
+industrias de empresa, además de todas las categorías NACE Rev. 2.1
+(europeas).
 
 **Table of contents**
 
@@ -43,13 +40,60 @@ industrias de empresa, además de todas las categorías NACE (europeas).
 Installation
 ============
 
-Necesita tener disponible el módulo
-``l10n_eu_nace <https://github.com/OCA/community-data-files/tree/17.0/l10n_eu_nace>``\ \_
-para que este funcione.
+Al instalar el módulo se crean las subclases CNAE 2025, sin necesidad de
+conexión. Para importar los nombres de las categorías NACE en todos los
+idiomas activos, hay que ir a *Contactos > Configuración > Importar
+industrias NACE* y lanzar el asistente.
 
-Para añadir las categorías CNAE 2009 (españolas) al listado de
-industrias, se tiene que ir a Contactos > Configuración > Importar
-Industrias NACE y lanzar el asistente.
+Migrar desde CNAE 2009
+----------------------
+
+Si ya tenía las categorías CNAE 2009, actualice este módulo y
+``l10n_eu_nace``. Además de migrar los sectores NACE Rev. 2 a NACE Rev.
+2.1 (ver ``l10n_eu_nace``), la actualización:
+
+1. Reutiliza las subclases CNAE 2009 que mantienen código y actividad en
+   CNAE 2025 (p. ej. 10.21) y actualiza su nombre.
+
+2. Archiva el resto y pasa los registros que las usan a su equivalente
+   en CNAE 2025, según la tabla de correspondencias del INE. Cuando la
+   tabla da varias opciones, se ha elegido la que mejor encaja con la
+   actividad:
+
+   +----------------------------------+----------------------------------+
+   | CNAE 2009                        | CNAE 2025                        |
+   +==================================+==================================+
+   | 35.15 Energía hidroeléctrica     | 35.12 Electricidad de origen     |
+   |                                  | renovable                        |
+   +----------------------------------+----------------------------------+
+   | 35.16 Energía térmica            | 35.11 Electricidad de origen no  |
+   | convencional                     | renovable                        |
+   +----------------------------------+----------------------------------+
+   | 35.17 Energía nuclear            | 35.11 Electricidad de origen no  |
+   |                                  | renovable                        |
+   +----------------------------------+----------------------------------+
+   | 35.18 Energía eólica             | 35.12 Electricidad de origen     |
+   |                                  | renovable                        |
+   +----------------------------------+----------------------------------+
+   | 35.19 Energía de otros tipos     | 35.12 Electricidad de origen     |
+   |                                  | renovable                        |
+   +----------------------------------+----------------------------------+
+   | 41.21 Edificios residenciales    | 41.01 Edificios residenciales    |
+   +----------------------------------+----------------------------------+
+   | 41.22 Edificios no residenciales | 41.02 Edificios no residenciales |
+   +----------------------------------+----------------------------------+
+   | 85.43 Educación universitaria    | 85.41 Educación universitaria    |
+   +----------------------------------+----------------------------------+
+   | 85.44 Educación terciaria no     | 85.42 Educación terciaria no     |
+   | universitaria                    | universitaria                    |
+   +----------------------------------+----------------------------------+
+   | 91.05 Bibliotecas                | 91.11 Bibliotecas                |
+   +----------------------------------+----------------------------------+
+   | 91.06 Archivos                   | 91.12 Archivos                   |
+   +----------------------------------+----------------------------------+
+
+   Ojo: en NACE Rev. 2.1, 35.15 es *Comercio de electricidad* y 35.16
+   *Almacenamiento de electricidad*, por eso no se reutilizan.
 
 Usage
 =====
@@ -77,6 +121,7 @@ Authors
 -------
 
 * Tecnativa
+* Moduon
 
 Contributors
 ------------
