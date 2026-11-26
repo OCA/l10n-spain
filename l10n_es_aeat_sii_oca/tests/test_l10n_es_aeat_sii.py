@@ -8,6 +8,8 @@
 
 import json
 
+from freezegun import freeze_time
+
 from odoo import exceptions
 from odoo.modules.module import get_resource_path
 
@@ -343,6 +345,35 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
         for inv_type, lines, extra_vals in mapping:
             self._create_and_test_invoice_sii_dict(inv_type, lines, extra_vals)
         return
+
+    def test_registration_date_madrid_night(self):
+        """Registration date uses Madrid time, not UTC, when the user has no tz."""
+        supplier = self.supplier.copy()
+        supplier.country_id = self.env.ref("base.es")
+        supplier.vat = "A46180576"
+        self.billing_user.tz = False
+        with freeze_time("2026-07-24 23:58:11"):  # 01:58 on the 25th in Madrid
+            invoice = self._invoice_purchase_create(
+                "2026-07-25",
+                extra_vals={
+                    "partner_id": supplier.id,
+                    "ref": "TEST REF",
+                    "invoice_line_ids": [
+                        (
+                            0,
+                            0,
+                            {
+                                "name": "Test line",
+                                "account_id": self.accounts["600000"].id,
+                                "price_unit": 100.0,
+                                "quantity": 1,
+                            },
+                        )
+                    ],
+                },
+            )
+            inv_dict = invoice.with_user(self.billing_user)._get_aeat_invoice_dict()
+        self.assertEqual(inv_dict["FacturaRecibida"]["FechaRegContable"], "25-07-2026")
 
     def test_action_cancel(self):
         self.invoice.invoice_jobs_ids.state = "started"
