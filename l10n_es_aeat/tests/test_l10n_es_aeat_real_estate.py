@@ -1,4 +1,5 @@
 # Copyright 2025 Netkia - Carlos Sainz-Pardo
+# Copyright 2026 Tecnativa - Carlos Dauden
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
 
 import logging
@@ -206,3 +207,48 @@ class TestL10nEsAeatRealEstate(TestL10nEsAeatModBase):
         # Al cambiar el NIF del partner se recalcula
         partner.vat = "ES00000001R"
         self.assertEqual(rec.representative_vat, "ES00000001R")
+
+    def _check_creation(self, cases, **common_vals):
+        """Create a real estate with each set of values, expecting an error for
+        the invalid ones."""
+        for case_vals, valid in cases:
+            vals = {**self._base_vals(), **common_vals, **case_vals}
+            with self.subTest(vals=case_vals):
+                if valid:
+                    self.env["l10n.es.aeat.real_estate"].create(vals)
+                else:
+                    with self.assertRaises(ValidationError):
+                        self.env["l10n.es.aeat.real_estate"].create(vals)
+
+    def test_reference_outside_the_dgc_cadastre(self):
+        """The Basque Country, Navarre and the foreign countries have their own
+        cadastral references, without the control characters of the DGC."""
+        self._check_creation(
+            [
+                ({"state_id": self.env.ref("base.state_es_na").id}, True),
+                ({"state_id": self.env.ref("base.state_es_bi").id}, True),
+                ({"country_id": self.env.ref("base.fr").id}, True),
+                ({"state_id": self.env.ref("base.state_es_m").id}, False),
+            ],
+            reference="201001000123400001",
+        )
+
+    def test_municipality_code(self):
+        """The INE municipality code has 5 digits, the first two of the province
+        of the zip, and it is not checked abroad."""
+        self._check_creation(
+            [
+                ({"municipality_code": "28079"}, True),
+                ({"municipality_code": "2807"}, False),
+                ({"municipality_code": "2807A"}, False),
+                ({"municipality_code": "08019"}, False),
+                (
+                    {
+                        "municipality_code": "751",
+                        "zip": "75001",
+                        "country_id": self.env.ref("base.fr").id,
+                    },
+                    True,
+                ),
+            ]
+        )
