@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="stock_package_type_form_inherit_transaher" model="ir.ui.view">
+        <field name="name">stock.package.type.form.inherit.transaher</field>
+        <field name="model">stock.package.type</field>
+        <field
+            name="inherit_id"
+            ref="stock_delivery.stock_package_type_form_delivery"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='shipper_package_code']" position="before">
+                <field
+                    name="transaher_packaging_code"
+                    invisible="package_carrier_type != 'transaher'"
+                    required="package_carrier_type == 'transaher'"
+                />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_quant_package_form_inherit_transaher" model="ir.ui.view">
+        <field name="name">stock.quant.package.form.inherit.transaher</field>
+        <field name="model">stock.quant.package</field>
+        <field name="inherit_id" ref="stock.view_quant_package_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='package_type_id']" position="after">
+                <field
+                    name="transaher_barcode"
+                    readonly="1"
+                    invisible="not transaher_barcode"
+                />
+                <field
+                    name="transaher_sscc"
+                    readonly="1"
+                    invisible="not transaher_sscc"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>

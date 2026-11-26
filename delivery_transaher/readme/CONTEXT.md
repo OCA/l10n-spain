@@ -1,0 +1,2 @@
+Companies shipping parcels and pallets across Spain and Portugal through **Grupo Transaher** need direct integration between Odoo's sales and warehouse workflows and Transaher's official **SOAP Web Services** (`MTRANS_WEB` / `MWSBridge`), eliminating manual shipment entry while automating 24-digit barcode labels, live tracking and incidence monitoring, daily loading manifests, and freight cost deviation auditing.
+

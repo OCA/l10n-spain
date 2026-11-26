@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_picking_form_inherit_transaher" model="ir.ui.view">
+        <field name="name">stock.picking.form.inherit.transaher</field>
+        <field name="model">stock.picking</field>
+        <field
+            name="inherit_id"
+            ref="stock_delivery.view_picking_withcarrier_out_form"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="/form/header" position="inside">
+                <field name="is_transaher_carrier" invisible="1" />
+                <button
+                    name="action_transaher_get_label"
+                    string="Transaher Label (WS)"
+                    type="object"
+                    icon="fa-barcode"
+                    invisible="not is_transaher_carrier or not carrier_tracking_ref"
+                />
+            </xpath>
+
+            <xpath expr="//notebook" position="inside">
+                <page
+                    string="Transaher Logistics"
+                    name="transaher_logistics"
+                    invisible="not is_transaher_carrier"
+                >
+                    <div class="mb-3 d-flex flex-wrap gap-2">
+                        <button
+                            name="action_transaher_calculate_rate"
+                            string="Calculate / Update Estimated Rate"
+                            type="object"
+                            class="btn btn-secondary"
+                            icon="fa-calculator"
+                        />
+                        <button
+                            name="action_transaher_print_local_label"
+                            string="Print Standard Barcode Label (QWeb)"
+                            type="object"
+                            class="btn btn-secondary"
+                            icon="fa-print"
+                        />
+                        <button
+                            name="tracking_state_update"
+                            string="Update Tracking &amp; Invoiced Costs"
+                            type="object"
+                            class="btn btn-secondary"
+                            icon="fa-refresh"
+                            invisible="not carrier_tracking_ref"
+                        />
+                        <button
+                            name="action_open_transaher_tracking_url"
+                            string="Open Transaher Portal"
+                            type="object"
+                            class="btn btn-info"
+                            icon="fa-external-link"
+                            invisible="not transaher_tracking_url"
+                        />
+                    </div>
+
+                    <group>
+                        <group
+                            string="Transaher Expedition &amp; Routing"
+                            name="transaher_shipment_info"
+                        >
+                            <field name="transaher_cod_expedicion" readonly="1" />
+                            <field name="transaher_expedition_key" readonly="1" />
+                            <field name="transaher_holding" readonly="1" />
+                            <field name="transaher_seccion" readonly="1" />
+                            <field name="transaher_centro" readonly="1" />
+                            <field name="transaher_centro_destino" readonly="1" />
+                            <field name="transaher_area_dis_cod" readonly="1" />
+                            <field name="transaher_area_dis_dsc" readonly="1" />
+                            <field name="transaher_servicio" readonly="1" />
+                            <field name="transaher_fecha_expedicion" readonly="1" />
+                            <field name="transaher_driver_info" readonly="1" />
+                            <field name="transaher_barcodes" readonly="1" />
+                            <field name="transaher_tracking_url" widget="url" />
+                        </group>
+                        <group
+                            string="Operational Parameters (Datosentrada)"
+                            name="transaher_operational_params"
+                        >
+                            <field
+                                name="transaher_package_type_id"
+                                readonly="state == 'done' and bool(carrier_tracking_ref)"
+                            />
+                            <field name="transaher_portes" />
+                            <field name="transaher_postal_rep_code" />
+                            <field
+                                name="transaher_obs_1"
+                                placeholder="Observations line 1 (max. 70 chars)"
+                            />
+                            <field
+                                name="transaher_obs_2"
+                                placeholder="Observations line 2 (max. 70 chars)"
+                            />
+                            <field name="transaher_insured_value" />
+                            <field name="transaher_cod_amount" />
+                        </group>
+                    </group>
+
+                    <group>
+                        <group
+                            string="Freight Rate Control &amp; Billing Audit"
+                            name="transaher_costs_audit"
+                        >
+                            <field name="transaher_chargeable_weight" />
+                            <field name="transaher_estimated_cost" />
+                            <field name="transaher_invoiced_cost" />
+                            <field
+                                name="transaher_cost_difference"
+                                decoration-danger="transaher_cost_difference &gt; 0.01"
+                                decoration-success="transaher_cost_difference &lt;= 0.01 and transaher_invoiced_cost &gt; 0"
+                            />
+                            <field name="transaher_invoice_number" />
+                            <field name="transaher_cost_breakdown" colspan="2" />
+                        </group>
+                        <group
+                            string="Transaher Incidences"
+                            name="transaher_incidences_group"
+                        >
+                            <field name="transaher_has_incidence" readonly="1" />
+                            <field
+                                name="transaher_incidence_text"
+                                colspan="2"
+                                readonly="1"
+                                invisible="not transaher_has_incidence"
+                            />
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_picking_tree_inherit_transaher" model="ir.ui.view">
+        <field name="name">stock.picking.list.inherit.transaher</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock_delivery.vpicktree_view_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='carrier_tracking_ref']" position="after">
+                <field
+                    name="delivery_state"
+                    optional="hide"
+                    widget="badge"
+                    decoration-info="delivery_state in ('shipping_recorded_in_carrier', 'in_transit')"
+                    decoration-warning="delivery_state == 'no_update'"
+                    decoration-success="delivery_state in ('customer_delivered', 'warehouse_delivered')"
+                    decoration-danger="delivery_state in ('incident', 'canceled_shipment')"
+                />
+                <field
+                    name="transaher_estimated_cost"
+                    optional="hide"
+                    sum="Total Transaher Estimated"
+                />
+                <field
+                    name="transaher_invoiced_cost"
+                    optional="hide"
+                    sum="Total Transaher Invoiced"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>

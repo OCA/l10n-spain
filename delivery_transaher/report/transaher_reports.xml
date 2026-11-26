@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Paper Format for 100x150mm Standard Transaher Shipping Label (Section 5) -->
+    <record id="paperformat_transaher_label_100x150" model="report.paperformat">
+        <field name="name">Transaher Thermal Label 100x150mm</field>
+        <field name="default" eval="False" />
+        <field name="format">custom</field>
+        <field name="page_height">150</field>
+        <field name="page_width">100</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">3</field>
+        <field name="margin_bottom">3</field>
+        <field name="margin_left">3</field>
+        <field name="margin_right">3</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">0</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <!-- Report 1: Daily Loading Manifest PDF (Section 8 - awsmnfprtsoap) -->
+    <template id="report_transaher_manifest_document">
+        <t t-call="web.basic_layout">
+            <div
+                class="page"
+                style="font-family: Helvetica, Arial, sans-serif; font-size: 11px; color: #111;"
+            >
+                <table
+                    style="width: 100%; border-bottom: 2px solid #1B3F7A; margin-bottom: 12px; padding-bottom: 6px;"
+                >
+                    <tr>
+                        <td style="width: 65%; vertical-align: top;">
+                            <h2 style="margin: 0; color: #1B3F7A; font-weight: bold;">
+                                TRANSAHER — DAILY LOADING MANIFEST
+                            </h2>
+                            <div style="margin-top: 6px;">
+                                <strong>Shipper Company:</strong> <span
+                                t-out="company_name"
+                            />
+                                <t t-if="company_vat"> (<span
+                                t-out="company_vat"
+                            />)</t><br />
+                                <strong>Delivery Method:</strong> <span
+                                t-out="carrier_name"
+                            /><br />
+                                <strong>Period:</strong> <span
+                                t-out="date_from_display"
+                            /> — <span t-out="date_to_display" /><br />
+                                <strong>Printed:</strong> <span t-out="printed_at" />
+                            </div>
+                        </td>
+                        <td
+                            style="width: 35%; border: 1px solid #333; padding: 8px; vertical-align: top; height: 75px;"
+                        >
+                            <strong>Carrier Signature &amp; Stamp (Transaher):</strong>
+                        </td>
+                    </tr>
+                </table>
+
+                <table
+                    class="table table-sm table-bordered"
+                    style="width: 100%; border-collapse: collapse;"
+                >
+                    <thead style="background-color: #f0f4f8;">
+                        <tr>
+                            <th style="padding: 5px;">Expedition</th>
+                            <th style="padding: 5px;">Center</th>
+                            <th style="padding: 5px;">Ref. / Delivery Note</th>
+                            <th style="padding: 5px;">Consignee</th>
+                            <th style="padding: 5px;">Address</th>
+                            <th style="padding: 5px;">ZIP / City</th>
+                            <th style="padding: 5px; text-align: center;">Packages</th>
+                            <th
+                                style="padding: 5px; text-align: right;"
+                            >Weight (kg)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="expeditions or []" t-as="exp">
+                            <tr>
+                                <td style="padding: 4px;">
+                                    <strong>
+                                        <span t-out="exp.get('cod_expedicion')" />
+                                    </strong>
+                                </td>
+                                <td style="padding: 4px; text-align: center;">
+                                    <span t-out="exp.get('centro')" />
+                                </td>
+                                <td style="padding: 4px;">
+                                    <span t-out="exp.get('albaran_ordenante')" />
+                                </td>
+                                <td style="padding: 4px;">
+                                    <span t-out="exp.get('nombre_destinatario')" />
+                                </td>
+                                <td style="padding: 4px;">
+                                    <span t-out="exp.get('domicilio_destinatario')" />
+                                </td>
+                                <td style="padding: 4px;">
+                                    <span t-out="exp.get('postal_destinatario')" />
+                                    <span t-out="exp.get('poblacion_destinatario')" />
+                                </td>
+                                <td style="padding: 4px; text-align: center;">
+                                    <span t-out="exp.get('bultos')" />
+                                </td>
+                                <td style="padding: 4px; text-align: right;">
+                                    <span
+                                        t-out="'%.2f' % float(exp.get('peso') or 0.0)"
+                                    />
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                    <tfoot>
+                        <tr style="background-color: #f0f4f8; font-weight: bold;">
+                            <td colspan="6" style="padding: 6px; text-align: right;">
+                                TOTAL EXPEDITIONS: <span t-out="total_expeditions" />
+                            </td>
+                            <td style="padding: 6px; text-align: center;">
+                                <span t-out="total_bultos" />
+                            </td>
+                            <td style="padding: 6px; text-align: right;">
+                                <span t-out="'%.2f' % float(total_peso or 0.0)" /> kg
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </t>
+    </template>
+
+    <record id="action_report_transaher_manifest" model="ir.actions.report">
+        <field name="name">Transaher Daily Manifest</field>
+        <field name="model">transaher.manifest.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field
+            name="report_name"
+        >delivery_transaher.report_transaher_manifest_document</field>
+        <field
+            name="report_file"
+        >delivery_transaher.report_transaher_manifest_document</field>
+    </record>
+
+    <!-- Report 2: Standard Transaher Shipping Label with 9 Zones & 24-Digit Barcode (Section 5.1 & 5.2) -->
+    <template id="report_transaher_label_document">
+        <t t-call="web.basic_layout">
+            <t t-foreach="docs" t-as="picking">
+                <t t-set="label_items" t-value="picking._get_transaher_label_items()" />
+                <t t-foreach="label_items" t-as="lbl">
+                    <div
+                        class="page"
+                        style="page-break-after: always; font-family: Helvetica, Arial, sans-serif; font-size: 10px; border: 1.5px solid #000; padding: 6px;"
+                    >
+                        <!-- Header Logos: Logo Transaher | Logo cliente (Section 5.1) -->
+                        <table
+                            style="width: 100%; border-bottom: 1px solid #000; margin-bottom: 4px;"
+                        >
+                            <tr>
+                                <td
+                                    style="width: 55%; font-size: 16px; font-weight: 900; color: #1B3F7A; vertical-align: middle;"
+                                >
+                                    TRANSAHER
+                                </td>
+                                <td
+                                    style="width: 45%; text-align: right; font-weight: bold; font-size: 10px; vertical-align: middle;"
+                                >
+                                    <img
+                                        t-if="picking.company_id.logo"
+                                        t-att-src="image_data_uri(picking.company_id.logo)"
+                                        style="max-height: 26px; max-width: 115px;"
+                                        alt="Customer Logo"
+                                    />
+                                    <span t-else="" t-out="lbl['remitente_name']" />
+                                </td>
+                            </tr>
+                        </table>
+
+                        <!-- Zone 1: Origin Center + 24-Digit Code 128 Barcode (Section 5.2) -->
+                        <div
+                            style="font-weight: bold; font-size: 11px; margin-bottom: 2px;"
+                        >
+                            <span t-out="lbl['origin_label']" />
+                        </div>
+                        <div style="text-align: center; margin: 4px 0;">
+                            <img
+                                t-att-src="'/report/barcode/?barcode_type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', lbl['barcode'], 560, 95)"
+                                style="width: 85mm; height: 26mm;"
+                                alt="Transaher 24-Digit Barcode"
+                            />
+                            <div
+                                style="font-family: monospace; font-size: 9px; letter-spacing: 1px;"
+                            >
+                                <span t-out="lbl['barcode']" />
+                            </div>
+                        </div>
+
+                        <!-- Zone 2: Date, Packages (N/Total), Weight -->
+                        <table
+                            style="width: 100%; border-top: 1px solid #000; border-bottom: 1px solid #000; padding: 2px 0;"
+                        >
+                            <tr>
+                                <td style="width: 55%;">
+                                    <strong>Fecha:</strong>
+                                    <span t-out="lbl['fecha']" />
+                                    <br />
+                                    <strong>Kilos:</strong>
+                                    <span t-out="lbl['peso_total']" />
+                                </td>
+                                <td
+                                    style="width: 45%; text-align: right; font-size: 14px; font-weight: bold;"
+                                >
+                                    BULTOS <span t-out="lbl['bulto_index']" /> / <span
+                                    t-out="lbl['bultos_total']"
+                                />
+                                </td>
+                            </tr>
+                        </table>
+
+                        <!-- Zone 4 & Zone 3: Shipper & Observations -->
+                        <div style="border-bottom: 1px solid #000; padding: 2px 0;">
+                            <strong>REMITENTE:</strong>
+                            <span t-out="lbl['remitente_name']" />
+                        </div>
+                        <div
+                            style="border-bottom: 1px solid #000; padding: 2px 0; min-height: 22px;"
+                        >
+                            <strong>OBSERVACIONES:</strong>
+                            <span t-out="lbl['observaciones']" />
+                        </div>
+
+                        <!-- Zone 5: Order / Ref / Freight Terms (PAGADOS / DEBIDOS) -->
+                        <table
+                            style="width: 100%; border-bottom: 1px solid #000; font-size: 9px;"
+                        >
+                            <tr>
+                                <td
+                                    style="width: 38%; border-right: 1px solid #000; padding: 2px;"
+                                >
+                                    <strong>PEDIDO:</strong>
+                                    <span t-out="lbl['pedido']" />
+                                </td>
+                                <td
+                                    style="width: 34%; border-right: 1px solid #000; padding: 2px;"
+                                >
+                                    <strong>REF.:</strong>
+                                    <span t-out="lbl['referencia']" />
+                                </td>
+                                <td
+                                    style="width: 28%; text-align: center; font-weight: bold; padding: 2px;"
+                                >
+                                    <span t-out="lbl['portes_label']" />
+                                </td>
+                            </tr>
+                        </table>
+
+                        <!-- Zone 6: Transaher Expedition Number -->
+                        <div
+                            style="border-bottom: 1px solid #000; padding: 3px 0; font-size: 15px; font-weight: 900;"
+                        >
+                            <span
+                                style="font-size: 9px; font-weight: normal;"
+                            >Expedición:</span>
+                            <span t-out="lbl['cod_expedicion']" />
+                        </div>
+
+                        <!-- Zone 7: Consignee -->
+                        <div
+                            style="border-bottom: 1px solid #000; padding: 3px 0; min-height: 44px;"
+                        >
+                            <div>
+                                <strong>CONSIGNATARIO:</strong>
+                                <span t-out="lbl['consignatario_name']" />
+                            </div>
+                            <div>
+                                <span t-out="lbl['consignatario_street']" />
+                            </div>
+                            <div style="font-weight: bold; font-size: 11px;">
+                                <span t-out="lbl['consignatario_cp_city']" />
+                            </div>
+                        </div>
+
+                        <!-- Zone 8 & Zone 9: Distribution Area & Destination Route -->
+                        <div
+                            style="border-bottom: 1px solid #000; padding: 2px 0; font-weight: bold;"
+                        >
+                            Z.R.: <span t-out="lbl['area_dis_cod']" /> <span
+                            t-out="lbl['area_dis_dsc']"
+                        />
+                        </div>
+                        <table style="width: 100%; padding-top: 2px;">
+                            <tr>
+                                <td
+                                    style="width: 70%; font-size: 14px; font-weight: 900;"
+                                >
+                                    <span t-out="lbl['centro_destino']" />
+                                </td>
+                                <td
+                                    style="width: 30%; text-align: right; font-size: 12px; font-weight: bold;"
+                                >
+                                    <span t-out="lbl['area_dis_cod']" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_transaher_label" model="ir.actions.report">
+        <field name="name">Transaher Standard Label (24-Digit Barcode)</field>
+        <field name="model">stock.picking</field>
+        <field name="report_type">qweb-pdf</field>
+        <field
+            name="report_name"
+        >delivery_transaher.report_transaher_label_document</field>
+        <field
+            name="report_file"
+        >delivery_transaher.report_transaher_label_document</field>
+        <field name="paperformat_id" ref="paperformat_transaher_label_100x150" />
+        <field
+            name="print_report_name"
+        >'Transaher_Label_%s' % (object.transaher_cod_expedicion or object.name)</field>
+    </record>
+</odoo>

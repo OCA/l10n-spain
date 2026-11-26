@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Breakdown in the "Add a shipping method" wizard (choose.delivery.carrier) -->
+    <record id="choose_delivery_carrier_view_form_inherit_transaher" model="ir.ui.view">
+        <field name="name">choose.delivery.carrier.form.inherit.transaher</field>
+        <field name="model">choose.delivery.carrier</field>
+        <field name="inherit_id" ref="delivery.choose_delivery_carrier_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//group" position="after">
+                <field name="is_transaher_carrier" invisible="1" />
+                <group
+                    string="Transaher Tariff Breakdown"
+                    invisible="not is_transaher_carrier or not transaher_rate_breakdown"
+                >
+                    <group>
+                        <field name="transaher_estimated_cost" />
+                        <field name="transaher_chargeable_weight" />
+                    </group>
+                    <group>
+                        <field
+                            name="transaher_rate_breakdown"
+                            nolabel="1"
+                            colspan="2"
+                        />
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Transaher Internal Cost Information on Sales Order -->
+    <record id="view_order_form_inherit_transaher" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.transaher</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='sale_shipping']" position="inside">
+                <field
+                    name="transaher_estimated_cost"
+                    invisible="not transaher_estimated_cost"
+                    readonly="1"
+                />
+                <field
+                    name="transaher_chargeable_weight"
+                    invisible="not transaher_chargeable_weight"
+                    readonly="1"
+                />
+                <field
+                    name="transaher_rate_breakdown"
+                    invisible="not transaher_rate_breakdown"
+                    readonly="1"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>

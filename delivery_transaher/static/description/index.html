@@ -1,0 +1,640 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils: https://docutils.sourceforge.io/" />
+<title>Delivery Transaher</title>
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id: html4css1.css 9511 2024-01-13 09:50:07Z milde $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+Despite the name, some widely supported CSS2 features are used.
+
+See https://docutils.sourceforge.io/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+.subscript {
+  vertical-align: sub;
+  font-size: smaller }
+
+.superscript {
+  vertical-align: super;
+  font-size: smaller }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+object[type="image/svg+xml"], object[type="application/x-shockwave-flash"] {
+  overflow: hidden;
+}
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title, .code .error {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left, .figure.align-left, object.align-left, table.align-left {
+  clear: left ;
+  float: left ;
+  margin-right: 1em }
+
+img.align-right, .figure.align-right, object.align-right, table.align-right {
+  clear: right ;
+  float: right ;
+  margin-left: 1em }
+
+img.align-center, .figure.align-center, object.align-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+table.align-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.align-left {
+  text-align: left }
+
+.align-center {
+  clear: both ;
+  text-align: center }
+
+.align-right {
+  text-align: right }
+
+/* reset inner alignment in figures */
+div.align-right {
+  text-align: inherit }
+
+/* div.align-center * { */
+/*   text-align: left } */
+
+.align-top    {
+  vertical-align: top }
+
+.align-middle {
+  vertical-align: middle }
+
+.align-bottom {
+  vertical-align: bottom }
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font: inherit }
+
+pre.literal-block, pre.doctest-block, pre.math, pre.code {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+pre.code .ln { color: gray; } /* line numbers */
+pre.code, code { background-color: #eeeeee }
+pre.code .comment, code .comment { color: #5C6576 }
+pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
+pre.code .literal.string, code .literal.string { color: #0C5404 }
+pre.code .name.builtin, code .name.builtin { color: #352B84 }
+pre.code .deleted, code .deleted { background-color: #DEB0A1}
+pre.code .inserted, code .inserted { background-color: #A3D289}
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic, pre.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+/* "booktabs" style (no vertical lines) */
+table.docutils.booktabs {
+  border: 0px;
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  border-collapse: collapse;
+}
+table.docutils.booktabs * {
+  border: 0px;
+}
+table.docutils.booktabs th {
+  border-bottom: thin solid;
+  text-align: left;
+}
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+</head>
+<body>
+<div class="document" id="delivery-transaher">
+<h1 class="title">Delivery Transaher</h1>
+
+<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!! This file is generated by oca-gen-addon-readme !!
+!! changes will be overwritten.                   !!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!! source digest: sha256:5a53f2c913a2e3bdc23cb012c9e31fcb8dd1a34baead79a636b935989c6e6fb4
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/l10n-spain/tree/18.0/delivery_transaher"><img alt="OCA/l10n-spain" src="https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/l10n-spain-18-0/l10n-spain-18-0-delivery_transaher"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&amp;target_branch=18.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<p>This module integrates Odoo’s <tt class="docutils literal">delivery</tt> framework with <strong>Grupo
+Transaher</strong>’s official SOAP Web Services
+(<tt class="docutils literal"><span class="pre">https://clientes.transaher.es</span></tt>), relying natively on OCA standard
+logistics modules (<tt class="docutils literal">delivery_package_number</tt>, <tt class="docutils literal">delivery_state</tt>, and
+<tt class="docutils literal">stock_picking_volume</tt>):</p>
+<ul class="simple">
+<li><strong>Standard OCA Logistics Integration</strong>:<ul>
+<li><strong>Package Count (``delivery_package_number``)</strong>: Uses
+<tt class="docutils literal">picking.number_of_packages</tt> for <tt class="docutils literal">Datosentrada</tt> Field 11
+(<tt class="docutils literal">Bultos</tt>), 24-digit package barcode generation, QWeb labels,
+manifests, and <tt class="docutils literal">per_package</tt> tariff rules.</li>
+<li><strong>Shipment Volume (``stock_picking_volume``)</strong>: Uses
+<tt class="docutils literal">picking.volume</tt> and <tt class="docutils literal">product._get_volume_for_qty()</tt> for
+<tt class="docutils literal">Datosentrada</tt> Field 13 (<tt class="docutils literal">Volumen</tt> in m³) and volumetric
+chargeable weight calculation.</li>
+<li><strong>Carrier Tracking State (``delivery_state``)</strong>: Implements
+<tt class="docutils literal">transaher_tracking_state_update()</tt> for
+<tt class="docutils literal">picking.tracking_state_update()</tt> and OCA’s scheduled cron
+<tt class="docutils literal">_update_delivery_state()</tt>, populating <tt class="docutils literal">delivery_state</tt>,
+<tt class="docutils literal">tracking_state</tt>, <tt class="docutils literal">tracking_state_history</tt>, <tt class="docutils literal">tracking_json</tt>,
+<tt class="docutils literal">date_shipped</tt>, and <tt class="docutils literal">date_delivered</tt>.</li>
+</ul>
+</li>
+<li><strong>Shipment Registration &amp; Cancellation (``stock.picking``)</strong>:<ul>
+<li>Automatic or manual shipment registration via <tt class="docutils literal">awsprcsatsoap</tt>
+(<tt class="docutils literal">wsPrcSATSOAP.Execute</tt>, <tt class="docutils literal">Ediprocod = 20</tt>) building the 18-field
+pipe-separated <tt class="docutils literal">Datosentrada</tt> string with comma decimal formatting
+and automatic pipe sanitization.</li>
+<li>Full persistence of Transaher’s composite shipment identifier
+(<tt class="docutils literal">Holding.Seccion.Centro.CodExpedicion</tt>) plus destination routing
+metadata (<tt class="docutils literal">Centro_Destino</tt>, <tt class="docutils literal">Area_Dis_Cod</tt>, <tt class="docutils literal">Area_Dis_Dsc</tt>,
+<tt class="docutils literal">Servicio</tt>, <tt class="docutils literal">Expedicion_Ch</tt>).</li>
+<li>One-click shipment cancellation via <tt class="docutils literal">awsExpBaja</tt>
+(<tt class="docutils literal">wsExpBaja.Execute</tt>) enforcing Transaher’s status rules
+(<tt class="docutils literal">shipping_recorded_in_carrier</tt>).</li>
+</ul>
+</li>
+<li><strong>Official &amp; Local Standard Label Generation (PDF / ZPL / QWeb)</strong>:<ul>
+<li>Automatic 20-minute token management via <tt class="docutils literal">wsgetToken</tt> with cached
+reuse and transparent renewal on token expiration codes (<tt class="docutils literal">1</tt> /
+<tt class="docutils literal">2</tt>).</li>
+<li>Official label download via <tt class="docutils literal">wsEtiExpSOAP</tt> supporting Base64
+<tt class="docutils literal">PDF</tt> and thermal formats, configurable <tt class="docutils literal">&lt;Bultos&gt;</tt> tag (<tt class="docutils literal"><span class="pre">-1</span></tt>
+vs empty), and <tt class="docutils literal">PosicionInicialImpresion</tt> for multi-label A4
+sheets.</li>
+<li>Built-in QWeb PDF 100x150mm 9-zone + 24-digit Code128 standard label
+generator implementing Transaher’s exact specification (including
+Portugal’s 4-digit postal code + <tt class="docutils literal">9</tt> padding rule), usable
+standalone or as an automatic fallback.</li>
+</ul>
+</li>
+<li><strong>Live Tracking, Incidences &amp; Invoice Cost Auditing</strong>:<ul>
+<li>Direct link to Transaher’s web tracking portal.</li>
+<li>Real-time synchronization via <tt class="docutils literal">wsInformacionTransporte</tt> retrieving
+expedition events, incidences, deliveries, package SSCCs, and
+invoiced freight amounts (<tt class="docutils literal">sdtImportes</tt>), auditing cost deviations
+(<tt class="docutils literal">transaher_cost_difference</tt>).</li>
+</ul>
+</li>
+<li><strong>Daily Loading Manifest (``awsmnfprtsoap``)</strong>:<ul>
+<li>Interactive wizard querying <tt class="docutils literal">awsmnfprtsoap</tt>
+(<tt class="docutils literal">wsMnfPrtSOAP.Execute</tt>) for a date/time window (<tt class="docutils literal">aaaammddhhmm</tt>)
+and generating a formatted PDF Loading Manifest
+(<tt class="docutils literal">Manifiesto de Carga</tt>) for the driver’s signature.</li>
+</ul>
+</li>
+<li><strong>Freight Tariff Engine &amp; Internal Cost Preservation</strong>:<ul>
+<li>Configurable zone/province/postal-prefix/weight/package tariff rules
+(<tt class="docutils literal">transaher.tariff.rule</tt>) supporting <tt class="docutils literal">fixed</tt>, <tt class="docutils literal">per_kg</tt>,
+<tt class="docutils literal">per_excess_kg</tt>, <tt class="docutils literal">per_100kg</tt>, and <tt class="docutils literal">per_package</tt> calculation
+modes plus volumetric weight conversion and fuel, COD, and cargo
+insurance surcharges.</li>
+<li>Internal estimated cost tracking on <tt class="docutils literal">sale.order</tt> and
+<tt class="docutils literal">stock.picking</tt> even when shipping is free for the customer.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Table of contents</strong></p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#use-cases-context" id="toc-entry-1">Use Cases / Context</a></li>
+<li><a class="reference internal" href="#installation" id="toc-entry-2">Installation</a></li>
+<li><a class="reference internal" href="#configuration" id="toc-entry-3">Configuration</a></li>
+<li><a class="reference internal" href="#usage" id="toc-entry-4">Usage</a><ul>
+<li><a class="reference internal" href="#calculating-shipping-rates-on-sales-orders" id="toc-entry-5">Calculating Shipping Rates on Sales Orders</a></li>
+<li><a class="reference internal" href="#sending-shipments-printing-labels-from-pickings" id="toc-entry-6">Sending Shipments &amp; Printing Labels from Pickings</a></li>
+<li><a class="reference internal" href="#generating-the-daily-loading-manifest" id="toc-entry-7">Generating the Daily Loading Manifest</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#known-issues-roadmap" id="toc-entry-8">Known issues / Roadmap</a></li>
+<li><a class="reference internal" href="#bug-tracker" id="toc-entry-9">Bug Tracker</a></li>
+<li><a class="reference internal" href="#credits" id="toc-entry-10">Credits</a><ul>
+<li><a class="reference internal" href="#authors" id="toc-entry-11">Authors</a></li>
+<li><a class="reference internal" href="#contributors" id="toc-entry-12">Contributors</a></li>
+<li><a class="reference internal" href="#maintainers" id="toc-entry-13">Maintainers</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="use-cases-context">
+<h1><a class="toc-backref" href="#toc-entry-1">Use Cases / Context</a></h1>
+<p>Companies shipping parcels and pallets across Spain and Portugal through
+<strong>Grupo Transaher</strong> need direct integration between Odoo’s sales and
+warehouse workflows and Transaher’s official <strong>SOAP Web Services</strong>
+(<tt class="docutils literal">MTRANS_WEB</tt> / <tt class="docutils literal">MWSBridge</tt>), eliminating manual shipment entry
+while automating 24-digit barcode labels, live tracking and incidence
+monitoring, daily loading manifests, and freight cost deviation
+auditing.</p>
+</div>
+<div class="section" id="installation">
+<h1><a class="toc-backref" href="#toc-entry-2">Installation</a></h1>
+<p>This module depends on the following OCA addons:</p>
+<ul class="simple">
+<li><tt class="docutils literal">delivery_package_number</tt> (<tt class="docutils literal"><span class="pre">OCA/delivery-carrier</span></tt>)</li>
+<li><tt class="docutils literal">delivery_state</tt> (<tt class="docutils literal"><span class="pre">OCA/delivery-carrier</span></tt>)</li>
+<li><tt class="docutils literal">stock_picking_volume</tt> (<tt class="docutils literal"><span class="pre">OCA/stock-logistics-warehouse</span></tt>, which
+requires <tt class="docutils literal">product_dimension</tt> from <tt class="docutils literal"><span class="pre">OCA/product-attribute</span></tt>)</li>
+</ul>
+<p>Install <tt class="docutils literal">delivery_transaher</tt> from the Odoo Apps menu or via command
+line:</p>
+<pre class="code bash literal-block">
+odoo-bin<span class="w"> </span>-d<span class="w"> </span>&lt;database&gt;<span class="w"> </span>-i<span class="w"> </span>delivery_transaher
+</pre>
+</div>
+<div class="section" id="configuration">
+<h1><a class="toc-backref" href="#toc-entry-3">Configuration</a></h1>
+<p>To configure this module:</p>
+<ol class="arabic simple">
+<li>Go to <strong>Inventory &gt; Configuration &gt; Delivery &gt; Shipping Methods</strong> (or
+<strong>Sales &gt; Configuration &gt; Shipping Methods</strong>).</li>
+<li>Open the preconfigured <strong>Transaher Smart Logistic</strong> shipping method
+or create a new one with <strong>Provider</strong> = <tt class="docutils literal">Transaher</tt>.</li>
+<li>In the <strong>Transaher Web Service Configuration</strong> tab:<ul>
+<li>Enter your <strong>Test Client Code (``CodigoCliente``)</strong>, <strong>Test
+Password (``PasswordCliente``)</strong>, <strong>Production Client Code
+(``CodigoCliente``)</strong>, and <strong>Production Password
+(``PasswordCliente``)</strong> provided by Grupo Transaher.</li>
+<li>Verify the <strong>Holding Code</strong> (<tt class="docutils literal">0</tt>), <strong>Section Code</strong> (<tt class="docutils literal">10</tt>),
+<strong>Origin Center Code</strong> (e.g. <tt class="docutils literal">461</tt> for Valencia or <tt class="docutils literal">81</tt> for
+Barcelona), <strong>Protocol Code</strong> (<tt class="docutils literal">20</tt>), and <strong>Default Freight Terms
+(``Tipo de Portes``)</strong> (<tt class="docutils literal">1</tt> Freight Prepaid / <tt class="docutils literal">2</tt> Freight
+Collect).</li>
+<li>Select your <strong>Label Generation Mode</strong>
+(<tt class="docutils literal">Transaher Web Service PDF (with Local QWeb Label Fallback)</tt>,
+<tt class="docutils literal">Transaher Web Service Only (wsEtiExpSOAP)</tt>, or
+<tt class="docutils literal">Local Standard Transaher Label PDF <span class="pre">(24-digit</span> Barcode)</tt>),
+<strong>wsEtiExpSOAP Package Tag (``&lt;Bultos&gt;``)</strong>, and <strong>Initial Print
+Position (Multi-Label Sheet)</strong>.</li>
+<li>Click the <strong>Test Token wsgetToken</strong> smart button to validate
+authentication against <tt class="docutils literal">wsgetToken.svc</tt>.</li>
+</ul>
+</li>
+<li>In the <strong>Transaher Tariffs &amp; Costs</strong> tab:<ul>
+<li>Configure <strong>Volumetric Factor (kg / m³)</strong> (e.g. <tt class="docutils literal">250</tt>), fuel,
+COD, and insurance surcharges, <strong>Free Shipping for Customer (Keep
+Internal Cost)</strong>, and local zone/province/ZIP/weight/package tariff
+rules.</li>
+</ul>
+</li>
+</ol>
+</div>
+<div class="section" id="usage">
+<h1><a class="toc-backref" href="#toc-entry-4">Usage</a></h1>
+<div class="section" id="calculating-shipping-rates-on-sales-orders">
+<h2><a class="toc-backref" href="#toc-entry-5">Calculating Shipping Rates on Sales Orders</a></h2>
+<ol class="arabic simple">
+<li>Create or open a <strong>Sales Order</strong> and click <strong>Add shipping</strong>.</li>
+<li>Select <strong>Transaher Smart Logistic</strong> and click <strong>Get rate</strong>.</li>
+<li>The wizard computes gross and volumetric weight (using OCA
+<tt class="docutils literal">stock_picking_volume</tt>) and displays the <strong>Internal Transaher Cost
+(€)</strong>, <strong>Chargeable Weight (kg)</strong>, and a detailed <strong>Transaher Tariff
+Breakdown</strong>.</li>
+<li>Click <strong>Add</strong> to apply the shipping line and store the internal
+estimated cost on the order.</li>
+</ol>
+</div>
+<div class="section" id="sending-shipments-printing-labels-from-pickings">
+<h2><a class="toc-backref" href="#toc-entry-6">Sending Shipments &amp; Printing Labels from Pickings</a></h2>
+<ol class="arabic simple">
+<li>Set <strong>Number of Packages</strong> (<tt class="docutils literal">number_of_packages</tt> from
+<tt class="docutils literal">delivery_package_number</tt>) or pack lines into physical packages;
+<tt class="docutils literal">volume</tt> is computed automatically by <tt class="docutils literal">stock_picking_volume</tt>.</li>
+<li>Validate the outgoing <strong>Delivery Order</strong> (<tt class="docutils literal">stock.picking</tt>) or click
+<strong>Send to Shipper</strong>.</li>
+<li>Odoo registers the expedition in Transaher via <tt class="docutils literal">awsprcsatsoap</tt>,
+sets <tt class="docutils literal">delivery_state</tt> (<tt class="docutils literal">shipping_recorded_in_carrier</tt>) and
+<tt class="docutils literal">date_shipped</tt> (<tt class="docutils literal">delivery_state</tt>), stores the composite reference
+(<tt class="docutils literal">Holding.Seccion.Centro.CodExpedicion</tt>) and destination routing
+info, assigns 24-digit Transaher barcodes to packages, and attaches
+the shipping label in the chatter.</li>
+<li>In the <strong>Additional Info</strong> and <strong>Transaher Logistics</strong> tabs of the
+picking, you can:<ul>
+<li>Configure freight terms (<tt class="docutils literal">Portes</tt>), postal repetition code,
+observations (<tt class="docutils literal">Observaciones 1 &amp; 2</tt>), insured value, or COD
+(<tt class="docutils literal">Contra reembolso</tt>) prior to sending.</li>
+<li>Click <strong>Transaher Label (WS)</strong> to reprint official labels via
+<tt class="docutils literal">wsEtiExpSOAP</tt> or <strong>Print Standard Barcode Label (QWeb)</strong> to
+print the local 100x150mm 24-digit barcode label.</li>
+<li>Click <strong>Update tracking state</strong> (<tt class="docutils literal">tracking_state_update</tt> from
+<tt class="docutils literal">delivery_state</tt>) or <strong>Update Tracking &amp; Invoiced Costs</strong> to
+fetch live statuses, events, incidences, package SSCCs, and
+invoiced freight costs via <tt class="docutils literal">wsInformacionTransporte</tt> (also
+updated automatically by <tt class="docutils literal">delivery_state</tt>’s scheduled action).</li>
+</ul>
+</li>
+</ol>
+</div>
+<div class="section" id="generating-the-daily-loading-manifest">
+<h2><a class="toc-backref" href="#toc-entry-7">Generating the Daily Loading Manifest</a></h2>
+<ol class="arabic simple">
+<li>Open the Transaher shipping method and click the <strong>Daily Manifest</strong>
+smart button (or navigate to <strong>Inventory &gt; Reporting &gt; Transaher
+Daily Manifest</strong>).</li>
+<li>Select the <strong>Date From</strong> and <strong>Date To</strong> range and click <strong>Query &amp;
+Generate PDF Manifest</strong> or <strong>Print PDF Directly</strong>.</li>
+</ol>
+</div>
+</div>
+<div class="section" id="known-issues-roadmap">
+<h1><a class="toc-backref" href="#toc-entry-8">Known issues / Roadmap</a></h1>
+<ul class="simple">
+<li>Add dangerous goods (ADR) item declarations if exposed in future
+Transaher SOAP schema revisions.</li>
+<li>Support automated Proof of Delivery (POD) image retrieval once enabled
+on <tt class="docutils literal">wsInformacionTransporte</tt>.</li>
+</ul>
+</div>
+<div class="section" id="bug-tracker">
+<h1><a class="toc-backref" href="#toc-entry-9">Bug Tracker</a></h1>
+<p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/l10n-spain/issues">GitHub Issues</a>.
+In case of trouble, please check there if your issue has already been reported.
+If you spotted it first, help us to smash it by providing a detailed and welcomed
+<a class="reference external" href="https://github.com/OCA/l10n-spain/issues/new?body=module:%20delivery_transaher%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<p>Do not contact contributors directly about support or help with technical issues.</p>
+</div>
+<div class="section" id="credits">
+<h1><a class="toc-backref" href="#toc-entry-10">Credits</a></h1>
+<div class="section" id="authors">
+<h2><a class="toc-backref" href="#toc-entry-11">Authors</a></h2>
+<ul class="simple">
+<li>Acysos S.L.</li>
+</ul>
+</div>
+<div class="section" id="contributors">
+<h2><a class="toc-backref" href="#toc-entry-12">Contributors</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="https://www.acysos.com">Acysos S.L.</a>:<ul>
+<li>Ignacio Ibeas <a class="reference external" href="mailto:ignacio&#64;acysos.com">ignacio&#64;acysos.com</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="maintainers">
+<h2><a class="toc-backref" href="#toc-entry-13">Maintainers</a></h2>
+<p>This module is maintained by the OCA.</p>
+<a class="reference external image-reference" href="https://odoo-community.org">
+<img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" />
+</a>
+<p>OCA, or the Odoo Community Association, is a nonprofit organization whose
+mission is to support the collaborative development of Odoo features and
+promote its widespread use.</p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/l10n-spain/tree/18.0/delivery_transaher">OCA/l10n-spain</a> project on GitHub.</p>
+<p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_delivery_carrier_form_inherit_transaher" model="ir.ui.view">
+        <field name="name">delivery.carrier.form.inherit.transaher</field>
+        <field name="model">delivery.carrier</field>
+        <field name="inherit_id" ref="delivery.view_delivery_carrier_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button
+                    name="action_test_transaher_connection"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-plug"
+                    invisible="delivery_type != 'transaher'"
+                >
+                    <div class="o_stat_info">
+                        <span class="o_stat_text">Test Token</span>
+                        <span class="o_stat_text">wsgetToken</span>
+                    </div>
+                </button>
+                <button
+                    name="action_open_manifest_wizard"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-file-pdf-o"
+                    invisible="delivery_type != 'transaher'"
+                >
+                    <div class="o_stat_info">
+                        <span class="o_stat_text">Daily</span>
+                        <span class="o_stat_text">Manifest</span>
+                    </div>
+                </button>
+            </xpath>
+
+            <xpath expr="//page[@name='pricing']" position="after">
+                <page
+                    string="Transaher Web Service Configuration"
+                    name="transaher_configuration"
+                    invisible="delivery_type != 'transaher'"
+                >
+                    <group>
+                        <group
+                            string="SOAP Credentials &amp; Endpoints"
+                            name="transaher_credentials"
+                        >
+                            <field
+                                name="transaher_client_code_test"
+                                required="delivery_type == 'transaher' and not prod_environment"
+                                placeholder="e.g. 12345"
+                            />
+                            <field
+                                name="transaher_password_test"
+                                password="True"
+                                required="delivery_type == 'transaher' and not prod_environment"
+                            />
+                            <field
+                                name="transaher_client_code_prod"
+                                required="delivery_type == 'transaher' and prod_environment"
+                                placeholder="e.g. 12345"
+                            />
+                            <field
+                                name="transaher_password_prod"
+                                password="True"
+                                required="delivery_type == 'transaher' and prod_environment"
+                            />
+                            <field
+                                name="transaher_test_mclient_url"
+                                invisible="prod_environment"
+                                required="delivery_type == 'transaher' and not prod_environment"
+                            />
+                            <field
+                                name="transaher_test_mbridge_url"
+                                invisible="prod_environment"
+                                required="delivery_type == 'transaher' and not prod_environment"
+                            />
+                            <field
+                                name="transaher_prod_mclient_url"
+                                invisible="not prod_environment"
+                                required="delivery_type == 'transaher' and prod_environment"
+                            />
+                            <field
+                                name="transaher_prod_mbridge_url"
+                                invisible="not prod_environment"
+                                required="delivery_type == 'transaher' and prod_environment"
+                            />
+                            <field name="transaher_tracking_url" />
+                        </group>
+                        <group
+                            string="Protocol &amp; Expedition Defaults"
+                            name="transaher_protocol"
+                        >
+                            <field
+                                name="transaher_holding"
+                                required="delivery_type == 'transaher'"
+                            />
+                            <field
+                                name="transaher_seccion"
+                                required="delivery_type == 'transaher'"
+                            />
+                            <field
+                                name="transaher_centro_cod"
+                                required="delivery_type == 'transaher'"
+                            />
+                            <field name="transaher_centro_label" />
+                            <field
+                                name="transaher_protocolo"
+                                required="delivery_type == 'transaher'"
+                            />
+                            <field
+                                name="transaher_portes"
+                                required="delivery_type == 'transaher'"
+                            />
+                            <field name="transaher_use_order_incoterm" />
+                            <field name="transaher_send_volume" />
+                        </group>
+                    </group>
+                    <group>
+                        <group
+                            string="Packaging &amp; Label Printing (wsEtiExpSOAP)"
+                            name="transaher_labels"
+                        >
+                            <field name="transaher_default_package_type_id" />
+                            <field name="transaher_default_packaging_code" />
+                            <field name="transaher_label_mode" />
+                            <field
+                                name="transaher_bultos_tag_mode"
+                                invisible="transaher_label_mode == 'local_qweb'"
+                            />
+                            <field
+                                name="transaher_posicion_inicial"
+                                invisible="transaher_label_mode == 'local_qweb'"
+                            />
+                        </group>
+                        <group
+                            string="Security Token Cache"
+                            name="transaher_token_status"
+                            groups="base.group_system"
+                        >
+                            <field name="transaher_token_valid_until" readonly="1" />
+                        </group>
+                    </group>
+                </page>
+
+                <page
+                    string="Transaher Tariffs &amp; Costs"
+                    name="transaher_tariffs"
+                    invisible="delivery_type != 'transaher'"
+                >
+                    <group>
+                        <group
+                            string="Pricing &amp; Customer Billing"
+                            name="transaher_rate_engine"
+                        >
+                            <field name="transaher_free_for_customer" />
+                            <field name="transaher_volumetric_factor" />
+                        </group>
+                        <group string="Default Surcharges" name="transaher_surcharges">
+                            <field name="transaher_fuel_surcharge_pct" />
+                            <field name="transaher_cod_surcharge_pct" />
+                            <field name="transaher_insurance_surcharge_pct" />
+                        </group>
+                    </group>
+
+                    <separator
+                        string="Tariff Table by Zones, Provinces, Postal Codes, Weights, and Packages"
+                    />
+                    <field name="transaher_tariff_rule_ids">
+                        <list string="Transaher Tariff Rules" editable="bottom">
+                            <field name="sequence" widget="handle" />
+                            <field name="active" column_invisible="True" />
+                            <field
+                                name="name"
+                                placeholder="e.g. Spain Mainland (Up to 100 kg)"
+                            />
+                            <field
+                                name="country_ids"
+                                widget="many2many_tags"
+                                optional="show"
+                            />
+                            <field
+                                name="state_ids"
+                                widget="many2many_tags"
+                                optional="show"
+                            />
+                            <field
+                                name="zip_prefixes"
+                                optional="show"
+                                placeholder="e.g. 07, 35, 38"
+                            />
+                            <field name="min_weight" optional="show" />
+                            <field name="max_weight" optional="show" />
+                            <field name="min_packages" optional="hide" />
+                            <field name="max_packages" optional="hide" />
+                            <field name="rate_type" />
+                            <field name="base_price" />
+                            <field name="included_weight" optional="show" />
+                            <field name="price_per_kg" optional="show" />
+                            <field name="price_per_package" optional="show" />
+                            <field name="min_charge" optional="show" />
+                            <field name="fuel_surcharge_pct" optional="show" />
+                            <field name="cod_surcharge_pct" optional="hide" />
+                            <field name="insurance_surcharge_pct" optional="hide" />
+                            <field name="currency_id" column_invisible="True" />
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
