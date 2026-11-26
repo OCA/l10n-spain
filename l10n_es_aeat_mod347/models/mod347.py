@@ -5,15 +5,16 @@
 # Copyright 2016 Tecnativa - Antonio Espinosa
 # Copyright 2016 Tecnativa - Angel Moya <odoo@tecnativa.com>
 # Copyright 2018 PESOL - Angel Moya <info@pesol.es>
-# Copyright 2019 Tecnativa - Carlos Dauden
+# Copyright 2019-2026 Tecnativa - Carlos Dauden
 # Copyright 2014-2022 Tecnativa - Pedro M. Baeza
 # Copyright 2023 FactorLibre - Alejandro Ji Cheung
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import datetime
 from calendar import monthrange
+from collections import defaultdict
 
-from odoo import api, exceptions, fields, models
+from odoo import Command, api, exceptions, fields, models
 from odoo.tools import float_compare
 
 KEY_TAX_MAPPING = {
@@ -227,10 +228,61 @@ class L10nEsAeatMod347Report(models.Model):
                 "partner_country_code": country_code,
             }
 
+    def _real_estate_move_line_domain(self, taxes, partners):
+        """Return domain for searching the customer invoice lines with a real
+        estate, with the same exclusions as the partner records."""
+        return self._account_move_line_domain(taxes) + [
+            ("partner_id", "in", partners.ids),
+            ("move_type", "in", ("out_invoice", "out_refund")),
+            ("display_type", "=", "product"),
+            ("l10n_es_aeat_real_estate_id", "!=", False),
+        ]
+
+    def _get_real_estate_rents(self, taxes, partners):
+        """Rents of the customer invoice lines with a real estate per partner,
+        VAT included like the partner records: the base plus the taxes of the
+        B mapping, as the tax lines of the invoice distribute them, so the
+        rent part of an invoice fully leased is the whole invoice.
+
+        :return: {partner: {"moves": {move_id: amount},
+                            "real_estates": {real_estate: amount}}}
+        """
+        lines = self.env["account.move.line"].search(
+            self._real_estate_move_line_domain(taxes, partners)
+        )
+        line_ids = set(lines.ids)
+        rents = defaultdict(
+            lambda: {"moves": defaultdict(float), "real_estates": defaultdict(float)}
+        )
+        for move in lines.move_id:
+            base_lines = move._get_rounded_base_and_tax_lines()[0]
+            sign = -move.direction_sign
+            for base_line in base_lines:
+                line = base_line["record"]
+                if line.id not in line_ids:
+                    continue
+                tax_amount = sum(
+                    tax_data["tax_amount"]
+                    for tax_data in base_line["tax_details"]["taxes_data"]
+                    if tax_data["tax"] in taxes
+                )
+                amount = -line.balance + sign * tax_amount
+                rent = rents[line.partner_id]
+                rent["moves"][move.id] += amount
+                rent["real_estates"][line.l10n_es_aeat_real_estate_id] += amount
+        return rents
+
     def _create_partner_records(self, key, map_ref, partner_record=None):
+        """Create the partner records of the operation key, or rewrite the ones
+        of the partner of partner_record. The rents of the real estates of a
+        B partner go to their own partner record, which the AEAT asks to
+        declare aside, and to the real estate records."""
+        self.ensure_one()
         sign = -1 if key == "B" else 1
         partner_record_obj = self.env["l10n.es.aeat.mod347.partner_record"]
+        real_estate_record_obj = self.env["l10n.es.aeat.mod347.real_estate_record"]
         partner_obj = self.env["res.partner"]
+        currency = self.company_id.currency_id
         map_line = self.env.ref(map_ref)
         taxes = map_line.get_taxes_for_company(self.company_id)
         domain = self._account_move_line_domain(taxes)
@@ -244,6 +296,16 @@ class L10nEsAeatMod347Report(models.Model):
         filtered_groups = list(
             filter(lambda d: abs(d["balance"]) > self.operations_limit, groups)
         )
+        partners = partner_obj.browse(
+            [group["partner_id"][0] for group in filtered_groups]
+        )
+        rents = {}
+        if key == "B":
+            rents = self._get_real_estate_rents(taxes, partners)
+            self.real_estate_record_ids.filtered(
+                lambda r: r.real_estate_id and r.partner_id in partners
+            ).unlink()
+        real_estate_vals_list = []
         for group in filtered_groups:
             partner = partner_obj.browse(group["partner_id"][0])
             vals = {
@@ -253,30 +315,85 @@ class L10nEsAeatMod347Report(models.Model):
                 "operation_key": key,
                 "amount": sign * group["balance"],
             }
-            vals.update(self._get_partner_347_identification(partner))
+            identification = self._get_partner_347_identification(partner)
+            vals.update(identification)
             move_groups = self.env["account.move.line"].read_group(
                 group["__domain"],
                 ["move_id", "balance"],
                 ["move_id"],
             )
-            vals["move_record_ids"] = [
-                (
-                    0,
-                    0,
-                    {
-                        "move_id": move_group["move_id"][0],
-                        "amount": sign * move_group["balance"],
-                    },
-                )
+            move_amounts = {
+                move_group["move_id"][0]: sign * move_group["balance"]
                 for move_group in move_groups
-            ]
-            if partner_record:
-                vals["move_record_ids"][0:0] = [
-                    (2, x) for x in partner_record.move_record_ids.ids
+            }
+            # Values and move amounts of the general record and the rent one
+            records_data = {False: (vals, move_amounts)}
+            rent = rents.get(partner)
+            rent_amount = currency.round(sum(rent["moves"].values())) if rent else 0
+            if rent_amount:
+                rent_move_amounts = {
+                    move_id: currency.round(amount)
+                    for move_id, amount in rent["moves"].items()
+                    if not currency.is_zero(amount)
+                }
+                records_data[True] = (
+                    {**vals, "amount": rent_amount, "bussiness_real_estate_rent": True},
+                    rent_move_amounts,
+                )
+                vals["amount"] = currency.round(vals["amount"] - rent_amount)
+                for move_id, amount in rent_move_amounts.items():
+                    remaining = currency.round(move_amounts.get(move_id, 0.0) - amount)
+                    if remaining:
+                        move_amounts[move_id] = remaining
+                    else:
+                        move_amounts.pop(move_id, None)
+                real_estate_vals_list += [
+                    {
+                        "report_id": self.id,
+                        "partner_id": partner.id,
+                        "partner_vat": identification.get("partner_vat"),
+                        "real_estate_id": real_estate.id,
+                        "amount": currency.round(amount),
+                        **real_estate_record_obj._prepare_real_estate_vals(real_estate),
+                    }
+                    for real_estate, amount in rent["real_estates"].items()
+                    if not currency.is_zero(amount)
                 ]
-                partner_record.write(vals)
-            else:
-                partner_record_obj.create(vals)
+            partner_records = partner_record_obj
+            if partner_record and key == "B":
+                partner_records = self.partner_record_ids.filtered(
+                    lambda r, p=partner: r.partner_id == p and r.operation_key == "B"
+                )
+            for is_rent, (record_vals, amounts) in records_data.items():
+                record = partner_record or partner_record_obj
+                if partner_records:
+                    # The general or rent record of the partner, the one
+                    # recomputed first
+                    record = partner_records.filtered(
+                        lambda r, rent=is_rent: r.bussiness_real_estate_rent == rent
+                    )
+                    record = (record & partner_record) or record[:1]
+                if not amounts and not record.cash_amount:
+                    # All the operations are rents
+                    record.unlink()
+                    continue
+                record_vals["move_record_ids"] = [
+                    Command.delete(move_record.id)
+                    for move_record in record.move_record_ids
+                ] + [
+                    Command.create({"move_id": move_id, "amount": amount})
+                    for move_id, amount in amounts.items()
+                ]
+                if record:
+                    record.write(record_vals)
+                else:
+                    partner_record_obj.create(record_vals)
+            if True not in records_data:
+                # The rents taken in a previous calculation are not split now
+                partner_records.filtered(
+                    lambda r: r.bussiness_real_estate_rent and r.move_record_ids
+                ).unlink()
+        real_estate_record_obj.create(real_estate_vals_list)
 
     def _create_cash_moves(self):
         partner_obj = self.env["res.partner"]
@@ -302,12 +419,15 @@ class L10nEsAeatMod347Report(models.Model):
             amount = abs(cash_group["balance"])
             if amount > self.received_cash_limit:
                 move_lines = move_line_obj.search(cash_group["__domain"])
+                # The cash data goes in the general record, not in the rent one
                 partner_record = partner_record_obj.search(
                     [
                         ("partner_id", "=", partner.id),
                         ("operation_key", "=", "B"),
+                        ("bussiness_real_estate_rent", "=", False),
                         ("report_id", "=", self.id),
-                    ]
+                    ],
+                    limit=1,
                 )
                 if partner_record:
                     partner_record.write(
@@ -331,11 +451,13 @@ class L10nEsAeatMod347Report(models.Model):
 
     def calculate(self):
         for report in self:
-            # Delete previous partner records
+            # Delete previous partner records and the real estate records taken
+            # from the invoices, keeping the manual ones
             report.partner_record_ids.unlink()
-            self._create_partner_records("A", KEY_TAX_MAPPING["A"])
-            self._create_partner_records("B", KEY_TAX_MAPPING["B"])
-            self._create_cash_moves()
+            report.real_estate_record_ids.filtered("real_estate_id").unlink()
+            report._create_partner_records("A", KEY_TAX_MAPPING["A"])
+            report._create_partner_records("B", KEY_TAX_MAPPING["B"])
+            report._create_cash_moves()
             self.env.flush_all()
             report.partner_record_ids.calculate_quarter_totals()
         return True
@@ -639,18 +761,27 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
         return self.env.ref("l10n_es_aeat_mod347.347_partner").report_action(self)
 
     def button_recompute(self):
+        """Recompute the record, and the general and rent B records of the
+        partner together, as they split its operations."""
         self.ensure_one()
-        if self.operation_key not in ("A", "B"):
+        key = self.operation_key
+        if key not in ("A", "B"):
             return
-        prev_amount = self.amount
-        self.report_id._create_partner_records(
-            self.operation_key,
-            KEY_TAX_MAPPING[self.operation_key],
-            partner_record=self,
-        )
-        self.calculate_quarter_totals()
-        if float_compare(self.amount, prev_amount, 2) != 0:
-            self.action_pending()
+        report = self.report_id
+        partner = self.partner_id
+
+        def partner_records():
+            return report.partner_record_ids.filtered(
+                lambda r: r.partner_id == partner and r.operation_key == key
+            )
+
+        prev_amounts = {record.id: record.amount for record in partner_records()}
+        report._create_partner_records(key, KEY_TAX_MAPPING[key], partner_record=self)
+        records = partner_records()
+        records.calculate_quarter_totals()
+        records.filtered(
+            lambda r: float_compare(r.amount, prev_amounts.get(r.id, 0.0), 2) != 0
+        ).action_pending()
 
     def send_email_direct(self):
         template = self._get_partner_report_email_template()
@@ -718,6 +849,15 @@ class L10nEsAeatMod347RealStateRecord(models.Model):
         help="Legal Representative VAT number",
     )
     amount = fields.Float(digits="Account")
+    real_estate_id = fields.Many2one(
+        comodel_name="l10n.es.aeat.real_estate",
+        string="Real Estate",
+        ondelete="set null",
+        domain="[('owned_by_company', '=', True)]",
+        help="Real estate the record data are taken from. The calculation "
+        "creates again the records with a real estate from the customer "
+        "invoices, and keeps the ones without it.",
+    )
     situation = fields.Selection(
         selection=[
             ("1", "1 - Spain but Basque Country and Navarra"),
@@ -774,12 +914,40 @@ class L10nEsAeatMod347RealStateRecord(models.Model):
         """Loads some partner data when the selected partner changes."""
         if self.partner_id:
             vals = self.report_id._get_partner_347_identification(self.partner_id)
-            self.update(
-                {
-                    "partner_vat": vals.pop("partner_vat"),
-                    "state_code": vals.pop("partner_state_code"),
-                }
-            )
+            self.partner_vat = vals.get("partner_vat")
+            # The province of a real estate chosen is kept
+            if not self.real_estate_id:
+                self.state_code = vals["partner_state_code"]
+
+    @api.onchange("real_estate_id")
+    def _onchange_real_estate_id(self):
+        if self.real_estate_id:
+            self.update(self._prepare_real_estate_vals(self.real_estate_id))
+
+    @api.model
+    def _prepare_real_estate_vals(self, real_estate):
+        """Values of the record taken from the real estate."""
+        location = real_estate._get_mod347_location()
+        return {
+            "situation": real_estate._get_mod347_situation(),
+            "reference": real_estate.reference,
+            "address_type": real_estate.address_type,
+            "address": real_estate.address,
+            "number_type": real_estate.number_type,
+            "number": real_estate.number,
+            "number_calification": real_estate.number_calification,
+            "block": real_estate.block,
+            "portal": real_estate.portal,
+            "stairway": real_estate.stairway,
+            "floor": real_estate.floor,
+            "door": real_estate.door,
+            "complement": real_estate.complement,
+            "city": location["locality"] or False,
+            "township": location["municipality"] or False,
+            "township_code": location["municipality_code"] or False,
+            "state_code": location["province_code"] or False,
+            "postal_code": location["zip"] or False,
+        }
 
 
 class L10nEsAeatMod347MoveRecord(models.Model):

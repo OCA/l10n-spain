@@ -2,4 +2,5 @@
 
 from . import res_partner
 from . import account_move
+from . import l10n_es_aeat_real_estate
 from . import mod347
