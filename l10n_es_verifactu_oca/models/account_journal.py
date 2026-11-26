@@ -22,6 +22,26 @@ class AccountJournal(models.Model):
     )
     verifactu_enabled = fields.Boolean(string="VERI*FACTU enabled", default=True)
 
+    def _is_verifactu_exempt(self):
+        """Hook for journals managed by a different invoicing system."""
+        return False
+
+    @api.constrains("company_id", "type", "verifactu_enabled")
+    def _check_verifactu_sale_journal(self):
+        invalid = self.filtered(
+            lambda journal: journal.company_id.verifactu_enabled
+            and journal.type == "sale"
+            and not journal.verifactu_enabled
+            and not journal._is_verifactu_exempt()
+        )
+        if invalid:
+            raise ValidationError(
+                _(
+                    "A sales journal must have VERI*FACTU enabled when its company "
+                    "has VERI*FACTU enabled."
+                )
+            )
+
     @api.depends(
         "company_id", "company_id.verifactu_enabled", "verifactu_enabled", "type"
     )  # company_id* triggers aren't launched anyway - see res.company~write method
