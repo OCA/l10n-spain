@@ -155,3 +155,36 @@ class TestL10nEsAeat(TransactionCase):
         iso_code = "ES"
         mapping_return = res_partner_obj._map_aeat_country_iso_code(spain_country)
         self.assertEqual(iso_code, mapping_return)
+
+    def _check_aeat_vat_prefix_and_country(self, vat, country, prefix, code):
+        self.partner.write({"vat": vat, "country_id": country.id if country else False})
+        self.assertEqual(self.partner._get_aeat_vat_prefix(), prefix)
+        self.assertEqual(self.partner._get_aeat_declared_country_code(), code)
+
+    def test_01_aeat_vat_prefix_and_country_xi(self):
+        vat = "XI123456782"
+        # Northern Ireland: always declared as GB, whatever the partner country
+        self._check_aeat_vat_prefix_and_country(
+            vat, self.env.ref("base.uk"), "XI", "GB"
+        )
+        self._check_aeat_vat_prefix_and_country(vat, False, "XI", "GB")
+        self._check_aeat_vat_prefix_and_country(
+            vat, self.env.ref("base.ie"), "XI", "GB"
+        )
+
+    def test_02_aeat_vat_prefix_and_country_eu(self):
+        greece = self.env.ref("base.gr")
+        france = self.env.ref("base.fr")
+        self._check_aeat_vat_prefix_and_country("GR094259216", greece, "EL", "GR")
+        self._check_aeat_vat_prefix_and_country("EL094259216", greece, "EL", "GR")
+        self._check_aeat_vat_prefix_and_country("FR23334175221", france, "FR", "FR")
+        self._check_aeat_vat_prefix_and_country("23334175221", france, "FR", "FR")
+        self._check_aeat_vat_prefix_and_country(
+            "IT00743110157", self.env.ref("base.lu"), "IT", "IT"
+        )
+
+    def test_03_aeat_vat_prefix_and_country_non_eu(self):
+        self._check_aeat_vat_prefix_and_country(
+            "GB980780684", self.env.ref("base.uk"), "GB", "GB"
+        )
+        self.assertNotIn("GB", self.partner._get_aeat_europe_codes())

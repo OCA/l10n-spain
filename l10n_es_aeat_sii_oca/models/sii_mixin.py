@@ -609,9 +609,15 @@ class SiiMixin(models.AbstractModel):
             identifier_type,
             identifier,
         ) = partner._parse_aeat_vat_info()
+        # A VAT prefix that is not a country code is kept in the ID and
+        # declared as its country
+        aeat_country_code = partner._get_aeat_declared_country_code()
+        prefix_is_country = aeat_country_code == country_code
         # Take into account some vats construction like Greece
         vat_country_code = (
-            partner._map_aeat_country_iso_code(partner.country_id) or country_code
+            (partner._map_aeat_country_iso_code(partner.country_id) or country_code)
+            if prefix_is_country
+            else country_code
         )
         # Limpiar alfanum
         if identifier:
@@ -623,7 +629,7 @@ class SiiMixin(models.AbstractModel):
             if "1117" in (self.aeat_send_error or ""):
                 return {
                     "IDOtro": {
-                        "CodigoPais": country_code,
+                        "CodigoPais": aeat_country_code,
                         "IDType": "07",
                         "ID": identifier,
                     }
@@ -631,9 +637,9 @@ class SiiMixin(models.AbstractModel):
             else:
                 if identifier_type == "":
                     return {"NIF": identifier}
-                return {
+                res = {
                     "IDOtro": {
-                        "CodigoPais": country_code,
+                        "CodigoPais": aeat_country_code,
                         "IDType": identifier_type,
                         # The country prefix rebuilds a VAT number, whose
                         # prefix _parse_aeat_vat_info() stripped. An AEAT
@@ -649,6 +655,12 @@ class SiiMixin(models.AbstractModel):
                         else identifier,
                     },
                 }
+                # With IDType 02 CodigoPais must match the first 2 characters
+                # of the ID (AEAT error 1146), which a prefix that is not a
+                # country code cannot do, so it is not sent.
+                if identifier_type == "02" and not prefix_is_country:
+                    del res["IDOtro"]["CodigoPais"]
+                return res
         elif gen_type == 2:
             return {"IDOtro": {"IDType": "02", "ID": vat_country_code + identifier}}
         elif gen_type == 3 and identifier_type:
@@ -659,7 +671,7 @@ class SiiMixin(models.AbstractModel):
                 identifier_type = "06"
             return {
                 "IDOtro": {
-                    "CodigoPais": country_code,
+                    "CodigoPais": aeat_country_code,
                     "IDType": identifier_type,
                     "ID": identifier,
                 },

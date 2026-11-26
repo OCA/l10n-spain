@@ -480,3 +480,36 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
             lambda x: x.partner_vat == self.customer.vat
         )
         self.assertTrue(partner_record.partner_record_ok)
+
+    def test_01_mod349_xi_supplier_acquisition(self):
+        """Northern Ireland supplier is reported with its XI VAT and key A."""
+        self.supplier.write(
+            {"vat": "XI123456782", "country_id": self.env.ref("base.uk").id}
+        )
+        self._invoice_purchase_create("2023-01-01")
+        model349 = (
+            self.env["l10n.es.aeat.mod349.report"]
+            .with_user(self.account_manager)
+            .create(
+                {
+                    "name": "3490000000002",
+                    "company_id": self.company.id,
+                    "company_vat": "1234567890",
+                    "contact_name": "Test owner",
+                    "statement_type": "N",
+                    "support_type": "T",
+                    "contact_phone": "911234455",
+                    "year": 2023,
+                    "period_type": "1T",
+                    "date_start": "2023-01-01",
+                    "date_end": "2023-03-31",
+                }
+            )
+        )
+        model349.button_calculate()
+        partner_record = model349.partner_record_ids.filtered(
+            lambda x: x.partner_id == self.supplier
+        )
+        self.assertTrue(partner_record.partner_record_ok)
+        self.assertEqual(partner_record.partner_vat, "XI123456782")
+        self.assertEqual(partner_record.operation_key, "A")
