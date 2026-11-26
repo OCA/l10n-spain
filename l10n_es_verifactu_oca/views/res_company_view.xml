@@ -16,6 +16,10 @@
                         <group name="verifactu_config">
                             <field name="verifactu_test" string="Test environment?" />
                             <field name="verifactu_start_date" string="Start date" />
+                            <field
+                                name="verifactu_skip_schema_check"
+                                string="Skip the schema check when posting?"
+                            />
                         </group>
                     </group>
                     <group attrs="{'invisible': [('verifactu_enabled', '=', False)]}">

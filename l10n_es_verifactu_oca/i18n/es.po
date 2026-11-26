@@ -766,6 +766,13 @@ msgstr ""
 "                con VERI*FACTU habilitado."
 
 #. module: l10n_es_verifactu_oca
+#. odoo-python
+#: code:addons/l10n_es_verifactu_oca/models/verifactu_invoice_entry.py:0
+#, python-format
+msgid "Invoices not matching the VERI*FACTU schema"
+msgstr "Facturas que no cumplen el esquema de VERI*FACTU"
+
+#. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_chaining__message_is_follower
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_developer__message_is_follower
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_verifactu_invoice_entry_response__message_is_follower
@@ -1183,6 +1190,11 @@ msgstr "Cabecera enviada"
 
 #. module: l10n_es_verifactu_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.view_company_verifactu_form
+msgid "Skip the schema check when posting?"
+msgstr "¿Omitir la comprobación del esquema al validar?"
+
+#. module: l10n_es_verifactu_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.view_company_verifactu_form
 msgid "Start date"
 msgstr "Fecha de inicio"
 
@@ -1198,6 +1210,18 @@ msgstr ""
 "Atrasado: La fecha de vencimiento ya ha sido sobrepasada\n"
 "Hoy: La fecha de actividad es hoy\n"
 "Planificado: Actividades futuras."
+
+#. module: l10n_es_verifactu_oca
+#: model:ir.model.fields,help:l10n_es_verifactu_oca.field_res_company__verifactu_skip_schema_check
+msgid ""
+"Stop refusing to post invoices whose VERI*FACTU record does not match the official schema. It is an escape hatch to keep invoicing while a wrong rejection is looked into, not a permanent setting.\n"
+"It does not make those records reach the Agency: a record that does not match the schema is still left out when the batch is sent."
+msgstr ""
+"Deja de impedir que se validen facturas cuyo registro VERI*FACTU no cumple "
+"el esquema oficial. Es una válvula de escape para poder seguir facturando "
+"mientras se investiga un rechazo indebido, no un ajuste permanente.\n"
+"No hace que esos registros lleguen a la Agencia: un registro que no cumple "
+"el esquema se sigue quedando fuera del envío del lote."
 
 #. module: l10n_es_verifactu_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.verifactu_tax_agency_form_view
@@ -1249,6 +1273,20 @@ msgstr "¿Es entorno de pruebas?"
 #: model:ir.model.fields,help:l10n_es_verifactu_oca.field_res_company__verifactu_description
 msgid "The description for VERI*FACTU invoices if not set"
 msgstr "La descripción para las facturas VERI*FACTU no está establecida"
+
+#. module: l10n_es_verifactu_oca
+#. odoo-python
+#: code:addons/l10n_es_verifactu_oca/models/account_move.py:0
+#, python-format
+msgid ""
+"The following invoices cannot be posted because their VERI*FACTU record does not match the official schema:\n"
+"\n"
+"%(details)s"
+msgstr ""
+"Las siguientes facturas no se pueden validar porque su registro VERI*FACTU "
+"no cumple el esquema oficial:\n"
+"\n"
+"%(details)s"
 
 #. module: l10n_es_verifactu_oca
 #. odoo-python
@@ -1660,6 +1698,11 @@ msgstr "VERI*FACTU enviando"
 #: model_terms:ir.ui.view,arch_db:l10n_es_verifactu_oca.invoice_verifactu_search
 msgid "VERI*FACTU sent"
 msgstr "VERI*FACTU enviado"
+
+#. module: l10n_es_verifactu_oca
+#: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_res_company__verifactu_skip_schema_check
+msgid "VERI*FACTU skip the schema check when posting"
+msgstr "VERI*FACTU omitir la comprobación del esquema al validar"
 
 #. module: l10n_es_verifactu_oca
 #: model:ir.model.fields,field_description:l10n_es_verifactu_oca.field_res_company__verifactu_start_date
