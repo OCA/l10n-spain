@@ -53,6 +53,8 @@ class VerifactuMixin(models.AbstractModel):
         compute="_compute_verifactu_refund_type",
         store=True,
         readonly=False,
+        # Force to run the compute method, which uses copy doing the refund
+        copy=False,
     )
     verifactu_description = fields.Text(string="VERI*FACTU description", copy=False)
     verifactu_macrodata = fields.Boolean(

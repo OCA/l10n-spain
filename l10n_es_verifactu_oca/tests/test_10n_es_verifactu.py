@@ -157,6 +157,12 @@ class TestL10nEsAeatVerifactu(TestVerifactuCommon):
             )
         return
 
+    def test_verifactu_refund_type_reverse_moves(self):
+        self.invoice.action_post()
+        refund = self._invoice_refund(self.invoice, self.invoice.invoice_date)
+        registro = refund._get_verifactu_invoice_dict()["RegistroAlta"]
+        self.assertEqual(registro["TipoRectificativa"], "I")
+
     def test_verifactu_start_date(self):
         self.company.verifactu_start_date = "2018-01-01"
         invoice1 = self.invoice.copy({"invoice_date": "2019-01-01"})
