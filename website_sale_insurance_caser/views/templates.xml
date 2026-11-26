@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template
+        id="product_caser_insurance_checkbox"
+        inherit_id="website_sale.product"
+        name="Caser Insurance Checkbox"
+    >
+        <xpath expr="//div[@id='o_wsale_cta_wrapper']/*" position="before">
+            <t
+                t-if="website.caser_insurance_enabled and product.caser_insurance_ecommerce"
+            >
+                <t
+                    t-set="caser_price_display"
+                    t-value="product.get_caser_insurance_price_display(combination_info['price'])"
+                />
+                <div class="p-2 mb-3 w-100 border border-secondary">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="me-3">
+                            <div>Your device protected, no matter what</div>
+                            <t t-if="caser_price_display">
+                                <div class="form-check">
+                                    <input
+                                        type="checkbox"
+                                        class="form-check-input"
+                                        id="caser_insurance_checkbox"
+                                        name="caser_add_insurance"
+                                        value="1"
+                                    />
+                                    <label
+                                        class="form-check-label"
+                                        for="caser_insurance_checkbox"
+                                    >
+                                        Annual insurance for <t
+                                        t-esc="caser_price_display"
+                                    />
+                                    </label>
+                                </div>
+                            </t>
+                        </div>
+                        <img
+                            src="/website_sale_insurance_caser/static/src/img/logo-caser.png"
+                            alt="Caser"
+                            class="d-block flex-shrink-0"
+                            style="height: 30px;"
+                        />
+                    </div>
+                </div>
+            </t>
+        </xpath>
+    </template>
+    <template
+        id="cart_lines_caser_insurance"
+        inherit_id="website_sale.cart_lines"
+        name="Caser Insurance in Cart"
+    >
+        <xpath expr="//h6[@t-field='line.name_short']" position="after">
+            <t t-if="line.is_caser_insurance">
+                <div class="small text-muted mt-1">
+                    <t t-if="line.caser_insured_line_id">
+                        Protected device: <t
+                        t-esc="line.caser_insured_line_id.product_id.display_name"
+                    />
+                    </t>
+                    <t t-else="">
+                        Caser Insurance
+                    </t>
+                </div>
+            </t>
+        </xpath>
+    </template>
+    <template
+        id="checkout_caser_insurance"
+        inherit_id="website_sale.checkout_layout"
+        name="Caser Insurance in Checkout"
+    >
+        <xpath
+            expr="//table[@id='cart_products']//td[@name='website_sale_cart_summary_product_name']//h6"
+            position="after"
+        >
+            <t t-if="line.is_caser_insurance">
+                <div class="small text-muted mt-1">
+                    <t t-if="line.caser_insured_line_id">
+                        Protected device: <t
+                        t-esc="line.caser_insured_line_id.product_id.display_name"
+                    />
+                    </t>
+                    <t t-else="">
+                        Caser Insurance
+                    </t>
+                </div>
+            </t>
+        </xpath>
+    </template>
+    <template id="caser_insurance_checkout_modal" inherit_id="website_sale.cart">
+        <xpath expr="//t[@t-call='website_sale.cart_lines']" position="after">
+            <div class="modal fade" id="caserInsuranceModal" tabindex="-1">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">
+ Protect Your Products
+                            </h5>
+                            <button
+                                type="button"
+                                class="btn-close"
+                                id="closeInsuranceModal"
+                            />
+                        </div>
+                        <div class="modal-body">
+                            <p
+                                class="lead"
+                            >The following products can be protected with Caser insurance. Would you like to add coverage?</p>
+                            <div id="uninsured_products_list" />
+                        </div>
+                        <div class="modal-footer">
+                            <button
+                                type="button"
+                                class="btn btn-link me-auto d-none"
+                                id="toggleAllInsurance"
+                            >Select / Deselect all</button>
+                            <button
+                                type="button"
+                                class="btn btn-secondary"
+                                id="skipInsuranceBtn"
+                            >No, thanks</button>
+                            <button
+                                type="button"
+                                class="btn btn-primary"
+                                id="addInsuranceBtn"
+                            >
+ Add Selected Insurance
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>
