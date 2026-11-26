@@ -1,0 +1,2 @@
+- [Sygel](https://www.sygel.es):
+  - Manuel Regidor
