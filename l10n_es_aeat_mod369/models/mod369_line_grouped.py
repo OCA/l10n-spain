@@ -4,6 +4,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
 
 from odoo import api, fields, models
+from odoo.tools import float_round
 
 
 class L10nEsAeatMod369LineGrouped(models.Model):
@@ -144,25 +145,31 @@ class L10nEsAeatMod369LineGrouped(models.Model):
                 2, "0"
             )
 
+    @api.model
+    def _format_export_amount(self, value):
+        return self.env["l10n.es.aeat.report.export_to_boe"]._format_number(
+            float_round(value, precision_digits=2),
+            14,
+            2,
+            include_sign=True,
+            positive_sign="0",
+            negative_sign="-",
+        )
+
     @api.depends("base")
     def _compute_base_str(self):
         for line in self:
-            base_split = str(line.base).split(".")
-            line.base_str = base_split[0].zfill(15) + base_split[1].ljust(2, "0")
+            line.base_str = self._format_export_amount(line.base)
 
     @api.depends("amount")
     def _compute_amount_str(self):
         for line in self:
-            amount_split = str(line.amount).split(".")
-            line.amount_str = amount_split[0].zfill(15) + amount_split[1].ljust(2, "0")
+            line.amount_str = self._format_export_amount(line.amount)
 
     @api.depends("tax_correction")
     def _compute_tax_correction_str(self):
         for line in self:
-            tax_correction_split = str(line.tax_correction).split(".")
-            integer_part = tax_correction_split[0].zfill(15)
-            decimal_part = tax_correction_split[1].ljust(2, "0")
-            line.tax_correction_str = integer_part + decimal_part
+            line.tax_correction_str = self._format_export_amount(line.tax_correction)
 
     @api.depends("oss_country_id", "oss_country_id.code")
     def _compute_country_code(self):

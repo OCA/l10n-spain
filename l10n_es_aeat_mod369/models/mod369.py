@@ -6,6 +6,8 @@
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
+EXPORT_PAGE_SIZE = 28
+
 
 class L10nEsAeatMod369Report(models.Model):
     _inherit = "l10n.es.aeat.report.tax.mapping"
@@ -128,6 +130,26 @@ class L10nEsAeatMod369Report(models.Model):
 
     def _compute_allow_posting(self):
         self.allow_posting = True
+
+    def _get_export_list(self, list_field, positive_field=None):
+        self.ensure_one()
+        lines = self[list_field]
+        if positive_field:
+            lines = lines.filtered(lambda line: line[positive_field] > 0)
+        return lines
+
+    def get_export_pages(self, list_field, positive_field=None):
+        lines = self._get_export_list(list_field, positive_field)
+        pages = max(1, -(-len(lines) // EXPORT_PAGE_SIZE))
+        return [self.with_context(mod369_export_page=page) for page in range(pages)]
+
+    def get_export_page_lines(self, list_field, positive_field=None):
+        start = self.env.context.get("mod369_export_page", 0) * EXPORT_PAGE_SIZE
+        lines = self._get_export_list(list_field, positive_field)
+        return lines[start : start + EXPORT_PAGE_SIZE]
+
+    def get_export_complementary(self):
+        return "C" if self.env.context.get("mod369_export_page") else ""
 
     @api.model
     def _get_period_from_date(self, date, monthly=False):
