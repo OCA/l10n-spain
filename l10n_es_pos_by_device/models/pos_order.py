@@ -38,7 +38,9 @@ class PosOrder(models.Model):
                 device_seq = self.env["ir.sequence"].browse(
                     order_data["device"]["sequence"][0]
                 )
-                if not draft:
+                # Only orders carrying a simplified invoice number consume it;
+                # invoiced orders must not leave a gap in the device series.
+                if not draft and order_data.get("l10n_es_unique_id"):
                     device_seq.next_by_id()
                 pos_order["data"].update({"pos_device": order_data["device"]["id"]})
         return super(PosOrder, self)._process_order(pos_order, draft, existing_order)
