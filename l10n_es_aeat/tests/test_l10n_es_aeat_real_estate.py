@@ -232,3 +232,23 @@ class TestL10nEsAeatRealEstate(TestL10nEsAeatModBase):
             ],
             reference="201001000123400001",
         )
+
+    def test_municipality_code(self):
+        """The INE municipality code has 5 digits, the first two of the province
+        of the zip, and it is not checked abroad."""
+        self._check_creation(
+            [
+                ({"municipality_code": "28079"}, True),
+                ({"municipality_code": "2807"}, False),
+                ({"municipality_code": "2807A"}, False),
+                ({"municipality_code": "08019"}, False),
+                (
+                    {
+                        "municipality_code": "751",
+                        "zip": "75001",
+                        "country_id": self.env.ref("base.fr").id,
+                    },
+                    True,
+                ),
+            ]
+        )

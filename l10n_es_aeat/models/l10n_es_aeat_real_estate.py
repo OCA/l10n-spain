@@ -105,6 +105,17 @@ class L10nEsAeatRealEstate(models.Model):
         readonly=False,
         required=True,
     )
+    municipality = fields.Char(
+        size=30,
+        help="Name of the municipality, when the city is a locality of another " "one.",
+    )
+    municipality_code = fields.Char(
+        string="INE Municipality Code",
+        size=5,
+        help="Code of the municipality given by the Spanish National "
+        "Statistics Institute (INE), as the models 180 and 347 ask: the two "
+        "digits of the province and the three of the municipality.",
+    )
     # Check for errors
     check_ok = fields.Boolean(
         compute="_compute_check_ok",
@@ -155,6 +166,28 @@ class L10nEsAeatRealEstate(models.Model):
         for rec in self:
             rec.owned_by_company = rec.partner_id == rec.company_id.partner_id
 
+    @api.constrains("municipality_code", "zip", "country_id")
+    def _check_municipality_code(self):
+        for record in self:
+            code = record.municipality_code
+            if not code or not record._is_in_spain():
+                continue
+            if not re.fullmatch(r"\d{5}", code):
+                raise ValidationError(
+                    self.env._(
+                        "The INE municipality code '%s' must have 5 digits.", code
+                    )
+                )
+            if record.zip and record.zip[:2] != code[:2]:
+                raise ValidationError(
+                    self.env._(
+                        "The INE municipality code '%(code)s' does not belong "
+                        "to the province of the zip %(zip)s.",
+                        code=code,
+                        zip=record.zip,
+                    )
+                )
+
     @api.depends("partner_id.vat")
     def _compute_representative_vat(self):
         for record in self:
@@ -170,14 +203,16 @@ class L10nEsAeatRealEstate(models.Model):
             record.check_ok = not bool(errors)
             record.error_text = bool(errors) and ", ".join(errors)
 
+    def _is_in_spain(self):
+        self.ensure_one()
+        return not self.country_id or self.country_id.code == "ES"
+
     def _has_dgc_reference(self):
         """The cadastral reference is given by the Spanish General Directorate
         of the Cadastre (DGC), with its control characters, except in the
         provinces with their own cadastre and abroad."""
         self.ensure_one()
-        return (
-            not self.country_id or self.country_id.code == "ES"
-        ) and self.state_id.code not in FORAL_STATE_CODES
+        return self._is_in_spain() and self.state_id.code not in FORAL_STATE_CODES
 
     @api.constrains("reference", "country_id", "state_id")
     def _check_reference(self):
