@@ -1,0 +1,72 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_es_aeat_sii_force_type
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2026-05-23 16:31+0000\n"
+"Last-Translator: Pablo Castelo <pablocv@gmx.es>\n"
+"Language-Team: none\n"
+"Language: gl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
+
+#. module: l10n_es_aeat_sii_force_type
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_force_type.field_account_bank_statement_line__sii_allow_force_communication_type
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_force_type.field_account_fiscal_position__sii_allow_force_communication_type
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_force_type.field_account_move__sii_allow_force_communication_type
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_force_type.field_account_payment__sii_allow_force_communication_type
+msgid "Allow force communication type on invoices"
+msgstr "Permitir forzar tipo de comunicación nas facturas"
+
+#. module: l10n_es_aeat_sii_force_type
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_force_type.field_account_fiscal_position__sii_forced_communication_type
+msgid "Default communication type"
+msgstr "Tipo de comunicación por defecto"
+
+#. module: l10n_es_aeat_sii_force_type
+#: model:ir.model,name:l10n_es_aeat_sii_force_type.model_account_fiscal_position
+msgid "Fiscal Position"
+msgstr "Posición fiscal"
+
+#. module: l10n_es_aeat_sii_force_type
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_force_type.field_account_bank_statement_line__sii_force_communication_type
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_force_type.field_account_move__sii_force_communication_type
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_force_type.field_account_payment__sii_force_communication_type
+msgid "Force communication type"
+msgstr "Forzar tipo de comunicación"
+
+#. module: l10n_es_aeat_sii_force_type
+#: model:ir.model,name:l10n_es_aeat_sii_force_type.model_account_move
+msgid "Journal Entry"
+msgstr "Asento contable"
+
+#. module: l10n_es_aeat_sii_force_type
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_force_type.selection__account_move__sii_force_communication_type__a0
+msgid "[A0] Alta de facturas/registro"
+msgstr "[A0] Alta de facturas/rexistro"
+
+#. module: l10n_es_aeat_sii_force_type
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_force_type.selection__account_move__sii_force_communication_type__a1
+msgid "[A1] Modificación de facturas/registros (errores registrales)"
+msgstr "[A1] Modificación de facturas/rexistros (erros rexistrais)"
+
+#. module: l10n_es_aeat_sii_force_type
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_force_type.selection__account_move__sii_force_communication_type__a4
+msgid "[A4] Modificación Factura Régimen de Viajeros"
+msgstr "[A4] Modificación Factura Réxime de Viaxeiros"
+
+#. module: l10n_es_aeat_sii_force_type
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_force_type.selection__account_move__sii_force_communication_type__a5
+msgid "[A5] Alta de las devoluciones del IVA de viajeros"
+msgstr "[A5] Alta das devolucións do IVE de viaxeiros"
+
+#. module: l10n_es_aeat_sii_force_type
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_force_type.selection__account_move__sii_force_communication_type__a6
+msgid "[A6] Modificación de las devoluciones del IVA de viajeros"
+msgstr "[A6] Modificación das devolucións do IVE de viaxeiros"
