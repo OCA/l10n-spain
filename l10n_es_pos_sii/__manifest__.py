@@ -6,7 +6,7 @@
     "author": "Aures Tic,Tecnativa,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "license": "AGPL-3",
-    "version": "18.0.2.1.1",
+    "version": "18.0.2.1.2",
     "depends": [
         "point_of_sale",
         "l10n_es_pos_oca",
