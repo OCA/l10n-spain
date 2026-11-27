@@ -1,4 +1,5 @@
-- La declaración sólo se puede realizar para personas jurídicas.
+- Falta contemplar la declaración de personas físicas que actúan mediante
+  representante.
 - No se calculan operaciones intragrupo.
 - No se contempla el régimen de criterio de caja.
 - No se contempla el régimen especial de bienes usados, objetos de arte,

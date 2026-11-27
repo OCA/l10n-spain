@@ -350,6 +350,12 @@ msgid "Ending date"
 msgstr "Fecha final"
 
 #. module: l10n_es_aeat_mod390
+#. odoo-python
+#: code:addons/l10n_es_aeat_mod390/models/mod390.py:0
+msgid "Enter the taxpayer's first name and last name."
+msgstr "Introduce el nombre y los apellidos del declarante."
+
+#. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_first_activity_iae
 msgid "Epígrafe I.A.E. 1ª actividad"
 msgstr "Epígrafe I.A.E. 1ª actividad"
@@ -479,6 +485,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__message_is_follower
 msgid "Is Follower"
 msgstr "Es un seguidor"
+
+#. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__is_natural_person
+msgid "Is natural person"
+msgstr "Es persona física"
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__journal_id
@@ -798,6 +809,16 @@ msgstr "Agencia Tributaria"
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod390.view_l10n_es_aeat_mod390_report_form
 msgid "Tax lines"
 msgstr "Líneas de impuestos"
+
+#. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__taxpayer_first_name
+msgid "Taxpayer's first name"
+msgstr "Nombre del declarante"
+
+#. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__taxpayer_last_name
+msgid "Taxpayer's last name"
+msgstr "Apellidos del declarante"
 
 #. module: l10n_es_aeat_mod390
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod390.view_l10n_es_aeat_mod390_report_form
