@@ -20,6 +20,12 @@ class PosOrder(models.Model):
         "It is used to disable sii_enabled and prevent the invoice from being "
         "sent to the SII more than once."
     )
+    # It is necessary to define a group to prevent point_of_sale at
+    # https://github.com/odoo/odoo/blob/404b839566fbc1a72d3e68c7a02ddbfa3b18980d/addons/point_of_sale/models/pos_order.py# L1166  # noqa: E501
+    # from returning an error when attempting to access the
+    # aeat.sii.mapping.registration.keys of the field if the user does not have
+    # sufficient permissions.
+    sii_registration_key_code = fields.Char(groups="l10n_es_aeat.group_account_aeat")
 
     @api.depends("company_id", "state")
     def _compute_sii_description(self):
