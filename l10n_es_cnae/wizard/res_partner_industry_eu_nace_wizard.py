@@ -1,53 +1,56 @@
 # Copyright 2024 Manuel Regidor <manuel.regidor@sygel.es>
+# Copyright 2026 Moduon Team S.L. <info@moduon.team>
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 import csv
-import logging
 
-from odoo import models
+from odoo import api, models
 from odoo.tools import file_open
 
-_logger = logging.getLogger(__name__)
+from ..hooks import set_cnae2025_codes
 
 
 class ResPartnerIndustryEUNaceWizard(models.TransientModel):
     _inherit = "res.partner.industry.eu.nace.wizard"
 
+    @api.model
     def create_spanish_industries(self):
-        try:
-            with file_open(
-                "l10n_es_cnae/data/res.partner.industry.csv", "r"
-            ) as csvfile:
-                reader = csv.reader(csvfile, delimiter=",", quotechar='"')
-                partner_industry_mod = self.env["res.partner.industry"]
-                all_naces = partner_industry_mod.search_read(
-                    [("full_name", "like", " - ")], ["full_name"]
-                )
-                nace_map = {
-                    nace.get("full_name").split(" - ")[0]: nace.get("id")
-                    for nace in all_naces
+        """Create the CNAE 2025 subclasses, or update their names."""
+        industry_model = self.env["res.partner.industry"].with_context(lang="en_US")
+        nace = industry_model._get_nace_map()
+        cnae = industry_model._get_nace_map("cnae2025")
+        spanish = self.env["res.lang"]._lang_get("es_ES")
+        created = industry_model
+        with file_open("l10n_es_cnae/data/res.partner.industry.csv") as csvfile:
+            for _xmlid, parent_code, code, name, name_es, _cnae2009 in csv.reader(
+                csvfile
+            ):
+                vals = {
+                    "name": name,
+                    "full_name": f"{code} - {name}",
+                    "parent_id": nace.get(parent_code, False),
                 }
-                language_codes = self.env["res.lang"].search([]).mapped("code")
-                for row in reader:
-                    nace_code = row[2]
-                    nace_id = nace_map.get(nace_code, False)
-                    if not nace_id:
-                        vals = {"name": row[3], "full_name": f"{nace_code} - {row[3]}"}
-                        parent = nace_map.get(row[1])
-                        if parent:
-                            vals["parent_id"] = parent
-                        industry = partner_industry_mod.create(vals)
-                        if "es_ES" in language_codes:
-                            industry.with_context(lang="es_ES").write(
-                                {
-                                    "name": row[4],
-                                    "full_name": f"{nace_code} - {row[4]}",
-                                }
-                            )
-        except Exception:
-            _logger.exception("Could not create industries from module l10n_es_cnae.")
+                industry = industry_model.browse(cnae.get(code))
+                if industry:
+                    if not vals["parent_id"]:
+                        del vals["parent_id"]
+                    industry.write(vals)
+                else:
+                    industry = industry_model.create(
+                        dict(vals, nace_codes={"cnae2025": code})
+                    )
+                    created |= industry
+                if spanish:
+                    industry.with_context(lang="es_ES").write(
+                        {"name": name_es, "full_name": f"{code} - {name_es}"}
+                    )
+        return created
 
     def update_partner_industry_eu_nace(self):
-        ret_vals = super().update_partner_industry_eu_nace()
+        # Rename the CNAE 2009 subclasses first: NACE Rev. 2.1 may give their old
+        # name to a sibling, e.g. 59.13 takes the old Spanish name of 59.17
         self.create_spanish_industries()
-        return ret_vals
+        result = super().update_partner_industry_eu_nace()
+        # The import may have created missing NACE Rev. 2.1 industries
+        set_cnae2025_codes(self.env)
+        return result
