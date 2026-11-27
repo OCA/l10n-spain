@@ -87,3 +87,30 @@ class TestL10nEsAeatReport(BaseCommon):
         self.env.company.representative_vat = "36477262K"
         report_form = Form(self.AeatReport)
         self.assertEqual(report_form.representative_vat, "36477262K")
+
+    def test_natural_person_nif(self):
+        for vat, is_natural_person in (
+            ("54362315K", True),
+            ("X5253868R", True),
+            ("Y5253868S", True),
+            ("Z5253868Y", True),
+            ("K1234567L", True),
+            ("L1234567L", True),
+            ("M1234567L", True),
+            ("B64717838", False),
+            ("E58818501", False),
+            ("X5253868A", False),
+            ("", False),
+            (False, False),
+        ):
+            with self.subTest(vat=vat):
+                report = self.AeatReport.new({"company_vat": vat})
+                self.assertEqual(report.is_natural_person, is_natural_person)
+
+    def test_natural_person_nif_with_country_prefix(self):
+        company = self.env.company
+        company.vat = "ES54362315K"
+        report = self.AeatReport.new({"company_id": company.id})
+        report.onchange_company_id()
+        self.assertEqual(report.company_vat, "54362315K")
+        self.assertTrue(report.is_natural_person)

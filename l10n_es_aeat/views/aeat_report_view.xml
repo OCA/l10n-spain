@@ -118,6 +118,7 @@
                                 required="1"
                                 readonly="state != 'draft'"
                             />
+                            <field name="is_natural_person" invisible="1" />
                             <field name="year" readonly="state != 'draft'" />
                             <field name="period_type" readonly="state != 'draft'" />
                             <label
