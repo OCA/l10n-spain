@@ -274,7 +274,11 @@ class SiiMixin(models.AbstractModel):
                             "aeat_send_failed": False,
                         }
                     )
-                document.write(inv_vals)
+                # We need to use sudo() because it's possible that we might reach this
+                # point from a pos.order call with a user who lacks permissions for
+                # the sii_match_difference_ids field, but we still need to be able to
+                # save
+                document.sudo().write(inv_vals)
             except Exception as fault:
                 new_cr = Registry(self.env.cr.dbname).cursor()
                 env = api.Environment(new_cr, self.env.uid, self.env.context)
