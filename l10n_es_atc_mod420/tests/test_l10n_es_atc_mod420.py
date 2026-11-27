@@ -535,15 +535,17 @@ class TestL10nEsAeatMod420(TestL10nEsAtcMod420Base):
             self.taxes_result.get(b, 0.0)
             for b in ("27", "29", "31", "33", "35", "36", "37", "38", "39")
         )
+        subtotal = round(devengado - deducir, 3)
+        # Result shown after calculating, before filling the manual boxes
+        self.assertAlmostEqual(self.model420.resultado_autoliquidacion, subtotal, 2)
         self.model420.write(
             {
                 "regularizacion_cuotas": 150,
-                "a_deducir": 50,
-                "cuotas_compensar": 100,
+                "a_deducir": 30,
+                "cuotas_compensar": 20,
             }
         )
-        subtotal = round(devengado - deducir, 3)
-        result = round(subtotal + 150 - 50 - 100, 3)
+        result = round(subtotal + 150 - 30 - 20, 3)
         self.assertAlmostEqual(self.model420.total_devengado, devengado, 2)
         self.assertAlmostEqual(self.model420.total_deducir, deducir, 2)
         self.assertAlmostEqual(self.model420.resultado_autoliquidacion, result, 2)
