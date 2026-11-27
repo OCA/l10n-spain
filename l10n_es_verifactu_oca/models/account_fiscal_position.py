@@ -12,13 +12,47 @@ class AccountFiscalPosition(models.Model):
         related="company_id.verifactu_enabled", readonly=True
     )
     verifactu_tax_key = fields.Selection(
-        selection="_get_verifactu_tax_keys", default="01", string="VERI*FACTU tax key"
+        selection="_get_verifactu_tax_keys",
+        string="VERI*FACTU tax key",
     )
     verifactu_registration_key = fields.Many2one(
         comodel_name="verifactu.registration.key",
         ondelete="restrict",
         string="VERI*FACTU registration key",
     )
+
+    @api.model
+    def _default_verifactu_tax_key(self, company=None):
+        company = company or self.env.company
+        agency = self.env.ref(
+            "l10n_es_aeat.aeat_tax_agency_canarias", raise_if_not_found=False
+        )
+        if agency and company.tax_agency_id == agency:
+            return "03"
+        return "01"
+
+    @api.model
+    def default_get(self, fields_list):
+        defaults = super().default_get(fields_list)
+        if "verifactu_tax_key" in fields_list and not defaults.get("verifactu_tax_key"):
+            company_id = (
+                defaults.get("company_id")
+                or self.env.context.get("default_company_id")
+                or self.env.company.id
+            )
+            defaults["verifactu_tax_key"] = self._default_verifactu_tax_key(
+                self.env["res.company"].browse(company_id)
+            )
+        return defaults
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if "verifactu_tax_key" not in vals and vals.get("company_id"):
+                vals["verifactu_tax_key"] = self._default_verifactu_tax_key(
+                    self.env["res.company"].browse(vals["company_id"])
+                )
+        return super().create(vals_list)
 
     @api.model
     def _get_verifactu_tax_keys(self):

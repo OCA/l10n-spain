@@ -1,2 +1,4 @@
 from . import test_10n_es_verifactu
 from . import test_verifactu_invoice
+from . import test_l10n_es_igic_verifactu
+from . import test_verifactu_tax_key
