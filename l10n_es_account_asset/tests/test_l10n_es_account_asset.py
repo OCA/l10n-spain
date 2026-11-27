@@ -1,0 +1,195 @@
+# Copyright 2015 AvanzOSC - Ainara Galdona
+# Copyright 2016 Tecnativa - Antonio Espinosa
+# Copyright 2012-2019 Tecnativa - Pedro M. Baeza
+# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
+
+from odoo import fields
+
+from odoo.addons.base.tests.common import BaseCommon
+
+
+class TestL10nEsAccountAsset(BaseCommon):
+    _test_user_groups = ("base.group_user", "account.group_account_manager")
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.asset_model = cls.env["account.asset"]
+        cls.journal = cls.env["account.journal"].create(
+            {"name": "Test asset journal", "code": "AST", "type": "general"}
+        )
+        cls.expense_account = cls.env["account.account"].create(
+            {
+                "name": "Expense test account",
+                "code": "EXPTEST",
+                "account_type": "expense",
+            }
+        )
+        cls.depreciation_account = cls.env["account.account"].create(
+            {
+                "name": "Depreciation test account",
+                "code": "DEPTEST",
+                "account_type": "asset_current",
+            }
+        )
+        cls.profile = cls.env["account.asset.profile"].create(
+            {
+                "name": "Test asset category",
+                "account_expense_depreciation_id": cls.expense_account.id,
+                "account_asset_id": cls.depreciation_account.id,
+                "account_depreciation_id": cls.depreciation_account.id,
+                "journal_id": cls.journal.id,
+                "method_number": 3,
+            }
+        )
+        cls.asset = cls.asset_model.create(
+            {
+                "name": "Test Asset",
+                "profile_id": cls.profile.id,
+                "code": "REF01",
+                "date_start": "2015-01-01",
+                "method": "linear",
+                "purchase_value": 30000,
+                "method_time": "percentage",
+                "method_percentage": 20,
+                "method_period": "year",
+            }
+        )
+
+    def test_not_prorated_percentage_asset(self):
+        self.asset.compute_depreciation_board()
+        self.assertEqual(len(self.asset.depreciation_line_ids), 6)
+        lines = self.asset.depreciation_line_ids[1:].filtered(
+            lambda x: x.amount != 6000
+        )
+        self.assertFalse(lines, "The amount of lines is not correct.")
+
+    def test_prorated_percentage_asset(self):
+        self.asset.write(
+            {"prorata": True, "date_start": fields.Date.to_date("2015-04-10")}
+        )
+        self.asset.compute_depreciation_board()
+        self.assertEqual(
+            self.asset.depreciation_line_ids[1].amount,
+            4372.6,
+            "First depreciation amount is not correct.",
+        )
+        lines = self.asset.depreciation_line_ids[2:-1].filtered(
+            lambda x: x.amount != 6000
+        )
+        self.assertFalse(lines, "The amount of lines is not correct.")
+        self.assertEqual(
+            self.asset.depreciation_line_ids[-1:].amount,
+            1627.4,
+            "Last depreciation amount is not correct.",
+        )
+
+    def test_prorated_percentage_asset_different_years(self):
+        self.asset.write(
+            {
+                "prorata": True,
+                "method_percentage": 70,
+                "date_start": fields.Date.to_date("2017-11-15"),
+            }
+        )
+        self.asset.compute_depreciation_board()
+        # 47 days of 2017, a whole 2018 and the rest
+        self.assertEqual(
+            self.asset.depreciation_line_ids[1:].mapped("amount"),
+            [2704.11, 21000, 6295.89],
+        )
+
+    def test_percentage_asset_from_years_profile_without_prorata(self):
+        """The percentage method is always prorated, even when the asset comes
+        from a profile by years without prorata"""
+        self.profile.write({"method_time": "year", "prorata": False})
+        asset = self.asset_model.create(
+            {
+                "name": "Test Asset years profile",
+                "profile_id": self.profile.id,
+                "date_start": "2015-04-10",
+                "purchase_value": 30000,
+            }
+        )
+        self.assertFalse(asset.prorata)
+        asset.write({"method_time": "percentage", "annual_percentage": 20})
+        self.assertTrue(asset.prorata)
+        asset.compute_depreciation_board()
+        self.assertTrue(asset.prorata)
+        lines = asset.depreciation_line_ids[1:]
+        self.assertEqual(lines[0].amount, 4372.6)
+        self.assertEqual(set(lines[1:-1].mapped("amount")), {6000})
+        self.assertEqual(lines[-1].amount, 1627.4)
+
+    def test_asset_other_percentage(self):
+        """Test for regression detected for annual percentage lower than 20."""
+        self.asset.annual_percentage = 10
+        # Check computed field
+        self.assertEqual(self.asset.method_percentage, 10)
+        self.asset.compute_depreciation_board()
+        self.assertEqual(len(self.asset.depreciation_line_ids), 11)
+        lines = self.asset.depreciation_line_ids[1:].filtered(
+            lambda x: x.amount != 3000
+        )
+        self.assertFalse(lines, "The amount of lines is not correct.")
+
+    def test_assign_profile(self):
+        # direct profile assignation
+        profile = self.profile.copy(
+            {
+                "name": "Test asset category percentage",
+                "method_time": "percentage",
+                "method_percentage": 20,
+                "method_period": "year",
+            }
+        )
+        self.asset.profile_id = profile
+        self.assertEqual(self.asset.method_time, "percentage")
+        self.assertEqual(self.asset.annual_percentage, 20)
+        # asset creation
+        asset = self.asset_model.create(
+            {
+                "name": "Test Asset 2",
+                "profile_id": profile.id,
+                "date_start": "2015-01-01",
+                "purchase_value": 30000,
+            }
+        )
+        self.assertEqual(asset.method_time, "percentage")
+        self.assertEqual(asset.annual_percentage, 20)
+        # asset copy
+        asset = self.asset.copy({"profile_id": profile.id})
+        self.assertEqual(asset.method_time, "percentage")
+        self.assertEqual(asset.annual_percentage, 20)
+
+    def test_quarterly_percentage(self):
+        """A quarter is 3 months: 20 % a year is 5 % a quarter, in both ways"""
+        profile = self.profile.copy(
+            {
+                "name": "Test asset category quarterly percentage",
+                "method_time": "percentage",
+                "method_period": "quarter",
+                "annual_percentage": 20,
+            }
+        )
+        self.assertEqual(profile.method_percentage, 5)
+        profile.method_percentage = 10
+        self.assertEqual(profile.annual_percentage, 40)
+        self.asset.method_period = "quarter"
+        self.assertEqual(self.asset.method_percentage, 5)
+        self.asset.method_percentage = 10
+        self.assertEqual(self.asset.annual_percentage, 40)
+        self.asset.method_percentage = 5
+        self.assertEqual(self.asset.annual_percentage, 20)
+        self.asset.compute_depreciation_board()
+        lines = self.asset.depreciation_line_ids[1:]
+        # 5 years of 4 quarters of 30000 * 5 %
+        self.assertEqual(len(lines), 20)
+        self.assertEqual(set(lines.mapped("amount")), {1500})
+
+    def test_asset_other_method(self):
+        """Test for regression detected using other time methods."""
+        self.asset.method_time = "year"
+        self.asset.method_number = 8
+        self.asset.compute_depreciation_board()
+        self.assertEqual(len(self.asset.depreciation_line_ids), 9)
