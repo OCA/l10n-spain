@@ -110,4 +110,12 @@
         >Operaciones interiores exentas por aplicación artículo 25 Ley 19/1994</field>
         <field name="type">purchase</field>
     </record>
+    <record
+        id="aeat_sii_mapping_registration_keys_p_18"
+        model="aeat.sii.mapping.registration.keys"
+    >
+        <field name="code">18</field>
+        <field name="name">Operaciones sujetas al IPSI</field>
+        <field name="type">purchase</field>
+    </record>
 </odoo>
