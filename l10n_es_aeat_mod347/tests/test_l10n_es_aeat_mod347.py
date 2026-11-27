@@ -1,4 +1,5 @@
 # Copyright 2019 Tecnativa - Pedro M. Baeza
+# Copyright 2026 Tecnativa - Carlos Dauden
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo.tests import Form
@@ -206,3 +207,195 @@ class TestL10nEsAeatMod347(TestL10nEsAeatModBase):
         first_partner.email = "test1@email.com"
         self.model347.button_send_mails()
         self.assertTrue(first_partner_mod347_record.state, "sent")
+
+    def _create_real_estates(self):
+        self.env.user.groups_id |= self.env.ref(
+            "l10n_es_aeat.group_use_aeat_real_estates"
+        )
+        estate_vals = {
+            "partner_id": self.company.partner_id.id,
+            "address_type": "CALLE",
+            "address": "Mayor",
+            "number_type": "NUM",
+            "number": 5,
+        }
+        self.premises, self.shop = self.env["l10n.es.aeat.real_estate"].create(
+            [
+                {
+                    **estate_vals,
+                    "name": "Premises",
+                    "reference": "8374992BV4192Q4560EG",
+                    "city": "Aravaca",
+                    "municipality": "Madrid",
+                    "municipality_code": "28079",
+                    "zip": "28023",
+                    "state_id": self.env.ref("base.state_es_m").id,
+                    "floor": "2",
+                },
+                {
+                    **estate_vals,
+                    "name": "Shop",
+                    "reference": "201001000123400001",
+                    "city": "Pamplona",
+                    "municipality_code": "31201",
+                    "zip": "31001",
+                    "state_id": self.env.ref("base.state_es_na").id,
+                },
+            ]
+        )
+        self.tenant = self.customer.copy({"name": "Tenant", "vat": "ES12345678Z"})
+        self.tenant_2 = self.customer.copy({"name": "Tenant 2", "vat": "ES12345678Z"})
+
+    def _invoice_form(self, partner, date, lines, move_type="out_invoice"):
+        invoice_form = Form(
+            self.env["account.move"].with_context(default_move_type=move_type)
+        )
+        invoice_form.partner_id = partner
+        invoice_form.invoice_date = date
+        for price, taxes, real_estate in lines:
+            with invoice_form.invoice_line_ids.new() as line_form:
+                line_form.name = real_estate.name or "Sale"
+                line_form.price_unit = price
+                line_form.tax_ids.clear()
+                for tax in self._get_taxes(taxes):
+                    line_form.tax_ids.add(tax)
+                line_form.l10n_es_aeat_real_estate_id = real_estate
+        invoice = invoice_form.save()
+        invoice.action_post()
+        return invoice
+
+    def _create_rents(self):
+        """The tenant rents the premises and the shop and buys something else,
+        the tenant 2 only rents the shop and pays it in cash."""
+        self._create_real_estates()
+        no_estate = self.env["l10n.es.aeat.real_estate"]
+        for partner, date, lines, move_type in (
+            (
+                self.tenant,
+                "2019-02-01",
+                [
+                    # The withholding is not a 347 operation
+                    (1000, "S_IVA21S,S_IRPF19", self.premises),
+                    (3000, "S_IVA21B", no_estate),
+                ],
+                "out_invoice",
+            ),
+            (self.tenant, "2019-05-01", [(500, "S_IVA21S", self.shop)], "out_invoice"),
+            (
+                self.tenant,
+                "2019-06-01",
+                [(200, "S_IVA21S", self.premises)],
+                "out_refund",
+            ),
+            (
+                self.tenant_2,
+                "2019-03-01",
+                [(5000, "S_IVA21S", self.shop)],
+                "out_invoice",
+            ),
+        ):
+            invoice = self._invoice_form(partner, date, lines, move_type)
+        payment_form = Form(
+            self.env["account.payment.register"].with_context(
+                active_model="account.move", active_ids=invoice.ids
+            )
+        )
+        payment_form.journal_id = self.journal_cash
+        payment_form.payment_date = "2019-03-01"
+        payment_form.save().action_create_payments()
+
+    def _tenant_records(self):
+        return self.model347.partner_record_ids.filtered(
+            lambda r: r.partner_id in (self.tenant | self.tenant_2)
+        )
+
+    def _real_estate_records(self):
+        return self.model347.real_estate_record_ids.filtered("real_estate_id")
+
+    def test_real_estate_rents(self):
+        """The rents go to their own partner record and to a real estate record
+        per partner and real estate, filled from the real estate, and
+        recomputing either partner record of a partner recomputes both."""
+        self._create_rents()
+        fields = ["situation", "reference", "floor", "city", "township"]
+        fields += ["township_code", "state_code", "postal_code"]
+        estate_values = {
+            self.premises: ("1", "8374992BV4192Q4560EG", "2", "Aravaca", "Madrid")
+            + ("28079", "28", "28023"),
+            self.shop: ("2", "201001000123400001", False, False, "Pamplona")
+            + ("31201", "31", "31001"),
+        }
+        RealEstateRecord = self.env["l10n.es.aeat.mod347.real_estate_record"]
+        manual = RealEstateRecord.create(
+            {
+                "report_id": self.model347.id,
+                "partner_id": self.tenant.id,
+                "situation": "3",
+                "state_code": "28",
+                "amount": 1000,
+            }
+        )
+        with Form(RealEstateRecord.with_context(report_id=self.model347.id)) as form:
+            form.real_estate_id = self.premises
+            # The province of the real estate is kept
+            form.partner_id = self.tenant
+        chosen = form.record
+        self.assertEqual(tuple(chosen[f] for f in fields), estate_values[self.premises])
+        # The calculation replaces the records with a real estate
+        self.model347.button_calculate()
+        self.assertEqual(
+            {
+                (r.partner_id, r.bussiness_real_estate_rent, r.amount, r.cash_amount)
+                + (r.first_quarter, r.second_quarter)
+                for r in self._tenant_records()
+            },
+            {
+                (self.tenant, False, 3630, 0, 3630, 0),
+                (self.tenant, True, 1573, 0, 1210, 363),
+                (self.tenant_2, False, 0, 6050, 0, 0),
+                (self.tenant_2, True, 6050, 0, 6050, 0),
+            },
+        )
+        self.assertEqual(
+            {
+                (r.partner_id, r.partner_vat, r.real_estate_id, r.amount)
+                + tuple(r[f] for f in fields)
+                for r in self._real_estate_records()
+            },
+            {
+                (partner, "12345678Z", estate, amount) + estate_values[estate]
+                for partner, estate, amount in (
+                    (self.tenant, self.premises, 968),
+                    (self.tenant, self.shop, 605),
+                    (self.tenant_2, self.shop, 6050),
+                )
+            },
+        )
+        # The manual record without real estate is kept
+        self.assertEqual(
+            self.model347.real_estate_record_ids - self._real_estate_records(), manual
+        )
+
+        general, rent = (
+            self._tenant_records()
+            .filtered(lambda r: r.partner_id == self.tenant)
+            .sorted("bussiness_real_estate_rent")
+        )
+        for amount, record, rent_amount, premises_amount in (
+            (100, rent, 1694, 1089),
+            (1000, general, 2904, 2299),
+        ):
+            self._invoice_form(
+                self.tenant, "2019-11-01", [(amount, "S_IVA21S", self.premises)]
+            )
+            record.button_recompute()
+            self.assertEqual(
+                (general.amount, rent.amount, rent.fourth_quarter),
+                (3630, rent_amount, rent_amount - 1573),
+            )
+            self.assertEqual(
+                self._real_estate_records()
+                .filtered(lambda r: r.real_estate_id == self.premises)
+                .mapped("amount"),
+                [premises_amount],
+            )

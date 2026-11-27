@@ -44,10 +44,21 @@ Para realizar una declaración del modelo 347:
     declaración. **NOTA:** Para que esto funcione, debe tener bien
     configurado todos los parámetros relativos a catchall, correo
     entrante, etc.
-14. También puede introducir manualmente los registros de inmuebles para
-    aquellos que no estén reflejados en el modelo 115.
-15. Una vez cotejados todos los registros, se puede pulsar en el botón
+14. Las líneas de las facturas de cliente con un inmueble (el local que
+    la compañía alquila al cliente) se declaran aparte en un registro de
+    empresa marcado como arrendamiento de local de negocio, con el
+    importe de los alquileres IVA incluido, y crean un registro de
+    inmueble por cliente e inmueble con los datos del inmueble. El resto
+    de operaciones del cliente quedan en su registro general, que es el
+    que recibe los cobros en efectivo. El límite de importe se aplica al
+    total de operaciones del cliente.
+15. También puede introducir manualmente los registros de inmuebles para
+    aquellos que no estén reflejados en el modelo 115, eligiendo un
+    inmueble para rellenar sus datos o escribiéndolos. Al calcular se
+    vuelven a crear los registros de inmuebles que tienen un inmueble y
+    se mantienen los que no lo tienen.
+16. Una vez cotejados todos los registros, se puede pulsar en el botón
     "Confirmar" para confirmar la declaración y dejar los datos ya
     fijos.
-16. Pulsando en el botón "Exportar a BOE", podrá obtener un archivo para
+17. Pulsando en el botón "Exportar a BOE", podrá obtener un archivo para
     su subida en la web de la AEAT.
