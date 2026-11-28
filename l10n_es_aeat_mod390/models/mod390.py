@@ -41,6 +41,9 @@ class L10nEsAeatMod390Report(models.Model):
     _period_monthly = False
     _period_yearly = True
 
+    taxpayer_first_name = fields.Char(string="Taxpayer's first name", size=20)
+    taxpayer_last_name = fields.Char(string="Taxpayer's last name", size=60)
+
     # 3. Datos estadísticos
     has_347 = fields.Boolean(
         string="¿Obligación del 347?",
@@ -860,8 +863,15 @@ class L10nEsAeatMod390Report(models.Model):
         return res
 
     def button_confirm(self):
-        """Check that the manual 303 results match the report."""
+        """Check the taxpayer identity and that the manual 303 results match."""
         self.ensure_one()
+        if self.is_natural_person and not (
+            (self.taxpayer_first_name or "").strip()
+            and (self.taxpayer_last_name or "").strip()
+        ):
+            raise exceptions.UserError(
+                self.env._("Enter the taxpayer's first name and last name.")
+            )
         summary = self.casilla_95 - self.casilla_97 - self.casilla_98 - self.casilla_662
         if float_compare(summary, self.casilla_86, precision_digits=2) != 0:
             raise exceptions.UserError(

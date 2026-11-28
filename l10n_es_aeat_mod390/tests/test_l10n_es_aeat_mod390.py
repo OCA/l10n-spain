@@ -4,6 +4,7 @@
 from collections import OrderedDict
 
 from odoo import exceptions
+from odoo.tests import Form
 
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
     TestL10nEsAeatModBase,
@@ -320,6 +321,74 @@ class TestL10nEsAeatMod390(TestL10nEsAeatMod390Base):
         for xml_id in export_config_xml_ids:
             export_config = self.env.ref(xml_id)
             self.assertTrue(export_to_boe._export_config(self.model390, export_config))
+
+    def test_natural_person_without_legal_representative(self):
+        report = self.model390_2023.with_context(lang="en_US")
+        report.write({"year": 2025, "company_vat": "B64717838", "use_303": False})
+        report.button_calculate()
+        report.write(
+            {
+                "main_activity": "Servicios informáticos",
+                "main_activity_code_id": self.env.ref(
+                    "l10n_es_aeat_mod303.aeat_mod303_activity_code_A05"
+                ).id,
+                "main_activity_iae": "763",
+            }
+        )
+        view = "l10n_es_aeat_mod390.view_l10n_es_aeat_mod390_report_form"
+        with self.assertRaisesRegex(AssertionError, "first_representative_name"):
+            Form(report, view=view).save()
+
+        report.company_vat = "Y5253868S"
+        with self.assertRaisesRegex(AssertionError, "taxpayer_"):
+            Form(report, view=view).save()
+        for first_name, last_name in (
+            (False, False),
+            ("   ", "García de la Peña"),
+            ("Ana María", "   "),
+        ):
+            with self.subTest(first_name=first_name, last_name=last_name):
+                report.write(
+                    {
+                        "taxpayer_first_name": first_name,
+                        "taxpayer_last_name": last_name,
+                    }
+                )
+                with self.assertRaisesRegex(
+                    exceptions.UserError,
+                    r"^Enter the taxpayer's first name and last name\.$",
+                ):
+                    report.button_confirm()
+        with Form(report, view=view) as form:
+            form.taxpayer_first_name = "Ana María"
+            form.taxpayer_last_name = "García de la Peña"
+        report.write(
+            {
+                "taxpayer_first_name": " Ana María ",
+                "taxpayer_last_name": " García de la Peña ",
+            }
+        )
+        report.button_confirm()
+        self.assertEqual(report.state, "done")
+
+        exporter = self.env["l10n.es.aeat.report.export_to_boe"].create({})
+        # Existing records can still contain legal representative data.
+        report.write(
+            {
+                "first_representative_name": "Legal representative",
+                "first_representative_vat": "54362315K",
+                "first_representative_date": "2025-01-02",
+                "first_representative_notary": "1234",
+            }
+        )
+        payload = exporter.action_get_file_from_config(report)
+        start = payload.index(b"<T39001000>")
+        page = payload[start:]
+        self.assertEqual(page[13:22], b"Y5253868S")
+        self.assertEqual(page[22:82], "GARCIA DE LA PEÑA".encode("latin-1").ljust(60))
+        self.assertEqual(page[82:102], b"ANA MARIA".ljust(20))
+        empty_legal_representative = b" " * 89 + b"00000000" + b" " * 12
+        self.assertEqual(page[644:971], empty_legal_representative * 3)
 
     def test_model_390_using_303_01(self):
         # Check use 303 activated but no 303 reports exist

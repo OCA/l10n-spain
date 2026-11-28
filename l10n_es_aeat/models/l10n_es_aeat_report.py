@@ -8,6 +8,8 @@ import re
 from calendar import monthrange
 from datetime import datetime
 
+from stdnum.es import nif
+
 from odoo import api, exceptions, fields, models
 from odoo.tools import config
 
@@ -92,6 +94,10 @@ class L10nEsAeatReport(models.AbstractModel):
         string="VAT number",
         size=9,
         required=True,
+    )
+    is_natural_person = fields.Boolean(
+        string="Is natural person",
+        compute="_compute_is_natural_person",
     )
     number = fields.Char(
         string="Model number",
@@ -315,6 +321,15 @@ class L10nEsAeatReport(models.AbstractModel):
                     report.date_end = fields.Date.to_date(
                         f"{report.year}-{month}-{monthrange(report.year, month)[1]}"
                     )
+
+    @api.depends("company_vat")
+    def _compute_is_natural_person(self):
+        for report in self:
+            number = nif.compact(report.company_vat or "")
+            # Spanish individuals use DNI, NIE, or a NIF with prefix K, L or M.
+            report.is_natural_person = (
+                nif.is_valid(number) and number[0] in "0123456789KLMXYZ"
+            )
 
     @api.depends("company_id")
     def _compute_representative_vat(self):

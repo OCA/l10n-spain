@@ -28,6 +28,23 @@
                         uncheck "<b>Use 303 reports</b>" option.</p>
                 </div>
             </header>
+            <field name="company_vat" position="after">
+                <field
+                    name="taxpayer_last_name"
+                    invisible="not is_natural_person"
+                    required="state == 'calculated' and is_natural_person"
+                    readonly="state not in ('draft', 'calculated')"
+                />
+                <field
+                    name="taxpayer_first_name"
+                    invisible="not is_natural_person"
+                    required="state == 'calculated' and is_natural_person"
+                    readonly="state not in ('draft', 'calculated')"
+                />
+            </field>
+            <field name="representative_vat" position="attributes">
+                <attribute name="invisible">is_natural_person</attribute>
+            </field>
             <group name="group_other_parameters" position="inside">
                 <field name="use_303" />
             </group>
@@ -176,7 +193,7 @@
                             </group>
                         </group>
                     </page>
-                    <page string="4. Representantes">
+                    <page string="4. Representantes" invisible="is_natural_person">
                         <group>
                             <group
                                 name="group_first_representative"
@@ -184,22 +201,22 @@
                             >
                                 <field
                                     name="first_representative_name"
-                                    required="state == 'calculated'"
+                                    required="state == 'calculated' and not is_natural_person"
                                     readonly="state != 'calculated'"
                                 />
                                 <field
                                     name="first_representative_vat"
-                                    required="state == 'calculated'"
+                                    required="state == 'calculated' and not is_natural_person"
                                     readonly="state != 'calculated'"
                                 />
                                 <field
                                     name="first_representative_date"
-                                    required="state == 'calculated'"
+                                    required="state == 'calculated' and not is_natural_person"
                                     readonly="state != 'calculated'"
                                 />
                                 <field
                                     name="first_representative_notary"
-                                    required="state == 'calculated'"
+                                    required="state == 'calculated' and not is_natural_person"
                                     readonly="state != 'calculated'"
                                 />
                             </group>
