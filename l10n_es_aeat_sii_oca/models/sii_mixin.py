@@ -5,6 +5,7 @@
 # Copyright 2011,2024 Tecnativa - Pedro M. Baeza
 # Copyright 2026 Tecnativa - Sergio Teruel
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
 import json
 from itertools import zip_longest
 
@@ -295,7 +296,10 @@ class SiiMixin(models.AbstractModel):
     def send_sii_now(self):
         documents = self._sii_filter_to_send()
         if documents:
-            documents._process_sii_send(send_date=fields.Datetime.now())
+            documents.sii_send_date = fields.Datetime.now()
+            documents_to_cancel = documents.filtered("sii_needs_cancel")
+            (documents - documents_to_cancel).confirm_one_document()
+            documents_to_cancel.cancel_one_invoice()
 
     def send_sii(self):
         documents = self._sii_filter_to_send()

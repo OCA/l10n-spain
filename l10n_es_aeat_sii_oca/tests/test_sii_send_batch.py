@@ -90,16 +90,12 @@ class TestSiiSendBatch(TestL10nEsAeatSiiBase):
         return invoices
 
     def _send(self, invoices, service):
-        invoices.send_sii_now()
-        self._run_cron(service)
-
-    def _run_cron(self, service):
         with patch.object(
             type(self.env["account.move"]),
             "_connect_aeat",
             lambda move, mapping_key: service,
         ):
-            self.cron.method_direct_trigger()
+            invoices.send_sii_now()
 
     def _sent_numbers(self, service):
         return sorted(
@@ -223,8 +219,7 @@ class TestSiiSendBatch(TestL10nEsAeatSiiBase):
         self._send(invoices, FakeSiiService())
         invoices.button_cancel()
         invoices.cancel_sii()
-        invoices.send_sii_now()
-        self._run_cron(service)
+        self._send(invoices, service)
 
     def test_cancel_batch(self):
         invoices = self._create_posted_invoices("out_invoice", 3)
